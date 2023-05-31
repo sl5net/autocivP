@@ -1,7 +1,3 @@
-// info's that never should've been forgot (some new user don't know eventually:)
-// error(
-//   "Just for Info: Auto-assign civilization with chat (only works if host has the mod)"
-// );
 var g_linkLong = null; // init should be available during the game and not changed
 var game = {
   // stuff that needs to be updated after the gui updates it (as it removes it before it)
@@ -56,7 +52,9 @@ var game = {
     mapsize: (mapsize) => {
       if (!g_IsController) return;
       if (g_GameSettings.mapType != "random")
-        return selfMessage("Size can only be set for random maps");
+        return selfMessage(
+          `Size can only be set for random maps ( g_GameSettings.mapType = ${g_GameSettings.mapType})`
+        );
       let val = parseInt(mapsize);
       if (!Number.isInteger(val) || val < 1)
         return selfMessage("Invalid map size value (must be a number >= 1).");
@@ -229,15 +227,19 @@ g_NetworkCommandsDescriptions = Object.assign(g_NetworkCommandsDescriptions, {
   "/banspecs": "Ban all specs",
   "/list": "List all the players and observers currently here",
   "/clear": "Clear the chat comments",
-  "/pMainland_1v1_defaults": "set to mainland, popMax, 300res, and more",
-  "/pMainland_defaults": "set to mainland, popMax, 300res, and more",
-  "/pMBMainland_defaults": "set to mainland balanced popMax, 300res",
-  "/pUnknown_defaults": "set to map unknown, popMax, 300res, and more",
-  "/pExtinct_volcano_defaults": "set to extinct_volcano and other defaults",
-  "/jitsi":
+  "/pMainland_1v1_defaults": " for mainland, popMax, 300res, and more",
+  "/p1v1Mainland_defaults": "same as above",
+  "/pMainland_defaults": "type pM<tab> for mainland, popMax, 300res, and more",
+  "/pMBMainland_defaults":
+    "type pMB<tab> to get mainland balanced popMax, 300res",
+  "/pUnknown_defaults":
+    "type pU<tab> for  map unknown, popMax, 300res, and more",
+  "/pExtinct_volcano_defaults":
+    "type pU<tab> for extinct_volcano and other defaults",
+  "/jitsiBasic":
     "Create a game call and set a TG config. Uses jitsi (meet.jit.si/anyNameYoutWantHere) service. ",
-  "/jitsiPlus":
-    "Create a game call and set a TG config. Uses jitsi (meet.jit.si/anyNameYoutWantHere) service. And rename the Game Name(experimental). ",
+  // "/jitsiPlus":
+  //   "Create a game call and set a TG config. Uses jitsi (meet.jit.si/anyNameYoutWantHere) service. And rename the Game Name(experimental). ",
 });
 
 g_NetworkCommands["/help"] = () => {
@@ -259,12 +261,7 @@ g_NetworkCommands["/help"] = () => {
 g_NetworkCommands["/playToggle"] = () => {
   const key = "autociv.gamesetup.play.enabled";
   const enabled = Engine.ConfigDB_GetValue("user", key) == "true";
-  Engine.ConfigDB_CreateAndWriteValueToFile(
-    "user",
-    key,
-    enabled ? "false" : "true",
-    "config/user.cfg"
-  );
+  Engine.ConfigDB_CreateAndSaveValue("user", key, enabled ? "false" : "true");
   selfMessage(
     `Player play autoassign slot ${enabled ? "enabled" : "disabled"}`
   );
@@ -312,10 +309,14 @@ g_NetworkCommands["/countdown"] = (input) => {
 };
 
 g_NetworkCommands["/gameName"] = (text) => {
-  return setGameNameInLobby(text);
+  setGameNameInLobby(text);
 };
 
 g_NetworkCommands["/pMainland_1v1_defaults"] = (text) => {
+  pMainland_1v1_defaults();
+};
+g_NetworkCommands["/p1v1Mainland_defaults"] = (text) => {
+  // alias
   pMainland_1v1_defaults();
 };
 g_NetworkCommands["/pMainland_defaults"] = (text) => {
@@ -332,6 +333,9 @@ g_NetworkCommands["/pUnknown_defaults"] = (text) => {
 };
 
 g_NetworkCommands["/jitsiPlus"] = (text) => {
+  selfMessage(`jitsiPlus is off at the moment for some resons.`);
+
+  return true;
   // selfMessage(`meet.jit.si/anyNameYoutWantHere`);
 
   /*
@@ -367,7 +371,7 @@ Jitsi: Quick team calls, no setup, audio chat.
     openURL(g_linkLong);
   }
 
-  let linkTeam1example = `https://meet.jit.si/0ad${linkidShort}team123`;
+  let linkTeam1example = `${g_linkLong}team123`;
   selfMessage(
     ` recommendation: send later in your private team-game-chat a other unique link for audio chat. Example:  ${linkTeam1example}`
   );
@@ -390,17 +394,18 @@ Jitsi: Quick team calls, no setup, audio chat.
   return setGameNameInLobby(gameTitleInLobby);
 };
 
-g_NetworkCommands["/jitsi"] = (text) => {
+g_NetworkCommands["/jitsiBasic"] = (text) => {
   if (g_linkLong == null) {
     let linkidShort = Date.now().toString().substring(10);
     // not open this link always. if you have it already probably
     g_linkLong = `https://meet.jit.si/0ad${linkidShort}audio`;
     openURL(g_linkLong);
   }
-  let linkTeam1example = `https://meet.jit.si/0ad${linkidShort}team123`;
+  let linkTeam1example = `${g_linkLong}team123`;
   selfMessage(
     ` recommendation: send later in your private team-game-chat a other unique link for audio chat. Example:  ${linkTeam1example}`
   );
+  selfMessage(`${g_linkLong}`);
 };
 
 g_NetworkCommands["/team"] = (text) => game.set.teams(text);
@@ -430,30 +435,6 @@ g_NetworkCommands["/randomCivs"] = function (excludedCivs) {
       slot - 1
     ].playerSettingControls.PlayerCiv.onSelectionChange(civCodeIndex + 1);
   }
-};
-
-function setGameNameInLobby(text) {
-  if (!g_IsController || !Engine.HasNetServer()) return;
-  if (!g_SetupWindow.controls.lobbyGameRegistrationController) return;
-
-  let oldGameName =
-    g_SetupWindow.controls.lobbyGameRegistrationController.serverName;
-  selfMessage(`oldGameName: ${oldGameName}`);
-
-  text = `${text}`;
-  g_SetupWindow.controls.lobbyGameRegistrationController.serverName = text;
-  selfMessage(`Game name changed to: ${text}`);
-  g_SetupWindow.controls.lobbyGameRegistrationController.sendImmediately();
-  return true;
-}
-
-var getKeys = function (obj) {
-  var keys = [];
-  for (var key in obj) {
-    //    keys.push(key);
-    warn("key=" + key);
-  }
-  return keys;
 };
 
 function pExtinct_volcano_defaults() {
@@ -548,7 +529,125 @@ function pMBMainland_defaults() {
   let populationMax = g_GameSettings.population.cap; // works its a number option vield
   selfMessage(`pop= ${populationMax}`);
   selfMessage(`res= ${resources}`);
-  return populationMax;
+  return;
+}
+
+function pMainland_1v1_defaults() {
+  setTeams("team 1v1");
+  g_GameSettings.mapExploration.allied = true; // woks :)  AlliedView
+  g_GameSettings.rating.enabled = false; // no error and test in the lobby. it works
+  // gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/Treasures.js
+  g_GameSettings.disableTreasures.enabled = true;
+  g_GameSettings.nomad.enabled = false; // works
+  g_GameSettings.mapExploration.enabled = false; // todo: dont work
+
+  // g_GameSettings.mapType = "random";
+
+  // Map Type
+  g_GameSettings.map.type = "random"; // works
+
+  setMapFilterTo();
+  selfMessage(
+    `"Select Map": often used "Mainland" or "Mainland balanced"(needs FeldFeld-Mod) . `
+  );
+
+  g_GameSettings.map.map = "maps/random/mainland";
+
+  if (!g_GameSettings.map.map) {
+    let info = "No selected map";
+    selfMessage(`${info}`);
+  } else {
+    selfMessage(`map.map = ${g_GameSettings.map.map}`);
+  }
+
+  let popMaxDefault = Engine.ConfigDB_GetValue(
+    "user",
+    "autociv.TGmainland.PopMaxDefault"
+  );
+  if (!popMaxDefault) {
+    popMaxDefault = 200;
+    selfMessage(
+      "you could set PopMax in your user.cfg. Example: autociv.TGmainland.PopMaxDefault = 200"
+    );
+  }
+  g_GameSettings.population.cap = popMaxDefault; // works its a number option vield
+  g_GameSettings.startingResources.resources = 300; // works ist a radio selct field
+
+  game.updateSettings(); // maybe needet before call mapsize
+
+  // game.set.mapsize(300); // tiny
+  let mapsize = 192;
+  // game.set.mapsize(mapsize); // 128 tiny, 192 small,  256 normal, 320 medium
+
+  if (false) {
+    // true only for testing / debugging
+    mapsize = g_GameSettings.mapSize.size;
+  } else {
+    g_GameSettings.mapSize.size = mapsize;
+    game.updateSettings();
+  }
+  sendMessage(`Map size set to: ${mapsize}`);
+
+  game.updateSettings();
+
+  let resources = g_GameSettings.startingResources.resources; // works ist a radio selct field
+  let populationMax = g_GameSettings.population.cap; // works its a number option vield
+  selfMessage(`pop= ${populationMax}`);
+  selfMessage(`res= ${resources}`);
+  return;
+}
+function pMainland_defaults() {
+  g_GameSettings.mapExploration.allied = true; // woks :)  AlliedView
+  g_GameSettings.rating.enabled = false; // no error and test in the lobby. it works
+  // gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/Treasures.js
+  g_GameSettings.disableTreasures.enabled = true;
+  g_GameSettings.nomad.enabled = false; // works
+  g_GameSettings.mapExploration.enabled = false; // todo: dont work
+
+  // Map Type
+  g_GameSettings.map.type = "random"; // works
+  let mapsize = 256; // 128 tiny, 192 small,  256 normal, 320 medium
+
+  g_GameSettings.mapSize.size = mapsize;
+  game.updateSettings();
+  sendMessage(`Map size set to: ${mapsize}`);
+
+  setMapFilterTo();
+  selfMessage(
+    `"Select Map": often used "Mainland" or "Mainland balanced"(needs FeldFeld-Mod) . `
+  );
+
+  g_GameSettings.map.map = "maps/random/mainland";
+
+  if (!g_GameSettings.map.map) {
+    let info = "No selected map";
+    selfMessage(`${info}`);
+  } else {
+    selfMessage(`map.map = ${g_GameSettings.map.map}`);
+  }
+
+  setTeams("team 2v2");
+
+  let popMaxDefault = Engine.ConfigDB_GetValue(
+    "user",
+    "autociv.TGmainland.PopMaxDefault"
+  );
+  if (!popMaxDefault) {
+    popMaxDefault = 200;
+    selfMessage(
+      "you could set PopMax in your user.cfg. Example: autociv.TGmainland.PopMaxDefault = 200"
+    );
+  }
+  g_GameSettings.population.cap = popMaxDefault; // works its a number option vield
+  g_GameSettings.startingResources.resources = 300; // works ist a radio selct field
+
+  game.updateSettings();
+
+  let resources = g_GameSettings.startingResources.resources; // works ist a radio selct field
+  let populationMax = g_GameSettings.population.cap; // works its a number option vield
+  selfMessage(`pop= ${populationMax}`);
+  selfMessage(`res= ${resources}`);
+  return;
 }
 
 function pUnknown() {
@@ -587,104 +686,9 @@ function pUnknown() {
   let populationMax = g_GameSettings.population.cap; // works its a number option vield
   selfMessage(`pop= ${populationMax}`);
   selfMessage(`res= ${resources}`);
-  return populationMax;
+  return;
 }
-function pMainland_1v1_defaults() {
-  setTeams("team 1v1");
-  game.updateSettings();
-  g_GameSettings.mapExploration.allied = true; // woks :)  AlliedView
-  g_GameSettings.rating.enabled = false; // no error and test in the lobby. it works
-  // gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/Treasures.js
-  g_GameSettings.disableTreasures.enabled = true;
-  g_GameSettings.nomad.enabled = false; // works
-  g_GameSettings.mapExploration.enabled = false; // todo: dont work
 
-  // Map Type
-  g_GameSettings.map.type = "random"; // works
-
-  setMapFilterTo();
-  selfMessage(
-    `"Select Map": often used "Mainland" or "Mainland balanced"(needs FeldFeld-Mod) . `
-  );
-
-  g_GameSettings.map.map = "maps/random/mainland";
-
-  if (!g_GameSettings.map.map) {
-    let info = "No selected map";
-    selfMessage(`${info}`);
-  } else {
-    selfMessage(`map.map = ${g_GameSettings.map.map}`);
-  }
-
-  let popMaxDefault = Engine.ConfigDB_GetValue(
-    "user",
-    "autociv.TGmainland.PopMaxDefault"
-  );
-  if (!popMaxDefault) {
-    popMaxDefault = 200;
-    selfMessage(
-      "you could set PopMax in your user.cfg. Example: autociv.TGmainland.PopMaxDefault = 200"
-    );
-  }
-  g_GameSettings.population.cap = popMaxDefault; // works its a number option vield
-  g_GameSettings.startingResources.resources = 300; // works ist a radio selct field
-
-  game.updateSettings();
-
-  let resources = g_GameSettings.startingResources.resources; // works ist a radio selct field
-  let populationMax = g_GameSettings.population.cap; // works its a number option vield
-  selfMessage(`pop= ${populationMax}`);
-  selfMessage(`res= ${resources}`);
-  return populationMax;
-}
-function pMainland_defaults() {
-  g_GameSettings.mapExploration.allied = true; // woks :)  AlliedView
-  g_GameSettings.rating.enabled = false; // no error and test in the lobby. it works
-  // gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/Treasures.js
-  g_GameSettings.disableTreasures.enabled = true;
-  g_GameSettings.nomad.enabled = false; // works
-  g_GameSettings.mapExploration.enabled = false; // todo: dont work
-
-  // Map Type
-  g_GameSettings.map.type = "random"; // works
-
-  setMapFilterTo();
-  selfMessage(
-    `"Select Map": often used "Mainland" or "Mainland balanced"(needs FeldFeld-Mod) . `
-  );
-
-  g_GameSettings.map.map = "maps/random/mainland";
-
-  if (!g_GameSettings.map.map) {
-    let info = "No selected map";
-    selfMessage(`${info}`);
-  } else {
-    selfMessage(`map.map = ${g_GameSettings.map.map}`);
-  }
-
-  setTeams("team 2v2");
-
-  let popMaxDefault = Engine.ConfigDB_GetValue(
-    "user",
-    "autociv.TGmainland.PopMaxDefault"
-  );
-  if (!popMaxDefault) {
-    popMaxDefault = 200;
-    selfMessage(
-      "you could set PopMax in your user.cfg. Example: autociv.TGmainland.PopMaxDefault = 200"
-    );
-  }
-  g_GameSettings.population.cap = popMaxDefault; // works its a number option vield
-  g_GameSettings.startingResources.resources = 300; // works ist a radio selct field
-
-  game.updateSettings();
-
-  let resources = g_GameSettings.startingResources.resources; // works ist a radio selct field
-  let populationMax = g_GameSettings.population.cap; // works its a number option vield
-  selfMessage(`pop= ${populationMax}`);
-  selfMessage(`res= ${resources}`);
-  return populationMax;
-}
 function setTeams(text) {
   if (!g_IsController) return;
 
@@ -785,4 +789,23 @@ function setMapFilterTo() {
 
   // let mapFilter = Engine.GetGUIObjectByName("mapFilter"); // result is null
   // if (mapFilter) mapFilter2.selected = 2;
+}
+
+function setGameNameInLobby(text) {
+  selfMessage(
+    "functoin setGameNameInLobby is off for some reasons at the moment"
+  );
+  return false;
+  if (!g_IsController || !Engine.HasNetServer()) return;
+  if (!g_SetupWindow.controls.lobbyGameRegistrationController) return;
+
+  let oldGameName =
+    g_SetupWindow.controls.lobbyGameRegistrationController.serverName;
+  selfMessage(`oldGameName: ${oldGameName}`);
+
+  text = `${text}`;
+  g_SetupWindow.controls.lobbyGameRegistrationController.serverName = text;
+  selfMessage(`Game name changed to: ${text}`);
+  g_SetupWindow.controls.lobbyGameRegistrationController.sendImmediately();
+  return true;
 }
