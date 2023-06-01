@@ -783,7 +783,6 @@ function setGameNameInLobby(text) {
   return true;
 }
 function setMapMapString(mapPathString) {
-  g_GameSettings.map.map = "maps/random/mainland";
   if (!g_GameSettings.map.map) {
     let info = "No selected map";
     selfMessage(`${info}`);
