@@ -1,4 +1,5 @@
 var g_linkLong = null; // init should be available during the game and not changed
+var g_gameMapMapPrevious = null; // help prefent/debugging a errors, at the moment
 var game = {
   // stuff that needs to be updated after the gui updates it (as it removes it before it)
   // undefined will mean it doesnt exist
@@ -228,9 +229,11 @@ g_NetworkCommandsDescriptions = Object.assign(g_NetworkCommandsDescriptions, {
   "/list": "List all the players and observers currently here",
   "/clear": "Clear the chat comments",
   "/pMainland_1v1_defaults": " for mainland, popMax, 300res, and more",
-  "/p1v1Mainland_defaults": "same as above",
-  "/pMainland_defaults": "type pM<tab> for mainland, popMax, 300res, and more",
-  "/pMBMainland_defaults":
+  "/p1v1Mainland_defaults":
+    "/pNumber is alias to some proviles. e.g. /p1... to /pMainland_1v1... or /p4...",
+  "/pMainland_2v2_defaults":
+    "type pM<tab> for mainland, popMax, 300res, and more",
+  "/pMBMainland_2v2_defaults":
     "type pMB<tab> to get mainland balanced popMax, 300res",
   "/pUnknown_defaults":
     "type pU<tab> for  map unknown, popMax, 300res, and more",
@@ -319,11 +322,14 @@ g_NetworkCommands["/p1v1Mainland_defaults"] = (text) => {
   // alias
   pMainland_1v1_defaults();
 };
-g_NetworkCommands["/pMainland_defaults"] = (text) => {
-  pMainland_defaults();
+g_NetworkCommands["/pMainland_2v2_defaults"] = (text) => {
+  pMainland_2v2_defaults();
 };
-g_NetworkCommands["/pMBMainland_defaults"] = (text) => {
-  pMBMainland_defaults();
+g_NetworkCommands["/p4Mainland_defaults"] = (text) => {
+  pMainland_2v2_defaults();
+};
+g_NetworkCommands["/pMBMainland_2v2_defaults"] = (text) => {
+  pMBMainland_2v2_defaults();
 };
 g_NetworkCommands["/pExtinct_volcano_defaults"] = (text) => {
   pExtinct_volcano_defaults();
@@ -380,7 +386,7 @@ Jitsi: Quick team calls, no setup, audio chat.
     ` this autoCiv-mod modification you could donwload here: ${gitHubLinkAutoCivModificationSL5}`
   );
 
-  let populationMax = pMainland_defaults();
+  let populationMax = pMainland_2v2_defaults();
 
   selfMessage(g_linkLong);
 
@@ -449,9 +455,7 @@ function pExtinct_volcano_defaults() {
   let doItYourSelfStr = " Please select this manually. ";
   // doItYourSelfStr = ''
 
-  g_GameSettings.map.map = "maps/random/extinct_volcano";
-
-  // game.updateSettings(); // sometimes onle names but not thgit clone https://gitlab.com/myproject.gitgit clone https://gitlab.com/myproject.gitgit clone https://gitlab.com/myproject.gitgit clone https://gitlab.com/myproject.gitgit clone https://gitlab.com/myproject.gitgit clone https://gitlab.com/myproject.gitgit clone https://gitlab.com/myproject.gite map was realls loadet. therfore i try the   game.updateSettings(); also add this place
+  setMapMapString("maps/random/extinct_volcano");
 
   //   #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Sliders/SeaLevelRiseTime.js:38
   // msgid "Sea Level Rise Time"
@@ -460,13 +464,6 @@ function pExtinct_volcano_defaults() {
   // g_GameSettings.SeaLevelRiseTime.value = 10; // error but no effect. extinct_volcano SeaLevelRiseTime
   // g_GameSettings.seaLevelRiseTime.value = 10; // error undefined but no effect. extinct_volcano SeaLevelRiseTime
   // g_GameSettings.SeaLevelRiseTime.cap = 10; // erro. extinct_volcano SeaLevelRiseTime
-
-  if (!g_GameSettings.map.map) {
-    let info = "No selected map";
-    selfMessage(`${info}`);
-  } else {
-    selfMessage(`map.map = ${g_GameSettings.map.map}`);
-  }
 
   setTeams("team 2v2");
 
@@ -482,7 +479,7 @@ function pExtinct_volcano_defaults() {
   return populationMax;
 }
 
-function pMBMainland_defaults() {
+function pMBMainland_2v2_defaults() {
   g_GameSettings.mapExploration.allied = true; // woks :)  AlliedView
   g_GameSettings.rating.enabled = false; // no error and test in the lobby. it works
   // gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/Treasures.js
@@ -498,14 +495,7 @@ function pMBMainland_defaults() {
     `"Select Map": often used "Mainland" or "Mainland balanced"(needs FeldFeld-Mod) . `
   );
 
-  g_GameSettings.map.map = "maps/random/mainland_balanced";
-
-  if (!g_GameSettings.map.map) {
-    let info = "No selected map";
-    selfMessage(`${info}`);
-  } else {
-    selfMessage(`map.map = ${g_GameSettings.map.map}`);
-  }
+  setMapMapString("maps/random/mainland_balanced");
 
   setTeams("team 2v2");
 
@@ -550,15 +540,7 @@ function pMainland_1v1_defaults() {
   selfMessage(
     `"Select Map": often used "Mainland" or "Mainland balanced"(needs FeldFeld-Mod) . `
   );
-
-  g_GameSettings.map.map = "maps/random/mainland";
-
-  if (!g_GameSettings.map.map) {
-    let info = "No selected map";
-    selfMessage(`${info}`);
-  } else {
-    selfMessage(`map.map = ${g_GameSettings.map.map}`);
-  }
+  setMapMapString("maps/random/mainland");
 
   let popMaxDefault = Engine.ConfigDB_GetValue(
     "user",
@@ -596,7 +578,7 @@ function pMainland_1v1_defaults() {
   selfMessage(`res= ${resources}`);
   return;
 }
-function pMainland_defaults() {
+function pMainland_2v2_defaults() {
   g_GameSettings.mapExploration.allied = true; // woks :)  AlliedView
   g_GameSettings.rating.enabled = false; // no error and test in the lobby. it works
   // gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/Treasures.js
@@ -617,14 +599,7 @@ function pMainland_defaults() {
     `"Select Map": often used "Mainland" or "Mainland balanced"(needs FeldFeld-Mod) . `
   );
 
-  g_GameSettings.map.map = "maps/random/mainland";
-
-  if (!g_GameSettings.map.map) {
-    let info = "No selected map";
-    selfMessage(`${info}`);
-  } else {
-    selfMessage(`map.map = ${g_GameSettings.map.map}`);
-  }
+  setMapMapString("maps/random/mainland");
 
   setTeams("team 2v2");
 
@@ -666,14 +641,7 @@ function pUnknown() {
     `"Select Map": often used "Mainland" or "Mainland balanced"(needs FeldFeld-Mod) . `
   );
 
-  g_GameSettings.map.map = "maps/random/mainland_unknown";
-
-  if (!g_GameSettings.map.map) {
-    let info = "No selected map";
-    selfMessage(`${info}`);
-  } else {
-    selfMessage(`map.map = ${g_GameSettings.map.map}`);
-  }
+  setMapMapString("maps/random/mainland_unknown");
 
   setTeams("team 2v2");
 
@@ -807,5 +775,27 @@ function setGameNameInLobby(text) {
   g_SetupWindow.controls.lobbyGameRegistrationController.serverName = text;
   selfMessage(`Game name changed to: ${text}`);
   g_SetupWindow.controls.lobbyGameRegistrationController.sendImmediately();
+  return true;
+}
+function setMapMapString(mapPathString) {
+  g_GameSettings.map.map = "maps/random/mainland";
+  if (!g_GameSettings.map.map) {
+    let info = "No selected map";
+    selfMessage(`${info}`);
+    return false;
+  } else {
+    g_GameSettings.map.map = mapPathString;
+    selfMessage(`map.map = ${g_GameSettings.map.map}`);
+  }
+  selfMessage("");
+  if (g_gameMapMapPrevious != null || g_gameMapMapPrevious != mapPathString) {
+    selfMessage("please reopnen the game (close then open) the game. ");
+    selfMessage(
+      "Reopen is needet at the moment to prevent error when map.map will loading. any idea: ty for help."
+    );
+  }
+  selfMessage("");
+  g_gameMapMapPrevious = g_GameSettings.map.map;
+  game.updateSettings(); // sadly this is not enough. what need to do more to prevent reopen the game? (Se, 23-0601_1833-49)
   return true;
 }

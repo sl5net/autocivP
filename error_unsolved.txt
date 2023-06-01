@@ -1,0 +1,35 @@
+i got error when i change map the first time by using command written in intput field /p1 
+and a large button. if pressed game crasehed.
+
+if i load game everything works.
+
+TIMER| loading/loading.xml: 21.6421 ms
+FILES| Replay written to '~/.local/share/0ad/replays/0.0.26/2023-05-31_0004'
+ERROR: JavaScript error: Script value conversion check failed: v.isString() || v.isNumber() || v.isBoolean() (got type undefined)
+ERROR: File '' does not exist
+ERROR: CMapGeneratorWorker::Run: Failed to load RMS ''
+TIMER| common/modern/setup.xml: 142.097 us
+
+The error
+
+ERROR: JavaScript error: Script value conversion
+
+is probably from implicit boolean/number conversions from
+a27build/source/scriptinterface/ScriptConversions.cpp
+
+The error
+
+ERROR: File '' does not exist
+ERROR: CMapGeneratorWorker::Run: Failed to load 
+
+is probably from 
+
+a27build/source/graphics/MapGenerator.cpp
+
+// Load RMS
+LOGMESSAGE("Loading RMS '%s'", m_ScriptPath.string8());
+if (!m_ScriptInterface->LoadGlobalScriptFile(m_ScriptPath))
+{
+    LOGERROR("CMapGeneratorWorker::Run: Failed to load RMS '%s'", m_ScriptPath.string8());
+    return false;
+}
