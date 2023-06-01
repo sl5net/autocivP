@@ -793,19 +793,20 @@ function setMapMapString(mapPathString) {
   } else {
     selfMessage(`map.map = ${g_GameSettings.map.map}`);
   }
-  selfMessage("");
   if (g_gameMapMapPrevious != null || g_gameMapMapPrevious != mapPathString) {
     g_GameSettings.map.map = mapPathString;
     // g_SetupWindow.controls.gameSettingsController.updateSettings(); // dont work
     // g_SetupWindow.controls.gameSettingsController.updateGameAttributes(); // dont work
+    selfMessage("____________________________________________");
     selfMessage(
       "please reopen the game (close then open) the game. sorry. player need rejoin. then start"
     );
     selfMessage(
       "Reopen is needet at the moment to prevent error when map.map will loading. any idea: ty for help."
     );
+    selfMessage("____________________________________________");
   }
-  selfMessage("");
+  // selfMessage('\\_/"\\_/"\\_/"\\_/"\\_/"\\_/"\\_/"\\_/"\\_/"');
   g_gameMapMapPrevious = g_GameSettings.map.map;
   game.updateSettings(); // sadly this is not enough. what need to do more to prevent reopen the game? (Se, 23-0601_1833-49)
   return true;
