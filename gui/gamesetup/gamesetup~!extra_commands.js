@@ -323,10 +323,13 @@ g_NetworkCommands["/p1v1Mainland_defaults"] = (text) => {
   pMainland_1v1_defaults();
 };
 g_NetworkCommands["/pMainland_2v2_defaults"] = (text) => {
-  pMainland_2v2_defaults();
+  pMainland_defaults(2);
+};
+g_NetworkCommands["/p3Mainland_defaults"] = (text) => {
+  pMainland_defaults(3);
 };
 g_NetworkCommands["/p4Mainland_defaults"] = (text) => {
-  pMainland_2v2_defaults();
+  pMainland_defaults(4);
 };
 g_NetworkCommands["/pMBMainland_2v2_defaults"] = (text) => {
   pMBMainland_2v2_defaults();
@@ -386,7 +389,7 @@ Jitsi: Quick team calls, no setup, audio chat.
     ` this autoCiv-mod modification you could donwload here: ${gitHubLinkAutoCivModificationSL5}`
   );
 
-  let populationMax = pMainland_2v2_defaults();
+  let populationMax = pMainland_defaults();
 
   selfMessage(g_linkLong);
 
@@ -578,7 +581,8 @@ function pMainland_1v1_defaults() {
   selfMessage(`res= ${resources}`);
   return;
 }
-function pMainland_2v2_defaults() {
+
+function pMainland_defaults(playersAtTeamNr) {
   g_GameSettings.mapExploration.allied = true; // woks :)  AlliedView
   g_GameSettings.rating.enabled = false; // no error and test in the lobby. it works
   // gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/Treasures.js
@@ -601,7 +605,8 @@ function pMainland_2v2_defaults() {
 
   setMapMapString("maps/random/mainland");
 
-  setTeams("team 2v2");
+  if (!playersAtTeamNr) setTeams("team 2v2");
+  else setTeams(`team ${playersAtTeamNr}v${playersAtTeamNr}`);
 
   let popMaxDefault = Engine.ConfigDB_GetValue(
     "user",
