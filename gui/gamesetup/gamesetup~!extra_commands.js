@@ -325,6 +325,9 @@ g_NetworkCommands["/p1v1Mainland_defaults"] = (text) => {
 g_NetworkCommands["/pMainland_2v2_defaults"] = (text) => {
   pMainland_defaults(2);
 };
+g_NetworkCommands["/p2Mainland_defaults"] = (text) => {
+  pMainland_defaults(2);
+};
 g_NetworkCommands["/p3Mainland_defaults"] = (text) => {
   pMainland_defaults(3);
 };
@@ -561,7 +564,7 @@ function pMainland_1v1_defaults() {
   game.updateSettings(); // maybe needet before call mapsize
 
   // game.set.mapsize(300); // tiny
-  let mapsize = 192;
+  let mapsize = 128;
   // game.set.mapsize(mapsize); // 128 tiny, 192 small,  256 normal, 320 medium
 
   if (false) {
@@ -788,12 +791,16 @@ function setMapMapString(mapPathString) {
     selfMessage(`${info}`);
     return false;
   } else {
-    g_GameSettings.map.map = mapPathString;
     selfMessage(`map.map = ${g_GameSettings.map.map}`);
   }
   selfMessage("");
   if (g_gameMapMapPrevious != null || g_gameMapMapPrevious != mapPathString) {
-    selfMessage("please reopnen the game (close then open) the game. ");
+    g_GameSettings.map.map = mapPathString;
+    // g_SetupWindow.controls.gameSettingsController.updateSettings(); // dont work
+    // g_SetupWindow.controls.gameSettingsController.updateGameAttributes(); // dont work
+    selfMessage(
+      "please reopen the game (close then open) the game. sorry. player need rejoin. then start"
+    );
     selfMessage(
       "Reopen is needet at the moment to prevent error when map.map will loading. any idea: ty for help."
     );
