@@ -318,6 +318,10 @@ g_NetworkCommands["/gameName"] = (text) => {
 g_NetworkCommands["/pMainland_1v1_defaults"] = (text) => {
   pMainland_1v1_defaults();
 };
+g_NetworkCommands["/1v1Mainland_defaults"] = (text) => {
+  // alias
+  pMainland_1v1_defaults();
+};
 g_NetworkCommands["/p1v1Mainland_defaults"] = (text) => {
   // alias
   pMainland_1v1_defaults();
@@ -328,10 +332,19 @@ g_NetworkCommands["/pMainland_2v2_defaults"] = (text) => {
 g_NetworkCommands["/p2Mainland_defaults"] = (text) => {
   pMainland_defaults(2);
 };
+g_NetworkCommands["/2Mainland_defaults"] = (text) => {
+  pMainland_defaults(2);
+};
 g_NetworkCommands["/p3Mainland_defaults"] = (text) => {
   pMainland_defaults(3);
 };
+g_NetworkCommands["/3Mainland_defaults"] = (text) => {
+  pMainland_defaults(3);
+};
 g_NetworkCommands["/p4Mainland_defaults"] = (text) => {
+  pMainland_defaults(4);
+};
+g_NetworkCommands["/4Mainland_defaults"] = (text) => {
   pMainland_defaults(4);
 };
 g_NetworkCommands["/pMBMainland_2v2_defaults"] = (text) => {
@@ -501,7 +514,6 @@ function pMBMainland_2v2_defaults() {
   g_SetupWindow.pages.GameSetupPage.gameSettingControlManager.gameSettingControls.MapFilter.gameSettingsController.guiData.mapFilter.filter =
     "default";
 
-  setMapFilterTo();
   selfMessage(
     `"Select Map": often used "Mainland" or "Mainland balanced"(needs FeldFeld-Mod) . `
   );
@@ -559,7 +571,6 @@ function pMainland_1v1_defaults() {
   g_SetupWindow.pages.GameSetupPage.gameSettingControlManager.gameSettingControls.MapFilter.gameSettingsController.guiData.mapFilter.filter =
     "default";
 
-  setMapFilterTo();
   selfMessage(
     `"Select Map": often used "Mainland" or "Mainland balanced"(needs FeldFeld-Mod) . `
   );
@@ -628,7 +639,6 @@ function pMainland_defaults(playersAtTeamNr) {
   game.updateSettings();
   sendMessage(`Map size set to: ${mapsize}`);
 
-  setMapFilterTo();
   selfMessage(
     `"Select Map": often used "Mainland" or "Mainland balanced"(needs FeldFeld-Mod) . `
   );
@@ -673,7 +683,6 @@ function pUnknown() {
   g_SetupWindow.pages.GameSetupPage.gameSettingControlManager.gameSettingControls.MapFilter.gameSettingsController.guiData.mapFilter.filter =
     "default";
 
-  setMapFilterTo();
   selfMessage(
     `"Select Map": often used "Mainland" or "Mainland balanced"(needs FeldFeld-Mod) . `
   );
@@ -752,54 +761,11 @@ The mapFilter is a more complex setting, as it requires more logic and data mani
 How to set the more complex mapFilter and which tiles should be included in the filter while developing a new verson of AutoCiv mod?
 */
 
-function setMapFilterTo() {
-  // var mapNameFilter = Engine.GetGUIObjectByName("mapNameFilter"); // null    - so dont work here
-  // selfMessage(
-  // 	`mapNameFilter = ${mapNameFilter}`
-  // )
-
-  // let selected = g_GameSettings.map.filter.seleced // dont work errors
-  // selfMessage(
-  // 	`mapNameFilter.selected = ${selected}`
-  // )
-  // let selected2 = g_SetupWindow.controls.map.filter
-  // selfMessage(
-  // 	`2 = ${selected2}`
-  // )
-
-  if (!g_GameSettings.map.filter) {
-    // g_GameSettings.filter dont wor
-    let info = "No selected filter";
-    selfMessage(`${info}`);
-  } else {
-    selfMessage(`map.filter = ${g_GameSettings.map.filter}`);
-  }
-
-  // g_GameSettings.map.selectMap("maps/random/mainland");
-  // g_GameSettings.map.selectMapFilter();
-  // g_GameSettings.map.selectFilter();
-  // g_GameSettings.map.setMapFilterTo()
-
-  // Map Filter
-  // this.gameSettingsController.guiData.mapFilter.filter,
-  // g_GameSettings.map.filter.filter = 1 // dont work
-  let doItYourSelfStr = " Please select this manually. ";
-  // doItYourSelfStr = ''
-  selfMessage(`"Map Biome": ". ${doItYourSelfStr} `);
-
-  // TODO: how to do this? 23-0522_1624-23
-
-  // this.mapTypeFilter = Engine.GetGUIObjectByName("mapTypeFilter"); //  result is null
-
-  let mapFilter = {
-    tiles: ["grass", "dirt", "mountain", "water", "forest"],
-  };
-
-  // let mapFilter2 = Engine.GetGUIObjectByName(mapFilter); // result is null
-
-  // let mapFilter = Engine.GetGUIObjectByName("mapFilter"); // result is null
-  // if (mapFilter) mapFilter2.selected = 2;
-}
+// function setMapFilterTo() {
+//   let mapFilter = {
+//     tiles: ["grass", "dirt", "mountain", "water", "forest"],
+//   };
+// }
 
 function setGameNameInLobby(text) {
   selfMessage(
