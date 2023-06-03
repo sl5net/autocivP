@@ -477,7 +477,12 @@ function pExtinct_volcano_defaults() {
   let doItYourSelfStr = " Please select this manually. ";
   // doItYourSelfStr = ''
 
-  setMapMapString("maps/random/extinct_volcano");
+  setMapTypeNameBiome(
+    "random",
+    "default",
+    "maps/random/extinct_volcano",
+    "generic/temperate"
+  );
 
   //   #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Sliders/SeaLevelRiseTime.js:38
   // msgid "Sea Level Rise Time"
@@ -518,7 +523,12 @@ function pMBMainland_2v2_defaults() {
     `"Select Map": often used "Mainland" or "Mainland balanced"(needs FeldFeld-Mod) . `
   );
 
-  setMapMapString("maps/random/mainland_balanced");
+  setMapTypeNameBiome(
+    "random",
+    "default",
+    "maps/random/mainland_balanced",
+    "generic/temperate"
+  );
 
   setTeams("team 2v2");
 
@@ -564,24 +574,16 @@ function pMainland_1v1_defaults() {
   g_GameSettings.nomad.enabled = false; // works
   g_GameSettings.mapExploration.enabled = false; // todo: dont work
 
-  // g_GameSettings.mapType = "random";
-
-  // Map Type
-  g_GameSettings.map.setType("random"); // works
-  g_SetupWindow.pages.GameSetupPage.gameSettingControlManager.gameSettingControls.MapFilter.gameSettingsController.guiData.mapFilter.filter =
-    "default";
-
   selfMessage(
     `"Select Map": often used "Mainland" or "Mainland balanced"(needs FeldFeld-Mod) . `
   );
 
-  if (false) setMapMapString("maps/random/mainland");
-  else {
-    g_GameSettings.map.setType("random");
-    g_SetupWindow.pages.GameSetupPage.gameSettingControlManager.gameSettingControls.MapFilter.gameSettingsController.guiData.mapFilter.filter =
-      "default";
-    g_GameSettings.map.selectMap("maps/random/mainland");
-  }
+  setMapTypeNameBiome(
+    "random",
+    "default",
+    "maps/random/mainland",
+    "generic/temperate"
+  );
 
   let popMaxDefault = Engine.ConfigDB_GetValue(
     "user",
@@ -643,7 +645,12 @@ function pMainland_defaults(playersAtTeamNr) {
     `"Select Map": often used "Mainland" or "Mainland balanced"(needs FeldFeld-Mod) . `
   );
 
-  setMapMapString("maps/random/mainland");
+  setMapTypeNameBiome(
+    "random",
+    "default",
+    "maps/random/mainland",
+    "generic/temperate"
+  );
 
   if (!playersAtTeamNr) setTeams("team 2v2");
   else setTeams(`team ${playersAtTeamNr}v${playersAtTeamNr}`);
@@ -687,7 +694,12 @@ function pUnknown() {
     `"Select Map": often used "Mainland" or "Mainland balanced"(needs FeldFeld-Mod) . `
   );
 
-  setMapMapString("maps/random/mainland_unknown");
+  setMapTypeNameBiome(
+    "random",
+    "default",
+    "maps/random/mainland_unknown",
+    "generic/temperate"
+  );
 
   setTeams("team 2v2");
 
@@ -785,37 +797,12 @@ function setGameNameInLobby(text) {
   g_SetupWindow.controls.lobbyGameRegistrationController.sendImmediately();
   return true;
 }
-function setMapMapString(mapPathString) {
-  if (!g_GameSettings.map.map) {
-    let info = "No selected map";
-    selfMessage(`${info}`);
-    return false;
-  } else {
-    selfMessage(`map.map = ${g_GameSettings.map.map}`);
-  }
-
-  g_GameSettings.map.selectMap(mapPathString);
-  g_gameMapMapPrevious = g_GameSettings.map.map;
-  game.updateSettings();
-  selfMessage(`map = ${mapPathString}`);
-  return true;
-
-  if (g_gameMapMapPrevious != null || g_gameMapMapPrevious != mapPathString) {
-    g_GameSettings.map.map = mapPathString;
-    // g_SetupWindow.controls.gameSettingsController.updateSettings(); // dont work
-    // g_SetupWindow.controls.gameSettingsController.updateGameAttributes(); // dont work
-    selfMessage("____________________________________________");
-    selfMessage(
-      "please reopen the game (close then open) the game. sorry. player need rejoin. then start"
-    );
-    selfMessage(
-      "Reopen is needet at the moment to prevent error when map.map will loading. any idea: ty for help."
-    );
-    selfMessage("____________________________________________");
-    game.panelsButtons.startGameButton.onPress(); // works :)) for starting game without anything. maybe good when debugging.
-  }
-  // selfMessage('\\_/"\\_/"\\_/"\\_/"\\_/"\\_/"\\_/"\\_/"\\_/"');
-  g_gameMapMapPrevious = g_GameSettings.map.map;
-  game.updateSettings(); // sadly this is not enough. what need to do more to prevent reopen the game? (Se, 23-0601_1833-49)
-  return true;
+// setMapTypeNameBiome("random", "default", "maps/random/mainland", "generic/temperate" );
+function setMapTypeNameBiome(type, filter, name, biome) {
+  g_GameSettings.map.setType(type);
+  g_SetupWindow.pages.GameSetupPage.gameSettingControlManager.gameSettingControls.MapFilter.gameSettingsController.guiData.mapFilter.filter =
+    filter;
+  g_GameSettings.map.selectMap(name);
+  g_GameSettings.biome.setBiome(biome);
+  return selfMessage(`map = ${name}`);
 }
