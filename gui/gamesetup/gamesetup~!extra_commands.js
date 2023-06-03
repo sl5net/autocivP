@@ -450,13 +450,16 @@ g_NetworkCommands["/randomCivs"] = function (excludedCivs) {
 };
 
 function pExtinct_volcano_defaults() {
+  // vulcan, vulkan, extinkt <= keywords to find it fast
   g_GameSettings.mapExploration.allied = true; // woks :)  AlliedView
   g_GameSettings.rating.enabled = false; // no error and test in the lobby. it works
   g_GameSettings.disableTreasures.enabled = true;
   g_GameSettings.nomad.enabled = false; // works
 
   // Map Type
-  g_GameSettings.map.type = "random"; // works
+  g_GameSettings.map.setType("random"); // works
+  g_SetupWindow.pages.GameSetupPage.gameSettingControlManager.gameSettingControls.MapFilter.gameSettingsController.guiData.mapFilter.filter =
+    "default";
 
   let doItYourSelfStr = " Please select this manually. ";
   // doItYourSelfStr = ''
@@ -494,7 +497,9 @@ function pMBMainland_2v2_defaults() {
   g_GameSettings.mapExploration.enabled = false; // todo: dont work
 
   // Map Type
-  g_GameSettings.map.type = "random"; // works
+  g_GameSettings.map.setType("random"); // works
+  g_SetupWindow.pages.GameSetupPage.gameSettingControlManager.gameSettingControls.MapFilter.gameSettingsController.guiData.mapFilter.filter =
+    "default";
 
   setMapFilterTo();
   selfMessage(
@@ -529,6 +534,16 @@ function pMBMainland_2v2_defaults() {
 }
 
 function pMainland_1v1_defaults() {
+  // game.panelsButtons.startGameButton.onPress(); // works :)) for starting game without anything. maybe good when debugging.
+  // game.panelsButtons.backButton.onPress(); // error: backButton is not defined
+  // game.panelsButtons.cancelButton.onPress(); // error: is not a function
+  // game.panelsButtons.cancelButton().press(true);  // error: is not a function
+  // game.panelsButtons.cancelButton().press(true);  // error: is not a function
+  // game.cancelButton.onPress(); // undefined
+  // game.panelsButtons.exit not exist
+  // game.exit(1);
+  // return;
+
   setTeams("team 1v1");
   g_GameSettings.mapExploration.allied = true; // woks :)  AlliedView
   g_GameSettings.rating.enabled = false; // no error and test in the lobby. it works
@@ -540,13 +555,22 @@ function pMainland_1v1_defaults() {
   // g_GameSettings.mapType = "random";
 
   // Map Type
-  g_GameSettings.map.type = "random"; // works
+  g_GameSettings.map.setType("random"); // works
+  g_SetupWindow.pages.GameSetupPage.gameSettingControlManager.gameSettingControls.MapFilter.gameSettingsController.guiData.mapFilter.filter =
+    "default";
 
   setMapFilterTo();
   selfMessage(
     `"Select Map": often used "Mainland" or "Mainland balanced"(needs FeldFeld-Mod) . `
   );
-  setMapMapString("maps/random/mainland");
+
+  if (false) setMapMapString("maps/random/mainland");
+  else {
+    g_GameSettings.map.setType("random");
+    g_SetupWindow.pages.GameSetupPage.gameSettingControlManager.gameSettingControls.MapFilter.gameSettingsController.guiData.mapFilter.filter =
+      "default";
+    g_GameSettings.map.selectMap("maps/random/mainland");
+  }
 
   let popMaxDefault = Engine.ConfigDB_GetValue(
     "user",
@@ -594,7 +618,10 @@ function pMainland_defaults(playersAtTeamNr) {
   g_GameSettings.mapExploration.enabled = false; // todo: dont work
 
   // Map Type
-  g_GameSettings.map.type = "random"; // works
+  g_GameSettings.map.setType("random"); // works
+  g_SetupWindow.pages.GameSetupPage.gameSettingControlManager.gameSettingControls.MapFilter.gameSettingsController.guiData.mapFilter.filter =
+    "default";
+
   let mapsize = 256; // 128 tiny, 192 small,  256 normal, 320 medium
 
   g_GameSettings.mapSize.size = mapsize;
@@ -642,7 +669,9 @@ function pUnknown() {
   g_GameSettings.mapExploration.enabled = false; // todo: dont work
 
   // Map Type
-  g_GameSettings.map.type = "random"; // works
+  g_GameSettings.map.setType("random"); // works
+  g_SetupWindow.pages.GameSetupPage.gameSettingControlManager.gameSettingControls.MapFilter.gameSettingsController.guiData.mapFilter.filter =
+    "default";
 
   setMapFilterTo();
   selfMessage(
@@ -793,6 +822,13 @@ function setMapMapString(mapPathString) {
   } else {
     selfMessage(`map.map = ${g_GameSettings.map.map}`);
   }
+
+  g_GameSettings.map.selectMap(mapPathString);
+  g_gameMapMapPrevious = g_GameSettings.map.map;
+  game.updateSettings();
+  selfMessage(`map = ${mapPathString}`);
+  return true;
+
   if (g_gameMapMapPrevious != null || g_gameMapMapPrevious != mapPathString) {
     g_GameSettings.map.map = mapPathString;
     // g_SetupWindow.controls.gameSettingsController.updateSettings(); // dont work
@@ -805,6 +841,7 @@ function setMapMapString(mapPathString) {
       "Reopen is needet at the moment to prevent error when map.map will loading. any idea: ty for help."
     );
     selfMessage("____________________________________________");
+    game.panelsButtons.startGameButton.onPress(); // works :)) for starting game without anything. maybe good when debugging.
   }
   // selfMessage('\\_/"\\_/"\\_/"\\_/"\\_/"\\_/"\\_/"\\_/"\\_/"');
   g_gameMapMapPrevious = g_GameSettings.map.map;
