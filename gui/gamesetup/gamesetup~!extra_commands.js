@@ -588,7 +588,7 @@ function pMainland_1v1_defaults() {
   game.updateSettings(); // maybe needet before call mapsize
 
   // game.set.mapsize(300); // tiny
-  let mapsize = 128;
+  let mapsize = 192;
   // game.set.mapsize(mapsize); // 128 tiny, 192 small,  256 normal, 320 medium
 
   if (false) {
@@ -775,12 +775,17 @@ function setMapFilterTo() {
     selfMessage(`map.filter = ${g_GameSettings.map.filter}`);
   }
 
+  // g_GameSettings.map.selectMap("maps/random/mainland");
+  // g_GameSettings.map.selectMapFilter();
+  // g_GameSettings.map.selectFilter();
+  // g_GameSettings.map.setMapFilterTo()
+
   // Map Filter
   // this.gameSettingsController.guiData.mapFilter.filter,
   // g_GameSettings.map.filter.filter = 1 // dont work
   let doItYourSelfStr = " Please select this manually. ";
   // doItYourSelfStr = ''
-  selfMessage(`"Map Filter": often used "Default". ${doItYourSelfStr} `);
+  selfMessage(`"Map Biome": ". ${doItYourSelfStr} `);
 
   // TODO: how to do this? 23-0522_1624-23
 
