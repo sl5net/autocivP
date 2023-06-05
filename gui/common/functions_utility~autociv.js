@@ -6,8 +6,9 @@
  */
 tryAutoComplete = function (text, list, tries)
 {
-    if (!text.length)
+    if (!text.length){
         return text
+    }
 
     const wordSplit = text.split(/\s/g)
     if (!wordSplit.length)
@@ -51,9 +52,23 @@ tryAutoComplete = function (text, list, tries)
 
 autoCompleteText = function (guiObject, list)
 {
-    const caption = guiObject.caption
-    if (!caption.length)
-        return
+
+
+    let caption = guiObject.caption
+    let lastCommand = ""
+    if (!caption.length){
+        selfMessage('repeat you last command:')
+        lastCommand = Engine.ConfigDB_GetValue("user", "autociv.lastcommand");
+        selfMessage('lastCommand = ' + lastCommand)
+        if(!lastCommand)
+            return
+        caption = lastCommand;
+    }
+
+    // selfMessage('caption = ' + caption)
+
+
+    // Engine.ConfigDB_CreateAndSaveValue("user", "autociv.chat.lastCommand", caption); // is not a function error aut 23-0605_1920-25
 
     const sameTry = autoCompleteText.state.newCaption == caption
     if (sameTry)
@@ -65,6 +80,10 @@ autoCompleteText = function (guiObject, list)
         autoCompleteText.state.newCaption = newCaptionText
 
         guiObject.caption = newCaptionText
+
+        Engine.ConfigDB_CreateValue("user", "autociv.lastcommand", newCaptionText);
+        Engine.ConfigDB_WriteFile("user", "config/user.cfg");
+
         guiObject.buffer_position = autoCompleteText.state.buffer_position + (completedText.length - textBeforeBuffer.length)
     }
     else
@@ -79,6 +98,8 @@ autoCompleteText = function (guiObject, list)
         const newCaptionText = completedText + caption.substring(buffer_position)
 
         autoCompleteText.state.newCaption = newCaptionText
+        Engine.ConfigDB_CreateValue("user", "autociv.lastcommand", newCaptionText);
+        Engine.ConfigDB_WriteFile("user", "config/user.cfg");
 
         guiObject.caption = newCaptionText
         guiObject.buffer_position = buffer_position + (completedText.length - textBeforeBuffer.length)
