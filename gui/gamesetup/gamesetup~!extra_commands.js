@@ -260,6 +260,27 @@ g_NetworkCommands["/help"] = () => {
   }
   selfMessage(text);
 };
+g_NetworkCommands[
+  "/helpp"] = () => {
+  const g_ChatCommandColor = "200 200 255";
+  let text = translate("Chat commands starting with p... :");
+  for (let command in g_NetworkCommands) {
+    let noSlashCommand = command.slice(1);
+
+    if ("p" != noSlashCommand.slice(0, 1)) {
+      continue;
+    }
+
+    const asc = g_autociv_SharedCommands[noSlashCommand];
+    const ncd = g_NetworkCommandsDescriptions[command];
+    text += "\n";
+    text += sprintf(translate("%(command)s - %(description)s"), {
+      command: "/" + coloredText(noSlashCommand, g_ChatCommandColor),
+      description: ncd ?? asc?.description ?? "",
+    });
+  }
+  selfMessage(text);
+};
 
 g_NetworkCommands["/playToggle"] = () => {
   const key = "autociv.gamesetup.play.enabled";
@@ -477,7 +498,7 @@ function pExtinct_volcano_defaults() {
   let doItYourSelfStr = " Please select this manually. ";
   // doItYourSelfStr = ''
 
-  setMapTypeNameBiome(
+  setMapTypeFilterNameBiome(
     "random",
     "default",
     "maps/random/extinct_volcano",
@@ -523,7 +544,7 @@ function pMBMainland_2v2_defaults() {
     `"Select Map": often used "Mainland" or "Mainland balanced"(needs FeldFeld-Mod) . `
   );
 
-  setMapTypeNameBiome(
+  setMapTypeFilterNameBiome(
     "random",
     "default",
     "maps/random/mainland_balanced",
@@ -578,7 +599,7 @@ function pMainland_1v1_defaults() {
     `"Select Map": often used "Mainland" or "Mainland balanced"(needs FeldFeld-Mod) . `
   );
 
-  setMapTypeNameBiome(
+  setMapTypeFilterNameBiome(
     "random",
     "default",
     "maps/random/mainland",
@@ -645,7 +666,7 @@ function pMainland_defaults(playersAtTeamNr) {
     `"Select Map": often used "Mainland" or "Mainland balanced"(needs FeldFeld-Mod) . `
   );
 
-  setMapTypeNameBiome(
+  setMapTypeFilterNameBiome(
     "random",
     "default",
     "maps/random/mainland",
@@ -694,7 +715,7 @@ function pUnknown() {
     `"Select Map": often used "Mainland" or "Mainland balanced"(needs FeldFeld-Mod) . `
   );
 
-  setMapTypeNameBiome(
+  setMapTypeFilterNameBiome(
     "random",
     "default",
     "maps/random/mainland_unknown",
@@ -797,8 +818,8 @@ function setGameNameInLobby(text) {
   g_SetupWindow.controls.lobbyGameRegistrationController.sendImmediately();
   return true;
 }
-// setMapTypeNameBiome("random", "default", "maps/random/mainland", "generic/temperate" );
-function setMapTypeNameBiome(type, filter, name, biome) {
+// setMapTypeFilterNameBiome("random", "default", "maps/random/mainland", "generic/temperate" );
+function setMapTypeFilterNameBiome(type, filter, name, biome) {
   g_GameSettings.map.setType(type);
   g_SetupWindow.pages.GameSetupPage.gameSettingControlManager.gameSettingControls.MapFilter.gameSettingsController.guiData.mapFilter.filter =
     filter;
