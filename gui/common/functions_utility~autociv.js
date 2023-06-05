@@ -59,7 +59,6 @@ autoCompleteText = function (guiObject, list)
     if (!caption.length){
         selfMessage('repeat you last command:')
         lastCommand = Engine.ConfigDB_GetValue("user", "autociv.lastcommand");
-        selfMessage('lastCommand = ' + lastCommand)
         if(!lastCommand)
             return
         caption = lastCommand;
