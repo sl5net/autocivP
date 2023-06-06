@@ -119,6 +119,7 @@ var game = {
     /**
      * @param {string} text E.g : "1v1v3" "ffa" "4v4" "2v2v2v2"
      */
+    helloAll: (text) => helloAll(text),
     teams: (text) => setTeams(text),
     slotName: (slotNumber, name) => {
       let values = g_GameSettings.playerName.values;
@@ -201,6 +202,7 @@ if (!("g_NetworkCommandsDescriptions" in global))
 
 g_NetworkCommandsDescriptions = Object.assign(g_NetworkCommandsDescriptions, {
   "/help": "Shows all gamesetup chat commands",
+  "/helloAll": "Say hello to the team (configurable). set /helloAll yourWelcomeText or use /hiAll yourWelcomeText",
   "/playToggle":
     "Toggle want to play action. If enabled observers that type play will be set added to the game",
   "/resources": "Set a specific amount of resources. Can be negative",
@@ -285,7 +287,8 @@ g_NetworkCommands[
 g_NetworkCommands["/playToggle"] = () => {
   const key = "autociv.gamesetup.play.enabled";
   const enabled = Engine.ConfigDB_GetValue("user", key) == "true";
-  Engine.ConfigDB_CreateAndSaveValue("user", key, enabled ? "false" : "true");
+  // error: Engine.ConfigDB_CreateAndSaveValue is not a function
+  ConfigDB_CreateAndSaveValue("user", key, enabled ? "false" : "true");
   selfMessage(
     `Player play autoassign slot ${enabled ? "enabled" : "disabled"}`
   );
@@ -455,6 +458,8 @@ g_NetworkCommands["/jitsiBasic"] = (text) => {
 };
 
 g_NetworkCommands["/team"] = (text) => game.set.teams(text);
+
+g_NetworkCommands["/helloAll"] = (text) => game.set.helloAll(text);
 
 g_NetworkCommands["/randomCivs"] = function (excludedCivs) {
   if (!g_IsController) return;
@@ -734,6 +739,38 @@ function pUnknown() {
   selfMessage(`pop= ${populationMax}`);
   selfMessage(`res= ${resources}`);
   return;
+}
+
+
+g_NetworkCommands["/helloAll"] = (text) => {
+  g_NetworkCommands["/hiAll"](text);
+}
+
+g_NetworkCommands["/hiAll"] = (text) => {
+// function helloAll(text) {
+  const key = "autociv.gamesetup.helloAll";
+  if(text){
+    // Engine.ConfigDB_CreateAndSaveValue("user", key, text); //  is not a function
+    Engine.ConfigDB_CreateValue("user", key, text);
+    Engine.ConfigDB_WriteValueToFile("user", key, text);
+    selfMessage(
+      `helloAll was set to ${text}`
+    );
+  }else{
+    let helloAllText = Engine.ConfigDB_GetValue("user", key);
+    if(!helloAllText){
+      helloAllText = 'hi hf.';
+
+      Engine.ConfigDB_CreateValue("user", key, helloAllText);
+      Engine.ConfigDB_WriteFile("user", "config/user.cfg");
+
+
+      // Engine.ConfigDB_CreateAndSaveValue("user", key, helloAllText);
+    }
+    selfMessage(
+      `${helloAllText}`
+    );
+  }
 }
 
 function setTeams(text) {
