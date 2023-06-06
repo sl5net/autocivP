@@ -76,6 +76,8 @@ autoCompleteText = function (guiObject, list)
 
             }
           }
+
+          selfMessage(Engine.team[0]); // state is not defined
           caption = g_linkLongTeam;
     }
     // selfMessage('caption = ' + caption)
