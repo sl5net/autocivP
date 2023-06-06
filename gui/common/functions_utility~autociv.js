@@ -58,7 +58,7 @@ autoCompleteText = function (guiObject, list)
     let caption = guiObject.caption
     let lastCommand = ""
     if (!caption.length){
-        selfMessage('repeat you last command:')
+        // selfMessage('repeat you last command:') // message disabled becouse its also inside the looby. could disturbing a bit.
         lastCommand = Engine.ConfigDB_GetValue("user", "autociv.lastcommand");
         if(!lastCommand)
             return
