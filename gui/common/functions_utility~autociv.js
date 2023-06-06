@@ -65,6 +65,43 @@ autoCompleteText = function (guiObject, list)
         caption = lastCommand;
     }
 
+
+
+
+    // const cmpPlayerManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_PlayerManager);
+    // Engine.playerEnt();
+    // const numPlayers = cmpPlayerManager.GetNumPlayers();
+
+
+
+
+    // let player = 0;
+    // game.get.player.id
+    // let playerId = game.get.player.id(playerName);
+    // let numberOfSlots = game.get.numberOfSlots(); // game is not defined
+
+    // selfMessage(`numberOfSlots = ${numberOfSlots}`);
+    // selfMessage(`g_GameSettings.mapType = ${g_GameSettings.mapType}`); // g_GameSettings not defined
+
+    // lobby.login =
+    // playername.multiplayer =
+    // const playerName = Engine.ConfigDB_GetValue("user", "playername.multiplayer"); // works
+    // selfMessage(`playerName = ${playerName}`); // works
+    // selfMessage(`Engine.GetPlayerGUID = ${Engine.GetPlayerGUID()}`); // works
+
+    // selfMessage(`team = ${Engine.player.GetTeam()}`);
+
+    // const playerEnt = cmpPlayerManager.GetPlayerByID(player);
+    // Engine.player.GetTeam(); // Engine.player is undefined
+    // selfMessage(`team = ${Engine.player.GetTeam()}.`);
+
+    // const playerEnt = Engine.playerEnt();
+    // const cmpPlayer = Engine.QueryInterface(playerEnt, IID_Player);
+    // const cmpIdentity = Engine.QueryInterface(playerEnt, IID_Identity);
+    // cmpPlayer.GetTeam();
+    // selfMessage('team = '+ cmpPlayer.GetTeam()); // cmpPlayer is undefined
+
+
     // let doOpenJitsiLink = false;
     if(caption == 'j'){
         if (g_linkLongTeam == null) {
@@ -82,7 +119,9 @@ autoCompleteText = function (guiObject, list)
         }
         //   selfMessage(Engine.team[0]); // state is not defined
           caption = g_linkLongTeam;
-          guiObject.caption =  `Dear Team please open this link for team-audio-chat: ${g_linkLongTeam} . If you have the mod AutoCiv you could open it by writing /link<enter> . Please not everybody create a link.`;
+          const inviteJitsiText =  `Dear Team please open this link for team-audio-chat: ${g_linkLongTeam} . If you have the mod AutoCiv you could open it by writing /link<enter> . Please not everybody create a link.`;
+          guiObject.caption = '/link'; //  inviteJitsiText;
+          sendMessage(`${inviteJitsiText}`);
           return;
     }
     // selfMessage('caption = ' + caption)
