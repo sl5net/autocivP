@@ -16,6 +16,14 @@ function autociv_GetNameRatingText(text)
 };
 
 var g_autociv_SharedCommands = {
+	"jitsi": {
+		"description": "hiTeam hf(have fun) and gl(good luck).",
+		"handler": () =>
+		{
+			const text = `to use jiti in you team: 1. open Ally-Chat 2. write j<tab> then enter. 3. write /link`;
+			Engine.SendNetworkChat(text); // wong command: becouse this message is vissible to all teams
+		}
+	},
 	"mute": {
 		"description": "Mute player.",
 		"handler": (player) =>

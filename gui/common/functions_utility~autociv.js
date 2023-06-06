@@ -1,3 +1,4 @@
+var g_linkLongTeam = null; // init should be available during the game and not changed
 
 /**
  * @param {*} text - Slice of the text from start to buffer position
@@ -64,6 +65,19 @@ autoCompleteText = function (guiObject, list)
         caption = lastCommand;
     }
 
+    if(caption == 'j'){
+        if (g_linkLongTeam == null) {
+            let linkidShort = Date.now().toString().substring(10);
+            // not open this link always. if you have it already probably
+            g_linkLongTeam = `https://meet.jit.si/0ad${linkidShort}audio`;
+            try {
+                openURL(g_linkLongTeam); // its not necesary. if error use /link later
+            } catch (error) {
+
+            }
+          }
+          caption = g_linkLongTeam;
+    }
     // selfMessage('caption = ' + caption)
 
 
