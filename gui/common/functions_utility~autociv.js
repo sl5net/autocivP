@@ -84,7 +84,6 @@ autoCompleteText = function (guiObject, list)
           caption = g_linkLongTeam;
           guiObject.caption =  `Dear Team please open this link for team-audio-chat: ${g_linkLongTeam} . If you have the mod AutoCiv you could open it by writing /link<enter> . Please not everybody create a link.`;
           return;
-
     }
     // selfMessage('caption = ' + caption)
 
@@ -92,7 +91,6 @@ autoCompleteText = function (guiObject, list)
     // Engine.ConfigDB_CreateAndSaveValue("user", "autociv.chat.lastCommand", caption); // is not a function error aut 23-0605_1920-25
 
     const sameTry = autoCompleteText.state.newCaption == caption
-    if (sameTry)
     if (sameTry)
     {
         const textBeforeBuffer = autoCompleteText.state.oldCaption.substring(0, autoCompleteText.state.buffer_position)
