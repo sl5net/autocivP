@@ -102,7 +102,32 @@ autoCompleteText = function (guiObject, list)
     // selfMessage('team = '+ cmpPlayer.GetTeam()); // cmpPlayer is undefined
 
 
-    // let doOpenJitsiLink = false;
+    if(caption == 'gl' || caption == 'hf'){
+        const text =  `Good luck`;
+        guiObject.caption = 'Have fun!';
+        sendMessage(`${text}`);
+        return;
+    }
+    if(caption == 'gg'){
+        const text =  `Good game`;
+        guiObject.caption = 'Well played';
+        sendMessage(`${text}`);
+        return;
+    }
+    if(caption == 'wp'){
+        const text =  `Well played`;
+        guiObject.caption = 'Revenge? Again?';
+        sendMessage(`${text}`);
+        return;
+    }
+    if(caption == 'u2'){
+        const text =  `You too!`;
+        guiObject.caption = '';
+        sendMessage(`${text}`);
+        return;
+    }
+
+    // selfMessage('caption = ' + caption)
     if(caption == 'j'){
         if (g_linkLongTeam == null) {
             let linkidShort = Date.now().toString().substring(10);
