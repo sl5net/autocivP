@@ -65,17 +65,26 @@ autoCompleteText = function (guiObject, list)
         caption = lastCommand;
     }
 
-    let doOpenJitsiLink = false;
+    // let doOpenJitsiLink = false;
     if(caption == 'j'){
         if (g_linkLongTeam == null) {
             let linkidShort = Date.now().toString().substring(10);
             // not open this link always. if you have it already probably
             g_linkLongTeam = `https://meet.jit.si/0ad${linkidShort}audio`;
-            doOpenJitsiLink = true;
-          }
+            // doOpenJitsiLink = true;
+            if(false){
+                try {
+                    openURL(g_linkLongTeam); // its not necesary. if error use /link later
+                } catch (error) {
 
+                }
+            }
+        }
         //   selfMessage(Engine.team[0]); // state is not defined
           caption = g_linkLongTeam;
+          guiObject.caption = g_linkLongTeam;
+          return;
+
     }
     // selfMessage('caption = ' + caption)
 
@@ -115,13 +124,6 @@ autoCompleteText = function (guiObject, list)
 
         guiObject.caption = newCaptionText
         guiObject.buffer_position = buffer_position + (completedText.length - textBeforeBuffer.length)
-    }
-    if(doOpenJitsiLink){
-        try {
-            openURL(g_linkLongTeam); // its not necesary. if error use /link later
-        } catch (error) {
-
-        }
     }
 }
 
