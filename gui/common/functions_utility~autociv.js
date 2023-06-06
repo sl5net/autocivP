@@ -72,7 +72,7 @@ autoCompleteText = function (guiObject, list)
             // not open this link always. if you have it already probably
             g_linkLongTeam = `https://meet.jit.si/0ad${linkidShort}audio`;
             // doOpenJitsiLink = true;
-            if(false){
+            if(false){ // maybe better not use it at the moment. maybe later. in a future version. to much confusion
                 try {
                     openURL(g_linkLongTeam); // its not necesary. if error use /link later
                 } catch (error) {
@@ -82,7 +82,7 @@ autoCompleteText = function (guiObject, list)
         }
         //   selfMessage(Engine.team[0]); // state is not defined
           caption = g_linkLongTeam;
-          guiObject.caption = g_linkLongTeam;
+          guiObject.caption =  `Dear Team please open this link for team-audio-chat: ${g_linkLongTeam} . If you have the mod AutoCiv you could open it by writing /link<enter> . Please not everybody create a link.`;
           return;
 
     }
@@ -92,6 +92,7 @@ autoCompleteText = function (guiObject, list)
     // Engine.ConfigDB_CreateAndSaveValue("user", "autociv.chat.lastCommand", caption); // is not a function error aut 23-0605_1920-25
 
     const sameTry = autoCompleteText.state.newCaption == caption
+    if (sameTry)
     if (sameTry)
     {
         const textBeforeBuffer = autoCompleteText.state.oldCaption.substring(0, autoCompleteText.state.buffer_position)
