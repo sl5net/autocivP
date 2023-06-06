@@ -241,8 +241,8 @@ g_NetworkCommandsDescriptions = Object.assign(g_NetworkCommandsDescriptions, {
     "type pU<tab> for  map unknown, popMax, 300res, and more",
   "/pExtinct_volcano_defaults":
     "type pU<tab> for extinct_volcano and other defaults",
-  "/jitsiBasic":
-    "Create a game call and set a TG config. Uses jitsi (meet.jit.si/anyNameYoutWantHere) service. ",
+  // "/jitsiBasic":
+  //   "Create a game call and set a TG config. Uses jitsi (meet.jit.si/anyNameYoutWantHere) service. ",
   // "/jitsiPlus":
   //   "Create a game call and set a TG config. Uses jitsi (meet.jit.si/anyNameYoutWantHere) service. And rename the Game Name(experimental). ",
 });
@@ -381,11 +381,6 @@ g_NetworkCommands["/pUnknown_defaults"] = (text) => {
   pUnknown();
 };
 
-g_NetworkCommands["/jitsiPlus"] = (text) => {
-  selfMessage(`jitsiPlus is off at the moment for some resons.`);
-
-  return true;
-  // selfMessage(`meet.jit.si/anyNameYoutWantHere`);
 
   /*
 Jitsi for Quick Team Calls
@@ -397,65 +392,19 @@ Jitsi: Quick team calls, no setup, audio chat.
 
 */
 
-  let jitsi8words =
-    "Jitsi: team audio chat, no setup, OS (necessary a web browser and Mic).";
 
-  selfMessage(
-    `Jitsi Meet is a fully encrypted, 100% open source video conferencing solution that you can use all day, every day, for free — with no account needed.`
-  );
-
-  let gitHubLinkAutoCivModificationSL5 = "https://github.com/sl5net/autociv";
-
-  let textBest = `Jitsi is best for having a quick team call without setup process. could used as audio chat for you 0ad-team. `;
-  selfMessage(textBest);
-
-  selfMessage(
-    `write /link to open a link in your WebBrowser if you have autoCiv-mod installed to open a link more easy.`
-  );
-
-  if (g_linkLong == null) {
-    let linkidShort = Date.now().toString().substring(10);
-    // not open this link always. if you have it already probably
-    g_linkLong = `https://meet.jit.si/0ad${linkidShort}audio`;
-    openURL(g_linkLong);
-  }
-
-  let linkTeam1example = `${g_linkLong}team123`;
-  selfMessage(
-    ` recommendation: send later in your private team-game-chat a other unique link for audio chat. Example:  ${linkTeam1example}`
-  );
-
-  selfMessage(
-    ` this autoCiv-mod modification you could donwload here: ${gitHubLinkAutoCivModificationSL5}`
-  );
-
-  let populationMax = pMainland_defaults();
-
-  selfMessage(g_linkLong);
-
-  // let gameTextJitsiExplainded = `want use Jitsi as a fully encrypted, open source video conferencing, with no account needed.`
-  // gameText = ` ${textBest} ${g_linkLong} `;
-
-  let resources = g_GameSettings.startingResources.resources; // works ist a radio selct field
-
-  let gameTitleInLobby = ``;
-  gameTitleInLobby = `unrated | ${jitsi8words} ${g_linkLong} | ${populationMax}popMax, ${resources}res`; // popMax, 300res
-  return setGameNameInLobby(gameTitleInLobby);
-};
-
-g_NetworkCommands["/jitsiBasic"] = (text) => {
-  if (g_linkLong == null) {
-    let linkidShort = Date.now().toString().substring(10);
-    // not open this link always. if you have it already probably
-    g_linkLong = `https://meet.jit.si/0ad${linkidShort}audio`;
-    openURL(g_linkLong);
-  }
-  let linkTeam1example = `${g_linkLong}team123`;
-  selfMessage(
-    ` recommendation: send later in your private team-game-chat a other unique link for audio chat. Example:  ${linkTeam1example}`
-  );
-  selfMessage(`${g_linkLong}`);
-};
+// g_NetworkCommands["/jitsiBasic"] = (text) => {
+//   if (g_linkLong == null) {
+//     let linkidShort = Date.now().toString().substring(10);    // not open this link always. if you have it already probably
+//     g_linkLong = `https://meet.jit.si/0ad${linkidShort}audio`;
+//     openURL(g_linkLong);
+//   }
+//   let linkTeam1example = `${g_linkLong}team123`;
+//   selfMessage(
+//     ` recommendation: send later in your private team-game-chat a other unique link for audio chat. Example:  ${linkTeam1example}`
+//   );
+//   selfMessage(`${g_linkLong}`);
+// };
 
 g_NetworkCommands["/team"] = (text) => game.set.teams(text);
 
@@ -746,7 +695,7 @@ g_NetworkCommands["/helloAll"] = (text) => {
   g_NetworkCommands["/hiAll"](text);
 }
 
-g_NetworkCommands["/hiAll"] = (text) => {
+g_NetworkCommands["/hiAll"] = (text) => {  // works not in lobby, works in a game config
 // function helloAll(text) {
   const key = "autociv.gamesetup.helloAll";
   if(text){
