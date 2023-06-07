@@ -106,7 +106,7 @@ autoCompleteText = function (guiObject, list)
     if(doTabReplacmentWor_gl_hf_gg_wp_stuff){
         if(caption == 'gl' || caption == 'hf'){
             const text =  `Good luck(gl)`;
-            guiObject.caption = 'Have fun!(hf)';
+            guiObject.caption = 'Have fun!(hf) and invite your friends';
             sendMessage(`${text}`);
             return;
         }
