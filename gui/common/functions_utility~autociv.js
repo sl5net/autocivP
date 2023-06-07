@@ -101,30 +101,32 @@ autoCompleteText = function (guiObject, list)
     // cmpPlayer.GetTeam();
     // selfMessage('team = '+ cmpPlayer.GetTeam()); // cmpPlayer is undefined
 
-
-    if(caption == 'gl' || caption == 'hf'){
-        const text =  `Good luck`;
-        guiObject.caption = 'Have fun!';
-        sendMessage(`${text}`);
-        return;
-    }
-    if(caption == 'gg'){
-        const text =  `Good game`;
-        guiObject.caption = 'Well played';
-        sendMessage(`${text}`);
-        return;
-    }
-    if(caption == 'wp'){
-        const text =  `Well played`;
-        guiObject.caption = 'Revenge? Again?';
-        sendMessage(`${text}`);
-        return;
-    }
-    if(caption == 'u2'){
-        const text =  `You too!`;
-        guiObject.caption = '';
-        sendMessage(`${text}`);
-        return;
+    const doTabReplacmentWor_gl_hf_gg_wp_stuff = true; // usefull for debugging maybe
+    if(doTabReplacmentWor_gl_hf_gg_wp_stuff){
+        if(caption == 'gl' || caption == 'hf'){
+            const text =  `Good luck(gl)`;
+            guiObject.caption = 'Have fun!(hf)';
+            sendMessage(`${text}`);
+            return;
+        }
+        if(caption == 'gg'){
+            const text =  `Good game(gg)`;
+            guiObject.caption = 'Well played(wp)';
+            sendMessage(`${text}`);
+            return;
+        }
+        if(caption == 'wp'){
+            const text =  `Well played(wp)`;
+            guiObject.caption = 'Revenge? Again?(re)';
+            sendMessage(`${text}`);
+            return;
+        }
+        if(caption == 'u2'){
+            const text =  `You too!(u2)`;
+            guiObject.caption = '';
+            sendMessage(`${text}`);
+            return;
+        }
     }
 
     // selfMessage('caption = ' + caption)
