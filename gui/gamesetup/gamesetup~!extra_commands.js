@@ -247,6 +247,8 @@ g_NetworkCommandsDescriptions = Object.assign(g_NetworkCommandsDescriptions, {
   //   "Create a game call and set a TG config. Uses jitsi (meet.jit.si/anyNameYoutWantHere) service. And rename the Game Name(experimental). ",
 });
 
+// g_NetworkCommands in the web: https://trac.wildfiregames.com/ticket/5387 maybe helpful for modders
+
 g_NetworkCommands["/help"] = () => {
   const g_ChatCommandColor = "200 200 255";
   let text = translate("Chat commands:");

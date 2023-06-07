@@ -53,8 +53,6 @@ tryAutoComplete = function (text, list, tries)
 
 autoCompleteText = function (guiObject, list)
 {
-
-
     let caption = guiObject.caption
     let lastCommand = ""
     if (!caption.length){
@@ -62,7 +60,10 @@ autoCompleteText = function (guiObject, list)
         lastCommand = Engine.ConfigDB_GetValue("user", "autociv.chat.lastCommand");
         if(!lastCommand)
             return
-        caption = lastCommand;
+
+        // let test = g_ChatHistory[1]; // g_ChatHistory is not defined https://trac.wildfiregames.com/ticket/5387
+
+        caption = lastCommand ;
     }
 
 

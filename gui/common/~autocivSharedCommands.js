@@ -21,7 +21,9 @@ var g_autociv_SharedCommands = {
 		"handler": () =>
 		{
 			const text = `to use jiti in you team: 1. open Ally-Chat 2. write j<tab> then enter. 3. write /link`;
-			Engine.SendNetworkChat(text); // wong command: becouse this message is vissible to all teams
+			const text2 = `BTW if you write j<tab> again your last jitsi link will send again(not a new link). Every player has is own link. Means: one link per player.`;
+			Engine.SendNetworkChat(text);
+			Engine.SendNetworkChat(text2);
 		}
 	},
 	"mute": {
