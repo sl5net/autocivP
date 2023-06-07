@@ -59,7 +59,7 @@ autoCompleteText = function (guiObject, list)
     let lastCommand = ""
     if (!caption.length){
         // selfMessage('repeat you last command:') // message disabled becouse its also inside the looby. could disturbing a bit.
-        lastCommand = Engine.ConfigDB_GetValue("user", "autociv.lastcommand");
+        lastCommand = Engine.ConfigDB_GetValue("user", "autociv.chat.lastCommand");
         if(!lastCommand)
             return
         caption = lastCommand;
@@ -165,7 +165,7 @@ autoCompleteText = function (guiObject, list)
 
         guiObject.caption = newCaptionText
 
-        Engine.ConfigDB_CreateValue("user", "autociv.lastcommand", newCaptionText);
+        Engine.ConfigDB_CreateValue("user", "autociv.chat.lastCommand", newCaptionText);
         Engine.ConfigDB_WriteFile("user", "config/user.cfg");
 
         guiObject.buffer_position = autoCompleteText.state.buffer_position + (completedText.length - textBeforeBuffer.length)
@@ -182,7 +182,7 @@ autoCompleteText = function (guiObject, list)
         const newCaptionText = completedText + caption.substring(buffer_position)
 
         autoCompleteText.state.newCaption = newCaptionText
-        Engine.ConfigDB_CreateValue("user", "autociv.lastcommand", newCaptionText);
+        Engine.ConfigDB_CreateValue("user", "autociv.chat.lastCommand", newCaptionText);
         Engine.ConfigDB_WriteFile("user", "config/user.cfg");
 
         guiObject.caption = newCaptionText
