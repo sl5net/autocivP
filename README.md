@@ -1,9 +1,9 @@
-## This project is in maintenance mode
+## AutoCiv plus some goodies
 
 But will be updated for the following cases:
 - Bug fixes
 - Compatibility with new 0 A.D. versions
-- Any reasonable pull request somebody might want to make 
+- Any reasonable pull request somebody might want to make
 
 Thanks to all the 0 A.D. players who found it useful. Nani :)
 
