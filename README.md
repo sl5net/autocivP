@@ -1,16 +1,23 @@
-## AutoCiv plus some goodies
+# AutoCiv plus some goodies
 
 Thanks to Nani ([99% source is from Nani](https://github.com/nanihadesuka/autociv))
 
 Thanks to all the 0 A.D. players who found it useful.
 
-## some goodies
+### some goodies
 - some more chat commands
 - jitsi-chat
 - map-profiles
 - and some other little things
 
-Questions & feedback
+## some goodies planed
+
+- setup all defaults by type into the chat:
+  - feature value
+- make sure that all theam members use the same jitsi-chat
+- change the polar_sea time slices to other minues (e.g. from 15 to 5 Minutes)
+
+## Questions & feedback
 For more information, questions and feedback, visit the thread on the [0 A.D. forum](https://wildfiregames.com/forum/topic/107371-autociv-add-ons-profiles-jitsi-team-call).
 
 # AutoCiv
