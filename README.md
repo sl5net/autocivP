@@ -1,11 +1,16 @@
 ## AutoCiv plus some goodies
 
-But will be updated for the following cases:
-- Bug fixes
-- Compatibility with new 0 A.D. versions
-- Any reasonable pull request somebody might want to make
+Thanks to Nani (99% source is from Nani)
+Thanks to all the 0 A.D. players who found it useful.
 
-Thanks to all the 0 A.D. players who found it useful. Nani :)
+## some goodies
+- are some more chat commands
+- jitsi-chat
+- map-profiles
+- and some other little thinks
+
+Questions & feedback
+For more information, questions and feedback, visit the thread on the [0 A.D. forum](https://wildfiregames.com/forum/topic/107371-autociv-add-ons-profiles-jitsi-team-call).
 
 # AutoCiv
 This mod is an aggregation of features meant to enhance the 0 A.D. game experience. I usually implement these extra features as they come up with no general plan in mind.
