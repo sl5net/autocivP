@@ -441,22 +441,10 @@ g_NetworkCommands["/randomCivs"] = function (excludedCivs) {
 
 function pExtinct_volcano_defaults() {
   // vulcan, vulkan, extinkt <= keywords to find it fast
-
-  // Map Type
-  g_GameSettings.map.setType("random"); // works
-  g_SetupWindow.pages.GameSetupPage.gameSettingControlManager.gameSettingControls.MapFilter.gameSettingsController.guiData.mapFilter.filter =
-    "default";
-
-  let doItYourSelfStr = " Please select this manually. ";
-  // doItYourSelfStr = ''
-
   setMapTypeFilterNameBiome(
-    "random",
-    "default",
     "maps/random/extinct_volcano",
     "generic/temperate"
   );
-
   //   #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Sliders/SeaLevelRiseTime.js:38
   // msgid "Sea Level Rise Time"
   // g_GameSettings.SeaLevelRiseTime = 10; // no error but no effect. extinct_volcano SeaLevelRiseTime
@@ -465,28 +453,16 @@ function pExtinct_volcano_defaults() {
   // g_GameSettings.seaLevelRiseTime.value = 10; // error undefined but no effect. extinct_volcano SeaLevelRiseTime
   // g_GameSettings.SeaLevelRiseTime.cap = 10; // erro. extinct_volcano SeaLevelRiseTime
   setTeams("team 2v2");
-  return setMapDefaultsTypical();
+  return setDefaultsforPopmaxAlliedviewRatingTreasuresNomadExploration();
 }
 
 function pMBMainland_2v2_defaults() {
-  // Map Type
-  g_GameSettings.map.setType("random"); // works
-  g_SetupWindow.pages.GameSetupPage.gameSettingControlManager.gameSettingControls.MapFilter.gameSettingsController.guiData.mapFilter.filter =
-    "default";
-
-  selfMessage(
-    `"Select Map": often used "Mainland" or "Mainland balanced"(needs FeldFeld-Mod) . `
-  );
-
   setMapTypeFilterNameBiome(
-    "random",
-    "default",
     "maps/random/mainland_balanced",
     "generic/temperate"
   );
-
   setTeams("team 2v2");
-  return setMapDefaultsTypical();
+  return setDefaultsforPopmaxAlliedviewRatingTreasuresNomadExploration();
 }
 
 
@@ -501,26 +477,12 @@ function pMainland_1v1_defaults() {
   // game.panelsButtons.exit not exist
   // game.exit(1);
   // return;
-
   setTeams("team 1v1");
-
-  selfMessage(
-    `"Select Map": often used "Mainland" or "Mainland balanced"(needs FeldFeld-Mod) . `
-  );
-
   setMapTypeFilterNameBiome(
-    "random",
-    "default",
     "maps/random/mainland",
     "generic/temperate"
   );
-
-  let popMaxDefault = Engine.ConfigDB_GetValue(
-    "user",
-    "autociv.TGmainland.PopMaxDefault"
-  );
   game.updateSettings(); // maybe needet before call mapsize
-
   let mapsize = 192; // 128 tiny, 192 small,  256 normal, 320 medium // game.set.mapsize(mapsize); //
   if (false) {
     // true only for testing / debugging
@@ -530,54 +492,35 @@ function pMainland_1v1_defaults() {
     game.updateSettings();
   }
   sendMessage(`Map size set to: ${mapsize}`);
-  return setMapDefaultsTypical();
+  return setDefaultsforPopmaxAlliedviewRatingTreasuresNomadExploration();
 }
 
 function pMainland_defaults(playersAtTeamNr) {
-  // Map Type
-  g_GameSettings.map.setType("random"); // works
-  g_SetupWindow.pages.GameSetupPage.gameSettingControlManager.gameSettingControls.MapFilter.gameSettingsController.guiData.mapFilter.filter =
-    "default";
-
-  let mapsize = 256; // 128 tiny, 192 small,  256 normal, 320 medium
-
-  g_GameSettings.mapSize.size = mapsize;
-  game.updateSettings();
-  sendMessage(`Map size set to: ${mapsize}`);
-
-  selfMessage(
-    `"Select Map": often used "Mainland" or "Mainland balanced"(needs FeldFeld-Mod) . `
-  );
-
   setMapTypeFilterNameBiome(
-    "random",
-    "default",
     "maps/random/mainland",
     "generic/temperate"
   );
-
+  // Map Type
+  let mapsize = 256; // 128 tiny, 192 small,  256 normal, 320 medium
+  g_GameSettings.mapSize.size = mapsize;
+  game.updateSettings();
+  sendMessage(`Map size set to: ${mapsize}`);
+  selfMessage(
+    `"Select Map": often used "Mainland" or "Mainland balanced"(needs FeldFeld-Mod) . `
+  );
   if (!playersAtTeamNr) setTeams("team 2v2");
   else setTeams(`team ${playersAtTeamNr}v${playersAtTeamNr}`);
-
-  return setMapDefaultsTypical();
+  return setDefaultsforPopmaxAlliedviewRatingTreasuresNomadExploration();
 }
 
 function pUnknown() {
   // Map Type
-  g_GameSettings.map.setType("random"); // works
-  g_SetupWindow.pages.GameSetupPage.gameSettingControlManager.gameSettingControls.MapFilter.gameSettingsController.guiData.mapFilter.filter =
-    "default";
-  selfMessage(
-    `"Select Map": often used "Mainland" or "Mainland balanced"(needs FeldFeld-Mod) . `
-  );
   setMapTypeFilterNameBiome(
-    "random",
-    "default",
     "maps/random/mainland_unknown",
     "generic/temperate"
   );
   setTeams("team 2v2");
-  return setMapDefaultsTypical();
+  return setDefaultsforPopmaxAlliedviewRatingTreasuresNomadExploration();
 }
 
 
@@ -699,7 +642,7 @@ function setGameNameInLobby(text) {
   return true;
 }
 // setMapTypeFilterNameBiome("random", "default", "maps/random/mainland", "generic/temperate" );
-function setMapTypeFilterNameBiome(type, filter, name, biome) {
+function setMapTypeFilterNameBiome(name, biome, type = "random", filter = "default") {
   g_GameSettings.map.setType(type);
   g_SetupWindow.pages.GameSetupPage.gameSettingControlManager.gameSettingControls.MapFilter.gameSettingsController.guiData.mapFilter.filter =
     filter;
@@ -707,7 +650,7 @@ function setMapTypeFilterNameBiome(type, filter, name, biome) {
   g_GameSettings.biome.setBiome(biome);
   return selfMessage(`map = ${name}`);
 }
-function setMapDefaultsTypical(sendMessageToAll = true){
+function setDefaultsforPopmaxAlliedviewRatingTreasuresNomadExploration(sendMessageToAll = true){ // forPopmaxAlliedviewRatingTreasuresNomadExploration
   g_GameSettings.mapExploration.allied = true; // woks :)  AlliedView
   if(sendMessageToAll)sendMessage('AlliedView = true');
   g_GameSettings.rating.enabled = false; // no error and test in the lobby. it works
