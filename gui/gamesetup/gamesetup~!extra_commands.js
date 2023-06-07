@@ -441,10 +441,6 @@ g_NetworkCommands["/randomCivs"] = function (excludedCivs) {
 
 function pExtinct_volcano_defaults() {
   // vulcan, vulkan, extinkt <= keywords to find it fast
-  g_GameSettings.mapExploration.allied = true; // woks :)  AlliedView
-  g_GameSettings.rating.enabled = false; // no error and test in the lobby. it works
-  g_GameSettings.disableTreasures.enabled = true;
-  g_GameSettings.nomad.enabled = false; // works
 
   // Map Type
   g_GameSettings.map.setType("random"); // works
@@ -468,29 +464,11 @@ function pExtinct_volcano_defaults() {
   // g_GameSettings.SeaLevelRiseTime.value = 10; // error but no effect. extinct_volcano SeaLevelRiseTime
   // g_GameSettings.seaLevelRiseTime.value = 10; // error undefined but no effect. extinct_volcano SeaLevelRiseTime
   // g_GameSettings.SeaLevelRiseTime.cap = 10; // erro. extinct_volcano SeaLevelRiseTime
-
   setTeams("team 2v2");
-
-  g_GameSettings.startingResources.resources = 300; // works ist a radio selct field
-  g_GameSettings.population.cap = 250; // works its a number option vield
-
-  game.updateSettings();
-
-  let populationMax = g_GameSettings.population.cap; // works its a number option vield
-  let resources = g_GameSettings.startingResources.resources; // works ist a radio selct field
-  selfMessage(`pop= ${populationMax}`);
-  selfMessage(`res= ${resources}`);
-  return populationMax;
+  return setMapDefaultsTypical();
 }
 
 function pMBMainland_2v2_defaults() {
-  g_GameSettings.mapExploration.allied = true; // woks :)  AlliedView
-  g_GameSettings.rating.enabled = false; // no error and test in the lobby. it works
-  // gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/Treasures.js
-  g_GameSettings.disableTreasures.enabled = true;
-  g_GameSettings.nomad.enabled = false; // works
-  g_GameSettings.mapExploration.enabled = false; // todo: dont work
-
   // Map Type
   g_GameSettings.map.setType("random"); // works
   g_SetupWindow.pages.GameSetupPage.gameSettingControlManager.gameSettingControls.MapFilter.gameSettingsController.guiData.mapFilter.filter =
@@ -508,29 +486,10 @@ function pMBMainland_2v2_defaults() {
   );
 
   setTeams("team 2v2");
-
-  let popMaxDefault = Engine.ConfigDB_GetValue(
-    "user",
-    "autociv.TGmainland.PopMaxDefault"
-  );
-  if (!popMaxDefault) {
-    popMaxDefault = 200;
-    selfMessage(
-      "you could set PopMax in your user.cfg. Example: autociv.TGmainland.PopMaxDefault = 200"
-    );
-  }
-  g_GameSettings.population.cap = popMaxDefault; // works its a number option vield
-
-  g_GameSettings.startingResources.resources = 300; // works ist a radio selct field
-
-  game.updateSettings();
-
-  let resources = g_GameSettings.startingResources.resources; // works ist a radio selct field
-  let populationMax = g_GameSettings.population.cap; // works its a number option vield
-  selfMessage(`pop= ${populationMax}`);
-  selfMessage(`res= ${resources}`);
-  return;
+  return setMapDefaultsTypical();
 }
+
+
 
 function pMainland_1v1_defaults() {
   // game.panelsButtons.startGameButton.onPress(); // works :)) for starting game without anything. maybe good when debugging.
@@ -544,12 +503,6 @@ function pMainland_1v1_defaults() {
   // return;
 
   setTeams("team 1v1");
-  g_GameSettings.mapExploration.allied = true; // woks :)  AlliedView
-  g_GameSettings.rating.enabled = false; // no error and test in the lobby. it works
-  // gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/Treasures.js
-  g_GameSettings.disableTreasures.enabled = true;
-  g_GameSettings.nomad.enabled = false; // works
-  g_GameSettings.mapExploration.enabled = false; // todo: dont work
 
   selfMessage(
     `"Select Map": often used "Mainland" or "Mainland balanced"(needs FeldFeld-Mod) . `
@@ -566,21 +519,9 @@ function pMainland_1v1_defaults() {
     "user",
     "autociv.TGmainland.PopMaxDefault"
   );
-  if (!popMaxDefault) {
-    popMaxDefault = 200;
-    selfMessage(
-      "you could set PopMax in your user.cfg. Example: autociv.TGmainland.PopMaxDefault = 200"
-    );
-  }
-  g_GameSettings.population.cap = popMaxDefault; // works its a number option vield
-  g_GameSettings.startingResources.resources = 300; // works ist a radio selct field
-
   game.updateSettings(); // maybe needet before call mapsize
 
-  // game.set.mapsize(300); // tiny
-  let mapsize = 192;
-  // game.set.mapsize(mapsize); // 128 tiny, 192 small,  256 normal, 320 medium
-
+  let mapsize = 192; // 128 tiny, 192 small,  256 normal, 320 medium // game.set.mapsize(mapsize); //
   if (false) {
     // true only for testing / debugging
     mapsize = g_GameSettings.mapSize.size;
@@ -589,24 +530,10 @@ function pMainland_1v1_defaults() {
     game.updateSettings();
   }
   sendMessage(`Map size set to: ${mapsize}`);
-
-  game.updateSettings();
-
-  let resources = g_GameSettings.startingResources.resources; // works ist a radio selct field
-  let populationMax = g_GameSettings.population.cap; // works its a number option vield
-  selfMessage(`pop= ${populationMax}`);
-  selfMessage(`res= ${resources}`);
-  return;
+  return setMapDefaultsTypical();
 }
 
 function pMainland_defaults(playersAtTeamNr) {
-  g_GameSettings.mapExploration.allied = true; // woks :)  AlliedView
-  g_GameSettings.rating.enabled = false; // no error and test in the lobby. it works
-  // gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/Treasures.js
-  g_GameSettings.disableTreasures.enabled = true;
-  g_GameSettings.nomad.enabled = false; // works
-  g_GameSettings.mapExploration.enabled = false; // todo: dont work
-
   // Map Type
   g_GameSettings.map.setType("random"); // works
   g_SetupWindow.pages.GameSetupPage.gameSettingControlManager.gameSettingControls.MapFilter.gameSettingsController.guiData.mapFilter.filter =
@@ -632,64 +559,25 @@ function pMainland_defaults(playersAtTeamNr) {
   if (!playersAtTeamNr) setTeams("team 2v2");
   else setTeams(`team ${playersAtTeamNr}v${playersAtTeamNr}`);
 
-  let popMaxDefault = Engine.ConfigDB_GetValue(
-    "user",
-    "autociv.TGmainland.PopMaxDefault"
-  );
-  if (!popMaxDefault) {
-    popMaxDefault = 200;
-    selfMessage(
-      "you could set PopMax in your user.cfg. Example: autociv.TGmainland.PopMaxDefault = 200"
-    );
-  }
-  g_GameSettings.population.cap = popMaxDefault; // works its a number option vield
-  g_GameSettings.startingResources.resources = 300; // works ist a radio selct field
-
-  game.updateSettings();
-
-  let resources = g_GameSettings.startingResources.resources; // works ist a radio selct field
-  let populationMax = g_GameSettings.population.cap; // works its a number option vield
-  selfMessage(`pop= ${populationMax}`);
-  selfMessage(`res= ${resources}`);
-  return;
+  return setMapDefaultsTypical();
 }
 
 function pUnknown() {
-  g_GameSettings.mapExploration.allied = true; // woks :)  AlliedView
-  g_GameSettings.rating.enabled = false; // no error and test in the lobby. it works
-  // gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/Treasures.js
-  g_GameSettings.disableTreasures.enabled = true;
-  g_GameSettings.nomad.enabled = false; // works
-  g_GameSettings.mapExploration.enabled = false; // todo: dont work
-
   // Map Type
   g_GameSettings.map.setType("random"); // works
   g_SetupWindow.pages.GameSetupPage.gameSettingControlManager.gameSettingControls.MapFilter.gameSettingsController.guiData.mapFilter.filter =
     "default";
-
   selfMessage(
     `"Select Map": often used "Mainland" or "Mainland balanced"(needs FeldFeld-Mod) . `
   );
-
   setMapTypeFilterNameBiome(
     "random",
     "default",
     "maps/random/mainland_unknown",
     "generic/temperate"
   );
-
   setTeams("team 2v2");
-
-  g_GameSettings.startingResources.resources = 300; // works ist a radio selct field
-  g_GameSettings.population.cap = 250; // works its a number option vield
-
-  game.updateSettings();
-
-  let resources = g_GameSettings.startingResources.resources; // works ist a radio selct field
-  let populationMax = g_GameSettings.population.cap; // works its a number option vield
-  selfMessage(`pop= ${populationMax}`);
-  selfMessage(`res= ${resources}`);
-  return;
+  return setMapDefaultsTypical();
 }
 
 
@@ -818,4 +706,41 @@ function setMapTypeFilterNameBiome(type, filter, name, biome) {
   g_GameSettings.map.selectMap(name);
   g_GameSettings.biome.setBiome(biome);
   return selfMessage(`map = ${name}`);
+}
+function setMapDefaultsTypical(sendMessageToAll = true){
+  g_GameSettings.mapExploration.allied = true; // woks :)  AlliedView
+  if(sendMessageToAll)sendMessage('AlliedView = true');
+  g_GameSettings.rating.enabled = false; // no error and test in the lobby. it works
+  if(sendMessageToAll)sendMessage('rating = false');
+  // gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/Treasures.js
+  g_GameSettings.disableTreasures.enabled = true;
+  if(sendMessageToAll)sendMessage('disableTreasures = true');
+  g_GameSettings.nomad.enabled = false; // works
+  if(sendMessageToAll)sendMessage('nomad = false');
+  g_GameSettings.mapExploration.enabled = false; // todo: dont work
+  if(sendMessageToAll)sendMessage('mapExploration = false');
+
+  let popMaxDefault = Engine.ConfigDB_GetValue(
+    "user",
+    "autociv.TGmainland.PopMaxDefault"
+  );
+  if (!popMaxDefault) {
+    popMaxDefault = 200;
+    selfMessage(
+      "you could set PopMax in your user.cfg. Example: autociv.TGmainland.PopMaxDefault = 200"
+    );
+  }
+  g_GameSettings.population.cap = popMaxDefault; // works its a number option vield
+  if(sendMessageToAll)sendMessage('popMaxDefault = ' + popMaxDefault);
+
+  g_GameSettings.startingResources.resources = 300; // works ist a radio selct field
+  if(sendMessageToAll)sendMessage('startingResources = ' + g_GameSettings.startingResources.resources);
+
+  game.updateSettings();
+
+  // let resources = g_GameSettings.startingResources.resources; // works ist a radio selct field
+  let populationMax = g_GameSettings.population.cap; // works its a number option vield
+  // selfMessage(`pop= ${populationMax}`);
+  // selfMessage(`res= ${resources}`);
+  return populationMax;
 }
