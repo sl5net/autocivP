@@ -301,6 +301,7 @@ g_NetworkCommands["/resourcesUnlimited"] = () => game.set.resources(Infinity);
 g_NetworkCommands["/population"] = (population) =>
   game.set.population(population);
 g_NetworkCommands["/mapsize"] = (size) => game.set.mapsize(size);
+g_NetworkCommands["/mapname"] = () => selfMessage(g_GameSettings.map.map);
 g_NetworkCommands["/mapcircular"] = () => game.set.mapcircular(true);
 g_NetworkCommands["/mapsquare"] = () => game.set.mapcircular(false);
 g_NetworkCommands["/resetcivs"] = () => game.reset.civilizations();
@@ -381,6 +382,12 @@ g_NetworkCommands["/pExtinct_volcano_defaults"] = (text) => {
 };
 g_NetworkCommands["/pUnknown_defaults"] = (text) => {
   pUnknown();
+};
+g_NetworkCommands["/pPolarSeaTheWolfesMap"] = (text) => {
+  pPolarSeaTheWolfesMap();
+};
+g_NetworkCommands["/pWolfesInPolarSea"] = (text) => {
+  pPolarSeaTheWolfesMap();
 };
 
 
@@ -517,6 +524,16 @@ function pUnknown() {
   // Map Type
   setMapTypeFilterNameBiome(
     "maps/random/mainland_unknown",
+    "generic/temperate"
+  );
+  setTeams("team 2v2");
+  return setDefaultsforPopmaxAlliedviewRatingTreasuresNomadExploration();
+}
+
+function pPolarSeaTheWolfesMap() {
+  // Map Type
+  setMapTypeFilterNameBiome(
+    "maps/random/polar_sea",
     "generic/temperate"
   );
   setTeams("team 2v2");
