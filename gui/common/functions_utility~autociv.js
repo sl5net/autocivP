@@ -106,7 +106,7 @@ autoCompleteText = function (guiObject, list)
     if(doTabReplacmentWor_gl_hf_gg_wp_stuff){
         if(caption == 'gl' || caption == 'hf'){
             const text =  `Good luck(gl)`;
-            guiObject.caption = 'Have fun!(hf) and invite your friends';
+            guiObject.caption = 'Have fun!(hf) and invite your friends.';
             sendMessage(`${text}`);
             return;
         }
@@ -155,7 +155,7 @@ autoCompleteText = function (guiObject, list)
     // selfMessage('caption = ' + caption)
 
 
-    // Engine.ConfigDB_CreateAndSaveValue("user", "autociv.chat.lastCommand", caption); // is not a function error aut 23-0605_1920-25
+    // Engine.ConfigDB_CreateAndSaveValue("user", "autociv.chat.lastCommand", caption); // is not a function error in Version a26 aut 23-0605_1920-25
 
     const sameTry = autoCompleteText.state.newCaption == caption
     if (sameTry)
@@ -168,8 +168,7 @@ autoCompleteText = function (guiObject, list)
 
         guiObject.caption = newCaptionText
 
-        Engine.ConfigDB_CreateValue("user", "autociv.chat.lastCommand", newCaptionText);
-        Engine.ConfigDB_WriteFile("user", "config/user.cfg");
+        ConfigDB_CreateAndSaveValueA26A27("user", "autociv.chat.lastCommand", newCaptionText);
 
         guiObject.buffer_position = autoCompleteText.state.buffer_position + (completedText.length - textBeforeBuffer.length)
     }
@@ -185,8 +184,7 @@ autoCompleteText = function (guiObject, list)
         const newCaptionText = completedText + caption.substring(buffer_position)
 
         autoCompleteText.state.newCaption = newCaptionText
-        Engine.ConfigDB_CreateValue("user", "autociv.chat.lastCommand", newCaptionText);
-        Engine.ConfigDB_WriteFile("user", "config/user.cfg");
+        ConfigDB_CreateAndSaveValueA26A27("user", "autociv.chat.lastCommand", newCaptionText);
 
         guiObject.caption = newCaptionText
         guiObject.buffer_position = buffer_position + (completedText.length - textBeforeBuffer.length)
@@ -232,3 +230,13 @@ function brightenedColor(color, brightnessThreshold = 110)
     }
     return autociv_ColorsSeenBefore[key];
 }
+
+function ConfigDB_CreateAndSaveValueA26A27(user, key, value){
+    // is not a function error in Version a26 aut 23-0605_1920-25
+    try {
+        Engine.ConfigDB_CreateAndSaveValue(user, key, value); // is not a function error in Version a26 aut 23-0605_1920-25
+    } catch (error) { // for A26 or before
+        Engine.ConfigDB_CreateValue(user, key, value);
+        Engine.ConfigDB_WriteFile(user, "config/user.cfg");
+    }
+};

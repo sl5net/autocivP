@@ -550,8 +550,7 @@ g_NetworkCommands["/hiAll"] = (text) => {  // works not in lobby, works in a gam
   const key = "autociv.gamesetup.helloAll";
   if(text){
     // Engine.ConfigDB_CreateAndSaveValue("user", key, text); //  is not a function
-    Engine.ConfigDB_CreateValue("user", key, text);
-    Engine.ConfigDB_WriteValueToFile("user", key, text);
+    ConfigDB_CreateAndSaveValueA26A27("user", key, text);
     // selfMessage // sends only messages to yourself. nobody else could reat it
     selfMessage(
       `helloAll was set to ${text}`
@@ -561,8 +560,7 @@ g_NetworkCommands["/hiAll"] = (text) => {  // works not in lobby, works in a gam
     if(!helloAllText){
       helloAllText = 'hi hf.';
 
-      Engine.ConfigDB_CreateValue("user", key, helloAllText);
-      Engine.ConfigDB_WriteFile("user", "config/user.cfg");
+      ConfigDB_CreateAndSaveValueA26A27("user", key, helloAllText);
 
 
       // Engine.ConfigDB_CreateAndSaveValue("user", key, helloAllText);
