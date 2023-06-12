@@ -241,11 +241,13 @@ g_NetworkCommandsDescriptions = Object.assign(g_NetworkCommandsDescriptions, {
     "type pU<tab> for  map unknown, popMax, 300res, and more",
   "/pExtinct_volcano_defaults":
     "type pU<tab> for extinct_volcano and other defaults",
+  "/modsImCurrentlyUsing":
+    "Mods I'm currently using"
+});
   // "/jitsiBasic":
   //   "Create a game call and set a TG config. Uses jitsi (meet.jit.si/anyNameYoutWantHere) service. ",
   // "/jitsiPlus":
   //   "Create a game call and set a TG config. Uses jitsi (meet.jit.si/anyNameYoutWantHere) service. And rename the Game Name(experimental). ",
-});
 
 // g_NetworkCommands in the web: https://trac.wildfiregames.com/ticket/5387 maybe helpful for modders
 
@@ -389,7 +391,14 @@ g_NetworkCommands["/pPolarSeaTheWolfesMap"] = (text) => {
 g_NetworkCommands["/pWolfesInPolarSea"] = (text) => {
   pPolarSeaTheWolfesMap();
 };
-
+g_NetworkCommands["/modsImCurrentlyUsing"] = () => {
+  const modEnabledmods = Engine.ConfigDB_GetValue(
+    "user",
+    "mod.enabledmods"
+  );
+  sendMessage(`Mods I'm currently using: ${modEnabledmods.slice(11,)}` );
+};
+// /ModsImCurrentlyUsing
 
   /*
 Jitsi for Quick Team Calls
