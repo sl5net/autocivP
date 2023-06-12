@@ -242,7 +242,7 @@ g_NetworkCommandsDescriptions = Object.assign(g_NetworkCommandsDescriptions, {
   "/pExtinct_volcano_defaults":
     "type pU<tab> for extinct_volcano and other defaults",
   "/modsImCurrentlyUsing":
-    "Mods I'm currently using"
+    "Mods I'm currently using",
 });
   // "/jitsiBasic":
   //   "Create a game call and set a TG config. Uses jitsi (meet.jit.si/anyNameYoutWantHere) service. ",
