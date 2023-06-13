@@ -106,14 +106,14 @@ autoCompleteText = function (guiObject, list)
     if(doTabReplacmentWor_gl_hf_gg_wp_stuff){
         sendMessageGlHfWpU2Gg(caption); // sadly change caption must by implemented here and not into the function
         if(caption == 'gl' || caption == 'hf')
-            guiObject.caption = 'Have fun!(hf) and invite your friends.PPPPPPPPP';
+            guiObject.caption = 'Have fun!(hf) and invite your friends.';
         if(caption == 'gg')
             guiObject.caption = 'Well played(wp)';
         if(caption == 'wp')
             guiObject.caption = 'Revenge? Again?(re)';
         if(caption == 'u2')
             guiObject.caption = '';
-        return;
+        // return; // <== ver dangeoous then eventually all other commands dont work
     }
 
     // selfMessage('caption = ' + caption)
