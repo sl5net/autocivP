@@ -244,13 +244,54 @@ g_NetworkCommandsDescriptions = Object.assign(g_NetworkCommandsDescriptions, {
   "/modsImCurrentlyUsing":
     "Mods I'm currently using",
 });
-  // "/jitsiBasic":
+
+// "/jitsiBasic":
   //   "Create a game call and set a TG config. Uses jitsi (meet.jit.si/anyNameYoutWantHere) service. ",
   // "/jitsiPlus":
   //   "Create a game call and set a TG config. Uses jitsi (meet.jit.si/anyNameYoutWantHere) service. And rename the Game Name(experimental). ",
 
 // g_NetworkCommands in the web: https://trac.wildfiregames.com/ticket/5387 maybe helpful for modders
 
+g_NetworkCommands["/gl"] = () => sendMessageGlHfWpU2Gg('gl'); // btw guiObject is not definded her so you cant use this: sendMessageGlHfWpU2Gg(..., guiObject)
+g_NetworkCommands["/hf"] = () => sendMessageGlHfWpU2Gg('hf');
+g_NetworkCommands["/wp"] = () => sendMessageGlHfWpU2Gg('wp');
+g_NetworkCommands["/u2"] = () => sendMessageGlHfWpU2Gg('u2');
+g_NetworkCommands["/gg"] = () => sendMessageGlHfWpU2Gg('gg');
+
+function sendMessageGlHfWpU2Gg(gg, guiObject) {
+  if(gg == 'gl' || gg == 'hf'){
+      const text =  `Good luck(gl)`;
+      if(guiObject)
+        {
+          guiObject.caption = 'Have fun!(hf) and invite your friends.';
+          // guiObject = 'Have fun!(hf) and invite your friends.';
+        sendMessage(` caption `);
+      }
+      sendMessage(`${text}`);
+      return;
+  }
+  if(gg == 'gg'){
+      const text =  `Good game(gg)`;
+      if(guiObject)
+        guiObject.caption = 'Well played(wp)';
+      sendMessage(`${text}`);
+      return;
+  }
+  if(gg == 'wp'){
+      const text =  `Well played(wp)`;
+      if(guiObject)
+        guiObject.caption = 'Revenge? Again?(re)';
+      sendMessage(`${text}`);
+      return;
+  }
+  if(gg == 'u2'){
+      const text =  `You too!(u2)`;
+      if(guiObject)
+        guiObject.caption = '';
+      sendMessage(`${text}`);
+      return;
+  }
+}
 g_NetworkCommands["/help"] = () => {
   const g_ChatCommandColor = "200 200 255";
   let text = translate("Chat commands:");
@@ -425,6 +466,10 @@ Jitsi: Quick team calls, no setup, audio chat.
 // };
 
 g_NetworkCommands["/team"] = (text) => game.set.teams(text);
+g_NetworkCommands["/1v1"] = () => game.set.teams("team 1v1");
+g_NetworkCommands["/2v2"] = () => game.set.teams("team 2v2");
+g_NetworkCommands["/3v3"] = () => game.set.teams("team 3v3");
+g_NetworkCommands["/4v4"] = () => game.set.teams("team 4v4");
 
 g_NetworkCommands["/helloAll"] = (text) => game.set.helloAll(text);
 

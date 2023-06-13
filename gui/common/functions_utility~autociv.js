@@ -104,30 +104,16 @@ autoCompleteText = function (guiObject, list)
 
     const doTabReplacmentWor_gl_hf_gg_wp_stuff = true; // usefull for debugging maybe
     if(doTabReplacmentWor_gl_hf_gg_wp_stuff){
-        if(caption == 'gl' || caption == 'hf'){
-            const text =  `Good luck(gl)`;
-            guiObject.caption = 'Have fun!(hf) and invite your friends.';
-            sendMessage(`${text}`);
-            return;
-        }
-        if(caption == 'gg'){
-            const text =  `Good game(gg)`;
+        sendMessageGlHfWpU2Gg(caption); // sadly change caption must by implemented here and not into the function
+        if(caption == 'gl' || caption == 'hf')
+            guiObject.caption = 'Have fun!(hf) and invite your friends.PPPPPPPPP';
+        if(caption == 'gg')
             guiObject.caption = 'Well played(wp)';
-            sendMessage(`${text}`);
-            return;
-        }
-        if(caption == 'wp'){
-            const text =  `Well played(wp)`;
+        if(caption == 'wp')
             guiObject.caption = 'Revenge? Again?(re)';
-            sendMessage(`${text}`);
-            return;
-        }
-        if(caption == 'u2'){
-            const text =  `You too!(u2)`;
+        if(caption == 'u2')
             guiObject.caption = '';
-            sendMessage(`${text}`);
-            return;
-        }
+        return;
     }
 
     // selfMessage('caption = ' + caption)
