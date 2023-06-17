@@ -244,21 +244,30 @@ g_NetworkCommandsDescriptions = Object.assign(g_NetworkCommandsDescriptions, {
   "/modsImCurrentlyUsing":
     "Mods I'm currently using",
 });
-g_NetworkCommands["/help"] = () => {
+g_NetworkCommands["/help"] = (textAllSometing) => { // if textAllSometing is something then its will be sendet to all team. not only for yourself
   const g_ChatCommandColor = "200 200 255";
   let text = translate("Chat commands:");
+  let textAll =  translate("Chat commands if you use this autoCiv Version:");
   for (let command in g_NetworkCommands) {
     let noSlashCommand = command.slice(1);
     const asc = g_autociv_SharedCommands[noSlashCommand];
     const ncd = g_NetworkCommandsDescriptions[command];
     text += "\n";
+    textAll += "\n";
     text += sprintf(translate("%(command)s - %(description)s"), {
       command: "/" + coloredText(noSlashCommand, g_ChatCommandColor),
       description: ncd ?? asc?.description ?? "",
     });
+    textAll += sprintf(translate("%(command)s - %(description)s"), {
+      command: "/" + noSlashCommand,
+      description: ncd ?? asc?.description ?? "",
+    });
   }
-  selfMessage(text);
-};
+  if(textAllSometing)
+    sendMessage(textAll)
+  else
+    selfMessage(text);
+  };
 g_NetworkCommands[
   "/helpp"] = () => {
   const g_ChatCommandColor = "200 200 255";
@@ -372,6 +381,9 @@ g_NetworkCommands["/pMBMainland_2v2_defaults"] = (text) => {
 g_NetworkCommands["/pExtinct_volcano_defaults"] = (text) => {
   pExtinct_volcano_defaults();
 };
+g_NetworkCommands["/pVolcano_Extinct_defaults"] = (text) => {
+  pExtinct_volcano_defaults();
+};
 g_NetworkCommands["/pUnknown_defaults"] = (text) => {
   pUnknown();
 };
@@ -380,6 +392,11 @@ g_NetworkCommands["/pPolarSeaTheWolfesMap"] = (text) => {
 };
 g_NetworkCommands["/pWolfesInPolarSea"] = (text) => {
   pPolarSeaTheWolfesMap();
+};
+g_NetworkCommands["/timeNow"] = () => {
+  // warn("it's " + today.getHours() + ':' + today.getMinutes() + ' here.');
+  const today = new Date()
+  sendMessage("it's " + today.getHours() + ':' + today.getMinutes() + ' here.');
 };
 g_NetworkCommands["/modsImCurrentlyUsing"] = () => {
   const modEnabledmods = Engine.ConfigDB_GetValue(
