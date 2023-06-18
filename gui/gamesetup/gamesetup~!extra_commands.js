@@ -244,32 +244,27 @@ g_NetworkCommandsDescriptions = Object.assign(g_NetworkCommandsDescriptions, {
   "/modsImCurrentlyUsing":
     "Mods I'm currently using",
 });
-g_NetworkCommands["/help"] = (textAllSometing) => { // if textAllSometing is something then its will be sendet to all team. not only for yourself
+g_NetworkCommands["/help"] = (sendIt2AllForRead) => { // if textAllSometing is something then its will be sendet to all team. not only for yourself
   const g_ChatCommandColor = "200 200 255";
   let text = translate("Chat commands:");
-  let textAll =  translate("Chat commands if you use this autoCiv Version:");
   for (let command in g_NetworkCommands) {
     let noSlashCommand = command.slice(1);
     const asc = g_autociv_SharedCommands[noSlashCommand];
     const ncd = g_NetworkCommandsDescriptions[command];
     text += "\n";
-    textAll += "\n";
     text += sprintf(translate("%(command)s - %(description)s"), {
       command: "/" + coloredText(noSlashCommand, g_ChatCommandColor),
       description: ncd ?? asc?.description ?? "",
     });
-    textAll += sprintf(translate("%(command)s - %(description)s"), {
-      command: "/" + noSlashCommand,
-      description: ncd ?? asc?.description ?? "",
-    });
   }
-  if(textAllSometing)
-    sendMessage(textAll)
-  else
+  if(sendIt2AllForRead){
+    sendMessage("Chat commands if you use this autoCiv Version:");
+    sendMessage(text.replace(/\[.*?\]/g,''))
+  }else
     selfMessage(text);
   };
 g_NetworkCommands[
-  "/helpp"] = () => {
+  "/helpp"] = (sendIt2AllForRead) => {
   const g_ChatCommandColor = "200 200 255";
   let text = translate("Chat commands starting with p... :");
   for (let command in g_NetworkCommands) {
@@ -286,8 +281,12 @@ g_NetworkCommands[
       command: "/" + coloredText(noSlashCommand, g_ChatCommandColor),
       description: ncd ?? asc?.description ?? "",
     });
-  }
-  selfMessage(text);
+  } //
+  if(sendIt2AllForRead){
+    sendMessage("Chat for select map provile if you use this autoCiv Version:");
+    sendMessage(text.replace(/\[.*?\]/g,''))
+  }else
+    selfMessage(text);
 };
 
 g_NetworkCommands["/playToggle"] = () => {

@@ -133,9 +133,9 @@ ERROR: Errors executing script event "Tab"
         }
         if(captionTime1){
             sendMessageGlHfWpU2Gg(captionTime1);
+            return; // 23-0618_1452-21 return is needet. otherwise guiObject.caption = ... changes nothing
         }
 
-        return; // 23-0618_1452-21 return is needet. otherwise guiObject.caption = ... changes nothing
         // return; // <== ver dangeoous then eventually all other commands dont work
     }
 
