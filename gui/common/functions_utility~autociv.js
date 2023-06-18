@@ -118,7 +118,7 @@ ERROR: Errors executing script event "Tab"
         */
 
         if(caption == 'gl' || caption == 'hf'){
-            guiObject.caption = 'Have fun!(hf) and invite your friends.';
+            guiObject.caption = 'Have fun!(hf).'; //  and invite your friends
             captionTime1 = caption.toString();
         }
         if(caption == 'gg')
