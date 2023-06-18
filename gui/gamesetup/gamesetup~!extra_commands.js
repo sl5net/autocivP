@@ -726,26 +726,26 @@ function setDefaultsforPopmaxAlliedviewRatingTreasuresNomadExploration(sendMessa
   // selfMessage(`res= ${resources}`);
   return populationMax;
 }
-function sendMessageGlHfWpU2Gg(gg) {
-  // btw guiObject is not definded her so you cant use this: sendMessageGlHfWpU2Gg(..., guiObject)
-  if(gg == 'gl' || gg == 'hf'){
-      const text =  `Good luck(gl)`;
-      sendMessage(`${text}`);
-      return;
-  }
-  if(gg == 'gg'){
-      const text =  `Good game(gg)`;
-      sendMessage(`${text}`);
-      return;
-  }
-  if(gg == 'wp'){
-      const text =  `Well played(wp)`;
-      sendMessage(`${text}`);
-      return;
-  }
-  if(gg == 'u2'){
-      const text =  `You too!(u2)`;
-      sendMessage(`${text}`);
-      return;
-  }
-}
+// function sendMessageGlHfWpU2Gg(gg) {
+//   // btw guiObject is not definded her so you cant use this: sendMessageGlHfWpU2Gg(..., guiObject)
+//   if(gg == 'gl' || gg == 'hf'){
+//       const text =  `Good luck(gl)`;
+//       sendMessage(`${text}`);
+//       return;
+//   }
+//   if(gg == 'gg'){
+//       const text =  `Good game(gg)`;
+//       sendMessage(`${text}`);
+//       return;
+//   }
+//   if(gg == 'wp'){
+//       const text =  `Well played(wp)`;
+//       sendMessage(`${text}`);
+//       return;
+//   }
+//   if(gg == 'u2'){
+//       const text =  `You too!(u2)`;
+//       sendMessage(`${text}`);
+//       return;
+//   }
+// }

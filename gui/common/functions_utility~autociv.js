@@ -103,16 +103,39 @@ autoCompleteText = function (guiObject, list)
     // selfMessage('team = '+ cmpPlayer.GetTeam()); // cmpPlayer is undefined
 
     const doTabReplacmentWor_gl_hf_gg_wp_stuff = true; // usefull for debugging maybe
+    let captionTime1 = '';
     if(doTabReplacmentWor_gl_hf_gg_wp_stuff){
-        sendMessageGlHfWpU2Gg(caption); // sadly change caption must by implemented here and not into the function
-        if(caption == 'gl' || caption == 'hf')
+        /*
+        erros when i not host:
+
+ERROR: Errors executing script event "Tab"
+ERROR: JavaScript error: gui/common/functions_utility~autociv.js line 107
+sendMessageGlHfWpU2Gg is not defined
+autoCompleteText@gui/common/functions_utility~autociv.js:107:9
+ChatInputPanel.prototype.autocomplete@gui/lobby/LobbyPage/Chat/ChatInputPanel~autociv.js:13:21
+ERROR: Errors executing script event "Tab"
+
+        */
+
+        if(caption == 'gl' || caption == 'hf'){
             guiObject.caption = 'Have fun!(hf) and invite your friends.';
+            captionTime1 = caption.toString();
+        }
         if(caption == 'gg')
             guiObject.caption = 'Well played(wp)';
-        if(caption == 'wp')
+        if(caption == 'wp'){
             guiObject.caption = 'Revenge? Again?(re)';
-        if(caption == 'u2')
+            captionTime1 = caption;
+        }
+        if(caption == 'u2'){
             guiObject.caption = '';
+            captionTime1 = caption;
+        }
+        if(captionTime1){
+            sendMessageGlHfWpU2Gg(captionTime1);
+        }
+
+        return; // 23-0618_1452-21 return is needet. otherwise guiObject.caption = ... changes nothing
         // return; // <== ver dangeoous then eventually all other commands dont work
     }
 
