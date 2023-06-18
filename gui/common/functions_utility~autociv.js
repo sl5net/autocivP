@@ -132,7 +132,12 @@ ERROR: Errors executing script event "Tab"
             captionTime1 = caption;
         }
         if(captionTime1){
-            sendMessageGlHfWpU2Gg(captionTime1);
+            // got error as obser but worked stoff before worked very nice. so let use a try catch or check if its observer:  (se, 23-0618_1531-46)
+            try {
+                sendMessageGlHfWpU2Gg(captionTime1);
+            } catch (error) {
+                // not needet to send. its also good to have changed the captio only 23-0618_1532-39
+            }
             return; // 23-0618_1452-21 return is needet. otherwise guiObject.caption = ... changes nothing
         }
 
