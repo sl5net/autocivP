@@ -11,7 +11,7 @@ var config = {
     return Engine.ConfigDB_GetValue("user", key);
   },
   save: function () {
-    // if (this.needsToSave) Engine.ConfigDB_SaveChanges("user"); // this is A27 style
+    // Engine.ConfigDB_SaveChanges("user"); // this is A27 style
     if (this.needsToSave) Engine.ConfigDB_WriteFile("user", "config/user.cfg")  // this is A26 style
     if (this.needsToReloadHotkeys) Engine.ReloadHotkeys();
   },
