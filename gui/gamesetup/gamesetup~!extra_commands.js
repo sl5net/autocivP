@@ -568,6 +568,15 @@ function pPolarSeaTheWolfesMap() {
 g_NetworkCommands["/helloAll"] = (text) => {
   g_NetworkCommands["/hiAll"](text);
 }
+g_NetworkCommands["/helloRated"] = () => {
+  g_NetworkCommands["/hiRated"]();
+
+}
+
+g_NetworkCommands["/hiRated"] = () => {
+  sendMessage('Hey :)');
+  g_NetworkCommands["/modsImCurrentlyUsing"]();
+}
 
 g_NetworkCommands["/hiAll"] = (text) => {  // works not in lobby, works in a game config
 // function helloAll(text) {
