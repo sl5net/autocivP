@@ -162,8 +162,9 @@ ERROR: Errors executing script event "Tab"
         //   selfMessage(Engine.team[0]); // state is not defined
           caption = g_linkLongTeam;
           const inviteJitsiText =  `Dear Team please open this link for team-audio-chat: ${g_linkLongTeam} . If you have the mod AutoCiv you could open it by writing /link<enter> . Please not everybody create a link.`;
-          guiObject.caption = '/link'; //  inviteJitsiText;
-          sendMessage(`${inviteJitsiText}`);
+        //   guiObject.caption = '/link'; //  inviteJitsiText;
+          guiObject.caption = inviteJitsiText;
+        //   sendMessage(`${inviteJitsiText}`); // TODO: it send to all not only to Allied
           return;
     }
     // selfMessage('caption = ' + caption)
