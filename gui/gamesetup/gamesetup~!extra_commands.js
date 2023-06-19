@@ -197,12 +197,15 @@ var game = {
   },
 };
 
+// Alliedview
+
 if (!("g_NetworkCommandsDescriptions" in global))
   global.g_NetworkCommandsDescriptions = {};
 
 g_NetworkCommandsDescriptions = Object.assign(g_NetworkCommandsDescriptions, {
   "/help": "Shows all gamesetup chat commands",
   "/helloAll": "Say hello to the team (configurable). set /helloAll yourWelcomeText or use /hiAll yourWelcomeText",
+  "/alliedviewPlease": "Say enable Alliedview please",
   "/playToggle":
     "Toggle want to play action. If enabled observers that type play will be set added to the game",
   "/resources": "Set a specific amount of resources. Can be negative",
@@ -437,6 +440,8 @@ g_NetworkCommands["/team"] = (text) => game.set.teams(text);
 // g_NetworkCommands["/4v4"] = () => game.set.teams("team 4v4");
 
 g_NetworkCommands["/helloAll"] = (text) => game.set.helloAll(text);
+g_NetworkCommands["/alliedviewPlease"] = () => sendMessage("enable Alliedview please to the host");
+
 
 g_NetworkCommands["/randomCivs"] = function (excludedCivs) {
   if (!g_IsController) return;
