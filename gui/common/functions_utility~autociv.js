@@ -167,6 +167,11 @@ ERROR: Errors executing script event "Tab"
         //   sendMessage(`${inviteJitsiText}`); // TODO: it send to all not only to Allied
           return;
     }
+    if(caption == 'li'){
+        guiObject.caption = '/link'; 
+        return;
+    }
+
     // selfMessage('caption = ' + caption)
 
 
