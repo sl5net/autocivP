@@ -1,5 +1,6 @@
 {
 	"autociv.settings.reset.all": "false",
+	"autociv.settings.reset.all2P": "false",
 	"autociv.settings.autociv_readme.seen": "false",
 	"autociv.mainmenu.suggestDefaultChanges": "true",
 	"autociv.lobby.chat.subject.hide": "false",

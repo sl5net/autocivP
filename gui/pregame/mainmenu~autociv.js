@@ -31,8 +31,10 @@ function autociv_initCheck() {
 
   // Check settings
   {
-    let settings = Engine.ReadJSONFile("moddata/autociv_default_config.json");
+    let settings = Engine.ReadJSONFile("moddata/autocivP_default_config.json"); // https://www.convertsimple.com/convert-ini-to-json/ if u want use your user.cfg (seeh, 23-0619_1559-06 )
     // Reset all autociv settings to default. Custom autociv settings added won't be affected.
+    if (config.get("autociv.settings.reset.all2P") === "true")
+      settings = Engine.ReadJSONFile("moddata/autocivP_default_config.json"); // https://www.convertsimple.com/convert-ini-to-json/ if u want use your user.cfg (seeh, 23-0619_1559-06 )
     if (config.get("autociv.settings.reset.all") === "true") {
       warn("RESET ALL");
       for (let key in settings) config.set(key, settings[key]);
