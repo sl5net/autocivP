@@ -15,8 +15,11 @@ autociv_patchApplyN(HotkeysPage.prototype, "saveUserHotkeys", function (target, 
         let keymap = formatHotkeyCombinations(temp[hotkey], false);
         Engine.ConfigDB_CreateValues("user", "hotkey." + hotkey, keymap);
     }
-    // Engine.ConfigDB_SaveChanges("user"); // a27 style
-    Engine.ConfigDB_WriteFile("user", "config/user.cfg") // a26 style
+    try {
+        Engine.ConfigDB_SaveChanges("user"); // a27 style
+    } catch (error) {
+        Engine.ConfigDB_WriteFile("user", "config/user.cfg") // a26 style
+    }
     Engine.ReloadHotkeys();
 
     return res;
