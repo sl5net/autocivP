@@ -256,6 +256,7 @@ g_NetworkCommands["/help"] = (match, sendIt2AllForRead = false) => { // if textA
   // const sendIt2AllForRead = false; // TODO
   const g_ChatCommandColor = "200 200 255";
   let text = translate(`Chat commands that match ${match} if its there:`);
+  let isSomethingFound = false;
   for (let command in g_NetworkCommands) {
     let noSlashCommand = command.slice(1);
 
@@ -263,6 +264,7 @@ g_NetworkCommands["/help"] = (match, sendIt2AllForRead = false) => { // if textA
     if(match && !command.match(filter)) //  let regexp = /[a-d]/gi;
       continue;
 
+    isSomethingFound = true;
     const asc = g_autociv_SharedCommands[noSlashCommand];
     const ncd = g_NetworkCommandsDescriptions[command];
     text += "\n";
@@ -276,6 +278,9 @@ g_NetworkCommands["/help"] = (match, sendIt2AllForRead = false) => { // if textA
     sendMessage(text.replace(/\[.*?\]/g,''))
   }else
     selfMessage(text);
+
+  if(isSomethingFound)
+    ConfigDB_CreateAndSaveValueA26A27("user", "autociv.chat.lastCommand", `/help ${match}`);
 };
 
 g_NetworkCommands["/playToggle"] = () => {
