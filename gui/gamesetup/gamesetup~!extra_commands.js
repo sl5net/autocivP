@@ -272,31 +272,6 @@ g_NetworkCommands["/help"] = (match) => { // if textAllSometing is something the
   }else
     selfMessage(text);
   };
-g_NetworkCommands[
-  "/helpp"] = (sendIt2AllForRead) => {
-  const g_ChatCommandColor = "200 200 255";
-  let text = translate("Chat commands starting with p... :");
-  for (let command in g_NetworkCommands) {
-    let noSlashCommand = command.slice(1);
-
-    if ("p" != noSlashCommand.slice(0, 1)) {
-      continue;
-    }
-
-    const asc = g_autociv_SharedCommands[noSlashCommand];
-    const ncd = g_NetworkCommandsDescriptions[command];
-    text += "\n";
-    text += sprintf(translate("%(command)s - %(description)s"), {
-      command: "/" + coloredText(noSlashCommand, g_ChatCommandColor),
-      description: ncd ?? asc?.description ?? "",
-    });
-  } //
-  if(sendIt2AllForRead){
-    sendMessage("Chat for select map provile if you use this autoCiv Version:");
-    sendMessage(text.replace(/\[.*?\]/g,''))
-  }else
-    selfMessage(text);
-};
 
 g_NetworkCommands["/playToggle"] = () => {
   const key = "autociv.gamesetup.play.enabled";
