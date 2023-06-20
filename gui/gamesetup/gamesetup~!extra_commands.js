@@ -247,11 +247,17 @@ g_NetworkCommandsDescriptions = Object.assign(g_NetworkCommandsDescriptions, {
   "/modsImCurrentlyUsing":
     "Mods I'm currently using",
 });
-g_NetworkCommands["/help"] = (sendIt2AllForRead) => { // if textAllSometing is something then its will be sendet to all team. not only for yourself
+g_NetworkCommands["/help"] = (match) => { // if textAllSometing is something then its will be sendet to all team. not only for yourself
+  const sendIt2AllForRead = false; // TODO
   const g_ChatCommandColor = "200 200 255";
-  let text = translate("Chat commands:");
+  let text = translate(`Chat commands that match ${match} if its there:`);
   for (let command in g_NetworkCommands) {
     let noSlashCommand = command.slice(1);
+
+    const filter = new RegExp('' + match + '.*','gi');
+    if(match && !noSlashCommand.match(filter)) //  let regexp = /[a-d]/gi;
+      continue;
+
     const asc = g_autociv_SharedCommands[noSlashCommand];
     const ncd = g_NetworkCommandsDescriptions[command];
     text += "\n";
