@@ -260,7 +260,7 @@ g_NetworkCommands["/help"] = (match, sendIt2AllForRead = false) => { // if textA
     let noSlashCommand = command.slice(1);
 
     const filter = new RegExp('' + match + '.*','gi');
-    if(match && !noSlashCommand.match(filter)) //  let regexp = /[a-d]/gi;
+    if(match && !command.match(filter)) //  let regexp = /[a-d]/gi;
       continue;
 
     const asc = g_autociv_SharedCommands[noSlashCommand];
