@@ -163,7 +163,18 @@ ERROR: Errors executing script event "Tab"
         //   guiObject.caption = '/link'; //  inviteJitsiText;
           guiObject.caption = inviteJitsiText;
         //   sendMessage(`${inviteJitsiText}`); // TODO: it send to all not only to Allied
-          return;
+
+        selfMessage(g_linkLongTeam); // its only a selfMessage. not read by botManager
+        // BotManager.openURL(g_linkLongTeam); // is not a function
+        // let err = botManager.openLink(g_linkLongTeam); // is not a function
+
+
+        // botManager.setMessageInterface("ingame");
+        // let err = botManager.get("link").openLink(g_linkLongTeam); // this get the link from the chat.
+        // if (err)
+        //     selfMessage(err);
+
+        return;
     }
     if(caption == 'li'){
         guiObject.caption = '/link';

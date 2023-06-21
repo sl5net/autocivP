@@ -251,6 +251,9 @@ g_NetworkCommandsDescriptions = Object.assign(g_NetworkCommandsDescriptions, {
 g_NetworkCommands["/whatsAutoCivMod"] = () => {
   sendMessage('AutoCiv mod is an aggregation of features meant to enhance the 0 A.D. HotKeys and more. Many players use it.');
 }
+g_NetworkCommands["/whatsJitsi"] = () => {
+  sendMessage('Jitsi is a great way to have quick team calls without any setup process. It can also be used as an audio chat for your 0ad-team.');
+}
 
 g_NetworkCommands["/help2All"] = (match) => { // if textAllSometing is something then its will be sendet to all team. not only for yourself
   g_NetworkCommands["/help"](match, true);
