@@ -747,22 +747,29 @@ function saveLastCommand(lastCommand){
 
   let lastCommandID = g_lastCommandID;
 
-  const lastCommand0 = Engine.ConfigDB_GetValue("user", `autociv.chat.lastCommand${lastCommandID}`);
+  let lastCommandID_i = 0;
+  for (let i = 0; i <= 9; i++) {
+    lastCommandID_i = i + g_lastCommandID; // maybe 5 6 7 8 9
+    // selfMessage(lastCommandID);
+    if (lastCommandID_i > 9) lastCommandID_i -= 10; // maybe 1 2 3 4
+    // selfMessage(lastCommandID);
 
-  if(lastCommand0 != lastCommand){
-    // check its saved already somewhre else
-    lastCommandID = g_lastCommandID == 0 ? 1 : 0; // condition ? exprIfTrue : exprIfFalse
-    const lastCommand1 = Engine.ConfigDB_GetValue("user", `autociv.chat.lastCommand${lastCommandID}`);
-    if(lastCommand == lastCommand1) // dont save it twice
+    const lastCommand_i = Engine.ConfigDB_GetValue("user", `autociv.chat.lastCommand${lastCommandID_i}`);
+    // selfMessage(lastCommand_i)
+    if(!lastCommand_i.length)
       {
-        selfMessage(`lastCommand == lastCommand1 == ${lastCommand1}`);
-        return
+        // selfMessage('is empty');
+        break;
       }
-    // now its not already saved somwhere
-    // where to save?
-    ConfigDB_CreateAndSaveValueA26A27("user", `autociv.chat.lastCommand${g_lastCommandID}`, lastCommand);
+    if(lastCommand == lastCommand_i) // dont save it twice
+    {
+        // selfMessage('dont save it twice');
+        g_lastCommand = lastCommand;
+        return
+    }
   }
-
-  g_lastCommandID = lastCommandID;
+  ConfigDB_CreateAndSaveValueA26A27("user", `autociv.chat.lastCommand${lastCommandID_i}`, lastCommand);
+  g_lastCommandID = lastCommandID_i;
   g_lastCommand = lastCommand;
+  return;
 }

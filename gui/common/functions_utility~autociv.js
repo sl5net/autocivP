@@ -59,29 +59,33 @@ autoCompleteText = function (guiObject, list)
 {
     let caption = guiObject.caption
     if (!caption.length){
-
-
         // selfMessage('repeat you last command:') // message disabled becouse its also inside the looby. could disturbing a bit.
         const lastCommand = Engine.ConfigDB_GetValue("user", "autociv.chat.lastCommand0");
         if(!lastCommand)
             return
 
         if(g_lastCommand == lastCommand){
-            const lastCommand1 = Engine.ConfigDB_GetValue("user", "autociv.chat.lastCommand1");
+            // selfMessage(`70: '${lastCommand}' = lastCommand`);
+            // g_lastCommandID++;
+            // if(g_lastCommandID > 9) g_lastCommandID = 0;
+            const lastCommand1 = Engine.ConfigDB_GetValue("user", `autociv.chat.lastCommand${g_lastCommandID}`);
             g_lastCommand = lastCommand1;
-            g_lastCommandID = 1;
         }else{
+            // selfMessage(`76: g_lastCommand='${g_lastCommand}' != '${lastCommand}' = lastCommand`);
             g_lastCommand = lastCommand;
-            g_lastCommandID = 0;
+            // g_lastCommandID++;
+            if(g_lastCommandID > 9) g_lastCommandID = 0;
         }
         // let test = g_ChatHistory[1]; // g_ChatHistory is not defined https://trac.wildfiregames.com/ticket/5387
 
         caption = g_lastCommand ;
     }else{
         if(caption == g_lastCommand){
-            g_lastCommandID = g_lastCommandID == 0 ? 1 : 0; // condition ? exprIfTrue : exprIfFalse
+            g_lastCommandID++;
+            if(g_lastCommandID > 9) g_lastCommandID = 0;
+            // selfMessage(`86: ${g_lastCommandID}' = g_lastCommandID`);
             const lastCommand = Engine.ConfigDB_GetValue("user", `autociv.chat.lastCommand${g_lastCommandID}`);
-            // g_lastCommand = lastCommand
+            g_lastCommand = lastCommand
             // caption = g_lastCommand ;
             caption = lastCommand ;
             // selfMessage(`caption == g_lastCommand '${caption}' => double tab ?`);
