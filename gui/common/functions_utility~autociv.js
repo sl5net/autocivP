@@ -60,7 +60,7 @@ autoCompleteText = function (guiObject, list)
     let caption = guiObject.caption
     if (!caption.length){
         // selfMessage('repeat you last command:') // message disabled becouse its also inside the looby. could disturbing a bit.
-        const lastCommand = Engine.ConfigDB_GetValue("user", "autociv.chat.lastCommand0");
+        const lastCommand = Engine.ConfigDB_GetValue("user", `autociv.chat.lastCommand${g_lastCommandID}`);
         if(!lastCommand)
             return
 
