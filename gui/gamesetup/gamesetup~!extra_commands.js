@@ -770,6 +770,7 @@ function saveLastCommand(lastCommand){
   }
   ConfigDB_CreateAndSaveValueA26A27("user", `autociv.chat.lastCommand${lastCommandID_i}`, lastCommand);
   g_lastCommandID = lastCommandID_i;
+  ConfigDB_CreateAndSaveValueA26A27("user", `autociv.chat.g_lastCommandID`, g_lastCommandID);
   g_lastCommand = lastCommand;
   return;
 }
