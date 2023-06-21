@@ -239,7 +239,12 @@ ERROR: Errors executing script event "Tab"
 
         autoCompleteText.state.newCaption = newCaptionText
         // ConfigDB_CreateAndSaveValueA26A27("user", "autociv.chat.lastCommand", newCaptionText);
-        saveLastCommand(newCaptionText);
+
+        try {
+            saveLastCommand(newCaptionText);
+        } catch (error) {
+            selfMessage('TODO maybe here: gui/common/functions_utility~autociv.js')
+        }
 
         guiObject.caption = newCaptionText
         guiObject.buffer_position = buffer_position + (completedText.length - textBeforeBuffer.length)
