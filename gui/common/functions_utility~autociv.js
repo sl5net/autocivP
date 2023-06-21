@@ -237,20 +237,20 @@ ERROR: Errors executing script event "Tab"
         const completedText = tryAutoComplete(textBeforeBuffer, list, autoCompleteText.state.tries++)
         const newCaptionText = completedText + caption.substring(buffer_position)
 
-        autoCompleteText.state.newCaption = newCaptionText
+        autoCompleteText.state.newCaption = newCaptionText;
         // ConfigDB_CreateAndSaveValueA26A27("user", "autociv.chat.lastCommand", newCaptionText);
 
         try {
             saveLastCommand(newCaptionText);
         } catch (error) {
 
-            selfMessage('TODO maybe here: gui/common/functions_utility~autociv.js')
+            selfMessage('TODO maybe here: gui/common/functions_utility~autociv.js');
             // happend to my in lobby and type a name 23-0621_2314-48
             // also happens when i in observer chat of a game 23-0621_2319-10
         }
 
-        guiObject.caption = newCaptionText
-        guiObject.buffer_position = buffer_position + (completedText.length - textBeforeBuffer.length)
+        guiObject.caption = newCaptionText;
+        guiObject.buffer_position = buffer_position + (completedText.length - textBeforeBuffer.length);
     }
 }
 
@@ -295,10 +295,10 @@ function brightenedColor(color, brightnessThreshold = 110)
 }
 
 function ConfigDB_CreateAndSaveValueA26A27(user, key, value){
-    // is not a function error in Version a26 aut 23-0605_1920-25
+    // ConfigDB_CreateAndSaveValue is not a function error in Version a26 but in a27 23-0605_1920-25
     try {
-        Engine.ConfigDB_CreateAndSaveValue(user, key, value); // is not a function error in Version a26 aut 23-0605_1920-25
-    } catch (error) { // for A26 or before
+        Engine.ConfigDB_CreateAndSaveValue(user, key, value);
+    } catch (error) {
         Engine.ConfigDB_CreateValue(user, key, value);
         Engine.ConfigDB_WriteFile(user, "config/user.cfg");
     }
