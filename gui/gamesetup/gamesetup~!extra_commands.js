@@ -287,7 +287,8 @@ g_NetworkCommands["/help"] = (match, sendIt2AllForRead = false) => { // if textA
     selfMessage(text);
 
   if(isSomethingFound)
-    ConfigDB_CreateAndSaveValueA26A27("user", "autociv.chat.lastCommand", `/help ${match}`);
+    saveLastCommand(`/help ${match}`);
+  // ConfigDB_CreateAndSaveValueA26A27("user", "autociv.chat.lastCommand", `/help ${match}`);
 };
 
 g_NetworkCommands["/playToggle"] = () => {
@@ -736,4 +737,32 @@ function setDefaultsforPopmaxAlliedviewRatingTreasuresNomadExploration(sendMessa
   // selfMessage(`pop= ${populationMax}`);
   // selfMessage(`res= ${resources}`);
   return populationMax;
+}
+function saveLastCommand(lastCommand){
+  if(!lastCommand)
+    return;
+
+  if(lastCommand == g_lastCommand)
+    return;
+
+  let lastCommandID = g_lastCommandID;
+
+  const lastCommand0 = Engine.ConfigDB_GetValue("user", `autociv.chat.lastCommand${lastCommandID}`);
+
+  if(lastCommand0 != lastCommand){
+    // check its saved already somewhre else
+    lastCommandID = g_lastCommandID == 0 ? 1 : 0; // condition ? exprIfTrue : exprIfFalse
+    const lastCommand1 = Engine.ConfigDB_GetValue("user", `autociv.chat.lastCommand${lastCommandID}`);
+    if(lastCommand == lastCommand1) // dont save it twice
+      {
+        selfMessage(`lastCommand == lastCommand1 == ${lastCommand1}`);
+        return
+      }
+    // now its not already saved somwhere
+    // where to save?
+    ConfigDB_CreateAndSaveValueA26A27("user", `autociv.chat.lastCommand${g_lastCommandID}`, lastCommand);
+  }
+
+  g_lastCommandID = lastCommandID;
+  g_lastCommand = lastCommand;
 }

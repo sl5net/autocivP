@@ -1,5 +1,9 @@
 var g_linkLongTeam = null; // init should be available during the game and not changed
 
+var g_lastCommand = "";
+var g_lastCommandID = 0;
+
+
 /**
  * @param {*} text - Slice of the text from start to buffer position
  * @param {*} list - List of texts to try to auto-complete
@@ -54,20 +58,35 @@ tryAutoComplete = function (text, list, tries)
 autoCompleteText = function (guiObject, list)
 {
     let caption = guiObject.caption
-    let lastCommand = ""
     if (!caption.length){
+
+
         // selfMessage('repeat you last command:') // message disabled becouse its also inside the looby. could disturbing a bit.
-        lastCommand = Engine.ConfigDB_GetValue("user", "autociv.chat.lastCommand");
+        const lastCommand = Engine.ConfigDB_GetValue("user", "autociv.chat.lastCommand0");
         if(!lastCommand)
             return
 
+        if(g_lastCommand == lastCommand){
+            const lastCommand1 = Engine.ConfigDB_GetValue("user", "autociv.chat.lastCommand1");
+            g_lastCommand = lastCommand1;
+            g_lastCommandID = 1;
+        }else{
+            g_lastCommand = lastCommand;
+            g_lastCommandID = 0;
+        }
         // let test = g_ChatHistory[1]; // g_ChatHistory is not defined https://trac.wildfiregames.com/ticket/5387
 
-        caption = lastCommand ;
+        caption = g_lastCommand ;
+    }else{
+        if(caption == g_lastCommand){
+            g_lastCommandID = g_lastCommandID == 0 ? 1 : 0; // condition ? exprIfTrue : exprIfFalse
+            const lastCommand = Engine.ConfigDB_GetValue("user", `autociv.chat.lastCommand${g_lastCommandID}`);
+            // g_lastCommand = lastCommand
+            // caption = g_lastCommand ;
+            caption = lastCommand ;
+            // selfMessage(`caption == g_lastCommand '${caption}' => double tab ?`);
+        }
     }
-
-
-
 
     // const cmpPlayerManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_PlayerManager);
     // Engine.playerEnt();
@@ -197,7 +216,8 @@ ERROR: Errors executing script event "Tab"
 
         guiObject.caption = newCaptionText
 
-        ConfigDB_CreateAndSaveValueA26A27("user", "autociv.chat.lastCommand", newCaptionText);
+        // ConfigDB_CreateAndSaveValueA26A27("user", "autociv.chat.lastCommand", newCaptionText);
+        saveLastCommand(newCaptionText);
 
         guiObject.buffer_position = autoCompleteText.state.buffer_position + (completedText.length - textBeforeBuffer.length)
     }
@@ -213,7 +233,8 @@ ERROR: Errors executing script event "Tab"
         const newCaptionText = completedText + caption.substring(buffer_position)
 
         autoCompleteText.state.newCaption = newCaptionText
-        ConfigDB_CreateAndSaveValueA26A27("user", "autociv.chat.lastCommand", newCaptionText);
+        // ConfigDB_CreateAndSaveValueA26A27("user", "autociv.chat.lastCommand", newCaptionText);
+        saveLastCommand(newCaptionText);
 
         guiObject.caption = newCaptionText
         guiObject.buffer_position = buffer_position + (completedText.length - textBeforeBuffer.length)
