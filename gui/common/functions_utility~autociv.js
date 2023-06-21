@@ -243,7 +243,10 @@ ERROR: Errors executing script event "Tab"
         try {
             saveLastCommand(newCaptionText);
         } catch (error) {
+
             selfMessage('TODO maybe here: gui/common/functions_utility~autociv.js')
+            // happend to my in lobby and type a name 23-0621_2314-48
+            // also happens when i in observer chat of a game 23-0621_2319-10
         }
 
         guiObject.caption = newCaptionText
