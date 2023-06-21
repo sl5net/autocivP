@@ -248,6 +248,10 @@ g_NetworkCommandsDescriptions = Object.assign(g_NetworkCommandsDescriptions, {
     "Mods I'm currently using",
 });
 
+g_NetworkCommands["/whatsAutoCivMod"] = () => {
+  sendMessage('AutoCiv mod is an aggregation of features meant to enhance the 0 A.D. HotKeys and more. Many players use it.');
+}
+
 g_NetworkCommands["/help2All"] = (match) => { // if textAllSometing is something then its will be sendet to all team. not only for yourself
   g_NetworkCommands["/help"](match, true);
 }
@@ -431,7 +435,7 @@ g_NetworkCommands["/team"] = (text) => game.set.teams(text);
 // g_NetworkCommands["/4v4"] = () => game.set.teams("team 4v4");
 
 g_NetworkCommands["/helloAll"] = (text) => game.set.helloAll(text);
-g_NetworkCommands["/alliedviewPlease"] = () => sendMessage("enable Alliedview please to the host");
+g_NetworkCommands["/alliedviewPlease"] = () => sendMessage("enable Alliedview please");
 
 
 g_NetworkCommands["/randomCivs"] = function (excludedCivs) {

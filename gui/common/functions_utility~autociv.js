@@ -120,18 +120,16 @@ ERROR: Errors executing script event "Tab"
         if(caption == 'gl' || caption == 'hf'){
             guiObject.caption = 'Have fun!(hf).'; //  and invite your friends
             captionTime1 = caption.toString();
-        }
-        if(caption == 'gg')
+        }else if(caption == 'gg'){
             guiObject.caption = 'Well played(wp)';
-        if(caption == 'wp'){
-            guiObject.caption = 'Revenge? Again?(re)';
             captionTime1 = caption;
-        }
-        if(caption == 'u2'){
+        }else if(caption == 'wp'){
+            guiObject.caption = 'Well played(wp). Again?(re)';
+            captionTime1 = caption;
+        }else if(caption == 'u2'){
             guiObject.caption = '';
             captionTime1 = caption;
-        }
-        if(captionTime1){
+        }else if(captionTime1){
             // got error as obser but worked stoff before worked very nice. so let use a try catch or check if its observer:  (se, 23-0618_1531-46)
             try {
                 sendMessageGlHfWpU2Gg(captionTime1);
@@ -161,14 +159,14 @@ ERROR: Errors executing script event "Tab"
         }
         //   selfMessage(Engine.team[0]); // state is not defined
           caption = g_linkLongTeam;
-          const inviteJitsiText =  `Dear Team please open this link for team-audio-chat: ${g_linkLongTeam} . If you have the mod AutoCiv you could open it by writing /link<enter> . Please not everybody create a link.`;
+          const inviteJitsiText =  `please open this link for team-audio-chat: ${g_linkLongTeam}. You don't have to install anything. Only a web browser is required. If you have the mod AutoCiv you could open it by writing /link<enter> . Please not everybody create a link.`;
         //   guiObject.caption = '/link'; //  inviteJitsiText;
           guiObject.caption = inviteJitsiText;
         //   sendMessage(`${inviteJitsiText}`); // TODO: it send to all not only to Allied
           return;
     }
     if(caption == 'li'){
-        guiObject.caption = '/link'; 
+        guiObject.caption = '/link';
         return;
     }
 
