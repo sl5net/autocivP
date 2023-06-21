@@ -2,6 +2,7 @@ var g_linkLongTeam = null; // init should be available during the game and not c
 
 var g_lastCommand = "";
 var g_lastCommandID = 0;
+var g_lastCommandIDmax = 5;
 
 
 /**
@@ -74,7 +75,7 @@ autoCompleteText = function (guiObject, list)
             // selfMessage(`76: g_lastCommand='${g_lastCommand}' != '${lastCommand}' = lastCommand`);
             g_lastCommand = lastCommand;
             // g_lastCommandID++;
-            if(g_lastCommandID > 9) g_lastCommandID = 0;
+            if(g_lastCommandID > g_lastCommandIDmax) g_lastCommandID = 0;
         }
         // let test = g_ChatHistory[1]; // g_ChatHistory is not defined https://trac.wildfiregames.com/ticket/5387
 
@@ -82,7 +83,7 @@ autoCompleteText = function (guiObject, list)
     }else{
         if(caption == g_lastCommand){
             g_lastCommandID++;
-            if(g_lastCommandID > 9) g_lastCommandID = 0;
+            if(g_lastCommandID > g_lastCommandIDmax) g_lastCommandID = 0;
             // selfMessage(`86: ${g_lastCommandID}' = g_lastCommandID`);
             const lastCommand = Engine.ConfigDB_GetValue("user", `autociv.chat.lastCommand${g_lastCommandID}`);
             g_lastCommand = lastCommand

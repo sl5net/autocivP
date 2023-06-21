@@ -748,10 +748,10 @@ function saveLastCommand(lastCommand){
   let lastCommandID = g_lastCommandID;
 
   let lastCommandID_i = 0;
-  for (let i = 0; i <= 9; i++) {
+  for (let i = 0; i <= g_lastCommandIDmax; i++) {
     lastCommandID_i = i + g_lastCommandID; // maybe 5 6 7 8 9
     // selfMessage(lastCommandID);
-    if (lastCommandID_i > 9) lastCommandID_i -= 10; // maybe 1 2 3 4
+    if (lastCommandID_i > 9) lastCommandID_i -= g_lastCommandIDmax+1; // maybe 1 2 3 4
     // selfMessage(lastCommandID);
 
     const lastCommand_i = Engine.ConfigDB_GetValue("user", `autociv.chat.lastCommand${lastCommandID_i}`);
