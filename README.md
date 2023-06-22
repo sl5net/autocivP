@@ -1,4 +1,4 @@
-# AutoCiv plus some goodies
+# AutoCivP plus some goodies
 
 Thanks to Nani ([99% source is from Nani](https://github.com/nanihadesuka/autociv))
 
@@ -20,13 +20,36 @@ Thanks to all the 0 A.D. players who found it useful.
 ## Questions & feedback
 For more information, questions and feedback, visit the thread on the [0 A.D. forum](https://wildfiregames.com/forum/topic/107371-autociv-add-ons-profiles-jitsi-team-call).
 
-# AutoCiv
+# autoCivP and AutoCiv
+## autoCivP
+next text here is a copy from
+[autocivP](https://github.com/sl5net/autocivP)
+## AutoCiv from nani
 next text here is a copy from
 [nani autociv](https://github.com/nanihadesuka/autociv)
 
+participation is welcome. are you a developer or want to become one?
+
 This mod is an aggregation of features meant to enhance the 0 A.D. game experience. I usually implement these extra features as they come up with no general plan in mind.
 
-## Feature list
+## Feature list added by autocivP
+
+- General
+	- Help command: type /help matchWord to see all available commands. Also possible to use regEx searchpattern.
+	- Jitsi commands: type j<tab> to create and send a jitsi-audioChat-link
+	- open links alias: type li<tab> to open a link.
+	- open links alias: type li<tab> to open a link.
+ 	- type <tab><tab> to see available commands that you have already used (history is saved into user.cfg).
+- Lobby
+	- nothing new
+ - Game setup
+	- Use Profiles to setup a game (Say enable Alliedview please, rated, map, biome, size, starting resources,  etc. ....)
+- Maps
+	- nothing new
+- In Game
+	- nothing new
+
+## Feature list Autociv
 - General
 	- Readme: press Shift + F4 to open
 	- Player mute
@@ -72,17 +95,16 @@ This mod is an aggregation of features meant to enhance the 0 A.D. game experien
 - Settings
 	- Max corpses visible
 
-## Download
-There are three ways:
+## Download autocivP
 - Download and install from the wildfiregames forum autociv page topic (files on first page)
-	- https://wildfiregames.com/forum/topic/28753-autociv-mod-0ad-enhancer/
+	- not available jet
 - Download and install manually the github repository (installation file on the releases section)
-	- https://github.com/nanihadesuka/autociv
+	- https://github.com/sl5net/autocivP
 - Use 0 A.D. mod downloader (not always newest version)
-	- https://0ad.mod.io/autociv
+	- https://0ad.mod.io/autocivP (not available jet)
 
 
-## Instructions to install manually
+## Instructions to install autociv manually
 	#### MacOS (thanks @HMS-Surprise):
 		https://wildfiregames.com/forum/index.php?/topic/25444-how-to-install-autociv-mod-on-mac/
 
@@ -95,7 +117,7 @@ There are three ways:
 			- https://trac.wildfiregames.com/wiki/GameDataPaths
 
 
-## Mod compatibility(s)
+## Mod autociv compatibility(s)
 The mod is compatible with:
 - 0 A.D 0.0.26
 - Probable to work with the following mods
@@ -106,11 +128,6 @@ The mod is compatible with:
 	- spec mod (monitor) mod
 	- custom_rating mod
 - Should work with all mods that don't have extensive code changes
-
-
-## More stuff & goodies
-For more info just read the whole thread where I post new features.
-https://wildfiregames.com/forum/topic/28753-autociv-mod-0ad-enhancer/
 
 ## Questions & feedback
 You don't understand how it works? Feeling confused? Just wanna comment? Ask and post.
