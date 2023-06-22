@@ -226,7 +226,11 @@ ERROR: Errors executing script event "Tab"
         guiObject.caption = newCaptionText
 
         // ConfigDB_CreateAndSaveValueA26A27("user", "autociv.chat.lastCommand", newCaptionText);
-        saveLastCommand(newCaptionText);
+        try {
+            saveLastCommand(newCaptionText);
+        } catch (error) {
+            // happens in the lobby console when double press tab 23-0622_2013-26
+        }
 
         guiObject.buffer_position = autoCompleteText.state.buffer_position + (completedText.length - textBeforeBuffer.length)
     }
