@@ -38,8 +38,8 @@ This mod is an aggregation of features meant to enhance the 0 A.D. game experien
 	- Help command: type /help matchWord to see all available commands. Also possible to use regEx searchpattern.
 	- Jitsi commands: type j<tab> to create and send a jitsi-audioChat-link
 	- open links alias: type li<tab> to open a link.
-	- open links alias: type li<tab> to open a link.
  	- type <tab><tab> to see available commands that you have already used (history is saved into user.cfg).
+	- some other little commands that works like: type command<tab> 
 - Lobby
 	- nothing new
  - Game setup
