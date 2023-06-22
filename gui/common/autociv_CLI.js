@@ -841,12 +841,12 @@ class Autociv_CLI
 	{
 		if (this.list_data.length)
 		{
-			selfMessage('00000000')
+			// selfMessage('00000000')
 			this.GUI.input.caption = this.prefix + this.list_data[0]
 			this.GUI.input.buffer_position = this.GUI.input.caption.length
 		}
 		else{
-			selfMessage('11111111')
+			// selfMessage('11111111')
 		}
 		this.updateSuggestions()
 	}

@@ -192,7 +192,7 @@ ERROR: Errors executing script event "Tab"
           guiObject.caption = inviteJitsiText;
         //   sendMessage(`${inviteJitsiText}`); // TODO: it send to all not only to Allied
 
-        selfMessage(g_linkLongTeam); // its only a selfMessage. not read by botManager
+        // selfMessage(g_linkLongTeam); // its only a selfMessage. not read by botManager
         // BotManager.openURL(g_linkLongTeam); // is not a function
         // let err = botManager.openLink(g_linkLongTeam); // is not a function
 
@@ -245,10 +245,10 @@ ERROR: Errors executing script event "Tab"
         // ConfigDB_CreateAndSaveValueA26A27("user", "autociv.chat.lastCommand", newCaptionText);
 
         try {
-            saveLastCommand(newCaptionText);
+            // saveLastCommand(newCaptionText);
         } catch (error) {
 
-            selfMessage('TODO maybe here: gui/common/functions_utility~autociv.js');
+            // selfMessage('TODO maybe here: gui/common/functions_utility~autociv.js');
             // happend to my in lobby and type a name 23-0621_2314-48
             // also happens when i in observer chat of a game 23-0621_2319-10
         }
