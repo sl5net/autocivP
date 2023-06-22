@@ -1,10 +1,10 @@
 {
-  "name": "autociv",
-  "version": "27.0.0.01",
-  "label": "Autociv mod 0 A.D. enhancer. Author: nani(99%),seeh(1%)",
-  "description": "Works best in 0ad v0.0.27 (in 26 function ConfigDB_CreateAndSaveValue is not available. Features: chat civ picker, building placement hotkeys, building selection hotkeys, local mute, chat link opener, etc. Compatible with vanilla.",
+  "name": "autocivP",
+  "version": "1.0.0",
+  "label": "AutocivP mod 0 A.D. enhancer. Author: nani(99%),seeh(1%)",
+  "description": "Features: game profiles, chat link opener by li<tab>, etc. Compatible with vanilla.",
   "ignoreInCompatibilityChecks": true,
   "dependencies": ["0ad>=0.0.26","0ad<=0.0.27"],
   "url": "https://wildfiregames.com/forum/topic/107371-autociv-add-ons-profiles-jitsi-team-call",
-  "url_source_code": "https://github.com/sl5net/autociv , https://github.com/nanihadesuka/autociv"
+  "url_source_code": "https://github.com/sl5net/autocivP"
 }
