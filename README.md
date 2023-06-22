@@ -120,13 +120,6 @@ This mod is an aggregation of features meant to enhance the 0 A.D. game experien
 ## Mod autociv compatibility(s)
 The mod is compatible with:
 - 0 A.D 0.0.26 and 0 A.D 0.0.27
-- Probable to work with the following mods
-	- boonGUI mod
-	- star mod
-	- ffm_visibility mod
-	- balanced maps mod
-	- spec mod (monitor) mod
-	- custom_rating mod
 - Should work with all mods that don't have extensive code changes
 
 ## Questions & feedback
