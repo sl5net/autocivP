@@ -208,6 +208,11 @@ ERROR: Errors executing script event "Tab"
         guiObject.caption = '/link';
         return;
     }
+    if(caption.toLowerCase() == 'hiall'){
+        const key = "autociv.gamesetup.helloAll";
+        guiObject.caption = Engine.ConfigDB_GetValue("user", key);
+        return;
+    }
 
     // selfMessage('caption = ' + caption)
 
