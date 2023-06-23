@@ -542,6 +542,9 @@ function pPolarSeaTheWolfesMap() {
 }
 
 
+g_NetworkCommands["/hiall"] = (text) => {
+  g_NetworkCommands["/hiAll"](text);
+}
 g_NetworkCommands["/hiAll"] = (text) => {
   g_NetworkCommands["/hiAll"](text);
 }
