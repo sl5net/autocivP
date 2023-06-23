@@ -3,7 +3,7 @@ var g_linkLongTeam = null; // init should be available during the game and not c
 var g_lastCommand = "";
 var g_lastCommandID = 0;
 var g_lastCommandIDmax = 5;
-var g_lastCommandID = Engine.ConfigDB_GetValue("user", `autociv.chat.g_lastCommandID`);
+var g_lastCommandID = Engine.ConfigDB_GetValue("user", `autocivP.chat.g_lastCommandID`);
 
 
 /**
@@ -59,10 +59,10 @@ tryAutoComplete = function (text, list, tries)
 
 autoCompleteText = function (guiObject, list)
 {
-    let caption = guiObject.caption
+    let caption = guiObject.caption.trim();
     if (!caption.length){
         // selfMessage('repeat you last command:') // message disabled becouse its also inside the looby. could disturbing a bit.
-        const lastCommand = Engine.ConfigDB_GetValue("user", `autociv.chat.lastCommand${g_lastCommandID}`);
+        const lastCommand = Engine.ConfigDB_GetValue("user", `autocivP.chat.lastCommand${g_lastCommandID}`);
         if(!lastCommand)
             return
 
@@ -70,7 +70,7 @@ autoCompleteText = function (guiObject, list)
             // selfMessage(`70: '${lastCommand}' = lastCommand`);
             // g_lastCommandID++;
             // if(g_lastCommandID > 9) g_lastCommandID = 0;
-            const lastCommand1 = Engine.ConfigDB_GetValue("user", `autociv.chat.lastCommand${g_lastCommandID}`);
+            const lastCommand1 = Engine.ConfigDB_GetValue("user", `autocivP.chat.lastCommand${g_lastCommandID}`);
             g_lastCommand = lastCommand1;
         }else{
             // selfMessage(`76: g_lastCommand='${g_lastCommand}' != '${lastCommand}' = lastCommand`);
@@ -86,14 +86,14 @@ autoCompleteText = function (guiObject, list)
             g_lastCommandID++;
             if(g_lastCommandID > g_lastCommandIDmax) g_lastCommandID = 0;
             // selfMessage(`86: ${g_lastCommandID}' = g_lastCommandID`);
-            const lastCommand = Engine.ConfigDB_GetValue("user", `autociv.chat.lastCommand${g_lastCommandID}`);
+            const lastCommand = Engine.ConfigDB_GetValue("user", `autocivP.chat.lastCommand${g_lastCommandID}`);
             g_lastCommand = lastCommand
             // caption = g_lastCommand ;
             caption = lastCommand ;
             // selfMessage(`caption == g_lastCommand '${caption}' => double tab ?`);
 
 
-            ConfigDB_CreateAndSaveValueA26A27("user", `autociv.chat.g_lastCommandID`, g_lastCommandID);
+            ConfigDB_CreateAndSaveValueA26A27("user", `autocivP.chat.g_lastCommandID`, g_lastCommandID);
         }
     }
 
@@ -209,16 +209,16 @@ ERROR: Errors executing script event "Tab"
         return;
     }
     if(caption.toLowerCase() == 'hiall'){
-        const key = "autociv.gamesetup.helloAll";
-        guiObject.caption = Engine.ConfigDB_GetValue("user", key);
+        const key = "autocivP.gamesetup.helloAll";
+        const helloAll = Engine.ConfigDB_GetValue("user", key);
+        if(!helloAll)
+            selfMessage('helloAll is empty.');
+        selfMessage('set /helloAll yourWelcomeText or use /hiAll yourWelcomeText" or send by /helloAll or helloAll tab, to edit it first.');
+        guiObject.caption = helloAll
         return;
     }
-
     // selfMessage('caption = ' + caption)
-
-
-    // Engine.ConfigDB_CreateAndSaveValue("user", "autociv.chat.lastCommand", caption); // is not a function error in Version a26 aut 23-0605_1920-25
-
+    // Engine.ConfigDB_CreateAndSaveValue("user", "autocivP.chat.lastCommand", caption); // is not a function error in Version a26 aut 23-0605_1920-25
     const sameTry = autoCompleteText.state.newCaption == caption
     if (sameTry)
     {
@@ -230,7 +230,7 @@ ERROR: Errors executing script event "Tab"
 
         guiObject.caption = newCaptionText
 
-        // ConfigDB_CreateAndSaveValueA26A27("user", "autociv.chat.lastCommand", newCaptionText);
+        // ConfigDB_CreateAndSaveValueA26A27("user", "autocivP.chat.lastCommand", newCaptionText);
         try {
             saveLastCommand(newCaptionText);
         } catch (error) {
@@ -251,7 +251,7 @@ ERROR: Errors executing script event "Tab"
         const newCaptionText = completedText + caption.substring(buffer_position)
 
         autoCompleteText.state.newCaption = newCaptionText;
-        // ConfigDB_CreateAndSaveValueA26A27("user", "autociv.chat.lastCommand", newCaptionText);
+        // ConfigDB_CreateAndSaveValueA26A27("user", "autocivP.chat.lastCommand", newCaptionText);
 
         try {
             // saveLastCommand(newCaptionText);

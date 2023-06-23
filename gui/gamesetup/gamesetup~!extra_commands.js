@@ -288,7 +288,7 @@ g_NetworkCommands["/help"] = (match, sendIt2AllForRead = false) => { // if textA
 
   if(isSomethingFound)
     saveLastCommand(`/help ${match}`);
-  // ConfigDB_CreateAndSaveValueA26A27("user", "autociv.chat.lastCommand", `/help ${match}`);
+  // ConfigDB_CreateAndSaveValueA26A27("user", "autocivP.chat.lastCommand", `/help ${match}`);
 };
 
 g_NetworkCommands["/playToggle"] = () => {
@@ -579,7 +579,7 @@ g_NetworkCommands["/hiRated"] = () => {
 
 g_NetworkCommands["/hiAll"] = (text) => {  // works not in lobby, works in a game config
 // function helloAll(text) {
-  const key = "autociv.gamesetup.helloAll";
+  const key = "autocivP.gamesetup.helloAll";
   if(text){
     // Engine.ConfigDB_CreateAndSaveValue("user", key, text); //  is not a function
     ConfigDB_CreateAndSaveValueA26A27("user", key, text);
@@ -605,6 +605,32 @@ g_NetworkCommands["/hiAll"] = (text) => {  // works not in lobby, works in a gam
     // );
   }
 }
+
+g_NetworkCommands["/ratedDefault"] = (text) => {  // works not in lobby, works in a game config
+    const key = "autocivP.gamesetup.ratedDefault";
+    const val = (text) ? 'true' : 'false';
+    ConfigDB_CreateAndSaveValueA26A27("user", key, val);
+    selfMessage(
+      `ratedDefault was set to ${val}`
+    );
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 g_NetworkCommands["/gl"] = () => sendMessageGlHfWpU2Gg('gl');
 g_NetworkCommands["/hf"] = () => sendMessageGlHfWpU2Gg('hf');
 g_NetworkCommands["/wp"] = () => sendMessageGlHfWpU2Gg('wp');
@@ -704,8 +730,17 @@ function setMapTypeFilterNameBiome(name, biome, type = "random", filter = "defau
 function setDefaultsforPopmaxAlliedviewRatingTreasuresNomadExploration(sendMessageToAll = true){ // forPopmaxAlliedviewRatingTreasuresNomadExploration
   g_GameSettings.mapExploration.allied = true; // woks :)  AlliedView
   if(sendMessageToAll)sendMessage('AlliedView = true');
-  g_GameSettings.rating.enabled = false; // no error and test in the lobby. it works
-  if(sendMessageToAll)sendMessage('rating = false');
+
+  const key = "autocivP.gamesetup.ratedDefault";
+  const ratedDefault = Engine.ConfigDB_GetValue(
+    "user",
+    key
+  );
+
+
+  g_GameSettings.rating.enabled = (ratedDefault === 'true') ? true : false ; // no error and test in the lobby. it works
+  if(sendMessageToAll)sendMessage(`rating = ${ratedDefault}`);
+
   // gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/Treasures.js
   g_GameSettings.disableTreasures.enabled = true;
   if(sendMessageToAll)sendMessage('disableTreasures = true');
@@ -716,12 +751,12 @@ function setDefaultsforPopmaxAlliedviewRatingTreasuresNomadExploration(sendMessa
 
   let popMaxDefault = Engine.ConfigDB_GetValue(
     "user",
-    "autociv.TGmainland.PopMaxDefault"
+    "autocivP.TGmainland.PopMaxDefault"
   );
   if (!popMaxDefault) {
     popMaxDefault = 200;
     selfMessage(
-      "you could set PopMax in your user.cfg. Example: autociv.TGmainland.PopMaxDefault = 200"
+      "you could set PopMax in your user.cfg. Example: autocivP.TGmainland.PopMaxDefault = 200"
     );
   }
   g_GameSettings.population.cap = popMaxDefault; // works its a number option vield
@@ -754,7 +789,7 @@ function saveLastCommand(lastCommand){
     if (lastCommandID_i > g_lastCommandIDmax) lastCommandID_i -= g_lastCommandIDmax + 1; // maybe 1 2 3 4
     // selfMessage(lastCommandID);
 
-    const lastCommand_i = Engine.ConfigDB_GetValue("user", `autociv.chat.lastCommand${lastCommandID_i}`);
+    const lastCommand_i = Engine.ConfigDB_GetValue("user", `autocivP.chat.lastCommand${lastCommandID_i}`);
     // selfMessage(lastCommand_i)
     if(!lastCommand_i.length)
       {
@@ -768,9 +803,9 @@ function saveLastCommand(lastCommand){
         return
     }
   }
-  ConfigDB_CreateAndSaveValueA26A27("user", `autociv.chat.lastCommand${lastCommandID_i}`, lastCommand);
+  ConfigDB_CreateAndSaveValueA26A27("user", `autocivP.chat.lastCommand${lastCommandID_i}`, lastCommand);
   g_lastCommandID = lastCommandID_i;
-  ConfigDB_CreateAndSaveValueA26A27("user", `autociv.chat.g_lastCommandID`, g_lastCommandID);
+  ConfigDB_CreateAndSaveValueA26A27("user", `autocivP.chat.g_lastCommandID`, g_lastCommandID);
   g_lastCommand = lastCommand;
   return;
 }
