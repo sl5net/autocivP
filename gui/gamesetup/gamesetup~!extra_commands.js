@@ -392,11 +392,6 @@ g_NetworkCommands["/pPolarSeaTheWolfesMap"] = (text) => {
 g_NetworkCommands["/pWolfesInPolarSea"] = (text) => {
   pPolarSeaTheWolfesMap();
 };
-g_NetworkCommands["/timeNow"] = () => {
-  // warn("it's " + today.getHours() + ':' + today.getMinutes() + ' here.');
-  const today = new Date()
-  sendMessage("it's " + today.getHours() + ':' + today.getMinutes() + ' here.');
-};
   /*
 Jitsi for Quick Team Calls
 Jitsi is a great way to have quick team calls without any setup process. It can also be used as an audio chat for your 0ad-team.

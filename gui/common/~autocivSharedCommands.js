@@ -16,6 +16,14 @@ function autociv_GetNameRatingText(text)
 };
 
 var g_autociv_SharedCommands = { // use /command to trigger the following commands:
+	"/timeNow" : {
+		"description": "Time here in hours:Minute",
+		"handler": () =>
+		{
+			const today = new Date()
+			sendMessage("it's " + today.getHours() + ':' + today.getMinutes() + ' here.');
+		}
+	},
 	"modsImCurrentlyUsing": {
 		"description": "Mods I'm currently using",
 		"handler": () =>
