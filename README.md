@@ -125,7 +125,7 @@ The mod is compatible with:
 ## Questions & feedback
 You don't understand how it works? Feeling confused? Just wanna comment? Ask and post.
 
-## 💪 Contributing
+## Contributing
 
 1. Fork it.
 2. Create a new feature branch: `git checkout -b my-new-feature`
@@ -133,11 +133,10 @@ You don't understand how it works? Feeling confused? Just wanna comment? Ask and
 4. Push it to the branch: `git push fork my-new-feature`
 5. Submit a pull request.
 
-tails>
 
 ---
 
-## 🏆 Contributors
+## Contributors
 
 The motivation for this mod was implement ideas and simplifications that are helpful for this game and learn bit JavaScript.
 
