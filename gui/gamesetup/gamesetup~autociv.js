@@ -64,23 +64,3 @@ autociv_patchApplyN("init", function (target, that, args)
 	Engine.GetGUIObjectByName("chatInput").blur();
 	Engine.GetGUIObjectByName("chatInput").focus();
 })
-function translateGlHfWpU2Gg(gg) {
-	// btw guiObject is not definded her so you cant use this: sendMessageGlHfWpU2Gg(..., guiObject)
-	gg2 = ''; // no extra info here probably better (${gg})
-	let text =  '';
-	if(gg == 'gl')
-		text =  '`Good luck`';
-	if(gg == 'hf')
-		text =  '`Have fun`';
-	if(gg == 'gg')
-		text =  `Good game${gg2}`;
-	if(gg == 'wp')
-		text =  `Well played${gg2}`;
-	if(gg == 'u2')
-		text =  `You too!${gg2}`;
-	if(gg == 're')
-		text =  `Again?${gg2}`;
-// if(text)
-	// 	sendMessage(`${text}`);
-	return text
-}
