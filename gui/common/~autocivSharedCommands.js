@@ -4,9 +4,9 @@ function translateGlHfWpU2Gg(gg) {
 	let gg2 = ''; // no extra info here probably better (${gg})
 	let text =  '';
 	if(gg == 'gl')
-		text =  '`Good luck`';
+		text =  'Good luck';
 	if(gg == 'hf')
-		text =  '`Have fun`';
+		text =  'Have fun';
 	if(gg == 'gg')
 		text =  `Good game${gg2}`;
 	if(gg == 'wp')
