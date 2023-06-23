@@ -731,7 +731,7 @@ function setDefaultsforPopmaxAlliedviewRatingTreasuresNomadExploration(sendMessa
   g_GameSettings.mapExploration.allied = true; // woks :)  AlliedView
   if(sendMessageToAll)sendMessage('AlliedView = true');
 
-  const key = "autocivP.gamesetup.ratedDefault";
+  const key = "autocivP.gamesetup.ratedDefault"; // in user.cfg
   const ratedDefault = Engine.ConfigDB_GetValue(
     "user",
     key
