@@ -235,13 +235,17 @@ ERROR: Errors executing script event "Tab"
         guiObject.caption = '/link';
         return;
     }
+
+    // selfMessage('caption.toLowerCase() = ' + caption.toLowerCase());
+
+
     if(caption.toLowerCase() == 'hiall'){
         const key = "autocivP.gamesetup.helloAll";
         const helloAll = Engine.ConfigDB_GetValue("user", key);
         if(!helloAll)
             selfMessage('helloAll is empty.');
-        selfMessage('set /hiAll yourWelcomeText or use /hiAll yourWelcomeText" or send by /hiAll or helloAll tab, to edit it first.');
         guiObject.caption = helloAll
+        selfMessage('set /hiAll yourWelcomeText or use /hiAll yourWelcomeText or send by /hiAll or helloAll tab, to edit it first.');
         return;
     }
     // selfMessage('caption = ' + caption)
