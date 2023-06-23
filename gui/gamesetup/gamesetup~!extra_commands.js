@@ -567,6 +567,23 @@ g_NetworkCommands["/ratedDefault"] = (text) => {  // works not in lobby, works i
     );
 }
 
+g_NetworkCommands["/popMaxDefault"] = (text) => {
+    const popMaxDefault = parseInt(text);
+    if(popMaxDefault < 20 || popMaxDefault > 300){
+      selfMessage('number to small or to large');
+      return
+    }
+    const key = "autocivP.TGmainland.PopMaxDefault";
+    const val = popMaxDefault;
+    ConfigDB_CreateAndSaveValueA26A27("user", key, val);
+    selfMessage(
+      `popMaxDefault was set to ${popMaxDefault}`
+    );
+    selfMessage(
+      `when you use will run a profile probably popMaxDefault ${popMaxDefault} will be used.`
+    );
+}
+
 
 
 
@@ -707,9 +724,6 @@ function setDefaultsforPopmaxAlliedviewRatingTreasuresNomadExploration(sendMessa
   );
   if (!popMaxDefault) {
     popMaxDefault = 200;
-    selfMessage(
-      "you could set PopMax in your user.cfg. Example: autocivP.TGmainland.PopMaxDefault = 200"
-    );
   }
   g_GameSettings.population.cap = popMaxDefault; // works its a number option vield
   if(sendMessageToAll)sendMessage('popMaxDefault = ' + popMaxDefault);
