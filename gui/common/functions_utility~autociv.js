@@ -185,12 +185,14 @@ ERROR: Errors executing script event "Tab"
 
         // try {
             let text = translateGlHfWpU2Gg(caption.toString());
-            if(text.length)
+            if(text.length){
                 guiObject.caption = text;
+                return;
+            }
         // } catch (error) {
             // not needet to send. its also good to have changed the captio only 23-0618_1532-39
         // }
-        return; // 23-0618_1452-21 return is needet. otherwise guiObject.caption = ... changes nothing
+         // 23-0618_1452-21 return is needet. otherwise guiObject.caption = ... changes nothing
 
         // return; // <== ver dangeoous then eventually all other commands dont work
     }
