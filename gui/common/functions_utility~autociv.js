@@ -1,9 +1,12 @@
 var g_linkLongTeam = null; // init should be available during the game and not changed
 
 var g_lastCommand = "";
-var g_lastCommandID = 0;
+// var g_lastCommandID = 0;
 var g_lastCommandIDmax = 5;
-var g_lastCommandID = Engine.ConfigDB_GetValue("user", `autocivP.chat.g_lastCommandID`);
+var g_lastCommandID = parseInt (Engine.ConfigDB_GetValue("user", `autocivP.chat.g_lastCommandID`));
+if(isNaN(g_lastCommandID))g_lastCommandID = 0;
+// warn('g_lastCommandID = ' + g_lastCommandID); // selfMessage function dont work here
+
 
 
 /**
@@ -61,17 +64,20 @@ autoCompleteText = function (guiObject, list)
 {
     let caption = guiObject.caption.trim();
     if (!caption.length){
-        // selfMessage('repeat you last command:') // message disabled becouse its also inside the looby. could disturbing a bit.
+        // selfMessage(`repeat you last(id = ${g_lastCommandID}) command:`) // message disabled becouse its also inside the looby. could disturbing a bit.
         const lastCommand = Engine.ConfigDB_GetValue("user", `autocivP.chat.lastCommand${g_lastCommandID}`);
         if(!lastCommand)
             return
 
         if(g_lastCommand == lastCommand){
             // selfMessage(`70: '${lastCommand}' = lastCommand`);
-            // g_lastCommandID++;
-            // if(g_lastCommandID > 9) g_lastCommandID = 0;
-            const lastCommand1 = Engine.ConfigDB_GetValue("user", `autocivP.chat.lastCommand${g_lastCommandID}`);
-            g_lastCommand = lastCommand1;
+            let lastCommandID = g_lastCommandID + 1;
+            if(lastCommandID > g_lastCommandIDmax) lastCommandID = 0;
+            const lastCommand1 = Engine.ConfigDB_GetValue("user", `autocivP.chat.lastCommand${lastCommandID}`);
+            if(lastCommand1){
+                g_lastCommand = lastCommand1;
+                g_lastCommandID = lastCommandID;
+            }
         }else{
             // selfMessage(`76: g_lastCommand='${g_lastCommand}' != '${lastCommand}' = lastCommand`);
             g_lastCommand = lastCommand;
@@ -80,19 +86,27 @@ autoCompleteText = function (guiObject, list)
         }
         // let test = g_ChatHistory[1]; // g_ChatHistory is not defined https://trac.wildfiregames.com/ticket/5387
 
-        caption = g_lastCommand ;
-    }else{
+        if(g_lastCommand.length>0)
+            caption = g_lastCommand ;
+    }else{ // caption is not empty
         if(caption == g_lastCommand){
-            g_lastCommandID++;
-            if(g_lastCommandID > g_lastCommandIDmax) g_lastCommandID = 0;
+            let lastCommandID = g_lastCommandID + 1;
+            if(lastCommandID > g_lastCommandIDmax) lastCommandID = 0;
+
             // selfMessage(`86: ${g_lastCommandID}' = g_lastCommandID`);
-            const lastCommand = Engine.ConfigDB_GetValue("user", `autocivP.chat.lastCommand${g_lastCommandID}`);
-            g_lastCommand = lastCommand
-            // caption = g_lastCommand ;
-            caption = lastCommand ;
+            const lastCommand = Engine.ConfigDB_GetValue("user", `autocivP.chat.lastCommand${lastCommandID}`);
+
+            if(lastCommand){
+                g_lastCommand = lastCommand;
+                g_lastCommandID = lastCommandID;
+                caption = lastCommand ;
+            }else{
+                g_lastCommandID = 0; // next try us the first stored command 23-0623_1406-29
+                const lastCommand = Engine.ConfigDB_GetValue("user", `autocivP.chat.lastCommand${g_lastCommandID}`);
+                if(lastCommand)
+                    caption = lastCommand ;
+            }
             // selfMessage(`caption == g_lastCommand '${caption}' => double tab ?`);
-
-
             ConfigDB_CreateAndSaveValueA26A27("user", `autocivP.chat.g_lastCommandID`, g_lastCommandID);
         }
     }
@@ -213,7 +227,7 @@ ERROR: Errors executing script event "Tab"
         const helloAll = Engine.ConfigDB_GetValue("user", key);
         if(!helloAll)
             selfMessage('helloAll is empty.');
-        selfMessage('set /helloAll yourWelcomeText or use /hiAll yourWelcomeText" or send by /helloAll or helloAll tab, to edit it first.');
+        selfMessage('set /hiAll yourWelcomeText or use /hiAll yourWelcomeText" or send by /hiAll or helloAll tab, to edit it first.');
         guiObject.caption = helloAll
         return;
     }
@@ -254,7 +268,7 @@ ERROR: Errors executing script event "Tab"
         // ConfigDB_CreateAndSaveValueA26A27("user", "autocivP.chat.lastCommand", newCaptionText);
 
         try {
-            // saveLastCommand(newCaptionText);
+            saveLastCommand(newCaptionText); // this is needet. if you want use it int game setupt process 23-0623_1318-59
         } catch (error) {
 
             // selfMessage('TODO maybe here: gui/common/functions_utility~autociv.js');

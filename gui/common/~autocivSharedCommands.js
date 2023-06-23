@@ -15,12 +15,59 @@ function autociv_GetNameRatingText(text)
 	}
 };
 
-var g_autociv_SharedCommands = { // use /command to trigger the following commands:
-	"/timeNow" : {
-		"description": "Time here in hours:Minute",
+// use /command to trigger the following commands:
+var g_autociv_SharedCommands = {
+	"hiAll" : {
+		"description": "Say hello (configurable). set /hiAll yourWelcomeText or use /hiAll yourWelcomeText",
+		"handler": (text) =>
+		{
+			  const key = "autocivP.gamesetup.helloAll";
+			  if(text){
+				ConfigDB_CreateAndSaveValueA26A27("user", key, text);
+				selfMessage(
+				  `helloAll was set to ${text}`
+				);
+			  }else{
+				let helloAllText = Engine.ConfigDB_GetValue("user", key);
+				if(!helloAllText){
+				  helloAllText = 'hi hf.';
+				  ConfigDB_CreateAndSaveValueA26A27("user", key, helloAllText);
+				}
+				sendMessage(`${helloAllText}`);
+			  }
+			}
+	},
+	"whatsAutoPCivMod" : {
+		"description": "AutoCivP mod is ",
+		"handler": () =>
+		{	sendMessage('AutoCivP mod is AutoCiv but it also supports profiles during game configuration, jitsi, command-history[tab][tab] and a lot more.')
+		}
+	},
+	"whatsAutoCivMod" : {
+		"description": "AutoCiv mod is ",
+		"handler": () =>
+		{	sendMessage('AutoCiv mod is an aggregation of features meant to enhance the 0 A.D. HotKeys and more. Many players use it.')
+		}
+	},
+	"whatsJitsi" : {
+		"description": "Jitsi is ",
+		"handler": () =>
+		{	sendMessage('Jitsi is a great way to have quick team calls without any setup process. It can also be used as an audio chat for your 0ad-team.')
+		}
+	},
+	"whatstimeNow" : {
+		"description": "whats Time now hoursMinute",
 		"handler": () =>
 		{
-			const today = new Date()
+			const today = new Date();
+			sendMessage("it's " + today.getHours() + ':' + today.getMinutes() + ' here.');
+		}
+	},
+	"timenow" : {
+		"description": "Time here in hoursMinute",
+		"handler": () =>
+		{
+			const today = new Date();
 			sendMessage("it's " + today.getHours() + ':' + today.getMinutes() + ' here.');
 		}
 	},
@@ -36,7 +83,7 @@ var g_autociv_SharedCommands = { // use /command to trigger the following comman
 		}
 	},
 	"jitsi": {
-		"description": "hiTeam hf(have fun) and gl(good luck).",
+		"description": "use of jitsi",
 		"handler": () =>
 		{
 			const text = `to use jiti in you team: 1. open Ally-Chat 2. write j<tab> then enter. 3. write li[tab] or /link`;

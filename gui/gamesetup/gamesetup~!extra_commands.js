@@ -204,7 +204,7 @@ if (!("g_NetworkCommandsDescriptions" in global))
 
 g_NetworkCommandsDescriptions = Object.assign(g_NetworkCommandsDescriptions, {
   "/help": "Shows all gamesetup chat commands",
-  "/helloAll": "Say hello to the team (configurable). set /helloAll yourWelcomeText or use /hiAll yourWelcomeText",
+  "/hiAll": "Say hello (configurable). set /hiAll yourWelcomeText or use /hiAll yourWelcomeText",
   "/alliedviewPlease": "Say enable Alliedview please",
   "/playToggle":
     "Toggle want to play action. If enabled observers that type play will be set added to the game",
@@ -246,12 +246,6 @@ g_NetworkCommandsDescriptions = Object.assign(g_NetworkCommandsDescriptions, {
     "type pU<tab> for extinct_volcano and other defaults",
 });
 
-g_NetworkCommands["/whatsAutoCivMod"] = () => {
-  sendMessage('AutoCiv mod is an aggregation of features meant to enhance the 0 A.D. HotKeys and more. Many players use it.');
-}
-g_NetworkCommands["/whatsJitsi"] = () => {
-  sendMessage('Jitsi is a great way to have quick team calls without any setup process. It can also be used as an audio chat for your 0ad-team.');
-}
 
 g_NetworkCommands["/help2All"] = (match) => { // if textAllSometing is something then its will be sendet to all team. not only for yourself
   g_NetworkCommands["/help"](match, true);
@@ -422,7 +416,7 @@ g_NetworkCommands["/team"] = (text) => game.set.teams(text);
 // g_NetworkCommands["/3v3"] = () => game.set.teams("team 3v3");
 // g_NetworkCommands["/4v4"] = () => game.set.teams("team 4v4");
 
-g_NetworkCommands["/helloAll"] = (text) => game.set.helloAll(text);
+g_NetworkCommands["/hiAll"] = (text) => game.set.helloAll(text);
 g_NetworkCommands["/alliedviewPlease"] = () => sendMessage("enable Alliedview please");
 
 
@@ -548,7 +542,7 @@ function pPolarSeaTheWolfesMap() {
 }
 
 
-g_NetworkCommands["/helloAll"] = (text) => {
+g_NetworkCommands["/hiAll"] = (text) => {
   g_NetworkCommands["/hiAll"](text);
 }
 g_NetworkCommands["/helloRated"] = () => {
@@ -559,35 +553,6 @@ g_NetworkCommands["/helloRated"] = () => {
 g_NetworkCommands["/hiRated"] = () => {
   sendMessage('Hey :)');
   g_NetworkCommands["/modsImCurrentlyUsing"]();
-}
-
-g_NetworkCommands["/hiAll"] = (text) => {  // works not in lobby, works in a game config
-// function helloAll(text) {
-  const key = "autocivP.gamesetup.helloAll";
-  if(text){
-    // Engine.ConfigDB_CreateAndSaveValue("user", key, text); //  is not a function
-    ConfigDB_CreateAndSaveValueA26A27("user", key, text);
-    // selfMessage // sends only messages to yourself. nobody else could reat it
-    selfMessage(
-      `helloAll was set to ${text}`
-    );
-  }else{
-    let helloAllText = Engine.ConfigDB_GetValue("user", key);
-    if(!helloAllText){
-      helloAllText = 'hi hf.';
-
-      ConfigDB_CreateAndSaveValueA26A27("user", key, helloAllText);
-
-
-      // Engine.ConfigDB_CreateAndSaveValue("user", key, helloAllText);
-    }
-
-    // guiObject.caption = `${helloAllText}`;
-    sendMessage(`${helloAllText}`);
-    // selfMessage(
-    //   `${helloAllText}`
-    // );
-  }
 }
 
 g_NetworkCommands["/ratedDefault"] = (text) => {  // works not in lobby, works in a game config
@@ -758,28 +723,19 @@ function setDefaultsforPopmaxAlliedviewRatingTreasuresNomadExploration(sendMessa
   return populationMax;
 }
 function saveLastCommand(lastCommand){
+  // selfMessage(`lastCommand = ${lastCommand}`);
   if(!lastCommand)
     return;
-
   if(lastCommand == g_lastCommand)
     return;
-
-  let lastCommandID = g_lastCommandID;
-
+  // selfMessage(`lastCommand = ${lastCommand}`);
   let lastCommandID_i = 0;
   for (let i = 0; i <= g_lastCommandIDmax; i++) {
     lastCommandID_i = i + g_lastCommandID; // maybe 5 6 7 8 9
-    // selfMessage(lastCommandID);
     if (lastCommandID_i > g_lastCommandIDmax) lastCommandID_i -= g_lastCommandIDmax + 1; // maybe 1 2 3 4
-    // selfMessage(lastCommandID);
-
     const lastCommand_i = Engine.ConfigDB_GetValue("user", `autocivP.chat.lastCommand${lastCommandID_i}`);
-    // selfMessage(lastCommand_i)
     if(!lastCommand_i.length)
-      {
-        // selfMessage('is empty');
-        break;
-      }
+        break; // selfMessage('is empty');
     if(lastCommand == lastCommand_i) // dont save it twice
     {
         // selfMessage('dont save it twice');
@@ -787,9 +743,14 @@ function saveLastCommand(lastCommand){
         return
     }
   }
-  ConfigDB_CreateAndSaveValueA26A27("user", `autocivP.chat.lastCommand${lastCommandID_i}`, lastCommand);
+  // selfMessage(`757 lastCommand = ${lastCommand}`);
+
   g_lastCommandID = lastCommandID_i;
-  ConfigDB_CreateAndSaveValueA26A27("user", `autocivP.chat.g_lastCommandID`, g_lastCommandID);
   g_lastCommand = lastCommand;
+
+  ConfigDB_CreateAndSaveValueA26A27("user", `autocivP.chat.lastCommand${g_lastCommandID}`, g_lastCommand);
+  ConfigDB_CreateAndSaveValueA26A27("user", `autocivP.chat.g_lastCommandID`, g_lastCommandID);
+  // selfMessage(`753: g_lastCommandID = ${g_lastCommandID} saved`);
+
   return;
 }
