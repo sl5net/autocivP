@@ -140,12 +140,13 @@ You don't understand how it works? Feeling confused? Just wanna comment? Ask and
 
 The motivation for this mod was implement ideas and simplifications that are helpful for this game and learn bit JavaScript.
 
-- Helping with problems: @nani, @andy5995, @langbar, @atric
+- Helping with problems: @nani, @andy5995, @LangLangBart, @atric
 
 - Thanks to modders:
   - @nani - [Autociv](https://github.com/nanihadesuka/autociv)
   - @Mentula - https://gitlab.com/mentula0ad
   - @Atric - https://gitlab.com/4trik
+  - @LangLangBart - https://github.com/LangLangBart
 
 - Thanks to all other modders
 
