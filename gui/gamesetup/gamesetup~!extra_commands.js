@@ -244,8 +244,6 @@ g_NetworkCommandsDescriptions = Object.assign(g_NetworkCommandsDescriptions, {
     "type pU<tab> for  map unknown, popMax, 300res, and more",
   "/pExtinct_volcano_defaults":
     "type pU<tab> for extinct_volcano and other defaults",
-  "/modsImCurrentlyUsing":
-    "Mods I'm currently using",
 });
 
 g_NetworkCommands["/whatsAutoCivMod"] = () => {
@@ -399,15 +397,6 @@ g_NetworkCommands["/timeNow"] = () => {
   const today = new Date()
   sendMessage("it's " + today.getHours() + ':' + today.getMinutes() + ' here.');
 };
-g_NetworkCommands["/modsImCurrentlyUsing"] = () => {
-  const modEnabledmods = Engine.ConfigDB_GetValue(
-    "user",
-    "mod.enabledmods"
-  );
-  sendMessage(`Mods I'm currently using: ${modEnabledmods.slice(11,)}` );
-};
-// /ModsImCurrentlyUsing
-
   /*
 Jitsi for Quick Team Calls
 Jitsi is a great way to have quick team calls without any setup process. It can also be used as an audio chat for your 0ad-team.

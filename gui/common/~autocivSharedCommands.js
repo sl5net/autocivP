@@ -15,13 +15,24 @@ function autociv_GetNameRatingText(text)
 	}
 };
 
-var g_autociv_SharedCommands = {
+var g_autociv_SharedCommands = { // use /command to trigger the following commands:
+	"modsImCurrentlyUsing": {
+		"description": "Mods I'm currently using",
+		"handler": () =>
+		{
+			const modEnabledmods = Engine.ConfigDB_GetValue(
+				"user",
+				"mod.enabledmods"
+			);
+			sendMessage(`Mods I'm currently using: ${modEnabledmods.slice(11,)}` );
+		}
+	},
 	"jitsi": {
 		"description": "hiTeam hf(have fun) and gl(good luck).",
 		"handler": () =>
 		{
-			const text = `to use jiti in you team: 1. open Ally-Chat 2. write j<tab> then enter. 3. write /link`;
-			const text2 = `BTW if you write j<tab> again your last jitsi link will send again(not a new link). Every player has is own link. Means: one link per player.`;
+			const text = `to use jiti in you team: 1. open Ally-Chat 2. write j<tab> then enter. 3. write li[tab] or /link`;
+			const text2 = `BTW if you write j[tab] again your last jitsi link will send again(not a new link). Every player has is own link. Means: one link per player.`;
 			Engine.SendNetworkChat(text);
 			Engine.SendNetworkChat(text2);
 		}
