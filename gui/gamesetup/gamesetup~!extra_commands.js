@@ -583,11 +583,11 @@ g_NetworkCommands["/ratedDefault"] = (text) => {  // works not in lobby, works i
 
 
 
-g_NetworkCommands["/gl"] = () => sendMessageGlHfWpU2Gg('gl');
-g_NetworkCommands["/hf"] = () => sendMessageGlHfWpU2Gg('hf');
-g_NetworkCommands["/wp"] = () => sendMessageGlHfWpU2Gg('wp');
-g_NetworkCommands["/u2"] = () => sendMessageGlHfWpU2Gg('u2');
-g_NetworkCommands["/gg"] = () => sendMessageGlHfWpU2Gg('gg');
+g_NetworkCommands["/gl"] = () => translateGlHfWpU2Gg('gl');
+g_NetworkCommands["/hf"] = () => translateGlHfWpU2Gg('hf');
+g_NetworkCommands["/wp"] = () => translateGlHfWpU2Gg('wp');
+g_NetworkCommands["/u2"] = () => translateGlHfWpU2Gg('u2');
+g_NetworkCommands["/gg"] = () => translateGlHfWpU2Gg('gg');
 function setTeams(text) {
   if (!g_IsController) return;
 

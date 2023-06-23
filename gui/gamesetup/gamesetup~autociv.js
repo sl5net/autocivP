@@ -64,26 +64,23 @@ autociv_patchApplyN("init", function (target, that, args)
 	Engine.GetGUIObjectByName("chatInput").blur();
 	Engine.GetGUIObjectByName("chatInput").focus();
 })
-function sendMessageGlHfWpU2Gg(gg) {
+function translateGlHfWpU2Gg(gg) {
 	// btw guiObject is not definded her so you cant use this: sendMessageGlHfWpU2Gg(..., guiObject)
-	if(gg == 'gl' || gg == 'hf'){
-		const text =  `Good luck(${gg})`;
-		sendMessage(`${text}`);
-		// return;
-	}
-	if(gg == 'gg'){
-		const text =  `Good game(${gg})`;
-		sendMessage(`${text}`);
-		// return;
-	}
-	if(gg == 'wp'){
-		const text =  `Well played(${gg})`;
-		sendMessage(`${text}`);
-		// return;
-	}
-	if(gg == 'u2'){
-		const text =  `You too!(${gg})`;
-		sendMessage(`${text}`);
-		// return;
-	}
-  }
+	gg2 = ''; // no extra info here probably better (${gg})
+	let text =  '';
+	if(gg == 'gl')
+		text =  '`Good luck`';
+	if(gg == 'hf')
+		text =  '`Have fun`';
+	if(gg == 'gg')
+		text =  `Good game${gg2}`;
+	if(gg == 'wp')
+		text =  `Well played${gg2}`;
+	if(gg == 'u2')
+		text =  `You too!${gg2}`;
+	if(gg == 're')
+		text =  `Again?${gg2}`;
+// if(text)
+	// 	sendMessage(`${text}`);
+	return text
+}

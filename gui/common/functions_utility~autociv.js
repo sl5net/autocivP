@@ -160,14 +160,21 @@ ERROR: Errors executing script event "Tab"
         */
         // selfMessage(`161: caption = ${caption}`);
         if(caption == 'gl' || caption == 'hf'){
-            guiObject.caption = 'Have fun!(hf).'; //  and invite your friends
+            // guiObject.caption = 'Have fun!(hf).'; //  and invite your friends
+            guiObject.caption = 'Have fun'; //  and invite your friends
             captionTime1 = caption.toString();
         }else if(caption == 'gg'){
             // selfMessage(`166: caption = ${caption}`);
-            guiObject.caption = 'Well played(wp)';
+            // guiObject.caption = 'Well played(wp)';
+            guiObject.caption = 'Good game';
             captionTime1 = caption;
         }else if(caption == 'wp'){
-            guiObject.caption = 'Well played(wp)'; //  Again?(re)
+            // guiObject.caption = 'Well played(wp)'; //  Again?(re)
+            guiObject.caption = 'Well played';
+            captionTime1 = caption;
+        }else if(caption == 're'){
+            // guiObject.caption = 'Well played(wp)'; //  Again?(re)
+            guiObject.caption = 'Again?'; //  Again?(re)
             captionTime1 = caption;
         }else if(caption == 'u2'){
             guiObject.caption = 'You too';
@@ -176,8 +183,8 @@ ERROR: Errors executing script event "Tab"
         if(captionTime1){
             // got error as obser but worked stoff before worked very nice. so let use a try catch or check if its observer:  (se, 23-0618_1531-46)
             try {
-                sendMessageGlHfWpU2Gg(captionTime1);
-                guiObject.caption = '';
+                let text = translateGlHfWpU2Gg(captionTime1);
+                guiObject.caption = text;
             } catch (error) {
                 // not needet to send. its also good to have changed the captio only 23-0618_1532-39
             }
