@@ -158,11 +158,12 @@ ChatInputPanel.prototype.autocomplete@gui/lobby/LobbyPage/Chat/ChatInputPanel~au
 ERROR: Errors executing script event "Tab"
 
         */
-
+        // selfMessage(`161: caption = ${caption}`);
         if(caption == 'gl' || caption == 'hf'){
             guiObject.caption = 'Have fun!(hf).'; //  and invite your friends
             captionTime1 = caption.toString();
         }else if(caption == 'gg'){
+            // selfMessage(`166: caption = ${caption}`);
             guiObject.caption = 'Well played(wp)';
             captionTime1 = caption;
         }else if(caption == 'wp'){
@@ -171,7 +172,8 @@ ERROR: Errors executing script event "Tab"
         }else if(caption == 'u2'){
             guiObject.caption = '';
             captionTime1 = caption;
-        }else if(captionTime1){
+        }
+        if(captionTime1){
             // got error as obser but worked stoff before worked very nice. so let use a try catch or check if its observer:  (se, 23-0618_1531-46)
             try {
                 sendMessageGlHfWpU2Gg(captionTime1);
