@@ -124,3 +124,29 @@ The mod is compatible with:
 
 ## Questions & feedback
 You don't understand how it works? Feeling confused? Just wanna comment? Ask and post.
+
+## 💪 Contributing
+
+1. Fork it.
+2. Create a new feature branch: `git checkout -b my-new-feature`
+3. Commit your changes: `git add .` and `git commit -m 'Add some feature'`
+4. Push it to the branch: `git push fork my-new-feature`
+5. Submit a pull request.
+
+tails>
+
+---
+
+## 🏆 Contributors
+
+The motivation for this mod was implement ideas and simplifications that are helpful for this game and learn bit JavaScript.
+
+- Helping with problems: @nani, @andy5995, @langbar, @atric
+
+- Thanks to modders:
+  - @nani - [Autociv](https://github.com/nanihadesuka/autociv)
+  - @Mentula - https://gitlab.com/mentula0ad
+  - @Atric - https://gitlab.com/4trik
+
+- Thanks to all other modders
+
