@@ -14,7 +14,7 @@ Thanks to all the 0 A.D. players who found it useful.
 
 - setup all defaults by type into the chat:
   - feature value
-- make sure that all theam members use the same jitsi-chat
+- make sure that all team members use the same jitsi-chat
 - change the polar_sea time slices to other minues (e.g. from 15 to 5 Minutes)
 
 ## Questions & feedback
