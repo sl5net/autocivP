@@ -314,7 +314,11 @@ var fuzzysort = (function ()
 
                         if (matchesIndex === matchesBest.length)
                         {
-                            highlighted += char + hClose + target.substr(i + 1)
+                            try {
+                                highlighted += char + hClose + target.substr(i + 1)
+                            } catch (error) {
+                                selfMessage('error:' + error);
+                            }
                             break
                         }
                     } else
@@ -675,6 +679,3 @@ var fuzzysort = (function ()
 
     return fuzzysortNew();
 })()
-
-
-

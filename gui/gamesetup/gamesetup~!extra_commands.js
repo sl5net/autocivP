@@ -244,8 +244,9 @@ g_NetworkCommandsDescriptions = Object.assign(g_NetworkCommandsDescriptions, {
     "type pU<tab> for  map unknown, popMax, 300res, and more",
   "/pExtinct_volcano_defaults":
     "type pU<tab> for extinct_volcano and other defaults",
+  "/pRestoreLastProfile":
+    "/pRestoreLastProfile<enter> when you want restore last profile",
 });
-
 
 g_NetworkCommands["/help2All"] = (match) => { // if textAllSometing is something then its will be sendet to all team. not only for yourself
   g_NetworkCommands["/help"](match, true);
@@ -257,6 +258,7 @@ g_NetworkCommands["/help"] = (match, sendIt2AllForRead = false) => { // if textA
   let text = translate(`Chat commands that match ${match} if its there:`);
   let isSomethingFound = false;
   for (let command in g_NetworkCommands) {
+    if(!command)continue; // idk if it helps to get it more stable 23-0624_1401-28
     let noSlashCommand = command.slice(1);
 
     const filter = new RegExp('' + match + '.*','gi');
@@ -337,6 +339,27 @@ g_NetworkCommands["/countdown"] = (input) => {
 g_NetworkCommands["/gameName"] = (text) => {
   setGameNameInLobby(text);
 };
+
+
+g_NetworkCommands["/pRestoreLastProfile"] = () => {
+  const key = 'autocivP.gamesetup.lastCommandIDforProfile'
+  const id = Engine.ConfigDB_GetValue("user", `${key}`);
+  const lastCommandToSetProfile = Engine.ConfigDB_GetValue("user", `autocivP.chat.lastCommand${id}`);
+  selfMessage(`your last used profile was: ${id} == ${lastCommandToSetProfile}`);
+
+	const chatInput = Engine.GetGUIObjectByName("chatInput")
+	// const chatText = Engine.GetGUIObjectByName("chatText")
+
+  chatInput.caption = lastCommandToSetProfile;
+  // chatText.caption = 6;
+
+  // guiObject.caption =  lastCommandToSetProfile; // not defined
+  // this.GUI.stdout.caption = lastCommandToSetProfile; // not defined
+  // const GUIObject = typeof object == "string" ? Engine.GetGUIObjectByName(object) : object
+};
+
+
+
 
 g_NetworkCommands["/pMainland_1v1_defaults"] = (text) => {
   pMainland_1v1_defaults();
@@ -697,6 +720,8 @@ function setMapTypeFilterNameBiome(name, biome, type = "random", filter = "defau
   return selfMessage(`map = ${name}`);
 }
 function setDefaultsforPopmaxAlliedviewRatingTreasuresNomadExploration(sendMessageToAll = true){ // forPopmaxAlliedviewRatingTreasuresNomadExploration
+  // this function also is(should) always used when a map/profile config is changing 23-0624_1433-08
+
   g_GameSettings.mapExploration.allied = true; // woks :)  AlliedView
   if(sendMessageToAll)sendMessage('AlliedView = true');
 
@@ -737,6 +762,13 @@ function setDefaultsforPopmaxAlliedviewRatingTreasuresNomadExploration(sendMessa
   let populationMax = g_GameSettings.population.cap; // works its a number option vield
   // selfMessage(`pop= ${populationMax}`);
   // selfMessage(`res= ${resources}`);
+
+
+  // selfMessage(`your last used profile id was: ${g_lastCommandID} `); // const lastCommand1 = Engine.ConfigDB_GetValue("user", `autocivP.chat.lastCommand${lastCommandID}`);
+  // const lastCommand = Engine.ConfigDB_GetValue("user", `autocivP.chat.lastCommand${g_lastCommandID}`);
+  // selfMessage(`your last used profile was: ${g_lastCommand}`);
+  ConfigDB_CreateAndSaveValueA26A27("user", `autocivP.gamesetup.lastCommandIDforProfile`, g_lastCommandID);
+
   return populationMax;
 }
 function saveLastCommand(lastCommand){

@@ -1,4 +1,4 @@
-warnModIsNotEnabled();
+warnModIsNotEnabled(); // check for feldmap mod is default 23-0624_0327-45
 
 var g_autociv_maps = new Set(["maps/skirmishes/Volcano Island (8)"])
 
