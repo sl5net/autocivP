@@ -340,25 +340,19 @@ g_NetworkCommands["/gameName"] = (text) => {
   setGameNameInLobby(text);
 };
 
-
 g_NetworkCommands["/pRestoreLastProfile"] = () => {
-  const key = 'autocivP.gamesetup.lastCommandIDforProfile'
-  const id = Engine.ConfigDB_GetValue("user", `${key}`);
-  const lastCommandToSetProfile = Engine.ConfigDB_GetValue("user", `autocivP.chat.lastCommand${id}`);
-  selfMessage(`your last used profile was: ${id} == ${lastCommandToSetProfile}`);
+
+  const key2 = 'autocivP.gamesetup.lastCommandProfile'
+
+  // const id = Engine.ConfigDB_GetValue("user", `${key}`);
+  // const lastCommandToSetProfile = Engine.ConfigDB_GetValue("user", `autocivP.chat.lastCommand${id}`);
+  const lastCommandToSetProfile = Engine.ConfigDB_GetValue("user", `${key2}`);
+  // selfMessage(`your last used profile was: ${id} == ${lastCommandToSetProfile}`);
+  selfMessage(`your last used profile was: ${lastCommandToSetProfile}`);
 
 	const chatInput = Engine.GetGUIObjectByName("chatInput")
-	// const chatText = Engine.GetGUIObjectByName("chatText")
-
   chatInput.caption = lastCommandToSetProfile;
-  // chatText.caption = 6;
-
-  // guiObject.caption =  lastCommandToSetProfile; // not defined
-  // this.GUI.stdout.caption = lastCommandToSetProfile; // not defined
-  // const GUIObject = typeof object == "string" ? Engine.GetGUIObjectByName(object) : object
 };
-
-
 
 
 g_NetworkCommands["/pMainland_1v1_defaults"] = (text) => {
@@ -767,7 +761,11 @@ function setDefaultsforPopmaxAlliedviewRatingTreasuresNomadExploration(sendMessa
   // selfMessage(`your last used profile id was: ${g_lastCommandID} `); // const lastCommand1 = Engine.ConfigDB_GetValue("user", `autocivP.chat.lastCommand${lastCommandID}`);
   // const lastCommand = Engine.ConfigDB_GetValue("user", `autocivP.chat.lastCommand${g_lastCommandID}`);
   // selfMessage(`your last used profile was: ${g_lastCommand}`);
-  ConfigDB_CreateAndSaveValueA26A27("user", `autocivP.gamesetup.lastCommandIDforProfile`, g_lastCommandID);
+  ConfigDB_CreateAndSaveValueA26A27("user", `autocivP.gamesetup.lastCommandProfile`, g_lastCommand);
+
+
+  // const key2 = 'autocivP.gamesetup.lastCommand4Profile'
+  // ConfigDB_CreateAndSaveValueA26A27("user", key2, g_lastCommandID);
 
   return populationMax;
 }
