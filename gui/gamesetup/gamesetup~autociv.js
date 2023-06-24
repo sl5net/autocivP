@@ -1,3 +1,5 @@
+warnModIsNotEnabled();
+
 var g_autociv_maps = new Set(["maps/skirmishes/Volcano Island (8)"])
 
 var g_autociv_hotkeys = {
@@ -64,3 +66,25 @@ autociv_patchApplyN("init", function (target, that, args)
 	Engine.GetGUIObjectByName("chatInput").blur();
 	Engine.GetGUIObjectByName("chatInput").focus();
 })
+
+function warnModIsNotEnabled(){
+	const key = "autocivP.gamesetup.warnModIsNotEnabled";  // default it will warn
+	var warnThisModIsNotEnabled = Engine.ConfigDB_GetValue(
+		"user",
+		key
+	);
+	if(!warnThisModIsNotEnabled){
+		warnThisModIsNotEnabled = 'feldmap'; // default it will warn
+		ConfigDB_CreateAndSaveValueA26A27("user", key, warnModIsNotEnabled);
+	}
+	if(warnThisModIsNotEnabled != 'false'){  // default it will warn
+		var modEnabledmods = Engine.ConfigDB_GetValue(
+			"user",
+			"mod.enabledmods"
+		);
+		if(!(modEnabledmods.indexOf(warnThisModIsNotEnabled)>0)){
+			warn(`Really want play without ${warnThisModIsNotEnabled} mod ?`);
+			// warn(`modEnabledmods: ${modEnabledmods} ?`);
+		}
+	}
+}

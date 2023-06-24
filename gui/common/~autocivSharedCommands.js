@@ -1,4 +1,3 @@
-
 function translateGlHfWpU2Gg(gg) {
 	// btw guiObject is not definded her so you cant use this: sendMessageGlHfWpU2Gg(..., guiObject)
 	let gg2 = ''; // no extra info here probably better (${gg})
