@@ -25,6 +25,13 @@ var g_autociv_hotkeys = {
 	}
 };
 
+
+
+
+
+
+
+
 function handleInputBeforeGui(ev)
 {
 	g_resizeBarManager.onEvent(ev);
@@ -65,6 +72,30 @@ autociv_patchApplyN("init", function (target, that, args)
 
 	Engine.GetGUIObjectByName("chatInput").blur();
 	Engine.GetGUIObjectByName("chatInput").focus();
+
+
+
+	const modsFromUserCfg = Engine.ConfigDB_GetValue("user", "mod.enabledmods");
+	const modsFromUserCfg_backup = Engine.ConfigDB_GetValue("user", "autocivP.enabledmods.backup");
+	if(modsFromUserCfg != modsFromUserCfg_backup){
+
+
+		// const modsFromUserCfg = Engine.ConfigDB_GetValue("user", "mod.enabledmods");
+		// const modsFromUserCfg_backup = Engine.ConfigDB_GetValue("user", "autocivP.enabledmods.backup");
+
+		ConfigDB_CreateAndSaveValueA26A27("user", `autocivP.enabledmods.backup`, modsFromUserCfg);
+
+		  selfMessage('have changed enabledmods? do you want restore last profile?'); // selfMessage not exist
+	//   warn('82: have changed enabledmods? do you want restore last profile?');
+	  // g_NetworkCommands["/pRestoreLastProfile"]();
+	  // pRestoreLastProfile();
+	  let lastCommandToSetProfile = '/pRestoreLastProfile';
+	  const chatInput = Engine.GetGUIObjectByName("chatInput")
+	  chatInput.caption = lastCommandToSetProfile;
+	}
+
+
+
 })
 
 function warnModIsNotEnabled(){

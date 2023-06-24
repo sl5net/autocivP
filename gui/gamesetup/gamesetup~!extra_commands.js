@@ -197,6 +197,9 @@ var game = {
   },
 };
 
+
+
+
 // Alliedview
 
 if (!("g_NetworkCommandsDescriptions" in global))
@@ -340,6 +343,9 @@ g_NetworkCommands["/gameName"] = (text) => {
   setGameNameInLobby(text);
 };
 
+
+
+
 g_NetworkCommands["/pRestoreLastProfile"] = () => {
 
   const key2 = 'autocivP.gamesetup.lastCommandProfile'
@@ -353,6 +359,8 @@ g_NetworkCommands["/pRestoreLastProfile"] = () => {
 	const chatInput = Engine.GetGUIObjectByName("chatInput")
   chatInput.caption = lastCommandToSetProfile;
 };
+
+
 
 
 g_NetworkCommands["/pMainland_1v1_defaults"] = (text) => {
@@ -761,7 +769,8 @@ function setDefaultsforPopmaxAlliedviewRatingTreasuresNomadExploration(sendMessa
   // selfMessage(`your last used profile id was: ${g_lastCommandID} `); // const lastCommand1 = Engine.ConfigDB_GetValue("user", `autocivP.chat.lastCommand${lastCommandID}`);
   // const lastCommand = Engine.ConfigDB_GetValue("user", `autocivP.chat.lastCommand${g_lastCommandID}`);
   // selfMessage(`your last used profile was: ${g_lastCommand}`);
-  ConfigDB_CreateAndSaveValueA26A27("user", `autocivP.gamesetup.lastCommandProfile`, g_lastCommand);
+  if(g_lastCommand)
+    ConfigDB_CreateAndSaveValueA26A27("user", `autocivP.gamesetup.lastCommandProfile`, g_lastCommand);
 
 
   // const key2 = 'autocivP.gamesetup.lastCommand4Profile'
@@ -799,5 +808,17 @@ function saveLastCommand(lastCommand){
   ConfigDB_CreateAndSaveValueA26A27("user", `autocivP.chat.g_lastCommandID`, g_lastCommandID);
   // selfMessage(`753: g_lastCommandID = ${g_lastCommandID} saved`);
 
+
+
+
+
   return;
 }
+
+
+// function pRestoreLastProfile(){
+//   const key2 = 'autocivP.gamesetup.lastCommandProfile'
+//   const lastCommandToSetProfile = Engine.ConfigDB_GetValue("user", `${key2}`);
+// 	const chatInput = Engine.GetGUIObjectByName("chatInput") // not defined here
+//   chatInput.caption = lastCommandToSetProfile;
+// };
