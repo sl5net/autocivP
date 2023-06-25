@@ -340,8 +340,9 @@ function brightenedColor(color, brightnessThreshold = 110)
 
 function ConfigDB_CreateAndSaveValueA26A27(user, key, value){
     // ConfigDB_CreateAndSaveValue is not a function error in Version a26 but in a27 23-0605_1920-25
-    if(!user || !key || !value ){
+    if(!user || !key || value.length <= 0  ){
         // error('23-0625_0609-52');
+        warn(`!user=${user} || !key=${key} || !value=${value}`)
         return false;
     }
     try {
