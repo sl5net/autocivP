@@ -93,9 +93,6 @@ autociv_patchApplyN("init", function (target, that, args)
 	  const chatInput = Engine.GetGUIObjectByName("chatInput")
 	  chatInput.caption = lastCommandToSetProfile;
 	}
-
-
-
 })
 
 function warnModIsNotEnabled(){
@@ -106,7 +103,7 @@ function warnModIsNotEnabled(){
 	);
 	if(!warnThisModIsNotEnabled){
 		warnThisModIsNotEnabled = 'feldmap'; // default it will warn
-		ConfigDB_CreateAndSaveValueA26A27("user", key, warnModIsNotEnabled);
+		ConfigDB_CreateAndSaveValueA26A27("user", key, warnThisModIsNotEnabled);
 	}
 	if(warnThisModIsNotEnabled != 'false'){  // default it will warn
 		var modEnabledmods = Engine.ConfigDB_GetValue(

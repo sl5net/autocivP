@@ -357,7 +357,7 @@ g_NetworkCommands["/pRestoreLastProfile"] = () => {
   selfMessage(`your last used profile was: ${lastCommandToSetProfile}`);
 
 	const chatInput = Engine.GetGUIObjectByName("chatInput")
-  chatInput.caption = lastCommandToSetProfile;
+  chatInput.caption = (lastCommandToSetProfile) ? lastCommandToSetProfile : '/help mainland';
 };
 
 
