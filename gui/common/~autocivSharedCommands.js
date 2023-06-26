@@ -1,3 +1,4 @@
+const whatsAutoPCivMod = 'AutoCivP mod is AutoCiv but it also supports profiles during game configuration, jitsi, command-history[tab][tab] and a lot more.';
 function translateGlHfWpU2Gg(gg) {
 	// btw guiObject is not definded her so you cant use this: sendMessageGlHfWpU2Gg(..., guiObject)
 	let gg2 = ''; // no extra info here probably better (${gg})
@@ -62,7 +63,7 @@ var g_autociv_SharedCommands = {
 	"whatsAutoPCivMod" : {
 		"description": "AutoCivP mod is ",
 		"handler": () =>
-		{	sendMessage('AutoCivP mod is AutoCiv but it also supports profiles during game configuration, jitsi, command-history[tab][tab] and a lot more.')
+		{	sendMessage(whatsAutoPCivMod)
 		}
 	},
 	"whatsAutoCivMod" : {

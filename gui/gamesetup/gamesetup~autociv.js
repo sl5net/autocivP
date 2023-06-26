@@ -93,6 +93,15 @@ autociv_patchApplyN("init", function (target, that, args)
 	  const chatInput = Engine.GetGUIObjectByName("chatInput")
 	  chatInput.caption = lastCommandToSetProfile;
 	}
+	const doCheckVersion = true;
+	if(doCheckVersion){
+// 		const versionName = Engine.GetEngineInfo().mods[0]['name'];
+	const versionOf0ad = Engine.GetEngineInfo().mods[0]['version']; // 0.0.26
+	if(versionOf0ad != '0.0.27' )
+		// warn(versionOf0ad);
+		selfMessage(`You use Version ${versionOf0ad} of 0 A.D. If you really want use Main>Setting>Options>Autociv then you need to use autociv from nani or use Version '0.0.27' of autocivP. This mod works best with  Version >= '0.0.27'. All command-line-commands works in both version. `);
+	}
+
 })
 
 function warnModIsNotEnabled(){

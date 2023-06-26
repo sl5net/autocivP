@@ -235,6 +235,10 @@ ERROR: Errors executing script event "Tab"
         guiObject.caption = '/link';
         return;
     }
+    if(caption == 'whatsAutoPCivMod'){
+        guiObject.caption = whatsAutoPCivMod;
+        return;
+    }
 
     // selfMessage('caption.toLowerCase() = ' + caption.toLowerCase());
 
