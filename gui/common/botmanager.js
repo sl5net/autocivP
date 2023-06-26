@@ -377,9 +377,9 @@ botManager.addBot("autociv", {
 		if (game.get.players.name().some(name => firstWord == clean(name)))
 			return;
 
-
 		// Special case: spec makes a player observer.
-		if (firstWord == "spec") {
+		if (firstWord == "spec")
+		{
 			game.set.player.observer(data.sender);
 			return;
 		}
@@ -388,7 +388,8 @@ botManager.addBot("autociv", {
 		if (
 			firstWord == "play" &&
 			Engine.ConfigDB_GetValue("user", "autociv.gamesetup.play.enabled") == "true"
-		) {
+		)
+		{
 			game.set.player.play(data.sender);
 			return;
 		}

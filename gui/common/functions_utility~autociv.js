@@ -16,9 +16,8 @@ if(isNaN(g_lastCommandID))g_lastCommandID = 0;
  */
 tryAutoComplete = function (text, list, tries)
 {
-    if (!text.length){
+    if (!text.length)
         return text
-    }
 
     const wordSplit = text.split(/\s/g)
     if (!wordSplit.length)

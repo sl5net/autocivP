@@ -317,7 +317,7 @@ var fuzzysort = (function ()
                             try {
                                 highlighted += char + hClose + target.substr(i + 1)
                             } catch (error) {
-                                selfMessage('error:' + error);
+                                warn('error:' + error);
                             }
                             break
                         }
@@ -679,3 +679,6 @@ var fuzzysort = (function ()
 
     return fuzzysortNew();
 })()
+
+
+
