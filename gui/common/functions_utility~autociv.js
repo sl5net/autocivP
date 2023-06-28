@@ -382,16 +382,28 @@ function brightenedColor(color, brightnessThreshold = 110)
 }
 
 function ConfigDB_CreateAndSaveValueA26A27(user, key, value){
+
+
+
     // ConfigDB_CreateAndSaveValue is not a function error in Version a26 but in a27 23-0605_1920-25
     if(!user || !key || value.length <= 0  ){
         // error('23-0625_0609-52');
         warn(`!user=${user} || !key=${key} || !value=${value}`)
         return false;
     }
-    try {
-        Engine.ConfigDB_CreateAndSaveValue(user, key.toString(), value.toString());
-    } catch (error) {
+
+    if(versionOf0ad != '0.0.26')
+        Engine.ConfigDB_CreateAndSaveValue(user, key.toString(), value.toString()); // maybe 0.0.26 or higher
+    else{
         Engine.ConfigDB_CreateValue(user, key, value);
         Engine.ConfigDB_WriteFile(user, "config/user.cfg");
     }
+    return
+
+    // try {
+    //     Engine.ConfigDB_CreateAndSaveValue(user, key.toString(), value.toString());
+    // } catch (error) {
+    //     Engine.ConfigDB_CreateValue(user, key, value);
+    //     Engine.ConfigDB_WriteFile(user, "config/user.cfg");
+    // }
 };
