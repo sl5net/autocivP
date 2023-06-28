@@ -64,7 +64,13 @@ autoCompleteText = function (guiObject, list)
     let caption = guiObject.caption.trim();
     if (!caption.length){
         // selfMessage(`repeat you last(id = ${g_lastCommandID}) command:`) // message disabled becouse its also inside the looby. could disturbing a bit.
-        const lastCommand = Engine.ConfigDB_GetValue("user", `autocivP.chat.lastCommand${g_lastCommandID}`);
+        let lastCommand;
+        if( !isNaN(g_lastCommandID) && g_lastCommandID >= 0 )
+            lastCommand = Engine.ConfigDB_GetValue("user", `autocivP.chat.lastCommand${g_lastCommandID}`);
+        else{
+            error('23-0628_0020-57')
+            selfMessage(`ERROR: g_lastCommandID = ${g_lastCommandID}`)
+        }
         if(!lastCommand)
             return
 
@@ -85,9 +91,26 @@ autoCompleteText = function (guiObject, list)
         }
         // let test = g_ChatHistory[1]; // g_ChatHistory is not defined https://trac.wildfiregames.com/ticket/5387
 
-        if(g_lastCommand.length>0)
+        if(g_lastCommand.length)
             caption = g_lastCommand ;
-    }else{ // caption is not empty
+        }else{ // caption is not empty
+
+        const maxCaptionLengthAllowed = 30 // test crashed by 150
+        if(caption.length > maxCaptionLengthAllowed)
+        {
+            // selfMessage(`maxCaptionLengthAllowed = ${maxCaptionLengthAllowed}`)
+            /*
+            // seems this prefent from the error // Retrieve the substring of the last n characters
+            CStr CStr::Right(size_t len) const
+            {
+                ENSURE(len <= length());
+                return substr(length()-len, len);
+            }
+            */
+
+            return
+        }
+
         if(caption == g_lastCommand){
             let lastCommandID = g_lastCommandID + 1;
             if(lastCommandID > g_lastCommandIDmax) lastCommandID = 0;
@@ -186,6 +209,7 @@ ERROR: Errors executing script event "Tab"
             let text = translateGlHfWpU2Gg(caption.toString());
             if(text.length){
                 guiObject.caption = text;
+                // selfMessage('always ?') // no not always. works like expected 23-0628_0232-14
                 return;
             }
         // } catch (error) {
@@ -256,9 +280,14 @@ ERROR: Errors executing script event "Tab"
     const sameTry = autoCompleteText.state.newCaption == caption
     if (sameTry)
     {
+
+        // selfMessage(282)
         const textBeforeBuffer = autoCompleteText.state.oldCaption.substring(0, autoCompleteText.state.buffer_position)
+        // selfMessage(284)
         const completedText = tryAutoComplete(textBeforeBuffer, list, autoCompleteText.state.tries++)
+        // selfMessage(286)
         const newCaptionText = completedText + autoCompleteText.state.oldCaption.substring(autoCompleteText.state.buffer_position)
+        // selfMessage(288)
 
         autoCompleteText.state.newCaption = newCaptionText
 
@@ -269,9 +298,11 @@ ERROR: Errors executing script event "Tab"
             saveLastCommand(newCaptionText);
         } catch (error) {
             // happens in the lobby console when double press tab 23-0622_2013-26
+            error('double pressed tab to fast?')
         }
-
+        // selfMessage(295)
         guiObject.buffer_position = autoCompleteText.state.buffer_position + (completedText.length - textBeforeBuffer.length)
+        // selfMessage(297)
     }
     else
     {
@@ -281,23 +312,32 @@ ERROR: Errors executing script event "Tab"
         autoCompleteText.state.tries = 0
 
         const textBeforeBuffer = caption.substring(0, buffer_position)
-        const completedText = tryAutoComplete(textBeforeBuffer, list, autoCompleteText.state.tries++)
-        const newCaptionText = completedText + caption.substring(buffer_position)
-
-        autoCompleteText.state.newCaption = newCaptionText;
         // ConfigDB_CreateAndSaveValueA26A27("user", "autocivP.chat.lastCommand", newCaptionText);
+        let completedText = ''
+        let newCaptionText = ''
 
         try {
+            completedText = tryAutoComplete(textBeforeBuffer, list, autoCompleteText.state.tries++)
+            newCaptionText = completedText + caption.substring(buffer_position)
+
+            autoCompleteText.state.newCaption = newCaptionText;
             saveLastCommand(newCaptionText); // this is needet. if you want use it int game setupt process 23-0623_1318-59
+            // selfMessage('315');
         } catch (error) {
 
-            // selfMessage('TODO maybe here: gui/common/functions_utility~autociv.js');
+            selfMessage(error.toString());
+            selfMessage('TODO maybe here: gui/common/functions_utility~autociv.js');
+            // hapens when i sendet a /what...<tab>
+
             // happend to my in lobby and type a name 23-0621_2314-48
             // also happens when i in observer chat of a game 23-0621_2319-10
         }
 
+        // selfMessage('324');
         guiObject.caption = newCaptionText;
+        // selfMessage('326');
         guiObject.buffer_position = buffer_position + (completedText.length - textBeforeBuffer.length);
+        // selfMessage('328');
     }
 }
 

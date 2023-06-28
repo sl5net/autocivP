@@ -778,42 +778,6 @@ function setDefaultsforPopmaxAlliedviewRatingTreasuresNomadExploration(sendMessa
 
   return populationMax;
 }
-function saveLastCommand(lastCommand){
-  // selfMessage(`lastCommand = ${lastCommand}`);
-  if(!lastCommand)
-    return;
-  if(lastCommand == g_lastCommand)
-    return;
-  // selfMessage(`lastCommand = ${lastCommand}`);
-  let lastCommandID_i = 0;
-  for (let i = 0; i <= g_lastCommandIDmax; i++) {
-    lastCommandID_i = i + g_lastCommandID; // maybe 5 6 7 8 9
-    if (lastCommandID_i > g_lastCommandIDmax) lastCommandID_i -= g_lastCommandIDmax + 1; // maybe 1 2 3 4
-    const lastCommand_i = Engine.ConfigDB_GetValue("user", `autocivP.chat.lastCommand${lastCommandID_i}`);
-    if(!lastCommand_i.length)
-        break; // selfMessage('is empty');
-    if(lastCommand == lastCommand_i) // dont save it twice
-    {
-        // selfMessage('dont save it twice');
-        g_lastCommand = lastCommand;
-        return
-    }
-  }
-  // selfMessage(`757 lastCommand = ${lastCommand}`);
-
-  g_lastCommandID = lastCommandID_i;
-  g_lastCommand = lastCommand;
-
-  ConfigDB_CreateAndSaveValueA26A27("user", `autocivP.chat.lastCommand${g_lastCommandID}`, g_lastCommand);
-  ConfigDB_CreateAndSaveValueA26A27("user", `autocivP.chat.g_lastCommandID`, g_lastCommandID);
-  // selfMessage(`753: g_lastCommandID = ${g_lastCommandID} saved`);
-
-
-
-
-
-  return;
-}
 
 
 // function pRestoreLastProfile(){

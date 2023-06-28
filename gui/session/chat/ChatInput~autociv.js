@@ -9,5 +9,12 @@ ChatInput.prototype.getAutocompleteList = function ()
 
 ChatInput.prototype.autoComplete = function ()
 {
-    autoCompleteText(this.chatInput, this.getAutocompleteList())
+    // selfMessage('11 call autoCompleteText() ---------------')
+    // i i use try catch here then i crashes at the first try. so dont use try catch here. 23-0628_0131-59
+    // try {
+        autoCompleteText(this.chatInput, this.getAutocompleteList())
+    // } catch (error) {
+        // selfMessage('16: autoCompleteText failed')
+    // }
+    // selfMessage('13 llllllllllll')
 }

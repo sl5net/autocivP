@@ -10,5 +10,11 @@ ChatInputPanel.prototype.getAutocompleteList = function ()
 
 ChatInputPanel.prototype.autocomplete = function ()
 {
-    autoCompleteText(this.chatInput, this.getAutocompleteList())
+    // selfMessage('13 call autoCompleteText() ---------------')
+    // try {
+        autoCompleteText(this.chatInput, this.getAutocompleteList())
+    // } catch (error) {
+        // selfMessage('17: autoCompleteText failed ')
+    // }
+    // selfMessage('14 23-0628_0047-31')
 }
