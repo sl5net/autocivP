@@ -263,7 +263,7 @@ ERROR: Errors executing script event "Tab"
             newCaptionText = completedText + caption.substring(buffer_position)
 
             autoCompleteText.state.newCaption = newCaptionText;
-            saveLastCommand(newCaptionText); // this is needet. if you want use it int game setupt process 23-0623_1318-59
+            // saveLastCommand(newCaptionText); // this is needet. if you want use it int game setupt process 23-0623_1318-59
             // selfMessage('315');
         } catch (error) {
 
@@ -321,7 +321,7 @@ var autoCompleteText_original = function (guiObject, list) // this works without
 
 var autoCompleteText_newMerge = function (guiObject, list)
 {
-    // selfMessage('324: autoCompleteText_newMerge')
+    selfMessage('324: autoCompleteText_newMerge')
     let caption = guiObject.caption.trim()
     if (!caption.length){
         // selfMessage(`repeat you last(id = ${g_lastCommandID}) command:`) // message disabled becouse its also inside the looby. could disturbing a bit.
@@ -393,16 +393,17 @@ var autoCompleteText_newMerge = function (guiObject, list)
                 g_lastCommand = nextCommand;
                 g_lastCommandID = nextID;
                 // caption = nextCommand ;
-                guiObject.caption = nextCommand;
+                guiObject.caption = nextCommand; // use of guiObject.caption not caption solved a seldom critical crash
                 return;
             }else{
                 selfMessage('never heppens? 23-0628_1307-15')
             }
             // selfMessage(`caption == g_lastCommand '${caption}' => double tab ?`);
-            ConfigDB_CreateAndSaveValueA26A27("user", `autocivP.chat.g_lastCommandID`, g_lastCommandID); // !! dont deltete !! if delte also /p profilles dont get storede into the config file 23-0628_1338-23
             // EndOf caption == g_lastCommand
         }
 
+        ConfigDB_CreateAndSaveValueA26A27("user", `autocivP.chat.g_lastCommandID`, g_lastCommandID); // !! dont deltete !! if delte also /p profilles dont get storede into the config file 23-0628_1338-23
+        selfMessage(`g_lastCommand = ${g_lastCommand}`)
         // Enof caption is not empty
     }
 

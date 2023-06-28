@@ -356,6 +356,8 @@ g_NetworkCommands["/pRestoreLastProfile"] = () => {
   // selfMessage(`your last used profile was: ${id} == ${lastCommandToSetProfile}`);
   selfMessage(`your last used profile was: ${lastCommandToSetProfile}`);
 
+
+
 	const chatInput = Engine.GetGUIObjectByName("chatInput")
   chatInput.caption = (lastCommandToSetProfile) ? lastCommandToSetProfile : '/help mainland';
 };
@@ -630,6 +632,43 @@ g_NetworkCommands["/hf"] = () => translateGlHfWpU2Gg('hf');
 g_NetworkCommands["/wp"] = () => translateGlHfWpU2Gg('wp');
 g_NetworkCommands["/u2"] = () => translateGlHfWpU2Gg('u2');
 g_NetworkCommands["/gg"] = () => translateGlHfWpU2Gg('gg');
+
+
+
+// Store the original functions for backup
+const originalNetworkCommands = Object.assign({}, g_NetworkCommands);
+
+// Override the network command functions
+for (const command in g_NetworkCommands) {
+  const originalFunction = g_NetworkCommands[command];
+  g_NetworkCommands[command] = function(text) {
+    // warn('Command sent:' + command + ' Text:' + text);
+    // selfMessage(command);
+    if(command.length > 2 && command.substring(0,2) == '/p' )
+    {
+      // selfMessage('profile command found')
+      // selfMessage(command);
+      ConfigDB_CreateAndSaveValueA26A27("user", `autocivP.gamesetup.lastCommandProfile`, command);
+    }
+    saveLastCommand(command); // this is needet. if you want use it int game setupt process 23-0623_1318-59
+    // Call the original function
+    originalFunction.call(this, text);
+  };
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 function setTeams(text) {
   if (!g_IsController) return;
 
@@ -769,8 +808,7 @@ function setDefaultsforPopmaxAlliedviewRatingTreasuresNomadExploration(sendMessa
   // selfMessage(`your last used profile id was: ${g_lastCommandID} `); // const lastCommand1 = Engine.ConfigDB_GetValue("user", `autocivP.chat.lastCommand${lastCommandID}`);
   // const lastCommand = Engine.ConfigDB_GetValue("user", `autocivP.chat.lastCommand${g_lastCommandID}`);
   // selfMessage(`your last used profile was: ${g_lastCommand}`);
-  if(g_lastCommand)
-    ConfigDB_CreateAndSaveValueA26A27("user", `autocivP.gamesetup.lastCommandProfile`, g_lastCommand);
+
 
 
   // const key2 = 'autocivP.gamesetup.lastCommand4Profile'
