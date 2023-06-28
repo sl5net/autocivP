@@ -61,6 +61,7 @@ tryAutoComplete = function (text, list, tries)
 
 var autoCompleteText_autocivP = function (guiObject, list)
 {
+    selfMessage('64')
     let caption = guiObject.caption.trim()
     if (!caption.length){
         // selfMessage(`repeat you last(id = ${g_lastCommandID}) command:`) // message disabled becouse its also inside the looby. could disturbing a bit.
@@ -95,7 +96,7 @@ var autoCompleteText_autocivP = function (guiObject, list)
             caption = g_lastCommand ;
         }else{ // caption is not empty
 
-        const maxCaptionLengthAllowed = 30 // test crashed by 150
+        const maxCaptionLengthAllowed = 300 // test crashed by 150
         if(caption.length > maxCaptionLengthAllowed)
         {
             // selfMessage(`maxCaptionLengthAllowed = ${maxCaptionLengthAllowed}`)
@@ -133,39 +134,6 @@ var autoCompleteText_autocivP = function (guiObject, list)
         }
     }
 
-    // const cmpPlayerManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_PlayerManager);
-    // Engine.playerEnt();
-    // const numPlayers = cmpPlayerManager.GetNumPlayers();
-
-
-
-
-    // let player = 0;
-    // game.get.player.id
-    // let playerId = game.get.player.id(playerName);
-    // let numberOfSlots = game.get.numberOfSlots(); // game is not defined
-
-    // selfMessage(`numberOfSlots = ${numberOfSlots}`);
-    // selfMessage(`g_GameSettings.mapType = ${g_GameSettings.mapType}`); // g_GameSettings not defined
-
-    // lobby.login =
-    // playername.multiplayer =
-    // const playerName = Engine.ConfigDB_GetValue("user", "playername.multiplayer"); // works
-    // selfMessage(`playerName = ${playerName}`); // works
-    // selfMessage(`Engine.GetPlayerGUID = ${Engine.GetPlayerGUID()}`); // works
-
-    // selfMessage(`team = ${Engine.player.GetTeam()}`);
-
-    // const playerEnt = cmpPlayerManager.GetPlayerByID(player);
-    // Engine.player.GetTeam(); // Engine.player is undefined
-    // selfMessage(`team = ${Engine.player.GetTeam()}.`);
-
-    // const playerEnt = Engine.playerEnt();
-    // const cmpPlayer = Engine.QueryInterface(playerEnt, IID_Player);
-    // const cmpIdentity = Engine.QueryInterface(playerEnt, IID_Identity);
-    // cmpPlayer.GetTeam();
-    // selfMessage('team = '+ cmpPlayer.GetTeam()); // cmpPlayer is undefined
-
     const doTabReplacmentWor_gl_hf_gg_wp_stuff = true; // usefull for debugging maybe
     let captionTime1 = '';
     if(doTabReplacmentWor_gl_hf_gg_wp_stuff){
@@ -180,32 +148,7 @@ ChatInputPanel.prototype.autocomplete@gui/lobby/LobbyPage/Chat/ChatInputPanel~au
 ERROR: Errors executing script event "Tab"
 
         */
-        // selfMessage(`161: caption = ${caption}`);
-        // if(caption == 'gl' || caption == 'hf'){
-        //     // guiObject.caption = 'Have fun!(hf).'; //  and invite your friends
-        //     guiObject.caption = 'Have fun'; //  and invite your friends
-        //     captionTime1 = caption.toString();
-        // }else if(caption == 'gg'){
-        //     // selfMessage(`166: caption = ${caption}`);
-        //     // guiObject.caption = 'Well played(wp)';
-        //     guiObject.caption = 'Good game';
-        //     captionTime1 = caption;
-        // }else if(caption == 'wp'){
-        //     // guiObject.caption = 'Well played(wp)'; //  Again?(re)
-        //     guiObject.caption = 'Well played';
-        //     captionTime1 = caption;
-        // }else if(caption == 're'){
-        //     // guiObject.caption = 'Well played(wp)'; //  Again?(re)
-        //     guiObject.caption = 'Again?'; //  Again?(re)
-        //     captionTime1 = caption;
-        // }else if(caption == 'u2'){
-        //     guiObject.caption = 'You too';
-        //     captionTime1 = caption;
-        // }
-        // captionTime1 = caption.toString();
-        // got error as obser but worked stoff before worked very nice. so let use a try catch or check if its observer:  (se, 23-0618_1531-46)
 
-        // try {
             let text = translateGlHfWpU2Gg(caption.toString());
             if(text.length){
                 guiObject.caption = text;
@@ -287,7 +230,6 @@ ERROR: Errors executing script event "Tab"
         const completedText = tryAutoComplete(textBeforeBuffer, list, autoCompleteText.state.tries++)
         // selfMessage(286)
         const newCaptionText = completedText + autoCompleteText.state.oldCaption.substring(autoCompleteText.state.buffer_position)
-        // selfMessage(288)
 
         autoCompleteText.state.newCaption = newCaptionText
 
@@ -379,6 +321,7 @@ var autoCompleteText_original = function (guiObject, list) // this works without
 
 var autoCompleteText_newMerge = function (guiObject, list)
 {
+    // selfMessage('324: autoCompleteText_newMerge')
     let caption = guiObject.caption.trim()
     if (!caption.length){
         // selfMessage(`repeat you last(id = ${g_lastCommandID}) command:`) // message disabled becouse its also inside the looby. could disturbing a bit.
@@ -456,7 +399,7 @@ var autoCompleteText_newMerge = function (guiObject, list)
                 selfMessage('never heppens? 23-0628_1307-15')
             }
             // selfMessage(`caption == g_lastCommand '${caption}' => double tab ?`);
-            // ConfigDB_CreateAndSaveValueA26A27("user", `autocivP.chat.g_lastCommandID`, g_lastCommandID);
+            ConfigDB_CreateAndSaveValueA26A27("user", `autocivP.chat.g_lastCommandID`, g_lastCommandID); // !! dont deltete !! if delte also /p profilles dont get storede into the config file 23-0628_1338-23
             // EndOf caption == g_lastCommand
         }
 
