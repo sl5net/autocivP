@@ -321,7 +321,9 @@ autociv_InitSharedCommands.pipe = {
 			"description": g_autociv_SharedCommands[key].description,
 			"handler": text =>
 			{
+				// selfMessage(`334: SharedCommands= ${key} ${text}`)
 				g_autociv_SharedCommands[key].handler(text)
+				selfMessage(`325: SharedCommands= ${text}`)
 				return true
 			}
 		}
@@ -330,6 +332,8 @@ autociv_InitSharedCommands.pipe = {
 	{
 		g_NetworkCommands["/" + key] = text =>
 		{
+			// selfMessage(`334: SharedCommands= ${key} ${text}`)
+			saveLastCommand2History(`/${key} ${text}`)
 			g_autociv_SharedCommands[key].handler(text)
 			return true
 		}
@@ -338,6 +342,8 @@ autociv_InitSharedCommands.pipe = {
 	{
 		g_NetworkCommands["/" + key] = text =>
 		{
+			// selfMessage(`334: SharedCommands= ${key} ${text}`)
+			saveLastCommand2History(`/${key} ${text}`)
 			g_autociv_SharedCommands[key].handler(text)
 			return true
 		}
