@@ -171,10 +171,10 @@ var g_autociv_SharedCommands = {
 		"description": "use of jitsi",
 		"handler": () =>
 		{
-			const text = `to use jiti in you team: 1. open Ally-Chat 2. write j<tab> then enter. 3. write li[tab] or /link`;
-			const text2 = `BTW if you write j[tab] again your last jitsi link will send again(not a new link). Every player has is own link. Means: one link per player.`;
+			let text = `to use jiti in you team: 1. open Ally-Chat 2. write j<tab> then enter. 3. write li[tab] or /link`;
+			text += `BTW if you write j[tab] again your last jitsi link will send again(not a new link). Every player has is own link. Means: one link per player.`;
+			// in lobby long text will eventually crash the game. 23-0629_0840-55
 			Engine.SendNetworkChat(text);
-			Engine.SendNetworkChat(text2);
 		}
 	},
 	"mute": {
@@ -321,6 +321,8 @@ autociv_InitSharedCommands.pipe = {
 			"description": g_autociv_SharedCommands[key].description,
 			"handler": text =>
 			{
+				if(key == 'jitsi') // long text a critical in the looby. better not so many commands there with long texts
+					return true
 				// selfMessage(`334: SharedCommands= ${key} ${text}`)
 				g_autociv_SharedCommands[key].handler(text)
 				selfMessage(`325: SharedCommands= ${text}`)
