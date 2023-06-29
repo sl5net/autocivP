@@ -36,24 +36,30 @@ function saveLastCommand2History(lastCommand){
 	if(lastCommand == g_lastCommand)
 	  return;
 	// selfMessage(`lastCommand = ${lastCommand}`);
-	let lastCommandID_i = 0;
+	let lastCommandID_i = 0
+	let offset = 0
 	let needChechedIdsFromBeging = (g_lastCommandID == 0) ? false : true
 	for (let i = 0; i <= g_lastCommandIDmax; i++) {
-	  lastCommandID_i = i + g_lastCommandID; // maybe 5 6 7 8 9
+	  lastCommandID_i = i + g_lastCommandID + offset; // maybe 5 6 7 8 9
+	  selfMessage(`43: lastCommandID_i = ${lastCommandID_i}`)
+
 	  if (lastCommandID_i > g_lastCommandIDmax)
 	  	lastCommandID_i -= g_lastCommandIDmax; // maybe 1 2 3 4
 	  const lastCommand_i = Engine.ConfigDB_GetValue("user", `autocivP.chat.lastCommand${lastCommandID_i}`);
-	  if(!lastCommand_i.length){
-			if(!needChechedIdsFromBeging)
-		  		break; // selfMessage('is empty');
+	  if(!lastCommand_i.length){ // selfMessage('is empty');
+			if(!needChechedIdsFromBeging){
+				break;
+				selfMessage(`51: lastCommandID_i = ${lastCommandID_i}`)
+			}
 			else
 				{
-					lastCommandID_i = - i - g_lastCommandID // so loop start with 0
+					offset = - i - g_lastCommandID // so loop start with 0
+					selfMessage(`56: lastCommandID_i = ${lastCommandID_i}`)
 					needChechedIdsFromBeging = false
 					continue
 				}
 	  }
-	  selfMessage(`id=${lastCommandID_i} >${lastCommand}< ???? >${lastCommand_i}<`)
+	  selfMessage(`61: id=${lastCommandID_i} >${lastCommand}< ???? >${lastCommand_i}<`)
 	  if(lastCommand == lastCommand_i) // dont save it twice
 	  {
 		  // selfMessage('dont save it twice');
@@ -69,7 +75,7 @@ function saveLastCommand2History(lastCommand){
 	ConfigDB_CreateAndSaveValueA26A27("user", `autocivP.chat.lastCommand${g_lastCommandID}`, g_lastCommand);
 	ConfigDB_CreateAndSaveValueA26A27("user", `autocivP.chat.g_lastCommandID`, g_lastCommandID);
 	// selfMessage(`53: g_lastCommandID = ${g_lastCommandID} saved`);
-	selfMessage(`53: ${g_lastCommand} saved`);
+	selfMessage(`77: id=${g_lastCommandID}  >${g_lastCommand}< saved`);
 	return;
   }
 

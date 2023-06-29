@@ -133,11 +133,6 @@ var autoCompleteText_newMerge = function (guiObject, list)
             caption = g_lastCommand ;
         // End of caption is empty
     }else{
-        // ------------------- Problem is below
-        // ------------------- Problem is below
-        // ------------------- Problem is below
-        // ------------------- Problem is below
-        // ------------------- Problem is below
         // caption is not empty
         // selfMessage('TAB and caption is not empty')
 
@@ -145,15 +140,8 @@ var autoCompleteText_newMerge = function (guiObject, list)
         if(caption.length > maxCaptionLengthAllowed)
         {
             // selfMessage(`maxCaptionLengthAllowed = ${maxCaptionLengthAllowed}`)
-            /*
             // seems this prefent from the error // Retrieve the substring of the last n characters
-            CStr CStr::Right(size_t len) const
-            {
-                ENSURE(len <= length());
-                return substr(length()-len, len);
-            }
-            */
-
+            // CStr CStr::Right(size_t len) const { ENSURE(len <= length()); return substr(length()-len, len); }
             return
         }
 
@@ -161,7 +149,16 @@ var autoCompleteText_newMerge = function (guiObject, list)
             let nextID = getNextLastCommandID()
 
             // selfMessage(`86: ${g_lastCommandID}' = g_lastCommandID`);
-            const nextCommand = Engine.ConfigDB_GetValue("user", `autocivP.chat.lastCommand${nextID}`);
+            selfMessage(`164: nextID = ${nextID}'`);
+            let nextCommand = Engine.ConfigDB_GetValue("user", `autocivP.chat.lastCommand${nextID}`);
+
+            if( !(nextCommand && nextCommand.length)
+                && g_lastCommandID > 0 )
+            {
+                    nextID = 0
+                    nextCommand = Engine.ConfigDB_GetValue("user", `autocivP.chat.lastCommand${nextID}`);
+                    selfMessage(`172: nextID = ${nextID}'`);
+            }
 
             if(nextCommand && nextCommand.length){
                 g_lastCommand = nextCommand;
@@ -181,15 +178,6 @@ var autoCompleteText_newMerge = function (guiObject, list)
         // Enof caption is not empty
     }
 
-// Problem is above
-// Problem is above
-// Problem is above
-// Problem is above
-// Problem is above
-// Problem is above
-// Problem is above
-// Problem is above
-// Problem is above
     const doTabReplacmentWor_gl_hf_gg_wp_stuff = true; // usefull for debugging maybe
     let captionTime1 = '';
     if(doTabReplacmentWor_gl_hf_gg_wp_stuff){
