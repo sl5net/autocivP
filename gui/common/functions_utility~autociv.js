@@ -149,7 +149,7 @@ var autoCompleteText_newMerge = function (guiObject, list)
             let nextID = getNextLastCommandID()
 
             // selfMessage(`86: ${g_lastCommandID}' = g_lastCommandID`);
-            selfMessage(`164: nextID = ${nextID}'`);
+            // selfMessage(`164: nextID = ${nextID}'`);
             let nextCommand = Engine.ConfigDB_GetValue("user", `autocivP.chat.lastCommand${nextID}`);
 
             if( !(nextCommand && nextCommand.length)
@@ -157,7 +157,7 @@ var autoCompleteText_newMerge = function (guiObject, list)
             {
                     nextID = 0
                     nextCommand = Engine.ConfigDB_GetValue("user", `autocivP.chat.lastCommand${nextID}`);
-                    selfMessage(`172: nextID = ${nextID}'`);
+                    // selfMessage(`172: nextID = ${nextID}'`);
             }
 
             if(nextCommand && nextCommand.length){
@@ -174,12 +174,11 @@ var autoCompleteText_newMerge = function (guiObject, list)
         }
 
         ConfigDB_CreateAndSaveValueA26A27("user", `autocivP.chat.g_lastCommandID`, g_lastCommandID); // !! dont deltete !! if delte also /p profilles dont get storede into the config file 23-0628_1338-23
-        selfMessage(`g_lastCommand = ${g_lastCommand}`)
+        // selfMessage(`g_lastCommand = ${g_lastCommand}`)
         // Enof caption is not empty
     }
 
     const doTabReplacmentWor_gl_hf_gg_wp_stuff = true; // usefull for debugging maybe
-    let captionTime1 = '';
     if(doTabReplacmentWor_gl_hf_gg_wp_stuff){
             /*
             erros when i not host:
