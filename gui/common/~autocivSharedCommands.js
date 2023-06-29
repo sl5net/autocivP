@@ -27,6 +27,7 @@ function getNextLastCommandID(){
 	return nextID
 }
 function saveLastCommand2History(lastCommand){
+	const doDebug = false // debug session
 	// selfMessage(`lastCommand = ${lastCommand}`);
 	if(!lastCommand)
 	  return;
@@ -41,7 +42,7 @@ function saveLastCommand2History(lastCommand){
 	let needChechedIdsFromBeging = (g_lastCommandID == 0) ? false : true
 	for (let i = 0; i <= g_lastCommandIDmax; i++) {
 	  lastCommandID_i = i + g_lastCommandID + offset; // maybe 5 6 7 8 9
-	  selfMessage(`43: lastCommandID_i = ${lastCommandID_i}`)
+	  if(doDebug) selfMessage(`43: lastCommandID_i = ${lastCommandID_i}`)
 
 	  if (lastCommandID_i > g_lastCommandIDmax)
 	  	lastCommandID_i -= g_lastCommandIDmax; // maybe 1 2 3 4
@@ -49,17 +50,17 @@ function saveLastCommand2History(lastCommand){
 	  if(!lastCommand_i.length){ // selfMessage('is empty');
 			if(!needChechedIdsFromBeging){
 				break;
-				selfMessage(`51: lastCommandID_i = ${lastCommandID_i}`)
+				if(doDebug) selfMessage(`51: lastCommandID_i = ${lastCommandID_i}`)
 			}
 			else
 				{
 					offset = - i - g_lastCommandID // so loop start with 0
-					selfMessage(`56: lastCommandID_i = ${lastCommandID_i}`)
+					if(doDebug) selfMessage(`56: lastCommandID_i = ${lastCommandID_i}`)
 					needChechedIdsFromBeging = false
 					continue
 				}
 	  }
-	  selfMessage(`61: id=${lastCommandID_i} >${lastCommand}< ???? >${lastCommand_i}<`)
+	  if(doDebug) selfMessage(`61: id=${lastCommandID_i} >${lastCommand}< ???? >${lastCommand_i}<`)
 	  if(lastCommand == lastCommand_i) // dont save it twice
 	  {
 		  // selfMessage('dont save it twice');
@@ -75,7 +76,7 @@ function saveLastCommand2History(lastCommand){
 	ConfigDB_CreateAndSaveValueA26A27("user", `autocivP.chat.lastCommand${g_lastCommandID}`, g_lastCommand);
 	ConfigDB_CreateAndSaveValueA26A27("user", `autocivP.chat.g_lastCommandID`, g_lastCommandID);
 	// selfMessage(`53: g_lastCommandID = ${g_lastCommandID} saved`);
-	selfMessage(`77: id=${g_lastCommandID}  >${g_lastCommand}< saved`);
+	if(doDebug) selfMessage(`77: id=${g_lastCommandID}  >${g_lastCommand}< saved`);
 	return;
   }
 

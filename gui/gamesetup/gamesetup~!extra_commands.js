@@ -640,7 +640,7 @@ const originalNetworkCommands = Object.assign({}, g_NetworkCommands);
 for (const command in g_NetworkCommands) {
   const originalFunction = g_NetworkCommands[command];
   g_NetworkCommands[command] = function(text) {
-    selfMessage(`640: Command sent: >${command}< >${text}<`);
+    // selfMessage(`640: Command sent: >${command}< >${text}<`);
     if(command.length > 2 && command.substring(0,2) == '/p' )
     {
       // selfMessage('profile command found')

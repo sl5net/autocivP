@@ -97,7 +97,7 @@ tryAutoComplete = function (text, list, tries)
 
 var autoCompleteText_newMerge = function (guiObject, list)
 {
-    selfMessage('324: autoCompleteText_newMerge')
+    // selfMessage('324: autoCompleteText_newMerge')
     let caption = guiObject.caption.trim()
     if (!caption.length){
         // selfMessage(`repeat you last(id = ${g_lastCommandID}) command:`) // message disabled becouse its also inside the looby. could disturbing a bit.
