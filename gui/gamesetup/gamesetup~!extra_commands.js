@@ -277,14 +277,18 @@ g_NetworkCommands["/help"] = (match, sendIt2AllForRead = false) => { // if textA
       description: ncd ?? asc?.description ?? "",
     });
   }
+
+  if(isSomethingFound)
+    saveLastCommand2History(`/help ${match}`);
+  else
+    text += ` nothing found`
+
   if(sendIt2AllForRead){
     sendMessage("Chat commands if you use this autoCiv Version:");
     sendMessage(text.replace(/\[.*?\]/g,''))
   }else
     selfMessage(text);
 
-  if(isSomethingFound)
-    saveLastCommand(`/help ${match}`);
   // ConfigDB_CreateAndSaveValueA26A27("user", "autocivP.chat.lastCommand", `/help ${match}`);
 };
 
@@ -347,22 +351,13 @@ g_NetworkCommands["/gameName"] = (text) => {
 
 
 g_NetworkCommands["/pRestoreLastProfile"] = () => {
-
-  const key2 = 'autocivP.gamesetup.lastCommandProfile'
-
-  // const id = Engine.ConfigDB_GetValue("user", `${key}`);
-  // const lastCommandToSetProfile = Engine.ConfigDB_GetValue("user", `autocivP.chat.lastCommand${id}`);
-  const lastCommandToSetProfile = Engine.ConfigDB_GetValue("user", `${key2}`);
-  // selfMessage(`your last used profile was: ${id} == ${lastCommandToSetProfile}`);
-  selfMessage(`your last used profile was: ${lastCommandToSetProfile}`);
-
-
-
+  const key = 'autocivP.gamesetup.lastCommandProfile'
+  let lastCommandProfile = Engine.ConfigDB_GetValue("user", `${key}`);
+  if(lastCommandProfile == '/pRestoreLastProfile') lastCommandProfile = '';
+  selfMessage(`your last used profile was: ${lastCommandProfile}`);
 	const chatInput = Engine.GetGUIObjectByName("chatInput")
-  chatInput.caption = (lastCommandToSetProfile) ? lastCommandToSetProfile : '/help mainland';
+  chatInput.caption = (lastCommandProfile) ? lastCommandProfile : '/help mainland';
 };
-
-
 
 
 g_NetworkCommands["/pMainland_1v1_defaults"] = (text) => {
@@ -372,6 +367,9 @@ g_NetworkCommands["/1v1Mainland_defaults"] = (text) => {
   pMainland_1v1_defaults();
 };
 g_NetworkCommands["/p1v1Mainland_defaults"] = (text) => {
+  pMainland_1v1_defaults();
+};
+g_NetworkCommands["/p1"] = (text) => {
   pMainland_1v1_defaults();
 };
 g_NetworkCommands["/pMainland_2v2_defaults"] = (text) => {
@@ -642,15 +640,18 @@ const originalNetworkCommands = Object.assign({}, g_NetworkCommands);
 for (const command in g_NetworkCommands) {
   const originalFunction = g_NetworkCommands[command];
   g_NetworkCommands[command] = function(text) {
-    // warn('Command sent:' + command + ' Text:' + text);
-    // selfMessage(command);
+    selfMessage(`640: Command sent: >${command}< >${text}<`);
     if(command.length > 2 && command.substring(0,2) == '/p' )
     {
       // selfMessage('profile command found')
       // selfMessage(command);
       ConfigDB_CreateAndSaveValueA26A27("user", `autocivP.gamesetup.lastCommandProfile`, command);
     }
-    saveLastCommand(command); // this is needet. if you want use it int game setupt process 23-0623_1318-59
+
+    // later some comands save implicit using saveLastCommand later. example: saveLastCommand(`/help ${match}`); it check if match really match before
+    if(command != 'help')
+      saveLastCommand2History(text ? `${command} ${text}` : `${command}` ); // this is needet. if you want use it int game setupt process 23-0623_1318-59
+
     // Call the original function
     originalFunction.call(this, text);
   };
@@ -816,11 +817,3 @@ function setDefaultsforPopmaxAlliedviewRatingTreasuresNomadExploration(sendMessa
 
   return populationMax;
 }
-
-
-// function pRestoreLastProfile(){
-//   const key2 = 'autocivP.gamesetup.lastCommandProfile'
-//   const lastCommandToSetProfile = Engine.ConfigDB_GetValue("user", `${key2}`);
-// 	const chatInput = Engine.GetGUIObjectByName("chatInput") // not defined here
-//   chatInput.caption = lastCommandToSetProfile;
-// };

@@ -59,265 +59,41 @@ tryAutoComplete = function (text, list, tries)
     return text + word
 }
 
-var autoCompleteText_autocivP = function (guiObject, list)
-{
-    selfMessage('64')
-    let caption = guiObject.caption.trim()
-    if (!caption.length){
-        // selfMessage(`repeat you last(id = ${g_lastCommandID}) command:`) // message disabled becouse its also inside the looby. could disturbing a bit.
-        let lastCommand;
-        if( !isNaN(g_lastCommandID) && g_lastCommandID >= 0 )
-            lastCommand = Engine.ConfigDB_GetValue("user", `autocivP.chat.lastCommand${g_lastCommandID}`);
-        else{
-            error('23-0628_0020-57')
-            selfMessage(`ERROR: g_lastCommandID = ${g_lastCommandID}`)
-        }
-        if(!lastCommand)
-            return
+// var autoCompleteText_original = function (guiObject, list) // this works without errors
+// {
+//     const caption = guiObject.caption
+//     if (!caption.length)
+//         return
 
-        if(g_lastCommand == lastCommand){
-            // selfMessage(`70: '${lastCommand}' = lastCommand`);
-            let lastCommandID = g_lastCommandID + 1;
-            if(lastCommandID > g_lastCommandIDmax) lastCommandID = 0;
-            const lastCommand1 = Engine.ConfigDB_GetValue("user", `autocivP.chat.lastCommand${lastCommandID}`);
-            if(lastCommand1){
-                g_lastCommand = lastCommand1;
-                g_lastCommandID = lastCommandID;
-            }
-        }else{
-            // selfMessage(`76: g_lastCommand='${g_lastCommand}' != '${lastCommand}' = lastCommand`);
-            g_lastCommand = lastCommand;
-            // g_lastCommandID++;
-            // if(g_lastCommandID > g_lastCommandIDmax) g_lastCommandID = 0;
-        }
-        // let test = g_ChatHistory[1]; // g_ChatHistory is not defined https://trac.wildfiregames.com/ticket/5387
+//     const sameTry = autoCompleteText.state.newCaption == caption
+//     if (sameTry)
+//     {
+//         const textBeforeBuffer = autoCompleteText.state.oldCaption.substring(0, autoCompleteText.state.buffer_position)
+//         const completedText = tryAutoComplete(textBeforeBuffer, list, autoCompleteText.state.tries++)
+//         const newCaptionText = completedText + autoCompleteText.state.oldCaption.substring(autoCompleteText.state.buffer_position)
 
-        if(g_lastCommand.length)
-            caption = g_lastCommand ;
-        }else{ // caption is not empty
+//         autoCompleteText.state.newCaption = newCaptionText
 
-        const maxCaptionLengthAllowed = 300 // test crashed by 150
-        if(caption.length > maxCaptionLengthAllowed)
-        {
-            // selfMessage(`maxCaptionLengthAllowed = ${maxCaptionLengthAllowed}`)
-            /*
-            // seems this prefent from the error // Retrieve the substring of the last n characters
-            CStr CStr::Right(size_t len) const
-            {
-                ENSURE(len <= length());
-                return substr(length()-len, len);
-            }
-            */
+//         guiObject.caption = newCaptionText
+//         guiObject.buffer_position = autoCompleteText.state.buffer_position + (completedText.length - textBeforeBuffer.length)
+//     }
+//     else
+//     {
+//         const buffer_position = guiObject.buffer_position
+//         autoCompleteText.state.buffer_position = buffer_position
+//         autoCompleteText.state.oldCaption = caption
+//         autoCompleteText.state.tries = 0
 
-            return
-        }
+//         const textBeforeBuffer = caption.substring(0, buffer_position)
+//         const completedText = tryAutoComplete(textBeforeBuffer, list, autoCompleteText.state.tries++)
+//         const newCaptionText = completedText + caption.substring(buffer_position)
 
-        if(caption == g_lastCommand){
-            let lastCommandID = g_lastCommandID + 1;
-            if(lastCommandID > g_lastCommandIDmax) lastCommandID = 0;
+//         autoCompleteText.state.newCaption = newCaptionText
 
-            // selfMessage(`86: ${g_lastCommandID}' = g_lastCommandID`);
-            const lastCommand = Engine.ConfigDB_GetValue("user", `autocivP.chat.lastCommand${lastCommandID}`);
-
-            if(lastCommand){
-                g_lastCommand = lastCommand;
-                g_lastCommandID = lastCommandID;
-                caption = lastCommand ;
-            }else{
-                g_lastCommandID = 0; // next try us the first stored command 23-0623_1406-29
-                const lastCommand = Engine.ConfigDB_GetValue("user", `autocivP.chat.lastCommand${g_lastCommandID}`);
-                if(lastCommand)
-                    caption = lastCommand ;
-            }
-            // selfMessage(`caption == g_lastCommand '${caption}' => double tab ?`);
-            ConfigDB_CreateAndSaveValueA26A27("user", `autocivP.chat.g_lastCommandID`, g_lastCommandID);
-        }
-    }
-
-    const doTabReplacmentWor_gl_hf_gg_wp_stuff = true; // usefull for debugging maybe
-    let captionTime1 = '';
-    if(doTabReplacmentWor_gl_hf_gg_wp_stuff){
-        /*
-        erros when i not host:
-
-ERROR: Errors executing script event "Tab"
-ERROR: JavaScript error: gui/common/functions_utility~autociv.js line 107
-sendMessageGlHfWpU2Gg is not defined
-autoCompleteText@gui/common/functions_utility~autociv.js:107:9
-ChatInputPanel.prototype.autocomplete@gui/lobby/LobbyPage/Chat/ChatInputPanel~autociv.js:13:21
-ERROR: Errors executing script event "Tab"
-
-        */
-
-            let text = translateGlHfWpU2Gg(caption.toString());
-            if(text.length){
-                guiObject.caption = text;
-                // selfMessage('always ?') // no not always. works like expected 23-0628_0232-14
-                return;
-            }
-        // } catch (error) {
-            // not needet to send. its also good to have changed the captio only 23-0618_1532-39
-        // }
-         // 23-0618_1452-21 return is needet. otherwise guiObject.caption = ... changes nothing
-
-        // return; // <== ver dangeoous then eventually all other commands dont work
-    }
-
-    // selfMessage('caption = ' + caption)
-    if(caption == 'j'){
-        if (g_linkLongTeam == null) {
-            let linkidShort = Date.now().toString().substring(10);
-            // not open this link always. if you have it already probably
-            g_linkLongTeam = `https://meet.jit.si/0ad${linkidShort}audio`;
-            // doOpenJitsiLink = true;
-            if(false){ // maybe better not use it at the moment. maybe later. in a future version. to much confusion
-                try {
-                    openURL(g_linkLongTeam); // its not necesary. if error use /link later
-                } catch (error) {
-
-                }
-            }
-        }
-        //   selfMessage(Engine.team[0]); // state is not defined
-          caption = g_linkLongTeam;
-          const inviteJitsiText =  `Please open following link for team-audio-chat in your web browser. If you have the mod AutoCiv open it by writing /link<enter>. Only a web browser is required. ${g_linkLongTeam} `;
-        //   guiObject.caption = '/link'; //  inviteJitsiText;
-          guiObject.caption = inviteJitsiText;
-        //   sendMessage(`${inviteJitsiText}`); // TODO: it send to all not only to Allied
-
-        // selfMessage(g_linkLongTeam); // its only a selfMessage. not read by botManager
-        // BotManager.openURL(g_linkLongTeam); // is not a function
-        // let err = botManager.openLink(g_linkLongTeam); // is not a function
-
-
-        // botManager.setMessageInterface("ingame");
-        // let err = botManager.get("link").openLink(g_linkLongTeam); // this get the link from the chat.
-        // if (err)
-        //     selfMessage(err);
-
-        return;
-    }
-    if(caption == 'li'){
-        guiObject.caption = '/link';
-        return;
-    }
-    if(caption == 'whatsAutoPCivMod'){
-        guiObject.caption = whatsAutoPCivMod;
-        return;
-    }
-
-    // selfMessage('caption.toLowerCase() = ' + caption.toLowerCase());
-
-
-    if(caption.toLowerCase() == 'hiall'){
-        const key = "autocivP.gamesetup.helloAll";
-        const helloAll = Engine.ConfigDB_GetValue("user", key);
-        if(!helloAll)
-            selfMessage('helloAll is empty.');
-        guiObject.caption = helloAll
-        selfMessage('set /hiAll yourWelcomeText or use /hiAll yourWelcomeText or send by /hiAll or helloAll tab, to edit it first.');
-        return;
-    }
-    // selfMessage('caption = ' + caption)
-    // Engine.ConfigDB_CreateAndSaveValue("user", "autocivP.chat.lastCommand", caption); // is not a function error in Version a26 aut 23-0605_1920-25
-    const sameTry = autoCompleteText.state.newCaption == caption
-    if (sameTry)
-    {
-
-        // selfMessage(282)
-        const textBeforeBuffer = autoCompleteText.state.oldCaption.substring(0, autoCompleteText.state.buffer_position)
-        // selfMessage(284)
-        const completedText = tryAutoComplete(textBeforeBuffer, list, autoCompleteText.state.tries++)
-        // selfMessage(286)
-        const newCaptionText = completedText + autoCompleteText.state.oldCaption.substring(autoCompleteText.state.buffer_position)
-
-        autoCompleteText.state.newCaption = newCaptionText
-
-        guiObject.caption = newCaptionText
-
-        // ConfigDB_CreateAndSaveValueA26A27("user", "autocivP.chat.lastCommand", newCaptionText);
-        try {
-            saveLastCommand(newCaptionText);
-        } catch (error) {
-            // happens in the lobby console when double press tab 23-0622_2013-26
-            error('double pressed tab to fast?')
-        }
-        // selfMessage(295)
-        guiObject.buffer_position = autoCompleteText.state.buffer_position + (completedText.length - textBeforeBuffer.length)
-        // selfMessage(297)
-    }
-    else
-    {
-        const buffer_position = guiObject.buffer_position
-        autoCompleteText.state.buffer_position = buffer_position
-        autoCompleteText.state.oldCaption = caption
-        autoCompleteText.state.tries = 0
-
-        const textBeforeBuffer = caption.substring(0, buffer_position)
-        // ConfigDB_CreateAndSaveValueA26A27("user", "autocivP.chat.lastCommand", newCaptionText);
-        let completedText = ''
-        let newCaptionText = ''
-
-        try {
-            completedText = tryAutoComplete(textBeforeBuffer, list, autoCompleteText.state.tries++)
-            newCaptionText = completedText + caption.substring(buffer_position)
-
-            autoCompleteText.state.newCaption = newCaptionText;
-            // saveLastCommand(newCaptionText); // this is needet. if you want use it int game setupt process 23-0623_1318-59
-            // selfMessage('315');
-        } catch (error) {
-
-            selfMessage(error.toString());
-            selfMessage('TODO maybe here: gui/common/functions_utility~autociv.js');
-            // hapens when i sendet a /what...<tab>
-
-            // happend to my in lobby and type a name 23-0621_2314-48
-            // also happens when i in observer chat of a game 23-0621_2319-10
-        }
-
-        // selfMessage('324');
-        guiObject.caption = newCaptionText;
-        // selfMessage('326');
-        guiObject.buffer_position = buffer_position + (completedText.length - textBeforeBuffer.length);
-        // selfMessage('328');
-    }
-}
-
-var autoCompleteText_original = function (guiObject, list) // this works without errors
-{
-    const caption = guiObject.caption
-    if (!caption.length)
-        return
-
-    const sameTry = autoCompleteText.state.newCaption == caption
-    if (sameTry)
-    {
-        const textBeforeBuffer = autoCompleteText.state.oldCaption.substring(0, autoCompleteText.state.buffer_position)
-        const completedText = tryAutoComplete(textBeforeBuffer, list, autoCompleteText.state.tries++)
-        const newCaptionText = completedText + autoCompleteText.state.oldCaption.substring(autoCompleteText.state.buffer_position)
-
-        autoCompleteText.state.newCaption = newCaptionText
-
-        guiObject.caption = newCaptionText
-        guiObject.buffer_position = autoCompleteText.state.buffer_position + (completedText.length - textBeforeBuffer.length)
-    }
-    else
-    {
-        const buffer_position = guiObject.buffer_position
-        autoCompleteText.state.buffer_position = buffer_position
-        autoCompleteText.state.oldCaption = caption
-        autoCompleteText.state.tries = 0
-
-        const textBeforeBuffer = caption.substring(0, buffer_position)
-        const completedText = tryAutoComplete(textBeforeBuffer, list, autoCompleteText.state.tries++)
-        const newCaptionText = completedText + caption.substring(buffer_position)
-
-        autoCompleteText.state.newCaption = newCaptionText
-
-        guiObject.caption = newCaptionText
-        guiObject.buffer_position = buffer_position + (completedText.length - textBeforeBuffer.length)
-    }
-}
+//         guiObject.caption = newCaptionText
+//         guiObject.buffer_position = buffer_position + (completedText.length - textBeforeBuffer.length)
+//     }
+// }
 
 var autoCompleteText_newMerge = function (guiObject, list)
 {
@@ -337,8 +113,7 @@ var autoCompleteText_newMerge = function (guiObject, list)
 
         if(g_lastCommand == lastCommand){
             // selfMessage(`70: '${lastCommand}' = lastCommand`);
-            let nextID = g_lastCommandID + 1;
-            if(nextID > g_lastCommandIDmax) nextID = 0;
+            let nextID = getNextLastCommandID()
             const nextCommand = Engine.ConfigDB_GetValue("user", `autocivP.chat.lastCommand${nextID}`);
             if(nextCommand && nextCommand.length){
                 g_lastCommand = nextCommand;
@@ -383,8 +158,7 @@ var autoCompleteText_newMerge = function (guiObject, list)
         }
 
         if(caption == g_lastCommand){
-            let nextID = g_lastCommandID + 1;
-            if(nextID > g_lastCommandIDmax) nextID = 0;
+            let nextID = getNextLastCommandID()
 
             // selfMessage(`86: ${g_lastCommandID}' = g_lastCommandID`);
             const nextCommand = Engine.ConfigDB_GetValue("user", `autocivP.chat.lastCommand${nextID}`);
@@ -545,7 +319,7 @@ var autoCompleteText_newMerge = function (guiObject, list)
 
         // ConfigDB_CreateAndSaveValueA26A27("user", "autocivP.chat.lastCommand", newCaptionText);
         try {
-            saveLastCommand(newCaptionText);
+            saveLastCommand2History(newCaptionText);
         } catch (error) {
             // happens in the lobby console when double press tab 23-0622_2013-26
             error('double pressed tab to fast?')
@@ -575,7 +349,6 @@ var autoCompleteText_newMerge = function (guiObject, list)
     }
 }
 
-// autoCompleteText = autoCompleteText_autocivP
 // autoCompleteText = autoCompleteText_original
 autoCompleteText = autoCompleteText_newMerge
 

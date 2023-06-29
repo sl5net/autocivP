@@ -21,24 +21,43 @@ function translateGlHfWpU2Gg(gg) {
 	return text
 }
 
-function saveLastCommand(lastCommand){
+function getNextLastCommandID(){
+	let nextID = g_lastCommandID + 1
+	if(nextID > g_lastCommandIDmax) nextID = 0
+	return nextID
+}
+function saveLastCommand2History(lastCommand){
 	// selfMessage(`lastCommand = ${lastCommand}`);
+	if(!lastCommand)
+	  return;
+	lastCommand = lastCommand.trim()
 	if(!lastCommand)
 	  return;
 	if(lastCommand == g_lastCommand)
 	  return;
 	// selfMessage(`lastCommand = ${lastCommand}`);
 	let lastCommandID_i = 0;
+	let needChechedIdsFromBeging = (g_lastCommandID == 0) ? false : true
 	for (let i = 0; i <= g_lastCommandIDmax; i++) {
 	  lastCommandID_i = i + g_lastCommandID; // maybe 5 6 7 8 9
-	  if (lastCommandID_i > g_lastCommandIDmax) lastCommandID_i -= g_lastCommandIDmax + 1; // maybe 1 2 3 4
+	  if (lastCommandID_i > g_lastCommandIDmax)
+	  	lastCommandID_i -= g_lastCommandIDmax; // maybe 1 2 3 4
 	  const lastCommand_i = Engine.ConfigDB_GetValue("user", `autocivP.chat.lastCommand${lastCommandID_i}`);
-	  if(!lastCommand_i.length)
-		  break; // selfMessage('is empty');
+	  if(!lastCommand_i.length){
+			if(!needChechedIdsFromBeging)
+		  		break; // selfMessage('is empty');
+			else
+				{
+					lastCommandID_i = - i - g_lastCommandID // so loop start with 0
+					needChechedIdsFromBeging = false
+					continue
+				}
+	  }
+	  selfMessage(`id=${lastCommandID_i} >${lastCommand}< ???? >${lastCommand_i}<`)
 	  if(lastCommand == lastCommand_i) // dont save it twice
 	  {
 		  // selfMessage('dont save it twice');
-		  g_lastCommand = lastCommand;
+		//   g_lastCommand = lastCommand;
 		  return
 	  }
 	}
@@ -49,7 +68,8 @@ function saveLastCommand(lastCommand){
 
 	ConfigDB_CreateAndSaveValueA26A27("user", `autocivP.chat.lastCommand${g_lastCommandID}`, g_lastCommand);
 	ConfigDB_CreateAndSaveValueA26A27("user", `autocivP.chat.g_lastCommandID`, g_lastCommandID);
-	// selfMessage(`753: g_lastCommandID = ${g_lastCommandID} saved`);
+	// selfMessage(`53: g_lastCommandID = ${g_lastCommandID} saved`);
+	selfMessage(`53: ${g_lastCommand} saved`);
 	return;
   }
 
