@@ -272,8 +272,8 @@ var autoCompleteText_newMerge = function (guiObject, list)
         guiObject.caption = '/link';
         return;
     }
-    if(caption == 'whatsAutoPCivMod'){
-        guiObject.caption = whatsAutoPCivMod;
+    if(caption == 'whatsAutocivPMod'){
+        guiObject.caption = whatsAutocivPMod;
         return;
     }
 

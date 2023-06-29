@@ -1,5 +1,5 @@
 const versionOf0ad = Engine.GetEngineInfo().mods[0]['version']; // 0.0.26
-const whatsAutoPCivMod = 'AutoCivP mod is AutoCiv but it also supports profiles during game configuration, jitsi, command-history[tab][tab] and a lot more.';
+const whatsAutocivPMod = 'AutoCivP mod is AutoCiv but it also supports profiles during game configuration, jitsi, command-history[tab][tab] and a lot more.';
 function translateGlHfWpU2Gg(gg) {
 	// btw guiObject is not definded her so you cant use this: sendMessageGlHfWpU2Gg(..., guiObject)
 	let gg2 = ''; // no extra info here probably better (${gg})
@@ -122,10 +122,10 @@ var g_autociv_SharedCommands = {
 			  }
 			}
 	},
-	"whatsAutoPCivMod" : {
+	"whatsAutocivPMod" : {
 		"description": "AutoCivP mod is ",
 		"handler": () =>
-		{	sendMessage(whatsAutoPCivMod)
+		{	sendMessage(whatsAutocivPMod)
 		}
 	},
 	"whatsAutoCivMod" : {
