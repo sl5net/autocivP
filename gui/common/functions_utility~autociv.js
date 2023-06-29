@@ -113,7 +113,10 @@ var autoCompleteText_newMerge = function (guiObject, list)
 
         if(g_lastCommand == lastCommand){
             // selfMessage(`70: '${lastCommand}' = lastCommand`);
-            let nextID = getNextLastCommandID()
+
+            // let nextID = getNextLastCommandID()
+            let nextID = g_lastCommandID
+
             const nextCommand = Engine.ConfigDB_GetValue("user", `autocivP.chat.lastCommand${nextID}`);
             if(nextCommand && nextCommand.length){
                 g_lastCommand = nextCommand;

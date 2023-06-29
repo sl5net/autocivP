@@ -40,6 +40,7 @@ function saveLastCommand2History(lastCommand){
 	let lastCommandID_i = 0
 	let offset = 0
 	let needChechedIdsFromBeging = (g_lastCommandID == 0) ? false : true
+	let isFreeHistory = false
 	for (let i = 0; i <= g_lastCommandIDmax; i++) {
 	  lastCommandID_i = i + g_lastCommandID + offset; // maybe 5 6 7 8 9
 	  if(doDebug) selfMessage(`43: lastCommandID_i = ${lastCommandID_i}`)
@@ -49,6 +50,7 @@ function saveLastCommand2History(lastCommand){
 	  const lastCommand_i = Engine.ConfigDB_GetValue("user", `autocivP.chat.lastCommand${lastCommandID_i}`);
 	  if(!lastCommand_i.length){ // selfMessage('is empty');
 			if(!needChechedIdsFromBeging){
+				isFreeHistory = true
 				break;
 				if(doDebug) selfMessage(`51: lastCommandID_i = ${lastCommandID_i}`)
 			}
@@ -69,10 +71,10 @@ function saveLastCommand2History(lastCommand){
 	  }
 	}
 	// selfMessage(`757 lastCommand = ${lastCommand}`);
-
+	if(!isFreeHistory)
+		lastCommandID_i = getNextLastCommandID()
 	g_lastCommandID = lastCommandID_i;
 	g_lastCommand = lastCommand;
-
 	ConfigDB_CreateAndSaveValueA26A27("user", `autocivP.chat.lastCommand${g_lastCommandID}`, g_lastCommand);
 	ConfigDB_CreateAndSaveValueA26A27("user", `autocivP.chat.g_lastCommandID`, g_lastCommandID);
 	// selfMessage(`53: g_lastCommandID = ${g_lastCommandID} saved`);
