@@ -367,6 +367,8 @@ autociv_InitSharedCommands.pipe = {
 				"mod.enabledmods"
 			);
 			if(!(modEnabledmods.indexOf('boonGUI')>0)){
+				// GetAvailableMods()
+				// warn(GetAvailableMods())
 				warn(`Really want play a replay without 'boonGUI' mod ?`);
 				// warn(`modEnabledmods: ${modEnabledmods} ?`);
 			}
