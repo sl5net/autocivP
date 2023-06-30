@@ -29,7 +29,7 @@ function autociv_patchApplyN()
 
     if (!(method in prefix))
     {
-        let error = new Error("Function not defined: " + method);
+        const error = new Error("Function not defined: " + method);
         warn(error.message)
         warn(error.stack)
         return;

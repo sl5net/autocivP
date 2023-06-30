@@ -27,6 +27,7 @@ function autociv_initCheck() {
     reasons: new Set(),
     showReadme: false,
     showSuggestDefaultChanges: false,
+    showAutoFixModsOrder: true,
   };
 
   // Check settings
@@ -100,6 +101,35 @@ autociv_patchApplyN("init", function (target, that, args) {
       [() => {}, () => {}]
     );
   }
+  if (state.showAutoFixModsOrder) {
+    let message = `
+Mods sometimes work better when enabled in a special order.
+
+Example of Jun  2023:
+errors with boonGui when  enabled late but
+nearly no errors when autocivP or autociv are enabled later.
+in other words
+boonGUI autociv... works better then autociv... boonGUI at the moment (Jun 2023)
+
+Do you want autofix some think (no guaranty for all)?
+        `;
+
+    messageBox(
+      500,
+      300,
+      message,
+      "AutoCivP mod autoOrderFix notice",
+      ["Ok, change", "No"],
+      [
+        () => {
+          warn('not implemented at the moment. pleas ask/remindMe later for it 23-0630_1227-13')
+          config.save();
+        },
+        () => {},
+      ]
+    );
+  }
+
 
   if (state.showSuggestDefaultChanges) {
     let message = `
@@ -137,3 +167,131 @@ hotkey.session.queueunit.autoqueueon = "Alt+Q"
 
   return target.apply(that, args);
 });
+
+
+
+
+
+
+
+// warn('check_modProfile_Settings()');
+
+
+function saveThisModProfile(nr, autoLabelManually){
+const modsFromUserCfg_const = Engine.ConfigDB_GetValue("user", "mod.enabledmods");
+const name = "modProfile.p" + nr
+const modProfile = Engine.ConfigDB_GetValue("user", name);
+const nameLabel = "modProfile.p" + nr + "label"
+
+// warn("check if ModProfiles has changed")
+
+if(!modProfile){
+// warn("133")
+let clean = "";
+switch(nr){
+  case 0: // p0
+    clean = modsFromUserCfg_const.replaceAll(/[^\w\d\-]+/g,' ');
+    break;
+  case 1:
+    clean = "autociv LocalRatings-master better_summary_charts";
+    break;
+  case 2:
+    clean = "community-mod feldmap autociv better_summary_charts";
+    break;
+  case 3:
+    clean = "LocalRatings-master better_summary_charts";
+    break;
+  case 4:
+    clean = "community-maps-2 kush-extreme 10ad autociv";
+    break;
+  case 4:
+    clean = "mainland-twilight autociv LocalRatings-master ";
+    break;
+}
+clean = clean.replaceAll(/\b((mod\s+public)|autocivP)\b\s*/g,''); // mod\s+public is default. boring to save it
+
+
+Engine.ConfigDB_WriteValueToFile("user", name, clean, "config/user.cfg"); // fill it if its empty
+
+const cleanLabel = clean.replaceAll(/([^ ]{3})[^ ]+/g,'$1');
+Engine.ConfigDB_WriteValueToFile("user", nameLabel, cleanLabel, "config/user.cfg"); // fill it if its empty
+Engine.ConfigDB_CreateValue("user", nameLabel, cleanLabel);
+}else{
+let clean = modProfile.replaceAll(/[^\w\d\-]+/g,' ');
+clean = clean.replaceAll(/\b((mod\s+public)|autocivP)\b\s*/g,''); // mod\s+public is default. boring to save it
+
+// warn("146:" + modProfile)
+// warn("147:" + clean)
+if(clean != modProfile){ // correct profile if necesarry
+  Engine.ConfigDB_WriteValueToFile("user", name, clean, "config/user.cfg"); //
+  Engine.ConfigDB_CreateValue("user", name, clean); // to see it early in the memory
+  warn("modProfile.p" + nr + ' saved with =' + clean + '=');
+
+
+}
+
+
+if(!autoLabelManually){
+    const cleanLabel = clean.replaceAll(/([^ ]{3})[^ ]+/g,'$1');
+    Engine.ConfigDB_WriteValueToFile("user", nameLabel, cleanLabel, "config/user.cfg"); // fill it if its empty
+    Engine.ConfigDB_CreateValue("user", nameLabel, cleanLabel);
+
+    warn("autoLabel" + nr + ' saved with =' + cleanLabel + '=');
+}
+
+}
+}
+function enableThisModProfile(nr){
+if(Engine.ConfigDB_GetValue("user", "modProfile.p" + nr + "enabled")== "true"){
+const modsFromUserCfg_const = Engine.ConfigDB_GetValue("user", "mod.enabledmods");
+const profKey = "modProfile.p" + nr;
+const modProfile = Engine.ConfigDB_GetValue("user", profKey);
+let clean = "mod public " + modProfile.replaceAll(/\b((mod\s+public)|autocivP)\b\s*/g,' '); // mod\s+public is default. boring to save it
+clean = "mod public " + modProfile.replaceAll(/\b(mod\s+public)\b\s*/g,'') + " autocivP" ; // mod\s+public is default. boring to save it in normal profiles. but dont forget it by enaable mods
+if(clean != modsFromUserCfg_const){
+  warn("save:" + nr);
+  warn(clean);
+  error("RESTART NECESSARY");
+  warn(clean);
+  warn("is enabled next when 0ad is started.");
+  // warn(modsFromUserCfg_const);
+  // warn("_____________________");
+  Engine.ConfigDB_WriteValueToFile("user", "modProfile.backup", modsFromUserCfg_const, "config/user.cfg");
+  Engine.ConfigDB_WriteValueToFile("user", "mod.enabledmods", clean, "config/user.cfg");
+  // return true;
+  // state.needsRestart = true;
+  // configSaveToMemoryAndToDisk(key, settings[key]);
+  Engine.ConfigDB_CreateValue("user", "mod.enabledmods", clean);
+  // state.reasons.add("New mode-profile settings added.");
+
+}else{
+  // warn("dont save " + nr);
+}
+return true;
+}
+return false;
+}
+
+function check_modProfileSelector_settings(){
+// Check settings
+const autoLabelManually = (Engine.ConfigDB_GetValue("user", "modProfile.autoLabelManually") == "true");
+[...Array(6)].forEach(( _, k0_5 ) => saveThisModProfile(k0_5, autoLabelManually));
+// return false;
+let k0_5 = -1;
+while(++k0_5 <= 5){
+let nameOfCheckBox = "modProfile.p" + k0_5 + "enabled";
+if(Engine.ConfigDB_GetValue("user", nameOfCheckBox) == "true"){
+  if(enableThisModProfile(k0_5)){
+    warn("" + k0_5 + " was enabled as your default mod-configuration.");
+    Engine.ConfigDB_WriteValueToFile("user", nameOfCheckBox, "false", "config/user.cfg");
+    Engine.ConfigDB_CreateValue("user", nameOfCheckBox, "false");
+    warn(k0_5 + " checkBox disabled (if enabled have conflict with the normal mod selector)");
+    return true;
+  };
+  break;
+}
+}
+return false;
+}
+
+check_modProfileSelector_settings(); // info

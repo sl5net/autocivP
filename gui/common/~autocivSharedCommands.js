@@ -1,7 +1,22 @@
 var gameState = "lobby"; // Initial state // // TODO: howto set it like this? g_GameData = data // 	g_GameData.gui.isInGame
 
 
-// var g_GameData = data;
+// Engine.GetCurrentReplayDirectory
+// GetEngineInfo.gameState.data
+// if (false && Engine.HasReplayInterface()) {
+	// Replay is running
+	// Your code here for handling when a replay is running
+	// selfMessage('in replay')
+//   } else {
+	// Replay is not running
+	// Your code here for handling when a replay is not running
+	// selfMessage('not in replay')
+//   }
+
+// var g_GameData = GetEngineInfo().data.stat; // not defined
+
+
+
 const versionOf0ad = Engine.GetEngineInfo().mods[0]['version']; // 0.0.26
 const whatsAutocivPMod = 'AutoCivP mod is AutoCiv but it also supports profiles during game configuration, jitsi, command-history[tab][tab] and a lot more.';
 function translateGlHfWpU2Gg(gg) {
@@ -346,7 +361,18 @@ autociv_InitSharedCommands.pipe = {
 	},
 	"ingame": key =>
 	{
+		if(gameState != "ingame" && g_IsReplay){  // default it will warn
+			const modEnabledmods = Engine.ConfigDB_GetValue(
+				"user",
+				"mod.enabledmods"
+			);
+			if(!(modEnabledmods.indexOf('boonGUI')>0)){
+				warn(`Really want play a replay without 'boonGUI' mod ?`);
+				// warn(`modEnabledmods: ${modEnabledmods} ?`);
+			}
+		}
 		gameState = "ingame";
+
 		g_NetworkCommands["/" + key] = text =>
 		{
 			saveLastCommand2History(`/${key} ${text}`)

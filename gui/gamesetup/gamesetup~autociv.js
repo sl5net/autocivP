@@ -115,7 +115,7 @@ function warnModIsNotEnabled(){
 		ConfigDB_CreateAndSaveValueA26A27("user", key, warnThisModIsNotEnabled);
 	}
 	if(warnThisModIsNotEnabled != 'false'){  // default it will warn
-		var modEnabledmods = Engine.ConfigDB_GetValue(
+		const modEnabledmods = Engine.ConfigDB_GetValue(
 			"user",
 			"mod.enabledmods"
 		);
