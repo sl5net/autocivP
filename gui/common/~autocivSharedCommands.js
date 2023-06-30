@@ -35,6 +35,8 @@ function translateGlHfWpU2Gg(gg) {
 		text =  `You too!${gg2}`;
 	if(gg == 're')
 		text =  `Again?${gg2}`;
+	if(gg == '<3')
+		text =  `♥${gg2}`;
 // if(text)
 	// 	sendMessage(`${text}`);
 	return text
