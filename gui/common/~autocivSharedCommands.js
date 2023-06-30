@@ -1,3 +1,7 @@
+var gameState = "lobby"; // Initial state // // TODO: howto set it like this? g_GameData = data // 	g_GameData.gui.isInGame
+
+
+// var g_GameData = data;
 const versionOf0ad = Engine.GetEngineInfo().mods[0]['version']; // 0.0.26
 const whatsAutocivPMod = 'AutoCivP mod is AutoCiv but it also supports profiles during game configuration, jitsi, command-history[tab][tab] and a lot more.';
 function translateGlHfWpU2Gg(gg) {
@@ -317,6 +321,7 @@ function autociv_InitSharedCommands()
 autociv_InitSharedCommands.pipe = {
 	"lobby": key =>
 	{
+		gameState = "lobby";
 		ChatCommandHandler.prototype.ChatCommands[key] = {
 			"description": g_autociv_SharedCommands[key].description,
 			"handler": text =>
@@ -332,6 +337,7 @@ autociv_InitSharedCommands.pipe = {
 	},
 	"gamesetup": key =>
 	{
+		gameState = "gamesetup";
 		g_NetworkCommands["/" + key] = text =>
 		{
 			// selfMessage(`334: SharedCommands= ${key} ${text}`)
@@ -342,6 +348,7 @@ autociv_InitSharedCommands.pipe = {
 	},
 	"ingame": key =>
 	{
+		gameState = "ingame";
 		g_NetworkCommands["/" + key] = text =>
 		{
 			// selfMessage(`334: SharedCommands= ${key} ${text}`)

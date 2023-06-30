@@ -20,7 +20,6 @@ function autociv_initBots()
 	botManager.setMessageInterface("ingame");
 	autociv_InitSharedCommands();
 }
-
 function autociv_addVersionLabel()
 {
 	let label = Engine.GetGUIObjectByName("buildTimeLabel");

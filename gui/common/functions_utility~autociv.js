@@ -236,6 +236,12 @@ var autoCompleteText_newMerge = function (guiObject, list)
 
     // selfMessage('caption = ' + caption)
     if(caption == 'j'){
+        if(gameState != "ingame"){
+            let text = `to use jiti in you team: 1. open Ally-Chat 2. write j<tab> then enter. 3. write li[tab] or /link`
+            selfMessage(text)
+            return
+        }
+
         if (g_linkLongTeam == null) {
             let linkidShort = Date.now().toString().substring(10);
             // not open this link always. if you have it already probably
