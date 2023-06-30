@@ -1,7 +1,7 @@
 {
   "name": "autocivP",
-  "version": "1.0.5",
-  "label": "AutocivP mod 0 A.D. enhancer. Author: nani(99%),seeh(1%)",
+  "version": "1.0.7",
+  "label": "AutocivP mod 0 A.D. enhancer. Author: nani(99%),seeh(.99%),DerekO(0.1%)",
   "description": "Features: game profiles, chat link opener by li<tab>, etc. Compatible with vanilla.",
   "ignoreInCompatibilityChecks": true,
   "dependencies": ["0ad>=0.0.26","0ad<=0.0.27"],
