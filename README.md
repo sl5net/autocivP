@@ -4,13 +4,13 @@ Thanks to Nani ([99% source is from Nani](https://github.com/nanihadesuka/autoci
 
 Thanks to all the 0 A.D. players who found it useful.
 
-### some goodies
-- some more chat commands
-- jitsi-chat
+### Features
+- Wider Array of chat commands
+- Jitsi  (Voice Chat)
 - map-profiles
-- and some other little things
-
-## some goodies planed
+- and More...
+- 
+## Planned Features 
 
 - setup all defaults by type into the chat:
   - feature value
