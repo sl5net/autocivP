@@ -27,7 +27,7 @@ function autociv_initCheck() {
     reasons: new Set(),
     showReadme: false,
     showSuggestDefaultChanges: false,
-    showAutoFixModsOrder: true,
+    showAutoFixModsOrder: false,
   };
 
   // Check settings
@@ -264,7 +264,10 @@ function enableThisModProfile(nr) {
     if (clean != modsFromUserCfg_const) {
       warn("save:" + nr);
       warn(clean);
-      error("_ RESTART NECESSARY _");
+      error("RESTART NECESSARY (seeh, 23-0630_1517-03)");
+      error("RESTART NECESSARY (seeh, 23-0630_1517-03)");
+      error("RESTART NECESSARY (seeh, 23-0630_1517-03)");
+      error("RESTART NECESSARY (seeh, 23-0630_1517-03)");
 
       // function RestartEngine(): any;
 
@@ -272,6 +275,12 @@ function enableThisModProfile(nr) {
       warn("is enabled next when 0ad is started.");
       // warn(modsFromUserCfg_const);
       // warn("_____________________");
+      // Engine.ConfigDB_WriteValueToFile(
+      //   "user",
+      //   "modProfile.restartNext",
+      //   "true",
+      //   "config/user.cfg"
+      // );
       Engine.ConfigDB_WriteValueToFile(
         "user",
         "modProfile.backup",
@@ -288,9 +297,43 @@ function enableThisModProfile(nr) {
       // state.needsRestart = true;
       // configSaveToMemoryAndToDisk(key, settings[key]);
       Engine.ConfigDB_CreateValue("user", "mod.enabledmods", clean);
+
+      // Engine.SetMods(clean);
+
       // state.reasons.add("New mode-profile settings added.");
 
-      Engine.Exit(1)
+      // Engine.RestartInAtlas(1) // works. it start atlas
+      // Engine.RestartInEngine(1) // is not a function
+      // Engine.RestartEngine(1) // is not a funtion
+      // Engine.RestartEngine.call(1) // is undefined
+
+
+      // let message = `
+      // Mods changed
+      // Restart Engine ?`;
+      //     messageBox(
+      //       500,
+      //       300,
+      //       message,
+      //       "AutoCivP mod autoOrderFix notice",
+      //       ["Ok, change", "No"],
+      //       [
+      //         () => {
+      //           Engine.Restart() // works
+      //         },
+      //         () => {},
+      //       ]
+      //     );
+        try {
+          Engine.Restart() // works sometimes Engine. and sometimes: Restart is not a function
+        } catch (error) {
+          Engine.Exit(1) // works
+        }
+
+
+
+
+      // Engine.Exit(1) // works
 
     } else {
       // warn("dont save " + nr);
