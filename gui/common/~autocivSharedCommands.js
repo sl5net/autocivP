@@ -36,10 +36,8 @@ function translateGlHfWpU2Gg(gg) {
 	if(gg == 're')
 		text =  `Again?${gg2}`;
 	if(gg == '<3')
-		text =  `♥${gg2}`;
-// if(text)
-	// 	sendMessage(`${text}`);
-	return text
+		text =  '♥';
+	return text;
 }
 
 function getNextLastCommandID(){
