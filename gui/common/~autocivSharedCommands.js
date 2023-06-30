@@ -328,7 +328,6 @@ autociv_InitSharedCommands.pipe = {
 			{
 				if(key == 'jitsi') // long text a critical in the looby. better not so many commands there with long texts
 					return true
-				// selfMessage(`334: SharedCommands= ${key} ${text}`)
 				g_autociv_SharedCommands[key].handler(text)
 				selfMessage(`325: SharedCommands= ${text}`)
 				return true
@@ -340,7 +339,6 @@ autociv_InitSharedCommands.pipe = {
 		gameState = "gamesetup";
 		g_NetworkCommands["/" + key] = text =>
 		{
-			// selfMessage(`334: SharedCommands= ${key} ${text}`)
 			saveLastCommand2History(`/${key} ${text}`)
 			g_autociv_SharedCommands[key].handler(text)
 			return true
@@ -351,7 +349,6 @@ autociv_InitSharedCommands.pipe = {
 		gameState = "ingame";
 		g_NetworkCommands["/" + key] = text =>
 		{
-			// selfMessage(`334: SharedCommands= ${key} ${text}`)
 			saveLastCommand2History(`/${key} ${text}`)
 			g_autociv_SharedCommands[key].handler(text)
 			return true
