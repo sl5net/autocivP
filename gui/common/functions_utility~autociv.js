@@ -257,7 +257,7 @@ var autoCompleteText_newMerge = function (guiObject, list)
         }
         //   selfMessage(Engine.team[0]); // state is not defined
           caption = g_linkLongTeam;
-          const inviteJitsiText =  `Please open following link for team-audio-chat in your web browser. If you have the mod AutoCiv open it by writing /link<enter>. Only a web browser is required. ${g_linkLongTeam} `;
+          const inviteJitsiText =  `Please open following link for team-audio-chat in your web browser. type li<tab> or /link<enter>. Only a web browser is required. ${g_linkLongTeam} `;
         //   guiObject.caption = '/link'; //  inviteJitsiText;
           guiObject.caption = inviteJitsiText;
         //   sendMessage(`${inviteJitsiText}`); // TODO: it send to all not only to Allied
