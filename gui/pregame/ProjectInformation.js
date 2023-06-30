@@ -37,7 +37,7 @@ var g_ProjectInformation = {
 		 + setStringTags(translate(modsString.trim(), { "font": "sans-16" }))
 		 + "\n"
 	}
-};mod
+};
 var g_CommunityButtons = [
 
 	{

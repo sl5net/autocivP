@@ -219,22 +219,22 @@ function saveThisModProfile(nr, autoLabelManually) {
         clean = modsFromUserCfg_const.replaceAll(/[^\w\d\-]+/g, " ");
         break;
       case 1:
-        clean = "autociv LocalRatings-master better_summary_charts";
+        clean = "LocalRatings proGUI";
         break;
       case 2:
-        clean = "community-mod feldmap autociv better_summary_charts";
+        clean = "community-mod feldmap  LocalRatings proGUI";
         break;
       case 3:
-        clean = "LocalRatings-master better_summary_charts";
+        clean = "LocalRatings boonGUI";
         break;
       case 4:
-        clean = "community-maps-2 kush-extreme 10ad autociv";
+        clean = "community-maps-2 kush-extreme 10ad";
         break;
       case 4:
-        clean = "mainland-twilight autociv LocalRatings-master ";
+        clean = "mainland-twilight LocalRatings";
         break;
     }
-    clean = clean.replaceAll(/\b((mod\s+public)|autocivP)\b\s*/g, ""); // mod\s+public is default. boring to save it
+    clean = clean.replaceAll(/\b((mod\s+public)|autociv|autocivP)\b\s*/g, ""); // mod\s+public is default. boring to save it
 
     Engine.ConfigDB_WriteValueToFile("user", name, clean, "config/user.cfg"); // fill it if its empty
 
@@ -248,7 +248,7 @@ function saveThisModProfile(nr, autoLabelManually) {
     Engine.ConfigDB_CreateValue("user", nameLabel, cleanLabel);
   } else {
     let clean = modProfile.replaceAll(/[^\w\d\-]+/g, " ");
-    clean = clean.replaceAll(/\b((mod\s+public)|autocivP)\b\s*/g, ""); // mod\s+public is default. boring to save it
+    clean = clean.replaceAll(/\b((mod\s+public)|autociv|autocivP)\b\s*/g, ""); // mod\s+public is default. boring to save it
 
     // warn("146:" + modProfile)
     // warn("147:" + clean)
@@ -409,4 +409,4 @@ function check_modProfileSelector_settings() {
   return false;
 }
 
-check_modProfileSelector_settings(); // info
+check_modProfileSelector_settings();
