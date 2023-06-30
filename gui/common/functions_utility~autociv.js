@@ -282,9 +282,7 @@ var autoCompleteText_newMerge = function (guiObject, list)
         guiObject.caption = whatsAutocivPMod;
         return;
     }
-
     // selfMessage('caption.toLowerCase() = ' + caption.toLowerCase());
-
 
     if(caption.toLowerCase() == 'hiall'){
         const key = "autocivP.gamesetup.helloAll";

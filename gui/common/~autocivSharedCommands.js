@@ -196,6 +196,15 @@ var g_autociv_SharedCommands = {
 			Engine.SendNetworkChat(text);
 		}
 	},
+	"li": {
+		"description": "use of jitsi in the game",
+		"handler": () =>
+		{
+			let text = ''
+			text = `write li<tab> or /link<enter> to open a link`;
+			Engine.SendNetworkChat(text);
+		}
+	},
 	"mute": {
 		"description": "Mute player.",
 		"handler": (player) =>
