@@ -34,6 +34,11 @@ function autociv_initCheck() {
   {
     let settings = Engine.ReadJSONFile("moddata/autocivP_default_config.json"); // https://www.convertsimple.com/convert-ini-to-json/ if u want use your user.cfg (seeh, 23-0619_1559-06 )
     // Reset all autociv settings to default. Custom autociv settings added won't be affected.
+
+
+    if(config.get('modProfile.showAutoFixModsOrder') === "true")
+      state.showAutoFixModsOrder = true
+
     if (config.get("autociv.settings.reset.all2P") === "true")
       settings = Engine.ReadJSONFile("moddata/autocivP_default_config.json"); // https://www.convertsimple.com/convert-ini-to-json/ if u want use your user.cfg (seeh, 23-0619_1559-06 )
     if (config.get("autociv.settings.reset.all") === "true") {
@@ -101,7 +106,31 @@ autociv_patchApplyN("init", function (target, that, args) {
       [() => {}, () => {}]
     );
   }
-  if (state.showAutoFixModsOrder) {
+
+
+  const modsFromUserCfg_const = Engine.ConfigDB_GetValue(
+    "user",
+    "mod.enabledmods"
+  );
+
+  const modsBackup  = Engine.ConfigDB_GetValue(
+    "user",
+    "modProfile.backup "
+  );
+
+  const posboonGUI = modsFromUserCfg_const.indexOf('boonGUI')
+  const posautociv = modsFromUserCfg_const.indexOf('autociv')
+
+
+  if (false && state.showAutoFixModsOrder
+    && posboonGUI > posautociv
+    ) {
+
+      ConfigDB_CreateAndSaveValueA26A27('mod.enabledmods',modsBackup)
+
+      error('posboonGUI > posautociv');
+
+
     let message = `
 Mods sometimes work better when enabled in a special order.
 

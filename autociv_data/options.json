@@ -252,6 +252,12 @@
 				"label": "edit autoLabel manually",
 				"tooltip": "default: autoLabel will be created automatically\n with the next game (firt 3 letter of each mod)\n if you have changed the mod-config in its line",
 				"config": "modProfile.autoLabelManually"
+			},
+			{
+				"type": "boolean",
+				"label": "show autoFixModsOrder (EXPERIMENTAL)",
+				"tooltip": "Mods sometimes work better when enabled in a special order ",
+				"config": "modProfile.showAutoFixModsOrder"
 			}
 		]
 	}
