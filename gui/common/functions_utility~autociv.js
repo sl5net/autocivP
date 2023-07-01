@@ -183,60 +183,22 @@ var autoCompleteText_newMerge = function (guiObject, list)
 
     const doTabReplacmentWor_gl_hf_gg_wp_stuff = true; // usefull for debugging maybe
     if(doTabReplacmentWor_gl_hf_gg_wp_stuff){
-            /*
-            erros when i not host:
-
-    ERROR: Errors executing script event "Tab"
-    ERROR: JavaScript error: gui/common/functions_utility~autociv.js line 107
-    sendMessageGlHfWpU2Gg is not defined
-    autoCompleteText@gui/common/functions_utility~autociv.js:107:9
-    ChatInputPanel.prototype.autocomplete@gui/lobby/LobbyPage/Chat/ChatInputPanel~autociv.js:13:21
-    ERROR: Errors executing script event "Tab"
-
-            */
-            // selfMessage(`161: caption = ${caption}`);
-            // if(caption == 'gl' || caption == 'hf'){
-            //     // guiObject.caption = 'Have fun!(hf).'; //  and invite your friends
-            //     guiObject.caption = 'Have fun'; //  and invite your friends
-            //     captionTime1 = caption.toString();
-            // }else if(caption == 'gg'){
-            //     // selfMessage(`166: caption = ${caption}`);
-            //     // guiObject.caption = 'Well played(wp)';
-            //     guiObject.caption = 'Good game';
-            //     captionTime1 = caption;
-            // }else if(caption == 'wp'){
-            //     // guiObject.caption = 'Well played(wp)'; //  Again?(re)
-            //     guiObject.caption = 'Well played';
-            //     captionTime1 = caption;
-            // }else if(caption == 're'){
-            //     // guiObject.caption = 'Well played(wp)'; //  Again?(re)
-            //     guiObject.caption = 'Again?'; //  Again?(re)
-            //     captionTime1 = caption;
-            // }else if(caption == 'u2'){
-            //     guiObject.caption = 'You too';
-            //     captionTime1 = caption;
-            // }
-            // captionTime1 = caption.toString();
-            // got error as obser but worked stoff before worked very nice. so let use a try catch or check if its observer:  (se, 23-0618_1531-46)
-
-            // try {
                 let text = translateGlHfWpU2Gg(caption.toString());
                 if(text.length){
                     guiObject.caption = text;
                     // selfMessage('always ?') // no not always. works like expected 23-0628_0232-14
                     return;
                 }
-            // } catch (error) {
-                // not needet to send. its also good to have changed the captio only 23-0618_1532-39
-            // }
-             // 23-0618_1452-21 return is needet. otherwise guiObject.caption = ... changes nothing
-
-            // return; // <== ver dangeoous then eventually all other commands dont work
         }
 
-    // selfMessage('caption = ' + caption)
-    if(caption == 'j'){
-        if(gameState != "ingame"){
+        // "Select chat addressee." "Everyone"=0 "Allies"=1 Enemies=2 Observers=3
+    const chatAddressBox = Engine.GetGUIObjectByName("chatAddressee"); // found this name in binaries/data/mods/public/gui/session/chat/chat_window.xml
+
+
+
+    if(caption == 'j' ){ // i is Allies
+
+        if(gameState != "ingame" || chatAddressBox.selected != 1){
             let text = `to use jiti in you team: 1. open Ally-Chat 2. write j<tab> then enter. 3. write li<tab> or /link`
             selfMessage(text)
             return
@@ -547,11 +509,11 @@ function saveThisModProfile(nr, autoLabelManually) {
           try {
             Engine.Restart() // works sometimes Engine. and sometimes: Restart is not a function
           } catch (error) {
+            warn(error.message)
+            warn(error.stack)
+            warn('well done. Please start 0ad now again.')
             Engine.Exit(1) // works
           }
-
-
-
 
         // Engine.Exit(1) // works
 

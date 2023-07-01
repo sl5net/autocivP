@@ -264,13 +264,10 @@ enableButtons = function ()
 
 		if(false) // mot necesary.
 		  try {
-			Engine.Restart();
+			Engine.Restart()
 		  } catch (error) {
-			Engine.Exit(1);
+			Engine.Exit(1)
 		  }
-
-
-	// 	});
 };
 
 	Engine.GetGUIObjectByName("saveChanges").onPress = combinedHandler;
