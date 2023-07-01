@@ -262,7 +262,7 @@ enableButtons = function ()
 		// warn( ' implement here the source mod changed source - code ' )
 		// warn( 'ok. gui/options/options~autociv.js - Engine.GetGUIObjectByName("saveChanges").onPress - all fine no problem - please resart manually if needet ')
 
-		if(false)
+		if(false) // mot necesary.
 		  try {
 			Engine.Restart();
 		  } catch (error) {

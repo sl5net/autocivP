@@ -764,6 +764,8 @@ function setMapTypeFilterNameBiome(name, biome, type = "random", filter = "defau
 function setDefaultsforPopmaxAlliedviewRatingTreasuresNomadExploration(sendMessageToAll = true){ // forPopmaxAlliedviewRatingTreasuresNomadExploration
   // this function also is(should) always used when a map/profile config is changing 23-0624_1433-08
 
+  selfMessage('BTW: Mapsize is 128 tiny, 192 small,  256 normal, 320 is medium')
+
   g_GameSettings.mapExploration.allied = true; // woks :)  AlliedView
   if(sendMessageToAll)sendMessage('AlliedView = true');
 
