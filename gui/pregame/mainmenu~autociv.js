@@ -126,7 +126,7 @@ autociv_patchApplyN("init", function (target, that, args) {
     && posboonGUI > posautociv
     ) {
 
-      ConfigDB_CreateAndSaveValueA26A27('mod.enabledmods',modsBackup)
+      ConfigDB_CreateAndSaveValueA26A27("user", 'mod.enabledmods',modsBackup)
 
       error('posboonGUI > posautociv');
 
@@ -206,6 +206,7 @@ function saveThisModProfile(nr, autoLabelManually) {
     "mod.enabledmods"
   );
   const name = "modProfile.p" + nr;
+  const isEmptyAvalueAllowed = true
   const modProfile = Engine.ConfigDB_GetValue("user", name);
   const nameLabel = "modProfile.p" + nr + "label";
 
@@ -219,57 +220,41 @@ function saveThisModProfile(nr, autoLabelManually) {
         clean = modsFromUserCfg_const.replaceAll(/[^\w\d\-]+/g, " ");
         break;
       case 1:
-        clean = "LocalRatings proGUI";
+        clean = "LocalRatings proGUI feldmap";
         break;
       case 2:
-        clean = "community-mod feldmap  LocalRatings proGUI";
+        clean = "community-mod feldmap LocalRatings proGUI";
         break;
       case 3:
-        clean = "LocalRatings boonGUI";
+        clean = "LocalRatings boonGUI feldmap";
         break;
       case 4:
         clean = "community-maps-2 kush-extreme 10ad";
         break;
       case 4:
-        clean = "mainland-twilight LocalRatings";
+        clean = "mainland-twilight LocalRatings feldmap";
         break;
     }
-    clean = clean.replaceAll(/\b((mod\s+public)|autociv|autocivP)\b\s*/g, ""); // mod\s+public is default. boring to save it
 
-    Engine.ConfigDB_WriteValueToFile("user", name, clean, "config/user.cfg"); // fill it if its empty
+    clean = clean.replaceAll(/\b((mod\s+public)|autociv|autocivP)\b\s*/g, ""); // mod\s+public is default. boring to save it
+    ConfigDB_CreateAndSaveValueA26A27("user", name,clean, isEmptyAvalueAllowed)
 
     const cleanLabel = clean.replaceAll(/([^ ]{3})[^ ]+/g, "$1");
-    Engine.ConfigDB_WriteValueToFile(
-      "user",
-      nameLabel,
-      cleanLabel,
-      "config/user.cfg"
-    ); // fill it if its empty
-    Engine.ConfigDB_CreateValue("user", nameLabel, cleanLabel);
+    ConfigDB_CreateAndSaveValueA26A27("user", nameLabel,cleanLabel, isEmptyAvalueAllowed)
+
   } else {
     let clean = modProfile.replaceAll(/[^\w\d\-]+/g, " ");
     clean = clean.replaceAll(/\b((mod\s+public)|autociv|autocivP)\b\s*/g, ""); // mod\s+public is default. boring to save it
-
-    // warn("146:" + modProfile)
-    // warn("147:" + clean)
+    const showDebugWarning = false
     if (clean != modProfile) {
       // correct profile if necesarry
-      Engine.ConfigDB_WriteValueToFile("user", name, clean, "config/user.cfg"); //
-      Engine.ConfigDB_CreateValue("user", name, clean); // to see it early in the memory
-      warn("modProfile.p" + nr + " saved with =" + clean + "=");
+      ConfigDB_CreateAndSaveValueA26A27("user", name,clean, isEmptyAvalueAllowed)
+      if(showDebugWarning)warn("modProfile.p" + nr + " saved with =" + clean + "=");
     }
-
     if (!autoLabelManually) {
       const cleanLabel = clean.replaceAll(/([^ ]{3})[^ ]+/g, "$1");
-      Engine.ConfigDB_WriteValueToFile(
-        "user",
-        nameLabel,
-        cleanLabel,
-        "config/user.cfg"
-      ); // fill it if its empty
-      Engine.ConfigDB_CreateValue("user", nameLabel, cleanLabel);
-
-      warn("autoLabel" + nr + " saved with =" + cleanLabel + "=");
+      ConfigDB_CreateAndSaveValueA26A27("user", nameLabel,cleanLabel, isEmptyAvalueAllowed)
+      if(showDebugWarning)warn("autoLabel" + nr + " saved with =" + cleanLabel + "=");
     }
   }
 }
@@ -310,22 +295,12 @@ function enableThisModProfile(nr) {
       //   "true",
       //   "config/user.cfg"
       // );
-      Engine.ConfigDB_WriteValueToFile(
-        "user",
-        "modProfile.backup",
-        modsFromUserCfg_const,
-        "config/user.cfg"
-      );
-      Engine.ConfigDB_WriteValueToFile(
-        "user",
-        "mod.enabledmods",
-        clean,
-        "config/user.cfg"
-      );
+
+      ConfigDB_CreateAndSaveValueA26A27("user", "modProfile.backup",modsFromUserCfg_const)
+      ConfigDB_CreateAndSaveValueA26A27("user", "mod.enabledmods",clean)
       // return true;
       // state.needsRestart = true;
       // configSaveToMemoryAndToDisk(key, settings[key]);
-      Engine.ConfigDB_CreateValue("user", "mod.enabledmods", clean);
 
       // Engine.SetMods(clean);
 
@@ -390,13 +365,7 @@ function check_modProfileSelector_settings() {
     if (Engine.ConfigDB_GetValue("user", nameOfCheckBox) == "true") {
       if (enableThisModProfile(k0_5)) {
         warn("" + k0_5 + " was enabled as your default mod-configuration.");
-        Engine.ConfigDB_WriteValueToFile(
-          "user",
-          nameOfCheckBox,
-          "false",
-          "config/user.cfg"
-        );
-        Engine.ConfigDB_CreateValue("user", nameOfCheckBox, "false");
+        ConfigDB_CreateAndSaveValueA26A27("user", nameOfCheckBox,"false")
         warn(
           k0_5 +
             " checkBox disabled (if enabled have conflict with the normal mod selector)"

@@ -36,7 +36,21 @@ function translateGlHfWpU2Gg(gg) {
 	if(gg == 're')
 		text =  `Again?${gg2}`;
 	if(gg == '<3')
-		text =  '♥';
+		text =  '♡'; // ♡works ♥works ❤dont work
+	if(gg == ':-)')
+		text =  '☺'; // https://unicodeemoticons.com/
+	if(gg == ':)')
+		text =  '☻'; // https://unicodeemoticons.com/
+	// if(gg == ':tea') // dont work
+	// 	text =  '☕'; // https://unicodeemoticons.com/
+	if(gg == ':left')
+		text =  '☜'; // https://unicodeemoticons.com/
+	if(gg == ':right')
+		text =  '☞'; // https://unicodeemoticons.com/
+	// if(gg == ':clock') // dont work
+	// 	text =  '⌚'; // https://unicodeemoticons.com/
+	// if(gg == ':snake') // dont work
+	// 	text =  'ڪ'; // https://unicodeemoticons.com/
 	return text;
 }
 

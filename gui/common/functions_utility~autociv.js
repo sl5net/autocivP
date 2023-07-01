@@ -387,12 +387,10 @@ function brightenedColor(color, brightnessThreshold = 110)
     return autociv_ColorsSeenBefore[key];
 }
 
-function ConfigDB_CreateAndSaveValueA26A27(user, key, value){
-
-
+function ConfigDB_CreateAndSaveValueA26A27(user, key, value, isEmptyAvalueAllowed = false){
 
     // ConfigDB_CreateAndSaveValue is not a function error in Version a26 but in a27 23-0605_1920-25
-    if(!user || !key || value.length <= 0  ){
+    if(!user || !key || ( !isEmptyAvalueAllowed && value.length <= 0 ) ){
         // error('23-0625_0609-52');
         warn(`!user=${user} || !key=${key} || !value=${value}`)
         return false;

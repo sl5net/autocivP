@@ -2,7 +2,8 @@
  * IMPORTANT: Remember to update session/top_panel/BuildLabel.xml in sync with this.
  */
 let modsString = '';
-for (let [key, value] of Object.entries(Engine.GetEngineInfo().mods)) {
+const modsObj = Engine.GetEngineInfo().mods
+for (let [key, value] of Object.entries(modsObj)) {
 		if(key<1) continue;
 		for (let [key2, value2] of Object.entries(Engine.GetEngineInfo().mods[key])) {
 			if(key2 != 'name' && key2 != 'version') continue;
@@ -38,6 +39,30 @@ var g_ProjectInformation = {
 		 + "\n"
 	}
 };
+
+
+// var g_ProjectInformation = {
+// 	"organizationName": {
+// 		"caption": translate("WILDFIRE GAMES")
+// 	},
+// 	"organizationLogo": {
+// 		"sprite": "WildfireGamesLogo"
+// 	},
+// 	"productLogo": {
+// 		"sprite": "0ADLogo"
+// 	},
+// 	"productBuild": {
+// 		"caption": getBuildString()
+// 	},
+// 	"productDescription": {
+// 		"caption": `${setStringTags(translate(modsString.trim(), { "font": "sans-16" }))
+// 		 + "\n"
+// 		 + setStringTags(translate(`autocivP ${Engine.GetEngineInfo().mods.find(obj => obj.name == "autocivP").version}`), { "font": "sans-16" })}`
+// 		 + "\n"
+// 	}
+// };
+
+
 var g_CommunityButtons = [
 
 	{
