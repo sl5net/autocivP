@@ -20,33 +20,54 @@ var gameState = "lobby"; // Initial state // // TODO: howto set it like this? g_
 const versionOf0ad = Engine.GetEngineInfo().mods[0]['version']; // 0.0.26
 const whatsAutocivPMod = 'AutoCivP mod is AutoCiv but it also supports profiles during game configuration, jitsi, command-history[tab][tab] and a lot more.';
 function translateGlHfWpU2Gg(gg) {
+	// https://unicodeemoticons.com/
 	// btw guiObject is not definded her so you cant use this: sendMessageGlHfWpU2Gg(..., guiObject)
 	let gg2 = ''; // no extra info here probably better (${gg})
 	let text =  '';
-	if(gg == 'gl')
-		text =  'Good luck';
-	if(gg == 'hf')
-		text =  'Have fun';
-	if(gg == 'gg')
-		text =  `Good game${gg2}`;
-	if(gg == 'wp')
-		text =  `Well played${gg2}`;
-	if(gg == 'u2')
-		text =  `You too!${gg2}`;
-	if(gg == 're')
-		text =  `Again?${gg2}`;
-	if(gg == '<3')
-		text =  '♡'; // ♡works ♥works ❤dont work
-	if(gg == ':-)')
-		text =  '☺'; // https://unicodeemoticons.com/
-	if(gg == ':)')
-		text =  '☻'; // https://unicodeemoticons.com/
-	// if(gg == ':tea') // dont work
-	// 	text =  '☕'; // https://unicodeemoticons.com/
-	if(gg == ':left')
-		text =  '☜'; // https://unicodeemoticons.com/
-	if(gg == ':right')
-		text =  '☞'; // https://unicodeemoticons.com/
+	const ggMap = {
+		gl: 'Good luck',
+		hf: 'Have fun',
+		gg: `Good game${gg2}`,
+		wp: `Well played${gg2}`,
+		u2: `You too!${gg2}`,
+		re: `Again?${gg2}`,
+		'<3': '♡',
+		':-)': '☺',
+		':)': '☻',
+		':(': '☹',
+		'sun': '☼',
+		'left': '\u2190', // long Left arrow (Unicode: U+2190)
+		'right': '\u2192', // long Right arrow (Unicode: U+2192)
+		'right-small': '☞',
+		'<':  '\u2190', // long Left arrow (Unicode: U+2190)
+		'>': '\u2192', // long Right arrow (Unicode: U+2192)
+		'heart': '♡',
+	  };
+
+	  /*!SECTION
+	  donto work:
+	  		'<': '☚',
+		'>': '☛',
+
+		'☜', // dont work
+
+		':cloud': '\u2601', // Cloud (Unicode: U+2601) // dont work
+		':umbrella': '\u2602', // Umbrella (Unicode: U+2602) // dont work
+		':snowman': '\u2603', // Snowman (Unicode: U+2603) // dont work
+		':lightning': '\u26A1', // High Voltage Sign (Unicode: U+26A1)
+
+
+		'cloud': '\u260C', // Sun Behind Cloud (Unicode: U+260C)
+		'umbrella': '\u260E', // Telephone (Unicode: U+260E)
+		'snowman': '\u2744', // Snowflake (Unicode: U+2744)
+		'lightning': '\u26A1', // High Voltage Sign (Unicode: U+26A1)
+
+	  */
+	  text = ggMap[gg] || text;
+
+
+
+
 	// if(gg == ':clock') // dont work
 	// 	text =  '⌚'; // https://unicodeemoticons.com/
 	// if(gg == ':snake') // dont work
