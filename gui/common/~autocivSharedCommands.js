@@ -151,29 +151,35 @@ var g_autociv_SharedCommands = {
 				  helloAllText = 'hi hf.';
 				  ConfigDB_CreateAndSaveValueA26A27("user", key, helloAllText);
 				}
-				// sendMessage(`${helloAllText}`);
 				const chatInput = Engine.GetGUIObjectByName("chatInput")
 				chatInput.caption = helloAllText
-
 			  }
 			}
 	},
 	"whatsAutocivPMod" : {
 		"description": "AutoCivP mod is ",
 		"handler": () =>
-		{	sendMessage(whatsAutocivPMod)
+		{
+			const chatInput = Engine.GetGUIObjectByName("chatInput")
+			chatInput.caption = whatsAutocivPMod
 		}
 	},
 	"whatsAutoCivMod" : {
 		"description": "AutoCiv mod is ",
 		"handler": () =>
-		{	sendMessage('AutoCiv mod is an aggregation of features meant to enhance the 0 A.D. HotKeys and more. Many players use it.')
+		{
+			const whatsAutocivMod = 'AutoCiv mod is an aggregation of features meant to enhance the 0 A.D. HotKeys and more. Many players use it.'
+			const chatInput = Engine.GetGUIObjectByName("chatInput")
+			chatInput.caption = whatsAutocivMod
 		}
 	},
 	"whatsJitsi" : {
 		"description": "Jitsi is ",
 		"handler": () =>
-		{	sendMessage('Jitsi is a great way to have quick team calls without any setup process. It can also be used as an audio chat for your 0ad-team.')
+		{
+			const JitsiText = 'Jitsi is a great way to have quick team calls without any setup process. It can also be used as an audio chat for your 0ad-team.'
+			const chatInput = Engine.GetGUIObjectByName("chatInput")
+			chatInput.caption = JitsiText
 		}
 	},
 	"whatstimeNow" : {
@@ -181,15 +187,17 @@ var g_autociv_SharedCommands = {
 		"handler": () =>
 		{
 			const today = new Date();
-			sendMessage("it's " + today.getHours() + ':' + today.getMinutes() + ' here.');
-		}
+			const hours = today.getHours().toString().padStart(2, '0');
+			const minutes = today.getMinutes().toString().padStart(2, '0');
+			const text = "it's " + hours + ':' + minutes + ' here.';
+			const chatInput = Engine.GetGUIObjectByName("chatInput");
+			chatInput.caption = text;		}
 	},
 	"timenow" : {
 		"description": "Time here in hoursMinute",
 		"handler": () =>
 		{
-			const today = new Date();
-			sendMessage("it's " + today.getHours() + ':' + today.getMinutes() + ' here.');
+			g_NetworkCommands["/whatstimeNow"]();
 		}
 	},
 	"modsImCurrentlyUsing": {
@@ -200,7 +208,12 @@ var g_autociv_SharedCommands = {
 				"user",
 				"mod.enabledmods"
 			);
-			sendMessage(`Mods I'm currently using: ${modEnabledmods.slice(11,)}` );
+			// sendMessage(`Mods I'm currently using: ${modEnabledmods.slice(11,)}` );
+			let text = `Mods I'm currently using: ${modEnabledmods.slice(11,)}`
+			const chatInput = Engine.GetGUIObjectByName("chatInput")
+			chatInput.caption = text
+
+
 		}
 	},
 	"jitsi": {
@@ -210,7 +223,11 @@ var g_autociv_SharedCommands = {
 			let text = `to use jiti in you team: 1. open Ally-Chat 2. write j<tab> then enter. 3. write li[tab] or /link`;
 			text += `BTW if you write j[tab] again your last jitsi link will send again(not a new link). Every player has is own link. Means: one link per player.`;
 			// in lobby long text will eventually crash the game. 23-0629_0840-55
-			Engine.SendNetworkChat(text);
+			// Engine.SendNetworkChat(text);
+
+			const chatInput = Engine.GetGUIObjectByName("chatInput")
+			chatInput.caption = text
+
 		}
 	},
 	"li": {
@@ -219,7 +236,9 @@ var g_autociv_SharedCommands = {
 		{
 			let text = ''
 			text = `write li<tab> or /link<enter> to open a link`;
-			Engine.SendNetworkChat(text);
+			// Engine.SendNetworkChat(text);
+			const chatInput = Engine.GetGUIObjectByName("chatInput")
+			chatInput.caption = text
 		}
 	},
 	"mute": {

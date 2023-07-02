@@ -573,13 +573,16 @@ g_NetworkCommands["/hiall"] = (text) => {
 g_NetworkCommands["/hiAll"] = (text) => {
   g_NetworkCommands["/hiAll"](text);
 }
+g_NetworkCommands["/helloAll"] = (text) => {
+  g_NetworkCommands["/hiAll"](text);
+}
 g_NetworkCommands["/helloRated"] = () => {
   g_NetworkCommands["/hiRated"]();
 
 }
 
 g_NetworkCommands["/hiRated"] = () => {
-  sendMessage('Hey :)');
+  // sendMessage('Hey :)');
   g_NetworkCommands["/modsImCurrentlyUsing"]();
 }
 
