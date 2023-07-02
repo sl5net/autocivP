@@ -393,7 +393,14 @@ function saveThisModProfile(nr, autoLabelManually) {
 
     // warn("check if ModProfiles has changed")
 
-    if (!modProfile) {
+
+    const alwaysInReplayDefaultsKey = 'modProfile.alwaysInReplay feldmap'
+    const alwaysInReplayDefaults = 'LocalRatings'
+    const modProfilealwaysInReplay = Engine.ConfigDB_GetValue("user", );
+    if(!modProfilealwaysInReplay)
+      ConfigDB_CreateAndSaveValueA26A27("user", alwaysInReplayDefaultsKey, alwaysInReplayDefaults)
+
+    if (!modProfile) { // add defaults
       // warn("133")
       let clean = "";
       switch (nr) {
@@ -401,23 +408,28 @@ function saveThisModProfile(nr, autoLabelManually) {
           clean = modsFromUserCfg_const.replaceAll(/[^\w\d\-]+/g, " ");
           break;
         case 1:
-          clean = "LocalRatings proGUI feldmap";
+          clean = "proGUI";
           break;
         case 2:
-          clean = "community-mod feldmap LocalRatings proGUI";
+          clean = "community-mod proGUI";
           break;
         case 3:
-          clean = "LocalRatings boonGUI feldmap";
+          clean = "boonGUI";
           break;
         case 4:
-          clean = "community-maps-2 kush-extreme 10ad feldmap";
+          clean = "community-maps-2 kush-extreme 10ad";
           break;
         case 4:
-          clean = "mainland-twilight LocalRatings feldmap";
+          clean = "mainland-twilight";
           break;
       }
 
-      clean = clean.replaceAll(/\b((mod\s+public)|autociv|autocivP)\b\s*/g, ""); // mod\s+public is default. boring to save it
+
+
+      const modProfileAlwaysIn = Engine.ConfigDB_GetValue("user", 'modProfile.alwaysIn');
+      const regex = new RegExp('\b((mod\s+public)|autociv[a-z]*|' + modProfileAlwaysIn + ')\b\s*' ,'gi');
+      clean = clean.replaceAll(regex, ""); // mod\s+public is default. boring to save it
+
       ConfigDB_CreateAndSaveValueA26A27("user", name,clean, isEmptyAvalueAllowed)
 
       const cleanLabel = clean.replaceAll(/([^ ]{3})[^ ]+/g, "$1");
@@ -425,7 +437,11 @@ function saveThisModProfile(nr, autoLabelManually) {
 
     } else {
       let clean = modProfile.replaceAll(/[^\w\d\-]+/g, " ");
-      clean = clean.replaceAll(/\b((mod\s+public)|autociv|autocivP)\b\s*/g, ""); // mod\s+public is default. boring to save it
+
+      const modProfileAlwaysIn = Engine.ConfigDB_GetValue("user", 'modProfile.alwaysIn');
+      const regex = new RegExp('\b((mod\s+public)|autociv[a-z]*|' + modProfileAlwaysIn + ')\b\s*' ,'gi');
+      clean = clean.replaceAll(regex, ""); // mod\s+public is default. boring to save it
+
       const showDebugWarning = false
       if (clean != modProfile) {
         // correct profile if necesarry
@@ -449,13 +465,21 @@ function saveThisModProfile(nr, autoLabelManually) {
       );
       const profKey = "modProfile.p" + nr;
       const modProfile = Engine.ConfigDB_GetValue("user", profKey);
-      let clean =
-        "mod public " +
-        modProfile.replaceAll(/\b((mod\s+public)|autocivP)\b\s*/g, " "); // mod\s+public is default. boring to save it
+      let clean = '';
+
+        const modProfileAlwaysIn = Engine.ConfigDB_GetValue("user", 'modProfile.alwaysIn');
+        const regex = new RegExp('\b((mod\s+public)|autociv[a-z]*|' + modProfileAlwaysIn + ')\b\s*' ,'gi');
+        clean = clean.replaceAll(regex, ""); // mod\s+public is default. boring to save it
+
+        // const modProfileAlwaysIn = Engine.ConfigDB_GetValue("user", 'modProfile.alwaysIn');
+
       clean =
         "mod public " +
-        modProfile.replaceAll(/\b(mod\s+public)\b\s*/g, "") +
-        " autocivP"; // mod\s+public is default. boring to save it in normal profiles. but dont forget it by enaable mods
+        modProfile.replaceAll(/\b(mod\s+public)\b\s*/g, "")
+        + " " + modProfileAlwaysIn
+        + " autocivP"
+        ;
+
       if (clean != modsFromUserCfg_const) {
         warn("save:" + nr);
         warn(clean);

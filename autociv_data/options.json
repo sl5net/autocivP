@@ -270,7 +270,7 @@
 				"type": "string",
 				"label": "set mods that should always in replays. e.g. boonGUI : ",
 				"tooltip": "",
-				"config": "modProfile.alwaysInTG"
+				"config": "modProfile.alwaysInReplay"
 			}
 
 

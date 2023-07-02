@@ -62,6 +62,18 @@ function translateGlHfWpU2Gg(gg) {
 		'snowman': '\u2744', // Snowflake (Unicode: U+2744)
 		'lightning': '\u26A1', // High Voltage Sign (Unicode: U+26A1)
 
+
+		'cloud': '☁',
+		'umbrella': '☂',
+		'snowman': '☃',
+		'lightning': '⚡',
+		'star': '★',
+		'moon': '☽',
+		'check': '✓',
+		'cross': '✗',
+		'music': '♪',
+
+
 	  */
 	  text = ggMap[gg] || text;
 
@@ -432,11 +444,11 @@ autociv_InitSharedCommands.pipe = {
 				"user",
 				"mod.enabledmods"
 			);
-			if(!(modEnabledmods.indexOf('boonGUI')>0)){
-				// GetAvailableMods()
-				// warn(GetAvailableMods())
+
+			const modProfilealwaysInReplay = Engine.ConfigDB_GetValue("user", 'modProfile.alwaysInReplay');
+
+			if(!(modEnabledmods.indexOf(modProfilealwaysInReplay)>0)){
 				warn(`Really want play a replay without 'boonGUI' mod ?`);
-				// warn(`modEnabledmods: ${modEnabledmods} ?`);
 			}
 		}
 		gameState = "ingame";
