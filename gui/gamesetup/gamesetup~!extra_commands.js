@@ -223,6 +223,8 @@ g_NetworkCommandsDescriptions = Object.assign(g_NetworkCommandsDescriptions, {
   "/autociv": "Toggle autociv (will also disable spec and play actions)",
   "/ready": "Toggle your ready state",
   "/start": "Start the game",
+  "/quit": "quit exit the setup of the game",
+  "/exit": "quit exit the setup of the game",
   "/countdown":
     "Toggle countdown. Default is 5 seconds. For different time type /countdown time_in_seconds ",
   "/gameName":
@@ -331,6 +333,23 @@ g_NetworkCommands["/start"] = () => {
 
   game.panelsButtons.startGameButton.onPress();
 };
+
+// g_NetworkCommands["/quit"] = () => {
+  // "cancelButton": new CancelButton(setupWindow, startGameButton, readyButton),
+
+
+  /*!SECTION
+  undefined:
+  mainMenuButton
+
+  game.panelsButtons.cancelButton.onPress();
+  game.panelsButtons.lobbyButton.onPress();
+  game.panelsButtons.mainMenuButton.onPress();
+  */
+// };
+// g_NetworkCommands["/exit"] = () => {
+//   game.panelsButtons.backToMain.onPress();
+// };
 
 g_NetworkCommands["/countdown"] = (input) => {
   if (!g_IsController) return;

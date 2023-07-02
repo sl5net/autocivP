@@ -27,22 +27,61 @@ function translateGlHfWpU2Gg(gg) {
 	const ggMap = {
 		gl: 'Good luck',
 		hf: 'Have fun',
-		gg: `Good game${gg2}`,
-		wp: `Well played${gg2}`,
-		u2: `You too!${gg2}`,
-		re: `Again?${gg2}`,
+		gg: 'Good game',
+		wp: 'Well played',
+		u2: 'You too!',
+		re: 'Again?',
 		'<3': '♡',
-		'heart': '♡',
+		heart: '♡',
 		':-)': '☺',
 		':)': '☻',
 		':(': '☹',
-		'sun': '☼',
-		'left': '\u2190', // long Left arrow (Unicode: U+2190)
-		'right': '\u2192', // long Right arrow (Unicode: U+2192)
+		sun: '☼',
+		left: '\u2190', // long Left arrow (Unicode: U+2190)
+		right: '\u2192', // long Right arrow (Unicode: U+2192)
 		'right-small': '☞',
-		'<':  '\u2190', // long Left arrow (Unicode: U+2190)
-		'>': '\u2192', // long Right arrow (Unicode: U+2192)
+		star: '★',
+		flower: '❀',
+		one: '❶',
+		two: '❷',
+		three: '❸',
+		four: '❹',
+		five: '❺',
+		six: '❻',
+		seven: '❼',
+		eight: '❽',
+		nine: '❾',
+		ten: '❿',
+		music: '♪',
+		male: '♂',
+		female: '♀',
+		// circle: '⚪',
+		// square: '⚫',
+		triangle: '▲',
+		diamond: '♦',
+		spade: '♠',
+		club: '♣',
+		note: '♩',
+		smiley: '☺',
+		flower2: '❧',
+		heart2: '♡',
+		// crown: '♔',
+		// arrow: '➤',
+		// peace: '☮',
+		yinYang: '☯',
+		// atom: '⚛',
+		// skull: '☠',
+		// coffee: '☕',
+		// phone: '☎',
+		// plane: '✈',
+		// star2: '☆',
+		moon: '☽',
+		// lightning: '⚡',
+		// cloud: '☁',
 	  };
+	  if(gg != 'allicons')
+		  text = ggMap[gg] || text;
+	  else text = Object.values(ggMap).join('');
 
 	  /*!SECTION
 	  donto work:
@@ -75,8 +114,6 @@ function translateGlHfWpU2Gg(gg) {
 
 
 	  */
-	  text = ggMap[gg] || text;
-
 
 
 
