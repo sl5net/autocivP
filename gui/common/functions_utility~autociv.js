@@ -393,9 +393,14 @@ function saveThisModProfile(nr, autoLabelManually) {
 
     // warn("check if ModProfiles has changed")
 
+    const modProfile_alwaysIn_Key = 'modProfile.alwaysIn'
+    const modProfile_alwaysIn_Default = 'LocalRatings feldmap'
+    const mo = Engine.ConfigDB_GetValue("user", );
+    if(!mo)
+      ConfigDB_CreateAndSaveValueA26A27("user", modProfile_alwaysIn_Key, modProfile_alwaysIn_Default)
 
-    const alwaysInReplayDefaultsKey = 'modProfile.alwaysInReplay feldmap'
-    const alwaysInReplayDefaults = 'LocalRatings'
+    const alwaysInReplayDefaultsKey = 'modProfile.alwaysInReplay'
+    const alwaysInReplayDefaults = 'boonGUI'
     const modProfilealwaysInReplay = Engine.ConfigDB_GetValue("user", );
     if(!modProfilealwaysInReplay)
       ConfigDB_CreateAndSaveValueA26A27("user", alwaysInReplayDefaultsKey, alwaysInReplayDefaults)

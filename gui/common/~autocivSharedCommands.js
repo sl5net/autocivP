@@ -446,9 +446,23 @@ autociv_InitSharedCommands.pipe = {
 			);
 
 			const modProfilealwaysInReplay = Engine.ConfigDB_GetValue("user", 'modProfile.alwaysInReplay');
+			let clean = modEnabledmods
+			const clean2 = clean.replace('autocivP', `${modProfilealwaysInReplay} autocivP` );
 
 			if(!(modEnabledmods.indexOf(modProfilealwaysInReplay)>0)){
-				warn(`Really want play a replay without 'boonGUI' mod ?`);
+				// warn(`Really want play a replay without 'boonGUI' mod ?`);
+				ConfigDB_CreateAndSaveValueA26A27("user", "mod.enabledmods", clean2)
+				check_modProfileSelector_settings()
+
+				try {
+					Engine.Restart() // works sometimes Engine. and sometimes: Restart is not a function
+				  } catch (error) {
+					warn(error.message)
+					warn(error.stack)
+					warn('well done. Please start 0ad now again.')
+					Engine.Exit(1) // works
+				}
+
 			}
 		}
 		gameState = "ingame";
