@@ -529,19 +529,26 @@ function saveThisModProfile(nr, autoLabelManually) {
         //       ["Ok, change", "No"],
         //       [
         //         () => {
-        //           Engine.Restart() // works
+        //           Engine.Restart(1) // works
         //         },
         //         () => {},
         //       ]
         //     );
-          try {
-            Engine.Restart() // works sometimes Engine. and sometimes: Restart is not a function
-          } catch (error) {
-            warn(error.message)
-            warn(error.stack)
-            warn('well done. Please start 0ad now again.')
-            Engine.Exit(1) // works
-          }
+          // try {
+
+
+            const key = "autocivP.gamesetup.restart";
+            ConfigDB_CreateAndSaveValueA26A27("user", key, 'restart');
+            Engine.SwitchGuiPage("page_pregame.xml");
+
+
+            // Engine.Restart(1) // works sometimes Engine. and sometimes: Restart is not a function
+          // } catch (error) {
+          //   warn(error.message)
+          //   warn(error.stack)
+          //   warn('well done. Please start 0ad now again.')
+          //   Engine.Exit(1) // works
+          // }
 
         // Engine.Exit(1) // works
 

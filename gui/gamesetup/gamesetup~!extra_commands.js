@@ -335,24 +335,16 @@ g_NetworkCommands["/start"] = () => {
 };
 
 g_NetworkCommands["/quit"] = () => {
-  botManager.setMessageInterface("lobby");
+  let leaveButton = Engine.GetGUIObjectByName("leaveButton");
+  if(leaveButton)
+    sendMessageMapSizeSetTo('leaveButton exist')
+  Engine.SwitchGuiPage("page_pregame.xml")
 }
-// g_NetworkCommands["/quit"] = () => {
-  // "cancelButton": new CancelButton(setupWindow, startGameButton, readyButton),
-
-
-  /*!SECTION
-  undefined:
-  mainMenuButton
-
-  game.panelsButtons.cancelButton.onPress();
-  game.panelsButtons.lobbyButton.onPress();
-  game.panelsButtons.mainMenuButton.onPress();
-  */
-// };
-// g_NetworkCommands["/exit"] = () => {
-//   game.panelsButtons.backToMain.onPress();
-// };
+g_NetworkCommands["/exit"] = () => {
+  if(leaveButton)
+    sendMessageMapSizeSetTo('leaveButton exist')
+  Engine.SwitchGuiPage("page_pregame.xml")
+};
 
 g_NetworkCommands["/countdown"] = (input) => {
   if (!g_IsController) return;
@@ -671,7 +663,7 @@ for (const command in g_NetworkCommands) {
   const originalFunction = g_NetworkCommands[command];
   g_NetworkCommands[command] = function(text) {
     // selfMessage(`640: Command sent: >${command}< >${text}<`);
-    if(command.length > 2 && command.substring(0,2) == '/p' )
+    if(command.length > 2 && command.substring(0,2) == '/p' && command != "/pRestoreLastProfile" )
     {
       // selfMessage('profile command found')
       // selfMessage(command);

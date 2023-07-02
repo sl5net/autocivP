@@ -264,7 +264,7 @@ enableButtons = function ()
 
 		if(false) // mot necesary.
 		  try {
-			Engine.Restart()
+			Engine.Restart(1)
 		  } catch (error) {
 			Engine.Exit(1)
 		  }

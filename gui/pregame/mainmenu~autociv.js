@@ -1,5 +1,13 @@
-
-
+const key = "autocivP.gamesetup.restart"; // not needet try dont work in this case. use Engine.Exit(1) only
+let helloAllText = Engine.ConfigDB_GetValue("user", key);
+if(helloAllText == 'restart'){
+  ConfigDB_CreateAndSaveValueA26A27("user", key, 'lalilu'); // should be a trick but restart not work if its from otther side. only if its the first call.
+  try {
+    Engine.Restart(1);
+  } catch (error) {
+    Engine.Exit(1)
+  }
+}
 
 // Engine.GetGUIObjectByName("saveChanges").onPress = () => warn("saveChanges")
 
@@ -26,7 +34,7 @@ var config = {
 
     // restart
     // try {
-    //   Engine.Restart();
+    //   Engine.Restart(1);
     // } catch (error) {
     //   Engine.Exit(1);
     // }

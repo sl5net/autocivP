@@ -494,7 +494,7 @@ autociv_InitSharedCommands.pipe = {
 				check_modProfileSelector_settings()
 
 				try {
-					Engine.Restart() // works sometimes Engine. and sometimes: Restart is not a function
+					Engine.Restart(1) // works sometimes Engine. and sometimes: Restart is not a function
 				  } catch (error) {
 					warn(error.message)
 					warn(error.stack)
