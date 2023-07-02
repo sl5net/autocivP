@@ -151,7 +151,10 @@ var g_autociv_SharedCommands = {
 				  helloAllText = 'hi hf.';
 				  ConfigDB_CreateAndSaveValueA26A27("user", key, helloAllText);
 				}
-				sendMessage(`${helloAllText}`);
+				// sendMessage(`${helloAllText}`);
+				const chatInput = Engine.GetGUIObjectByName("chatInput")
+				chatInput.caption = helloAllText
+
 			  }
 			}
 	},

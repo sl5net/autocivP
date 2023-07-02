@@ -258,7 +258,22 @@
 				"label": "show autoFixModsOrder (EXPERIMENTAL)",
 				"tooltip": "Mods sometimes work better when enabled in a special order ",
 				"config": "modProfile.showAutoFixModsOrder"
+			},
+
+			{
+				"type": "string",
+				"label": "set mods that should always in. e.g. feldmap: ",
+				"tooltip": "",
+				"config": "modProfile.alwaysIn"
+			},
+			{
+				"type": "string",
+				"label": "set mods that should always in replays. e.g. boonGUI : ",
+				"tooltip": "",
+				"config": "modProfile.alwaysInTG"
 			}
+
+
 		]
 	}
 ]

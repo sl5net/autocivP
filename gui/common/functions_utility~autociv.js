@@ -196,9 +196,8 @@ var autoCompleteText_newMerge = function (guiObject, list)
 
 
 
-    if(caption == 'j' ){ // i is Allies
-
-        if(gameState != "ingame" || chatAddressBox.selected != 1){
+    if(caption == 'j' ){
+        if(gameState != "ingame" || chatAddressBox.selected != 1){ // 1 is Allies
             let text = `to use jiti in you team: 1. open Ally-Chat 2. write j<tab> then enter. 3. write li<tab> or /link`
             selfMessage(text)
             return
@@ -411,7 +410,7 @@ function saveThisModProfile(nr, autoLabelManually) {
           clean = "LocalRatings boonGUI feldmap";
           break;
         case 4:
-          clean = "community-maps-2 kush-extreme 10ad";
+          clean = "community-maps-2 kush-extreme 10ad feldmap";
           break;
         case 4:
           clean = "mainland-twilight LocalRatings feldmap";
