@@ -32,6 +32,7 @@ function translateGlHfWpU2Gg(gg) {
 		u2: `You too!${gg2}`,
 		re: `Again?${gg2}`,
 		'<3': '♡',
+		'heart': '♡',
 		':-)': '☺',
 		':)': '☻',
 		':(': '☹',
@@ -41,7 +42,6 @@ function translateGlHfWpU2Gg(gg) {
 		'right-small': '☞',
 		'<':  '\u2190', // long Left arrow (Unicode: U+2190)
 		'>': '\u2192', // long Right arrow (Unicode: U+2192)
-		'heart': '♡',
 	  };
 
 	  /*!SECTION
