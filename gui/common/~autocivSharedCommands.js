@@ -64,7 +64,7 @@ function translateGlHfWpU2Gg(gg) {
 		note: '♩',
 		smiley: '☺',
 		flower2: '❧',
-		heart2: '♡',
+		love: '♡',
 		// crown: '♔',
 		// arrow: '➤',
 		// peace: '☮',
@@ -76,6 +76,8 @@ function translateGlHfWpU2Gg(gg) {
 		// plane: '✈',
 		// star2: '☆',
 		moon: '☽',
+		meh: '¯\_(^_^)_/¯',
+
 		// lightning: '⚡',
 		// cloud: '☁',
 	  };

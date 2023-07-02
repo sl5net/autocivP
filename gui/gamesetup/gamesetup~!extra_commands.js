@@ -334,6 +334,9 @@ g_NetworkCommands["/start"] = () => {
   game.panelsButtons.startGameButton.onPress();
 };
 
+g_NetworkCommands["/quit"] = () => {
+  botManager.setMessageInterface("lobby");
+}
 // g_NetworkCommands["/quit"] = () => {
   // "cancelButton": new CancelButton(setupWindow, startGameButton, readyButton),
 
