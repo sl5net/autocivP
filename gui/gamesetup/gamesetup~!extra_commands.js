@@ -62,7 +62,8 @@ var game = {
 
       g_GameSettings.mapSize.size = val;
       game.updateSettings();
-      sendMessage(`Map size set to: ${val}`);
+      // sendMessage(`Map size set to: ${val}`);
+      sendMessageMapSizeSetTo(val)
     },
     numberOfSlots: (num) => {
       const playerCount = game.controls.PlayerCount;
@@ -516,15 +517,18 @@ function pMainland_1v1_defaults() {
     "generic/temperate"
   );
   game.updateSettings(); // maybe needet before call mapsize
-  let mapsize = 192; // 128 tiny, 192 small,  256 normal, 320 medium // game.set.mapsize(mapsize); //
+  let mapSize = 192; // 128 tiny, 192 small,  256 normal, 320 medium // game.set.mapsize(mapsize); //
   if (false) {
     // true only for testing / debugging
-    mapsize = g_GameSettings.mapSize.size;
+    mapSize = g_GameSettings.mapSize.size;
   } else {
-    g_GameSettings.mapSize.size = mapsize;
+    g_GameSettings.mapSize.size = mapSize;
     game.updateSettings();
   }
-  sendMessage(`Map size set to: ${mapsize}`);
+
+  sendMessageMapSizeSetTo(mapSize)
+
+
   return setDefaultsforPopmaxAlliedviewRatingTreasuresNomadExploration();
 }
 
@@ -537,7 +541,8 @@ function pMainland_defaults(playersAtTeamNr) {
   let mapsize = 256; // 128 tiny, 192 small,  256 normal, 320 medium
   g_GameSettings.mapSize.size = mapsize;
   game.updateSettings();
-  sendMessage(`Map size set to: ${mapsize}`);
+  // sendMessage(`Map size set to: ${mapsize}`);
+  sendMessageMapSizeSetTo(mapsize)
   selfMessage(
     `"Select Map": often used "Mainland" or "Mainland balanced"(needs FeldFeld-Mod) . `
   );
@@ -767,7 +772,6 @@ function setMapTypeFilterNameBiome(name, biome, type = "random", filter = "defau
 function setDefaultsforPopmaxAlliedviewRatingTreasuresNomadExploration(sendMessageToAll = true){ // forPopmaxAlliedviewRatingTreasuresNomadExploration
   // this function also is(should) always used when a map/profile config is changing 23-0624_1433-08
 
-  selfMessage('BTW: Mapsize is 128 tiny, 192 small,  256 normal, 320 is medium')
 
   g_GameSettings.mapExploration.allied = true; // woks :)  AlliedView
   if(sendMessageToAll)sendMessage('AlliedView = true');
@@ -821,4 +825,25 @@ function setDefaultsforPopmaxAlliedviewRatingTreasuresNomadExploration(sendMessa
   // ConfigDB_CreateAndSaveValueA26A27("user", key2, g_lastCommandID);
 
   return populationMax;
+}
+
+function sendMessageMapSizeSetTo(mapSize)
+{
+  // sendMessage(`Map size set to: ${mapsize}`);
+  const mapSizes = [
+    { size: 128, label: 'tiny' },
+    { size: 192, label: 'small' },
+    { size: 256, label: 'normal' },
+    { size: 320, label: 'medium' }
+  ];
+
+  let mapSizeLabel;
+  for (const map of mapSizes) {
+    if (map.size === mapSize) {
+      mapSizeLabel = map.label;
+      break;
+    }
+  }
+  sendMessage(`Map size set to: ${mapSizeLabel} (${mapSize})`);
+  selfMessage('BTW: Mapsize is 128 tiny, 192 small,  256 normal, 320 is medium')
 }
