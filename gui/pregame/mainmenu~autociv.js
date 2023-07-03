@@ -157,11 +157,7 @@ autociv_patchApplyN("init", function (target, that, args) {
 Mods sometimes work better when enabled in a special order.
 
 Example of Jun  2023:
-errors with boonGui when  enabled late but
-nearly no errors when autocivP or autociv are enabled later.
-in other words
-boonGUI autociv... works better then autociv... boonGUI at the moment (Jun 2023)
-
+proGUI should first then boonGUI last if you want boonGUI (Jun 2023)
 Do you want autofix some think (no guaranty for all)?
         `;
 

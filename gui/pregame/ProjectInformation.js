@@ -91,6 +91,11 @@ var g_CommunityButtons = [
 	},
 	{
 		"caption": translate("Report a Bug"),
+
+
+
+
+
 		"tooltip": translate("Click to visit 0 A.D. Trac to report a bug, crash, or error."),
 		"size": "8 100%-108 50%-4 100%-80",
 		"onPress": () => {
