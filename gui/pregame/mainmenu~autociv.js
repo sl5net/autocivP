@@ -148,7 +148,7 @@ autociv_patchApplyN("init", function (target, that, args) {
 
 
   if (true && state.showAutoFixModsOrder
-    && posboonGUI < posproGUI
+    && posboonGUI > 1 && posboonGUI < posproGUI
     ) {
 
       ConfigDB_CreateAndSaveValueA26A27("user", 'mod.enabledmods',modsBackup)
