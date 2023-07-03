@@ -363,15 +363,14 @@ g_NetworkCommands["/start"] = () => {
 };
 
 g_NetworkCommands["/quit"] = () => {
-  let leaveButton = Engine.GetGUIObjectByName("leaveButton");
-  if(leaveButton)
-    sendMessageMapSizeSetTo('leaveButton exist')
-  Engine.SwitchGuiPage("page_pregame.xml")
+  if (Engine.HasXmppClient())
+		Engine.LobbySetPlayerPresence("available")
+  Engine.GetGUIObjectByName("cancelButton").onPress()
 }
 g_NetworkCommands["/exit"] = () => {
-  if(leaveButton)
-    sendMessageMapSizeSetTo('leaveButton exist')
-  Engine.SwitchGuiPage("page_pregame.xml")
+  if (Engine.HasXmppClient())
+		Engine.LobbySetPlayerPresence("available")
+  Engine.GetGUIObjectByName("cancelButton").onPress()
 };
 
 g_NetworkCommands["/countdown"] = (input) => {
