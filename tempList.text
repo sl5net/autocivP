@@ -1,0 +1,60 @@
+f074d03e2af7c079ac89ac6aaadd18a3813a2884 HEAD@{0}: commit: fix in ModProfile the AlwaysIn mods
+f1d56b39cc8be69c83923bf185e34b61ba608023 HEAD@{1}: commit: dont start in atlas resart 0ad if mods changed
+75c689d5e8cc40ef2a316df6c88b79fe0ad73865 HEAD@{2}: commit: fix /quit late error with Engine.GetGUIObjectByName(cancelButton).onPress()
+79d134c4624d7f9187277a7e57ea308365028581 HEAD@{3}: commit: add /versionNr command
+30b84538472aff9d7f3817021e9d616b1079ee5c HEAD@{4}: commit: add caseinsentive match of icon replacements
+8cd1e67593cccfe2a8e1a7cf2692cd89702a7aca HEAD@{5}: commit: some little fixes
+bebab2b0e41a26ef2a8f4ccc62f94ef03988ab1a HEAD@{6}: commit: fix typo.
+6f5972e4eb836b8acbf4ab9ee7b3f04c58097298 HEAD@{7}: commit: fix typo.
+fe82a7fec5169db2affaa55704d1d100f62e18c2 HEAD@{8}: commit: add list of icon
+044107a6df41e759d8a1f471733070b4071763ed HEAD@{9}: commit: fix some typos. omg. add autoRestart with autoInReplay mod
+99c062e43eea13609f63c4df1d22ef7879bd77de HEAD@{10}: commit: update version nr
+5b03f400382c0783c8c700352b02d751b2e67a53 HEAD@{11}: commit: implement in modPofiles alwaysInReplayDefaults modProfilealwaysInReplay
+a20972e7ce65ccaba5bed6f01d4e36af5ecd3798 HEAD@{12}: commit: update team description
+8f76c0715cca1a79d02d9423a5f6964bfb2f5f5b HEAD@{13}: commit: Using 'right<tab>' without the preceding colon (:) can indeed be clearer in a chat context. Including the colon (:) before the keyword may not be necessary if the chat participants are already familiar with the convention of using '<tab>' to trigger certain actions or commands.
+83b65f8873391d7a1ceaf80dea049921cb92a494 HEAD@{14}: commit: update msg mapsize changed more human readable
+2b03dbfb7a2c0a658c41897d43f8ca96ee528096 HEAD@{15}: commit: answer using the chat caption for some comands. so you could edit it before or only read it
+a49b19a71cc7da04e28ea62fe51ff4ce2e4fc1b1 HEAD@{16}: commit: move /hiall output to input caption. not send it anymore
+226af79e519bb5f00ec3d591a2821d19161a43fc HEAD@{17}: commit: limit the j send jitsi link only if you in the Allies chat
+5520d306906edbbfb3bfb724801e1a15c72ad35d HEAD@{18}: commit: add extra description about Mapsize 128 tiny, 192 small, 256 normal, 320 medium
+51756e100711c0afdb5c66c87bcb9472e7c97a5f HEAD@{19}: commit: restart 0ad when new modProfiles is enabled when save button is pressed
+6d1247b69b03942deaeea6c6a8bd2e04c15fa030 HEAD@{20}: commit: use ConfigDB_CreateAndSaveValueA26A27 for change modProfile settings
+e49ab51c3bfdbbf8ea06b6a9ff755c2f5d3622bd HEAD@{21}: commit: change text to: type li<tab>
+6368385465d8e9f4e16caab7085e3a1d14b7c03d HEAD@{22}: commit: change default setting for mod profiles
+2c2ef4ec869dcf8ef50aa50f3f2d27b8c6467778 HEAD@{23}: commit: better description to li tab: write li<tab> or /link<enter> to open a link
+09f20f135b05dd01b496a3ec96d54c2ab749db59 HEAD@{24}: pull: Fast-forward
+03d6e8fa008a11d3a9d0df20d638985165bde8a8 HEAD@{25}: commit: add replace <3 with ♥ in chat
+69993e9fa73e462fb8292c62172e9d19c108cd1c HEAD@{26}: commit: add replace <3 with ♥ in chat
+5a3658157e73649ae9ab9a04fc422e619ef2f06e HEAD@{27}: commit: fix AutoFixModsOrder
+c1c2bcf8d5fc0dca8f5ee91e2b0b7f98735f4a5f HEAD@{28}: commit: fix use of Engine.Restart when mods changed. still a bit experimental maybe
+6cb2f27d383edaa43d5e1dd7dc80f5747ea988b3 HEAD@{29}: commit: exit when mods have changed (start later then)
+cad1aa2d903b79dc67c7f3335cbcb60b0f96e9d4 HEAD@{30}: commit: add options mods profiles selection
+a12a0299dc9d76e1025934c56abe1db0e143ce77 HEAD@{31}: commit: limit jitsi call to gameState ingame only
+5a2a0feb86033626241f6af705ef0c10ef75cbb4 HEAD@{32}: commit: limit jitsi call to gameState ingame only
+3e7d9329f0f338cb90953215fd8a6e5c0c023516 HEAD@{33}: commit: add options for intuitive hotkey
+058662bbb161307baedcc79e454754f0821a3098 HEAD@{34}: commit: add options for 0ad version 0.0.26
+de557a46acd7267c049726975ad99e975036d8a6 HEAD@{35}: commit: remove jitsi from lobby. text is to long
+f6a72b7c21b68e441276fd4056452e20d845cd1d HEAD@{36}: commit: fix typo
+ef598c7f51018a54dabf41afc3c31e8608886a11 HEAD@{37}: commit: add moddata/testConsoleAhkSciprt.ahk
+918fabf000ce5b5f0e9d98fcb69ba188be5f631b HEAD@{38}: commit: update version nr
+ef77262da0388d12e30dc759a3a5fc22743a711a HEAD@{39}: commit: add command from shared commands when gamesetup or in game to command history
+4a503f5cb329b0c7edca786a3ce72a5c123feb30 HEAD@{40}: commit: set id to last command when caption is empty
+a955613b0ed4e47762d3cc29423964550f3e007b HEAD@{41}: commit: disable debug messsages
+e5ab46c3b7be8f60a8fa89ba8bff7815f44b0a2d HEAD@{42}: commit: disable debug messsages
+580f03ec814b551e443709983f9bf2b5aec826a8 HEAD@{43}: commit: fix history offset
+050b7f999dd19bbf6b2b81fdecc26fd00fa3ae0b HEAD@{44}: commit: fix fill all empty hisory with same value
+82b439f27072f88efdc4155055512e6882bd287d HEAD@{45}: commit: reorganize the way to save profile in user.cfg
+5a6d05b6ff4dce5953cad24901844c7155a7fe1a HEAD@{46}: commit: fixed critical error https://github.com/sl5net/autocivP/issues/1
+2d5e123f387fbdc37cbc5d986a91d94fd3db8336 HEAD@{47}: commit: fixed critical error https://github.com/sl5net/autocivP/issues/1
+ca031398a48c42c240ce78157dc52734eeab9425 HEAD@{48}: commit: replace try-catch woraround with 0ad-version-nr-check
+795dfd612953718a321531705c9a74960da93ca9 HEAD@{49}: commit: move function saveLastCommand to shared functions
+ce3e6de8fc3177b9153ab0c644a796b1efa8882b HEAD@{50}: commit: move function saveLastCommand to shared functions
+b74324bf9a00a422ee516aacb30b655a8fceada4 HEAD@{51}: reset: moving to HEAD
+b74324bf9a00a422ee516aacb30b655a8fceada4 HEAD@{52}: reset: moving to HEAD
+b74324bf9a00a422ee516aacb30b655a8fceada4 HEAD@{53}: commit: some little code beutifier
+08a32adfceafea895baac20b6378c2a132a12b80 HEAD@{54}: commit: show all mods in GUI main page
+75c93f5218d90cc7d03e731751160a725722b57a HEAD@{55}: commit: fix typo. not critical error. early in the monring :-O
+1e6afc660ae1ff44c8aa006c7d0f460bfdcffea8 HEAD@{56}: commit: fix typo. not critical error. early in the monring :-O
+4b22c0403360bf92e3cffec3f2af538794549d86 HEAD@{57}: commit: fix critical typo
+3b4d845fb315c5de99b6d302827f0cb50c92f469 HEAD@{58}: commit: fix typo
+8df06e01b532a598961db4b68eba5991e88b938b HEAD@{59}: commit: update version nr

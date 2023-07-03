@@ -50,7 +50,7 @@ function autociv_initCheck() {
     reasons: new Set(),
     showReadme: false,
     showSuggestDefaultChanges: false,
-    showAutoFixModsOrder: false,
+    showAutoFixModsOrder: true,
   };
 
   // Check settings
@@ -61,6 +61,7 @@ function autociv_initCheck() {
 
     if(config.get('modProfile.showAutoFixModsOrder') === "true")
       state.showAutoFixModsOrder = true
+
 
     if (config.get("autociv.settings.reset.all2P") === "true")
       settings = Engine.ReadJSONFile("moddata/autocivP_default_config.json"); // https://www.convertsimple.com/convert-ini-to-json/ if u want use your user.cfg (seeh, 23-0619_1559-06 )
@@ -142,17 +143,15 @@ autociv_patchApplyN("init", function (target, that, args) {
   );
 
   const posboonGUI = modsFromUserCfg_const.indexOf('boonGUI')
-  const posautociv = modsFromUserCfg_const.indexOf('autociv')
+  const posproGUI = modsFromUserCfg_const.indexOf('proGUI')
 
 
-  if (false && state.showAutoFixModsOrder
-    && posboonGUI > posautociv
+
+  if (true && state.showAutoFixModsOrder
+    && posboonGUI < posproGUI
     ) {
 
       ConfigDB_CreateAndSaveValueA26A27("user", 'mod.enabledmods',modsBackup)
-
-      error('posboonGUI > posautociv');
-
 
     let message = `
 Mods sometimes work better when enabled in a special order.
@@ -174,10 +173,21 @@ Do you want autofix some think (no guaranty for all)?
       ["Ok, change", "No"],
       [
         () => {
-          warn(
-            "not implemented at the moment. pleas ask/remindMe later for it 23-0630_1227-13"
-          );
-          config.save();
+
+          let clean = modsFromUserCfg_const
+
+          clean = clean.replaceAll(/\bproGUI\b /g, '');
+          clean = clean.replaceAll(/\bboonGUI\b /g, 'proGUI boonGUI ');
+          ConfigDB_CreateAndSaveValueA26A27("user", 'mod.enabledmods',clean)
+
+          try {
+            Engine.Restart(1);
+          } catch (error) {
+            Engine.Exit(1)
+          }
+
+
+
         },
         () => {},
       ]
