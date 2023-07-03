@@ -424,9 +424,12 @@ function saveThisModProfile(nr, autoLabelManually) {
         case 4:
           clean = "community-maps-2 kush-extreme 10ad";
           break;
-        case 4:
+        case 5:
           clean = "mainland-twilight";
           break;
+        default:
+            error('should no happen');
+            break;
       }
 
       ConfigDB_CreateAndSaveValueA26A27("user", name,clean, isEmptyAvalueAllowed)
@@ -490,6 +493,8 @@ function saveThisModProfile(nr, autoLabelManually) {
 
         ConfigDB_CreateAndSaveValueA26A27("user", "modProfile.backup",modsFromUserCfg_const)
         ConfigDB_CreateAndSaveValueA26A27("user", "mod.enabledmods",clean)
+        // Engine.SetMods(clean) // get error: Engine.SetMods is not a function
+
         // return true;
         // state.needsRestart = true;
         // configSaveToMemoryAndToDisk(key, settings[key]);
@@ -585,16 +590,32 @@ function saveThisModProfile(nr, autoLabelManually) {
   }
 
 
-function addModProfileAlwaysInAlsoAddAutocivPatTheEnd(clean){
+// function addModProfileAlwaysInAlsoAddAutocivPatTheEnd(clean){
+//   const modProfileAlwaysIn = Engine.ConfigDB_GetValue("user", 'modProfile.alwaysIn');
+//   const modProfileAlwaysInArray = modProfileAlwaysIn.split(/\s/);
+//   modProfileAlwaysInArray.forEach(value => {
+//     const regex = new RegExp('\b' + value + '\b\s*' ,'gi');
+//     clean = clean.replaceAll(regex, ""); // mod\s+public is default. boring to save it
+//   })
+//   // autocivP its at the end and shoud at the end
+//   if(clean.indexOf(' autocivP')<=0)
+//     clean += ' autocivP'
+//   clean = clean.replaceAll('autocivP', `${modProfileAlwaysIn} autocivP` ); // mod\s+public is default. boring to save it
+//   return clean
+// }
+
+function addModProfileAlwaysInAlsoAddAutocivPatTheEnd(clean) {
   const modProfileAlwaysIn = Engine.ConfigDB_GetValue("user", 'modProfile.alwaysIn');
   const modProfileAlwaysInArray = modProfileAlwaysIn.split(/\s/);
+
   modProfileAlwaysInArray.forEach(value => {
-    const regex = new RegExp('\b' + value + '\b\s*' ,'gi');
-    clean = clean.replaceAll(regex, ""); // mod\s+public is default. boring to save it
-  })
-  // autocivP its at the end and shoud at the end
-  if(clean.indexOf(' autocivP')<=0)
-    clean += ' autocivP'
-  clean = clean.replaceAll('autocivP', `${modProfileAlwaysIn} autocivP` ); // mod\s+public is default. boring to save it
-  return clean
+    const regexPattern = new RegExp('\b' + value + '\b\s*' ,'gi');
+    const regex = new RegExp(regexPattern, 'gi');
+    clean = clean.replaceAll(regex, "");
+  });
+
+  if (!clean.includes(' autocivP'))
+    clean += ' autocivP';
+
+  return clean.replaceAll('autocivP', `${modProfileAlwaysIn} autocivP`);
 }
