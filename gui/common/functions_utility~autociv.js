@@ -429,12 +429,6 @@ function saveThisModProfile(nr, autoLabelManually) {
           break;
       }
 
-
-
-      const modProfileAlwaysIn = Engine.ConfigDB_GetValue("user", 'modProfile.alwaysIn');
-      const regex = new RegExp('\b((mod\s+public)|autociv[a-z]*|' + modProfileAlwaysIn + ')\b\s*' ,'gi');
-      clean = clean.replaceAll(regex, ""); // mod\s+public is default. boring to save it
-
       ConfigDB_CreateAndSaveValueA26A27("user", name,clean, isEmptyAvalueAllowed)
 
       const cleanLabel = clean.replaceAll(/([^ ]{3})[^ ]+/g, "$1");
@@ -442,10 +436,6 @@ function saveThisModProfile(nr, autoLabelManually) {
 
     } else {
       let clean = modProfile.replaceAll(/[^\w\d\-]+/g, " ");
-
-      const modProfileAlwaysIn = Engine.ConfigDB_GetValue("user", 'modProfile.alwaysIn');
-      const regex = new RegExp('\b((mod\s+public)|autociv[a-z]*|' + modProfileAlwaysIn + ')\b\s*' ,'gi');
-      clean = clean.replaceAll(regex, ""); // mod\s+public is default. boring to save it
 
       const showDebugWarning = false
       if (clean != modProfile) {
@@ -472,18 +462,14 @@ function saveThisModProfile(nr, autoLabelManually) {
       const modProfile = Engine.ConfigDB_GetValue("user", profKey);
       let clean = '';
 
-        const modProfileAlwaysIn = Engine.ConfigDB_GetValue("user", 'modProfile.alwaysIn');
-        const regex = new RegExp('\b((mod\s+public)|autociv[a-z]*|' + modProfileAlwaysIn + ')\b\s*' ,'gi');
-        clean = clean.replaceAll(regex, ""); // mod\s+public is default. boring to save it
 
-        // const modProfileAlwaysIn = Engine.ConfigDB_GetValue("user", 'modProfile.alwaysIn');
 
       clean =
         "mod public " +
         modProfile.replaceAll(/\b(mod\s+public)\b\s*/g, "")
-        + " " + modProfileAlwaysIn
-        + " autocivP"
-        ;
+
+        clean = addModProfileAlwaysInAlsoAddAutocivPatTheEnd(clean)
+
 
       if (clean != modsFromUserCfg_const) {
         warn("save:" + nr);
@@ -604,3 +590,17 @@ function saveThisModProfile(nr, autoLabelManually) {
     }
     return false;
   }
+
+function addModProfileAlwaysInAlsoAddAutocivPatTheEnd(clean){
+  const modProfileAlwaysIn = Engine.ConfigDB_GetValue("user", 'modProfile.alwaysIn');
+  const modProfileAlwaysInArray = modProfileAlwaysIn.split(/\s/);
+  modProfileAlwaysInArray.forEach(value => {
+    const regex = new RegExp('\b' + value + '\b\s*' ,'gi');
+    clean = clean.replaceAll(regex, ""); // mod\s+public is default. boring to save it
+  })
+  // autocivP its at the end and shoud at the end
+  if(clean.indexOf(' autocivP')<=0)
+    clean += ' autocivP'
+  clean = clean.replaceAll('autocivP', `${modProfileAlwaysIn} autocivP` ); // mod\s+public is default. boring to save it
+  return clean
+}
