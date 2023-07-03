@@ -83,16 +83,23 @@ function translateGlHfWpU2Gg(gg) {
 
 	  const lowercaseGg = gg.toLowerCase()
 	  if (lowercaseGg == 'allicons') {
-		  text = ggMap[lowercaseGg] || text;
-		  return text
+		const vArr = Object.values(ggMap);
+		var s = vArr.join(', ');
+		return s
+	  }
+	  if (lowercaseGg == 'alliconkeys') {
+		const vArr = Object.keys(ggMap);
+		var s = vArr.join(', ');
+		return s
 	  }
 
 	  for (const key in ggMap) {
 		if (key.toLowerCase() === lowercaseGg) {
 		  text = ggMap[key];
-		  break;
+		  return text
 		}
-		}
+	  }
+
 
 	  /*!SECTION
 	  donto work:

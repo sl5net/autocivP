@@ -114,7 +114,7 @@ class GameDetails
 				let modStr = escapeText(modToString(mod));
 				if (mod.ignoreInCompatibilityChecks)
 					modStr = setStringTags(coloredText(modStr, "180 180 180"), {
-						"tooltip": translate("This mod does not affect MP compatibility")
+						"tooltip": translate("This mod does not affect MP compatibility HFall :)")
 					});
 				txt += "\n" + modStr;
 			}

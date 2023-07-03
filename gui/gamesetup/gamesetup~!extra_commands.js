@@ -252,7 +252,35 @@ g_NetworkCommandsDescriptions = Object.assign(g_NetworkCommandsDescriptions, {
     "type pU<tab> for extinct_volcano and other defaults",
   "/pRestoreLastProfile":
     "/pRestoreLastProfile<enter> when you want restore last profile",
+  "/iconsList":
+    "heart sun flower ...",
 });
+
+g_NetworkCommands["/versionNr"] = (match) => { // if textAllSometing is something then its will be sendet to all team. not only for yourself
+  const modsObj = Engine.GetEngineInfo().mods
+  var g_autocivPVersion = ''
+  for (const [key, value] of Object.entries(modsObj)) {
+    if (value.name === "autocivP") {
+      g_autocivPVersion = value.version
+      break
+    }
+  }
+
+  const version0ad = Engine.GetEngineInfo().mods[0].version
+
+  const chatInput = Engine.GetGUIObjectByName("chatInput")
+  chatInput.caption = `i use autocivP Version is ${g_autocivPVersion} in 0ad ${version0ad}`
+}
+
+
+g_NetworkCommands["/iconsList"] = (match) => { // if textAllSometing is something then its will be sendet to all team. not only for yourself
+  selfMessage(translateGlHfWpU2Gg('allicons'))
+  const keys = translateGlHfWpU2Gg('alliconkeys')
+  selfMessage(keys)
+  const chatInput = Engine.GetGUIObjectByName("chatInput")
+  chatInput.caption = keys
+}
+
 
 g_NetworkCommands["/help2All"] = (match) => { // if textAllSometing is something then its will be sendet to all team. not only for yourself
   g_NetworkCommands["/help"](match, true);
