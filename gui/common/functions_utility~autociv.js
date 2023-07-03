@@ -508,14 +508,30 @@ function saveThisModProfile(nr, autoLabelManually) {
         // state.needsRestart = true;
         // configSaveToMemoryAndToDisk(key, settings[key]);
 
-        // Engine.SetMods(clean);
+        // Engine.SetMods(clean); // SetMods is not a function here :(           
+        // Engine.RestartEngine(); // RestartEngine(1);  is not a function here :(
 
         // state.reasons.add("New mode-profile settings added.");
 
-        // Engine.RestartInAtlas(1) // works. it start atlas
+        Engine.RestartInAtlas(1) // works. it start atlas
         // Engine.RestartInEngine(1) // is not a function
         // Engine.RestartEngine(1) // is not a funtion
         // Engine.RestartEngine.call(1) // is undefined
+
+
+        Engine.SetMods()
+
+
+        // function GetAvailableMods(): any
+        // function RestartEngine(): any
+        // function SetMods(): any
+        // function ModIoStartGetGameId(): any
+        // function ModIoStartListMods(): any
+        // function ModIoStartDownloadMod(): any
+        // function ModIoAdvanceRequest(): any
+        // function ModIoCancelRequest(): any
+        // function ModIoGetMods(): any
+      
 
 
         // let message = `

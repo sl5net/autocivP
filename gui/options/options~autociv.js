@@ -230,49 +230,23 @@ enableButtons = function ()
 	Engine.GetGUIObjectByName("revertChanges").enabled = hasChanges;
 	Engine.GetGUIObjectByName("saveChanges").enabled = hasChanges;
 
-	// Engine.GetGUIObjectByName("saveChanges").onPress = () => warn("saveChanges")
-
-	// works dont save anything:
-	// Engine.GetGUIObjectByName("saveChanges").onPress = () =>
-	// {
-	// 	try {
-	// 		Engine.Restart();
-	// 	} catch (error) {
-	// 		Engine.Exit(1);
-	// 	}
-	// }
-
 	const existingHandler = Engine.GetGUIObjectByName("saveChanges").onPress;
 	// Create a new function that combines the existing handler and your code
 	const combinedHandler = () => {
 		// Call the existing handler first
 		existingHandler();
 
-		// Your additional code here
-		// ...
-
-		// Save changes logic here
-
-		// Execute the restart command after saving
-
+		// restart / exit command is in follwoing function:
 		check_modProfileSelector_settings()
 
-		// ConfigDB_CreateAndSaveValueA26A27("user", 'test',"test")
-
-		// warn( ' implement here the source mod changed source - code ' )
-		// warn( 'ok. gui/options/options~autociv.js - Engine.GetGUIObjectByName("saveChanges").onPress - all fine no problem - please resart manually if needet ')
-
-		if(false) // mot necesary.
+		if(false) // not necesary anymore at the mometn.
 		  try {
 			Engine.Restart(1)
 		  } catch (error) {
 			Engine.Exit(1)
 		  }
-};
-
+	};
 	Engine.GetGUIObjectByName("saveChanges").onPress = combinedHandler;
-
-
 }
 
 function runAfterDelay() { // not work for me 23-0701_1334-21

@@ -22,7 +22,6 @@ const whatsAutocivPMod = 'AutoCivP mod is AutoCiv but it also supports profiles 
 function translateGlHfWpU2Gg(gg) {
 	// https://unicodeemoticons.com/
 	// btw guiObject is not definded her so you cant use this: sendMessageGlHfWpU2Gg(..., guiObject)
-	let gg2 = ''; // no extra info here probably better (${gg})
 	let text =  '';
 	const ggMap = {
 		gl: 'Good luck',
@@ -55,8 +54,6 @@ function translateGlHfWpU2Gg(gg) {
 		music: '♪',
 		male: '♂',
 		female: '♀',
-		// circle: '⚪',
-		// square: '⚫',
 		triangle: '▲',
 		diamond: '♦',
 		spade: '♠',
@@ -65,25 +62,37 @@ function translateGlHfWpU2Gg(gg) {
 		smiley: '☺',
 		flower2: '❧',
 		love: '♡',
+		yinYang: '☯',
+		moon: '☽',
+		meh: '¯\_(^_^)_/¯',
+		// circle: '⚪',
+		// square: '⚫',
 		// crown: '♔',
 		// arrow: '➤',
 		// peace: '☮',
-		yinYang: '☯',
 		// atom: '⚛',
 		// skull: '☠',
 		// coffee: '☕',
 		// phone: '☎',
 		// plane: '✈',
 		// star2: '☆',
-		moon: '☽',
-		meh: '¯\_(^_^)_/¯',
 
 		// lightning: '⚡',
 		// cloud: '☁',
-	  };
-	  if(gg != 'allicons')
-		  text = ggMap[gg] || text;
-	  else text = Object.values(ggMap).join('');
+	  }
+
+	  const lowercaseGg = gg.toLowerCase()
+	  if (lowercaseGg == 'allicons') {
+		  text = ggMap[lowercaseGg] || text;
+		  return text
+	  }
+
+	  for (const key in ggMap) {
+		if (key.toLowerCase() === lowercaseGg) {
+		  text = ggMap[key];
+		  break;
+		}
+		}
 
 	  /*!SECTION
 	  donto work:
