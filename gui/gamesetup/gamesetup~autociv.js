@@ -1,3 +1,10 @@
+
+
+
+
+
+
+
 warnModIsNotEnabled(); // check for feldmap mod is default 23-0624_0327-45
 
 var g_autociv_maps = new Set(["maps/skirmishes/Volcano Island (8)"])
@@ -6,7 +13,7 @@ var g_autociv_hotkeys = {
 	"autociv.open.autociv_readme": function (ev)
 	{
 		Engine.PushGuiPage("page_autociv_readme.xml");
-	},
+},
 	"autociv.gamesetup.focus.chatInput": function (ev)
 	{
 		Engine.GetGUIObjectByName("chatInput").blur();

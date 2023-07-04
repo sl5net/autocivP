@@ -6,6 +6,12 @@ class BotManager
 	constructor()
 	{
 
+
+
+
+
+
+
 	}
 
 	addBot(name, object)
@@ -237,12 +243,26 @@ var botManager = new BotManager();
 
 function selfMessage(text) { botManager.selfMessage(text) }
 
+/**
+ * Sends a message, splitting it into chunks if necessary.
+ *
+ * @param {string} text - The message to be sent.
+ * @return {undefined} - This function does not return a value.
+ */
 function sendMessage(text)
 {
 	// Messages reduced to the first 255 letters so, send it split if exceeded
-	const numChunks = Math.ceil(text.length / sendMessage.maxChunkLength);
-	for (let i = 0; i < numChunks; ++i)
-		botManager.sendMessage(text.substr(i * sendMessage.maxChunkLength, sendMessage.maxChunkLength));
+
+	if(true){
+	// old style:
+		const numChunks = Math.ceil(text.length / sendMessage.maxChunkLength);
+		for (let i = 0; i < numChunks; ++i)
+			botManager.sendMessage(text.substr(i * sendMessage.maxChunkLength, sendMessage.maxChunkLength));
+	}else{
+		let i = 0;
+		const chunk = text.substring(i * sendMessage.maxChunkLength, (i + 1) * sendMessage.maxChunkLength);
+		botManager.sendMessage(chunk);
+	}
 }
 
 sendMessage.maxChunkLength = 256 - 1;
@@ -429,13 +449,16 @@ botManager.addBot("autociv", {
 		for (let civ of [randomCivData, ...Object.values(g_CivData)])
 		{
 			// Official full name (translated).
-			const civNameVariations = [civ.Name];
+			const civNameVariations = [civ.Name]; // code is shorter string. e.g. "Code":"sele"
+
 			// Custom names if any.
 			if (civ.Code in customNamesCivs)
 				civNameVariations.push(...customNamesCivs[civ.Code]);
 
 			this.fuzzySearch[civ.Code] = FuzzySet(civNameVariations, true, 3, 3)
 		}
+
+
 	}
 });
 

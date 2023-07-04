@@ -1,5 +1,7 @@
 var gameState = "lobby"; // Initial state // // TODO: howto set it like this? g_GameData = data // 	g_GameData.gui.isInGame
 
+var g_fuzzyArrayResult = fuzzyArrayFromjsonFile("moddata/autocivP_IconNames.json")
+
 
 // Engine.GetCurrentReplayDirectory
 // GetEngineInfo.gameState.data
@@ -19,10 +21,47 @@ var gameState = "lobby"; // Initial state // // TODO: howto set it like this? g_
 
 const versionOf0ad = Engine.GetEngineInfo().mods[0]['version']; // 0.0.26
 const whatsAutocivPMod = 'AutoCivP mod is AutoCiv but it also supports profiles during game configuration, jitsi, command-history[tab][tab] and a lot more.';
+
+
+/**
+ * Generates a fuzzy array from a given JSON file.
+ *
+ * @param {string} jsonFile - The path to the JSON file.
+ * @return {Object} - The fuzzy array generated from the JSON file.
+ */
+function fuzzyArrayFromjsonFile(jsonFile){
+	const customIconJson = Engine.ReadJSONFile(jsonFile);
+	const customIconKeys = Object.keys(customIconJson);
+	let fuzzyArrayResult = {}
+	for (const key of customIconKeys) {
+		const values = customIconJson[key];
+		const fuzzyVals = FuzzySet(values, true, 3, 9);
+		fuzzyArrayResult[key] = fuzzyVals;
+	}
+    return fuzzyArrayResult;
+}
+
+
+
+
 function translateGlHfWpU2Gg(gg) {
 	// https://unicodeemoticons.com/
 	// btw guiObject is not definded her so you cant use this: sendMessageGlHfWpU2Gg(..., guiObject)
+
 	let text =  '';
+
+	let query
+	query = gg;
+	// warn('/' + '‾'.repeat(32));
+	const result = findBestMatch(query, g_fuzzyArrayResult);
+	// warn(`120: Best match for query "${query}": ${result.bestMatch} (${result.bestMatchWord})`);
+	// warn('\\________________________________')
+
+	if(result.bestMatch)
+		return result.bestMatch;
+	else
+		return '';
+
 	const ggMap = {
 		gl: 'Good luck',
 		hf: 'Have fun',
@@ -145,6 +184,8 @@ function translateGlHfWpU2Gg(gg) {
 	// 	text =  'ڪ'; // https://unicodeemoticons.com/
 	return text;
 }
+
+
 
 function getNextLastCommandID(){
 	let nextID = g_lastCommandID + 1
@@ -532,3 +573,440 @@ autociv_InitSharedCommands.pipe = {
 		}
 	}
 }
+
+/**
+ * This code snippet demonstrates how to use fuzzy matching to find the best match for a query in a collection of icon values.
+ * It utilizes a fuzzy icon set (fuzzyIcons) and a fuzzy matching library (FuzzySet or fuzzyVals) to find the closest match based on similarity scores.
+ *
+ * The code snippet includes an example workflow with a predefined query and fuzzy icon values.
+ * It demonstrates how to find matches for the query and display the best match with its similarity score using the warn function.
+ *
+ * @return {undefined} No return value
+ */
+function fuzzyIconMatcherExample() {
+	warn('=====================================');
+
+	// const fuzzyVals = FuzzySet(iconValues, true, 3, 3);
+	const fuzzyVals = g_fuzzyArrayResult["♡"];
+	const query = "go";
+	const matches = g_fuzzyArrayResult["♡"].get(query);
+
+	if (matches !== null) {
+	  // The query has a match
+	  const similarityScore = matches[0][0];
+	  const matchedString = matches[0][1];
+	  warn(`The query "${query}" matched to word "${matchedString}" with a similarity score of ${similarityScore}`);
+	} else {
+	  // No match found for the query
+	  warn(`76: No match found for the query "${query}"`);
+	}
+
+	// results:
+	// WARNING: The query "lve" matched "love" with a similarity score of 0.75
+	// WARNING: The query "3" matched "<3" with a similarity score of 0.5
+	// WARNING: The query "love" matched "undefined" with a similarity score of 1,love
+}
+
+
+/**
+ * Creates a new FuzzySet object.
+ *
+ * @param {Array} arr - An array of values to initialize the set with. Default is an empty array.
+ * @param {boolean} useLevenshtein - Whether to use the Levenshtein distance algorithm for matching. Default is true.
+ * @param {number} gramSizeLower - Default is 2. minimum size of the characters in a string.
+ * @param {number} gramSizeUpper - Default is 3. maximum size of the characters in a string.
+ * @return {Object} A FuzzySet object.
+ * @author: https://github.com/axiak/fuzzyset
+ */
+function FuzzySet(arr, useLevenshtein, gramSizeLower, gramSizeUpper)
+{
+	let fuzzyset = {
+
+	};
+
+	// default options
+	arr = arr || [];
+	fuzzyset.gramSizeLower = gramSizeLower || 2;
+	fuzzyset.gramSizeUpper = gramSizeUpper || 3;
+	fuzzyset.useLevenshtein = (typeof useLevenshtein !== 'boolean') ? true : useLevenshtein;
+
+	// define all the object functions and attributes
+	fuzzyset.exactSet = {};
+	fuzzyset.matchDict = {};
+	fuzzyset.items = {};
+
+	// helper functions
+	let levenshtein = function(str1, str2)
+	{
+		let current = [],
+			prev, value;
+
+		for (let i = 0; i <= str2.length; i++)
+			for (let j = 0; j <= str1.length; j++)
+			{
+				if (i && j)
+					if (str1.charAt(j - 1) === str2.charAt(i - 1))
+						value = prev;
+					else
+						value = Math.min(current[j], current[j - 1], prev) + 1;
+				else
+					value = i + j;
+
+				prev = current[j];
+				current[j] = value;
+			}
+
+		return current.pop();
+	};
+
+	// return an edit distance from 0 to 1
+	let _distance = function(str1, str2)
+	{
+		if (str1 === null && str2 === null) throw 'Trying to compare two null values';
+		if (str1 === null || str2 === null) return 0;
+		str1 = String(str1);
+		str2 = String(str2);
+
+		let distance = levenshtein(str1, str2);
+		if (str1.length > str2.length)
+		{
+			return 1 - distance / str1.length;
+		}
+		else
+		{
+			return 1 - distance / str2.length;
+		}
+	};
+	let _nonWordRe = /[^a-zA-Z0-9\u00C0-\u00FF, ]+/g;
+
+	let _iterateGrams = function(value, gramSize)
+	{
+		gramSize = gramSize || 2;
+		let simplified = '-' + value.toLowerCase().replace(_nonWordRe, '') + '-',
+			lenDiff = gramSize - simplified.length,
+			results = [];
+		if (lenDiff > 0)
+		{
+			for (let i = 0; i < lenDiff; ++i)
+			{
+				value += '-';
+			}
+		}
+		for (let i = 0; i < simplified.length - gramSize + 1; ++i)
+		{
+			results.push(simplified.slice(i, i + gramSize));
+		}
+		return results;
+	};
+
+	let _gramCounter = function(value, gramSize)
+	{
+		// return an object where key=gram, value=number of occurrences
+		gramSize = gramSize || 2;
+		let result = {},
+			grams = _iterateGrams(value, gramSize),
+			i = 0;
+		for (i; i < grams.length; ++i)
+		{
+			if (grams[i] in result)
+			{
+				result[grams[i]] += 1;
+			}
+			else
+			{
+				result[grams[i]] = 1;
+			}
+		}
+		return result;
+	};
+
+	// the main functions
+	fuzzyset.get = function(value, defaultValue, minMatchScore)
+	{
+		// check for value in set, returning defaultValue or null if none found
+		if (minMatchScore === undefined)
+		{
+			minMatchScore = 0.33;
+		}
+		let result = this._get(value, minMatchScore);
+		if (!result && typeof defaultValue !== 'undefined')
+		{
+			return defaultValue;
+		}
+		return result;
+	};
+
+	fuzzyset._get = function(value, minMatchScore)
+	{
+		let normalizedValue = this._normalizeStr(value),
+			result = this.exactSet[normalizedValue];
+		if (result)
+		{
+			return [
+				[1, result]
+			];
+		}
+
+		let results = [];
+		// start with high gram size and if there are no results, go to lower gram sizes
+		for (let gramSize = this.gramSizeUpper; gramSize >= this.gramSizeLower; --gramSize)
+		{
+			results = this.__get(value, gramSize, minMatchScore);
+			if (results && results.length > 0)
+			{
+				return results;
+			}
+		}
+		return null;
+	};
+
+	fuzzyset.__get = function(value, gramSize, minMatchScore)
+	{
+		let normalizedValue = this._normalizeStr(value),
+			matches = {},
+			gramCounts = _gramCounter(normalizedValue, gramSize),
+			items = this.items[gramSize],
+			sumOfSquareGramCounts = 0,
+			gram,
+			gramCount,
+			i,
+			index,
+			otherGramCount;
+
+		for (gram in gramCounts)
+		{
+			gramCount = gramCounts[gram];
+			sumOfSquareGramCounts += Math.pow(gramCount, 2);
+			if (gram in this.matchDict)
+			{
+				for (i = 0; i < this.matchDict[gram].length; ++i)
+				{
+					index = this.matchDict[gram][i][0];
+					otherGramCount = this.matchDict[gram][i][1];
+					if (index in matches)
+					{
+						matches[index] += gramCount * otherGramCount;
+					}
+					else
+					{
+						matches[index] = gramCount * otherGramCount;
+					}
+				}
+			}
+		}
+
+		function isEmptyObject(obj)
+		{
+			for (let prop in obj)
+			{
+				if (obj.hasOwnProperty(prop))
+					return false;
+			}
+			return true;
+		}
+
+		if (isEmptyObject(matches))
+		{
+			return null;
+		}
+
+		let vectorNormal = Math.sqrt(sumOfSquareGramCounts),
+			results = [],
+			matchScore;
+		// build a results list of [score, str]
+		for (let matchIndex in matches)
+		{
+			matchScore = matches[matchIndex];
+			results.push([matchScore / (vectorNormal * items[matchIndex][0]), items[matchIndex][1]]);
+		}
+		let sortDescending = function(a, b)
+		{
+			if (a[0] < b[0])
+			{
+				return 1;
+			}
+			else if (a[0] > b[0])
+			{
+				return -1;
+			}
+			else
+			{
+				return 0;
+			}
+		};
+		results.sort(sortDescending);
+		if (this.useLevenshtein)
+		{
+			let newResults = [],
+				endIndex = Math.min(50, results.length);
+			// truncate somewhat arbitrarily to 50
+			for (let i = 0; i < endIndex; ++i)
+			{
+				newResults.push([_distance(results[i][1], normalizedValue), results[i][1]]);
+			}
+			results = newResults;
+			results.sort(sortDescending);
+		}
+		let newResults = [];
+		results.forEach(function(scoreWordPair)
+		{
+			if (scoreWordPair[0] >= minMatchScore)
+			{
+				newResults.push([scoreWordPair[0], this.exactSet[scoreWordPair[1]]]);
+			}
+		}.bind(this));
+		return newResults;
+	};
+
+	fuzzyset.add = function(value)
+	{
+		let normalizedValue = this._normalizeStr(value);
+		if (normalizedValue in this.exactSet)
+		{
+			return false;
+		}
+
+		let i = this.gramSizeLower;
+		for (i; i < this.gramSizeUpper + 1; ++i)
+		{
+			this._add(value, i);
+		}
+	};
+
+	fuzzyset._add = function(value, gramSize)
+	{
+		let normalizedValue = this._normalizeStr(value),
+			items = this.items[gramSize] || [],
+			index = items.length;
+
+		items.push(0);
+		let gramCounts = _gramCounter(normalizedValue, gramSize),
+			sumOfSquareGramCounts = 0,
+			gram, gramCount;
+		for (gram in gramCounts)
+		{
+			gramCount = gramCounts[gram];
+			sumOfSquareGramCounts += Math.pow(gramCount, 2);
+			if (gram in this.matchDict)
+			{
+				this.matchDict[gram].push([index, gramCount]);
+			}
+			else
+			{
+				this.matchDict[gram] = [
+					[index, gramCount]
+				];
+			}
+		}
+		let vectorNormal = Math.sqrt(sumOfSquareGramCounts);
+		items[index] = [vectorNormal, normalizedValue];
+		this.items[gramSize] = items;
+		this.exactSet[normalizedValue] = value;
+	};
+
+	fuzzyset._normalizeStr = function(str)
+	{
+		if (Object.prototype.toString.call(str) !== '[object String]') throw 'Must use a string as argument to FuzzySet functions';
+		return str.toLowerCase();
+	};
+
+	// return length of items in set
+	fuzzyset.length = function()
+	{
+		let count = 0,
+			prop;
+		for (prop in this.exactSet)
+		{
+			if (this.exactSet.hasOwnProperty(prop))
+			{
+				count += 1;
+			}
+		}
+		return count;
+	};
+
+	// return is set is empty
+	fuzzyset.isEmpty = function()
+	{
+		for (let prop in this.exactSet)
+		{
+			if (this.exactSet.hasOwnProperty(prop))
+			{
+				return false;
+			}
+		}
+		return true;
+	};
+
+	// return list of values loaded into set
+	fuzzyset.values = function()
+	{
+		let values = [],
+			prop;
+		for (prop in this.exactSet)
+		{
+			if (this.exactSet.hasOwnProperty(prop))
+			{
+				values.push(this.exactSet[prop]);
+			}
+		}
+		return values;
+	};
+
+
+	// initialization
+	let i = fuzzyset.gramSizeLower;
+	for (i; i < fuzzyset.gramSizeUpper + 1; ++i)
+	{
+		fuzzyset.items[i] = [];
+	}
+	// add all the items to the set
+	for (i = 0; i < arr.length; ++i)
+	{
+		fuzzyset.add(arr[i]);
+	}
+
+	return fuzzyset;
+}
+
+/**
+ * Finds the best match for a given query in a fuzzy array.
+ *
+ * @param {string} query - The query to search for.
+ * @param {object} fuzzyArray - The fuzzy array to search in.
+ * @return {object} An object containing the best match, the matched word, and the similarity score.
+ */
+function findBestMatch(query, fuzzyArray) {
+	let bestMatch = null;
+	let bestMatchWord = null;
+	let bestSimilarityScore = 0;
+
+	const minMatchScore = 0.3;
+
+	for (const key in fuzzyArray) {
+	  const matches = fuzzyArray[key].get(query);
+
+	  if (matches !== null && matches[0][0] > minMatchScore) {
+		const similarityScore = matches[0][0];
+		const matchedString = matches[0][1];
+
+		if (false) {
+		  warn(`The query "${query}" matched to word "${matchedString}" with a similarity score of ${similarityScore}`);
+		  warn(`fuzzyIcon = ${key}`);
+		  warn(`minMatchScore = ${minMatchScore}`);
+		}
+
+		if (similarityScore > bestSimilarityScore) {
+		  bestMatch = key;
+		  bestMatchWord = matchedString;
+		  bestSimilarityScore = similarityScore;
+		}
+	  }
+	}
+
+	return {
+	  bestMatch: bestMatch,
+	  bestMatchWord: bestMatchWord,
+	  bestSimilarityScore: bestSimilarityScore
+	};
+  }

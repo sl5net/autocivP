@@ -172,7 +172,7 @@ var autoCompleteText_newMerge = function (guiObject, list)
             }else{
                 selfMessage('never heppens? 23-0628_1307-15')
             }
-            selfMessage(`caption == g_lastCommand '${caption}' => double tab ?`);
+            // selfMessage(`caption == g_lastCommand '${caption}' => double tab ?`);
             // EndOf caption == g_lastCommand
         }
 
@@ -182,8 +182,12 @@ var autoCompleteText_newMerge = function (guiObject, list)
     }
 
     const doTabReplacmentWor_gl_hf_gg_wp_stuff = true; // usefull for debugging maybe
-    if(doTabReplacmentWor_gl_hf_gg_wp_stuff){
-                let text = translateGlHfWpU2Gg(caption.toString());
+    const firstChar = caption.toString().charAt(0); // or str[0]
+
+    if(firstChar == '<' || doTabReplacmentWor_gl_hf_gg_wp_stuff){
+      let text = caption.toString()
+      text = text.substring(1); // or text.slice(1)
+      text = translateGlHfWpU2Gg(caption.toString());
                 if(text.length){
                     guiObject.caption = text;
                     // selfMessage('always ?') // no not always. works like expected 23-0628_0232-14
