@@ -172,7 +172,7 @@ var autoCompleteText_newMerge = function (guiObject, list)
             }else{
                 selfMessage('never heppens? 23-0628_1307-15')
             }
-            // selfMessage(`caption == g_lastCommand '${caption}' => double tab ?`);
+            selfMessage(`caption == g_lastCommand '${caption}' => double tab ?`);
             // EndOf caption == g_lastCommand
         }
 
