@@ -35,7 +35,7 @@ function fuzzyArrayFromjsonFile(jsonFile){
 	let fuzzyArrayResult = {}
 	for (const key of customIconKeys) {
 		const values = customIconJson[key];
-		const fuzzyVals = FuzzySet(values, true, 2, 8);
+		const fuzzyVals = FuzzySet(values, false, 2, 8);
 		fuzzyArrayResult[key] = fuzzyVals;
 	}
     return fuzzyArrayResult;
