@@ -254,6 +254,16 @@ var autoCompleteText_newMerge = function (guiObject, list)
         selfMessage('set /hiAll yourWelcomeText or use /hiAll yourWelcomeText or send by /hiAll or helloAll tab, to edit it first.');
         return;
     }
+    if(caption.toLowerCase() == 'modsImCurrentlyUsing'.toLowerCase()){
+        const modEnabledmods = Engine.ConfigDB_GetValue(
+          "user",
+          "mod.enabledmods"
+        );
+        // sendMessage(`Mods I'm currently using: ${modEnabledmods.slice(11,)}` );
+        let text = `Mods I'm currently using: ${modEnabledmods.slice(11,)}`
+        guiObject.caption = text;
+        return;
+    }
     // selfMessage('caption = ' + caption)
     // Engine.ConfigDB_CreateAndSaveValue("user", "autocivP.chat.lastCommand", caption); // is not a function error in Version a26 aut 23-0605_1920-25
     const sameTry = autoCompleteText.state.newCaption == caption

@@ -30,6 +30,10 @@ function translateGlHfWpU2Gg(gg) {
 		wp: 'Well played',
 		u2: 'You too!',
 		re: 'Again?',
+		idk: `I don't know`,
+		META: `most effective tactic available`,
+		AFK: 'away from keyboard',
+		BRB: 'be right back',
 		'<3': '♡',
 		heart: '♡',
 		':-)': '☺',
@@ -300,8 +304,6 @@ var g_autociv_SharedCommands = {
 			let text = `Mods I'm currently using: ${modEnabledmods.slice(11,)}`
 			const chatInput = Engine.GetGUIObjectByName("chatInput")
 			chatInput.caption = text
-
-
 		}
 	},
 	"jitsi": {
@@ -477,7 +479,7 @@ autociv_InitSharedCommands.pipe = {
 				if(key == 'jitsi') // long text a critical in the looby. better not so many commands there with long texts
 					return true
 				g_autociv_SharedCommands[key].handler(text)
-				selfMessage(`325: SharedCommands= ${text}`)
+				selfMessage(`482: SharedCommands: ${key} = ${text}`)
 				return true
 			}
 		}
