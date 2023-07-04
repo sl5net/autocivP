@@ -293,7 +293,7 @@ var g_autociv_SharedCommands = {
 		}
 	},
 	"modsImCurrentlyUsing": {
-		"description": "Mods I'm currently using",
+		"description": "Mods I'm currently using. Or try without the postfix '/' and at the end of the command <tab>",
 		"handler": () =>
 		{
 			const modEnabledmods = Engine.ConfigDB_GetValue(

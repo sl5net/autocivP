@@ -254,6 +254,8 @@ g_NetworkCommandsDescriptions = Object.assign(g_NetworkCommandsDescriptions, {
     "/pRestoreLastProfile<enter> when you want restore last profile",
   "/iconsList":
     "heart sun flower ...",
+  "/modsImCurrentlyUsing":
+    "/modsImCurrentlyUsing or try modsImCurrentlyUsing<tab> for a list of all currently used mods",
 });
 
 g_NetworkCommands["/versionNr"] = (match) => { // if textAllSometing is something then its will be sendet to all team. not only for yourself
