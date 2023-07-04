@@ -184,7 +184,7 @@ var autoCompleteText_newMerge = function (guiObject, list)
     const doTabReplacmentWor_gl_hf_gg_wp_stuff = true; // usefull for debugging maybe
     const firstChar = caption.toString().charAt(0); // or str[0]
 
-    if(firstChar == '<' || doTabReplacmentWor_gl_hf_gg_wp_stuff){
+    if(firstChar == '<' && doTabReplacmentWor_gl_hf_gg_wp_stuff){
       let text = caption.toString()
       text = text.substring(1); // or text.slice(1)
       text = translateGlHfWpU2Gg(caption.toString());
