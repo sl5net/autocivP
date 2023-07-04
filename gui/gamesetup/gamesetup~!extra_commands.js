@@ -676,11 +676,25 @@ g_NetworkCommands["/popMaxDefault"] = (text) => {
 
 
 
-g_NetworkCommands["/gl"] = () => translateGlHfWpU2Gg('gl');
-g_NetworkCommands["/hf"] = () => translateGlHfWpU2Gg('hf');
-g_NetworkCommands["/wp"] = () => translateGlHfWpU2Gg('wp');
-g_NetworkCommands["/u2"] = () => translateGlHfWpU2Gg('u2');
-g_NetworkCommands["/gg"] = () => translateGlHfWpU2Gg('gg');
+g_NetworkCommands["/gl"] = () =>{
+  const chatInput = Engine.GetGUIObjectByName("chatInput")
+  chatInput.caption = translateGlHfWpU2Gg('gl');
+}
+g_NetworkCommands["/hf"] = () => {
+const chatInput = Engine.GetGUIObjectByName("chatInput")
+chatInput.caption = translateGlHfWpU2Gg('hf');}
+g_NetworkCommands["/wp"] = () => {
+const chatInput = Engine.GetGUIObjectByName("chatInput")
+chatInput.caption = translateGlHfWpU2Gg('wp');
+}
+g_NetworkCommands["/u2"] = () => {
+const chatInput = Engine.GetGUIObjectByName("chatInput")
+chatInput.caption = translateGlHfWpU2Gg('u2');
+}
+g_NetworkCommands["/gg"] = () => {
+const chatInput = Engine.GetGUIObjectByName("chatInput")
+chatInput.caption = translateGlHfWpU2Gg('gg');
+}
 
 
 

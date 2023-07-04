@@ -181,21 +181,23 @@ var autoCompleteText_newMerge = function (guiObject, list)
         // Enof caption is not empty
     }
 
+    // Enof caption is maybe not empty
     const doTabReplacmentWor_gl_hf_gg_wp_stuff = true; // usefull for debugging maybe
-    const firstChar = caption.toString().charAt(0); // or str[0]
+    if(caption.length ){
+      const firstChar = caption.toString().charAt(0); // or str[0]
 
     if(firstChar == '<' && doTabReplacmentWor_gl_hf_gg_wp_stuff){
-      let text = caption.toString()
-      text = text.substring(1); // or text.slice(1)
+      const captionBegin = caption.toString()
+      let text = captionBegin.substring(1); // or text.slice(1)
       text = translateGlHfWpU2Gg(caption.toString());
                 if(text.length){
-                    saveLastCommand2History(guiObject.caption)
+                    saveLastCommand2History(captionBegin)
                     guiObject.caption = text;
                     // selfMessage('always ?') // no not always. works like expected 23-0628_0232-14
                     return;
                 }
         }
-
+    }
         // "Select chat addressee." "Everyone"=0 "Allies"=1 Enemies=2 Observers=3
     const chatAddressBox = Engine.GetGUIObjectByName("chatAddressee"); // found this name in binaries/data/mods/public/gui/session/chat/chat_window.xml
 
