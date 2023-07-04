@@ -1,7 +1,7 @@
 {
    "Good luck": ["Good luck", "gl", "Best of luck", "Wish you luck"],
     "Have fun": ["Have fun", "hf", "Enjoy yourself", "Have a blast"],
-    "Good game": ["Good game", "gg", "Nice game", "Well played"],
+    "Good game ❧": ["Good game", "gg", "Nice game", "Well played"],
     "Well played": ["Well played", "wp", "Great job", "Impressive play"],
     "You too!": ["You too!", "u2", "Same to you", "Likewise"],
     "Again?": ["Again?", "re", "One more time", "Once more"],
@@ -12,7 +12,7 @@
     
 "♡": ["<3", "heart", "love"],
   "☺": [":-)", "smile", "happy"],
-  "☻": [":(", "sad", "unhappy"],
+  "☻": [":(", "sad", "face"],
   "☹": [":(", "sad", "unhappy"],
   "☼": ["sun", "shine"],
   "←": ["left", "arrow", "direction"],
@@ -33,12 +33,11 @@
   "♪": ["music", "note", "melody"],
   "♂": ["male", "man", "masculine"],
   "♀": ["female", "woman", "feminine"],
-  "▲": ["triangle", "tri", "shape"],
+  "▲": ["triangle", "tri", "pyramid"],
   "♦": ["diamond", "gem", "shape"],
   "♠": ["spade", "card", "suit"],
   "♣": ["club", "card", "suit"],
   "♩": ["note", "music", "sound"],
-  "❧": ["smiley", "happy", "face"],
   "☯": ["yinYang", "balance", "harmony"],
   "☽": ["moon", "lunar", "night"],
   "¯\\_(^_^)_/¯": ["meh", "shrug", "indifferent"]

@@ -189,6 +189,7 @@ var autoCompleteText_newMerge = function (guiObject, list)
       text = text.substring(1); // or text.slice(1)
       text = translateGlHfWpU2Gg(caption.toString());
                 if(text.length){
+                    saveLastCommand2History(guiObject.caption)
                     guiObject.caption = text;
                     // selfMessage('always ?') // no not always. works like expected 23-0628_0232-14
                     return;
