@@ -22,6 +22,77 @@ whats better questions:
     "¯\\_❰•_•❱_/¯": ["meh", "shrug", "indifferent"]
 
 
+    
+not tested:
+
+
+"⁄" - FRACTION SLASH (U+2044)
+"∕" - DIVISION SLASH (U+2215)
+"⧸" - BIG SOLIDUS (U+29F8)
+"⫽" - EQUALS SIGN ABOVE SLASH (U+2AFD)
+"⟋" - MATHEMATICAL RISING DIAGONAL (U+27CB)
+"⧵" - REVERSE SOLIDUS OPERATOR (U+29F5)
+
+"∖" - SET MINUS (U+2216)
+"⧵" - REVERSE SOLIDUS OPERATOR (U+29F5)
+"＼" - FULLWIDTH REVERSE SOLIDUS (U+FF3C)
+    
+    
+    
+    
+    
+// if(gg == ':clock') // dont work
+// 	text =  '⌚'; // https://unicodeemoticons.com/
+// if(gg == ':snake') // dont work
+// 	text =  'ڪ'; // https://unicodeemoticons.com/
+
+    
+    
+"⤴" - ARROW POINTING RIGHTWARDS THEN CURVING UPWARDS (U+2934)
+"⤵" - ARROW POINTING RIGHTWARDS THEN CURVING DOWNWARDS (U+2935)
+"⇄" - LEFTWARDS ARROW OVER RIGHTWARDS ARROW (U+21C4)
+"⇅" - UPWARDS ARROW LEFTWARDS OF DOWNWARDS ARROW (U+21C5)
+"⇆" - LEFT RIGHT DOUBLE ARROW (U+21C6)
+"⇔" - LEFT RIGHT DOUBLE ARROW
+    
+    
+    
+    
+    
+	  /*!SECTION
+	  donto work:
+	  		'<': '☚',
+		'>': '☛',
+
+		'☜', // dont work
+
+		':cloud': '\u2601', // Cloud (Unicode: U+2601) // dont work
+		':umbrella': '\u2602', // Umbrella (Unicode: U+2602) // dont work
+		':snowman': '\u2603', // Snowman (Unicode: U+2603) // dont work
+		':lightning': '\u26A1', // High Voltage Sign (Unicode: U+26A1)
+
+
+		'cloud': '\u260C', // Sun Behind Cloud (Unicode: U+260C)
+		'umbrella': '\u260E', // Telephone (Unicode: U+260E)
+		'snowman': '\u2744', // Snowflake (Unicode: U+2744)
+		'lightning': '\u26A1', // High Voltage Sign (Unicode: U+26A1)
+
+
+		'cloud': '☁',
+		'umbrella': '☂',
+		'snowman': '☃',
+		'lightning': '⚡',
+		'star': '★',
+		'moon': '☽',
+		'check': '✓',
+		'cross': '✗',
+		'music': '♪',
+
+
+	  */
+
+
+    
 
 
 {

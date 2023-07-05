@@ -62,67 +62,7 @@ function translateGlHfWpU2Gg(gg) {
 	else
 		return '';
 
-	const ggMap = {
-		gl: 'Good luck',
-		hf: 'Have fun',
-		gg: 'Good game',
-		wp: 'Well played',
-		u2: 'You too!',
-		re: 'Again?',
-		idk: `I don't know`,
-		META: `most effective tactic available`,
-		AFK: 'away from keyboard',
-		BRB: 'be right back',
-		'<3': '♡',
-		heart: '♡',
-		':-)': '☺',
-		':)': '☻',
-		':(': '☹',
-		sun: '☼',
-		left: '\u2190', // long Left arrow (Unicode: U+2190)
-		right: '\u2192', // long Right arrow (Unicode: U+2192)
-		'right-small': '☞',
-		star: '★',
-		flower: '❀',
-		one: '❶',
-		two: '❷',
-		three: '❸',
-		four: '❹',
-		five: '❺',
-		six: '❻',
-		seven: '❼',
-		eight: '❽',
-		nine: '❾',
-		ten: '❿',
-		music: '♪',
-		male: '♂',
-		female: '♀',
-		triangle: '▲',
-		diamond: '♦',
-		spade: '♠',
-		club: '♣',
-		note: '♩',
-		smiley: '☺',
-		flower2: '❧',
-		love: '♡',
-		yinYang: '☯',
-		moon: '☽',
-		meh: '¯\_(^_^)_/¯',
-		// circle: '⚪',
-		// square: '⚫',
-		// crown: '♔',
-		// arrow: '➤',
-		// peace: '☮',
-		// atom: '⚛',
-		// skull: '☠',
-		// coffee: '☕',
-		// phone: '☎',
-		// plane: '✈',
-		// star2: '☆',
-
-		// lightning: '⚡',
-		// cloud: '☁',
-	  }
+		// todo: this is not working. needs implementd again
 
 	  const lowercaseGg = gg.toLowerCase()
 	  if (lowercaseGg == 'allicons') {
@@ -136,52 +76,6 @@ function translateGlHfWpU2Gg(gg) {
 		return s
 	  }
 
-	  for (const key in ggMap) {
-		if (key.toLowerCase() === lowercaseGg) {
-		  text = ggMap[key];
-		  return text
-		}
-	  }
-
-
-	  /*!SECTION
-	  donto work:
-	  		'<': '☚',
-		'>': '☛',
-
-		'☜', // dont work
-
-		':cloud': '\u2601', // Cloud (Unicode: U+2601) // dont work
-		':umbrella': '\u2602', // Umbrella (Unicode: U+2602) // dont work
-		':snowman': '\u2603', // Snowman (Unicode: U+2603) // dont work
-		':lightning': '\u26A1', // High Voltage Sign (Unicode: U+26A1)
-
-
-		'cloud': '\u260C', // Sun Behind Cloud (Unicode: U+260C)
-		'umbrella': '\u260E', // Telephone (Unicode: U+260E)
-		'snowman': '\u2744', // Snowflake (Unicode: U+2744)
-		'lightning': '\u26A1', // High Voltage Sign (Unicode: U+26A1)
-
-
-		'cloud': '☁',
-		'umbrella': '☂',
-		'snowman': '☃',
-		'lightning': '⚡',
-		'star': '★',
-		'moon': '☽',
-		'check': '✓',
-		'cross': '✗',
-		'music': '♪',
-
-
-	  */
-
-
-
-	// if(gg == ':clock') // dont work
-	// 	text =  '⌚'; // https://unicodeemoticons.com/
-	// if(gg == ':snake') // dont work
-	// 	text =  'ڪ'; // https://unicodeemoticons.com/
 	return text;
 }
 
