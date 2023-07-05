@@ -1,8 +1,3 @@
-
-
-
-
-
 var g_linkLongTeam = null; // init should be available during the game and not changed
 
 var g_lastCommand = "";

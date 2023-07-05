@@ -42,7 +42,18 @@ function fuzzyArrayFromjsonFile(jsonFile, useLevenshtein){
 }
 
 
+function chatInputTooltipQuickFixUpdate() {
+	if(g_is_chatInputTooltipQuickFixUpdate_updated) return
 
+	// this is a workaround. should be moved to gui/... /ChatInputPanel or something
+	const chatInput = Engine.GetGUIObjectByName("chatInput")
+	if(chatInput){
+	  chatInput.tooltip += ' Or try ‹Tab› to autocomplete commands for select profile, chosen icons (☯ ♪♣‹) or other commands. Write "⁄help" or  "⁄help ⁄∖d" or  "⁄help ⁄p" for more info about "⁄commands".'
+	  chatInput.tooltip += ' Matching algorithm is more strict when text is longer.'
+	}
+
+	g_is_chatInputTooltipQuickFixUpdate_updated = true
+  }
 
 function translateGlHfWpU2Gg(gg, minMatchScore) {
 	// https://unicodeemoticons.com/
