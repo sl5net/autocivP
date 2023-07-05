@@ -184,14 +184,18 @@ var autoCompleteText_newMerge = function (guiObject, list)
     // Enof caption is maybe not empty
     const doTabReplacmentWor_gl_hf_gg_wp_stuff = true; // usefull for debugging maybe
     if(caption.length ){
-      const firstChar = caption.toString().charAt(0); // or str[0]
-
-
       const key = "autocivP.chat.iconPrefix";
       const iconPrefix = Engine.ConfigDB_GetValue("user", key); // icon prefix iconPrefix should be default <
+      let firstChar = caption.toString().charAt(0); // or str[0]
 
 
-      if(firstChar == iconPrefix && doTabReplacmentWor_gl_hf_gg_wp_stuff){
+      if(  doTabReplacmentWor_gl_hf_gg_wp_stuff
+        &&
+       ( !iconPrefix.length
+        ||
+         firstChar == iconPrefix)
+       ){
+
         const captionBegin = caption.toString()
         let text = captionBegin.substring(1); // or text.slice(1)
         text = translateGlHfWpU2Gg(caption.toString());
