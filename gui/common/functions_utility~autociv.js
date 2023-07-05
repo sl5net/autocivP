@@ -216,7 +216,7 @@ var autoCompleteText_newMerge = function (guiObject, list)
         });
 
 
-        selfMessage('allIconsInText = ' + allIconsInText);
+        // selfMessage('allIconsInText = ' + allIconsInText);
         // guiObject.caption = allIconsInText;
         // return
 
