@@ -1,0 +1,187 @@
+
+# Critical Errors:
+## Me Creashed as Obser in Chat. 
+
+### 23-0705_2222-30
+
+Wrint some text and used the tab command.
+
+I asome that the Corsor in the chat is not placed correcly. and this could effect a stong Errors
+
+GAME STARTED, ALL INIT COMPLETE
+ERROR: JavaScript error: simulation/components/GuiInterface.js line 257
+Script value conversion check failed: v.isNumber() (got type Object)
+  GuiInterface.prototype.GetEntityState@simulation/components/GuiInterface.js:257:77
+  GuiInterface.prototype.ScriptCall@simulation/components/GuiInterface.js:2135:20
+  @simulation/components/GuiInterface~autociv.js:253:19
+  @simulation/components/GuiInterface~boongui.js:527:16
+  GetEntityState@gui/session/session.js:205:28
+  EntitySelection.prototype.addList@gui/session/selection.js:314:34
+  playercommand@gui/session/messages.js:279:15
+  handleNotifications@gui/session/messages.js:358:43
+  onSimulationUpdate@gui/session/session.js:679:2
+  __eventhandler243 (SimulationUpdate)@session SimulationUpdate:1:1
+ERROR: Error calling component script function ScriptCall
+Assertion failed: "len <= length()"
+Location: CStr.cpp:374 (Right)
+
+Call stack:
+
+(0x563d86fe2b5e) /tmp/.mount_0ad-0.XJ2xpz/usr/bin/pyrogenesis(+0x5e2b5e) [0x563d86fe2b5e]
+(0x563d86f97361) /tmp/.mount_0ad-0.XJ2xpz/usr/bin/pyrogenesis(+0x597361) [0x563d86f97361]
+(0x563d86f988eb) /tmp/.mount_0ad-0.XJ2xpz/usr/bin/pyrogenesis(+0x5988eb) [0x563d86f988eb]
+(0x563d86f99164) /tmp/.mount_0ad-0.XJ2xpz/usr/bin/pyrogenesis(+0x599164) [0x563d86f99164]
+(0x563d86c7d276) /tmp/.mount_0ad-0.XJ2xpz/usr/bin/pyrogenesis(+0x27d276) [0x563d86c7d276]
+(0x563d86f29c6d) /tmp/.mount_0ad-0.XJ2xpz/usr/bin/pyrogenesis(+0x529c6d) [0x563d86f29c6d]
+(0x563d86f2b1ea) /tmp/.mount_0ad-0.XJ2xpz/usr/bin/pyrogenesis(+0x52b1ea) [0x563d86f2b1ea]
+(0x563d86f6fce2) /tmp/.mount_0ad-0.XJ2xpz/usr/bin/pyrogenesis(+0x56fce2) [0x563d86f6fce2]
+(0x563d86f05090) /tmp/.mount_0ad-0.XJ2xpz/usr/bin/pyrogenesis(+0x505090) [0x563d86f05090]
+(0x563d86f056c9) /tmp/.mount_0ad-0.XJ2xpz/usr/bin/pyrogenesis(+0x5056c9) [0x563d86f056c9]
+(0x563d86fd979a) /tmp/.mount_0ad-0.XJ2xpz/usr/bin/pyrogenesis(+0x5d979a) [0x563d86fd979a]
+(0x563d86aa7b6c) /tmp/.mount_0ad-0.XJ2xpz/usr/bin/pyrogenesis(+0xa7b6c) [0x563d86aa7b6c]
+(0x563d86a93817) /tmp/.mount_0ad-0.XJ2xpz/usr/bin/pyrogenesis(+0x93817) [0x563d86a93817]
+(0x7f9be6a29d90) /lib/x86_64-linux-gnu/libc.so.6(+0x29d90) [0x7f9be6a29d90]
+(0x7f9be6a29e40) /lib/x86_64-linux-gnu/libc.so.6(__libc_start_main+0x80) [0x7f9be6a29e40]
+(0x563d86aa4bba) /tmp/.mount_0ad-0.XJ2xpz/usr/bin/pyrogenesis(+0xa4bba) [0x563d86aa4bba]
+
+errno = 11 (Try again later)
+OS error = ?
+
+
+Redirecting call to abort() to mozalloc_abort
+
+fish: Job 1, './0ad-0.0.26-alpha-2210110407-x…' terminated by signal SIGSEGV (Address boundary error)
+seeh@seeh-kub ~/g/0/026 [SIGSEGV]> 
+
+
+
+
+Quick fix helped:
+
+i put the code in a try catch block.
+
+i regognized image replacment did not worked as opserver. interesting.
+i tried use tab many times and got this Errors (but no game crash anymore. BTW i only Creashed. others was only aware that i looged in again in). This the errors:
+
+Maybe as quick fix (temorarily) i not will send the errrors to the screen. just ignore it.
+maybe add a github issue.
+
+GAME STARTED, ALL INIT COMPLETE
+ERROR: JavaScript error: simulation/components/GuiInterface.js line 257
+Script value conversion check failed: v.isNumber() (got type Object)
+  GuiInterface.prototype.GetEntityState@simulation/components/GuiInterface.js:257:77
+  GuiInterface.prototype.ScriptCall@simulation/components/GuiInterface.js:2135:20
+  @simulation/components/GuiInterface~autociv.js:253:19
+  @simulation/components/GuiInterface~boongui.js:527:16
+  GetEntityState@gui/session/session.js:205:28
+  EntitySelection.prototype.addList@gui/session/selection.js:314:34
+  playercommand@gui/session/messages.js:279:15
+  handleNotifications@gui/session/messages.js:358:43
+  onSimulationUpdate@gui/session/session.js:679:2
+  __eventhandler243 (SimulationUpdate)@session SimulationUpdate:1:1
+ERROR: Error calling component script function ScriptCall
+Assertion failed: "len <= length()"
+Location: CStr.cpp:374 (Right)
+
+Call stack:
+
+(0x563d86fe2b5e) /tmp/.mount_0ad-0.XJ2xpz/usr/bin/pyrogenesis(+0x5e2b5e) [0x563d86fe2b5e]
+(0x563d86f97361) /tmp/.mount_0ad-0.XJ2xpz/usr/bin/pyrogenesis(+0x597361) [0x563d86f97361]
+(0x563d86f988eb) /tmp/.mount_0ad-0.XJ2xpz/usr/bin/pyrogenesis(+0x5988eb) [0x563d86f988eb]
+(0x563d86f99164) /tmp/.mount_0ad-0.XJ2xpz/usr/bin/pyrogenesis(+0x599164) [0x563d86f99164]
+(0x563d86c7d276) /tmp/.mount_0ad-0.XJ2xpz/usr/bin/pyrogenesis(+0x27d276) [0x563d86c7d276]
+(0x563d86f29c6d) /tmp/.mount_0ad-0.XJ2xpz/usr/bin/pyrogenesis(+0x529c6d) [0x563d86f29c6d]
+(0x563d86f2b1ea) /tmp/.mount_0ad-0.XJ2xpz/usr/bin/pyrogenesis(+0x52b1ea) [0x563d86f2b1ea]
+(0x563d86f6fce2) /tmp/.mount_0ad-0.XJ2xpz/usr/bin/pyrogenesis(+0x56fce2) [0x563d86f6fce2]
+(0x563d86f05090) /tmp/.mount_0ad-0.XJ2xpz/usr/bin/pyrogenesis(+0x505090) [0x563d86f05090]
+(0x563d86f056c9) /tmp/.mount_0ad-0.XJ2xpz/usr/bin/pyrogenesis(+0x5056c9) [0x563d86f056c9]
+(0x563d86fd979a) /tmp/.mount_0ad-0.XJ2xpz/usr/bin/pyrogenesis(+0x5d979a) [0x563d86fd979a]
+(0x563d86aa7b6c) /tmp/.mount_0ad-0.XJ2xpz/usr/bin/pyrogenesis(+0xa7b6c) [0x563d86aa7b6c]
+(0x563d86a93817) /tmp/.mount_0ad-0.XJ2xpz/usr/bin/pyrogenesis(+0x93817) [0x563d86a93817]
+(0x7f9be6a29d90) /lib/x86_64-linux-gnu/libc.so.6(+0x29d90) [0x7f9be6a29d90]
+(0x7f9be6a29e40) /lib/x86_64-linux-gnu/libc.so.6(__libc_start_main+0x80) [0x7f9be6a29e40]
+(0x563d86aa4bba) /tmp/.mount_0ad-0.XJ2xpz/usr/bin/pyrogenesis(+0xa4bba) [0x563d86aa4bba]
+
+errno = 11 (Try again later)
+OS error = ?
+
+
+Redirecting call to abort() to mozalloc_abort
+
+## 23-0705_2237-51 'Error calling component script function ScriptCall'
+
+"works grreat " was in the observer chat. i started using backspace:
+
+this is crash message then:
+
+GAME STARTED, ALL INIT COMPLETE
+TIMER| common/modern/setup.xml: 72.33 us
+TIMER| common/modern/styles.xml: 59.399 us
+TIMER| common/modern/sprites.xml: 806.366 us
+TIMER| common/global.xml: 318.709 us
+TIMER| common/sprites.xml: 263.099 us
+TIMER| options/options.xml: 31.7512 ms
+ERROR: JavaScript error: simulation/components/GuiInterface.js line 257
+Script value conversion check failed: v.isNumber() (got type Object)
+  GuiInterface.prototype.GetEntityState@simulation/components/GuiInterface.js:257:77
+  GuiInterface.prototype.ScriptCall@simulation/components/GuiInterface.js:2135:20
+  @simulation/components/GuiInterface~autociv.js:253:19
+  @simulation/components/GuiInterface~boongui.js:527:16
+  GetEntityState@gui/session/session.js:205:28
+  EntitySelection.prototype.addList@gui/session/selection.js:314:34
+  playercommand@gui/session/messages.js:279:15
+  handleNotifications@gui/session/messages.js:358:43
+  onSimulationUpdate@gui/session/session.js:679:2
+  __eventhandler56 (SimulationUpdate)@session SimulationUpdate:1:1
+ERROR: Error calling component script function ScriptCall
+ERROR: JavaScript error: simulation/components/GuiInterface.js line 257
+Script value conversion check failed: v.isNumber() (got type Object)
+  GuiInterface.prototype.GetEntityState@simulation/components/GuiInterface.js:257:77
+  GuiInterface.prototype.ScriptCall@simulation/components/GuiInterface.js:2135:20
+  @simulation/components/GuiInterface~autociv.js:253:19
+  @simulation/components/GuiInterface~boongui.js:527:16
+  GetEntityState@gui/session/session.js:205:28
+  EntitySelection.prototype.addList@gui/session/selection.js:314:34
+  playercommand@gui/session/messages.js:279:15
+  handleNotifications@gui/session/messages.js:358:43
+  onSimulationUpdate@gui/session/session.js:679:2
+  __eventhandler56 (SimulationUpdate)@session SimulationUpdate:1:1
+ERROR: Error calling component script function ScriptCall
+Assertion failed: "len <= length()"
+Location: CStr.cpp:374 (Right)
+
+Call stack:
+
+(0x55e75e3e2b5e) /tmp/.mount_0ad-0.GoGvgA/usr/bin/pyrogenesis(+0x5e2b5e) [0x55e75e3e2b5e]
+(0x55e75e397361) /tmp/.mount_0ad-0.GoGvgA/usr/bin/pyrogenesis(+0x597361) [0x55e75e397361]
+(0x55e75e3988eb) /tmp/.mount_0ad-0.GoGvgA/usr/bin/pyrogenesis(+0x5988eb) [0x55e75e3988eb]
+(0x55e75e399164) /tmp/.mount_0ad-0.GoGvgA/usr/bin/pyrogenesis(+0x599164) [0x55e75e399164]
+(0x55e75e07d276) /tmp/.mount_0ad-0.GoGvgA/usr/bin/pyrogenesis(+0x27d276) [0x55e75e07d276]
+(0x55e75e329413) /tmp/.mount_0ad-0.GoGvgA/usr/bin/pyrogenesis(+0x529413) [0x55e75e329413]
+(0x55e75e32987a) /tmp/.mount_0ad-0.GoGvgA/usr/bin/pyrogenesis(+0x52987a) [0x55e75e32987a]
+(0x55e75e32b1ea) /tmp/.mount_0ad-0.GoGvgA/usr/bin/pyrogenesis(+0x52b1ea) [0x55e75e32b1ea]
+(0x55e75e36fce2) /tmp/.mount_0ad-0.GoGvgA/usr/bin/pyrogenesis(+0x56fce2) [0x55e75e36fce2]
+(0x55e75e305090) /tmp/.mount_0ad-0.GoGvgA/usr/bin/pyrogenesis(+0x505090) [0x55e75e305090]
+(0x55e75e3056c9) /tmp/.mount_0ad-0.GoGvgA/usr/bin/pyrogenesis(+0x5056c9) [0x55e75e3056c9]
+(0x55e75e3d979a) /tmp/.mount_0ad-0.GoGvgA/usr/bin/pyrogenesis(+0x5d979a) [0x55e75e3d979a]
+(0x55e75dea7b6c) /tmp/.mount_0ad-0.GoGvgA/usr/bin/pyrogenesis(+0xa7b6c) [0x55e75dea7b6c]
+(0x55e75de93817) /tmp/.mount_0ad-0.GoGvgA/usr/bin/pyrogenesis(+0x93817) [0x55e75de93817]
+(0x7fc67d629d90) /lib/x86_64-linux-gnu/libc.so.6(+0x29d90) [0x7fc67d629d90]
+(0x7fc67d629e40) /lib/x86_64-linux-gnu/libc.so.6(__libc_start_main+0x80) [0x7fc67d629e40]
+
+errno = 11 (Try again later)
+OS error = ?
+
+
+
+
+
+
+
+
+
+
+
+
+
+

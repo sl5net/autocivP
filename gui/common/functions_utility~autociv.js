@@ -101,7 +101,8 @@ var autoCompleteText_newMerge = function (guiObject, list)
 
   chatInputTooltipQuickFixUpdate()
 
-    let caption = guiObject.caption.trim()
+    let caption = guiObject.caption
+    // let caption = guiObject.caption.trim()  // used long time to trim the caption to 23-0705_2249-00 idk if it may dangerous to trim here
     if (!caption.length){
         // selfMessage(`repeat you last(id = ${g_lastCommandID}) command:`) // message disabled becouse its also inside the looby. could disturbing a bit.
         let lastCommand;
@@ -198,28 +199,41 @@ var autoCompleteText_newMerge = function (guiObject, list)
         ||
          firstChar == iconPrefix)
        ){
-        // selfMessage('first char = ' + firstChar)
-        // selfMessage('iconPrefix.length = ' + iconPrefix.length)
-
-
         const captionBegin = caption.toString()
+        const captionTrimed = captionBegin.substring(iconPrefix.length)
+        selfMessage('first char = ' + firstChar)
+        selfMessage('iconPrefix.length = ' + iconPrefix.length)
+        selfMessage('captionTrimed = ' + captionTrimed)
+
+
         // let text = captionBegin.substring(1); // or text.slice(1)
         // selfMessage('caption length = ' + captionBegin.length);
-        let minMatchScore = (captionBegin.length > 7) ? 0.8 : 0.3
+        let minMatchScore = (captionTrimed > 7) ? 0.8 : 0.3
 
         const regex = /\b(\w+)\b/g;
-        const allIconsInText = captionBegin.replace(regex, match => {
+        const allIconsInText = captionTrimed.replace(regex, match => {
           const translated = translateGlHfWpU2Gg(match,minMatchScore)
           return translated !== null ? translated : match;
         });
 
 
-        // selfMessage('allIconsInText = ' + allIconsInText);
+        selfMessage('allIconsInText = ' + allIconsInText);
         // guiObject.caption = allIconsInText;
         // return
+        try {
 
-        guiObject.caption = allIconsInText // this prefent crash of the game when press backspace. becouse focus of the guiObject was lost without this
-        caption = allIconsInText
+          let guiObject = Engine.GetGUIObjectByName("chatInput");
+          guiObject.blur();
+          guiObject.focus();
+
+          guiObject.caption = allIconsInText // this prefent crash of the game when press backspace. becouse focus of the guiObject was lost without this
+          // caption = allIconsInText
+          selfMessage('231: allIconsInText = ' + allIconsInText);
+          return // this return was maybe missing 23-0705_2302-57
+        }catch (error) {
+          error(error.toString())
+
+        }
 
             // text = translateGlHfWpU2Gg(caption.toString());
             // if(text.length){
@@ -321,7 +335,16 @@ var autoCompleteText_newMerge = function (guiObject, list)
 
         autoCompleteText.state.newCaption = newCaptionText
 
-        guiObject.caption = newCaptionText
+
+
+      try {
+          guiObject.caption = newCaptionText
+        }catch (error) {
+          error(error.toString())
+        }
+
+
+
 
         // ConfigDB_CreateAndSaveValueA26A27("user", "autocivP.chat.lastCommand", newCaptionText);
         try {
@@ -348,9 +371,16 @@ var autoCompleteText_newMerge = function (guiObject, list)
         autoCompleteText.state.newCaption = newCaptionText
 
         // selfMessage('324');
+
+      try{
         guiObject.caption = newCaptionText
         // selfMessage('326');
         guiObject.buffer_position = buffer_position + (completedText.length - textBeforeBuffer.length)
+      }catch (error) {
+        error(error.toString())
+      }
+
+
         // selfMessage('328');
     }
 }
