@@ -201,14 +201,14 @@ var autoCompleteText_newMerge = function (guiObject, list)
        ){
         const captionBegin = caption.toString()
         const captionTrimed = captionBegin.substring(iconPrefix.length)
-        selfMessage('first char = ' + firstChar)
-        selfMessage('iconPrefix.length = ' + iconPrefix.length)
-        selfMessage('captionTrimed = ' + captionTrimed)
-
+        // selfMessage('first char = ' + firstChar)
+        // selfMessage('iconPrefix = ' + iconPrefix)
+        // selfMessage('iconPrefix.length = ' + iconPrefix.length)
+        // selfMessage('captionTrimed = ' + captionTrimed)
 
         // let text = captionBegin.substring(1); // or text.slice(1)
         // selfMessage('caption length = ' + captionBegin.length);
-        let minMatchScore = (captionTrimed > 7) ? 0.8 : 0.3
+        let minMatchScore = (!iconPrefix.length || captionTrimed > 7) ? 0.8 : 0.3
 
         const regex = /\b(\w+)\b/g;
         const allIconsInText = captionTrimed.replace(regex, match => {
@@ -217,19 +217,23 @@ var autoCompleteText_newMerge = function (guiObject, list)
         });
 
 
-        selfMessage('allIconsInText = ' + allIconsInText);
+        // selfMessage('allIconsInText = ' + allIconsInText);
         // guiObject.caption = allIconsInText;
         // return
         try {
 
           let guiObject = Engine.GetGUIObjectByName("chatInput");
-          guiObject.blur();
+          // guiObject.blur(); // remove the focus from a GUI element.
           guiObject.focus();
 
-          guiObject.caption = allIconsInText // this prefent crash of the game when press backspace. becouse focus of the guiObject was lost without this
           // caption = allIconsInText
-          selfMessage('231: allIconsInText = ' + allIconsInText);
-          return // this return was maybe missing 23-0705_2302-57
+          // selfMessage('230: allIconsInText = ' + allIconsInText);
+
+          if(captionBegin != allIconsInText){
+            guiObject.caption = allIconsInText // this prefent crash of the game when press backspace. becouse focus of the guiObject was lost without this
+            // selfMessage('234: captionBegin != allIconsInText = ' + captionBegin + ' != ' + allIconsInText);
+            return // this return was maybe missing 23-0705_2302-57 without this return some crases happened in oberver mode !!!!!! 23-0705_2305-59
+          }
         }catch (error) {
           error(error.toString())
 

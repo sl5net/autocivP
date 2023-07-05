@@ -173,6 +173,23 @@ errno = 11 (Try again later)
 OS error = ?
 
 
+## not Critical - just an error was not typing anything. happens suddely
+
+ERROR: Error calling component script function ScriptCall
+ERROR: JavaScript error: simulation/components/GuiInterface.js line 257
+Script value conversion check failed: v.isNumber() (got type Object)
+  GuiInterface.prototype.GetEntityState@simulation/components/GuiInterface.js:257:77
+  GuiInterface.prototype.ScriptCall@simulation/components/GuiInterface.js:2135:20
+  @simulation/components/GuiInterface~autociv.js:253:19
+  @simulation/components/GuiInterface~boongui.js:527:16
+  GetEntityState@gui/session/session.js:205:28
+  EntitySelection.prototype.addList@gui/session/selection.js:314:34
+  playercommand@gui/session/messages.js:279:15
+  handleNotifications@gui/session/messages.js:358:43
+  onSimulationUpdate@gui/session/session.js:679:2
+  __eventhandler56 (SimulationUpdate)@session SimulationUpdate:1:1
+ERROR: Error calling component script function ScriptCall
+
 
 
 
