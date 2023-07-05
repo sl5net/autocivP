@@ -1,60 +1,60 @@
-19a3c247be15e14364eeed3174409ab4a19c39c2 HEAD@{0}: commit: add icons to short standard chat feedbacks
-dac2092a3d1b9741b07cb52bd9ab415031bf5afa HEAD@{1}: commit: add symbol command to Command History
-102385ef21b368ca36ba8909ca17fc1c50dcbc82 HEAD@{2}: commit: dont use livestine method for match very short textes
-cd1f285180897d7d349894abd84341afde424f54 HEAD@{3}: commit: Update the icons.json
-0be0437c89a878965b98678ae76161b621b15e4d HEAD@{4}: commit: Update the icons.json
-5c8266e0d9741428799e887b81336c875502e717 HEAD@{5}: commit: Updated icons, GG, WP, ... command. to prevent interference with other chat commands added a prefix '<' to each short comands like show icons or say gg. Added more Fuzzy functions like findBestMatch function. Updated the logic to assign the best match based on the highest similarity score.
-8472c817db9c44dff4559f3dc56287ac5aff1404 HEAD@{6}: commit: Update sendMessage function use substring. to split message into chunks
-b175c91989023fbf42c3b78be50906ff6e0039fb HEAD@{7}: commit: Update caption of chatInput GUI object
-a47e3a1719c756d73b46399b6a64b82be95da3e7 HEAD@{8}: commit: add modsImCurrentlyUsing as tab command
-5e33a559a35443babdfc2d030f728110bc10111c HEAD@{9}: commit: prettify some sourc
-1380b5953ddc6ebd1560dcbb8774460f68b3752a HEAD@{10}: commit: prettify function check_modProfileSelector_settings()
-5c370eefaa0da6cac5a38fe6c32241595d6a6ac0 HEAD@{11}: commit: check if boonGUI mod is in before ask user for mod-fix
-501b2981cad935feb89bce2e2c75c9127052d3e5 HEAD@{12}: commit: implement mod autoOrderFix feature. set boonGUI leter then proGUI
-f074d03e2af7c079ac89ac6aaadd18a3813a2884 HEAD@{13}: commit: fix in ModProfile the AlwaysIn mods
-f1d56b39cc8be69c83923bf185e34b61ba608023 HEAD@{14}: commit: dont start in atlas resart 0ad if mods changed
-75c689d5e8cc40ef2a316df6c88b79fe0ad73865 HEAD@{15}: commit: fix /quit late error with Engine.GetGUIObjectByName(cancelButton).onPress()
-79d134c4624d7f9187277a7e57ea308365028581 HEAD@{16}: commit: add /versionNr command
-30b84538472aff9d7f3817021e9d616b1079ee5c HEAD@{17}: commit: add caseinsentive match of icon replacements
-8cd1e67593cccfe2a8e1a7cf2692cd89702a7aca HEAD@{18}: commit: some little fixes
-bebab2b0e41a26ef2a8f4ccc62f94ef03988ab1a HEAD@{19}: commit: fix typo.
-6f5972e4eb836b8acbf4ab9ee7b3f04c58097298 HEAD@{20}: commit: fix typo.
-fe82a7fec5169db2affaa55704d1d100f62e18c2 HEAD@{21}: commit: add list of icon
-044107a6df41e759d8a1f471733070b4071763ed HEAD@{22}: commit: fix some typos. omg. add autoRestart with autoInReplay mod
-99c062e43eea13609f63c4df1d22ef7879bd77de HEAD@{23}: commit: update version nr
-5b03f400382c0783c8c700352b02d751b2e67a53 HEAD@{24}: commit: implement in modPofiles alwaysInReplayDefaults modProfilealwaysInReplay
-a20972e7ce65ccaba5bed6f01d4e36af5ecd3798 HEAD@{25}: commit: update team description
-8f76c0715cca1a79d02d9423a5f6964bfb2f5f5b HEAD@{26}: commit: Using 'right<tab>' without the preceding colon (:) can indeed be clearer in a chat context. Including the colon (:) before the keyword may not be necessary if the chat participants are already familiar with the convention of using '<tab>' to trigger certain actions or commands.
-83b65f8873391d7a1ceaf80dea049921cb92a494 HEAD@{27}: commit: update msg mapsize changed more human readable
-2b03dbfb7a2c0a658c41897d43f8ca96ee528096 HEAD@{28}: commit: answer using the chat caption for some comands. so you could edit it before or only read it
-a49b19a71cc7da04e28ea62fe51ff4ce2e4fc1b1 HEAD@{29}: commit: move /hiall output to input caption. not send it anymore
-226af79e519bb5f00ec3d591a2821d19161a43fc HEAD@{30}: commit: limit the j send jitsi link only if you in the Allies chat
-5520d306906edbbfb3bfb724801e1a15c72ad35d HEAD@{31}: commit: add extra description about Mapsize 128 tiny, 192 small, 256 normal, 320 medium
-51756e100711c0afdb5c66c87bcb9472e7c97a5f HEAD@{32}: commit: restart 0ad when new modProfiles is enabled when save button is pressed
-6d1247b69b03942deaeea6c6a8bd2e04c15fa030 HEAD@{33}: commit: use ConfigDB_CreateAndSaveValueA26A27 for change modProfile settings
-e49ab51c3bfdbbf8ea06b6a9ff755c2f5d3622bd HEAD@{34}: commit: change text to: type li<tab>
-6368385465d8e9f4e16caab7085e3a1d14b7c03d HEAD@{35}: commit: change default setting for mod profiles
-2c2ef4ec869dcf8ef50aa50f3f2d27b8c6467778 HEAD@{36}: commit: better description to li tab: write li<tab> or /link<enter> to open a link
-09f20f135b05dd01b496a3ec96d54c2ab749db59 HEAD@{37}: pull: Fast-forward
-03d6e8fa008a11d3a9d0df20d638985165bde8a8 HEAD@{38}: commit: add replace <3 with ♥ in chat
-69993e9fa73e462fb8292c62172e9d19c108cd1c HEAD@{39}: commit: add replace <3 with ♥ in chat
-5a3658157e73649ae9ab9a04fc422e619ef2f06e HEAD@{40}: commit: fix AutoFixModsOrder
-c1c2bcf8d5fc0dca8f5ee91e2b0b7f98735f4a5f HEAD@{41}: commit: fix use of Engine.Restart when mods changed. still a bit experimental maybe
-6cb2f27d383edaa43d5e1dd7dc80f5747ea988b3 HEAD@{42}: commit: exit when mods have changed (start later then)
-cad1aa2d903b79dc67c7f3335cbcb60b0f96e9d4 HEAD@{43}: commit: add options mods profiles selection
-a12a0299dc9d76e1025934c56abe1db0e143ce77 HEAD@{44}: commit: limit jitsi call to gameState ingame only
-5a2a0feb86033626241f6af705ef0c10ef75cbb4 HEAD@{45}: commit: limit jitsi call to gameState ingame only
-3e7d9329f0f338cb90953215fd8a6e5c0c023516 HEAD@{46}: commit: add options for intuitive hotkey
-058662bbb161307baedcc79e454754f0821a3098 HEAD@{47}: commit: add options for 0ad version 0.0.26
-de557a46acd7267c049726975ad99e975036d8a6 HEAD@{48}: commit: remove jitsi from lobby. text is to long
-f6a72b7c21b68e441276fd4056452e20d845cd1d HEAD@{49}: commit: fix typo
-ef598c7f51018a54dabf41afc3c31e8608886a11 HEAD@{50}: commit: add moddata/testConsoleAhkSciprt.ahk
-918fabf000ce5b5f0e9d98fcb69ba188be5f631b HEAD@{51}: commit: update version nr
-ef77262da0388d12e30dc759a3a5fc22743a711a HEAD@{52}: commit: add command from shared commands when gamesetup or in game to command history
-4a503f5cb329b0c7edca786a3ce72a5c123feb30 HEAD@{53}: commit: set id to last command when caption is empty
-a955613b0ed4e47762d3cc29423964550f3e007b HEAD@{54}: commit: disable debug messsages
-e5ab46c3b7be8f60a8fa89ba8bff7815f44b0a2d HEAD@{55}: commit: disable debug messsages
-580f03ec814b551e443709983f9bf2b5aec826a8 HEAD@{56}: commit: fix history offset
-050b7f999dd19bbf6b2b81fdecc26fd00fa3ae0b HEAD@{57}: commit: fix fill all empty hisory with same value
-82b439f27072f88efdc4155055512e6882bd287d HEAD@{58}: commit: reorganize the way to save profile in user.cfg
-5a6d05b6ff4dce5953cad24901844c7155a7fe1a HEAD@{59}: commit: fixed critical error https://github.com/sl5net/autocivP/issues/1
+0647946bee9f78ace48dbcba109b17d39a14a6e9 HEAD@{0}: commit: change option text a bit
+03a05c6778b890d8cd0b13579874d1f4bd860cc1 HEAD@{1}: commit: fix command search tab
+f63d4e170ecee187abce6d6915f24307af5e7838 HEAD@{2}: commit: fix command search tab
+8ac7f3118f00baa5ddb2ef79c131b14d42374214 HEAD@{3}: commit: fix typo.
+0295665ece03288bd4dc9d9fab4b96184d1e07e5 HEAD@{4}: commit: replace all matches in chat
+0d585dfee8b4a4804d63b6139909e208d706469b HEAD@{5}: commit: replace all matches in chat
+636f156619b3ea3286ccc45395ac120f2a372d61 HEAD@{6}: commit: update symbols to icons json
+7a5c86576f5cd3dd13efdfbf71f4caa426d0b535 HEAD@{7}: commit: add symbols to icons json
+055ce4026d0554bf1ab4526855a6ab3cbc6d0d78 HEAD@{8}: commit: add useLevenshtein parameter
+5cee62d8eeb2b2d1a42e0312d3722c2606a532b6 HEAD@{9}: commit: update commands that matched message
+84b1551c579427bbac847160b176d649324dcf56 HEAD@{10}: commit: update chat input tooltip
+1e4ea7922d17ed73864f264fa95688be7f7911b3 HEAD@{11}: commit: update icon json
+f0f406afdce2c44ee245d75bdb16120dbb079bd3 HEAD@{12}: commit: update icons prefix description in config options menu
+55c672076ab24da630190da10c9f9bd53c28fe3a HEAD@{13}: commit: add icons prefix config in options menu
+20198e91de3c3a886dba4c6ff40bf8742c5b5d23 HEAD@{14}: commit: add icons prefix config in options menu
+f242de7a28bbe57f09cb7d21e11b17273b5c9d21 HEAD@{15}: commit: update version nr
+19a3c247be15e14364eeed3174409ab4a19c39c2 HEAD@{16}: commit: add icons to short standard chat feedbacks
+dac2092a3d1b9741b07cb52bd9ab415031bf5afa HEAD@{17}: commit: add symbol command to Command History
+102385ef21b368ca36ba8909ca17fc1c50dcbc82 HEAD@{18}: commit: dont use livestine method for match very short textes
+cd1f285180897d7d349894abd84341afde424f54 HEAD@{19}: commit: Update the icons.json
+0be0437c89a878965b98678ae76161b621b15e4d HEAD@{20}: commit: Update the icons.json
+5c8266e0d9741428799e887b81336c875502e717 HEAD@{21}: commit: Updated icons, GG, WP, ... command. to prevent interference with other chat commands added a prefix '<' to each short comands like show icons or say gg. Added more Fuzzy functions like findBestMatch function. Updated the logic to assign the best match based on the highest similarity score.
+8472c817db9c44dff4559f3dc56287ac5aff1404 HEAD@{22}: commit: Update sendMessage function use substring. to split message into chunks
+b175c91989023fbf42c3b78be50906ff6e0039fb HEAD@{23}: commit: Update caption of chatInput GUI object
+a47e3a1719c756d73b46399b6a64b82be95da3e7 HEAD@{24}: commit: add modsImCurrentlyUsing as tab command
+5e33a559a35443babdfc2d030f728110bc10111c HEAD@{25}: commit: prettify some sourc
+1380b5953ddc6ebd1560dcbb8774460f68b3752a HEAD@{26}: commit: prettify function check_modProfileSelector_settings()
+5c370eefaa0da6cac5a38fe6c32241595d6a6ac0 HEAD@{27}: commit: check if boonGUI mod is in before ask user for mod-fix
+501b2981cad935feb89bce2e2c75c9127052d3e5 HEAD@{28}: commit: implement mod autoOrderFix feature. set boonGUI leter then proGUI
+f074d03e2af7c079ac89ac6aaadd18a3813a2884 HEAD@{29}: commit: fix in ModProfile the AlwaysIn mods
+f1d56b39cc8be69c83923bf185e34b61ba608023 HEAD@{30}: commit: dont start in atlas resart 0ad if mods changed
+75c689d5e8cc40ef2a316df6c88b79fe0ad73865 HEAD@{31}: commit: fix /quit late error with Engine.GetGUIObjectByName(cancelButton).onPress()
+79d134c4624d7f9187277a7e57ea308365028581 HEAD@{32}: commit: add /versionNr command
+30b84538472aff9d7f3817021e9d616b1079ee5c HEAD@{33}: commit: add caseinsentive match of icon replacements
+8cd1e67593cccfe2a8e1a7cf2692cd89702a7aca HEAD@{34}: commit: some little fixes
+bebab2b0e41a26ef2a8f4ccc62f94ef03988ab1a HEAD@{35}: commit: fix typo.
+6f5972e4eb836b8acbf4ab9ee7b3f04c58097298 HEAD@{36}: commit: fix typo.
+fe82a7fec5169db2affaa55704d1d100f62e18c2 HEAD@{37}: commit: add list of icon
+044107a6df41e759d8a1f471733070b4071763ed HEAD@{38}: commit: fix some typos. omg. add autoRestart with autoInReplay mod
+99c062e43eea13609f63c4df1d22ef7879bd77de HEAD@{39}: commit: update version nr
+5b03f400382c0783c8c700352b02d751b2e67a53 HEAD@{40}: commit: implement in modPofiles alwaysInReplayDefaults modProfilealwaysInReplay
+a20972e7ce65ccaba5bed6f01d4e36af5ecd3798 HEAD@{41}: commit: update team description
+8f76c0715cca1a79d02d9423a5f6964bfb2f5f5b HEAD@{42}: commit: Using 'right<tab>' without the preceding colon (:) can indeed be clearer in a chat context. Including the colon (:) before the keyword may not be necessary if the chat participants are already familiar with the convention of using '<tab>' to trigger certain actions or commands.
+83b65f8873391d7a1ceaf80dea049921cb92a494 HEAD@{43}: commit: update msg mapsize changed more human readable
+2b03dbfb7a2c0a658c41897d43f8ca96ee528096 HEAD@{44}: commit: answer using the chat caption for some comands. so you could edit it before or only read it
+a49b19a71cc7da04e28ea62fe51ff4ce2e4fc1b1 HEAD@{45}: commit: move /hiall output to input caption. not send it anymore
+226af79e519bb5f00ec3d591a2821d19161a43fc HEAD@{46}: commit: limit the j send jitsi link only if you in the Allies chat
+5520d306906edbbfb3bfb724801e1a15c72ad35d HEAD@{47}: commit: add extra description about Mapsize 128 tiny, 192 small, 256 normal, 320 medium
+51756e100711c0afdb5c66c87bcb9472e7c97a5f HEAD@{48}: commit: restart 0ad when new modProfiles is enabled when save button is pressed
+6d1247b69b03942deaeea6c6a8bd2e04c15fa030 HEAD@{49}: commit: use ConfigDB_CreateAndSaveValueA26A27 for change modProfile settings
+e49ab51c3bfdbbf8ea06b6a9ff755c2f5d3622bd HEAD@{50}: commit: change text to: type li<tab>
+6368385465d8e9f4e16caab7085e3a1d14b7c03d HEAD@{51}: commit: change default setting for mod profiles
+2c2ef4ec869dcf8ef50aa50f3f2d27b8c6467778 HEAD@{52}: commit: better description to li tab: write li<tab> or /link<enter> to open a link
+09f20f135b05dd01b496a3ec96d54c2ab749db59 HEAD@{53}: pull: Fast-forward
+03d6e8fa008a11d3a9d0df20d638985165bde8a8 HEAD@{54}: commit: add replace <3 with ♥ in chat
+69993e9fa73e462fb8292c62172e9d19c108cd1c HEAD@{55}: commit: add replace <3 with ♥ in chat
+5a3658157e73649ae9ab9a04fc422e619ef2f06e HEAD@{56}: commit: fix AutoFixModsOrder
+c1c2bcf8d5fc0dca8f5ee91e2b0b7f98735f4a5f HEAD@{57}: commit: fix use of Engine.Restart when mods changed. still a bit experimental maybe
+6cb2f27d383edaa43d5e1dd7dc80f5747ea988b3 HEAD@{58}: commit: exit when mods have changed (start later then)
+cad1aa2d903b79dc67c7f3335cbcb60b0f96e9d4 HEAD@{59}: commit: add options mods profiles selection

@@ -1,4 +1,6 @@
 {
+   "/help /p\\d+": ["help", "search", "profiles" ],
+
    "‹Good luck ♣ › ": ["Good luck", "gl", "Best of luck", "Wish you luck"],
     "‹Have fun ☺ › ": ["Have fun", "hf", "Enjoy yourself", "Have a blast"],
     "‹Good game ❧ › ": ["Good game", "gg", "Nice game", "Well played"],

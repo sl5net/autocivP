@@ -223,7 +223,8 @@ var autoCompleteText_newMerge = function (guiObject, list)
         // guiObject.caption = allIconsInText;
         // return
 
-        caption = allIconsInText;
+        guiObject.caption = allIconsInText // this prefent crash of the game when press backspace. becouse focus of the guiObject was lost without this
+        caption = allIconsInText
 
             // text = translateGlHfWpU2Gg(caption.toString());
             // if(text.length){
