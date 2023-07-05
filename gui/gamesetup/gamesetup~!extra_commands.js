@@ -6,7 +6,7 @@ function chatInputTooltipQuickFixUpdate() {
   // this is a workaround. should be moved to gui/... /ChatInputPanel or something
   const chatInput = Engine.GetGUIObjectByName("chatInput")
   if(chatInput){
-    chatInput.tooltip += ' Or try ‹Tab› to autocomplete commands for select profile, chosen icons (☯ ♪♣‹) or other commands. Write "⁄help" or  "⁄help ⁄∖d" or  "⁄help ⁄p" for more info about ⁄commands.'
+    chatInput.tooltip += ' Or try ‹Tab› to autocomplete commands for select profile, chosen icons (☯ ♪♣‹) or other commands. Write "⁄help" or  "⁄help ⁄∖d" or  "⁄help ⁄p" for more info about "⁄commands".'
   }
   g_is_chatInputTooltipQuickFixUpdate_updated = true
 }
@@ -314,7 +314,10 @@ g_NetworkCommands["/help2All"] = (match) => { // if textAllSometing is something
 g_NetworkCommands["/help"] = (match, sendIt2AllForRead = false) => { // if textAllSometing is something then its will be sendet to all team. not only for yourself
   // const sendIt2AllForRead = false; // TODO
   const g_ChatCommandColor = "200 200 255";
-  let text = translate(`Chat commands that match ${match} if its there:`);
+  // importand to change the normal \ here! otherwise it wont work .
+  const matchStrForReadInGame = match.replace('\\', "∖");
+
+    let text = translate(`Chat commands that match ${matchStrForReadInGame} if its there:`);
   let isSomethingFound = false;
   for (let command in g_NetworkCommands) {
     if(!command)continue; // idk if it helps to get it more stable 23-0624_1401-28
