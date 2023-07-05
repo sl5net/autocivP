@@ -1,5 +1,67 @@
 
 
+
+
+# food
+Unicode 1.1 characters that may resemble food:
+
+U+2202 - PARTIAL DIFFERENTIAL (∂)
+U+222B - INTEGRAL (∫)
+U+222E - CONTOUR INTEGRAL (∮)
+U+221E - INFINITY (∞)
+U+220F - N-ARY PRODUCT (∏)
+U+2211 - N-ARY SUMMATION (∑)
+U+222A - UNION (∪)
+U+2229 - INTERSECTION (∩)
+U+2216 - SET MINUS (∖)
+U+2217 - ASTERISK OPERATOR (∗)
+
+# stone
+Here are some Unicode 1.1 characters that may resemble stone:
+
+U+00B7 - MIDDLE DOT (·)
+U+00D7 - MULTIPLICATION SIGN (×)
+U+2219 - BULLET OPERATOR (∙)
+U+25A0 - BLACK SQUARE (■)
+U+25A1 - WHITE SQUARE (□)
+U+25A3 - WHITE SQUARE CONTAINING BLACK SMALL SQUARE (▣)
+U+25A4 - SQUARE WITH HORIZONTAL FILL (▤)
+U+25A5 - SQUARE WITH VERTICAL FILL (▥)
+U+25A6 - SQUARE WITH ORTHOGONAL CROSSHATCH FILL (▦)
+U+25A7 - SQUARE WITH UPPER LEFT TO LOWER RIGHT FILL (▧)
+Please note that these characters may not directly represent stone but may resemble patterns or shapes related to stone.
+
+
+
+Here are some Unicode 1.1 characters that may resemble metal:
+
+U+00B0 - DEGREE SIGN (°)
+U+00B7 - MIDDLE DOT (·)
+U+00D7 - MULTIPLICATION SIGN (×)
+U+220F - N-ARY PRODUCT (∏)
+U+2219 - BULLET OPERATOR (∙)
+U+25A0 - BLACK SQUARE (■)
+U+25A1 - WHITE SQUARE (□)
+U+25A3 - WHITE SQUARE CONTAINING BLACK SMALL SQUARE (▣)
+U+25A4 - SQUARE WITH HORIZONTAL FILL (▤)
+U+25A5 - SQUARE WITH VERTICAL FILL (▥)
+Please note that these characters may not directly represent metal but may resemble patterns or shapes related to metal.
+
+Here are some Unicode 1.1 characters that may resemble gold:
+
+U+00A5 - YEN SIGN (¥)
+U+00B7 - MIDDLE DOT (·)
+U+00D7 - MULTIPLICATION SIGN (×)
+U+00F7 - DIVISION SIGN (÷)
+U+2219 - BULLET OPERATOR (∙)
+U+221E - INFINITY (∞)
+U+25A0 - BLACK SQUARE (■)
+U+25A1 - WHITE SQUARE (□)
+U+25A3 - WHITE SQUARE CONTAINING BLACK SMALL SQUARE (▣)
+U+25A4 - SQUARE WITH HORIZONTAL FILL (▤)
+
+
+
 from
 '':'// ＜  ❮ ❰ ⟨ ‹
 // ＜  ❮ ❰ ⟨ ‹
@@ -15,6 +77,10 @@ works NOT:
 ❮ ❰
   "¯\\_❰^_^❱_/¯": ["meh", "shrug", "indifferent"]
     "¯\\_❰•_•❱_/¯": ["meh", "shrug", "indifferent"]
+
+const foodSymbols = "
+☕🍇🍈🍉🍊🍋🍌🍍🍎🍏
+";
 
 
 "〚" - LEFT WHITE SQUARE BRACKET (U+301A)

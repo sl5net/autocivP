@@ -208,7 +208,8 @@ var autoCompleteText_newMerge = function (guiObject, list)
 
         // let text = captionBegin.substring(1); // or text.slice(1)
         // selfMessage('caption length = ' + captionBegin.length);
-        let minMatchScore = (!iconPrefix.length || captionTrimed > 7) ? 0.8 : 0.3
+        let minMatchScore = (captionTrimed > 7) ? 0.8 : (iconPrefix.length ? 0.3 :  0.5 )
+        // sendMessage(`minMatchScore = ${minMatchScore}`)
 
         const regex = /\b(\w+)\b/g;
         const allIconsInText = captionTrimed.replace(regex, match => {
