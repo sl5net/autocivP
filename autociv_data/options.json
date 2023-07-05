@@ -123,7 +123,7 @@
 			{
 				"type": "string",
 				"label": "[color=\"220 185 70\"]Global:[/color] Chat panel icon delimiter (default is ⟨ or empty)",
-				"tooltip": "To improve command searchability, consider adding a prefix to special short icon (☯ ♪♣‹) commands like '<gg' or '<mus' ♪ to distinguish them from profile commands.",
+				"tooltip": "To improve command searchability, consider adding a prefix to special short icon (☯ ♪♣‹) commands like '<gg‹Tab›' or '<mus‹Tab›' ♪ to distinguish them from profile commands.",
 				"config": "autocivP.chat.iconPrefix"
 			}
 
