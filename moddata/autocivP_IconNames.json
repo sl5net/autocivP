@@ -1,6 +1,7 @@
 {
    "/help /p\\d+": ["help", "search", "profiles" ],
 
+   "Thank you ♡": ["Thank","ty"],
    "100 food please ∪": ["food","fd"],
    "100 wood please ♣": ["wood","wd"],
    "100 stone please ▦": ["stone","st","sn"],
@@ -27,6 +28,7 @@
   "☻ :)": [":)", "face"],
   "☹": [":-(", "unhappy", "angry","sad" ],
   "☼": ["sun", "shine"],
+  "∞": ["infinity", "unlimited"],
   "★": ["star", "nova"],
   "❀": ["flower", "bloom", "beauty" , "snow" ],
   "❶": ["one", "single", "1"],
