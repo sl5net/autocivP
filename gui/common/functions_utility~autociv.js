@@ -147,10 +147,10 @@ var autoCompleteText_newMerge = function (guiObject, list)
         // caption is not empty
         // selfMessage('TAB and caption is not empty')
 
-        const maxCaptionLengthAllowed = 30 // test crashed by 150
+        const maxCaptionLengthAllowed = 130 // test crashed by 150
         if(caption.length > maxCaptionLengthAllowed)
         {
-            // selfMessage(`maxCaptionLengthAllowed = ${maxCaptionLengthAllowed}`)
+            selfMessage(`max text length > ${maxCaptionLengthAllowed}`)
             // seems this prefent from the error // Retrieve the substring of the last n characters
             // CStr CStr::Right(size_t len) const { ENSURE(len <= length()); return substr(length()-len, len); }
             return
@@ -206,6 +206,20 @@ var autoCompleteText_newMerge = function (guiObject, list)
 
         const captionBegin = caption.toString()
         let text = captionBegin.substring(1); // or text.slice(1)
+        // selfMessage('caption length = ' + captionBegin.length);
+        let minMatchScore = (captionBegin.length > 7) ? 0.8 : 0.3
+
+        const regex = /\b(\w+)\b/g;
+        const allIconsInText = captionBegin.replace(regex, match => {
+          const translated = translateGlHfWpU2Gg(match,minMatchScore)
+          return translated !== null ? translated : match;
+        });
+
+
+        selfMessage('allIconsInText = ' + allIconsInText);
+        guiObject.caption = allIconsInText;
+        return
+
         text = translateGlHfWpU2Gg(caption.toString());
                   if(text.length){
                       saveLastCommand2History(captionBegin)

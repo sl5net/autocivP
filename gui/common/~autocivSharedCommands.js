@@ -44,7 +44,7 @@ function fuzzyArrayFromjsonFile(jsonFile, useLevenshtein){
 
 
 
-function translateGlHfWpU2Gg(gg) {
+function translateGlHfWpU2Gg(gg, minMatchScore) {
 	// https://unicodeemoticons.com/
 	// btw guiObject is not definded her so you cant use this: sendMessageGlHfWpU2Gg(..., guiObject)
 
@@ -53,14 +53,14 @@ function translateGlHfWpU2Gg(gg) {
 	let query
 	query = gg;
 	// warn('/' + '‾'.repeat(32));
-	const result = findBestMatch(query, g_fuzzyArrayResult);
+	const result = findBestMatch(query, g_fuzzyArrayResult, minMatchScore);
 	// warn(`120: Best match for query "${query}": ${result.bestMatch} (${result.bestMatchWord})`);
 	// warn('\\________________________________')
 
 	if(result.bestMatch)
 		return result.bestMatch;
 	else
-		return '';
+		return gg;
 
 		// todo: this is not working. needs implementd again
 
@@ -870,12 +870,10 @@ function FuzzySet(arr, useLevenshtein, gramSizeLower, gramSizeUpper)
  * @param {object} fuzzyArray - The fuzzy array to search in.
  * @return {object} An object containing the best match, the matched word, and the similarity score.
  */
-function findBestMatch(query, fuzzyArray) {
+function findBestMatch(query, fuzzyArray, minMatchScore = 0.3) {
 	let bestMatch = null;
 	let bestMatchWord = null;
 	let bestSimilarityScore = 0;
-
-	const minMatchScore = 0.3;
 
 	for (const key in fuzzyArray) {
 	  const matches = fuzzyArray[key].get(query);
