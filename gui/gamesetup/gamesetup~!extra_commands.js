@@ -1,3 +1,17 @@
+var g_is_chatInputTooltipQuickFixUpdate_updated = false
+
+function chatInputTooltipQuickFixUpdate() {
+  if(g_is_chatInputTooltipQuickFixUpdate_updated) return
+
+  // this is a workaround. should be moved to gui/... /ChatInputPanel or something
+  const chatInput = Engine.GetGUIObjectByName("chatInput")
+  if(chatInput){
+    chatInput.tooltip += ' Or try ‹Tab› to autocomplete commands for select profile, chosen icons (☯ ♪♣‹) or other commands. Write "⁄help" or  "⁄help ⁄∖d" or  "⁄help ⁄p" for more info about ⁄commands.'
+  }
+  g_is_chatInputTooltipQuickFixUpdate_updated = true
+}
+
+
 var g_linkLong = null; // init should be available during the game and not changed
 var g_gameMapMapPrevious = null; // help prefent/debugging a errors, at the moment
 var game = {
@@ -281,6 +295,15 @@ g_NetworkCommands["/iconsList"] = (match) => { // if textAllSometing is somethin
   selfMessage(keys)
   const chatInput = Engine.GetGUIObjectByName("chatInput")
   chatInput.caption = keys
+
+
+  // let label = Engine.GetGUIObjectByName("option_label[" + i + "]");
+  // label.caption = option.label;
+  // label.tooltip = option.tooltip;
+
+
+
+
 }
 
 

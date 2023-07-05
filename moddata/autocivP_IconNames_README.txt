@@ -6,10 +6,14 @@ from
 // ＜  ❮ ❰ ⟨ ‹
 // ＜  ❮ ❰ ⟨ ‹
 works list:
-＜ ⟨ "⟩ ‹ "›
+＜ ⟨ ⟩ ‹ "›
+•
+
 
 works NOT list:
 ❮ ❰
+  "¯\\_❰^_^❱_/¯": ["meh", "shrug", "indifferent"]
+    "¯\\_❰•_•❱_/¯": ["meh", "shrug", "indifferent"]
 
 whats better questions:
 
