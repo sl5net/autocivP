@@ -186,16 +186,21 @@ var autoCompleteText_newMerge = function (guiObject, list)
     if(caption.length ){
       const firstChar = caption.toString().charAt(0); // or str[0]
 
-    if(firstChar == '<' && doTabReplacmentWor_gl_hf_gg_wp_stuff){
-      const captionBegin = caption.toString()
-      let text = captionBegin.substring(1); // or text.slice(1)
-      text = translateGlHfWpU2Gg(caption.toString());
-                if(text.length){
-                    saveLastCommand2History(captionBegin)
-                    guiObject.caption = text;
-                    // selfMessage('always ?') // no not always. works like expected 23-0628_0232-14
-                    return;
-                }
+
+      const key = "autocivP.chat.iconPrefix";
+      const iconPrefix = Engine.ConfigDB_GetValue("user", key); // icon prefix iconPrefix should be default <
+
+
+      if(firstChar == iconPrefix && doTabReplacmentWor_gl_hf_gg_wp_stuff){
+        const captionBegin = caption.toString()
+        let text = captionBegin.substring(1); // or text.slice(1)
+        text = translateGlHfWpU2Gg(caption.toString());
+                  if(text.length){
+                      saveLastCommand2History(captionBegin)
+                      guiObject.caption = text;
+                      // selfMessage('always ?') // no not always. works like expected 23-0628_0232-14
+                      return;
+                  }
         }
     }
         // "Select chat addressee." "Everyone"=0 "Allies"=1 Enemies=2 Observers=3

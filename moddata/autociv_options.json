@@ -112,6 +112,12 @@
 				"label": "[color=\"220 185 70\"]Global:[/color] Reset all to AutoCivP settings (more intuitive)",
 				"tooltip": "Resets all AutoCiv (REQUIRES RESTART) (DOESN'T RESET CUSTOM AUTOCIV SETTINGS)",
 				"config": "autociv.settings.reset.all2P"
+			},
+			{
+				"type": "string",
+				"label": "[color=\"220 185 70\"]Global:[/color] Chat panel icon delimiter (default is > or empty)",
+				"tooltip": "To improve command searchability, consider adding a prefix to special short icon (☯ ♪♣) commands like '<gg' or '<mus' ♪ to distinguish them from profile commands.",
+				"config": "autocivP.chat.iconPrefix"
 			}
 		]
 	}
