@@ -7,7 +7,9 @@ function chatInputTooltipQuickFixUpdate() {
   const chatInput = Engine.GetGUIObjectByName("chatInput")
   if(chatInput){
     chatInput.tooltip += ' Or try ‹Tab› to autocomplete commands for select profile, chosen icons (☯ ♪♣‹) or other commands. Write "⁄help" or  "⁄help ⁄∖d" or  "⁄help ⁄p" for more info about "⁄commands".'
+    chatInput.tooltip += ' Matching algorithm is more strict when text is longer.'
   }
+
   g_is_chatInputTooltipQuickFixUpdate_updated = true
 }
 
