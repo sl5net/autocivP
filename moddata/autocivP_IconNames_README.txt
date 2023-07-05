@@ -10,10 +10,29 @@ works list:
 •
 
 
-works NOT list:
+⟦Tab⟧
+works NOT:
 ❮ ❰
   "¯\\_❰^_^❱_/¯": ["meh", "shrug", "indifferent"]
     "¯\\_❰•_•❱_/¯": ["meh", "shrug", "indifferent"]
+
+
+"〚" - LEFT WHITE SQUARE BRACKET (U+301A)
+"【" - LEFT DOUBLE ANGLE BRACKET (U+3010)
+"❲" - MEDIUM LEFT-POINTING ANGLE BRACKET ORNAMENT (U+2772)
+"⟦" - MATHEMATICAL LEFT WHITE SQUARE BRACKET (U+27E6)
+"﹝" - SMALL LEFT TORTOISE SHELL BRACKET (U+FE5D)
+"⦅" - LEFT WHITE PARENTHESIS (U+2985)
+"⦃" - LEFT WHITE CURLY BRACKET (U+2983)
+"⦇" - LEFT WHITE TORTOISE SHELL BRACKET (U+2987)
+"⦉" - LEFT WHITE LENTICULAR BRACKET (U+2989)
+"⦋" - LEFT WHITE TORTOISE SHELL BRACKET WITH DOT (U+298B)
+
+
+〚 【 ❲  ﹝ ⦅ ⦃ ⦇ ⦉ ⦋
+
+
+
 
 whats better questions:
 
@@ -22,7 +41,10 @@ whats better questions:
     "¯\\_❰•_•❱_/¯": ["meh", "shrug", "indifferent"]
 
 
-    
+
+
+
+
 not tested:
 
 
@@ -36,29 +58,29 @@ not tested:
 "∖" - SET MINUS (U+2216)
 "⧵" - REVERSE SOLIDUS OPERATOR (U+29F5)
 "＼" - FULLWIDTH REVERSE SOLIDUS (U+FF3C)
-    
-    
-    
-    
-    
+
+
+
+
+
 // if(gg == ':clock') // dont work
 // 	text =  '⌚'; // https://unicodeemoticons.com/
 // if(gg == ':snake') // dont work
 // 	text =  'ڪ'; // https://unicodeemoticons.com/
 
-    
-    
+
+
 "⤴" - ARROW POINTING RIGHTWARDS THEN CURVING UPWARDS (U+2934)
 "⤵" - ARROW POINTING RIGHTWARDS THEN CURVING DOWNWARDS (U+2935)
 "⇄" - LEFTWARDS ARROW OVER RIGHTWARDS ARROW (U+21C4)
 "⇅" - UPWARDS ARROW LEFTWARDS OF DOWNWARDS ARROW (U+21C5)
 "⇆" - LEFT RIGHT DOUBLE ARROW (U+21C6)
 "⇔" - LEFT RIGHT DOUBLE ARROW
-    
-    
-    
-    
-    
+
+
+
+
+
 	  /*!SECTION
 	  donto work:
 	  		'<': '☚',
@@ -92,7 +114,7 @@ not tested:
 	  */
 
 
-    
+
 
 
 {
@@ -106,7 +128,7 @@ not tested:
     "most effective tactic available": ["most effective tactic available", "META", "best strategy", "optimal approach"],
     "away from keyboard ☽": ["away from keyboard", "AFK", "offline", "not available"],
     "be right back ☯": ["be right back", "BRB", "coming back soon", "returning shortly"],
-    
+
 "♡": ["<3", "heart", "love"],
   "☺": [":-)", "smile", "happy"],
   "☻": [":(", "sad", "face"],

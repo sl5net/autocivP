@@ -1,8 +1,3 @@
-var g_is_chatInputTooltipQuickFixUpdate_updated = false
-
-
-
-
 var g_linkLong = null; // init should be available during the game and not changed
 var g_gameMapMapPrevious = null; // help prefent/debugging a errors, at the moment
 var game = {
