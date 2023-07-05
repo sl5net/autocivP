@@ -1,6 +1,6 @@
 var gameState = "lobby"; // Initial state // // TODO: howto set it like this? g_GameData = data // 	g_GameData.gui.isInGame
 
-var g_fuzzyArrayResult = fuzzyArrayFromjsonFile("moddata/autocivP_IconNames.json")
+var g_fuzzyArrayResult = fuzzyArrayFromjsonFile("moddata/autocivP_IconNames.json", false)
 
 
 // Engine.GetCurrentReplayDirectory
@@ -29,13 +29,13 @@ const whatsAutocivPMod = 'AutoCivP mod is AutoCiv but it also supports profiles 
  * @param {string} jsonFile - The path to the JSON file.
  * @return {Object} - The fuzzy array generated from the JSON file.
  */
-function fuzzyArrayFromjsonFile(jsonFile){
+function fuzzyArrayFromjsonFile(jsonFile, useLevenshtein){
 	const customIconJson = Engine.ReadJSONFile(jsonFile);
 	const customIconKeys = Object.keys(customIconJson);
 	let fuzzyArrayResult = {}
 	for (const key of customIconKeys) {
 		const values = customIconJson[key];
-		const fuzzyVals = FuzzySet(values, false, 2, 8);
+		const fuzzyVals = FuzzySet(values, useLevenshtein, 2, 8);
 		fuzzyArrayResult[key] = fuzzyVals;
 	}
     return fuzzyArrayResult;

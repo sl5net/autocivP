@@ -316,7 +316,6 @@ g_NetworkCommands["/help"] = (match, sendIt2AllForRead = false) => { // if textA
   const g_ChatCommandColor = "200 200 255";
   // importand to change the normal \ here! otherwise it wont work .
   const matchStrForReadInGame = match.replace('\\', "∖");
-
     let text = translate(`Chat commands that match ${matchStrForReadInGame} if its there:`);
   let isSomethingFound = false;
   for (let command in g_NetworkCommands) {
