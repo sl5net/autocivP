@@ -4,7 +4,7 @@
    "100 food please ∪": ["food","fd"],
    "100 wood please ♣": ["wood","wd"],
    "100 stone please ▦": ["stone","st","sn"],
-   "100 metal please ▣": ["metal","ml","mt"],
+   "100 metal please ▣": ["metal","ml","mt","me"],
    "‹Good luck ♣ › ": ["Good luck", "gl", "Best of luck", "Wish you luck"],
     "‹Have fun ☺ › ": ["Have fun", "hf", "Enjoy yourself", "Have a blast"],
     "‹Good game ❧ › ": ["Good game", "gg", "Nice game", "Well played"],
