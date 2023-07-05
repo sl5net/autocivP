@@ -217,16 +217,20 @@ var autoCompleteText_newMerge = function (guiObject, list)
 
 
         selfMessage('allIconsInText = ' + allIconsInText);
-        guiObject.caption = allIconsInText;
-        return
+        // guiObject.caption = allIconsInText;
+        // return
 
-        text = translateGlHfWpU2Gg(caption.toString());
-                  if(text.length){
-                      saveLastCommand2History(captionBegin)
-                      guiObject.caption = text;
-                      // selfMessage('always ?') // no not always. works like expected 23-0628_0232-14
-                      return;
-                  }
+        caption = allIconsInText;
+
+            // text = translateGlHfWpU2Gg(caption.toString());
+            // if(text.length){
+            //     saveLastCommand2History(captionBegin)
+            //     guiObject.caption = text;
+            //     // selfMessage('always ?') // no not always. works like expected 23-0628_0232-14
+            //     return;
+            // }
+
+
         }
     }
         // "Select chat addressee." "Everyone"=0 "Allies"=1 Enemies=2 Observers=3
