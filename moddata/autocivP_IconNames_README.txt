@@ -5,8 +5,18 @@ from
 // ＜  ❮ ❰ ⟨ ‹
 // ＜  ❮ ❰ ⟨ ‹
 // ＜  ❮ ❰ ⟨ ‹
-this works
-⟨‹
+works list:
+＜ ⟨ "⟩ ‹ "›
+
+works NOT list:
+❮ ❰
+
+whats better questions:
+
+  "¯\\_(^_^)_/¯": ["meh", "shrug", "indifferent"]
+  "¯\\_❰^_^❱_/¯": ["meh", "shrug", "indifferent"]
+    "¯\\_❰•_•❱_/¯": ["meh", "shrug", "indifferent"]
+
 
 
 
@@ -53,4 +63,5 @@ this works
   "☯": ["yinYang", "balance", "harmony"],
   "☽": ["moon", "lunar", "night"],
   "¯\\_(^_^)_/¯": ["meh", "shrug", "indifferent"]
+  "¯\\_❰^_^❱_/¯": ["meh", "shrug", "indifferent"]
 }
