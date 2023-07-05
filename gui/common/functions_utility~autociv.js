@@ -199,13 +199,16 @@ var autoCompleteText_newMerge = function (guiObject, list)
 
       if(  doTabReplacmentWor_gl_hf_gg_wp_stuff
         &&
-       ( !iconPrefix.length
+       ( !iconPrefix.length && firstChar != '/'
         ||
          firstChar == iconPrefix)
        ){
+        // selfMessage('first char = ' + firstChar)
+        // selfMessage('iconPrefix.length = ' + iconPrefix.length)
+
 
         const captionBegin = caption.toString()
-        let text = captionBegin.substring(1); // or text.slice(1)
+        // let text = captionBegin.substring(1); // or text.slice(1)
         // selfMessage('caption length = ' + captionBegin.length);
         let minMatchScore = (captionBegin.length > 7) ? 0.8 : 0.3
 
