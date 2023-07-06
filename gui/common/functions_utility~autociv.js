@@ -233,7 +233,10 @@ var autoCompleteText_newMerge = function (guiObject, list)
           if(captionBegin != allIconsInText){
             guiObject.caption = allIconsInText // this prefent crash of the game when press backspace. becouse focus of the guiObject was lost without this
             // selfMessage('234: captionBegin != allIconsInText = ' + captionBegin + ' != ' + allIconsInText);
-            guiObject.buffer_position = 0 // sets the buffer/corsor position to the beginning
+            if (!isNaN(parseInt(allIconsInText[0]))) // The first letter is a number
+              guiObject.buffer_position = 0 // sets the buffer/corsor position to the beginning
+            else
+              guiObject.buffer_position = allIconsInText.length
             return // this return was maybe missing 23-0705_2302-57 without this return some crases happened in oberver mode !!!!!! 23-0705_2305-59
           }
         }catch (error) {
