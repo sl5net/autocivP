@@ -2,7 +2,9 @@
    "/help /p\\d+": ["help", "search", "profiles" ],
 
    "Thank you ♡": ["Thank","ty"],
-   "100 food please ∪": ["food","fd"],
+   "good night ☽": ["gn","g8"],
+   "bye bye ☽": ["bb","bye"],
+   "100 food please ❧": ["food","fd"],
    "100 wood please ♣": ["wood","wd"],
    "100 stone please ▦": ["stone","st","sn"],
    "100 metal please ▣": ["metal","ml","mt","me"],

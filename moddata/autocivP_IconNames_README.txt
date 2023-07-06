@@ -1,5 +1,11 @@
-# works something
+# works list of something
 ○
+
+whats better
+
+"100 food please ∪": ["food","fd"],
+or
+"100 food please ❧": ["food","fd"],
 
 
 
