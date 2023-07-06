@@ -1,7 +1,7 @@
 {
    "/help /p\\d+": ["help", "search", "profiles" ],
 
-   "‹away from keayboard ▤ ›": ["‹away","AFK"],
+   "‹away from keayboard ▤ ›": ["AFK","afk","awy","aw"],
    "Thank you ♡": ["Thank","ty"],
    "good night ☽": ["gn","g8"],
    "bye bye ☽": ["bb","bye"],
@@ -26,12 +26,12 @@
     "⇔": ["<>","<-->","DOUBLEARROW"],
     "☞": ["right-small", "point", "hand"],
 
-"♡": ["<3", "heart", "love"],
+  "♡"   : ["<3", "heart", "love"],
   "☺ :-)": ["smile", "happy"],
   "☻ :)": [":)", "face"],
-  "☹": [":-(", "unhappy", "angry","sad" ],
-  "☼": ["sun", "shine"],
-  "∞": ["infinity", "unlimited"],
+  "☹"    : [":-(", "unhappy", "angry","sad" ],
+  "☼"    : ["sun", "shine"],
+  "∞"     : ["infinity", "unlimited"],
   "★": ["star", "nova"],
   "❀": ["flower", "bloom", "beauty" , "snow" ],
   "❶": ["one", "single", "1"],
