@@ -258,7 +258,7 @@ var autoCompleteText_newMerge = function (guiObject, list)
 
     if(caption == 'j' ){
         if(gameState != "ingame" || chatAddressBox.selected != 1){ // 1 is Allies
-            let text = `to use jiti in you team: 1. open Ally-Chat 2. write j<tab> then enter. 3. write li<tab> or /link`
+            let text = `to use jiti in you team: 1. open Ally-Chat 2. write j⟦Tab⟧ then enter. 3. write li⟦Tab⟧ or /link`
             selfMessage(text)
             return
         }
@@ -278,7 +278,7 @@ var autoCompleteText_newMerge = function (guiObject, list)
         }
         //   selfMessage(Engine.team[0]); // state is not defined
           caption = g_linkLongTeam;
-          const inviteJitsiText =  `Please open following link for team-audio-chat in your web browser. type li<tab> or /link<enter>. Only a web browser is required. ${g_linkLongTeam} `;
+          const inviteJitsiText =  `Please open following link for team-audio-chat in your web browser. type li⟦Tab⟧ or /link<enter>. Only a web browser is required. ${g_linkLongTeam} `;
         //   guiObject.caption = '/link'; //  inviteJitsiText;
           guiObject.caption = inviteJitsiText;
         //   sendMessage(`${inviteJitsiText}`); // TODO: it send to all not only to Allied

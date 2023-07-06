@@ -241,7 +241,7 @@ var g_autociv_SharedCommands = {
 		}
 	},
 	"modsImCurrentlyUsing": {
-		"description": "Mods I'm currently using. Or try without the postfix '/' and at the end of the command <tab>",
+		"description": "Mods I'm currently using. Or try without the postfix '/' and at the end of the command ⟦Tab⟧",
 		"handler": () =>
 		{
 			const modEnabledmods = Engine.ConfigDB_GetValue(
@@ -258,8 +258,8 @@ var g_autociv_SharedCommands = {
 		"description": "use of jitsi",
 		"handler": () =>
 		{
-			let text = `to use jiti in you team: 1. open Ally-Chat 2. write j<tab> then enter. 3. write li⟦Tab⟧ or /link`;
-			text += `BTW if you write j⟦Tab⟧ again your last jitsi link will send again(not a new link). Every player has is own link. Means: one link per player.`;
+			let text = `to use jiti in you team: 1. open Ally-Chat 2. write j⟦Tab⟧ then enter. 3. write li⟦Tab⟧ or /link`;
+			text += ` BTW if you write j⟦Tab⟧ again your last jitsi link will send again(not a new link). Every player has is own link. Means: one link per player.`;
 			// in lobby long text will eventually crash the game. 23-0629_0840-55
 			// Engine.SendNetworkChat(text);
 
@@ -273,7 +273,7 @@ var g_autociv_SharedCommands = {
 		"handler": () =>
 		{
 			let text = ''
-			text = `write li<tab> or /link<enter> to open a link`;
+			text = `write li⟦Tab⟧ or /link<enter> to open a link`;
 			// Engine.SendNetworkChat(text);
 			const chatInput = Engine.GetGUIObjectByName("chatInput")
 			chatInput.caption = text

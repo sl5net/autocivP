@@ -243,19 +243,19 @@ g_NetworkCommandsDescriptions = Object.assign(g_NetworkCommandsDescriptions, {
   "/p1v1Mainland_defaults":
     "/pNumber is alias to some proviles. e.g. /p1... to /pMainland_1v1... or /p4...",
   "/pMainland_2v2_defaults":
-    "type pM<tab> for mainland, popMax, 300res, and more",
+    "type pM⟦Tab⟧ for mainland, popMax, 300res, and more",
   "/pMBMainland_2v2_defaults":
-    "type pMB<tab> to get mainland balanced popMax, 300res",
+    "type pMB⟦Tab⟧ to get mainland balanced popMax, 300res",
   "/pUnknown_defaults":
-    "type pU<tab> for  map unknown, popMax, 300res, and more",
+    "type pU⟦Tab⟧ for  map unknown, popMax, 300res, and more",
   "/pExtinct_volcano_defaults":
-    "type pU<tab> for extinct_volcano and other defaults",
+    "type pU⟦Tab⟧ for extinct_volcano and other defaults",
   "/pRestoreLastProfile":
     "/pRestoreLastProfile<enter> when you want restore last profile",
   "/iconsList":
     "heart sun flower ...",
   "/modsImCurrentlyUsing":
-    "/modsImCurrentlyUsing or try modsImCurrentlyUsing<tab> for a list of all currently used mods",
+    "/modsImCurrentlyUsing or try modsImCurrentlyUsing⟦Tab⟧ for a list of all currently used mods",
 });
 
 g_NetworkCommands["/versionNr"] = (match) => { // if textAllSometing is something then its will be sendet to all team. not only for yourself
