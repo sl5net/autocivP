@@ -349,6 +349,7 @@ var autoCompleteText_newMerge = function (guiObject, list)
 
       try {
           guiObject.caption = newCaptionText
+          guiObject.focus()
         }catch (error) {
           error(error.toString())
         }
@@ -385,6 +386,7 @@ var autoCompleteText_newMerge = function (guiObject, list)
       try{
         guiObject.caption = newCaptionText
         // selfMessage('326');
+        guiObject.focus();
         guiObject.buffer_position = buffer_position + (completedText.length - textBeforeBuffer.length)
       }catch (error) {
         error(error.toString())

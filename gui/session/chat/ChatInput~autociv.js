@@ -11,10 +11,14 @@ ChatInput.prototype.autoComplete = function ()
 {
     // selfMessage('11 call autoCompleteText() ---------------')
     // i i use try catch here then i crashes at the first try. so dont use try catch here. 23-0628_0131-59
-    // try {
+    try {
         autoCompleteText(this.chatInput, this.getAutocompleteList())
-    // } catch (error) {
-        // selfMessage('16: autoCompleteText failed')
-    // }
+        guiObject.focus();
+    } catch (error) {
+        selfMessage('gui/session/chat/ChatInput~autociv.js:18 autoCompleteText failed')
+        warn('gui/session/chat/ChatInput~autociv.js:18 autoCompleteText failed')
+        warn(error.message)
+        warn(error.stack)
+    }
     // selfMessage('13 llllllllllll')
 }
