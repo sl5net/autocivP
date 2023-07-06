@@ -1,6 +1,7 @@
 {
    "/help /p\\d+": ["help", "search", "profiles" ],
 
+   "‹away from keayboard ▤ ›": ["‹away","AFK"],
    "Thank you ♡": ["Thank","ty"],
    "good night ☽": ["gn","g8"],
    "bye bye ☽": ["bb","bye"],
