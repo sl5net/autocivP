@@ -1,10 +1,44 @@
+# links:
+https://emojipedia.org/unicode-1.1/
+translate from there all to 0ad:
+☺️☹️☠️❣️❤️✌️☝️✍️♨️✈️⌛⌚☀️☁️☂️❄️☃️☄️♠️♥️♦️♣️♟️☎️⌨️✉️✏️✒️✂️☢️☣️↗️➡️↘️↙️↖️↕️↔️↩️↪️✡️☸️☯️✝️☦️☪️☮️♈♉♊♋♌♍♎♏♐♑♒♓▶️◀️♀️♂️✖️‼️〰️☑️✔️✳️✴️❇️©️®️™️Ⓜ️㊗️㊙️▪️▫️☳♭♯♙♆☷5️9️♡♧7️*️8️♬❥Ξ♝♛★☇#️0️❦☭☏☤♁✐1️☼☬3️☓♄☾♅☩☴♢♮☽☌♖☻☍☵☶☲☧☱♤♕❧☐♘☜♃♔☈4️✎♩☋6️☚☨♞♫2️☛☡☰♗☞☉☊‍☟♚☒♪♇☫☥✐1️☼☬3️☓♄☾♅☩☴♢♮☽☌♖☻☍☵☶☲☧☱♤♕❧☐♘☜♃♔☈4️✎♩☋6️☚☨♞♫
+=====>
+☺☹  ♠♥♦♣  ↗↘↙↖↕↔↩↪  ☯♈♉♊♋♌♍
+♎ concept of justice or balance in a broader sense.
+♎ⓧ   ♏♐♑♒♓   ▶◀
+♀♂   ‼©®™Ⓜ▪▫♭♯♆59   ♡♧   7*8   ♬Ξ★#0☭♁1☼☬3♄☾♅♢♮☽☻☧♤❧♃4
+♩   6♫2☛☞♪♇1☼☬3♄☾♅♢♮☽☻☧♤❧♃4♩6♫    ♬♫♩
+
+
+https://emojipedia.org/unicode-3.0/
+⁉️#️⃣ *️⃣ 0️⃣ 1️⃣ 2️⃣ 3️⃣ 4️⃣ 5️⃣ 6️⃣ 7️⃣ 8️⃣ 9️⃣ ℹ️ ♱ ♰ ⃣ ☙
+=> ⁉ # * 0123456789 ℹ️☙
+The symbol ☙ does not have a specific meaning associated with food.
+However, ❧ is not commonly used to represent food either.
+☙❧ or ☙❧
+
+
+no results from:
+- https://emojipedia.org/unicode-3.1/
+- https://emojipedia.org/unicode-4.0/
+https://emojipedia.org/unicode-3.2/
+===> ◼ ◻ ◾ ◽
+
+
+
+
 # works list of something
+
 
 
  ♡ all mods: autociv boonGUI proGUI godsAYE LocalRatings... ♡ autocivP❧♣▦▣ | selfMessage(console.log({...modderers}))
 
 
 ○
+
+
+combination of characters in Unicode 1.1. for resignation
+ⓧ
 
 whats better
 

@@ -1,6 +1,6 @@
 
 # Critical Errors:
-## Me Creashed as Obser in Chat. 
+## Me Creashed as Obser in Chat.
 
 ### 23-0705_2222-30
 
@@ -51,7 +51,7 @@ OS error = ?
 Redirecting call to abort() to mozalloc_abort
 
 fish: Job 1, './0ad-0.0.26-alpha-2210110407-x…' terminated by signal SIGSEGV (Address boundary error)
-seeh@seeh-kub ~/g/0/026 [SIGSEGV]> 
+seeh@seeh-kub ~/g/0/026 [SIGSEGV]>
 
 
 
@@ -200,5 +200,21 @@ ERROR: Error calling component script function ScriptCall
 
 
 
+# 23-0706_1916-02 not crashed but error:
 
+Script value conversion check failed: v.isNumber() (got type Object)
 
+GAME STARTED, ALL INIT COMPLETE
+ERROR: JavaScript error: simulation/components/GuiInterface.js line 257
+Script value conversion check failed: v.isNumber() (got type Object)
+  GuiInterface.prototype.GetEntityState@simulation/components/GuiInterface.js:257:77
+  GuiInterface.prototype.ScriptCall@simulation/components/GuiInterface.js:2135:20
+  @simulation/components/GuiInterface~autociv.js:253:19
+  @simulation/components/GuiInterface~boongui.js:527:16
+  GetEntityState@gui/session/session.js:205:28
+  EntitySelection.prototype.addList@gui/session/selection.js:314:34
+  playercommand@gui/session/messages.js:279:15
+  handleNotifications@gui/session/messages.js:358:43
+  onSimulationUpdate@gui/session/session.js:679:2
+  __eventhandler56 (SimulationUpdate)@session SimulationUpdate:1:1
+ERROR: Error calling component script function ScriptCall

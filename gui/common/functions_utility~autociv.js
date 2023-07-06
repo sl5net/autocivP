@@ -233,6 +233,7 @@ var autoCompleteText_newMerge = function (guiObject, list)
           if(captionBegin != allIconsInText){
             guiObject.caption = allIconsInText // this prefent crash of the game when press backspace. becouse focus of the guiObject was lost without this
             // selfMessage('234: captionBegin != allIconsInText = ' + captionBegin + ' != ' + allIconsInText);
+            guiObject.buffer_position = 0 // sets the buffer/corsor position to the beginning
             return // this return was maybe missing 23-0705_2302-57 without this return some crases happened in oberver mode !!!!!! 23-0705_2305-59
           }
         }catch (error) {
@@ -321,6 +322,7 @@ var autoCompleteText_newMerge = function (guiObject, list)
         );
         // sendMessage(`Mods I'm currently using: ${modEnabledmods.slice(11,)}` );
         let text = `Mods I'm currently using: ${modEnabledmods.slice(11,)}`
+        text = text.replace('autocivP', 'autocivP❧♣▦▣') //  ♡ autocivP❧♣▦▣ mod
         guiObject.caption = text;
         return;
     }
