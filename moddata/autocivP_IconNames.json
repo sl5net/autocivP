@@ -5,7 +5,7 @@
    "‹yes› ": ["y","ok","ye"],
    "‹no› ": ["n"],
    "resign ⓧ ? ": ["resign","rg","RG"],
-   "resign ♎ ? ": ["resign","rg","RG"],
+   "resign ♎ ? ": ["giveup"],
    "‹Away from keayboard ▤ ›": ["AFK","afk","awy","aw"],
    "‹Thank you ♡ › ": ["Thank","ty"],
    "‹good night ☽ › ": ["gn","g8"],
