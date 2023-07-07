@@ -4,6 +4,10 @@ var g_fuzzyArrayResult = fuzzyArrayFromjsonFile("moddata/autocivP_IconNames.json
 
 var g_is_chatInputTooltipQuickFixUpdate_updated = false
 
+// const selfNick = Engine.LobbyGetNick();
+var g_selfNick = Engine.ConfigDB_GetValue("user", `playername.multiplayer`);
+
+
 
 // Engine.GetCurrentReplayDirectory
 // GetEngineInfo.gameState.data
@@ -462,8 +466,10 @@ autociv_InitSharedCommands.pipe = {
 				try {
 					Engine.Restart(1) // works sometimes Engine. and sometimes: Restart is not a function
 				  } catch (error) {
-					warn(error.message)
-					warn(error.stack)
+					if(g_selfNick =="seeh"){ //NOTE - 23-0705_2302-57 developers want to see the error in the console
+						warn(error.message)
+						warn(error.stack)
+					  }
 					warn('well done. Please start 0ad now again.')
 					Engine.Exit(1) // works
 				}

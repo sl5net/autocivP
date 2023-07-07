@@ -16,10 +16,12 @@ ChatInput.prototype.autoComplete = function ()
         let guiObject = Engine.GetGUIObjectByName("chatInput")
         guiObject.focus();
     } catch (error) {
-        selfMessage('gui/session/chat/ChatInput~autociv.js:18 autoCompleteText failed')
-        warn('gui/session/chat/ChatInput~autociv.js:18 autoCompleteText failed')
-        warn(error.message)
-        warn(error.stack)
+        if(g_selfNick =="seeh"){ //NOTE - 23-0705_2302-57 developers want to see the error in the console
+            selfMessage('gui/session/chat/ChatInput~autociv.js:18 autoCompleteText failed')
+            warn('gui/session/chat/ChatInput~autociv.js:18 autoCompleteText failed')
+            warn(error.message)
+            warn(error.stack)
+        }
     }
     // selfMessage('13 llllllllllll')
 }

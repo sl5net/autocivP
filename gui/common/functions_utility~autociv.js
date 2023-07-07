@@ -252,8 +252,11 @@ var autoCompleteText_newMerge = function (guiObject, list)
             return // this return was maybe missing 23-0705_2302-57 without this return some crases happened in oberver mode !!!!!! 23-0705_2305-59
           }
         }catch (error) {
-              warn(error.message)
+
+          if(g_selfNick =="seeh"){ //NOTE - 23-0705_2302-57 developers want to see the error in the console
+            warn(error.message)
             warn(error.stack)
+          }
 
 
         }
@@ -365,8 +368,10 @@ var autoCompleteText_newMerge = function (guiObject, list)
           guiObject.caption = newCaptionText
           guiObject.focus()
         }catch (error) {
-          warn(error.message)
-          warn(error.stack)
+          if(g_selfNick =="seeh"){ //NOTE - 23-0705_2302-57 developers want to see the error in the console
+            warn(error.message)
+            warn(error.stack)
+          }
       }
 
 
@@ -377,7 +382,12 @@ var autoCompleteText_newMerge = function (guiObject, list)
             saveLastCommand2History(newCaptionText);
         } catch (error) {
             // happens in the lobby console when double press tab 23-0622_2013-26
-            error('double pressed tab to fast?')
+            if(g_selfNick =="seeh"){ //NOTE - 23-0705_2302-57 developers want to see the error in the console
+              error('double pressed tab to fast?')
+              warn(error.message)
+              warn(error.stack)
+            }
+
         }
         // selfMessage(295)
         guiObject.buffer_position = autoCompleteText.state.buffer_position + (completedText.length - textBeforeBuffer.length)
@@ -404,8 +414,10 @@ var autoCompleteText_newMerge = function (guiObject, list)
         guiObject.focus();
         guiObject.buffer_position = buffer_position + (completedText.length - textBeforeBuffer.length)
       }catch (error) {
-        warn(error.message)
-        warn(error.stack)
+        if(g_selfNick =="seeh"){ //NOTE - 23-0705_2302-57 developers want to see the error in the console
+          warn(error.message)
+          warn(error.stack)
+        }
   }
 
 
