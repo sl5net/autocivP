@@ -214,18 +214,23 @@ var autoCompleteText_newMerge = function (guiObject, list)
 
         // let text = captionBegin.substring(1); // or text.slice(1)
         // selfMessage('caption length = ' + captionBegin.length);
-        let minMatchScore = (captionTrimed > 7) ? 0.8 : (iconPrefix.length ? 0.3 :  0.5 )
+        let minMatchScore = (captionTrimed.length > 7) ? 0.8 : (iconPrefix.length ? 0.3 :  0.5 )
         // sendMessage(`minMatchScore = ${minMatchScore}`)
 
 
         // sendMessage(`minMatchScore = ${minMatchScore}`)
         // sendMessage(`guiObject.buffer_position = ${guiObject.buffer_position}`)
 
-        const regex = /\b(\w+)\b/g;
-        let allIconsInText = captionTrimed.replace(regex, match => {
-          const translated = translateGlHfWpU2Gg(match,minMatchScore)
-          return translated !== null ? translated : match;
-        });
+
+        let allIconsInText = transGGWP_markedStrings_I(captionTrimed, minMatchScore)
+        // const regex = /\b(\w+)\b/g;
+        // let allIconsInText = captionTrimed.replace(regex, match => {
+        //   const translated = translateGlHfWpU2Gg(match,minMatchScore)
+        //   return translated !== null ? translated : match;
+        // });
+
+        // ‹Good game ❧
+
 
 
         // selfMessage('allIconsInText = ' + allIconsInText);

@@ -276,8 +276,8 @@ g_NetworkCommands["/versionNr"] = (match) => { // if textAllSometing is somethin
 
 
 g_NetworkCommands["/iconsList"] = (match) => { // if textAllSometing is something then its will be sendet to all team. not only for yourself
-  selfMessage(translateGlHfWpU2Gg('allicons'))
-  const keys = translateGlHfWpU2Gg('alliconkeys')
+  selfMessage(transGGWP_markedStrings_I('allicons'))
+  const keys = transGGWP_markedStrings_I('alliconkeys')
   selfMessage(keys)
   const chatInput = Engine.GetGUIObjectByName("chatInput")
   chatInput.caption = keys
@@ -689,22 +689,22 @@ g_NetworkCommands["/popMaxDefault"] = (text) => {
 
 g_NetworkCommands["/gl"] = () =>{
   const chatInput = Engine.GetGUIObjectByName("chatInput")
-  chatInput.caption = translateGlHfWpU2Gg('gl');
+  chatInput.caption = transGGWP_markedStrings_I('gl');
 }
 g_NetworkCommands["/hf"] = () => {
 const chatInput = Engine.GetGUIObjectByName("chatInput")
-chatInput.caption = translateGlHfWpU2Gg('hf');}
+chatInput.caption = transGGWP_markedStrings_I('hf');}
 g_NetworkCommands["/wp"] = () => {
 const chatInput = Engine.GetGUIObjectByName("chatInput")
-chatInput.caption = translateGlHfWpU2Gg('wp');
+chatInput.caption = transGGWP_markedStrings_I('wp');
 }
 g_NetworkCommands["/u2"] = () => {
 const chatInput = Engine.GetGUIObjectByName("chatInput")
-chatInput.caption = translateGlHfWpU2Gg('u2');
+chatInput.caption = transGGWP_markedStrings_I('u2');
 }
 g_NetworkCommands["/gg"] = () => {
 const chatInput = Engine.GetGUIObjectByName("chatInput")
-chatInput.caption = translateGlHfWpU2Gg('gg');
+chatInput.caption = transGGWP_markedStrings_I('gg');
 }
 
 

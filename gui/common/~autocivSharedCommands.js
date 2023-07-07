@@ -59,11 +59,112 @@ function chatInputTooltipQuickFixUpdate() {
 	}
 
 	g_is_chatInputTooltipQuickFixUpdate_updated = true
+}
+
+
+function translGGWP_splitInWords_II(captionTrimed, minMatchScore){
+
+	if(!minMatchScore)
+	{
+		selfMessage('69: minMatchScore==${minMatchScore}');
+		error('69: minMatchScore==${minMatchScore}');
+	}
+
+	const isDebug = false
+	if(isDebug)
+	selfMessage(`66: splitInWords_II()== >${captionTrimed}<`);
+	// const regex = /\b([^‹›\s,\.!;\?]+)\b/g;
+	const regex = /\b([^‹›\s]+)\b/g;
+	// const regex2 = /(?<!\S)[><](?!\S)/g // dont work
+	const regex2 = /([>\-<]+)/g // dont work
+
+
+	let allIconsInText = captionTrimed.replace(regex, match => {
+		if(isDebug)
+	  selfMessage(`73: translGGWP_splitInWords_II()==>  ||${match}||`)
+	  const translated = translateGlHfWpU2Gg_III(match, minMatchScore)
+	  return translated !== null ? translated : match;
+	});
+
+	allIconsInText = allIconsInText.replace(regex2, match => {
+		// Handle the standalone < or > here
+		const isDebug = false
+		if(isDebug)
+		selfMessage(`79: ${match}`);
+		if(!minMatchScore)
+		{
+			selfMessage('91: minMatchScore==${minMatchScore}');
+			error('91: minMatchScore==${minMatchScore}');
+		}
+
+		return translateGlHfWpU2Gg_III(match, minMatchScore)
+		// return match; // You can replace it with any desired value
+	  });
+
+	  if(isDebug)
+	selfMessage(`84: translGGWP_splitInWords_II()==> allIconsInText = ||${allIconsInText}||`);
+	return allIconsInText
   }
 
-function translateGlHfWpU2Gg(gg, minMatchScore) {
+
+function transGGWP_markedStrings_I(gg, minMatchScore) {
+	const isDebug = false
+	if(isDebug){
+	selfMessage(`79: ____________ transGGWP_markedStrings_I() ___________`);
+	// gg = "‹Good game ❧ › ";
+	selfMessage(`81: gg=>${gg}<`);
+	}
+	const ggBackup = gg;
+	const markedStringRegex = /(‹[^‹›]*›)/g;
+	const markedStrings = gg.match(markedStringRegex) || [];
+	const allStrings = gg.split(markedStringRegex);
+
+	if (markedStrings.length === 0) {
+		// Handle case when no marked strings are found
+		gg =translGGWP_splitInWords_II(gg, minMatchScore);
+		if(isDebug)
+		selfMessage(`74:transGGWP_markedStrings_I()=>  gg=${gg}`);
+		return gg;
+	}
+
+	if (markedStrings.length === 1 && allStrings.length === 1) {
+		// Handle case when only one marked string is found
+		if(isDebug)
+		selfMessage(`80:transGGWP_markedStrings_I()=> markedStrings[0]=${markedStrings[0]}`);
+	  return markedStrings[0]; // Return the single marked string as is
+	}
+
+	const ggParts = allStrings.flatMap((value, index) => {
+	  if (index % 2 === 0) {
+		// Filter out the marked strings
+		let re = [translGGWP_splitInWords_II(value, minMatchScore), markedStrings[index / 2]];
+		if(isDebug)
+		selfMessage(`88:transGGWP_markedStrings_I()=> re=>${re}<`);
+		return re
+	  }
+	//   return value;
+	});
+
+	const re = ggParts.join(''); // Concatenate the array elements without a separator
+	if(isDebug)
+	selfMessage(`93: re=${re}`);
+	return re;
+  }
+
+
+
+function translateGlHfWpU2Gg_III(gg, minMatchScore) {
+	const isDebug = false
+	if(!minMatchScore ){
+	  selfMessage(`140: minMatchScore = ${minMatchScore}`);
+	  error(`minMatchScore is not defined`);
+	}
+
 	// https://unicodeemoticons.com/
 	// btw guiObject is not definded her so you cant use this: sendMessageGlHfWpU2Gg(..., guiObject)
+
+
+	// ‹be right back ☯ ›
 
 	let text =  '';
 
@@ -71,8 +172,11 @@ function translateGlHfWpU2Gg(gg, minMatchScore) {
 	query = gg;
 	// warn('/' + '‾'.repeat(32));
 	const result = findBestMatch(query, g_fuzzyArrayResult, minMatchScore);
-	// warn(`120: Best match for query "${query}": ${result.bestMatch} (${result.bestMatchWord})`);
-	// warn('\\________________________________')
+	if(isDebug){
+	warn(`120: Best match for query "${query}": ##${result.bestMatch}## (${result.bestMatchWord})`);
+	selfMessage(`120: Best match for query "${query}": ##${result.bestMatch}## (${result.bestMatchWord} , ${minMatchScore})`);
+	warn('\\________________________________')
+	}
 
 	if(result.bestMatch)
 		return result.bestMatch;
@@ -180,7 +284,7 @@ function autociv_GetNameRatingText(text)
 // use /command to trigger the following commands:
 var g_autociv_SharedCommands = {
 	"hiAll" : {
-		"description": "Say hello (configurable). set /hiAll yourWelcomeText or use /hiAll yourWelcomeText",
+		"description": "Say hello (configurable). set /hiAll yourWelcomeText or send with /hiAll yourWelcomeText",
 		"handler": (text) =>
 		{
 			  const key = "autocivP.gamesetup.helloAll";
@@ -890,9 +994,15 @@ function FuzzySet(arr, useLevenshtein, gramSizeLower, gramSizeUpper)
  * @return {object} An object containing the best match, the matched word, and the similarity score.
  */
 function findBestMatch(query, fuzzyArray, minMatchScore = 0.3) {
+	const isDebug = false
 	let bestMatch = null;
 	let bestMatchWord = null;
 	let bestSimilarityScore = 0;
+
+	if(!query)
+		return ''
+	if(isDebug)
+	selfMessage(`findBestMatch for query "${query}"`);
 
 	for (const key in fuzzyArray) {
 	  const matches = fuzzyArray[key].get(query);

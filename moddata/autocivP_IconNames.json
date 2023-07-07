@@ -57,7 +57,7 @@
   "♦": ["diamond", "gem", "shape"],
   "♠": ["spade", "card", "suit"],
   "♣": ["club", "card", "suit"],
-  "♬♫♩": ["note", "music", "sound"],
+  "♬♫♩": ["note", "fun", "sound"],
   "☯": ["yinYang", "balance", "harmony"],
   "☽": ["moon", "lunar", "night"],
   "¯\\_⟨•_•⟩_/¯": ["meh", "shrug", "indifferent"]
