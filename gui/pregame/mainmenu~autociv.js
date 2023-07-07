@@ -146,6 +146,19 @@ autociv_patchApplyN("init", function (target, that, args) {
   const posproGUI = modsFromUserCfg_const.indexOf('proGUI')
 
 
+  if (true && state.showAutoFixModsOrder) { // quick lazy quick fix. TODO: fix this should be a in the options somwehere
+
+// some here like silhouettes true is much important for fair playing
+
+ConfigDB_CreateAndSaveValueA26A27("user", "chat.timestamp", false);
+ConfigDB_CreateAndSaveValueA26A27("user", "gui.session.timeelapsedcounter", true);
+ConfigDB_CreateAndSaveValueA26A27("user", "overlay.realtime", false);
+ConfigDB_CreateAndSaveValueA26A27("user", "autociv.session.playersOverlay.visible", true);
+ConfigDB_CreateAndSaveValueA26A27("user", "autociv.session.statsOverlay.visible", false);
+ConfigDB_CreateAndSaveValueA26A27("user", "session.showobservers", true);
+ConfigDB_CreateAndSaveValueA26A27("user", "session.showstats", false);
+ConfigDB_CreateAndSaveValueA26A27("user", "silhouettes", true);
+    }
 
   if (true && state.showAutoFixModsOrder
     && posboonGUI > 1 && posboonGUI < posproGUI
