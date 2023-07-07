@@ -195,6 +195,12 @@ var autoCompleteText_newMerge = function (guiObject, list)
 
       if(  doTabReplacmentWor_gl_hf_gg_wp_stuff
         &&
+        (
+        caption.length < 14 //NOTE - 30 mybe too long . prefent multiple repacment
+        || guiObject.buffer_position > 14 // maybe user want gg wp replacments in a longer text and cursor is in the middle or at the end
+        )
+        &&
+
        ( !iconPrefix.length && firstChar != '/'
         ||
          firstChar == iconPrefix)
@@ -211,8 +217,12 @@ var autoCompleteText_newMerge = function (guiObject, list)
         let minMatchScore = (captionTrimed > 7) ? 0.8 : (iconPrefix.length ? 0.3 :  0.5 )
         // sendMessage(`minMatchScore = ${minMatchScore}`)
 
+
+        // sendMessage(`minMatchScore = ${minMatchScore}`)
+        sendMessage(`guiObject.buffer_position = ${guiObject.buffer_position}`)
+
         const regex = /\b(\w+)\b/g;
-        const allIconsInText = captionTrimed.replace(regex, match => {
+        let allIconsInText = captionTrimed.replace(regex, match => {
           const translated = translateGlHfWpU2Gg(match,minMatchScore)
           return translated !== null ? translated : match;
         });
@@ -229,18 +239,22 @@ var autoCompleteText_newMerge = function (guiObject, list)
 
           // caption = allIconsInText
           // selfMessage('230: allIconsInText = ' + allIconsInText);
-
           if(captionBegin != allIconsInText){
+            const isCaptionNumeric = (allIconsInText[0] >= '0' && allIconsInText[0] <= '9')
+            if(isCaptionNumeric)
+              allIconsInText = '  ' + allIconsInText // add two spaces to the beginning so user can easily change the number to and add later maybe a name (ping user) at the very beginning
             guiObject.caption = allIconsInText // this prefent crash of the game when press backspace. becouse focus of the guiObject was lost without this
             // selfMessage('234: captionBegin != allIconsInText = ' + captionBegin + ' != ' + allIconsInText);
-            if (!isNaN(parseInt(allIconsInText[0]))) // The first letter is a number
-              guiObject.buffer_position = 0 // sets the buffer/corsor position to the beginning
+            if (isCaptionNumeric)
+              guiObject.buffer_position = 2 // sets the buffer/corsor position to the beginning
             else
               guiObject.buffer_position = allIconsInText.length
             return // this return was maybe missing 23-0705_2302-57 without this return some crases happened in oberver mode !!!!!! 23-0705_2305-59
           }
         }catch (error) {
-          error(error.toString())
+              warn(error.message)
+            warn(error.stack)
+
 
         }
 
@@ -351,8 +365,9 @@ var autoCompleteText_newMerge = function (guiObject, list)
           guiObject.caption = newCaptionText
           guiObject.focus()
         }catch (error) {
-          error(error.toString())
-        }
+          warn(error.message)
+          warn(error.stack)
+      }
 
 
 
@@ -389,8 +404,9 @@ var autoCompleteText_newMerge = function (guiObject, list)
         guiObject.focus();
         guiObject.buffer_position = buffer_position + (completedText.length - textBeforeBuffer.length)
       }catch (error) {
-        error(error.toString())
-      }
+        warn(error.message)
+        warn(error.stack)
+  }
 
 
         // selfMessage('328');
