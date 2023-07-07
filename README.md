@@ -1,6 +1,6 @@
 # AutoCivP plus some goodies
 
-Thanks to Nani ([99% source is from Nani](https://github.com/nanihadesuka/autociv))
+Thanks to Nani ([most source is from Nani](https://github.com/nanihadesuka/autociv))
 
 Thanks to all the 0 A.D. players who found it useful.
 
