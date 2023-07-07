@@ -23,11 +23,14 @@ autociv_patchApplyN("init", function (target, that, args)
 				"user",
 				"mod.enabledmods"
 			);
-			let text = `♡mods: ${modEnabledmods.slice(11,)}`
-            input.caption = text
-        }
+			// let text = `♡mods: ${modEnabledmods.slice(11,)}`
+            const lenFirst = input.caption.length
+            let text = ` | ${modEnabledmods.slice(11,)} ← Mods I'm currently using`
+            input.caption += text
+            input.buffer_position = lenFirst
+    }
 
-        input.buffer_position = input.caption.length;
+        // input.buffer_position = input.caption.length;
         input.onPress = () => confirmSetup()
     }
     return res
