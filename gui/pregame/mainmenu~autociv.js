@@ -145,8 +145,7 @@ autociv_patchApplyN("init", function (target, that, args) {
   const posboonGUI = modsFromUserCfg_const.indexOf('boonGUI')
   const posproGUI = modsFromUserCfg_const.indexOf('proGUI')
 
-
-  if (true && state.showAutoFixModsOrder) { // quick lazy quick fix. TODO: fix this should be a in the options somwehere
+  if (g_selfNick =="seeh" && state.showAutoFixModsOrder) { // quick lazy quick fix. TODO: fix this should be a in the options somwehere maybe
 
 // some here like silhouettes true is much important for fair playing
 

@@ -1,11 +1,6 @@
-
-
-
-
-
-
-
 warnModIsNotEnabled(); // check for feldmap mod is default 23-0624_0327-45
+
+warnSilhouettesIsNotEnabled()
 
 var g_autociv_maps = new Set(["maps/skirmishes/Volcano Island (8)"])
 
@@ -130,5 +125,16 @@ function warnModIsNotEnabled(){
 			warn(`Really want play without ${warnThisModIsNotEnabled} mod ?`);
 			// warn(`modEnabledmods: ${modEnabledmods} ?`);
 		}
+	}
+}
+
+function warnSilhouettesIsNotEnabled(){
+	const key = "silhouettes";  // default it will warn
+	var silhouettes = Engine.ConfigDB_GetValue(
+		"user",
+		key
+	);
+	if(silhouettes != "true"){
+		warn(`Really want play without silhouettes visible? (Settings > Graphics (general) > Unit Silhouettes. Its the fifth option)`);
 	}
 }
