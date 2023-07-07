@@ -15,6 +15,18 @@ autociv_patchApplyN("init", function (target, that, args)
         let input = Engine.GetGUIObjectByName("hostServerName");
         input.blur()
         input.focus()
+        if(false && Engine.Config_selfNick =="seeh")
+            input.caption = '♡mods: proGUI(bot?) autocivP(audio,setups) localRatings GodsEye(setups) ... ♡ YouTube LiveStreaming';
+
+        else{
+            const modEnabledmods = Engine.ConfigDB_GetValue(
+				"user",
+				"mod.enabledmods"
+			);
+			let text = `♡mods: ${modEnabledmods.slice(11,)}`
+            input.caption = text
+        }
+
         input.buffer_position = input.caption.length;
         input.onPress = () => confirmSetup()
     }
