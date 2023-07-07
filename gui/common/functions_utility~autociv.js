@@ -196,7 +196,7 @@ var autoCompleteText_newMerge = function (guiObject, list)
       if(  doTabReplacmentWor_gl_hf_gg_wp_stuff
         &&
         (
-        caption.length < 14 //NOTE - 30 mybe too long . prefent multiple repacment
+        caption.length < 14 //NOTE - 30 maybe too long . prefent multiple repacment
         || guiObject.buffer_position > 14 // maybe user want gg wp replacments in a longer text and cursor is in the middle or at the end
         )
         &&
@@ -219,7 +219,7 @@ var autoCompleteText_newMerge = function (guiObject, list)
 
 
         // sendMessage(`minMatchScore = ${minMatchScore}`)
-        sendMessage(`guiObject.buffer_position = ${guiObject.buffer_position}`)
+        // sendMessage(`guiObject.buffer_position = ${guiObject.buffer_position}`)
 
         const regex = /\b(\w+)\b/g;
         let allIconsInText = captionTrimed.replace(regex, match => {
