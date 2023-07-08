@@ -25,8 +25,10 @@ autociv_patchApplyN("init", function (target, that, args)
 			);
 			// let text = `♡mods: ${modEnabledmods.slice(11,)}`
             const lenFirst = input.caption.length
-            let text = ` | ${modEnabledmods.slice(11,)} ← Mods I'm currently using`
+            let text = ` | starts: ${nextGameStartTime()} | ${modEnabledmods.slice(11,)} ← Mods I'm currently using`
             input.caption += text
+            // input.caption += nextGameStartTime()
+            // input.caption = nextGameStartTime()
             input.buffer_position = lenFirst
     }
 
@@ -35,3 +37,44 @@ autociv_patchApplyN("init", function (target, that, args)
     }
     return res
 })
+
+
+function nextGameStartTime(){const getNextHalfHour = () => {
+    const now = new Date();
+    const minutes = now.getMinutes();
+    const roundedMinutes = Math.ceil(minutes / 30) * 30;
+    const nextHalfHour = new Date(now.getFullYear(), now.getMonth(), now.getDate(), now.getHours(), roundedMinutes, 0);
+    if (roundedMinutes === 60) {
+      nextHalfHour.setHours(now.getHours() + 1);
+      nextHalfHour.setMinutes(0);
+    }
+    return nextHalfHour;
+  };
+
+  const formatTime = (date) => {
+    const options = {
+      hour: 'numeric',
+      minute: 'numeric',
+      hour12: true,
+      timeZone: 'Europe/London',
+    };
+    return date.toLocaleTimeString('en-US', options);
+  };
+
+  const formatTimeForIndianPlayers = (date) => {
+    const options = {
+      hour: 'numeric',
+      minute: 'numeric',
+      hour12: true,
+      timeZone: 'Asia/Kolkata',
+    };
+    return date.toLocaleTimeString('en-US', options);
+  };
+
+  const nextHalfHour = getNextHalfHour();
+  const gameStartTimeEU = formatTime(nextHalfHour);
+  const gameStartTimeIndian = formatTimeForIndianPlayers(nextHalfHour);
+
+  const message = `${gameStartTimeEU.split(':').slice(0, 2).join(':')} EU time`;
+  return message;
+  }
