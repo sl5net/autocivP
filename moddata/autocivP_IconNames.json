@@ -34,8 +34,8 @@
 
   "♡"   : ["<3", "heart", "love"],
   "☺ :-)": ["smile", "happy"],
-  "☻ :)": [":)", "face"],
-  "☹"    : [":-(", "unhappy", "angry","sad" ],
+  "☻ :-)": [":)", "face"],
+  "☹ :-("    : [":-(", ":(", "unhappy", "angry","sad" ],
   "☼"    : ["sun", "shine"],
   "∞"     : ["infinity", "unlimited"],
   "★": ["star", "nova"],

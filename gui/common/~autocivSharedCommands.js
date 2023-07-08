@@ -76,7 +76,7 @@ function translGGWP_splitInWords_II(captionTrimed, minMatchScore){
 	// const regex = /\b([^‹›\s,\.!;\?]+)\b/g;
 	const regex = /\b([^‹›\s]+)\b/g;
 	// const regex2 = /(?<!\S)[><](?!\S)/g // dont work
-	const regex2 = /([>\-<]+)/g // dont work
+	const regex2 = /([>\-<):\(\-\)]+)/g // work for find smilies and arrow
 
 
 	let allIconsInText = captionTrimed.replace(regex, match => {
@@ -107,6 +107,13 @@ function translGGWP_splitInWords_II(captionTrimed, minMatchScore){
   }
 
 
+/**
+ * Translates marked strings in a given string.
+ *
+ * @param {string} gg - The input string with marked strings.
+ * @param {number} minMatchScore - The minimum match score.
+ * @return {string} The translated string with marked strings no replaced.
+ */
 function transGGWP_markedStrings_I(gg, minMatchScore) {
 	const isDebug = false
 	if(isDebug){
@@ -988,6 +995,7 @@ function FuzzySet(arr, useLevenshtein, gramSizeLower, gramSizeUpper)
 
 /**
  * Finds the best match for a given query in a fuzzy array.
+ * isNoWord is true if the query is not a word and then the match must be 100%
  *
  * @param {string} query - The query to search for.
  * @param {object} fuzzyArray - The fuzzy array to search in.
