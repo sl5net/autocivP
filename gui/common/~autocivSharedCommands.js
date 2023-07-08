@@ -994,7 +994,8 @@ function FuzzySet(arr, useLevenshtein, gramSizeLower, gramSizeUpper)
  * @return {object} An object containing the best match, the matched word, and the similarity score.
  */
 function findBestMatch(query, fuzzyArray, minMatchScore = 0.3) {
-	const isDebug = false
+	let isDebug = false
+	//  isDebug = true
 	let bestMatch = null;
 	let bestMatchWord = null;
 	let bestSimilarityScore = 0;
@@ -1004,12 +1005,35 @@ function findBestMatch(query, fuzzyArray, minMatchScore = 0.3) {
 	if(isDebug)
 	selfMessage(`findBestMatch for query "${query}"`);
 
+
+
+	const regex = /^\W+$/;
+
+	const isNoWord = regex.test(query);
+
 	for (const key in fuzzyArray) {
 	  const matches = fuzzyArray[key].get(query);
 
 	  if (matches !== null && matches[0][0] > minMatchScore) {
+
+
 		const similarityScore = matches[0][0];
 		const matchedString = matches[0][1];
+
+		if(isNoWord){
+			if(matchedString === query){
+				bestMatch = key;
+				bestMatchWord = matchedString;
+				bestSimilarityScore = similarityScore;
+				break
+			}else
+				continue
+		}
+
+		if(isDebug){
+			selfMessage(`isNoWord=${isNoWord}, key=${key}, matches = ${matches[0][1]}`);
+			selfMessage(JSON.stringify(matches));
+		}
 
 		if (false) {
 		  warn(`The query "${query}" matched to word "${matchedString}" with a similarity score of ${similarityScore}`);
@@ -1024,6 +1048,9 @@ function findBestMatch(query, fuzzyArray, minMatchScore = 0.3) {
 		}
 	  }
 	}
+
+	if(isDebug)
+	selfMessage(`bestMatch = ${bestMatch}, bestMatchWord = ${bestMatchWord}, bestSimilarityScore = ${bestSimilarityScore}`);
 
 	return {
 	  bestMatch: bestMatch,
