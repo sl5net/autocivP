@@ -26,8 +26,8 @@
     "‹be right back ☯ › ": ["be right back", "BRB", "coming back soon", "returning shortly"],
     "‹talk to you later ☯ › ": ["‹TTYL"],
 
-    "←": ["left" ],
-    "→": ["right", "arrow", "direction"],
+    "←": ["left", "<-","<" ],
+    "→": ["right", "->",">", "arrow", "direction"],
     "⇆": ["<->","replace", "Substitution", "Exchange", "Substituting", "Swapping", "Interchange", "Renewal", "Substituent", "Surrogate"],
     "⇔": ["<>","<-->","DOUBLEARROW"],
     "☞": ["right-small", "point", "hand"],
