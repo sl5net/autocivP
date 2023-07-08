@@ -1,3 +1,7 @@
+
+
+
+
 const key = "autocivP.gamesetup.restart"; // not needet try dont work in this case. use Engine.Exit(1) only
 let helloAllText = Engine.ConfigDB_GetValue("user", key);
 if(helloAllText == 'restart'){

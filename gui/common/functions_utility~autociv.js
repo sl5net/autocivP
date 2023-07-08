@@ -222,14 +222,22 @@ var autoCompleteText_newMerge = function (guiObject, list)
         // sendMessage(`guiObject.buffer_position = ${guiObject.buffer_position}`)
 
 
-        let allIconsInText = transGGWP_markedStrings_I(captionTrimed, minMatchScore)
+
+        // no error seeing no translation here:
+        // let allIconsInText = translate( transGGWP_markedStrings_I(captionTrimed, minMatchScore) )
+
+
+        // no error seeing no translation here:
+        let allIconsInText =  Engine.Translate( transGGWP_markedStrings_I(captionTrimed, minMatchScore) )
+
+
         // const regex = /\b(\w+)\b/g;
         // let allIconsInText = captionTrimed.replace(regex, match => {
         //   const translated = translateGlHfWpU2Gg(match,minMatchScore)
         //   return translated !== null ? translated : match;
         // });
 
-        // ‹Good game ❧
+        //
 
 
 

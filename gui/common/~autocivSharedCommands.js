@@ -82,7 +82,7 @@ function translGGWP_splitInWords_II(captionTrimed, minMatchScore){
 	let allIconsInText = captionTrimed.replace(regex, match => {
 		if(isDebug)
 	  selfMessage(`73: translGGWP_splitInWords_II()==>  ||${match}||`)
-	  const translated = translateGlHfWpU2Gg_III(match, minMatchScore)
+	  const translated = translGGWP_U2Gg_III(match, minMatchScore)
 	  return translated !== null ? translated : match;
 	});
 
@@ -97,7 +97,7 @@ function translGGWP_splitInWords_II(captionTrimed, minMatchScore){
 			error('91: minMatchScore==${minMatchScore}');
 		}
 
-		return translateGlHfWpU2Gg_III(match, minMatchScore)
+		return translGGWP_U2Gg_III(match, minMatchScore)
 		// return match; // You can replace it with any desired value
 	  });
 
@@ -160,7 +160,7 @@ function transGGWP_markedStrings_I(gg, minMatchScore) {
 
 
 
-function translateGlHfWpU2Gg_III(gg, minMatchScore) {
+function translGGWP_U2Gg_III(gg, minMatchScore) {
 	const isDebug = false
 	if(!minMatchScore ){
 	  selfMessage(`140: minMatchScore = ${minMatchScore}`);

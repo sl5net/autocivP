@@ -74,16 +74,29 @@ function nextGameStartTime() {
 
     const EU = formatTime(nextHalfHour, 'Europe/London');
 
-    const sweden = formatTime(new Date(nextHalfHour.getTime() + (1 * 60 * 60 * 1000)), 'Europe/Stockholm');
     const greece = formatTime(new Date(nextHalfHour.getTime() + (2 * 60 * 60 * 1000)), 'Europe/Athens');
+    const sweden = formatTime(new Date(nextHalfHour.getTime() + (1 * 60 * 60 * 1000)), 'Europe/Stockholm');
 
-    const Asia_Kolkata = formatTime(new Date(nextHalfHour.getTime() + (4.5 * 60 * 60 * 1000)), 'Asia/Kolkata');
-    const USA_ET = formatTime(new Date(nextHalfHour.getTime() - (5 * 60 * 60 * 1000)), 'America/New_York');
-    const USA_PT = formatTime(new Date(nextHalfHour.getTime() - (8 * 60 * 60 * 1000)), 'America/Los_Angeles');
+    const Asia_Kolkata = formatTime(new Date(nextHalfHour.getTime() + (5 * 60 * 60 * 1000)), 'Asia/Kolkata');
+    const USA_ET = formatTime(new Date(nextHalfHour.getTime() - (4 * 60 * 60 * 1000)), 'America/New_York');
+    const USA_PT = formatTime(new Date(nextHalfHour.getTime() - (7 * 60 * 60 * 1000)), 'America/Los_Angeles');
+
+    if(true){
+
+        // check its correct to london
+        // const sweden = formatTime(new Date(nextHalfHour.getTime() + (1 * 60 * 60 * 1000)), 'Europe/Stockholm');
+        // const greece = formatTime(new Date(nextHalfHour.getTime() + (2 * 60 * 60 * 1000)), 'Europe/Athens');
+
+        // const Asia_Kolkata = formatTime(new Date(nextHalfHour.getTime() + (4.5 * 60 * 60 * 1000)), 'Asia/Kolkata');
+        // const USA_ET = formatTime(new Date(nextHalfHour.getTime() - (5 * 60 * 60 * 1000)), 'America/New_York');
+        // const USA_PT = formatTime(new Date(nextHalfHour.getTime() - (8 * 60 * 60 * 1000)), 'America/Los_Angeles');
+
+    }
+
 
     const message = `${EU.split(':').slice(0, 2).join(':')} EU/Berlin, ${greece.split(':').slice(0, 2).join(':')} EU/Greece, ${sweden.split(':').slice(0, 2).join(':')} EU/Sweden/Finland/Denmark, ${Asia_Kolkata.split(':').slice(0, 2).join(':')} IST(Asia/Kolkata), ${USA_ET.split(':').slice(0, 2).join(':')} USA/ET, ${USA_PT.split(':').slice(0, 2).join(':')} USA/PT`;
 
-    warn(message)
+    // warn(message)
     return message;
     // 3:30 PM EU/Berlin time, 8:00 PM IST for Indian players, 9:30 AM ET, 6:30 AM PT, 2:30 PM GMT
   }
