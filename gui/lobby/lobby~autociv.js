@@ -37,7 +37,9 @@ var autociv_focus = {
 		if(autoFixModsOrder === "true" && posboonGUI && posproGUI < posboonGUI ){
 			warn(`posproGUI < posboonGUI`)
 
-			const clean = modsFromUserCfg_const.replaceAll(/\s*\bboonGUI\b\s*/g, ' proGUI ');
+			let clean = '';
+			clean = modsFromUserCfg_const.replaceAll(/\s+\bproGUI\b/g, ' '); // remove proGUI
+			clean = clean.replaceAll(/\s*\bboonGUI\b\s*/g, ' proGUI '); // include proGUI instead boonGUI
 			// clean = clean.replaceAll(/\bboonGUI\b /g, 'proGUI boonGUI ');
 			ConfigDB_CreateAndSaveValueA26A27("user", 'mod.enabledmods',clean)
 
