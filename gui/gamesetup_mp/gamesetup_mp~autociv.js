@@ -29,7 +29,7 @@ autociv_patchApplyN("init", function (target, that, args)
             text = ` | starts: ${nextGameStartTime()} |> ${modEnabledmods.slice(11,)} ← Mods I'm currently using`
             // input.caption = nextGameStartTime()
             input.caption += text
-            input.caption += nextGameStartTime()
+            // input.caption += nextGameStartTime()
             // input.caption = nextGameStartTime()
             input.buffer_position = lenFirst
     }
@@ -64,15 +64,26 @@ function nextGameStartTime() {
     };
 
     const nextHalfHour = getNextHalfHour();
-    const gameStartTimeEU = formatTime(nextHalfHour, 'Europe/London');
-    const gameStartTimeIndian = formatTime(new Date(nextHalfHour.getTime() + (5 * 60 * 60 * 1000)), 'Asia/Kolkata');
-    const gameStartTimeET = formatTime(new Date(nextHalfHour.getTime() - (4 * 60 * 60 * 1000)), 'America/New_York');
-    const gameStartTimePT = formatTime(new Date(nextHalfHour.getTime() - (7 * 60 * 60 * 1000)), 'America/Los_Angeles');
-    const gameStartTimeGMT = formatTime(nextHalfHour, 'GMT');
-    const gameStartTimeCET = formatTime(new Date(nextHalfHour.getTime() + (1 * 60 * 60 * 1000)), 'Europe/Berlin');
 
 
-    const message = `${gameStartTimeEU.split(':').slice(0, 2).join(':')} EU/Berlin, ${gameStartTimeIndian.split(':').slice(0, 2).join(':')} IST, ${gameStartTimeET.split(':').slice(0, 2).join(':')} ET, ${gameStartTimePT.split(':').slice(0, 2).join(':')} PT, ${gameStartTimeGMT.split(':').slice(0, 2).join(':')} GMT`;
+    // const gameStartTimeGMT = formatTime(nextHalfHour, 'GMT'); // same like 'Europe/London'
+
+        // const message = `${gameStartTimeEU.split(':').slice(0, 2).join(':')} EU/Berlin, ${gameStartTimeIndian.split(':').slice(0, 2).join(':')} IST, ${gameStartTimeET.split(':').slice(0, 2).join(':')} ET, ${gameStartTimePT.split(':').slice(0, 2).join(':')} PT`; // GMT is same like europa london
+
+
+
+    const EU = formatTime(nextHalfHour, 'Europe/London');
+
+    const sweden = formatTime(new Date(nextHalfHour.getTime() + (1 * 60 * 60 * 1000)), 'Europe/Stockholm');
+    const greece = formatTime(new Date(nextHalfHour.getTime() + (2 * 60 * 60 * 1000)), 'Europe/Athens');
+
+    const Asia_Kolkata = formatTime(new Date(nextHalfHour.getTime() + (4.5 * 60 * 60 * 1000)), 'Asia/Kolkata');
+    const USA_ET = formatTime(new Date(nextHalfHour.getTime() - (5 * 60 * 60 * 1000)), 'America/New_York');
+    const USA_PT = formatTime(new Date(nextHalfHour.getTime() - (8 * 60 * 60 * 1000)), 'America/Los_Angeles');
+
+    const message = `${EU.split(':').slice(0, 2).join(':')} EU/Berlin, ${greece.split(':').slice(0, 2).join(':')} EU/Greece, ${sweden.split(':').slice(0, 2).join(':')} EU/Sweden/Finland/Denmark, ${Asia_Kolkata.split(':').slice(0, 2).join(':')} IST(Asia/Kolkata), ${USA_ET.split(':').slice(0, 2).join(':')} USA/ET, ${USA_PT.split(':').slice(0, 2).join(':')} USA/PT`;
+
+    warn(message)
     return message;
     // 3:30 PM EU/Berlin time, 8:00 PM IST for Indian players, 9:30 AM ET, 6:30 AM PT, 2:30 PM GMT
   }
