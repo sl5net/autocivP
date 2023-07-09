@@ -393,7 +393,7 @@ var g_autociv_SharedCommands = {
 
 		}
 	},
-	"li": {
+	'li': {
 		"description": "use of jitsi in the game",
 		"handler": () =>
 		{
@@ -404,6 +404,7 @@ var g_autociv_SharedCommands = {
 			chatInput.caption = text
 		}
 	},
+
 	"mute": {
 		"description": "Mute player.",
 		"handler": (player) =>

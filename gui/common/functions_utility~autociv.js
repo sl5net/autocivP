@@ -153,6 +153,30 @@ var autoCompleteText_newMerge = function (guiObject, list)
         }
 
         if(caption == g_lastCommand){
+
+
+          if(caption == "communityModToggle")
+          // "description": translate("toggle cumunity mod."),
+          // "handler": () =>
+          {
+            // selfMessage("communityModToggle")
+            let modEnabledmods = Engine.ConfigDB_GetValue(
+              "user",
+              "mod.enabledmods"
+            );
+            selfMessage(`modEnabledmods = ${modEnabledmods}`);
+            if(modEnabledmods.indexOf("community-mod") == -1)
+              modEnabledmods += ' community-mod'
+            else
+              modEnabledmods = modEnabledmods.replace(/\s*\bcommunity-mod\b\s*/, " ")
+
+            ConfigDB_CreateAndSaveValueA26A27("user", "mod.enabledmods", modEnabledmods.trim())
+            selfMessage(`modEnabledmods = ${modEnabledmods}`);
+            restart0ad()
+            // return
+        }
+
+
             let nextID = getNextLastCommandID()
 
             // selfMessage(`86: ${g_lastCommandID}' = g_lastCommandID`);
@@ -178,6 +202,7 @@ var autoCompleteText_newMerge = function (guiObject, list)
             }
             // selfMessage(`caption == g_lastCommand '${caption}' => double tab ?`);
             // EndOf caption == g_lastCommand
+
         }
 
         ConfigDB_CreateAndSaveValueA26A27("user", `autocivP.chat.g_lastCommandID`, g_lastCommandID); // !! dont deltete !! if delte also /p profilles dont get storede into the config file 23-0628_1338-23
@@ -337,6 +362,12 @@ var autoCompleteText_newMerge = function (guiObject, list)
         guiObject.caption = whatsAutocivPMod;
         return;
     }
+
+
+
+
+
+
     // selfMessage('caption.toLowerCase() = ' + caption.toLowerCase());
 
     if(caption.toLowerCase() == 'hiall'){
@@ -752,4 +783,19 @@ function addModProfileAlwaysInAlsoAddAutocivPatTheEnd(clean) {
     clean += ' autocivP';
 
   return clean.replaceAll('autocivP', `${modProfileAlwaysIn} autocivP`);
+}
+
+
+function restart0ad()
+{
+	try {
+		Engine.Restart(1) // works sometimes Engine. and sometimes: Restart is not a function
+	} catch (error) {
+		if(g_selfNick =="seeh"){ //NOTE - 23-0705_2302-57 developers want to see the error in the console
+			warn(error.message)
+			warn(error.stack)
+		}
+		warn('well done. Please start 0ad now again.')
+		Engine.Exit(1) // works
+	}
 }

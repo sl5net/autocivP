@@ -32,7 +32,7 @@ var autociv_focus = {
 				translate("modProfile showAutoFixModsOrder need a resart"),
 				translate("Confirmation"),
 				[translate("No"), translate("Yes")],
-				[null, resart0ad()]);
+				[null, restart0ad()]);
 		}
 		if(autoFixModsOrder === "true" && posboonGUI && posproGUI < posboonGUI ){
 			warn(`posproGUI < posboonGUI`)
@@ -49,7 +49,7 @@ var autociv_focus = {
 				translate("modProfile showAutoFixModsOrder need a resart"),
 				translate("Confirmation"),
 				[translate("No"), translate("Yes")],
-				[null, resart0ad()]);
+				[null, restart0ad()]);
 
 			// messageBox(500, 200, translate("modProfile showAutoFixModsOrder need a resart"), translate("Error"))
 
@@ -263,19 +263,5 @@ class AutocivLobbyStats
 	update ()
 	{
 		this.lobbyPageTitle.caption = `${this.pageTitle}  P:${this.nOfPlayers}  G:${this.nOfGames}`
-	}
-}
-
-function resart0ad()
-{
-	try {
-		Engine.Restart(1) // works sometimes Engine. and sometimes: Restart is not a function
-	} catch (error) {
-		if(g_selfNick =="seeh"){ //NOTE - 23-0705_2302-57 developers want to see the error in the console
-			warn(error.message)
-			warn(error.stack)
-		}
-		warn('well done. Please start 0ad now again.')
-		Engine.Exit(1) // works
 	}
 }
