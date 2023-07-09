@@ -27,8 +27,8 @@ autociv_patchApplyN("init", function (target, that, args)
 			// let text = `♡mods: ${modEnabledmods.slice(11,)}`
             const lenFirst = input.caption.length
             text = ` | ${nextGameStartTime()} |> ${modEnabledmods.slice(11,)} ← Mods I'm currently using`
-            input.caption = nextGameStartTime()
-            // input.caption += text
+            // input.caption = nextGameStartTime()
+            input.caption += text
             // input.caption += nextGameStartTime()
             // input.caption = nextGameStartTime()
             input.buffer_position = lenFirst
