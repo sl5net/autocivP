@@ -178,15 +178,25 @@ function translGGWP_U2Gg_III(gg, minMatchScore) {
 	let query
 	query = gg;
 	// warn('/' + '‾'.repeat(32));
-	const result = findBestMatch(query, g_fuzzyArrayResult, minMatchScore);
+	let stringWithUnicode = findBestMatch(query, g_fuzzyArrayResult, minMatchScore);
+
+
+	if(  stringWithUnicode
+		&& stringWithUnicode.bestMatch
+		&& Engine.ConfigDB_GetValue("user", `autociv.chatText.font.useitwithoutUnicode`) === 'true'
+		)
+		stringWithUnicode.bestMatch = stringWithUnicode.bestMatch.replace(/[^\x00-\x7F]/g, "");
+
+	// stringWithoutUnicode
+
 	if(isDebug){
-	warn(`120: Best match for query "${query}": ##${result.bestMatch}## (${result.bestMatchWord})`);
-	selfMessage(`120: Best match for query "${query}": ##${result.bestMatch}## (${result.bestMatchWord} , ${minMatchScore})`);
-	warn('\\________________________________')
+		warn(`120: Best match for query "${query}": ##${stringWithUnicode.bestMatch}## (${stringWithUnicode.bestMatchWord})`);
+		selfMessage(`120: Best match for query "${query}": ##${stringWithUnicode.bestMatch}## (${stringWithUnicode.bestMatchWord} , ${minMatchScore})`);
+		warn('\\________________________________')
 	}
 
-	if(result.bestMatch)
-		return result.bestMatch;
+	if(stringWithUnicode && stringWithUnicode.bestMatch)
+		return stringWithUnicode.bestMatch;
 	else
 		return gg;
 

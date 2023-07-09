@@ -102,6 +102,17 @@
 				"config": "autociv.session.chatText.font",
 				"dependencies": ["autociv.session.chatText.font.change"]
 			},
+
+			{
+				"type": "boolean",
+				"label": "[color=\"220 185 70\"]Global:[/color] remove all Unicode characters",
+				"tooltip": "remove all Unicode characters. Som users don't use a keyboard that support this icons it in the chat.",
+				"config": "autociv.chatText.font.useitwithoutUnicode"
+			},
+
+
+
+
 			{
 				"type": "boolean",
 				"label": "[color=\"220 185 70\"]Game:[/color] Default stance healers",
