@@ -26,9 +26,9 @@ autociv_patchApplyN("init", function (target, that, args)
             let text = ''
 			// let text = `♡mods: ${modEnabledmods.slice(11,)}`
             const lenFirst = input.caption.length
-            text = ` | starts: ${nextGameStartTime()} |> ${modEnabledmods.slice(11,)} ← Mods I'm currently using`
-            // input.caption = nextGameStartTime()
-            input.caption += text
+            text = ` | ${nextGameStartTime()} |> ${modEnabledmods.slice(11,)} ← Mods I'm currently using`
+            input.caption = nextGameStartTime()
+            // input.caption += text
             // input.caption += nextGameStartTime()
             // input.caption = nextGameStartTime()
             input.buffer_position = lenFirst
@@ -72,14 +72,14 @@ function nextGameStartTime() {
 
 
 
-    const EU = formatTime(nextHalfHour, 'Europe/London');
+    const tBerlinLondonSwedenDenmark = formatTime(nextHalfHour, 'Europe/London');
 
-    const greece = formatTime(new Date(nextHalfHour.getTime() + (2 * 60 * 60 * 1000)), 'Europe/Athens');
-    const sweden = formatTime(new Date(nextHalfHour.getTime() + (1 * 60 * 60 * 1000)), 'Europe/Stockholm');
+    const tGreece = formatTime(new Date(nextHalfHour.getTime() + (1 * 60 * 60 * 1000)), 'Europe/Athens');
+    // const tSweden = formatTime(new Date(nextHalfHour.getTime() + (1 * 60 * 60 * 1000)), 'Europe/Stockholm');
 
-    const Asia_Kolkata = formatTime(new Date(nextHalfHour.getTime() + (5 * 60 * 60 * 1000)), 'Asia/Kolkata');
-    const USA_ET = formatTime(new Date(nextHalfHour.getTime() - (4 * 60 * 60 * 1000)), 'America/New_York');
-    const USA_PT = formatTime(new Date(nextHalfHour.getTime() - (7 * 60 * 60 * 1000)), 'America/Los_Angeles');
+    const Asia_Kolkata = formatTime(new Date(nextHalfHour.getTime() + (3.5 * 60 * 60 * 1000)), 'Asia/Kolkata');
+    const USA_ET = formatTime(new Date(nextHalfHour.getTime() - (6 * 60 * 60 * 1000)), 'America/New_York');
+    const USA_Los_Angeles = formatTime(new Date(nextHalfHour.getTime() - (9 * 60 * 60 * 1000)), 'America/Los_Angeles');
 
     if(true){
 
@@ -93,8 +93,10 @@ function nextGameStartTime() {
 
     }
 
+    let message =''
+    message = `${tBerlinLondonSwedenDenmark.split(':').slice(0, 2).join(':')} EU/Berlin/London/Sweden/Denmark, ${tGreece.split(':').slice(0, 2).join(':')} EU/Greece, ${Asia_Kolkata.split(':').slice(0, 2).join(':')} Asia/Kolkata, ${USA_ET.split(':').slice(0, 2).join(':')} USA/NewYork , ${USA_Los_Angeles.split(':').slice(0, 2).join(':')} USA/LosAngeles`;
 
-    const message = `${EU.split(':').slice(0, 2).join(':')} EU/Berlin, ${greece.split(':').slice(0, 2).join(':')} EU/Greece, ${sweden.split(':').slice(0, 2).join(':')} EU/Sweden/Finland/Denmark, ${Asia_Kolkata.split(':').slice(0, 2).join(':')} IST(Asia/Kolkata), ${USA_ET.split(':').slice(0, 2).join(':')} USA/ET, ${USA_PT.split(':').slice(0, 2).join(':')} USA/PT`;
+    message = message.replace(/\:00/g,'')
 
     // warn(message)
     return message;
