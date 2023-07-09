@@ -1,6 +1,6 @@
 warnModIsNotEnabled(); // check for feldmap mod is default 23-0624_0327-45
-
 warnSilhouettesIsNotEnabled()
+
 
 var g_autociv_maps = new Set(["maps/skirmishes/Volcano Island (8)"])
 
@@ -138,3 +138,27 @@ function warnSilhouettesIsNotEnabled(){
 		warn(`Really want play without silhouettes visible? (Settings > Graphics (general) > Unit Silhouettes. Its the fifth option)`);
 	}
 }
+
+
+if(true) {
+
+	//TODO - dont works. idea was put in importand mods in autocivP in the game name. for most of fairness
+
+	warn(`true`)
+	// selfMessage(
+	//   "functoin setGameNameInLobby is off for some reasons at the moment"
+	// );
+	// return false;
+	let doEarlyReturn = true
+	if ((g_IsController && Engine.HasNetServer())
+	&&	 (g_SetupWindow && g_SetupWindow.controls.lobbyGameRegistrationController)
+	 )
+	 doEarlyReturn = false
+
+	if (!doEarlyReturn){
+	let oldGameName =
+	  g_SetupWindow.controls.lobbyGameRegistrationController.serverName;
+
+	warn(`oldGameName: ${oldGameName}`)
+	}
+  }

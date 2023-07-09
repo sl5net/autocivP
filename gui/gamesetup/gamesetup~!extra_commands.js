@@ -1,5 +1,9 @@
 var g_linkLong = null; // init should be available during the game and not changed
 var g_gameMapMapPrevious = null; // help prefent/debugging a errors, at the moment
+
+
+warn('Loaded gamesetup~!extra_commands.js'); // is not defined. but later it will be
+
 var game = {
   // stuff that needs to be updated after the gui updates it (as it removes it before it)
   // undefined will mean it doesnt exist
@@ -13,6 +17,8 @@ var game = {
       .gameSettingControls;
   },
   get panels() {
+
+// setGameNameInLobby(text)
     return g_SetupWindow.pages.GameSetupPage.panels;
   },
   get panelsButtons() {
@@ -399,6 +405,11 @@ g_NetworkCommands["/countdown"] = (input) => {
 };
 
 g_NetworkCommands["/gameName"] = (text) => {
+  selfMessage(
+    "functoin setGameNameInLobby is off for some reasons at the moment"
+  );
+  return false;
+
   setGameNameInLobby(text);
 };
 
@@ -813,10 +824,10 @@ How to set the more complex mapFilter and which tiles should be included in the 
 // }
 
 function setGameNameInLobby(text) {
-  selfMessage(
-    "functoin setGameNameInLobby is off for some reasons at the moment"
-  );
-  return false;
+  // selfMessage(
+  //   "functoin setGameNameInLobby is off for some reasons at the moment"
+  // );
+  // return false;
   if (!g_IsController || !Engine.HasNetServer()) return;
   if (!g_SetupWindow.controls.lobbyGameRegistrationController) return;
 
