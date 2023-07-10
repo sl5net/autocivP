@@ -140,11 +140,12 @@ function warnSilhouettesIsNotEnabled(){
 }
 
 
-if(true) {
+if(true && g_selfNick =="seeh") {
 
 	//TODO - dont works. idea was put in importand mods in autocivP in the game name. for most of fairness
 
-	warn(`true`)
+	if(g_selfNick =="seeh")
+		warn(`TODO - dont works. idea was put in importand mods in autocivP in the game name. for most of fairness`)
 	// selfMessage(
 	//   "functoin setGameNameInLobby is off for some reasons at the moment"
 	// );
@@ -159,6 +160,6 @@ if(true) {
 	let oldGameName =
 	  g_SetupWindow.controls.lobbyGameRegistrationController.serverName;
 
-	warn(`oldGameName: ${oldGameName}`)
+		warn(`oldGameName: ${oldGameName}`)
 	}
   }

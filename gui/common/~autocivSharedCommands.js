@@ -169,6 +169,42 @@ function translGGWP_U2Gg_III(gg, minMatchScore) {
 	  error(`minMatchScore is not defined`);
 	}
 
+
+	let lowercaseGg = gg.toLowerCase()
+	let doSend2allChatUsers = false
+	if (lowercaseGg == 'alliconsAll'.toLocaleLowerCase()) {
+		doSend2allChatUsers = true
+		lowercaseGg = 'allicons'
+	}
+	if (lowercaseGg == 'allicons') {
+	  const vArr = Object.keys(g_customIconJson);
+	  let s = 'allicons: '
+	  vArr.forEach((k, v) => {
+		  const vArr = Object.values(g_customIconJson[k]);
+		if(doSend2allChatUsers)
+		  	sendMessage(`${k} <- ${vArr}`);
+		else
+			selfMessage(`${k} <- ${vArr}`);
+		  s += `${k} < ${vArr}`
+		  s += ` | `
+	  })
+	  const t = `you dont need write it ecactly. it finds results also if you write to less or bit wrong (its fuzzy-search). disable all icons in settings in options menu.`
+	  s += t
+	  if(doSend2allChatUsers)
+		  sendMessage(`${t}`);
+	else
+	  selfMessage(`${t}`);
+	  return s // its big string so it will be cut off somewhere in the middle
+	}
+	if (lowercaseGg == 'alliconkeys') {
+	  const vArr = Object.keys(g_customIconJson);
+	  const s = 'alliconkeys: ' + vArr.join(', ');
+	  selfMessage(`${s}`);
+	  return s
+	}
+
+
+
 	// https://unicodeemoticons.com/
 	// btw guiObject is not definded her so you cant use this: sendMessageGlHfWpU2Gg(..., guiObject)
 
@@ -202,27 +238,6 @@ function translGGWP_U2Gg_III(gg, minMatchScore) {
 
 		// todo: this is not working. needs implementd again
 
-	  const lowercaseGg = gg.toLowerCase()
-	  if (lowercaseGg == 'allicons') {
-		const vArr = Object.keys(g_customIconJson);
-		let s = 'allicons: '
-		vArr.forEach((k, v) => {
-			const vArr = Object.values(g_customIconJson[k]);
-			// selfMessage(`${k} <- ${vArr}`);
-			sendMessage(`${k} <- ${vArr}`);
-			s += `${k} < ${vArr}`
-			s += ` | `
-		})
-		s += ` you dont need write it ecactly. it finds results also if you write to less or bit wrong (its fuzzy-search)`
-		sendMessage(`you dont need write it ecactly. it finds results also if you write to less or bit wrong (its fuzzy-search)`);
-		return s // its big string so it will be cut off somewhere in the middle
-	  }
-	  if (lowercaseGg == 'alliconkeys') {
-		const vArr = Object.keys(g_customIconJson);
-		const s = 'alliconkeys: ' + vArr.join(', ');
-		selfMessage(`${s}`);
-		return s
-	  }
 
 	  return gg;
 }

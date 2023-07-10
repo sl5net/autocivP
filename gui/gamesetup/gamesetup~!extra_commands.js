@@ -1,8 +1,7 @@
 var g_linkLong = null; // init should be available during the game and not changed
 var g_gameMapMapPrevious = null; // help prefent/debugging a errors, at the moment
 
-
-warn('Loaded gamesetup~!extra_commands.js'); // is not defined. but later it will be
+// warn('Loaded gamesetup~!extra_commands.js'); // is not defined. but later it will be
 
 var game = {
   // stuff that needs to be updated after the gui updates it (as it removes it before it)

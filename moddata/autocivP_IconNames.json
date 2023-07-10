@@ -1,5 +1,7 @@
 {
    "/help /p": ["help", "search", "profiles" ],
+   "allicons": ["allicon", "allincon","allincon" ],
+   "alliconkeys": ["alliconkey","allinconcais","alliconskay" ],
    "modsImCurrentlyUsing": ["mods", "using" ],
 
    "‹yes› ": ["y","ok","ye"],
