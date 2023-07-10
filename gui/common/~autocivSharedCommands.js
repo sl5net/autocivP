@@ -75,7 +75,7 @@ function translGGWP_splitInWords_II(captionTrimed, minMatchScore){
 
 	const isDebug = false
 	if(isDebug)
-	selfMessage(`66: splitInWords_II()== >${captionTrimed}<`);
+		selfMessage(`66: splitInWords_II()== >${captionTrimed}<`);
 	// const regex = /\b([^‹›\s,\.!;\?]+)\b/g;
 	const regex = /\b([^‹›\s]+)\b/g;
 	// const regex2 = /(?<!\S)[><](?!\S)/g // dont work
@@ -84,7 +84,7 @@ function translGGWP_splitInWords_II(captionTrimed, minMatchScore){
 
 	let allIconsInText = captionTrimed.replace(regex, match => {
 		if(isDebug)
-	  selfMessage(`73: translGGWP_splitInWords_II()==>  ||${match}||`)
+	  		selfMessage(`73: translGGWP_splitInWords_II()==>  ||${match}||`)
 	  const translated = translGGWP_U2Gg_III(match, minMatchScore)
 	  return translated !== null ? translated : match;
 	});
@@ -93,8 +93,8 @@ function translGGWP_splitInWords_II(captionTrimed, minMatchScore){
 		// Handle the standalone < or > here
 		const isDebug = false
 		if(isDebug)
-		selfMessage(`79: ${match}`);
-		if(!minMatchScore)
+				selfMessage(`79: ${match}`);
+		if(!minMatchScore && isDebug)
 		{
 			selfMessage('91: minMatchScore==${minMatchScore}');
 			error('91: minMatchScore==${minMatchScore}');
@@ -105,7 +105,7 @@ function translGGWP_splitInWords_II(captionTrimed, minMatchScore){
 	  });
 
 	  if(isDebug)
-	selfMessage(`84: translGGWP_splitInWords_II()==> allIconsInText = ||${allIconsInText}||`);
+			selfMessage(`84: translGGWP_splitInWords_II()==> allIconsInText = ||${allIconsInText}||`);
 	return allIconsInText
   }
 
@@ -120,9 +120,9 @@ function translGGWP_splitInWords_II(captionTrimed, minMatchScore){
 function transGGWP_markedStrings_I(gg, minMatchScore) {
 	const isDebug = false
 	if(isDebug){
-	selfMessage(`79: ____________ transGGWP_markedStrings_I() ___________`);
-	// gg = "‹Good game ❧ › ";
-	selfMessage(`81: gg=>${gg}<`);
+		selfMessage(`79: ____________ transGGWP_markedStrings_I() ___________`);
+		// gg = "‹Good game ❧ › ";
+		selfMessage(`81: gg=>${gg}<`);
 	}
 	const ggBackup = gg;
 	const markedStringRegex = /(‹[^‹›]*›)/g;
@@ -133,7 +133,7 @@ function transGGWP_markedStrings_I(gg, minMatchScore) {
 		// Handle case when no marked strings are found
 		gg =translGGWP_splitInWords_II(gg, minMatchScore);
 		if(isDebug)
-		selfMessage(`74:transGGWP_markedStrings_I()=>  gg=${gg}`);
+			selfMessage(`74:transGGWP_markedStrings_I()=>  gg=${gg}`);
 		return gg;
 	}
 
@@ -149,7 +149,7 @@ function transGGWP_markedStrings_I(gg, minMatchScore) {
 		// Filter out the marked strings
 		let re = [translGGWP_splitInWords_II(value, minMatchScore), markedStrings[index / 2]];
 		if(isDebug)
-		selfMessage(`88:transGGWP_markedStrings_I()=> re=>${re}<`);
+			selfMessage(`88:transGGWP_markedStrings_I()=> re=>${re}<`);
 		return re
 	  }
 	//   return value;
@@ -157,7 +157,7 @@ function transGGWP_markedStrings_I(gg, minMatchScore) {
 
 	const re = ggParts.join(''); // Concatenate the array elements without a separator
 	if(isDebug)
-	selfMessage(`93: re=${re}`);
+		selfMessage(`93: re=${re}`);
 	return re;
   }
 
