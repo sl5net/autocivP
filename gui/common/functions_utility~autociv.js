@@ -154,12 +154,12 @@ var autoCompleteText_newMerge = function (guiObject, list)
 
         if(caption == g_lastCommand){
 
-
           if(caption == "communityModToggle")
           // "description": translate("toggle cumunity mod."),
           // "handler": () =>
           {
-            // selfMessage("communityModToggle")
+            selfMessage("communityModToggle: TODO - add to json tab-commands") //TODO - add to json tab-commands
+            warn("communityModToggle: TODO - add to json tab-commands") //TODO - add to json tab-commands
             let modEnabledmods = Engine.ConfigDB_GetValue(
               "user",
               "mod.enabledmods"
