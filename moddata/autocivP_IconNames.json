@@ -25,6 +25,7 @@
     "‹away from keyboard ☽ › ": ["away from keyboard", "AFK", "offline", "not available"],
     "‹be right back ☯ › ": ["be right back", "BRB", "coming back soon", "returning shortly"],
     "‹talk to you later ☯ › ": ["‹TTYL"],
+    "‹'vanilla game' is a game without any additional modifications like mods, plugins, etc. ☯ › ": ["vanilla"],
 
     "←": ["left", "<-","<" ],
     "→": ["right", "->",">", "arrow", "direction"],
