@@ -146,20 +146,21 @@ var autoCompleteText_newMerge = function (guiObject, list)
         const maxCaptionLengthAllowed = 130 // test crashed by 150
         if(caption.length > maxCaptionLengthAllowed)
         {
-            selfMessage(`max text length > ${maxCaptionLengthAllowed}`)
+            // selfMessage(`max text length > ${maxCaptionLengthAllowed}`)
             // seems this prefent from the error // Retrieve the substring of the last n characters
             // CStr CStr::Right(size_t len) const { ENSURE(len <= length()); return substr(length()-len, len); }
             return
         }
 
-        if(caption == g_lastCommand){
+        // selfMessage(`155: ${caption.toLowerCase()} = ${caption}`) //TODO - add to json tab-commands
 
-          if(caption == "communityModToggle")
+        if(caption.toLowerCase() == g_lastCommand.toLowerCase()){
+          // selfMessage(`158 ${caption.toLowerCase()} = ${caption}`) //TODO - add to json tab-commands
+
+          if(caption.toLowerCase() == "communityModToggle".toLowerCase())
           // "description": translate("toggle cumunity mod."),
           // "handler": () =>
           {
-            selfMessage("communityModToggle: TODO - add to json tab-commands") //TODO - add to json tab-commands
-            warn("communityModToggle: TODO - add to json tab-commands") //TODO - add to json tab-commands
             let modEnabledmods = Engine.ConfigDB_GetValue(
               "user",
               "mod.enabledmods"
@@ -210,6 +211,9 @@ var autoCompleteText_newMerge = function (guiObject, list)
         // Enof caption is not empty
     }
 
+    // selfMessage(`216: ${caption.toLowerCase()} = ${caption}`) //TODO - add to json tab-commands
+
+
     // Enof caption is maybe not empty
     const doTabReplacmentWor_gl_hf_gg_wp_stuff = true; // usefull for debugging maybe
     if(caption.length ){
@@ -221,7 +225,7 @@ var autoCompleteText_newMerge = function (guiObject, list)
       if(  doTabReplacmentWor_gl_hf_gg_wp_stuff
         &&
         (
-        caption.length < 14 //NOTE - 30 maybe too long . prefent multiple repacment
+        caption.length <= 20 //NOTE - 30 maybe too long . prefent multiple repacment
         || guiObject.buffer_position > 14 // maybe user want gg wp replacments in a longer text and cursor is in the middle or at the end
         )
         &&
@@ -235,12 +239,13 @@ var autoCompleteText_newMerge = function (guiObject, list)
         // selfMessage('first char = ' + firstChar)
         // selfMessage('iconPrefix = ' + iconPrefix)
         // selfMessage('iconPrefix.length = ' + iconPrefix.length)
-        // selfMessage('captionTrimed = ' + captionTrimed)
+        // selfMessage('244: captionTrimed = ' + captionTrimed)
 
         // let text = captionBegin.substring(1); // or text.slice(1)
         // selfMessage('caption length = ' + captionBegin.length);
-        let minMatchScore = (captionTrimed.length > 7) ? 0.8 : (iconPrefix.length ? 0.3 :  0.5 )
-        // sendMessage(`minMatchScore = ${minMatchScore}`)
+        // communityModToggle = 19
+        let minMatchScore = (captionTrimed.length > 20) ? 0.8 : (iconPrefix.length ? 0.3 :  0.4 )
+        // sendMessage(`248: minMatchScore = ${minMatchScore}`)
 
 
         // sendMessage(`minMatchScore = ${minMatchScore}`)
@@ -251,6 +256,8 @@ var autoCompleteText_newMerge = function (guiObject, list)
         // no error seeing no translation here:
         // let allIconsInText = translate( transGGWP_markedStrings_I(captionTrimed, minMatchScore) )
 
+
+        // selfMessage(`258: captionTrimed = ${captionTrimed}`)
 
         // no error seeing no translation here:
         let allIconsInText =  Engine.Translate( transGGWP_markedStrings_I(captionTrimed, minMatchScore) )

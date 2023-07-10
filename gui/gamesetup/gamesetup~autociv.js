@@ -145,7 +145,7 @@ if(true && g_selfNick =="seeh") {
 	//TODO - dont works. idea was put in importand mods in autocivP in the game name. for most of fairness
 
 	if(g_selfNick =="seeh")
-		warn(`TODO - dont works. idea was put in importand mods in autocivP in the game name. for most of fairness`)
+		warn(`TODO - dont works. idea was put in importand mods in proGUI in the game name. for most of fairness`)
 	// selfMessage(
 	//   "functoin setGameNameInLobby is off for some reasons at the moment"
 	// );

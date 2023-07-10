@@ -1,9 +1,23 @@
 {
    "/help /p": ["help", "search", "profiles" ],
-   "allicons": ["allicon", "allincon","allincon" ],
-   "alliconkeys": ["alliconkey","allinconcais","alliconskay" ],
+   "allicons": ["allicons", "allincon","allincons" ],
+   "alliconkeys": ["alliconkeys","allinconcais","alliconskays" ],
    "modsImCurrentlyUsing": ["mods", "using" ],
-
+   "communityModToggle": [
+    "comunitsmodstoggles",
+    "comunitymodtoggle",
+    "comunitiymodstogle",
+    "comunitiymod",
+    "communitiymod",
+    "comunittymodtogle",
+    "comunitmod",
+    "comunittogl",
+    "comunitmodtgl",
+    "communittymodtoggle",
+    "comunitymodtogle",
+    "comunitiymodtoggl",
+    "comunitsmodtogle"
+  ],
    "‹yes› ": ["y","ok","ye"],
    "‹no› ": ["n"],
    "resign ⓧ ? ": ["resign","rg","RG"],

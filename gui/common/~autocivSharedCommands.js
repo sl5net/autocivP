@@ -1,7 +1,7 @@
 var gameState = "lobby"; // Initial state // // TODO: howto set it like this? g_GameData = data // 	g_GameData.gui.isInGame
 
 const g_customIconJson = Engine.ReadJSONFile("moddata/autocivP_IconNames.json");
-var g_fuzzyArrayResult = getFuzzyArrayFromJsonFile(g_customIconJson, false)
+var g_fuzzyArrayResult = getFuzzyArrayFromJsonFile(g_customIconJson, true)
 // var g_fuzzyArrayResult = getFuzzyArrayFromJsonFile("moddata/autocivP_IconNames.json", false)
 
 var g_is_chatInputTooltipQuickFixUpdate_updated = false
@@ -43,7 +43,8 @@ function getFuzzyArrayFromJsonFile(customIconJson, useLevenshtein){
 	let fuzzyArrayResult = {}
 	for (const key of customIconKeys) {
 		const values = customIconJson[key];
-		const fuzzyVals = FuzzySet(values, useLevenshtein, 2, 8);
+		// communityModToggle = 18
+		const fuzzyVals = FuzzySet(values, useLevenshtein, 2, 20); // i used 8 before. not 20 have a long workd 23-0710_2136-42
 		fuzzyArrayResult[key] = fuzzyVals;
 	}
     return fuzzyArrayResult;
@@ -164,11 +165,12 @@ function transGGWP_markedStrings_I(gg, minMatchScore) {
 
 function translGGWP_U2Gg_III(gg, minMatchScore) {
 	const isDebug = false
+	if(isDebug)
+		selfMessage(`169: ____________ translGGWP_U2Gg_III(${gg}, ${minMatchScore}) ___________`);
 	if(!minMatchScore ){
 	  selfMessage(`140: minMatchScore = ${minMatchScore}`);
 	  error(`minMatchScore is not defined`);
 	}
-
 
 	let lowercaseGg = gg.toLowerCase()
 	let doSend2allChatUsers = false
@@ -259,6 +261,11 @@ function saveLastCommand2History(lastCommand){
 	  return;
 	if(lastCommand == g_lastCommand)
 	  return;
+	if(lastCommand == "communityModToggle"){ // maybe a bit to dangerous to trigger it exidentally. so maybe better keep it out of history. what you think?
+		g_lastCommand = lastCommand;
+		return;
+	}
+
 	// selfMessage(`lastCommand = ${lastCommand}`);
 	let lastCommandID_i = 0
 	let offset = 0
