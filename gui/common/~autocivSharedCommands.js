@@ -1,6 +1,8 @@
 var gameState = "lobby"; // Initial state // // TODO: howto set it like this? g_GameData = data // 	g_GameData.gui.isInGame
 
-var g_fuzzyArrayResult = fuzzyArrayFromjsonFile("moddata/autocivP_IconNames.json", false)
+const g_customIconJson = Engine.ReadJSONFile("moddata/autocivP_IconNames.json");
+var g_fuzzyArrayResult = getFuzzyArrayFromJsonFile(g_customIconJson, false)
+// var g_fuzzyArrayResult = getFuzzyArrayFromJsonFile("moddata/autocivP_IconNames.json", false)
 
 var g_is_chatInputTooltipQuickFixUpdate_updated = false
 
@@ -32,11 +34,11 @@ const whatsAutocivPMod = 'AutoCivP mod is AutoCiv but it also supports profiles 
 /**
  * Generates a fuzzy array from a given JSON file.
  *
- * @param {string} jsonFile - The path to the JSON file.
+ * @param {string} jsonFile - JSON file.
  * @return {Object} - The fuzzy array generated from the JSON file.
  */
-function fuzzyArrayFromjsonFile(jsonFile, useLevenshtein){
-	const customIconJson = Engine.ReadJSONFile(jsonFile);
+function getFuzzyArrayFromJsonFile(customIconJson, useLevenshtein){
+	// const customIconJson = Engine.ReadJSONFile(jsonFile);
 	const customIconKeys = Object.keys(customIconJson);
 	let fuzzyArrayResult = {}
 	for (const key of customIconKeys) {
@@ -197,24 +199,32 @@ function translGGWP_U2Gg_III(gg, minMatchScore) {
 
 	if(stringWithUnicode && stringWithUnicode.bestMatch)
 		return stringWithUnicode.bestMatch;
-	else
-		return gg;
 
 		// todo: this is not working. needs implementd again
 
 	  const lowercaseGg = gg.toLowerCase()
 	  if (lowercaseGg == 'allicons') {
-		const vArr = Object.values(ggMap);
-		var s = vArr.join(', ');
-		return s
+		const vArr = Object.keys(g_customIconJson);
+		let s = 'allicons: '
+		vArr.forEach((k, v) => {
+			const vArr = Object.values(g_customIconJson[k]);
+			// selfMessage(`${k} <- ${vArr}`);
+			sendMessage(`${k} <- ${vArr}`);
+			s += `${k} < ${vArr}`
+			s += ` | `
+		})
+		s += ` you dont need write it ecactly. it finds results also if you write to less or bit wrong (its fuzzy-search)`
+		sendMessage(`you dont need write it ecactly. it finds results also if you write to less or bit wrong (its fuzzy-search)`);
+		return s // its big string so it will be cut off somewhere in the middle
 	  }
 	  if (lowercaseGg == 'alliconkeys') {
-		const vArr = Object.keys(ggMap);
-		var s = vArr.join(', ');
+		const vArr = Object.keys(g_customIconJson);
+		const s = 'alliconkeys: ' + vArr.join(', ');
+		selfMessage(`${s}`);
 		return s
 	  }
 
-	return text;
+	  return gg;
 }
 
 
