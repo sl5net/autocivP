@@ -244,7 +244,7 @@ var autoCompleteText_newMerge = function (guiObject, list)
         // let text = captionBegin.substring(1); // or text.slice(1)
         // selfMessage('caption length = ' + captionBegin.length);
         // communityModToggle = 19
-        let minMatchScore = (captionTrimed.length > 20) ? 0.8 : (iconPrefix.length ? 0.3 :  0.4 )
+        let minMatchScore = (captionTrimed.length > 20) ? 0.8 : (iconPrefix.length ? 0.3 :  0.55 ) // user name will be replaced later. i want have .3 but some users dont be found so easy ... hmmm
         // sendMessage(`248: minMatchScore = ${minMatchScore}`)
 
 
