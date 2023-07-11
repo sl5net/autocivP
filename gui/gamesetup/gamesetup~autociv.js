@@ -138,28 +138,3 @@ function warnSilhouettesIsNotEnabled(){
 		warn(`Really want play without silhouettes visible? (Settings > Graphics (general) > Unit Silhouettes. Its the fifth option)`);
 	}
 }
-
-
-if(true && g_selfNick =="seeh") {
-
-	//TODO - dont works. idea was put in importand mods in autocivP in the game name. for most of fairness
-
-	if(g_selfNick =="seeh")
-		warn(`148: TODO - dont works. idea was put in importand mods in proGUI in the game name. for most of fairness (gui/gamesetup/gamesetup~autociv.js)`)
-	// selfMessage(
-	//   "functoin setGameNameInLobby is off for some reasons at the moment"
-	// );
-	// return false;
-	let doEarlyReturn = true
-	if ((g_IsController && Engine.HasNetServer())
-	&&	 (g_SetupWindow && g_SetupWindow.controls.lobbyGameRegistrationController)
-	 )
-	 doEarlyReturn = false
-
-	if (!doEarlyReturn){
-	let oldGameName =
-	  g_SetupWindow.controls.lobbyGameRegistrationController.serverName;
-
-		warn(`oldGameName: ${oldGameName}`)
-	}
-  }
