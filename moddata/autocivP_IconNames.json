@@ -46,9 +46,8 @@
     "←": ["left", "<-","<" ],
     "→": ["right", "->",">", "arrow", "direction"],
     "⇆": ["<->","replace", "Substitution", "Exchange", "Substituting", "Swapping", "Interchange", "Renewal", "Substituent", "Surrogate"],
-    "⇔": ["<>","<-->","DOUBLEARROW"],
-    "☞": ["right-small", "point", "hand"],
-
+  "⇔": ["<>","<-->","DOUBLEARROW"],
+  "☞": ["right-small", "point", "hand"],
   "♡"   : ["<3", "heart", "love"],
   "☺ :-)": ["smile", "happy"],
   "☻ :-)": [":)", "face"],

@@ -64,27 +64,51 @@ function chatInputTooltipQuickFixUpdate() {
 	g_is_chatInputTooltipQuickFixUpdate_updated = true
 }
 
-
 function translGGWP_splitInWords_II(captionTrimed, minMatchScore){
+	const regexPattern = / /;
+	const splitArray = captionTrimed.split(regexPattern);
+	// for (const element of splitArray) {
+	// 	console.log(element);
+  	// }
 
-	if(!minMatchScore)
+	for (const [index, value] of splitArray.entries()) {
+		// selfMessage(`Index: ${index}, Value: ${value}`);
+		splitArray[index] = translGGWP_splitInWords_II_part2(value, minMatchScore)
+		// selfMessage(`Index: ${index}, Value: ${splitArray[index]}`);
+	}
+	const joinedString = splitArray.join(' ');
+	// selfMessage(`78: ${joinedString}`);
+	return joinedString
+}
+
+
+function translGGWP_splitInWords_II_part2(captionTrimed, minMatchScore){
+	let isDebug = false
+	// isDebug = true
+
+
+	if(captionTrimed == '<3')
+		captionTrimed = 'heart'
+
+	// selfMessage(`70: translGGWP_splitInWords_II(${captionTrimed}, ${minMatchScore})`);
+
+
+	if(!minMatchScore && isDebug)
 	{
 		selfMessage('69: minMatchScore==${minMatchScore}');
 		error('69: minMatchScore==${minMatchScore}');
 	}
 
-	const isDebug = false
 	if(isDebug)
-		selfMessage(`66: splitInWords_II()== >${captionTrimed}<`);
+		selfMessage(`82: splitInWords_II()== >${captionTrimed}<`);
 	// const regex = /\b([^‹›\s,\.!;\?]+)\b/g;
 	const regex = /\b([^‹›\s]+)\b/g;
 	// const regex2 = /(?<!\S)[><](?!\S)/g // dont work
 	const regex2 = /([>\-<):\(\-\)]+)/g // work for find smilies and arrow
 
-
 	let allIconsInText = captionTrimed.replace(regex, match => {
 		if(isDebug)
-	  		selfMessage(`73: translGGWP_splitInWords_II()==>  ||${match}||`)
+	  		selfMessage(`91: translGGWP_splitInWords_II()==>  ||${match}||`)
 	  const translated = translGGWP_U2Gg_III(match, minMatchScore)
 	  return translated !== null ? translated : match;
 	});
@@ -118,7 +142,8 @@ function translGGWP_splitInWords_II(captionTrimed, minMatchScore){
  * @return {string} The translated string with marked strings no replaced.
  */
 function transGGWP_markedStrings_I(gg, minMatchScore) {
-	const isDebug = false
+	let isDebug = false
+	// isDebug = true
 	if(isDebug){
 		selfMessage(`79: ____________ transGGWP_markedStrings_I() ___________`);
 		// gg = "‹Good game ❧ › ";
@@ -131,7 +156,7 @@ function transGGWP_markedStrings_I(gg, minMatchScore) {
 
 	if (markedStrings.length === 0) {
 		// Handle case when no marked strings are found
-		gg =translGGWP_splitInWords_II(gg, minMatchScore);
+		gg = translGGWP_splitInWords_II(gg, minMatchScore);
 		if(isDebug)
 			selfMessage(`74:transGGWP_markedStrings_I()=>  gg=${gg}`);
 		return gg;
@@ -164,7 +189,8 @@ function transGGWP_markedStrings_I(gg, minMatchScore) {
 
 
 function translGGWP_U2Gg_III(gg, minMatchScore) {
-	const isDebug = false
+	let isDebug = false
+	// isDebug = true
 	if(isDebug)
 		selfMessage(`169: ____________ translGGWP_U2Gg_III(${gg}, ${minMatchScore}) ___________`);
 	if(!minMatchScore ){
@@ -194,9 +220,9 @@ function translGGWP_U2Gg_III(gg, minMatchScore) {
 	  s += t
 	  if(doSend2allChatUsers)
 		  sendMessage(`${t}`);
-	else
-	  selfMessage(`${t}`);
-	  return s // its big string so it will be cut off somewhere in the middle
+	  else
+	    selfMessage(`${t}`);
+	return s // its big string so it will be cut off somewhere in the middle
 	}
 	if (lowercaseGg == 'alliconkeys') {
 	  const vArr = Object.keys(g_customIconJson);
@@ -218,6 +244,8 @@ function translGGWP_U2Gg_III(gg, minMatchScore) {
 	let query
 	query = gg;
 	// warn('/' + '‾'.repeat(32));
+
+
 	let stringWithUnicode = findBestMatch(query, g_fuzzyArrayResult, minMatchScore);
 
 
@@ -239,8 +267,6 @@ function translGGWP_U2Gg_III(gg, minMatchScore) {
 		return stringWithUnicode.bestMatch;
 
 		// todo: this is not working. needs implementd again
-
-
 	  return gg;
 }
 
@@ -1054,7 +1080,7 @@ function findBestMatch(query, fuzzyArray, minMatchScore = 0.3) {
 	if(!query)
 		return ''
 	if(isDebug)
-	selfMessage(`findBestMatch for query "${query}"`);
+		selfMessage(`findBestMatch for query "${query}"`);
 
 
 
