@@ -218,6 +218,10 @@ var autoCompleteText_newMerge = function (guiObject, list)
 
     // Enof caption is maybe not empty
     const doTabReplacmentWor_gl_hf_gg_wp_stuff = true; // usefull for debugging maybe
+
+
+
+
     if(caption.length ){
       const key = "autocivP.chat.iconPrefix";
       const iconPrefix = Engine.ConfigDB_GetValue("user", key); // icon prefix iconPrefix should be default <
@@ -225,6 +229,12 @@ var autoCompleteText_newMerge = function (guiObject, list)
 
 
       if(  doTabReplacmentWor_gl_hf_gg_wp_stuff
+        &&
+        (
+        caption.length > 1 // prevent conflict with seldon username
+        ||
+        !firstChar.match(/[a-z]/i)
+        )
         &&
         (
         caption.length <= 20 //NOTE - 30 maybe too long . prefent multiple repacment
