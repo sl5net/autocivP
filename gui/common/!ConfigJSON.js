@@ -25,8 +25,17 @@ class ConfigJSON {
     save() {
         let value = encodeURIComponent(JSON.stringify(this.data));
         Engine.ConfigDB_CreateValue("user", this.key, value);
-        if (this.saveToDisk)
-            ConfigDB_WriteValueToFile("user", this.key, value)
+        if (this.saveToDisk){
+            try {
+                Engine.ConfigDB_WriteValueToFile("user", this.key, value, "config/user.cfg"); // nani vorson from about 2019
+            } catch (error) {
+                ConfigDB_WriteValueToFile("user", this.key, value)                    // its this alpha version 0.0.27 code?
+                if(g_selfNick =="seeh"){ //NOTE - 23-0705_2302-57 developers want to see the error in the console
+                    warn(error.message)
+                    warn(error.stack)
+                }
+            }
+        }
     }
     isEmpty() {
         return Object.keys(this.data).length === 0;

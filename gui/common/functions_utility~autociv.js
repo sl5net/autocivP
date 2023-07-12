@@ -97,13 +97,14 @@ tryAutoComplete = function (text, list, tries)
 
 var autoCompleteText_newMerge = function (guiObject, list)
 {
-    // selfMessage('324: autoCompleteText_newMerge')
+  // selfMessage('324: autoCompleteText_newMerge')
 
-  chatInputTooltipQuickFixUpdate()
+    chatInputTooltipQuickFixUpdate()
 
     let caption = guiObject.caption
     // let caption = guiObject.caption.trim()  // used long time to trim the caption to 23-0705_2249-00 idk if it may dangerous to trim here
     if (!caption.length){
+
         // selfMessage(`repeat you last(id = ${g_lastCommandID}) command:`) // message disabled becouse its also inside the looby. could disturbing a bit.
         let lastCommand;
         if( !isNaN(g_lastCommandID) && g_lastCommandID >= 0 )
@@ -117,6 +118,7 @@ var autoCompleteText_newMerge = function (guiObject, list)
 
         if(g_lastCommand == lastCommand){
             // selfMessage(`70: '${lastCommand}' = lastCommand`);
+            // warn(`70: '${lastCommand}' = lastCommand`);
 
             // let nextID = getNextLastCommandID()
             let nextID = g_lastCommandID
