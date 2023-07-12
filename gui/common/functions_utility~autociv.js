@@ -231,21 +231,24 @@ var autoCompleteText_newMerge = function (guiObject, list)
       if(  doTabReplacmentWor_gl_hf_gg_wp_stuff
         &&
         (
-        caption.length > 1 // prevent conflict with seldon username
-        ||
-        !firstChar.match(/[a-z]/i)
+          caption.length > 1 // prevent conflict with seldon username
+          ||
+          !firstChar.match(/[a-z]/i) // not a  a-z(ignoreCase) first lettter
         )
         &&
         (
-        caption.length <= 20 //NOTE - 30 maybe too long . prefent multiple repacment
-        || guiObject.buffer_position > 14 // maybe user want gg wp replacments in a longer text and cursor is in the middle or at the end
+            caption.length <= 90 //NOTE - 300 maybe too long . prefent multiple repacment
+          || guiObject.buffer_position > 14 // maybe user want gg wp replacments in a longer text and cursor is in the middle or at the end
+          ||
+            !firstChar.match(/[A-Z]/) // not Upercase A-Z first lettter. Upercase is not recomanded as seach words. especially not in a shorter text. Now fixed: Ha => Han, before it was Ha => hand
+
         )
         &&
-
        ( !iconPrefix.length && firstChar != '/'
         ||
          firstChar == iconPrefix)
-       ){
+       )
+       {
         const captionBegin = caption.toString()
         const captionTrimed = captionBegin.substring(iconPrefix.length)
         // selfMessage('first char = ' + firstChar)
