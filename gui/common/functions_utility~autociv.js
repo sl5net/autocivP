@@ -201,7 +201,6 @@ const autoCompleteText_newMerge = function (guiObject, list)
 
   switch (caption.toLowerCase()) {
     case 'j':
-
         return captionIs_j(caption);
     case 'li':
         guiObject.caption = '/link';
@@ -640,7 +639,7 @@ if (g_linkLongTeam == null) {
     }
 }
 //   selfMessage(Engine.team[0]); // state is not defined
-  caption = g_linkLongTeam;
+  // caption = g_linkLongTeam;
   const inviteJitsiText =  `Please open following link for team-audio-chat in your web browser. type li⟦Tab⟧ or /link<enter>. Only a web browser is required. ${g_linkLongTeam} `;
 //   guiObject.caption = '/link'; //  inviteJitsiText;
   guiObject.caption = inviteJitsiText;
@@ -656,7 +655,7 @@ if (g_linkLongTeam == null) {
 // if (err)
 //     selfMessage(err);
 
-return;
+return true;
 
 }
 
@@ -691,7 +690,7 @@ function captionIs_doppelPosting_with_delimiters(guiObject, caption){
   g_lastCommand = caption
   // guiObject.caption = caption
   // selfMessage(`161 ${caption.toLowerCase()} = ${caption}`)
-  selfMessage(`169 ${caption}`)
+  // selfMessage(`169 ${caption}`)
   guiObject.caption = caption
   return
 }
