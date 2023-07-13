@@ -4,6 +4,9 @@ var g_lastCommand = "";
 // var g_lastCommandID = 0;
 var g_lastCommandIDmax = 5;
 var g_lastCommandID = parseInt (Engine.ConfigDB_GetValue("user", `autocivP.chat.g_lastCommandID`));
+
+var g_previousCaption = ''
+
 if(isNaN(g_lastCommandID))g_lastCommandID = 0;
 // warn('g_lastCommandID = ' + g_lastCommandID); // selfMessage function dont work here
 
@@ -95,401 +98,192 @@ tryAutoComplete = function (text, list, tries)
 //     }
 // }
 
-var autoCompleteText_newMerge = function (guiObject, list)
+const autoCompleteText_newMerge = function (guiObject, list)
 {
-  // selfMessage('324: autoCompleteText_newMerge')
+  // selfMessage('100: autoCompleteText_newMerge')
+  // selfMessage('101: caption.length = ' + guiObject.caption.length)
 
-    chatInputTooltipQuickFixUpdate()
+  chatInputTooltipQuickFixUpdate()
 
-    let caption = guiObject.caption
-    // let caption = guiObject.caption.trim()  // used long time to trim the caption to 23-0705_2249-00 idk if it may dangerous to trim here
-    if (!caption.length){
+  const caption = guiObject.caption
+  // let caption = guiObject.caption.trim()  // used long time to trim the caption to 23-0705_2249-00 idk if it may dangerous to trim here
 
-        // selfMessage(`repeat you last(id = ${g_lastCommandID}) command:`) // message disabled becouse its also inside the looby. could disturbing a bit.
-        let lastCommand;
-        if( !isNaN(g_lastCommandID) && g_lastCommandID >= 0 )
-            lastCommand = Engine.ConfigDB_GetValue("user", `autocivP.chat.lastCommand${g_lastCommandID}`);
-        else{
-            error('23-0628_0020-57')
-            selfMessage(`ERROR: g_lastCommandID = ${g_lastCommandID}`)
-        }
-        if(!lastCommand)
-            return
 
-        if(g_lastCommand == lastCommand){
-            // selfMessage(`70: '${lastCommand}' = lastCommand`);
-            // warn(`70: '${lastCommand}' = lastCommand`);
+  // selfMessage(`216: ${caption.toLowerCase()} = ${caption}`) //TODO - add to json tab-commands
 
-            // let nextID = getNextLastCommandID()
-            let nextID = g_lastCommandID
 
-            const nextCommand = Engine.ConfigDB_GetValue("user", `autocivP.chat.lastCommand${nextID}`);
-            if(nextCommand && nextCommand.length){
-                g_lastCommand = nextCommand;
-                g_lastCommandID = nextID;
-            }
-            // endoOf g_lastCommand == lastCommand
-        }else{
-            // g_lastCommand != lastCommand
-            // selfMessage(`76: g_lastCommand='${g_lastCommand}' != '${lastCommand}' = lastCommand`);
-            g_lastCommand = lastCommand;
-            // g_lastCommandID++;
-            // if(g_lastCommandID > g_lastCommandIDmax) g_lastCommandID = 0;
-        }// endoOf g_lastCommand != lastCommand
-        // let test = g_ChatHistory[1]; // g_ChatHistory is not defined https://trac.wildfiregames.com/ticket/5387
+  // End of caption is maybe not empty
 
-        if(g_lastCommand.length)
-            caption = g_lastCommand ;
-        // End of caption is empty
-    }else{
-        // caption is not empty
-        // selfMessage('TAB and caption is not empty')
+  // if(!caption) // trigers when no caption content is in
+  if (!caption.length){ // trigers when no caption content is in
+    // selfMessage(`116: ${caption} = ${caption}`)
 
-        const maxCaptionLengthAllowed = 130 // test crashed by 150
-        if(caption.length > maxCaptionLengthAllowed)
-        {
-            // selfMessage(`max text length > ${maxCaptionLengthAllowed}`)
-            // seems this prefent from the error // Retrieve the substring of the last n characters
-            // CStr CStr::Right(size_t len) const { ENSURE(len <= length()); return substr(length()-len, len); }
-            return
-        }
+    if(setCaption2LastCommandOfHistory(guiObject))
+      return // now the caption is not empty anymore
+  }
 
-        // selfMessage(`155: ${caption.toLowerCase()} = ${caption}`) //TODO - add to json tab-commands
+  // selfMessage(`122:  '${g_lastCommand}' `);
 
-        if(caption.toLowerCase() == g_lastCommand.toLowerCase()){
-          // selfMessage(`158 ${caption.toLowerCase()} = ${caption}`) //TODO - add to json tab-commands
 
-          if(caption.toLowerCase() == "communityModToggle".toLowerCase())
-          // "description": translate("toggle cumunity mod."),
-          // "handler": () =>
-          {
-            let modEnabledmods = Engine.ConfigDB_GetValue(
-              "user",
-              "mod.enabledmods"
-            );
-            selfMessage(`modEnabledmods = ${modEnabledmods}`);
-            if(modEnabledmods.indexOf("community-mod") == -1)
-              modEnabledmods += ' community-mod'
-            else
-              modEnabledmods = modEnabledmods.replace(/\s*\bcommunity-mod\b\s*/, " ")
+  if(caption?.length ){
+    const key = "autocivP.chat.iconPrefix";
+    const iconPrefix = Engine.ConfigDB_GetValue("user", key); // icon prefix iconPrefix should be default <
+    const firstChar = caption.toString().charAt(0); // or str[0]
 
-            ConfigDB_CreateAndSaveValueA26A27("user", "mod.enabledmods", modEnabledmods.trim())
-            selfMessage(`modEnabledmods = ${modEnabledmods}`);
-            restart0ad()
-            // return
-        }
 
+    // selfMessage(`126: doppelPosting? '${g_lastCommand}' `);
+    // selfMessage(`126: g_lastCommand = '${g_lastCommand}' , caption = '${caption}' `);
+    if(g_previousCaption == caption){ // g_lastCommand
+      // selfMessage(`127: doppelPosting? '${g_lastCommand}' `);
 
-            let nextID = getNextLastCommandID()
+      const firstChar = caption.charAt(0); // or str[0]
+      if(firstChar.match(/[‹›]/) ){
+        g_previousCaption = caption
+        return captionIs_doppelPosting_with_delimiters(guiObject, caption);
 
-            // selfMessage(`86: ${g_lastCommandID}' = g_lastCommandID`);
-            // selfMessage(`164: nextID = ${nextID}'`);
-            let nextCommand = Engine.ConfigDB_GetValue("user", `autocivP.chat.lastCommand${nextID}`);
-
-            if( !(nextCommand && nextCommand.length)
-                && g_lastCommandID > 0 )
-            {
-                    nextID = 0
-                    nextCommand = Engine.ConfigDB_GetValue("user", `autocivP.chat.lastCommand${nextID}`);
-                    // selfMessage(`172: nextID = ${nextID}'`);
-            }
-
-            if(nextCommand && nextCommand.length){
-                g_lastCommand = nextCommand;
-                g_lastCommandID = nextID;
-                // caption = nextCommand ;
-                guiObject.caption = nextCommand; // use of guiObject.caption not caption solved a seldom critical crash
-                return;
-            }else{
-                selfMessage('never heppens? 23-0628_1307-15')
-            }
-            // selfMessage(`caption == g_lastCommand '${caption}' => double tab ?`);
-            // EndOf caption == g_lastCommand
-
-        }
-
-        ConfigDB_CreateAndSaveValueA26A27("user", `autocivP.chat.g_lastCommandID`, g_lastCommandID); // !! dont deltete !! if delte also /p profilles dont get storede into the config file 23-0628_1338-23
-        // selfMessage(`g_lastCommand = ${g_lastCommand}`)
-        // Enof caption is not empty
-    }
-
-    // selfMessage(`216: ${caption.toLowerCase()} = ${caption}`) //TODO - add to json tab-commands
-
-
-    // Enof caption is maybe not empty
-    const doTabReplacmentWor_gl_hf_gg_wp_stuff = true; // usefull for debugging maybe
-
-
-
-
-    if(caption.length ){
-      const key = "autocivP.chat.iconPrefix";
-      const iconPrefix = Engine.ConfigDB_GetValue("user", key); // icon prefix iconPrefix should be default <
-      let firstChar = caption.toString().charAt(0); // or str[0]
-
-
-      if(  doTabReplacmentWor_gl_hf_gg_wp_stuff
-        &&
-        (
-          caption.length > 1 // prevent conflict with seldon username
-          ||
-          !firstChar.match(/[a-z]/i) // not a  a-z(ignoreCase) first lettter
-        )
-        &&
-        (
-            caption.length <= 90 //NOTE - 300 maybe too long . prefent multiple repacment
-          || guiObject.buffer_position > 14 // maybe user want gg wp replacments in a longer text and cursor is in the middle or at the end
-          ||
-            !firstChar.match(/[A-Z]/) // not Upercase A-Z first lettter. Upercase is not recomanded as seach words. especially not in a shorter text. Now fixed: Ha => Han, before it was Ha => hand
-
-        )
-        &&
-       ( !iconPrefix.length && firstChar != '/'
-        ||
-         firstChar == iconPrefix)
-       )
-       {
-        const captionBegin = caption.toString()
-        const captionTrimed = captionBegin.substring(iconPrefix.length)
-        // selfMessage('first char = ' + firstChar)
-        // selfMessage('iconPrefix = ' + iconPrefix)
-        // selfMessage('iconPrefix.length = ' + iconPrefix.length)
-        // selfMessage('244: captionTrimed = ' + captionTrimed)
-
-        // let text = captionBegin.substring(1); // or text.slice(1)
-        // selfMessage('caption length = ' + captionBegin.length);
-        // communityModToggle = 19
-        let minMatchScore = (captionTrimed.length > 20) ? 0.8 : (iconPrefix.length ? 0.3 :  0.55 ) // user name will be replaced later. i want have .3 but some users dont be found so easy ... hmmm
-        // sendMessage(`248: minMatchScore = ${minMatchScore}`)
-
-
-        // sendMessage(`minMatchScore = ${minMatchScore}`)
-        // sendMessage(`guiObject.buffer_position = ${guiObject.buffer_position}`)
-
-
-
-        // no error seeing no translation here:
-        // let allIconsInText = translate( transGGWP_markedStrings_I(captionTrimed, minMatchScore) )
-
-
-        // selfMessage(`258: captionTrimed = ${captionTrimed}`)
-
-        // no error seeing no translation here:
-        let allIconsInText =  Engine.Translate( transGGWP_markedStrings_I(captionTrimed, minMatchScore) )
-
-
-        // const regex = /\b(\w+)\b/g;
-        // let allIconsInText = captionTrimed.replace(regex, match => {
-        //   const translated = translateGlHfWpU2Gg(match,minMatchScore)
-        //   return translated !== null ? translated : match;
-        // });
-
-        //
-
-
-
-        // selfMessage('allIconsInText = ' + allIconsInText);
-        // guiObject.caption = allIconsInText;
-        // return
-        try {
-
-          let guiObject = Engine.GetGUIObjectByName("chatInput");
-          // guiObject.blur(); // remove the focus from a GUI element.
-          guiObject.focus();
-
-          // caption = allIconsInText
-          // selfMessage('230: allIconsInText = ' + allIconsInText);
-          if(captionBegin != allIconsInText){
-            const isCaptionNumeric = (allIconsInText[0] >= '0' && allIconsInText[0] <= '9')
-            if(isCaptionNumeric)
-              allIconsInText = '  ' + allIconsInText // add two spaces to the beginning so user can easily change the number to and add later maybe a name (ping user) at the very beginning
-            guiObject.caption = allIconsInText // this prefent crash of the game when press backspace. becouse focus of the guiObject was lost without this
-            // selfMessage('234: captionBegin != allIconsInText = ' + captionBegin + ' != ' + allIconsInText);
-            if (isCaptionNumeric)
-              guiObject.buffer_position = 2 // sets the buffer/corsor position to the beginning
-            else
-              guiObject.buffer_position = allIconsInText.length
-            return // this return was maybe missing 23-0705_2302-57 without this return some crases happened in oberver mode !!!!!! 23-0705_2305-59
-          }
-        }catch (error) {
-
-          if(g_selfNick =="seeh"){ //NOTE - 23-0705_2302-57 developers want to see the error in the console
-            warn(error.message)
-            warn(error.stack)
-          }
-
-
-        }
-
-            // text = translateGlHfWpU2Gg(caption.toString());
-            // if(text.length){
-            //     saveLastCommand2History(captionBegin)
-            //     guiObject.caption = text;
-            //     // selfMessage('always ?') // no not always. works like expected 23-0628_0232-14
-            //     return;
-            // }
-
-
-        }
-    }
-        // "Select chat addressee." "Everyone"=0 "Allies"=1 Enemies=2 Observers=3
-    const chatAddressBox = Engine.GetGUIObjectByName("chatAddressee"); // found this name in binaries/data/mods/public/gui/session/chat/chat_window.xml
-
-
-
-    if(caption == 'j' ){
-        if(gameState != "ingame" || chatAddressBox.selected != 1){ // 1 is Allies
-            let text = `to use jiti in you team: 1. open Ally-Chat 2. write j⟦Tab⟧ then enter. 3. write li⟦Tab⟧ or /link`
-            selfMessage(text)
-            return
-        }
-
-        if (g_linkLongTeam == null) {
-            let linkidShort = Date.now().toString().substring(10);
-            // not open this link always. if you have it already probably
-            g_linkLongTeam = `https://meet.jit.si/0ad${linkidShort}audio`;
-            // doOpenJitsiLink = true;
-            if(false){ // maybe better not use it at the moment. maybe later. in a future version. to much confusion
-                try {
-                    openURL(g_linkLongTeam); // its not necesary. if error use /link later
-                } catch (error) {
-
-                }
-            }
-        }
-        //   selfMessage(Engine.team[0]); // state is not defined
-          caption = g_linkLongTeam;
-          const inviteJitsiText =  `Please open following link for team-audio-chat in your web browser. type li⟦Tab⟧ or /link<enter>. Only a web browser is required. ${g_linkLongTeam} `;
-        //   guiObject.caption = '/link'; //  inviteJitsiText;
-          guiObject.caption = inviteJitsiText;
-        //   sendMessage(`${inviteJitsiText}`); // TODO: it send to all not only to Allied
-
-        // selfMessage(g_linkLongTeam); // its only a selfMessage. not read by botManager
-        // BotManager.openURL(g_linkLongTeam); // is not a function
-        // let err = botManager.openLink(g_linkLongTeam); // is not a function
-
-
-        // botManager.setMessageInterface("ingame");
-        // let err = botManager.get("link").openLink(g_linkLongTeam); // this get the link from the chat.
-        // if (err)
-        //     selfMessage(err);
-
-        return;
-    }
-    if(caption == 'li'){
-        guiObject.caption = '/link';
-        return;
-    }
-    if(caption == 'whatsAutocivPMod'){
-        guiObject.caption = whatsAutocivPMod;
-        return;
-    }
-
-
-
-
-
-
-    // selfMessage('caption.toLowerCase() = ' + caption.toLowerCase());
-
-    if(caption.toLowerCase() == 'hiall'){
-        const key = "autocivP.gamesetup.helloAll";
-        const helloAll = Engine.ConfigDB_GetValue("user", key);
-        if(!helloAll)
-            selfMessage('helloAll is empty.');
-        guiObject.caption = helloAll
-        selfMessage('set /hiAll yourWelcomeText or use /hiAll yourWelcomeText or send by /hiAll or helloAll tab, to edit it first.');
-        return;
-    }
-    if(caption.toLowerCase() == 'modsImCurrentlyUsing'.toLowerCase()){
-        const modEnabledmods = Engine.ConfigDB_GetValue(
-          "user",
-          "mod.enabledmods"
-        );
-        // sendMessage(`Mods I'm currently using: ${modEnabledmods.slice(11,)}` );
-        let text = `Mods I'm currently using: ${modEnabledmods.slice(11,)}`
-        text = text.replace('autocivP', 'autocivP❧♣▦▣') //  ♡ autocivP❧♣▦▣ mod
-        guiObject.caption = text;
-        return;
-    }
-    // selfMessage('caption = ' + caption)
-    // Engine.ConfigDB_CreateAndSaveValue("user", "autocivP.chat.lastCommand", caption); // is not a function error in Version a26 aut 23-0605_1920-25
-    const sameTry = autoCompleteText.state.newCaption == caption
-    if (sameTry)
-    {
-
-        // selfMessage(282)
-        const textBeforeBuffer = autoCompleteText.state.oldCaption.substring(0, autoCompleteText.state.buffer_position)
-        // selfMessage(284)
-        const completedText = tryAutoComplete(textBeforeBuffer, list, autoCompleteText.state.tries++)
-        // selfMessage(286)
-        const newCaptionText = completedText + autoCompleteText.state.oldCaption.substring(autoCompleteText.state.buffer_position)
-        // selfMessage(288)
-
-        autoCompleteText.state.newCaption = newCaptionText
-
-
-
-      try {
-          guiObject.caption = newCaptionText
-          guiObject.focus()
-        }catch (error) {
-          if(g_selfNick =="seeh"){ //NOTE - 23-0705_2302-57 developers want to see the error in the console
-            warn(error.message)
-            warn(error.stack)
-          }
       }
+      // selfMessage(`138: doppelPosting? '${g_lastCommand}' `);
 
-
-
-
-        // ConfigDB_CreateAndSaveValueA26A27("user", "autocivP.chat.lastCommand", newCaptionText);
-        try {
-            saveLastCommand2History(newCaptionText);
-        } catch (error) {
-            // happens in the lobby console when double press tab 23-0622_2013-26
-            if(g_selfNick =="seeh"){ //NOTE - 23-0705_2302-57 developers want to see the error in the console
-              error('double pressed tab to fast?')
-              warn(error.message)
-              warn(error.stack)
-            }
-
-        }
-        // selfMessage(295)
-        guiObject.buffer_position = autoCompleteText.state.buffer_position + (completedText.length - textBeforeBuffer.length)
-        // selfMessage(297)
     }
-    else
-    {
-        const buffer_position = guiObject.buffer_position
-        autoCompleteText.state.buffer_position = buffer_position
-        autoCompleteText.state.oldCaption = caption
-        autoCompleteText.state.tries = 0
 
-        const textBeforeBuffer = caption.substring(0, buffer_position)
-        const completedText = tryAutoComplete(textBeforeBuffer, list, autoCompleteText.state.tries++)
-        const newCaptionText = completedText + caption.substring(buffer_position)
 
-        autoCompleteText.state.newCaption = newCaptionText
 
-        // selfMessage('324');
 
-      try{
-        guiObject.caption = newCaptionText
-        // selfMessage('326');
+    if( is_transGGWP_needet( caption, firstChar, iconPrefix,guiObject) )  {
+      const captionBegin = caption.toString()
+      const captionTrimed = captionBegin.substring(iconPrefix.length)
+      const minMatchScore = (captionTrimed.length > 20) ? 0.8 : (iconPrefix.length ? 0.3 :  0.55 ) // user name will be replaced later. i want have .3 but some users dont be found so easy ... hmmm
+      let allIconsInText =  Engine.Translate( transGGWP_markedStrings_I(captionTrimed, minMatchScore) )
+      try {
+        const guiObject = Engine.GetGUIObjectByName("chatInput");
+        // guiObject.blur(); // remove the focus from a GUI element.
         guiObject.focus();
-        guiObject.buffer_position = buffer_position + (completedText.length - textBeforeBuffer.length)
+        // selfMessage('230: allIconsInText = ' + allIconsInText);
+        if(captionBegin != allIconsInText){
+          const isCaptionNumeric = (allIconsInText[0] >= '0' && allIconsInText[0] <= '9')
+          if(isCaptionNumeric)
+            allIconsInText = `  ${allIconsInText}`
+            // add two spaces to the beginning so user can easily change the number to and add later maybe a name (ping user) at the very beginning
+
+          g_previousCaption = captionTrimed
+          guiObject.caption = allIconsInText
+
+          // sets the buffer/corsor position to the beginning
+          guiObject.buffer_position = isCaptionNumeric ? 2 : allIconsInText.length;
+
+
+          g_lastCommand = allIconsInText
+          saveLastCommand2History(captionTrimed)
+
+          return // this return was maybe missing 23-0705_2302-57 without this return some crases happened in oberver mode !!!!!! 23-0705_2305-59
+        }
       }catch (error) {
+
         if(g_selfNick =="seeh"){ //NOTE - 23-0705_2302-57 developers want to see the error in the console
           warn(error.message)
           warn(error.stack)
         }
+      }
+    }
+    // if(g_lastCommand == caption){
+    //   selfMessage(`180: doppelPosting? '${g_lastCommand}' `);
+    //   setCaption2nextCommandOfHistory(guiObject)
+    // }
+    if(g_previousCaption == caption || g_lastCommand == caption){
+      // selfMessage(`183: doppelPosting? '${g_lastCommand}' `);
+      if(setCaption2nextCommandOfHistory(guiObject))
+        return
+    }
+
+  }
+
+  g_previousCaption = caption
+
+  switch (caption.toLowerCase()) {
+    case 'j':
+
+        return captionIs_j(caption);
+    case 'li':
+        guiObject.caption = '/link';
+        return;
+    case 'whatsAutocivPMod'.toLowerCase():
+        guiObject.caption = whatsAutocivPMod;
+        return;
+    case 'hiall':
+        return captionIs_hiall(guiObject);
+    case 'modsImCurrentlyUsing'.toLowerCase():
+        return captionIs_modsImCurrentlyUsing(guiObject);
+        // selfMessage('caption.toLowerCase() = ' + caption.toLowerCase());
   }
 
 
-        // selfMessage('328');
+  // selfMessage('caption = ' + caption)
+  // Engine.ConfigDB_CreateAndSaveValue("user", "autocivP.chat.lastCommand", caption); // is not a function error in Version a26 aut 23-0605_1920-25
+  const sameTry = autoCompleteText.state.newCaption == caption
+  if (sameTry){
+
+    // selfMessage(282)
+    const textBeforeBuffer = autoCompleteText.state.oldCaption.substring(0, autoCompleteText.state.buffer_position)
+    // selfMessage(284)
+    const completedText = tryAutoComplete(textBeforeBuffer, list, autoCompleteText.state.tries++)
+    // selfMessage(286)
+    const newCaptionText = completedText + autoCompleteText.state.oldCaption.substring(autoCompleteText.state.buffer_position)
+    // selfMessage(288)
+
+    autoCompleteText.state.newCaption = newCaptionText
+
+    try {
+      guiObject.caption = newCaptionText
+      guiObject.focus()
+    }catch (error) {
+      if(g_selfNick =="seeh"){ //NOTE - 23-0705_2302-57 developers want to see the error in the console
+        warn(error.message)
+        warn(error.stack)
+      }
     }
-}
+
+    // ConfigDB_CreateAndSaveValueA26A27("user", "autocivP.chat.lastCommand", newCaptionText);
+    try {
+      saveLastCommand2History(newCaptionText);
+    } catch (error) {
+      // happens in the lobby console when double press tab 23-0622_2013-26
+      if(g_selfNick =="seeh"){ //NOTE - 23-0705_2302-57 developers want to see the error in the console
+        error('double pressed tab to fast?')
+        warn(error.message)
+        warn(error.stack)
+      }
+    }
+    // selfMessage(295)
+    guiObject.buffer_position = autoCompleteText.state.buffer_position + (completedText.length - textBeforeBuffer.length)
+    // selfMessage(297)
+  }else{
+    const buffer_position = guiObject.buffer_position
+    autoCompleteText.state.buffer_position = buffer_position
+    autoCompleteText.state.oldCaption = caption
+    autoCompleteText.state.tries = 0
+
+    const textBeforeBuffer = caption.substring(0, buffer_position)
+    const completedText = tryAutoComplete(textBeforeBuffer, list, autoCompleteText.state.tries++)
+    const newCaptionText = completedText + caption.substring(buffer_position)
+
+    autoCompleteText.state.newCaption = newCaptionText
+
+    // selfMessage('324');
+
+    try{
+      guiObject.caption = newCaptionText
+      // selfMessage('326');
+      guiObject.focus();
+      guiObject.buffer_position = buffer_position + (completedText.length - textBeforeBuffer.length)
+    }catch (error) {
+      if(g_selfNick =="seeh"){ //NOTE - 23-0705_2302-57 developers want to see the error in the console
+        warn(error.message)
+        warn(error.stack)
+      }
+    }
+  // selfMessage('328');
+  }
+};
 
 // autoCompleteText = autoCompleteText_original
 autoCompleteText = autoCompleteText_newMerge
@@ -820,4 +614,166 @@ function restart0ad()
 		warn('well done. Please start 0ad now again.')
 		Engine.Exit(1) // works
 	}
+}
+
+function captionIs_j(guiObject){
+    // "Select chat addressee." "Everyone"=0 "Allies"=1 Enemies=2 Observers=3
+    const chatAddressBox = Engine.GetGUIObjectByName("chatAddressee"); // found this name in binaries/data/mods/public/gui/session/chat/chat_window.xml
+
+  if(gameState != "ingame" || chatAddressBox.selected != 1){ // 1 is Allies
+    let text = `to use jiti in you team: 1. open Ally-Chat 2. write j⟦Tab⟧ then enter. 3. write li⟦Tab⟧ or /link`
+    selfMessage(text)
+    return
+}
+
+if (g_linkLongTeam == null) {
+    const linkidShort = Date.now().toString().substring(10);
+    // not open this link always. if you have it already probably
+    g_linkLongTeam = `https://meet.jit.si/0ad${linkidShort}audio`;
+    // doOpenJitsiLink = true;
+    if(false){ // maybe better not use it at the moment. maybe later. in a future version. to much confusion
+        try {
+            openURL(g_linkLongTeam); // its not necesary. if error use /link later
+        } catch (error) {
+
+        }
+    }
+}
+//   selfMessage(Engine.team[0]); // state is not defined
+  caption = g_linkLongTeam;
+  const inviteJitsiText =  `Please open following link for team-audio-chat in your web browser. type li⟦Tab⟧ or /link<enter>. Only a web browser is required. ${g_linkLongTeam} `;
+//   guiObject.caption = '/link'; //  inviteJitsiText;
+  guiObject.caption = inviteJitsiText;
+//   sendMessage(`${inviteJitsiText}`); // TODO: it send to all not only to Allied
+
+// selfMessage(g_linkLongTeam); // its only a selfMessage. not read by botManager
+// BotManager.openURL(g_linkLongTeam); // is not a function
+// let err = botManager.openLink(g_linkLongTeam); // is not a function
+
+
+// botManager.setMessageInterface("ingame");
+// let err = botManager.get("link").openLink(g_linkLongTeam); // this get the link from the chat.
+// if (err)
+//     selfMessage(err);
+
+return;
+
+}
+
+function captionIs_hiall(guiObject){
+  const key = "autocivP.gamesetup.helloAll";
+  const helloAll = Engine.ConfigDB_GetValue("user", key);
+  if(!helloAll)
+      selfMessage('helloAll is empty.');
+  guiObject.caption = helloAll
+  selfMessage('set /hiAll yourWelcomeText or use /hiAll yourWelcomeText or send by /hiAll or helloAll tab, to edit it first.');
+  return;
+
+}
+function captionIs_modsImCurrentlyUsing(guiObject){
+  const key = "autocivP.gamesetup.modsImCurrentlyUsing";
+  const modsImCurrentlyUsing = Engine.ConfigDB_GetValue("user", key);
+  if(!modsImCurrentlyUsing)
+      selfMessage('modsImCurrentlyUsing is empty.');
+  guiObject.caption = modsImCurrentlyUsing
+  selfMessage('set /modsImCurrentlyUsing yourWelcomeText or use /modsImCurrentlyUsing yourWelcomeText or send by /modsImCurrentlyUsing or modsImCurrentlyUsing tab, to edit it first.');
+  return;
+}
+
+/**
+ * Remove special tags delimiter from the caption and update the GUI object's caption.
+ *
+ * @param {Object} guiObject - The GUI object to update.
+ * @param {string} caption - The caption to process.
+ */
+function captionIs_doppelPosting_with_delimiters(guiObject, caption){
+  caption =caption.replace(/[‹›]/g, ''); // cut out all special tags delimiter
+  g_lastCommand = caption
+  // guiObject.caption = caption
+  // selfMessage(`161 ${caption.toLowerCase()} = ${caption}`)
+  selfMessage(`169 ${caption}`)
+  guiObject.caption = caption
+  return
+}
+
+/**
+ * Determines if the function is transGGWP_needet.
+ *
+ * @param {string} caption - The caption parameter.
+ * @param {string} firstChar - The firstChar parameter.
+ * @param {string} iconPrefix - The iconPrefix parameter.
+ * @param {object} guiObject - The guiObject parameter.
+ * @return {boolean} The result of the function.
+ */
+function is_transGGWP_needet(caption, firstChar, iconPrefix,guiObject) {
+  const doTabReplacmentWor_gl_hf_gg_wp_stuff = true; // usefull for debugging maybe
+  return doTabReplacmentWor_gl_hf_gg_wp_stuff
+  &&
+  (
+    caption.length > 1 // prevent conflict with seldon username
+    ||
+    !firstChar.match(/[a-z]/i) // not a  a-z(ignoreCase) first lettter
+  )
+  &&
+  (
+      caption.length <= 90 //NOTE - 300 maybe too long . prefent multiple repacment
+    || guiObject.buffer_position > 14 // maybe user want gg wp replacments in a longer text and cursor is in the middle or at the end
+    ||
+      !firstChar.match(/[A-Z]/) // not Upercase A-Z first lettter. Upercase is not recomanded as seach words. especially not in a shorter text. Now fixed: Ha => Han, before it was Ha => hand
+
+  )
+  &&
+  ( !iconPrefix.length && firstChar != '/'
+  ||
+    firstChar == iconPrefix)
+}
+
+function setCaption2LastCommandOfHistory(guiObject){
+    let lastCommand;
+    const is_g_lastCommandID_correkt = ( !isNaN(g_lastCommandID) && g_lastCommandID >= 0 )
+
+    if( is_g_lastCommandID_correkt )
+        lastCommand = Engine.ConfigDB_GetValue("user", `autocivP.chat.lastCommand${g_lastCommandID}`);
+    else{
+        error('23-0628_0020-57')
+        selfMessage(`ERROR: g_lastCommandID is not correct.`)
+    }
+    if(!lastCommand)
+        return false
+
+    g_previousCaption = guiObject.caption
+    guiObject.caption = lastCommand
+    g_lastCommand = lastCommand
+    return true
+}
+
+function setCaption2nextCommandOfHistory(guiObject){
+  let nextID = getNextLastCommandID()
+  // selfMessage(`86: ${g_lastCommandID}' = g_lastCommandID`);
+  // selfMessage(`164: nextID = ${nextID}'`);
+  let nextCommand = Engine.ConfigDB_GetValue("user", `autocivP.chat.lastCommand${nextID}`);
+  // autocivP.chat.lastCommand4 = "jajaja"
+
+  if( !(nextCommand?.length) && g_lastCommandID > 0 )
+  {
+          nextID = 0
+          nextCommand = Engine.ConfigDB_GetValue("user", `autocivP.chat.lastCommand${nextID}`);
+          // selfMessage(`761: nextID = ${nextID}, g_lastCommandID = ${g_lastCommandID}, nextCommand = ${nextCommand}`);
+          g_lastCommandID = nextID;
+          return false
+  }
+
+  if(nextCommand?.length){
+      g_lastCommand = nextCommand;
+      g_lastCommandID = nextID;
+      // caption = nextCommand ;
+      g_previousCaption = guiObject.caption
+      guiObject.caption = nextCommand; // use of guiObject.caption not caption solved a seldom critical crash
+      // selfMessage(`761: nextID = ${nextID}, g_lastCommandID = ${g_lastCommandID}, nextCommand = ${nextCommand}`);
+      return true;
+  }
+  // selfMessage('never heppens? 23-0628_1307-15')
+  // selfMessage(`775 nextID = ${nextID}, g_lastCommandID = ${g_lastCommandID}, nextCommand = ${nextCommand}`);
+  // g_lastCommandID = nextID;
+  return false
 }
