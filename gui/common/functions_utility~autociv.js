@@ -189,7 +189,7 @@ const autoCompleteText_newMerge = function (guiObject, list)
     //   selfMessage(`180: doppelPosting? '${g_lastCommand}' `);
     //   setCaption2nextCommandOfHistory(guiObject)
     // }
-    if(g_previousCaption == caption || g_lastCommand == caption){
+    if(g_previousCaption == caption ){ // || g_lastCommand == caption
       // selfMessage(`183: doppelPosting? '${g_lastCommand}' `);
       if(setCaption2nextCommandOfHistory(guiObject))
         return
