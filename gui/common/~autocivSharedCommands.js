@@ -86,9 +86,8 @@ function translGGWP_splitInWords_II_part2(captionTrimed, minMatchScore){
 	let isDebug = false
 	// isDebug = true
 
-
 	if(captionTrimed == '<3')
-		captionTrimed = 'heart'
+		captionTrimed = 'love'
 
 	// selfMessage(`70: translGGWP_splitInWords_II(${captionTrimed}, ${minMatchScore})`);
 
