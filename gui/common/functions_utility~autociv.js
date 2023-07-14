@@ -211,6 +211,8 @@ const autoCompleteText_newMerge = function (guiObject, list)
         return;
     case 'hiall':
         return captionIs_hiall(guiObject);
+    case 'timeNow':
+        return g_NetworkCommands["/whatstimeNow"]()
     case 'modsImCurrentlyUsing'.toLowerCase():
         return captionIs_modsImCurrentlyUsing(guiObject);
         // selfMessage('caption.toLowerCase() = ' + caption.toLowerCase());
@@ -719,17 +721,18 @@ function is_transGGWP_needet(caption, firstChar, iconPrefix,guiObject) {
     !firstChar.match(/[a-z]/i) // not a  a-z(ignoreCase) first lettter
   )
   &&
+    !firstChar.match(/[A-Z]/) // not Upercase A-Z first lettter. Upercase is not recomanded as seach words. especially not in a shorter text. Now fixed: Ha => Han, before it was Ha => hand
+  &&
   (
-      caption.length <= 90 //NOTE - 300 maybe too long . prefent multiple repacment
+    caption.length <= 90 //NOTE - 300 maybe too long . prefent multiple repacment
     || guiObject.buffer_position > 14 // maybe user want gg wp replacments in a longer text and cursor is in the middle or at the end
-    ||
-      !firstChar.match(/[A-Z]/) // not Upercase A-Z first lettter. Upercase is not recomanded as seach words. especially not in a shorter text. Now fixed: Ha => Han, before it was Ha => hand
-
   )
   &&
-  ( !iconPrefix.length && firstChar != '/'
-  ||
-    firstChar == iconPrefix)
+  (
+    !iconPrefix.length && firstChar != '/'
+    ||
+    firstChar == iconPrefix
+  )
 }
 
 function setCaption2LastCommandOfHistory(guiObject){
