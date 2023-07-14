@@ -150,8 +150,6 @@ const autoCompleteText_newMerge = function (guiObject, list)
     }
 
 
-
-
     if( is_transGGWP_needet( caption, firstChar, iconPrefix,guiObject) )  {
       const captionBegin = caption.toString()
       const captionTrimed = captionBegin.substring(iconPrefix.length)
@@ -672,13 +670,17 @@ function captionIs_hiall(guiObject){
   return;
 
 }
-function captionIs_modsImCurrentlyUsing(guiObject){
-  const key = "autocivP.gamesetup.modsImCurrentlyUsing";
-  const modsImCurrentlyUsing = Engine.ConfigDB_GetValue("user", key);
-  if(!modsImCurrentlyUsing)
-      selfMessage('modsImCurrentlyUsing is empty.');
-  guiObject.caption = modsImCurrentlyUsing
-  selfMessage('set /modsImCurrentlyUsing yourWelcomeText or use /modsImCurrentlyUsing yourWelcomeText or send by /modsImCurrentlyUsing or modsImCurrentlyUsing tab, to edit it first.');
+function captionIs_modsImCurrentlyUsing(guiObject){ // this function will be triggerd from by in game chat
+  const modEnabledmods = Engine.ConfigDB_GetValue(
+    "user",
+    "mod.enabledmods"
+  );
+  // sendMessage(`Mods I'm currently using: ${modEnabledmods.slice(11,)}` );
+  let text = `Mods I'm currently using: ${modEnabledmods.slice(11,)}`
+  text = text.replace('feldmap', 'feldmap♒') //  ♡ autocivP❧♣▦▣ mod
+  text = text.replace('proGUI', 'proGUI★') //  ♡ autocivP❧♣▦▣ mod
+  text = text.replace('autocivP', 'autocivP☼') //  ♡ autocivP❧♣▦▣ mod
+  guiObject.caption = text;
   return;
 }
 

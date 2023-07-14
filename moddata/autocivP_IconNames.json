@@ -2,7 +2,7 @@
    "/help /p": ["help", "search", "profiles", "iconsall" ],
    "allicons": ["allicons", "allincon","allincons" ],
    "alliconkeys": ["alliconkeys","allinconcais","alliconskays" ],
-   "modsImCurrentlyUsing": ["mods", "using" ],
+   "modsImCurrentlyUsing": ["mods", "modsCurrent","modsUsing" ],
    "communityModToggle": [
     "comunitsmodstoggles",
     "comunitymodtoggle",
