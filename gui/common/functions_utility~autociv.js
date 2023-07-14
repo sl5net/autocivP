@@ -5,6 +5,10 @@ var g_lastCommand = "";
 var g_lastCommandIDmax = 5;
 var g_lastCommandID = parseInt (Engine.ConfigDB_GetValue("user", `autocivP.chat.g_lastCommandID`));
 
+
+var g_iconPrefix = Engine.ConfigDB_GetValue("user", "autocivP.chat.iconPrefix"); // icon prefix iconPrefix should be default <
+
+
 var g_previousCaption = ''
 
 if(isNaN(g_lastCommandID))g_lastCommandID = 0;
@@ -126,8 +130,7 @@ const autoCompleteText_newMerge = function (guiObject, list)
 
 
   if(caption?.length ){
-    const key = "autocivP.chat.iconPrefix";
-    const iconPrefix = Engine.ConfigDB_GetValue("user", key); // icon prefix iconPrefix should be default <
+    const iconPrefix = g_iconPrefix; // icon prefix iconPrefix should be default <
     const firstChar = caption.toString().charAt(0); // or str[0]
 
 
@@ -143,7 +146,7 @@ const autoCompleteText_newMerge = function (guiObject, list)
 
       }
       // selfMessage(`138: doppelPosting? '${g_lastCommand}' `);
-
+      captionCheckIs_communityModToggle(caption) // if is communitymodtoggle restart
     }
 
 
@@ -775,4 +778,21 @@ function setCaption2nextCommandOfHistory(guiObject){
   // selfMessage(`775 nextID = ${nextID}, g_lastCommandID = ${g_lastCommandID}, nextCommand = ${nextCommand}`);
   // g_lastCommandID = nextID;
   return false
+}
+function captionCheckIs_communityModToggle(caption){
+  if(caption.trim() == "communityModToggle"){
+    let modEnabledmods = Engine.ConfigDB_GetValue(
+      "user",
+      "mod.enabledmods"
+    );
+    selfMessage(`modEnabledmods = ${modEnabledmods}`);
+    if(modEnabledmods.indexOf("community-mod") == -1)
+      modEnabledmods += ' community-mod'
+    else
+      modEnabledmods = modEnabledmods.replace(/\s*\bcommunity-mod\b\s*/, " ")
+
+    ConfigDB_CreateAndSaveValueA26A27("user", "mod.enabledmods", modEnabledmods.trim())
+    selfMessage(`modEnabledmods = ${modEnabledmods}`);
+    restart0ad()
+  }
 }
