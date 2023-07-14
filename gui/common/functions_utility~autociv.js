@@ -198,6 +198,12 @@ const autoCompleteText_newMerge = function (guiObject, list)
 
   }
 
+  // try test send flare. dont work
+  // let minimapPanel = Engine.GetGUIObjectByName("minimapPanel")
+  // minimapPanel.children[2].focus();
+  // let objName = 'flar'
+  // selfMessage(`204: ${objName} = ${objName}`)
+
   g_previousCaption = caption
 
   switch (caption.toLowerCase()) {
