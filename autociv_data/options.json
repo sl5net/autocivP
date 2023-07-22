@@ -136,12 +136,6 @@
 				"label": "[color=\"220 185 70\"]Global:[/color] Chat panel icon delimiter (default is ⟨ or empty)",
 				"tooltip": "To improve command searchability, consider adding a prefix to special short icon (☯ ♪♣‹) commands like '<gg⟦Tab⟧' or '<mus⟦Tab⟧' ♪ to distinguish them from profile commands.",
 				"config": "autocivP.chat.iconPrefix"
-			},
-			{
-				"type": "string",
-				"label": "[color=\"220 185 70\"]Global:[/color] Suggestion. next fullMinute (default is next full 30 minutes ⟨ or empty)",
-				"tooltip": "e.g. next full 30 minutes 12:30 13:00.",
-				"config": "autocivP.gamesetup.gameStart.inNextFullMinute"
 			}
 
 		]
@@ -299,26 +293,26 @@
 		]
 	},
 	{
-		"label": "Postfix Name",
+		"label": "Name Postfixes",
 		"options":
 		[
 			{
 				"type": "boolean",
-				"label": "Postfix Name enabled?",
+				"label": "[color=\"220 185 70\"]Postfix UserName[/color]: enabled?",
 				"tooltip": "Enable custom rating",
 				"config": "customrating"
 			},
 			{
 				"type": "string",
-				"label": "Any text max (limited chars)",
-				"tooltip": "Any text you like (max 60 chars long). Extra chars use those codes ^1  ∞, ^2 ♡, ^3 ™, ^4 ★, ^5 ↑ ",
+				"label": "Any text max (limited chars max. 42)",
+				"tooltip": "Any text you like.",
 				"config": "customrating.value"
 
 			},
 			{
 				"type": "dropdown",
-				"label": " or select presets --------->",
-				"tooltip": "You can add a custom string - works in game",
+				"label": "[color=\"220 185 70\"]Postfix UserName[/color] or select presets ----->",
+				"tooltip": "You can add a custom postfix - works in game",
 				"config": "customrating.value",
 				"dependencies": ["customrating"],
 				"list": [
@@ -333,6 +327,29 @@
 					{ "value": "^7", "label": "ill today"  },
 					{ "value": "^8", "label": "overrated"  },
 					{ "value": "^9", "label": "underrated"  }
+				]
+			},
+			{
+				"type": "string",
+				"label": "[color=\"220 185 70\"]Game name Suggestion[/color]. next fullMinute (default is next full 30 minutes ⟨ or empty)",
+				"tooltip": "e.g. next full 30 minutes 12:30 13:00.",
+				"config": "autocivP.gamesetup.gameStart.inNextFullMinute"
+			},
+			{
+				"type": "dropdown",
+				"label": "[color=\"220 185 70\"]Game name Suggestion[/color] select presets ----->",
+				"tooltip": "set to empty or select a name postfix",
+				"config": "autocivP.gamesetup.gameStart.suggestionKey",
+				"list": [
+					{ "value": "false", "label": ""  },
+					{ "value": "^0", "label": "<1200, rated, pingMe"  },
+					{ "value": "^1", "label": "unrated, pas:pingMe"  },
+					{ "value": "^2", "label": "rated, TotalGames>10, pingMe"  },
+					{ "value": "^3", "label": "waiting for friends"  },
+					{ "value": "^4", "label": "YouTube"  },
+					{ "value": "^5", "label": "must have: progGUI, feldmap"  },
+					{ "value": "^6", "label": "spec. not play!"  },
+					{ "value": "^7", "label": "not seriously. only a game"  }
 				]
 			}
 		]

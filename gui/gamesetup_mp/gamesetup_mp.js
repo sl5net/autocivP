@@ -81,6 +81,8 @@ function init(attribs) {
 					{ "value": "^7", "label": "ill today"  },
 					{ "value": "^8", "label": "overrated"  },
 					{ "value": "^9", "label": "underrated"  }
+
+                    Extra chars  ^1  ∞, ^2 ♡, ^3 ™, ^4 ★, ^5 ↑
 */
             customrating_value = customrating_value.replace(/ ® /g, "nuub");
             customrating_value = customrating_value.replace(/\^0/g, "youtuber");
@@ -115,7 +117,7 @@ function init(attribs) {
         if (customrating_value) {
             //g_UserRating = customrating_value.substring(0,10)
             // g_UserRating = customrating_value.substring(0,16);
-            g_UserRating = customrating_value.substring(0,30);
+            g_UserRating = customrating_value.substring(0,42);
             g_UserRating = customrating_value + ""; // customrating_value not empty with som texts
         } else {
             //no rating in username

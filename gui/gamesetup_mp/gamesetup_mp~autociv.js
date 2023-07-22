@@ -23,10 +23,36 @@ autociv_patchApplyN("init", function (target, that, args)
 				"user",
 				"mod.enabledmods"
 			);
-            let text = ''
+
+
+
+      let text = ''
+      const gameStartSuggestionKey = Engine.ConfigDB_GetValue(
+        "user",
+        "autocivP.gamesetup.gameStart.suggestionKey"
+        );
+      let gameStartSuggestion_value = ''
+      if(gameStartSuggestionKey.trim().length > 0){
+        let value = ''
+        value = (gameStartSuggestionKey == ' ® ') ? "nuub" : value
+        value = (gameStartSuggestionKey == '^0') ? "<1200, rated, pingMe" : value
+        value = (gameStartSuggestionKey == '^1') ? "unrated, pingMe" : value
+        value = (gameStartSuggestionKey == '^2') ? "rated, TotalGames>10, pingMe" : value
+        value = (gameStartSuggestionKey == '^3') ? "waiting for friends" : value
+        value = (gameStartSuggestionKey == '^4') ? " YouTube" : value
+        value = (gameStartSuggestionKey == '^5') ? "must have: progGUI, feldmap" : value
+        value = (gameStartSuggestionKey == '^6') ? "spec. not play!" : value
+        value = (gameStartSuggestionKey == '^7') ? "not seriously. only a game" : value
+        gameStartSuggestion_value = `|${value}`
+      }
+
 			// let text = `♡mods: ${modEnabledmods.slice(11,)}`
             const lenFirst = input.caption.length
-            text = ` | ${nextGameStartTime()} |> ${modEnabledmods.slice(11,)} ← Mods I'm currently using`
+            const gameStartTime = nextGameStartTime()
+            if(gameStartTime)
+              text = `${gameStartSuggestion_value} | ${nextGameStartTime()} |> ${modEnabledmods.slice(11,)} ← Mods I'm currently using`
+            else
+              text = `${gameStartSuggestion_value} |> ${modEnabledmods.slice(11,)} ← Mods I'm currently using`
             // input.caption = nextGameStartTime()
             input.caption += text
             // input.caption += nextGameStartTime()
@@ -41,15 +67,20 @@ autociv_patchApplyN("init", function (target, that, args)
 })
 
 function nextGameStartTime() {
-    const getNextHalfHour = () => {
+
+  let inNextFullMinute = Engine.ConfigDB_GetValue(
+    "user",
+    "autocivP.gamesetup.gameStart.inNextFullMinute"
+    );
+
+  if(inNextFullMinute.length < 1 || isNaN(inNextFullMinute))
+    return false
+
+    const getNextHalfHour = (inNextFullMinute) => {
       const now = new Date();
       const minutes = now.getMinutes();
 
 
-      let inNextFullMinute = Engine.ConfigDB_GetValue(
-        "user",
-        "autocivP.gamesetup.gameStart.inNextFullMinute"
-        );
 
       if(!inNextFullMinute && isNaN(inNextFullMinute))
         inNextFullMinute = 30
