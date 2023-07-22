@@ -101,7 +101,7 @@ This mod is an aggregation of features meant to enhance the 0 A.D. game experien
 - Download and install manually the github repository (installation file on the releases section)
 	- https://github.com/sl5net/autocivP
 - Use 0 A.D. mod downloader (not always newest version)
-	- https://0ad.mod.io/autocivP (not available jet)
+	- https://0ad.mod.io/autocivP
 
 
 ## Instructions to install autociv manually
