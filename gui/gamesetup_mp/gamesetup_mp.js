@@ -100,9 +100,18 @@ function init(attribs) {
         }
 
         if(g_proGUIPVersion){
-            const temp = g_UserRating + "|proGUI mod";
+            const temp = g_UserRating + "|proGUI";
             customrating_value = ( isCustomratingEnabled && customrating_value) ? `${temp}| ${customrating_value}` : temp ;
         }
+
+
+        if (typeof g_LocalRatingsDatabase !== 'undefined') { // DODO sad its not available from autocivP ... means i need rebuild/copy some functions. should i do this ? 23-0722_1551-58 . i hope maybe Mentula will do it maybe in a day in future
+            const playerName = 'seeh'
+            const playerData = g_LocalRatingsDatabase[playerName];
+            customrating_value += ` LR ${playerData.rating}`;
+        }
+
+
         if (customrating_value) {
             //g_UserRating = customrating_value.substring(0,10)
             // g_UserRating = customrating_value.substring(0,16);
