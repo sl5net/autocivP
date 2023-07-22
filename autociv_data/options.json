@@ -318,7 +318,7 @@
 			{
 				"type": "dropdown",
 				"label": " or select presets --------->",
-				"tooltip": "You can modify your custom string in brackets - works in game",
+				"tooltip": "You can add a custom string - works in game",
 				"config": "customrating.value",
 				"dependencies": ["customrating"],
 				"list": [
