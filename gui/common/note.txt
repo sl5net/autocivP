@@ -1,0 +1,1 @@
+gamedescription.js - fix splitRatingFromNick() function; so anyone with custom rating text will be seen in gamelist game

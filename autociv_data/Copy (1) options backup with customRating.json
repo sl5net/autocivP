@@ -1,0 +1,344 @@
+[
+	{
+		"label": "AutoCiv** for 0 A.D. 0.0.26",
+		"options": [
+			{
+				"type": "boolean",
+				"label": "[color=\"220 185 70\"]Lobby:[/color] chat subject hide",
+				"tooltip": "Hide initial lobby subject message",
+				"config": "autociv.lobby.chat.subject.hide"
+			},
+			{
+				"type": "boolean",
+				"label": "[color=\"220 185 70\"]Lobby:[/color] game list show host name",
+				"tooltip": "Show the name of the host for every game in the list",
+				"config": "autociv.lobby.gamelist.showHostName"
+			},
+			{
+				"type": "boolean",
+				"label": "[color=\"220 185 70\"]Lobby:[/color] resize bars enabled",
+				"tooltip": "Have resize bars enabled",
+				"config": "autociv.resizebar.enabled"
+			},
+			{
+				"type": "string",
+				"label": "[color=\"220 185 70\"]Lobby:[/color] pingall ignore users list",
+				"tooltip": "List of users you don't want to ping when using the command pingall. Each entry must be separated by a comma.",
+				"config": "autociv.lobby.pingPlayers.ignoreList"
+			},
+			{
+				"type": "autociv_number_int",
+				"label": "[color=\"220 185 70\"]Graphics:[/color] corpses max",
+				"tooltip": "Maximum number of corpses to show. 0 means none, 200 means unlimited. Performance degrades above 50",
+				"config": "autociv.session.graphics.corpses.max",
+				"min": 0,
+				"max": 200
+			},
+			{
+				"type": "boolean",
+				"label": "[color=\"220 185 70\"]Game setup:[/color] countdown enable",
+				"tooltip": "Automatically enable countdown when hosting",
+				"config": "autociv.gamesetup.countdown.enabled"
+			},
+			{
+				"type": "autociv_number_int",
+				"label": "[color=\"220 185 70\"]Game setup:[/color] countdown default time ",
+				"tooltip": "Countdown default time in (seconds)",
+				"config": "autociv.gamesetup.countdown.time",
+				"min": 0,
+				"max": 60
+			},
+			{
+				"type": "boolean",
+				"label": "[color=\"220 185 70\"]Game:[/color] stats overlay visible",
+				"tooltip": "Show players basic statistics in an overlay",
+				"config": "autociv.session.statsOverlay.visible"
+			},
+			{
+				"type": "slider",
+				"label": "[color=\"220 185 70\"]Game:[/color] Brightness of player names",
+				"tooltip": "Adjust the brightness intensity for the player names.",
+				"config": "autociv.session.statsOverlay.brightnessThreshold",
+				"dependencies": ["autociv.session.statsOverlay.visible"],
+				"min": 50,
+				"max": 150
+			},
+			{
+				"type": "boolean",
+				"label": "[color=\"220 185 70\"]Game:[/color] players overlay visible",
+				"tooltip": "Show observers and offline players in an overlay",
+				"config": "autociv.session.playersOverlay.visible"
+			},
+			{
+				"type": "boolean",
+				"label": "[color=\"220 185 70\"]Game:[/color] Delete no warning",
+				"tooltip": "Don't show confirmation dialog when deleting unit",
+				"config": "autociv.session.kill.nowarning"
+			},
+			{
+				"type": "boolean",
+				"label": "[color=\"220 185 70\"]Game:[/color] Chat panel size change",
+				"tooltip": "Modify chat panel size",
+				"config": "autociv.session.chatPanel.size.change"
+			},
+			{
+				"type": "string",
+				"label": "[color=\"220 185 70\"]Game:[/color] Chat panel size",
+				"tooltip": "Size string",
+				"config": "autociv.session.chatPanel.size",
+				"dependencies": ["autociv.session.chatPanel.size.change"]
+			},
+			{
+				"type": "boolean",
+				"label": "[color=\"220 185 70\"]Game:[/color] Chat panel font change",
+				"tooltip": "Modify chat panel font",
+				"config": "autociv.session.chatText.font.change"
+			},
+			{
+				"type": "autociv_dropdown_runtime_load",
+				"autociv_list_load": "autociv_getAvailableFonts",
+				"label": "[color=\"220 185 70\"]Game:[/color] Chat panel font",
+				"tooltip": "Font string",
+				"config": "autociv.session.chatText.font",
+				"dependencies": ["autociv.session.chatText.font.change"]
+			},
+
+			{
+				"type": "boolean",
+				"label": "[color=\"220 185 70\"]Global:[/color] remove all Unicode characters",
+				"tooltip": "remove all Unicode characters. Some users don't use a keyboard that support this icons it in the chat.",
+				"config": "autociv.chatText.font.useitwithoutUnicode"
+			},
+
+
+
+
+			{
+				"type": "boolean",
+				"label": "[color=\"220 185 70\"]Game:[/color] Default stance healers",
+				"tooltip": "Default stance healers have when they spawn",
+				"config": "autociv.session.setHealersInitialStanceAggressive"
+			},
+			{
+				"type": "boolean",
+				"label": "[color=\"220 185 70\"]Global:[/color] Reset all AutoCiv settings",
+				"tooltip": "Resets all AutoCiv (REQUIRES RESTART) (DOESN'T RESET CUSTOM AUTOCIV SETTINGS)",
+				"config": "autociv.settings.reset.all"
+			},
+			{
+				"type": "boolean",
+				"label": "[color=\"220 185 70\"]Global:[/color][color=\"255 0 0\"]Resets allAutoCiv settings. Backup first![/color] (more intuitive)",
+				"tooltip": "Resets all AutoCiv (REQUIRES RESTART) ([color=\"255 0 0\"]Backup first![/color])",
+				"config": "autociv.settings.reset.all2P"
+			},
+			{
+				"type": "string",
+				"label": "[color=\"220 185 70\"]Global:[/color] Chat panel icon delimiter (default is ⟨ or empty)",
+				"tooltip": "To improve command searchability, consider adding a prefix to special short icon (☯ ♪♣‹) commands like '<gg⟦Tab⟧' or '<mus⟦Tab⟧' ♪ to distinguish them from profile commands.",
+				"config": "autocivP.chat.iconPrefix"
+			},
+			{
+				"type": "string",
+				"label": "[color=\"220 185 70\"]Global:[/color] Suggestion. next fullMinute (default is next full 30 minutes ⟨ or empty)",
+				"tooltip": "e.g. next full 30 minutes 12:30 13:00.",
+				"config": "autocivP.gamesetup.gameStart.inNextFullMinute"
+			}
+
+		]
+	},
+
+
+	{
+		"label": "Mod Profile Selector",
+		"options": [
+			{
+				"type": "string",
+				"label": "('mod', 'public' included automatically)",
+				"tooltip": "all your mods that you want to enable (BTW see line mod.enabledmods in your user.cfg).\n [color=\"255 0 0\"]more Details at https://trac.wildfiregames.com/wiki/GameDataPaths for example: [/color]\n Path to user data: \n Linux     : ~/.config/0ad/user.cfg \n Windows: %AppData%\\0ad\\user.cfg \n macOS    : \/Users\/{YOUR USERNAME}\/Library\/Application\\ Support/0ad/user.cfg ",
+				"config": "modProfile.p0"
+			},
+			{
+				"type": "string",
+				"label": "                                                   autoLabel: ",
+				"tooltip": "BTW see line mod.enabledmods in your user.cfg).\n [color=\"255 0 0\"]more Details at https://trac.wildfiregames.com/wiki/GameDataPaths for example: [/color]\n Path to user data: \n Linux     : ~/.config/0ad/user.cfg \n Windows: %AppData%\\0ad\\user.cfg \n macOS    : \/Users\/{YOUR USERNAME}\/Library\/Application\\ Support/0ad/user.cfg ",
+				"config": "modProfile.p0label"
+			},
+			{
+				"type": "boolean",
+				"label": "[color=\"220 185 70\"]use 0[/color]",
+				"tooltip": "Set Hotkey-Profiles.\n[color=\"255 0 0\"]RESTART NECESSARY[/color]\n [color=\"255 0 0\"]more Details at https://trac.wildfiregames.com/wiki/GameDataPaths for example: [/color]\n Path to user data: \n Linux     : ~/.config/0ad/user.cfg \n Windows: %AppData%\\0ad\\user.cfg \n macOS    : \/Users\/{YOUR USERNAME}\/Library\/Application\\ Support/0ad/user.cfg ",
+				"config": "modProfile.p0enabled"
+			},
+			{
+				"type": "string",
+				"label": "",
+				"tooltip": "all your mods that you want to enable (BTW see line mod.enabledmods in your user.cfg).\n [color=\"255 0 0\"]more Details at https://trac.wildfiregames.com/wiki/GameDataPaths for example: [/color]\n Path to user data: \n Linux     : ~/.config/0ad/user.cfg \n Windows: %AppData%\\0ad\\user.cfg \n macOS    : \/Users\/{YOUR USERNAME}\/Library\/Application\\ Support/0ad/user.cfg ",
+				"config": "modProfile.p1"
+			},
+			{
+				"type": "string",
+				"label": "                                                   autoLabel: ",
+				"tooltip": "all your mods that you want to enable (BTW see line mod.enabledmods in your user.cfg).\n [color=\"255 0 0\"]more Details at https://trac.wildfiregames.com/wiki/GameDataPaths for example: [/color]\n Path to user data: \n Linux     : ~/.config/0ad/user.cfg \n Windows: %AppData%\\0ad\\user.cfg \n macOS    : \/Users\/{YOUR USERNAME}\/Library\/Application\\ Support/0ad/user.cfg ",
+				"config": "modProfile.p1label"
+			},
+			{
+				"type": "boolean",
+				"label": "[color=\"220 185 70\"]use 1[/color]\n",
+				"tooltip": "Set Hotkey-Profiles.\n[color=\"255 0 0\"]RESTART NECESSARY\n more Details at https://trac.wildfiregames.com/wiki/GameDataPaths for example: [/color]\n Path to user data: \n Linux     : ~/.config/0ad/user.cfg \n Windows: %AppData%\\0ad\\user.cfg \n macOS    : \/Users\/{YOUR USERNAME}\/Library\/Application\\ Support/0ad/user.cfg ",
+				"config": "modProfile.p1enabled"
+			},
+			{
+				"type": "string",
+				"label": "",
+				"tooltip": "all your mods that you want to enable (BTW see line mod.enabledmods in your user.cfg).\n [color=\"255 0 0\"]more Details at https://trac.wildfiregames.com/wiki/GameDataPaths for example: [/color]\n Path to user data: \n Linux     : ~/.config/0ad/user.cfg \n Windows: %AppData%\\0ad\\user.cfg \n macOS    : \/Users\/{YOUR USERNAME}\/Library\/Application\\ Support/0ad/user.cfg ",
+				"config": "modProfile.p2"
+			},
+			{
+				"type": "string",
+				"label": "                                                   autoLabel: ",
+				"tooltip": "all your mods that you want to enable (BTW see line mod.enabledmods in your user.cfg).\n [color=\"255 0 0\"]more Details at https://trac.wildfiregames.com/wiki/GameDataPaths for example: [/color]\n Path to user data: \n Linux     : ~/.config/0ad/user.cfg \n Windows: %AppData%\\0ad\\user.cfg \n macOS    : \/Users\/{YOUR USERNAME}\/Library\/Application\\ Support/0ad/user.cfg ",
+				"config": "modProfile.p2label"
+			},
+			{
+				"type": "boolean",
+				"label": "[color=\"220 185 70\"]use 2[/color]",
+				"tooltip": "Set Hotkey-Profiles.\n[color=\"255 0 0\"]RESTART NECESSARY[/color]\n [color=\"255 0 0\"]more Details at https://trac.wildfiregames.com/wiki/GameDataPaths for example: [/color]\n Path to user data: \n Linux     : ~/.config/0ad/user.cfg \n Windows: %AppData%\\0ad\\user.cfg \n macOS    : \/Users\/{YOUR USERNAME}\/Library\/Application\\ Support/0ad/user.cfg ",
+				"config": "modProfile.p2enabled"
+			},
+			{
+				"type": "string",
+				"label": "",
+				"tooltip": "all your mods that you want to enable (BTW see line mod.enabledmods in your user.cfg).\n [color=\"255 0 0\"]more Details at https://trac.wildfiregames.com/wiki/GameDataPaths for example: [/color]\n Path to user data: \n Linux     : ~/.config/0ad/user.cfg \n Windows: %AppData%\\0ad\\user.cfg \n macOS    : \/Users\/{YOUR USERNAME}\/Library\/Application\\ Support/0ad/user.cfg ",
+				"config": "modProfile.p3"
+			},
+			{
+				"type": "string",
+				"label": "                                                   autoLabel: ",
+				"tooltip": "all your mods that you want to enable (BTW see line mod.enabledmods in your user.cfg).\n [color=\"255 0 0\"]more Details at https://trac.wildfiregames.com/wiki/GameDataPaths for example: [/color]\n Path to user data: \n Linux     : ~/.config/0ad/user.cfg \n Windows: %AppData%\\0ad\\user.cfg \n macOS    : \/Users\/{YOUR USERNAME}\/Library\/Application\\ Support/0ad/user.cfg ",
+				"config": "modProfile.p3label"
+			},
+			{
+				"type": "boolean",
+				"label": "[color=\"220 185 70\"]use 3[/color]",
+				"tooltip": "Set Hotkey-Profiles.\n[color=\"255 0 0\"]RESTART NECESSARY[/color]\n [color=\"255 0 0\"]more Details at https://trac.wildfiregames.com/wiki/GameDataPaths for example: [/color]\n Path to user data: \n Linux     : ~/.config/0ad/user.cfg \n Windows: %AppData%\\0ad\\user.cfg \n macOS    : \/Users\/{YOUR USERNAME}\/Library\/Application\\ Support/0ad/user.cfg ",
+				"config": "modProfile.p3enabled"
+			},
+			{
+				"type": "string",
+				"label": "",
+				"tooltip": "all your mods that you want to enable (BTW see line mod.enabledmods in your user.cfg).\n [color=\"255 0 0\"]more Details at https://trac.wildfiregames.com/wiki/GameDataPaths for example: [/color]\n Path to user data: \n Linux     : ~/.config/0ad/user.cfg \n Windows: %AppData%\\0ad\\user.cfg \n macOS    : \/Users\/{YOUR USERNAME}\/Library\/Application\\ Support/0ad/user.cfg ",
+				"config": "modProfile.p4"
+			},
+			{
+				"type": "string",
+				"label": "                                                   autoLabel: ",
+				"tooltip": "all your mods that you want to enable (BTW see line mod.enabledmods in your user.cfg).\n [color=\"255 0 0\"]more Details at https://trac.wildfiregames.com/wiki/GameDataPaths for example: [/color]\n Path to user data: \n Linux     : ~/.config/0ad/user.cfg \n Windows: %AppData%\\0ad\\user.cfg \n macOS    : \/Users\/{YOUR USERNAME}\/Library\/Application\\ Support/0ad/user.cfg ",
+				"config": "modProfile.p4label"
+			},
+			{
+				"type": "boolean",
+				"label": "[color=\"220 185 70\"]use 4[/color]",
+				"tooltip": "Set Hotkey-Profiles.\n[color=\"255 0 0\"]RESTART NECESSARY[/color]",
+				"config": "modProfile.p4enabled"
+			},
+			{
+				"type": "string",
+				"label": "",
+				"tooltip": "all your mods that you want to enable (BTW see line mod.enabledmods in your user.cfg).\n [color=\"255 0 0\"]more Details at https://trac.wildfiregames.com/wiki/GameDataPaths for example: [/color]\n Path to user data: \n Linux     : ~/.config/0ad/user.cfg \n Windows: %AppData%\\0ad\\user.cfg \n macOS    : \/Users\/{YOUR USERNAME}\/Library\/Application\\ Support/0ad/user.cfg ",
+				"config": "modProfile.p5"
+			},
+			{
+				"type": "string",
+				"label": "                                                   autoLabel: ",
+				"tooltip": "all your mods that you want to enable (BTW see line mod.enabledmods in your user.cfg).\n [color=\"255 0 0\"]more Details at https://trac.wildfiregames.com/wiki/GameDataPaths for example: [/color]\n Path to user data: \n Linux     : ~/.config/0ad/user.cfg \n Windows: %AppData%\\0ad\\user.cfg \n macOS    : \/Users\/{YOUR USERNAME}\/Library\/Application\\ Support/0ad/user.cfg ",
+				"config": "modProfile.p5label"
+			},
+			{
+				"type": "boolean",
+				"label": "[color=\"220 185 70\"]use 5[/color]",
+				"tooltip": "Set Hotkey-Profiles.\n[color=\"255 0 0\"]RESTART NECESSARY[/color]\n [color=\"255 0 0\"]more Details at https://trac.wildfiregames.com/wiki/GameDataPaths for example: [/color]\n Path to user data: \n Linux     : ~/.config/0ad/user.cfg \n Windows: %AppData%\\0ad\\user.cfg \n macOS    : \/Users\/{YOUR USERNAME}\/Library\/Application\\ Support/0ad/user.cfg ",
+				"config": "modProfile.p5enabled"
+			},
+			{
+				"type": "string",
+				"label": "[color=\"255 0 0\"]mod.enabledmods[/color] = used at the moment",
+				"tooltip": "[color=\"255 0 0\"]will be overwitten\nbetter dont edit[/color].\nmods that you use at the moment\n [color=\"255 0 0\"]more Details at https://trac.wildfiregames.com/wiki/GameDataPaths for example: [/color]\n Path to user data: \n Linux     : ~/.config/0ad/user.cfg \n Windows: %AppData%\\0ad\\user.cfg \n macOS    : \/Users\/{YOUR USERNAME}\/Library\/Application\\ Support/0ad/user.cfg ",
+				"config": "mod.enabledmods"
+			},
+			{
+				"type": "string",
+				"label": "[color=\"255 0 0\"]backup[/color]: will be overwitten\ndont edit. what you have used before",
+				"tooltip": "[color=\"255 0 0\"]more Details at https://trac.wildfiregames.com/wiki/GameDataPaths for example: [/color]\n [color=\"255 0 0\"]more Details at https://trac.wildfiregames.com/wiki/GameDataPaths for example: [/color]\n Path to user data: \n Linux     : ~/.config/0ad/user.cfg \n Windows: %AppData%\\0ad\\user.cfg \n macOS    : \/Users\/{YOUR USERNAME}\/Library\/Application\\ Support/0ad/user.cfg ",
+				"config": "modProfile.backup"
+			},
+			{
+				"type": "boolean",
+				"label": "edit autoLabel manually",
+				"tooltip": "default: autoLabel will be created automatically\n with the next game (firt 3 letter of each mod)\n if you have changed the mod-config in its line",
+				"config": "modProfile.autoLabelManually"
+			},
+			{
+				"type": "boolean",
+				"label": "show autoFixModsOrder (EXPERIMENTAL)",
+				"tooltip": "Mods sometimes work better when enabled in a special order ",
+				"config": "modProfile.showAutoFixModsOrder"
+			},
+
+			{
+				"type": "string",
+				"label": "set mods that should always in. e.g. feldmap: ",
+				"tooltip": "",
+				"config": "modProfile.alwaysIn"
+			},
+			{
+				"type": "string",
+				"label": "set mods that should always in replays. e.g. boonGUI : ",
+				"tooltip": "",
+				"config": "modProfile.alwaysInReplay"
+			}
+		]
+	},
+
+	{
+		"label": "Custom Rating",
+		"options":
+		[
+			{
+				"type": "boolean",
+				"label": "customrating enabled?",
+				"tooltip": "Enable custom rating",
+				"config": "customrating"
+			},
+			{
+				"type": "string",
+				"label": "Any text max 15 chars",
+				"tooltip": "Any text you like (max 15 chars long). Extra chars use those codes ^1  ∞, ^2 ♡, ^3 ™, ^4 ★, ^5 ↑ ",
+				"config": "customrating.value"
+
+			},
+			{
+				"type": "dropdown",
+				"label": " or select presets --------->",
+				"tooltip": "You can modify your custom string in brackets - works in game",
+				"config": "customrating.value",
+				"dependencies": ["customrating"],
+				"list": [
+					{ "value": "false", "label": "!No rating" },
+					{ "value": " ® ", "label": "®"  },
+					{ "value": "^0", "label": "boonGUI mod"  },
+					{ "value": "^1", "label": "unfocused today"  },
+					{ "value": "^2", "label": "rating♡ "  },
+					{ "value": "^3", "label": "rating+Plan\\&Go YTube"  },
+					{ "value": "^4", "label": "rating+programmer\\?"  },
+					{ "value": "^5", "label": "rating+spec"  },
+					{ "value": "^6", "label": "♥CartographyMode"  },
+					{ "value": "^7", "label": "ill today"  },
+					{ "value": "^8", "label": "ill only today"  },
+					{ "value": "^9", "label": "♥small games"  }
+				]
+			}
+		]
+	}
+
+
+]

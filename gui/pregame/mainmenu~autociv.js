@@ -146,8 +146,9 @@ autociv_patchApplyN("init", function (target, that, args) {
     "modProfile.backup "
   );
 
-  const posboonGUI = modsFromUserCfg_const.indexOf('boonGUI')
-  const posproGUI = modsFromUserCfg_const.indexOf('proGUI')
+  const posProGUI = modsFromUserCfg_const.indexOf('proGUI')
+  const posBoonGUI = modsFromUserCfg_const.indexOf('boonGUI')
+  const posAutocivP = modsFromUserCfg_const.indexOf('autocivP')
 
   if (g_selfNick =="seeh" && state.showAutoFixModsOrder) { // quick lazy quick fix. TODO: fix this should be a in the options somwehere maybe
 
@@ -155,19 +156,59 @@ autociv_patchApplyN("init", function (target, that, args) {
 
 ConfigDB_CreateAndSaveValueA26A27("user", "chat.timestamp", false);
 ConfigDB_CreateAndSaveValueA26A27("user", "gui.session.timeelapsedcounter", true);
+ConfigDB_CreateAndSaveValueA26A27("user", "gui.session.attackrange", true); // fairplay. its helps
+ConfigDB_CreateAndSaveValueA26A27("user", "gui.session.aurasrange ", true); // fairplay. its helps
 ConfigDB_CreateAndSaveValueA26A27("user", "overlay.realtime", false);
 ConfigDB_CreateAndSaveValueA26A27("user", "autociv.session.playersOverlay.visible", true);
 ConfigDB_CreateAndSaveValueA26A27("user", "autociv.session.statsOverlay.visible", false);
 ConfigDB_CreateAndSaveValueA26A27("user", "session.showobservers", true);
 ConfigDB_CreateAndSaveValueA26A27("user", "session.showstats", false);
 ConfigDB_CreateAndSaveValueA26A27("user", "silhouettes", true);
+
+
+
     }
 
+    // autocivP should be later than proGUI becouse the sepezial customr rating that should make the use use of proGUI visible 23-0722_1318-16
+    ConfigDB_CreateAndSaveValueA26A27("user", "customrating", true);
+    ConfigDB_CreateAndSaveValueA26A27("user", "customrating.readme_seen", true);
+    ConfigDB_CreateAndSaveValueA26A27("user", "customrating.value", "^0");
+
+    if (true && posAutocivP < posProGUI) { // autocivP should be later than proGUI becouse the sepezial customr rating that should make the use use of proGUI visible 23-0722_1318-16
+
+        let clean = modsFromUserCfg_const
+
+        clean = clean.replaceAll(/\bproGUI\b /g, '');
+        clean = clean.replaceAll(/\bautocivP\b /g, 'proGUI autocivP ');
+        ConfigDB_CreateAndSaveValueA26A27("user", 'mod.enabledmods',clean)
+
+        try {
+          Engine.Restart(1);
+        } catch (error) {
+          Engine.Exit(1)
+        }
+
+
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
   if (true && state.showAutoFixModsOrder
-    && posboonGUI > 1 && posboonGUI < posproGUI
+    && posBoonGUI > 1 && posBoonGUI < posProGUI
     ) {
 
-      ConfigDB_CreateAndSaveValueA26A27("user", 'mod.enabledmods',modsBackup)
+      // ConfigDB_CreateAndSaveValueA26A27("user", 'mod.enabledmods',modsBackup) // guess this was not needed or mistake also 23-0722_1314-58
 
     let message = `
 Mods sometimes work better when enabled in a special order.
