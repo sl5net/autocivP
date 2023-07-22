@@ -297,5 +297,46 @@
 				"config": "modProfile.alwaysInReplay"
 			}
 		]
+	},
+	{
+		"label": "Postfix Name",
+		"options":
+		[
+			{
+				"type": "boolean",
+				"label": "customrating enabled?",
+				"tooltip": "Enable custom rating",
+				"config": "customrating"
+			},
+			{
+				"type": "string",
+				"label": "Any text max 15 chars",
+				"tooltip": "Any text you like (max 15 chars long). Extra chars use those codes ^1  ∞, ^2 ♡, ^3 ™, ^4 ★, ^5 ↑ ",
+				"config": "customrating.value"
+
+			},
+			{
+				"type": "dropdown",
+				"label": " or select presets --------->",
+				"tooltip": "You can modify your custom string in brackets - works in game",
+				"config": "customrating.value",
+				"dependencies": ["customrating"],
+				"list": [
+					{ "value": " ® ", "label": "noob"  },
+					{ "value": "^0", "label": "youtuber"  },
+					{ "value": "^1", "label": "unfocused today"  },
+					{ "value": "^2", "label": "rated"  },
+					{ "value": "^3", "label": "unrated"  },
+					{ "value": "^4", "label": "programmer\\?"  },
+					{ "value": "^5", "label": "spec"  },
+					{ "value": "^6", "label": "spec. not play!"  },
+					{ "value": "^7", "label": "ill today"  },
+					{ "value": "^8", "label": "overrated"  },
+					{ "value": "^9", "label": "underrated"  }
+				]
+			}
+		]
 	}
+
+
 ]
