@@ -34,7 +34,7 @@ autociv_patchApplyN("init", function (target, that, args)
       let gameStartSuggestion_value = ''
       if(gameStartSuggestionKey.trim().length > 0){
         let value = ''
-        value = (gameStartSuggestionKey == ' ® ') ? "nuub" : value
+        value = (gameStartSuggestionKey == '^n') ? "nuub" : value
         value = (gameStartSuggestionKey == '^0') ? "<1200, rated, pingMe" : value
         value = (gameStartSuggestionKey == '^1') ? "unrated, pingMe" : value
         value = (gameStartSuggestionKey == '^2') ? "rated, TotalGames>10, pingMe" : value
@@ -43,16 +43,18 @@ autociv_patchApplyN("init", function (target, that, args)
         value = (gameStartSuggestionKey == '^5') ? "must have: progGUI, feldmap" : value
         value = (gameStartSuggestionKey == '^6') ? "spec. not play!" : value
         value = (gameStartSuggestionKey == '^7') ? "not seriously. only a game" : value
-        gameStartSuggestion_value = `|${value}`
+        value = (gameStartSuggestionKey == '^8') ? "Rules: 1. enable autocivP mods, 2. use Jitsi-Audio-Chat later" : value
+        value = (gameStartSuggestionKey == '^9') ? "Rules: 1. enable autocivP, proGUI mods, 2. use Jitsi-Audio-Chat later 3. use share Resources with your friends later" : value
+        gameStartSuggestion_value = `|${value}|`
       }
 
 			// let text = `♡mods: ${modEnabledmods.slice(11,)}`
             const lenFirst = input.caption.length
             const gameStartTime = nextGameStartTime()
             if(gameStartTime)
-              text = `${gameStartSuggestion_value} | ${nextGameStartTime()} |> ${modEnabledmods.slice(11,)} ← Mods I'm currently using`
+              text = `${gameStartSuggestion_value} ${nextGameStartTime()} |> ${modEnabledmods.slice(11,)} ← Mods I'm currently using`
             else
-              text = `${gameStartSuggestion_value} |> ${modEnabledmods.slice(11,)} ← Mods I'm currently using`
+              text = `${gameStartSuggestion_value} > ${modEnabledmods.slice(11,)} ← Mods I'm currently using`
             // input.caption = nextGameStartTime()
             input.caption += text
             // input.caption += nextGameStartTime()

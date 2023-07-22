@@ -304,7 +304,7 @@
 			},
 			{
 				"type": "string",
-				"label": "Any text max (limited chars max. 42)",
+				"label": "Any text (limited chars max. 42)",
 				"tooltip": "Any text you like.",
 				"config": "customrating.value"
 
@@ -316,7 +316,7 @@
 				"config": "customrating.value",
 				"dependencies": ["customrating"],
 				"list": [
-					{ "value": " ® ", "label": "noob"  },
+					{ "value": "^n", "label": "noob"  },
 					{ "value": "^0", "label": "youtuber"  },
 					{ "value": "^1", "label": "unfocused today"  },
 					{ "value": "^2", "label": "rated"  },
@@ -349,7 +349,9 @@
 					{ "value": "^4", "label": "YouTube"  },
 					{ "value": "^5", "label": "must have: progGUI, feldmap"  },
 					{ "value": "^6", "label": "spec. not play!"  },
-					{ "value": "^7", "label": "not seriously. only a game"  }
+					{ "value": "^7", "label": "not seriously. only a game"  },
+					{ "value": "^8", "label": "Rules: 1. enable autocivP mods, 2. use Jitsi-Audio-Chat later"  },
+					{ "value": "^9", "label": "Rules: 1. enable autocivP, proGUI mods, 2. use Jitsi-Audio-Chat later 3. use share Resources with friends"  }
 				]
 			}
 		]
