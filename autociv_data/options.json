@@ -298,8 +298,8 @@
 		[
 			{
 				"type": "boolean",
-				"label": "[color=\"220 185 70\"]Postfix UserName[/color]: enable?",
-				"tooltip": "Enable Postfix for UserName",
+				"label": "[color=\"220 185 70\"]Postfix UserName / GameNames[/color]: enable?",
+				"tooltip": "Enable Postfix for UserName and/or Suggestions for game Names?",
 				"config": "customrating"
 			},
 			{
@@ -390,7 +390,7 @@
 			},
 			{
 				"type": "boolean",
-				"label": "[color=\"220 185 70\"]Postfix UserName[/color]: add Mods I'm currently using ?",
+				"label": "[color=\"220 185 70\"]Game name Suggestion[/color]: add Mods I'm currently using ?",
 				"tooltip": "showModsInGameName",
 				"config": "autocivP.gamesetup.gameStart.showModsInGameName"
 			}
