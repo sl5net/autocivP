@@ -24,7 +24,8 @@ autociv_patchApplyN("init", function (target, that, args)
 				"mod.enabledmods"
 			);
 
-
+      const customrating_trueFalse = Engine.ConfigDB_GetValue("user", "customrating");
+      const isCustomratingEnabled = ( customrating_trueFalse === "true" )
 
       let text = ''
       const gameStartSuggestionKey = Engine.ConfigDB_GetValue(
@@ -44,7 +45,7 @@ autociv_patchApplyN("init", function (target, that, args)
         "autocivP.gamesetup.gameStart.suggestionKey3"
         );
       let gameStartSuggestion_value = ''
-      if(gameStartSuggestionKey.trim().length > 0){
+      if(isCustomratingEnabled && gameStartSuggestionKey.trim().length > 0){
         let value = ''
         value = (gameStartSuggestionKey == '^n') ? "nuub" : value
         value = (gameStartSuggestionKey == '^0') ? "<1200" : value
@@ -71,7 +72,7 @@ autociv_patchApplyN("init", function (target, that, args)
 
         gameStartSuggestion_value += `|${value}|`
       }
-      if(gameStartSuggestionKey2.trim().length > 0){
+      if(isCustomratingEnabled && gameStartSuggestionKey2.trim().length > 0){
         let value = ''
         value = (gameStartSuggestionKey2 == '^0') ? "rated" : value
         value = (gameStartSuggestionKey2 == '^1') ? "unrated" : value
@@ -79,7 +80,7 @@ autociv_patchApplyN("init", function (target, that, args)
         value = (gameStartSuggestionKey2 == '^3') ? "3v3, 4v4" : value
         gameStartSuggestion_value += `|${value}|`
       }
-      if(gameStartSuggestionKey3.trim().length > 0){
+      if(isCustomratingEnabled && gameStartSuggestionKey3.trim().length > 0){
         let value = ''
         value = (gameStartSuggestionKey3 == '^1') ? "pingMe" : value
         gameStartSuggestion_value += `|${value}|`
