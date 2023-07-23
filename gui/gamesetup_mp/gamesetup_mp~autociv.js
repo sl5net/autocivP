@@ -54,6 +54,7 @@ autociv_patchApplyN("init", function (target, that, args)
         value = (gameStartSuggestionKey == '^g') ? "2xSpeed unRated pingMe CheatsNO randomMap - don't EXIT->ResignFirst thanks": value
         value = (gameStartSuggestionKey == '^h') ? "use Map 'Extinct Volcano'. it has something like timeout inside. Default is 25 Minutes": value
         value = (gameStartSuggestionKey == '^i') ? "talk and optional TG later": value
+        value = (gameStartSuggestionKey == '^j') ? "can you do me a favor and test my latest mod update with me? please load new modificatoin from githup first": value
 
         gameStartSuggestion_value = `|${value}|`
       }
