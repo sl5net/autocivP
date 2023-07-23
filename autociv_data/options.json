@@ -304,12 +304,6 @@
 			},
 			{
 				"type": "string",
-				"label": "[color=\"220 185 70\"]Game name Suggestion[/color]. next fullMinute (default is next full 30 minutes ⟨ or empty)",
-				"tooltip": "e.g. next full 30 minutes 12:30 13:00.",
-				"config": "autocivP.gamesetup.gameStart.inNextFullMinute"
-			},
-			{
-				"type": "string",
 				"label": "Any text (limited chars max. 42)",
 				"tooltip": "Any text you like.",
 				"config": "customrating.value"
@@ -335,6 +329,12 @@
 					{ "value": "^8", "label": "overrated"  },
 					{ "value": "^9", "label": "underrated"  }
 				]
+			},
+			{
+				"type": "string",
+				"label": "[color=\"220 185 70\"]Game name Suggestion[/color]. next fullMinute (default is next full 30 minutes ⟨ or empty)",
+				"tooltip": "e.g. next full 30 minutes 12:30 13:00.",
+				"config": "autocivP.gamesetup.gameStart.inNextFullMinute"
 			},
 			{
 				"type": "dropdown",
