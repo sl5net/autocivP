@@ -49,6 +49,7 @@ function init(attribs) {
 
     // added by custom rating - START
     let customrating_value = Engine.ConfigDB_GetValue("user", "customrating.value");
+    const customrating_trueFalse = Engine.ConfigDB_GetValue("user", "customrating");
 
 
     const modsObj = Engine.GetEngineInfo().mods
@@ -59,7 +60,7 @@ function init(attribs) {
         }
     }
 
-    if (customrating_value == "false" && !g_proGUIPVersion ) { // if g_proGUIP is used then always us customrating
+    if (customrating_trueFalse == "false"){ //  && !g_proGUIPVersion ) { // if g_proGUIP is used then always us customrating
         // Get only username without brackets
         g_UserRating = false;
     } else if (isNaN(customrating_value)) {
@@ -70,20 +71,6 @@ function init(attribs) {
         const isCustomratingEnabled = Engine.ConfigDB_GetValue("user", "customrating") == "true"
         if(isCustomratingEnabled){
 
-/*!SECTION
-					{ "value": "^0", "label": "youtuber"  },
-					{ "value": "^1", "label": "unfocused today"  },
-					{ "value": "^2", "label": "rated"  },
-					{ "value": "^3", "label": "unrated"  },
-					{ "value": "^4", "label": "programmer\\?"  },
-					{ "value": "^5", "label": "spec"  },
-					{ "value": "^6", "label": "spec. not play!"  },
-					{ "value": "^7", "label": "ill today"  },
-					{ "value": "^8", "label": "overrated"  },
-					{ "value": "^9", "label": "underrated"  }
-
-                    Extra chars  ^1  ∞, ^2 ♡, ^3 ™, ^4 ★, ^5 ↑
-*/
             customrating_value = customrating_value.replace(/ ® /g, "nuub");
             customrating_value = customrating_value.replace(/\^0/g, "youtuber");
             customrating_value = customrating_value.replace(/\^1/g, "unfocused today");

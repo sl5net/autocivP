@@ -71,13 +71,6 @@ autociv_patchApplyN("init", function (target, that, args)
 
         gameStartSuggestion_value += `|${value}|`
       }
-      /*!SECTION
-            { "value": "^0", "label": "rated"  },
-					{ "value": "^1", "label": "unrated"  },
-					{ "value": "^2", "label": "1v1, 2v2"  },
-					{ "value": "^3", "label": "3v3, 4v4"  }
-
-      */
       if(gameStartSuggestionKey2.trim().length > 0){
         let value = ''
         value = (gameStartSuggestionKey2 == '^0') ? "rated" : value
@@ -92,7 +85,6 @@ autociv_patchApplyN("init", function (target, that, args)
         gameStartSuggestion_value += `|${value}|`
       }
 
-			// let text = `♡mods: ${modEnabledmods.slice(11,)}`
             const lenFirst = input.caption.length
             const gameStartTime = nextGameStartTime()
             if(gameStartTime)
