@@ -316,6 +316,7 @@
 				"config": "customrating.value",
 				"dependencies": ["customrating"],
 				"list": [
+					{ "value": "false", "label": ""  },
 					{ "value": "^n", "label": "noob"  },
 					{ "value": "^0", "label": "youtuber"  },
 					{ "value": "^1", "label": "unfocused today"  },
@@ -342,26 +343,49 @@
 				"config": "autocivP.gamesetup.gameStart.suggestionKey",
 				"list": [
 					{ "value": "false", "label": ""  },
-					{ "value": "^0", "label": "<1200, rated, pingMe"  },
-					{ "value": "^1", "label": "unrated, pas:pingMe"  },
-					{ "value": "^2", "label": "rated, TotalGames>10, pingMe"  },
+					{ "value": "^0", "label": "<1200"  },
+					{ "value": "^1", "label": "pas:pingMe"  },
+					{ "value": "^2", "label": "TotalGames>10"  },
 					{ "value": "^3", "label": "waiting for friends"  },
 					{ "value": "^4", "label": "YouTube"  },
 					{ "value": "^5", "label": "must have: progGUI, feldmap"  },
+					{ "value": "^5b", "label": "must have: progGUI, autocivP, feldmap"  },
 					{ "value": "^6", "label": "spec. not play!"  },
 					{ "value": "^7", "label": "not seriously. only a game"  },
 					{ "value": "^8", "label": "Rules: 1. enable autocivP mods, 2. use Jitsi-Audio-Chat later"  },
 					{ "value": "^9", "label": "Rules: 1. enable autocivP, proGUI mods, 2. use Jitsi-Audio-Chat later 3. use share Resources with friends"  },
-					{ "value": "^a", "label": "unrated game for drunken idiots - ping me by typing my name"  },
-					{ "value": "^b", "label": "1v1 - random map, join, pingMe by typing my name , wait 1min, i say hi, ... , start"  },
-					{ "value": "^c", "label": "pingMe - double speed"  },
-					{ "value": "^d", "label": "pingMe - normal random map - no Cheats"  },
-					{ "value": "^e", "label": "1v1, 2v2 random map pingMe"  },
-					{ "value": "^f", "label": "2xSpeed pingMe randomMap - don't EXIT"  },
-					{ "value": "^g", "label": "2xSpeed unRated pingMe CheatsNO randomMap - don't EXIT->ResignFirst thanks"  },
+					{ "value": "^a", "label": "game for drunken idiots - ping me by typing my name"  },
+					{ "value": "^b", "label": "1v1 - random map, join by typing my name , wait 1min, i say hi, ... , start"  },
+					{ "value": "^c", "label": "double speed"  },
+					{ "value": "^d", "label": "normal random map - no Cheats"  },
+					{ "value": "^f", "label": "2xSpeed randomMap - don't EXIT"  },
+					{ "value": "^g", "label": "2xSpeed CheatsNO randomMap - don't EXIT->ResignFirst thanks"  },
 					{ "value": "^h", "label": "use Map 'Extinct Volcano'. it has something like timeout inside. Default is 25 Minutes"  },
 					{ "value": "^i", "label": "talk and optional TG later"  },
 					{ "value": "^j", "label": "can you do me a favor and test my latest mod update with me? please load new modificatoin from githup first"  }
+				]
+			},
+			{
+				"type": "dropdown",
+				"label": "[color=\"220 185 70\"]Game name Suggestion[/color] select presets ----->",
+				"tooltip": "set to empty or select a name postfix",
+				"config": "autocivP.gamesetup.gameStart.suggestionKey2",
+				"list": [
+					{ "value": "false", "label": ""  },
+					{ "value": "^0", "label": "rated"  },
+					{ "value": "^1", "label": "unrated"  },
+					{ "value": "^2", "label": "1v1, 2v2"  },
+					{ "value": "^3", "label": "3v3, 4v4"  }
+				]
+			},
+			{
+				"type": "dropdown",
+				"label": "[color=\"220 185 70\"]Game name Suggestion[/color] select presets ----->",
+				"tooltip": "set to empty or select a name postfix",
+				"config": "autocivP.gamesetup.gameStart.suggestionKey3",
+				"list": [
+					{ "value": "false", "label": ""  },
+					{ "value": "^1", "label": "pingMe"  }
 				]
 			}
 		]
