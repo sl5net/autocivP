@@ -87,10 +87,16 @@ autociv_patchApplyN("init", function (target, that, args)
 
             const lenFirst = input.caption.length
             const gameStartTime = nextGameStartTime()
+
+            const modsInGameName
+              = Engine.ConfigDB_GetValue("user", "autocivP.gamesetup.gameStart.showModsInGameName") == "true"
+              ? `| ${modEnabledmods.slice(11,)} ← Mods I'm currently using`
+              : ''
+
             if(gameStartTime)
-              text = `${gameStartSuggestion_value} ${nextGameStartTime()} |> ${modEnabledmods.slice(11,)} ← Mods I'm currently using`
+              text = `${gameStartSuggestion_value} ${nextGameStartTime()} ${modsInGameName}`
             else
-              text = `${gameStartSuggestion_value} > ${modEnabledmods.slice(11,)} ← Mods I'm currently using`
+              text = `${gameStartSuggestion_value} ${modsInGameName}`
             // input.caption = nextGameStartTime()
             input.caption += text
             // input.caption += nextGameStartTime()
