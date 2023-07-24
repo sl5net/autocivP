@@ -313,7 +313,7 @@
 				"type": "dropdown",
 				"label": "[color=\"220 185 70\"]Postfix UserName[/color] or select presets ----->",
 				"tooltip": "You can add a custom postfix - works in game",
-				"config": "autocivP.gamesetup.gameStart.suggestionKey0",
+				"config": "autocivP.customusername",
 				"dependencies": ["customrating"],
 				"list": [
 					{ "value": "false", "label": ""  },
@@ -405,7 +405,19 @@
 				"type": "string",
 				"label": "[color=\"220 185 70\"]helloAll message[/color]",
 				"tooltip": "write helloAll⟦Tab⟧ or hiall⟦Tab⟧, set it here or hiall yourMessageText",
-				"config": "autocivP.gamesetup.helloAll"
+				"config": "autocivP.msg.helloAll"
+			},
+			{
+				"type": "string",
+				"label": "[color=\"220 185 70\"]me message[/color]",
+				"tooltip": "write Me⟦Tab⟧",
+				"config": "autocivP.msg.me"
+			},
+			{
+				"type": "string",
+				"label": "[color=\"220 185 70\"]my URL[/color]",
+				"tooltip": "write Meurl⟦Tab⟧  meUrl⟦Tab⟧ . some need to share a URL often. e.g. youtuber",
+				"config": "autocivP.msg.meURL"
 			}
 
 		]

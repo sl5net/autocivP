@@ -217,6 +217,12 @@ const autoCompleteText_newMerge = function (guiObject, list)
         return;
     case 'hiall':
         return captionIs_hiall(guiObject);
+    case 'me':
+        return captionIs_me(guiObject);
+    case 'meurl':
+        return captionIs_meURL(guiObject);
+    case 'meu': // synonym. if you in hurry
+        return captionIs_meURL(guiObject);
     case 'timeNow':
         return g_NetworkCommands["/whatstimeNow"]()
     case 'modsImCurrentlyUsing'.toLowerCase():
@@ -668,15 +674,33 @@ return true;
 
 }
 
+function captionIs_me(guiObject){
+  const key = "autocivP.msg.me";
+  const text = Engine.ConfigDB_GetValue("user", key);
+  if(!text)
+      selfMessage('me is empty.');
+  else
+    guiObject.caption = text
+  return;
+}
+function captionIs_meURL(guiObject){
+  const key = "autocivP.msg.meURL";
+  const text = Engine.ConfigDB_GetValue("user", key);
+  if(!text)
+      selfMessage('url is empty.');
+  else
+    guiObject.caption = text
+  return;
+}
 function captionIs_hiall(guiObject){
-  const key = "autocivP.gamesetup.helloAll";
+  const key = "autocivP.msg.helloAll";
   const helloAll = Engine.ConfigDB_GetValue("user", key);
   if(!helloAll)
-      selfMessage('helloAll is empty.');
-  guiObject.caption = helloAll
+    selfMessage('helloAll is empty.');
+  else
+    guiObject.caption = helloAll
   selfMessage('set /hiAll yourWelcomeText or use /hiAll yourWelcomeText or send by /hiAll or helloAll tab, to edit it first.');
   return;
-
 }
 function captionIs_modsImCurrentlyUsing(guiObject){ // this function will be triggerd from by in game chat
   const modEnabledmods = Engine.ConfigDB_GetValue(

@@ -24,7 +24,7 @@ autociv_patchApplyN("init", function (target, that, args)
 				"mod.enabledmods"
 			);
 
-      const customrating_trueFalse = Engine.ConfigDB_GetValue("user", "customrating");
+      const customrating_trueFalse = Engine.ConfigDB_GetValue("user", "personalization");
       const isCustomratingEnabled = ( customrating_trueFalse === "true" )
 
       let text = ''
@@ -45,10 +45,9 @@ autociv_patchApplyN("init", function (target, that, args)
         "autocivP.gamesetup.gameStart.suggestionKey3"
         );
       let gameStartSuggestion_value = ''
+      // The variations 'nub' and 'nuub' are alternative spellings of 'noob' and are commonly used in online communities or forums.
       if(isCustomratingEnabled && gameStartSuggestionKey.trim().length > 0){
         let value = ''
-        value = (gameStartSuggestionKey == '^n') ? "nuub" : value
-        value = (gameStartSuggestionKey == '^vn') ? "very nub" : value
         value = (gameStartSuggestionKey == '^0') ? "<1200" : value
         value = (gameStartSuggestionKey == '^1') ? "" : value
         value = (gameStartSuggestionKey == '^2') ? "TotalGames>10" : value

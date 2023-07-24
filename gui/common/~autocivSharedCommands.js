@@ -361,7 +361,7 @@ const g_autociv_SharedCommands = {
 		"description": "Say hello (configurable). set /hiAll yourWelcomeText or send with /hiAll yourWelcomeText",
 		"handler": (text) =>
 		{
-					const key = "autocivP.gamesetup.helloAll";
+					const key = "autocivP.msg.helloAll";
 					if(text){
 				ConfigDB_CreateAndSaveValueA26A27("user", key, text);
 				selfMessage(

@@ -48,8 +48,8 @@ function init(attribs) {
     }
 
     // added by custom rating - START
-    let customrating_value = Engine.ConfigDB_GetValue("user", "customrating.value");
-    const customrating_trueFalse = Engine.ConfigDB_GetValue("user", "customrating");
+    let customrating_value = Engine.ConfigDB_GetValue("user", "autocivP.customusername");
+    const customrating_trueFalse = Engine.ConfigDB_GetValue("user", "personalization");
 
 
     const modsObj = Engine.GetEngineInfo().mods
@@ -70,8 +70,8 @@ function init(attribs) {
 
         const isCustomratingEnabled = ( customrating_trueFalse != "false" )
         if(isCustomratingEnabled){
-
-            customrating_value = customrating_value.replace(/ ® /g, "nuub");
+            customrating_value = customrating_value.replace(/\^n/g, "nuub");
+            customrating_value = customrating_value.replace(/\^vn/g, "very nub");
             customrating_value = customrating_value.replace(/\^0/g, "youtuber");
             customrating_value = customrating_value.replace(/\^1/g, "unfocused today");
             customrating_value = customrating_value.replace(/\^2/g, " rated");
@@ -90,7 +90,7 @@ function init(attribs) {
 
         if(g_proGUIPVersion){
             const temp = g_UserRating + "|proGUI";
-            customrating_value = ( isCustomratingEnabled && customrating_value) ? `${temp}| ${customrating_value}` : temp ;
+            customrating_value = ( isCustomratingEnabled && customrating_value) ? `${temp}|${customrating_value}` : temp ;
         }
 
 
