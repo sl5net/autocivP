@@ -124,12 +124,12 @@ const autoCompleteText_newMerge = function (guiObject, list)
   if (!caption.length){ // trigers when no caption content is in
     // selfMessage(`116: ${caption} = ${caption}`)
 
-    if(  g_backupMessageBeforeChangeContContextViaHotkey ) // this fixes the problem with changing chat context via hotkey a bit. it saves last chat context temporarily and but it in again when you press tab 23-0724_1543-57
+    if(  g_backupMessageBeforeChangeContextViaHotkey ) // this fixes the problem with changing chat context via hotkey a bit. it saves last chat context temporarily and but it in again when you press tab 23-0724_1543-57
     {
-      // selfMessage(`102: g_backupMessageBeforeChangeContContextViaHotkey = ${g_backupMessageBeforeChangeContContextViaHotkey}`)
-      guiObject.caption = g_backupMessageBeforeChangeContContextViaHotkey
-      guiObject.buffer_position = g_backupMessageBeforeChangeContContextViaHotkey.length;
-      g_backupMessageBeforeChangeContContextViaHotkey = ''
+      // selfMessage(`102: g_backupMessageBeforeChangeContextViaHotkey = ${g_backupMessageBeforeChangeContextViaHotkey}`)
+      guiObject.caption = g_backupMessageBeforeChangeContextViaHotkey
+      guiObject.buffer_position = g_backupMessageBeforeChangeContextViaHotkey.length;
+      g_backupMessageBeforeChangeContextViaHotkey = ''
       return
     }
 
