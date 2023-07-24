@@ -109,6 +109,8 @@ const autoCompleteText_newMerge = function (guiObject, list)
 
   chatInputTooltipQuickFixUpdate()
 
+
+
   const caption = guiObject.caption
   // let caption = guiObject.caption.trim()  // used long time to trim the caption to 23-0705_2249-00 idk if it may dangerous to trim here
 
@@ -121,6 +123,15 @@ const autoCompleteText_newMerge = function (guiObject, list)
   // if(!caption) // trigers when no caption content is in
   if (!caption.length){ // trigers when no caption content is in
     // selfMessage(`116: ${caption} = ${caption}`)
+
+    if(  g_backupMessageBeforeChangeContContextViaHotkey ) // this fixes the problem with changing chat context via hotkey a bit. it saves last chat context temporarily and but it in again when you press tab 23-0724_1543-57
+    {
+      // selfMessage(`102: g_backupMessageBeforeChangeContContextViaHotkey = ${g_backupMessageBeforeChangeContContextViaHotkey}`)
+      guiObject.caption = g_backupMessageBeforeChangeContContextViaHotkey
+      guiObject.buffer_position = g_backupMessageBeforeChangeContContextViaHotkey.length;
+      g_backupMessageBeforeChangeContContextViaHotkey = ''
+      return
+    }
 
     if(setCaption2LastCommandOfHistory(guiObject))
       return // now the caption is not empty anymore

@@ -1,4 +1,6 @@
 // Autociv control class with sub classes that will be have an instance at init()
+
+var g_backupMessageBeforeChangeContContextViaHotkey = ''
 class AutocivControls
 {
 	constructor()
@@ -103,9 +105,33 @@ function autociv_changeSomeHotkeysToKeyDownAsPressTypeCantBeDiscardedFromBeingCa
 		Engine.UnsetGlobalHotkey("chat", "Press");
 		Engine.UnsetGlobalHotkey("teamchat", "Press");
 		Engine.UnsetGlobalHotkey("privatechat", "Press");
+
 		Engine.SetGlobalHotkey("chat", "KeyDown", that.openPage.bind(that));
+		// Engine.SetGlobalHotkey("chat", "KeyDown", () => {
+		// 	return that.openPage.bind(that);
+		// })
+			// selfMessage("chat", "Press"); // that everybody chat
+
+		Engine.SetGlobalHotkey("chat", "KeyDown", () => {
+
+			const chatInput = Engine.GetGUIObjectByName("chatInput")
+
+			if(chatInput?.caption && chatInput.caption.length > 0){
+				selfMessage(`getting your chat "${chatInput.caption}" by press ⟦Tab⟧ later`);
+				g_backupMessageBeforeChangeContContextViaHotkey = chatInput.caption
+			// this fixes the problem with changing chat context via hotkey a bit. it saves last chat context temporarily and but it in again when you press tab 23-0724_1543-57
+			}
+
+			return that.openPage(g_IsObserver ? "/observers" : "/chat"); // works
+		});
+
+
 		Engine.SetGlobalHotkey("privatechat", "KeyDown", that.openPage.bind(that));
-		Engine.SetGlobalHotkey("teamchat", "KeyDown", () => { that.openPage(g_IsObserver ? "/observers" : "/allies"); });
+
+		Engine.SetGlobalHotkey("teamchat", "KeyDown", () => {
+			// selfMessage("teamchat", "Press");
+			return that.openPage(g_IsObserver ? "/observers" : "/allies");
+		});
 	}
 }
 

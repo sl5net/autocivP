@@ -49,7 +49,7 @@ function init(attribs) {
 
     // added by custom rating - START
     let customrating_value = Engine.ConfigDB_GetValue("user", "autocivP.customusername");
-    const customrating_trueFalse = Engine.ConfigDB_GetValue("user", "personalization");
+    const customrating_trueFalse = Engine.ConfigDB_GetValue("user", "customrating");
 
 
     const modsObj = Engine.GetEngineInfo().mods

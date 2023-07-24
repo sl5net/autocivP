@@ -305,9 +305,8 @@
 			{
 				"type": "string",
 				"label": "Any text (limited chars max. 42)",
-				"tooltip": "Any text you like.",
+				"tooltip": "Any text you like. Maybe your Localrating here? Like LR:-9 or LR:5 for example",
 				"config": "customrating.value"
-
 			},
 			{
 				"type": "dropdown",
@@ -403,19 +402,19 @@
 			},
 			{
 				"type": "string",
-				"label": "[color=\"220 185 70\"]helloAll message[/color]",
+				"label": "[color=\"220 185 70\"]message [/color] helloAll or hiall",
 				"tooltip": "write helloAll⟦Tab⟧ or hiall⟦Tab⟧, set it here or hiall yourMessageText",
 				"config": "autocivP.msg.helloAll"
 			},
 			{
 				"type": "string",
-				"label": "[color=\"220 185 70\"]me message[/color]",
+				"label": "[color=\"220 185 70\"]message[/color] Me⟦Tab⟧",
 				"tooltip": "write Me⟦Tab⟧",
 				"config": "autocivP.msg.me"
 			},
 			{
 				"type": "string",
-				"label": "[color=\"220 185 70\"]my URL[/color]",
+				"label": "[color=\"220 185 70\"]message[/color] my URL. write Meurl⟦Tab⟧",
 				"tooltip": "write Meurl⟦Tab⟧  meUrl⟦Tab⟧ . some need to share a URL often. e.g. youtuber",
 				"config": "autocivP.msg.meURL"
 			}

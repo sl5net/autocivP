@@ -24,7 +24,7 @@ autociv_patchApplyN("init", function (target, that, args)
 				"mod.enabledmods"
 			);
 
-      const customrating_trueFalse = Engine.ConfigDB_GetValue("user", "personalization");
+      const customrating_trueFalse = Engine.ConfigDB_GetValue("user", "customrating");
       const isCustomratingEnabled = ( customrating_trueFalse === "true" )
 
       let text = ''
@@ -104,9 +104,14 @@ autociv_patchApplyN("init", function (target, that, args)
               text = `${gameStartSuggestion_value} ${modsInGameName}`
             // input.caption = nextGameStartTime()
 
+
             if ( Engine.ConfigDB_GetValue("user", "autocivP.gamesetup.noUsernameInGameName") == "true" ){
+              // if(g_selfNick =="seeh") //NOTE - developers
+              //   warn(`109: ${text} = text`)
               text = text.replace(/^[\| ]*(.*?)[\| ]*$/, "$1"); // trim from leading of ending | delimiters
-              input.caption = text
+              input.caption = text // for some reason this was not inserted in a local game name setup. not sure why and not big problem. dont want to fix it 23-0724_1309-330
+              // if(g_selfNick =="seeh") //NOTE - developers
+              //   warn(`112: ${text} = text`)
             }else{
               text = text.replace(/^[\| ]*(.*?)[\| ]*$/, "$1"); // trim from ending | delimiters
               input.caption += text
