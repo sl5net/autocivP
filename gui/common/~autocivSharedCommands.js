@@ -341,7 +341,7 @@ function saveLastCommand2History(lastCommand){
 // Input expected "name (rating) : message". (rating) optional
 function autociv_GetNameRatingText(text)
 {
-	let spliterIndex = text.indexOf(":");
+	const spliterIndex = text.indexOf(":");
 	if (spliterIndex == -1)
 		return false;
 
@@ -356,26 +356,26 @@ function autociv_GetNameRatingText(text)
 };
 
 // use /command to trigger the following commands:
-var g_autociv_SharedCommands = {
+const g_autociv_SharedCommands = {
 	"hiAll" : {
 		"description": "Say hello (configurable). set /hiAll yourWelcomeText or send with /hiAll yourWelcomeText",
 		"handler": (text) =>
 		{
-			  const key = "autocivP.gamesetup.helloAll";
-			  if(text){
+					const key = "autocivP.gamesetup.helloAll";
+					if(text){
 				ConfigDB_CreateAndSaveValueA26A27("user", key, text);
 				selfMessage(
-				  `helloAll was set to ${text}`
+						`helloAll was set to ${text}`
 				);
-			  }else{
+					}else{
 				let helloAllText = Engine.ConfigDB_GetValue("user", key);
 				if(!helloAllText){
-				  helloAllText = 'hi hf.';
-				  ConfigDB_CreateAndSaveValueA26A27("user", key, helloAllText);
+						helloAllText = 'hi hf.';
+						ConfigDB_CreateAndSaveValueA26A27("user", key, helloAllText);
 				}
 				const chatInput = Engine.GetGUIObjectByName("chatInput")
 				chatInput.caption = helloAllText
-			  }
+					}
 			}
 	},
 	"whatsAutocivPMod" : {
@@ -411,9 +411,15 @@ var g_autociv_SharedCommands = {
 			const today = new Date();
 			const hours = today.getHours().toString().padStart(2, '0');
 			const minutes = today.getMinutes().toString().padStart(2, '0');
-			const text = `it's ${hours}:${minutes} here.`;
+			const text = `it's ${hours}:${minutes} here.`
 			const chatInput = Engine.GetGUIObjectByName("chatInput");
-			chatInput.caption = text;
+
+			if( gameState == "lobby" )
+				sendMessage(text)
+			else
+				chatInput.caption = text; // for some reasons this is not working in lobby at the moment 23-0724_0958-02. its ignored
+			if(g_selfNick =="seeh") //NOTE - 23-0705_2302-57 developers want to see the error in the console
+				selfMessage(`411: whatstimeNow: ${text} (gui/common/~autocivSharedCommands.js)`);
 		}
 	},
 	"timenow" : {
@@ -425,7 +431,13 @@ var g_autociv_SharedCommands = {
 			const minutes = today.getMinutes().toString().padStart(2, '0');
 			const text = `it's ${hours}:${minutes} here.`;
 			const chatInput = Engine.GetGUIObjectByName("chatInput");
-			chatInput.caption = text;
+
+			if( gameState == "lobby" )
+				sendMessage(text)
+			else
+				chatInput.caption = text; // for some reasons this is not working in lobby at the moment 23-0724_0958-02. its ignored
+			if(g_selfNick =="seeh") //NOTE - 23-0705_2302-57 developers want to see the error in the console
+				selfMessage(`411: whatstimeNow: ${text} (gui/common/~autocivSharedCommands.js)`);
 		}
 	},
 	"modsImCurrentlyUsing": {
@@ -437,7 +449,7 @@ var g_autociv_SharedCommands = {
 				"mod.enabledmods"
 			);
 			// sendMessage(`Mods I'm currently using: ${modEnabledmods.slice(11,)}` );
-			let text = `Mods I'm currently using: ${modEnabledmods.slice(11,)}`
+			const text = `Mods I'm currently using: ${modEnabledmods.slice(11,)}`
 			const chatInput = Engine.GetGUIObjectByName("chatInput")
 			chatInput.caption = text
 		}
@@ -594,7 +606,7 @@ var g_autociv_SharedCommands = {
 				selfMessage(`Reminder == ${player} : ${bot.getValue(player)}`);
 		}
 	}
-}
+};
 
 function autociv_InitSharedCommands()
 {
@@ -616,7 +628,12 @@ autociv_InitSharedCommands.pipe = {
 				if(key == 'jitsi') // long text a critical in the looby. better not so many commands there with long texts
 					return true
 				g_autociv_SharedCommands[key].handler(text)
-				selfMessage(`482: SharedCommands: ${key} = ${text}`)
+				// g_autociv_SharedCommands.whatstimeNow.handler()
+
+
+				if(g_selfNick =="seeh"){ //NOTE - 23-0705_2302-57 developers want to see more
+					selfMessage(`619: SharedCommands: ${key} = ${text}`)
+				}
 				return true
 			}
 		}
