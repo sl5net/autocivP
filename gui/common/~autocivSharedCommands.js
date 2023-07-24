@@ -411,15 +411,21 @@ var g_autociv_SharedCommands = {
 			const today = new Date();
 			const hours = today.getHours().toString().padStart(2, '0');
 			const minutes = today.getMinutes().toString().padStart(2, '0');
-			const text = "it's " + hours + ':' + minutes + ' here.';
+			const text = `it's ${hours}:${minutes} here.`;
 			const chatInput = Engine.GetGUIObjectByName("chatInput");
-			chatInput.caption = text;		}
+			chatInput.caption = text;
+		}
 	},
 	"timenow" : {
 		"description": "Time here in hoursMinute",
 		"handler": () =>
 		{
-			g_NetworkCommands["/whatstimeNow"]();
+			const today = new Date();
+			const hours = today.getHours().toString().padStart(2, '0');
+			const minutes = today.getMinutes().toString().padStart(2, '0');
+			const text = `it's ${hours}:${minutes} here.`;
+			const chatInput = Engine.GetGUIObjectByName("chatInput");
+			chatInput.caption = text;
 		}
 	},
 	"modsImCurrentlyUsing": {

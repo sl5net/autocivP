@@ -728,7 +728,7 @@ function is_transGGWP_needet(caption, firstChar, iconPrefix,guiObject) {
   )
   &&
     // !firstChar.match(/[A-Z]/) // not Upercase A-Z first lettter. Upercase is not recomanded as seach words. especially not in a shorter text. Now fixed: Ha => Han, before it was Ha => hand
-    !caption.match(/[A-Z]/) // not Upercase A-Z in caption. more strict. Easier to explain and maybe easier to use and remeber this rule, then only use this rule for the first letter
+    !caption.match(/\b[A-Z]/) // not Upercase word start A-Z in caption. more strict. Easier to explain and maybe easier to use and remeber this rule, then only use this rule for the first letter
   &&
   (
     caption.length <= 90 //NOTE - 300 maybe too long . prefent multiple repacment
