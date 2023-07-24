@@ -72,7 +72,7 @@ autociv_patchApplyN("init", function (target, that, args)
 
         gameStartSuggestion_value += `|${value}`
       }
-      if(isCustomratingEnabled && gameStartSuggestionKey2.trim().length > 0){
+      if(isCustomratingEnabled && gameStartSuggestionKey2 !== 'false' && gameStartSuggestionKey2.trim().length > 0){
         let value = ''
         value = (gameStartSuggestionKey2 == '^0') ? "rated" : value
         value = (gameStartSuggestionKey2 == '^1') ? "1v1 unrated" : value
@@ -87,7 +87,7 @@ autociv_patchApplyN("init", function (target, that, args)
       if(isCustomratingEnabled && gameStartSuggestionKey3.trim().length > 0){
         let value = ''
         value = (gameStartSuggestionKey3 == '^1') ? "pingMe" : value
-        gameStartSuggestion_value += `|${value}|`
+        gameStartSuggestion_value += `${value}|`
       }
 
             const lenFirst = input.caption.length
