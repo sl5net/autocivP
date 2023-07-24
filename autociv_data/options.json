@@ -293,7 +293,7 @@
 		]
 	},
 	{
-		"label": "Name Postfixes",
+		"label": "♥ Personalization",
 		"options":
 		[
 			{
@@ -329,6 +329,12 @@
 					{ "value": "^8", "label": "overrated"  },
 					{ "value": "^9", "label": "underrated"  }
 				]
+			},
+			{
+				"type": "boolean",
+				"label": "[color=\"220 185 70\"]no UserName in GameNames[/color]?",
+				"tooltip": "cuts of your username from game name Suggestions",
+				"config": "autocivP.gamesetup.noUsernameInGameName"
 			},
 			{
 				"type": "string",

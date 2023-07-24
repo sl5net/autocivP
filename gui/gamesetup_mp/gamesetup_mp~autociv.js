@@ -103,10 +103,18 @@ autociv_patchApplyN("init", function (target, that, args)
             else
               text = `${gameStartSuggestion_value} ${modsInGameName}`
             // input.caption = nextGameStartTime()
-            input.caption += text
+
+            if ( Engine.ConfigDB_GetValue("user", "autocivP.gamesetup.noUsernameInGameName") == "true" ){
+              text = text.replace(/^[\| ]*(.*?)[\| ]*$/, "$1"); // trim from leading of ending | delimiters
+              input.caption = text
+            }else{
+              text = text.replace(/^[\| ]*(.*?)[\| ]*$/, "$1"); // trim from ending | delimiters
+              input.caption += text
+              input.buffer_position = lenFirst
+            }
             // input.caption += nextGameStartTime()
             // input.caption = nextGameStartTime()
-            input.buffer_position = lenFirst
+
     }
 
         // input.buffer_position = input.caption.length;

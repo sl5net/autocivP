@@ -419,7 +419,7 @@ const g_autociv_SharedCommands = {
 			else
 				chatInput.caption = text; // for some reasons this is not working in lobby at the moment 23-0724_0958-02. its ignored
 			if(g_selfNick =="seeh") //NOTE - 23-0705_2302-57 developers want to see the error in the console
-				selfMessage(`411: whatstimeNow: ${text} (gui/common/~autocivSharedCommands.js)`);
+				selfMessage(`422: whatstimeNow: ${text} (gui/common/~autocivSharedCommands.js)`);
 		}
 	},
 	"timenow" : {
@@ -437,7 +437,7 @@ const g_autociv_SharedCommands = {
 			else
 				chatInput.caption = text; // for some reasons this is not working in lobby at the moment 23-0724_0958-02. its ignored
 			if(g_selfNick =="seeh") //NOTE - 23-0705_2302-57 developers want to see the error in the console
-				selfMessage(`411: whatstimeNow: ${text} (gui/common/~autocivSharedCommands.js)`);
+				selfMessage(`410: timenow: ${text} (gui/common/~autocivSharedCommands.js)`);
 		}
 	},
 	"modsImCurrentlyUsing": {
