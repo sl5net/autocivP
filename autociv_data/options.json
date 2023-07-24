@@ -399,6 +399,12 @@
 				"label": "[color=\"220 185 70\"]Game name Suggestion[/color]: add Mods I'm currently using ?",
 				"tooltip": "showModsInGameName",
 				"config": "autocivP.gamesetup.gameStart.showModsInGameName"
+			},
+			{
+				"type": "string",
+				"label": "[color=\"220 185 70\"]helloAll message[/color]",
+				"tooltip": "write helloAll⟦Tab⟧ or hiall⟦Tab⟧, set it here or hiall yourMessageText",
+				"config": "autocivP.gamesetup.helloAll"
 			}
 
 		]
