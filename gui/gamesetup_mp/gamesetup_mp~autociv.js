@@ -48,13 +48,13 @@ autociv_patchApplyN("init", function (target, that, args)
       // The variations 'nub' and 'nuub' are alternative spellings of 'noob' and are commonly used in online communities or forums.
       if(isCustomratingEnabled && gameStartSuggestionKey.trim().length > 0){
         let value = ''
-        value = (gameStartSuggestionKey == '^0') ? "<1200" : value
-        value = (gameStartSuggestionKey == '^1') ? "" : value
+        value = (gameStartSuggestionKey == '^1') ? "learn/teach/talk game" : value
         value = (gameStartSuggestionKey == '^2') ? "TotalGames>10" : value
         value = (gameStartSuggestionKey == '^3') ? "waiting for friends" : value
         value = (gameStartSuggestionKey == '^4') ? "YouTube" : value
         value = (gameStartSuggestionKey == '^5') ? "must have: progGUI, feldmap" : value
         value = (gameStartSuggestionKey == '^5b') ? "must have: progGUI, autocivP, feldmap" : value
+        value = (gameStartSuggestionKey == '^0') ? "must have: progGUI, autocivP" : value
         value = (gameStartSuggestionKey == '^6') ? "spec. not play!" : value
         value = (gameStartSuggestionKey == '^7') ? "not seriously. only a game" : value
         value = (gameStartSuggestionKey == '^8') ? "Rules: 1. enable autocivP mods, 2. use Jitsi-Audio-Chat later" : value
