@@ -70,15 +70,19 @@ autociv_patchApplyN("init", function (target, that, args)
         value = (gameStartSuggestionKey == '^i') ? "talk and optional TG later": value
         value = (gameStartSuggestionKey == '^j') ? "can you do me a favor and test my latest mod update with me? please load new modificatoin from githup first": value
 
-        gameStartSuggestion_value += `|${value}|`
+        gameStartSuggestion_value += `|${value}`
       }
       if(isCustomratingEnabled && gameStartSuggestionKey2.trim().length > 0){
         let value = ''
         value = (gameStartSuggestionKey2 == '^0') ? "rated" : value
-        value = (gameStartSuggestionKey2 == '^1') ? "unrated" : value
-        value = (gameStartSuggestionKey2 == '^2') ? "1v1, 2v2" : value
+        value = (gameStartSuggestionKey2 == '^1') ? "1v1 unrated" : value
+        value = (gameStartSuggestionKey2 == '^2') ? "2v2" : value
         value = (gameStartSuggestionKey2 == '^3') ? "3v3, 4v4" : value
         gameStartSuggestion_value += `|${value}|`
+      }else{
+        // autocivP.gamesetup.ratedDefault = "false"
+        const isRatedDefault = ( Engine.ConfigDB_GetValue("user", "autocivP.gamesetup.ratedDefault") === "true" )
+        gameStartSuggestion_value += (isRatedDefault) ? '|rated|' :  '|unrated|' // is not expicited set in the options so suggest what rated default is
       }
       if(isCustomratingEnabled && gameStartSuggestionKey3.trim().length > 0){
         let value = ''

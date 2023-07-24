@@ -373,8 +373,8 @@
 				"list": [
 					{ "value": "false", "label": ""  },
 					{ "value": "^0", "label": "rated"  },
-					{ "value": "^1", "label": "unrated"  },
-					{ "value": "^2", "label": "1v1, 2v2"  },
+					{ "value": "^1", "label": "1v1 unrated"  },
+					{ "value": "^2", "label": "2v2"  },
 					{ "value": "^3", "label": "3v3, 4v4"  }
 				]
 			},
