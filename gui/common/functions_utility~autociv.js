@@ -166,16 +166,27 @@ const autoCompleteText_newMerge = function (guiObject, list)
             allIconsInText = `  ${allIconsInText}`
             // add two spaces to the beginning so user can easily change the number to and add later maybe a name (ping user) at the very beginning
 
+
+          if(g_selfNick =="seeh"){ //NOTE - developers
+            selfMessage(`176: gameState '${gameState}' `);
+          }
+          if(gameState != "ingame"){ // prefent for unwanted replacments for e.g. in gamesetup
+            // 90 metal please
+            const pattern = /\d+ \w+ please/;
+            const hasPattern = pattern.test(allIconsInText);
+            if(hasPattern){
+              selfMessage(`183: gameState '${gameState}' `);
+              return
+            }
+          }
           g_previousCaption = captionTrimed
           guiObject.caption = allIconsInText
 
           // sets the buffer/corsor position to the beginning
           guiObject.buffer_position = isCaptionNumeric ? 2 : allIconsInText.length;
 
-
           g_lastCommand = allIconsInText
           saveLastCommand2History(captionTrimed)
-
           return // this return was maybe missing 23-0705_2302-57 without this return some crases happened in oberver mode !!!!!! 23-0705_2305-59
         }
       }catch (error) {
