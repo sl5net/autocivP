@@ -166,16 +166,12 @@ const autoCompleteText_newMerge = function (guiObject, list)
             allIconsInText = `  ${allIconsInText}`
             // add two spaces to the beginning so user can easily change the number to and add later maybe a name (ping user) at the very beginning
 
-
-          if(g_selfNick =="seeh"){ //NOTE - developers
-            selfMessage(`176: gameState '${gameState}' `);
-          }
           if(gameState != "ingame"){ // prefent for unwanted replacments for e.g. in gamesetup
             // 90 metal please
             const pattern = /\d+ \w+ please/;
             const hasPattern = pattern.test(allIconsInText);
             if(hasPattern){
-              selfMessage(`183: gameState '${gameState}' `);
+              // selfMessage(`183: gameState '${gameState}' `);
               return
             }
           }
