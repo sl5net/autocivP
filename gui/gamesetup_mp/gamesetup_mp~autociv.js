@@ -48,6 +48,7 @@ autociv_patchApplyN("init", function (target, that, args)
       if(isCustomratingEnabled && gameStartSuggestionKey.trim().length > 0){
         let value = ''
         value = (gameStartSuggestionKey == '^n') ? "nuub" : value
+        value = (gameStartSuggestionKey == '^vn') ? "very nub" : value
         value = (gameStartSuggestionKey == '^0') ? "<1200" : value
         value = (gameStartSuggestionKey == '^1') ? "" : value
         value = (gameStartSuggestionKey == '^2') ? "TotalGames>10" : value

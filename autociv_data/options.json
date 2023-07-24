@@ -318,6 +318,7 @@
 				"list": [
 					{ "value": "false", "label": ""  },
 					{ "value": "^n", "label": "noob"  },
+					{ "value": "^vn", "label": "very nub"  },
 					{ "value": "^0", "label": "youtuber"  },
 					{ "value": "^1", "label": "unfocused today"  },
 					{ "value": "^2", "label": "rated"  },
