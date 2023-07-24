@@ -310,7 +310,7 @@
 			},
 			{
 				"type": "dropdown",
-				"label": "[color=\"220 185 70\"]Postfix UserName[/color] or select presets ----->",
+				"label": "[color=\"220 185 70\"]Postfix UserName[/color] or select rated unrated ...->",
 				"tooltip": "You can add a custom postfix - works in game",
 				"config": "autocivP.customusername",
 				"dependencies": ["customrating"],
@@ -373,13 +373,12 @@
 			},
 			{
 				"type": "dropdown",
-				"label": "[color=\"220 185 70\"]Game name Suggestion[/color] select presets ----->",
+				"label": "[color=\"220 185 70\"]Game name Suggestion[/color] 1v1 2v2 ... ----->",
 				"tooltip": "set to empty or select a name postfix",
 				"config": "autocivP.gamesetup.gameStart.suggestionKey2",
 				"list": [
 					{ "value": "false", "label": ""  },
-					{ "value": "^0", "label": "rated"  },
-					{ "value": "^1", "label": "1v1 unrated"  },
+					{ "value": "^1", "label": "1v1"  },
 					{ "value": "^2", "label": "2v2"  },
 					{ "value": "^3", "label": "3v3, 4v4"  }
 				]

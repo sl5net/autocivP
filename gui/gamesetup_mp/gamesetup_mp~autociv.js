@@ -74,8 +74,7 @@ autociv_patchApplyN("init", function (target, that, args)
       }
       if(isCustomratingEnabled && gameStartSuggestionKey2 !== 'false' && gameStartSuggestionKey2.trim().length > 0){
         let value = ''
-        value = (gameStartSuggestionKey2 == '^0') ? "rated" : value
-        value = (gameStartSuggestionKey2 == '^1') ? "1v1 unrated" : value
+        value = (gameStartSuggestionKey2 == '^1') ? "1v1" : value
         value = (gameStartSuggestionKey2 == '^2') ? "2v2" : value
         value = (gameStartSuggestionKey2 == '^3') ? "3v3, 4v4" : value
         gameStartSuggestion_value += `|${value}|`
