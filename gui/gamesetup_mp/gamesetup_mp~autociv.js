@@ -1,5 +1,4 @@
-autociv_patchApplyN("init", function (target, that, args)
-{
+autociv_patchApplyN("init", (target, that, args) => {
     const res = target.apply(that, args);
     const [attribs] = args
     if (attribs.hasPassword)
@@ -135,7 +134,7 @@ function nextGameStartTime() {
     "autocivP.gamesetup.gameStart.inNextFullMinute"
     );
 
-  const showCountrysCode = Engine.ConfigDB_GetValue(
+  let showCountrysCode = Engine.ConfigDB_GetValue(
     "user",
     "autocivP.gamesetup.gameStart.inNextFullMinuteCountrys"
     );
@@ -197,6 +196,7 @@ function nextGameStartTime() {
     const Asia_Kolkata = formatTime(new Date(nextHalfHour.getTime() + (3.5 * 60 * 60 * 1000)), 'Asia/Kolkata');
     const USA_ET = formatTime(new Date(nextHalfHour.getTime() - (6 * 60 * 60 * 1000)), 'America/New_York');
     const USA_Los_Angeles = formatTime(new Date(nextHalfHour.getTime() - (9 * 60 * 60 * 1000)), 'America/Los_Angeles');
+    const USA_Chicago = formatTime(new Date(nextHalfHour.getTime() - (7 * 60 * 60 * 1000)), 'America/Los_Angeles');
 
     if(true){
 
@@ -213,15 +213,19 @@ function nextGameStartTime() {
     let message =''
 
     if(!showCountrysCode || showCountrysCode === 'all')
-      message += ` ${tBerlinLondonSwedenDenmark.split(':').slice(0, 2).join(':')} EU/Berlin/London/Sweden/Denmark, ${tGreece.split(':').slice(0, 2).join(':')} EU/Greece, ${Asia_Kolkata.split(':').slice(0, 2).join(':')} Asia/Kolkata, ${USA_ET.split(':').slice(0, 2).join(':')} USA/NewYork , ${USA_Los_Angeles.split(':').slice(0, 2).join(':')} USA/LosAngeles`;
+      showCountrysCode = 'LondonAthensKolkataChicagoNewYorkLosAngeles';
     if(showCountrysCode.indexOf('London') > -1)
-      message += ` ${tBerlinLondonSwedenDenmark.split(':').slice(0, 2).join(':')} EU/Berlin/London/Sweden/Denmark`;
+      message += ` ${tBerlinLondonSwedenDenmark.split(':').slice(0, 2).join(':')} Berlin`;
     if(showCountrysCode.indexOf('Athens')>-1)
-      message += ` ${tGreece.split(':').slice(0, 2).join(':')} EU/Greece`;
+      message += ` ${tGreece.split(':').slice(0, 2).join(':')} Greece`;
+    if(showCountrysCode.indexOf('Kolkata')>-1)
+      message += ` ${Asia_Kolkata.split(':').slice(0, 2).join(':')} Asia/Kolkata`;
+    if(showCountrysCode.indexOf('Chicago')>-1)
+      message += ` ${USA_Chicago.split(':').slice(0, 2).join(':')} Chicago`;
     if(showCountrysCode.indexOf('NewYork')>-1)
-      message += ` ${USA_ET.split(':').slice(0, 2).join(':')} USA/NewYork`;
+      message += ` ${USA_ET.split(':').slice(0, 2).join(':')} NewYork`;
     if(showCountrysCode.indexOf('LosAngeles')>-1)
-      message += ` ${USA_Los_Angeles.split(':').slice(0, 2).join(':')} USA/LosAngeles`;
+      message += ` ${USA_Los_Angeles.split(':').slice(0, 2).join(':')} LosAngeles`;
 
 
     if(remove00) // autocivP.gamesetup.gameStart.inNextFullMinuteRemove00

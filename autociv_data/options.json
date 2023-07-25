@@ -352,12 +352,15 @@
 					{ "value": "all", "label": "show time for all countries."  },
 					{ "value": "London", "label": "Europe/London: This refers to the time zone of London, which is in the United Kingdom."  },
 					{ "value": "Athens", "label": "Europe/Athens: This refers to the time zone of Athens, which is in Greece."  },
+					{ "value": "Kolkata", "label": "Asia/Kolkata."  },
+					{ "value": "Chicago", "label": "America/Chicago: This refers to the Eastern Time Zone in the United States."  },
 					{ "value": "NewYork", "label": "America/New_York: This refers to the Eastern Time Zone in the United States."  },
 					{ "value": "LosAngeles", "label": "America/Los_Angeles: This refers to the Eastern Time Zone in the United States."  },
-					{ "value": "LondonAthens", "label": "London and Athens"  },
+					{ "value": "LondonAthens", "label": "London/Berlin and Athens"  },
+					{ "value": "LondonChicago", "label": "London/Berlin and America/Chicago"  },
 					{ "value": "AthensNewYork", "label": "Athens and America/NewYork"  },
 					{ "value": "LondonNewYork", "label": "London and America/NewYork"  },
-					{ "value": "LondonLosAngeles", "label": "London and America/Los_Angeles"  }
+					{ "value": "LondonLosAngeles", "label": "London/Berlin and America/Los_Angeles"  }
 				]
 			},
 
