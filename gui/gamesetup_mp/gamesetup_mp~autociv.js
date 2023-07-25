@@ -129,10 +129,24 @@ autociv_patchApplyN("init", function (target, that, args)
 
 function nextGameStartTime() {
 
+
   let inNextFullMinute = Engine.ConfigDB_GetValue(
     "user",
     "autocivP.gamesetup.gameStart.inNextFullMinute"
     );
+
+  const showCountrysCode = Engine.ConfigDB_GetValue(
+    "user",
+    "autocivP.gamesetup.gameStart.inNextFullMinuteCountrys"
+    );
+
+
+    // autocivP.gamesetup.gameStart.inNextFullMinuteRemove00
+    const remove00 = Engine.ConfigDB_GetValue(
+    "user",
+    "autocivP.gamesetup.gameStart.inNextFullMinuteRemove00"
+    );
+
 
   if(inNextFullMinute.length < 1 || isNaN(inNextFullMinute))
     return false
@@ -197,9 +211,23 @@ function nextGameStartTime() {
     }
 
     let message =''
-    message = `${tBerlinLondonSwedenDenmark.split(':').slice(0, 2).join(':')} EU/Berlin/London/Sweden/Denmark, ${tGreece.split(':').slice(0, 2).join(':')} EU/Greece, ${Asia_Kolkata.split(':').slice(0, 2).join(':')} Asia/Kolkata, ${USA_ET.split(':').slice(0, 2).join(':')} USA/NewYork , ${USA_Los_Angeles.split(':').slice(0, 2).join(':')} USA/LosAngeles`;
 
-    message = message.replace(/\:00/g,'')
+    if(!showCountrysCode || showCountrysCode === 'all')
+      message = `${tBerlinLondonSwedenDenmark.split(':').slice(0, 2).join(':')} EU/Berlin/London/Sweden/Denmark, ${tGreece.split(':').slice(0, 2).join(':')} EU/Greece, ${Asia_Kolkata.split(':').slice(0, 2).join(':')} Asia/Kolkata, ${USA_ET.split(':').slice(0, 2).join(':')} USA/NewYork , ${USA_Los_Angeles.split(':').slice(0, 2).join(':')} USA/LosAngeles`;
+    else if(showCountrysCode === 'London')
+      message = `${tBerlinLondonSwedenDenmark.split(':').slice(0, 2).join(':')} EU/Berlin/London/Sweden/Denmark`;
+    else if(showCountrysCode === 'Athens')
+      message = `${tGreece.split(':').slice(0, 2).join(':')} EU/Greece`;
+    else if(showCountrysCode === 'NewYork')
+      message = `${USA_ET.split(':').slice(0, 2).join(':')} USA/NewYork`;
+    else if(showCountrysCode === 'NewYork')
+      message = `${USA_ET.split(':').slice(0, 2).join(':')} USA/NewYork`;
+    else if(showCountrysCode === 'LosAngeles')
+      message = `${USA_Los_Angeles.split(':').slice(0, 2).join(':')} USA/LosAngeles`;
+
+
+    if(remove00) // autocivP.gamesetup.gameStart.inNextFullMinuteRemove00
+      message = message.replace(/\:00/g,'')
 
     // warn(message)
     return message;

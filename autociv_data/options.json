@@ -344,6 +344,29 @@
 			},
 			{
 				"type": "dropdown",
+				"label": "[color=\"220 185 70\"]Game name Suggestion[/color] chose countries... -->",
+				"tooltip": "set to empty or select a name postfix",
+				"config": "autocivP.gamesetup.gameStart.inNextFullMinuteCountrys",
+				"list": [
+					{ "value": "false", "label": ""  },
+					{ "value": "all", "label": "show time for all countries."  },
+					{ "value": "London", "label": "Europe/London: This refers to the time zone of London, which is in the United Kingdom."  },
+					{ "value": "Athens", "label": "Europe/Athens: This refers to the time zone of Athens, which is in Greece."  },
+					{ "value": "NewYork", "label": "America/New_York: This refers to the Eastern Time Zone in the United States, specifically New York."  },
+					{ "value": "LosAngeles", "label": "America/Los_Angeles: This refers to the Pacific Time Zone in the United States, specifically Los Angeles."  }
+				]
+			},
+
+			{
+				"type": "boolean",
+				"label": "[color=\"220 185 70\"]Game name Suggestion[/color]: removes all :00 from time ?",
+				"tooltip": "removes all occurrences of :00 from the time",
+				"config": "autocivP.gamesetup.gameStart.inNextFullMinuteRemove00"
+			},
+
+
+			{
+				"type": "dropdown",
 				"label": "[color=\"220 185 70\"]Game name S.[/color] select normal, 2xSpeed... -->",
 				"tooltip": "set to empty or select a name postfix",
 				"config": "autocivP.gamesetup.gameStart.suggestionKey",
