@@ -102,8 +102,7 @@ tryAutoComplete = function (text, list, tries)
 //     }
 // }
 
-const autoCompleteText_newMerge = function (guiObject, list)
-{
+const autoCompleteText_newMerge = (guiObject, list) => {
   // selfMessage('100: autoCompleteText_newMerge')
   // selfMessage('101: caption.length = ' + guiObject.caption.length)
 

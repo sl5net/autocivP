@@ -192,7 +192,7 @@ function translGGWP_U2Gg_III(gg, minMatchScore) {
 	// isDebug = true
 	if(isDebug)
 		selfMessage(`169: ____________ translGGWP_U2Gg_III(${gg}, ${minMatchScore}) ___________`);
-	if(!minMatchScore ){
+	if( !minMatchScore ){
 	  selfMessage(`140: minMatchScore = ${minMatchScore}`);
 	  error(`minMatchScore is not defined`);
 	}
