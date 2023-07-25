@@ -1,6 +1,5 @@
 // Autociv control class with sub classes that will be have an instance at init()
 
-var g_backupMessageBeforeChangeContextViaHotkey = ''
 class AutocivControls
 {
 	constructor()

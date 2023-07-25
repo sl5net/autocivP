@@ -9,7 +9,7 @@ var g_is_chatInputTooltipQuickFixUpdate_updated = false
 // const selfNick = Engine.LobbyGetNick();
 var g_selfNick = Engine.ConfigDB_GetValue("user", `playername.multiplayer`);
 
-
+var g_backupMessageBeforeChangeContextViaHotkey = ''
 
 // Engine.GetCurrentReplayDirectory
 // GetEngineInfo.gameState.data
