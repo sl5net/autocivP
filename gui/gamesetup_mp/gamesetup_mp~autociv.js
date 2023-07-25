@@ -190,9 +190,10 @@ function nextGameStartTime() {
 
     const tBerlinLondonSwedenDenmark = formatTime(nextHalfHour, 'Europe/London');
 
-    const tGreece = formatTime(new Date(nextHalfHour.getTime() + (1 * 60 * 60 * 1000)), 'Europe/Athens');
-    const RioGrandeDoSulBrasilien = formatTime(new Date(nextHalfHour.getTime() - (5 * 60 * 60 * 1000)), 'Europe/London');
     // const tSweden = formatTime(new Date(nextHalfHour.getTime() + (1 * 60 * 60 * 1000)), 'Europe/Stockholm');
+    const Latvia = formatTime(new Date(nextHalfHour.getTime() + (1 * 60 * 60 * 1000)), 'Europe/London');
+    const RioGrandeDoSulBrasilien = formatTime(new Date(nextHalfHour.getTime() - (5 * 60 * 60 * 1000)), 'Europe/London');
+    const tGreece = formatTime(new Date(nextHalfHour.getTime() + (1 * 60 * 60 * 1000)), 'Europe/Athens');
 
     const Asia_Kolkata = formatTime(new Date(nextHalfHour.getTime() + (3.5 * 60 * 60 * 1000)), 'Asia/Kolkata');
     const USA_ET = formatTime(new Date(nextHalfHour.getTime() - (6 * 60 * 60 * 1000)), 'America/New_York');
@@ -215,7 +216,9 @@ function nextGameStartTime() {
     let message =''
 
     if(!showCountrysCode || showCountrysCode === 'all')
-      showCountrysCode = 'LondonAthensKolkataChicagoNewYorkLosAngelesRioGrandeDoSul';
+      showCountrysCode = 'LatviaLondonAthensKolkataChicagoNewYorkLosAngelesRioGrandeDoSul';
+    if(showCountrysCode.indexOf('Latvia') > -1)
+      message += ` ${Latvia.split(':').slice(0, 2).join(':')} Latvia`;
     if(showCountrysCode.indexOf('London') > -1)
       message += ` ${tBerlinLondonSwedenDenmark.split(':').slice(0, 2).join(':')} Berlin`;
     if(showCountrysCode.indexOf('Athens')>-1)

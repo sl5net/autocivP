@@ -350,6 +350,7 @@
 				"list": [
 					{ "value": "false", "label": ""  },
 					{ "value": "all", "label": "show time for all countries."  },
+					{ "value": "Latvia", "label": "Europe/Lettland: This refers to the time zone of Latvia."  },
 					{ "value": "London", "label": "Europe/London: This refers to the time zone of London, which is in the United Kingdom."  },
 					{ "value": "Athens", "label": "Europe/Athens: This refers to the time zone of Athens, which is in Greece."  },
 					{ "value": "Kolkata", "label": "Asia/Kolkata."  },
