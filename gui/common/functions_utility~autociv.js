@@ -158,7 +158,7 @@ const autoCompleteText_newMerge = (guiObject, list) => {
           return captionIs_meURL(guiObject);
       case 'meu': // synonym. if you in hurry
           return captionIs_meURL(guiObject);
-      case 'timeNow':
+      case 'timeNow'.toLowerCase():
           // selfMessage('162: caption.toLowerCase() = ' + caption.toLowerCase());
           return g_NetworkCommands["/whatstimeNow"]()
       case 'modsImCurrentlyUsing'.toLowerCase():

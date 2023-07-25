@@ -432,9 +432,10 @@ const g_autociv_SharedCommands = {
 			else{
 				chatInput.focus()
 				chatInput.caption = text; // for some reasons this is not working in lobby at the moment 23-0724_0958-02. its ignored
+				chatInput.buffer_position = text.length
 			}
-			if(g_selfNick =="seeh") //NOTE - 23-0705_2302-57 developers want to see the error in the console
-				selfMessage(`422: whatstimeNow: ${text} (gui/common/~autocivSharedCommands.js)`);
+			// if(g_selfNick =="seeh") //NOTE - 23-0705_2302-57 developers want to see the error in the console
+			// 	selfMessage(`422: whatstimeNow: ${text} (gui/common/~autocivSharedCommands.js)`);
 		}
 	},
 	"timenow" : {
