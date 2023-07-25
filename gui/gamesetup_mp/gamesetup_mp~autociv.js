@@ -191,6 +191,7 @@ function nextGameStartTime() {
     const tBerlinLondonSwedenDenmark = formatTime(nextHalfHour, 'Europe/London');
 
     const tGreece = formatTime(new Date(nextHalfHour.getTime() + (1 * 60 * 60 * 1000)), 'Europe/Athens');
+    const RioGrandeDoSulBrasilien = formatTime(new Date(nextHalfHour.getTime() - (5 * 60 * 60 * 1000)), 'Europe/London');
     // const tSweden = formatTime(new Date(nextHalfHour.getTime() + (1 * 60 * 60 * 1000)), 'Europe/Stockholm');
 
     const Asia_Kolkata = formatTime(new Date(nextHalfHour.getTime() + (3.5 * 60 * 60 * 1000)), 'Asia/Kolkata');
@@ -210,10 +211,11 @@ function nextGameStartTime() {
 
     }
 
+    // compare here: https://www.timeanddate.com/time/zone/usa
     let message =''
 
     if(!showCountrysCode || showCountrysCode === 'all')
-      showCountrysCode = 'LondonAthensKolkataChicagoNewYorkLosAngeles';
+      showCountrysCode = 'LondonAthensKolkataChicagoNewYorkLosAngelesRioGrandeDoSul';
     if(showCountrysCode.indexOf('London') > -1)
       message += ` ${tBerlinLondonSwedenDenmark.split(':').slice(0, 2).join(':')} Berlin`;
     if(showCountrysCode.indexOf('Athens')>-1)
@@ -226,6 +228,8 @@ function nextGameStartTime() {
       message += ` ${USA_ET.split(':').slice(0, 2).join(':')} NewYork`;
     if(showCountrysCode.indexOf('LosAngeles')>-1)
       message += ` ${USA_Los_Angeles.split(':').slice(0, 2).join(':')} LosAngeles`;
+    if(showCountrysCode.indexOf('RioGrandeDoSul')>-1)
+      message += ` ${RioGrandeDoSulBrasilien.split(':').slice(0, 2).join(':')} Rio Grande do Sul, Brasilien`;
 
 
     if(remove00) // autocivP.gamesetup.gameStart.inNextFullMinuteRemove00
