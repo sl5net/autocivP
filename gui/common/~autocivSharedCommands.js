@@ -28,7 +28,7 @@ var g_backupMessageBeforeChangeContextViaHotkey = ''
 
 
 const versionOf0ad = Engine.GetEngineInfo().mods[0]['version']; // 0.0.26
-const whatsAutocivPMod = 'AutoCivP mod is AutoCiv but it also supports profiles during game configuration, jitsi, command-history⟦Tab⟧⟦Tab⟧ and a lot more.';
+const whatsAutocivPMod = 'AutoCivP mod is AutoCiv but it also supports profiles during game configuration, jitsi, command-history⟦Tab⟧⟦Tab⟧ and a lot more ( https://wildfiregames.com/forum/topic/107371-autocivp-add-ons-profiles-jitsi-team-call ) . ';
 
 
 /**
@@ -390,7 +390,7 @@ const g_autociv_SharedCommands = {
 		"description": "AutoCiv mod is ",
 		"handler": () =>
 		{
-			const whatsAutocivMod = 'AutoCiv mod is an aggregation of features meant to enhance the 0 A.D. HotKeys and more. Many players use it.'
+			const whatsAutocivMod = 'AutoCiv mod is an aggregation of features meant to enhance the 0 A.D. HotKeys and more. Many players use it ( https://wildfiregames.com/forum/topic/28753-autociv-mod-0ad-enhancer ) .'
 			const chatInput = Engine.GetGUIObjectByName("chatInput")
 			chatInput.caption = whatsAutocivMod
 		}
@@ -400,6 +400,15 @@ const g_autociv_SharedCommands = {
 		"handler": () =>
 		{
 			const JitsiText = 'Jitsi is a great way to have quick team calls without any setup process. It can also be used as an audio chat for your 0ad-team.'
+			const chatInput = Engine.GetGUIObjectByName("chatInput")
+			chatInput.caption = JitsiText
+		}
+	},
+	"whatsFeldmap" : {
+		"description": "feldmap is ",
+		"handler": () =>
+		{
+			const JitsiText = `feldmap mod adds the map "Mainland balanced". Alpine Mountains is also included ( https://https://wildfiregames.com/forum/topic/53880-feldmap ) `
 			const chatInput = Engine.GetGUIObjectByName("chatInput")
 			chatInput.caption = JitsiText
 		}
