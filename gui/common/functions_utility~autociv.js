@@ -141,6 +141,34 @@ const autoCompleteText_newMerge = function (guiObject, list)
 
 
   if(caption?.length ){
+
+    switch (caption.toLowerCase()) {
+      case 'j':
+          return captionIs_j(guiObject);
+      case 'li':
+          guiObject.caption = '/link';
+          return;
+      case 'whatsAutocivPMod'.toLowerCase():
+          guiObject.caption = whatsAutocivPMod;
+          return;
+      case 'hiall':
+          return captionIs_hiall(guiObject);
+      case 'me':
+          return captionIs_me(guiObject);
+      case 'meurl':
+          return captionIs_meURL(guiObject);
+      case 'meu': // synonym. if you in hurry
+          return captionIs_meURL(guiObject);
+      case 'timeNow':
+          return g_NetworkCommands["/whatstimeNow"]()
+      case 'modsImCurrentlyUsing'.toLowerCase():
+          return captionIs_modsImCurrentlyUsing(guiObject);
+          // selfMessage('caption.toLowerCase() = ' + caption.toLowerCase());
+    }
+
+
+
+
     const iconPrefix = g_iconPrefix; // icon prefix iconPrefix should be default <
     const firstChar = caption.toString().charAt(0); // or str[0]
 
@@ -223,30 +251,6 @@ const autoCompleteText_newMerge = function (guiObject, list)
   // selfMessage(`204: ${objName} = ${objName}`)
 
   g_previousCaption = caption
-
-  switch (caption.toLowerCase()) {
-    case 'j':
-        return captionIs_j(guiObject);
-    case 'li':
-        guiObject.caption = '/link';
-        return;
-    case 'whatsAutocivPMod'.toLowerCase():
-        guiObject.caption = whatsAutocivPMod;
-        return;
-    case 'hiall':
-        return captionIs_hiall(guiObject);
-    case 'me':
-        return captionIs_me(guiObject);
-    case 'meurl':
-        return captionIs_meURL(guiObject);
-    case 'meu': // synonym. if you in hurry
-        return captionIs_meURL(guiObject);
-    case 'timeNow':
-        return g_NetworkCommands["/whatstimeNow"]()
-    case 'modsImCurrentlyUsing'.toLowerCase():
-        return captionIs_modsImCurrentlyUsing(guiObject);
-        // selfMessage('caption.toLowerCase() = ' + caption.toLowerCase());
-  }
 
 
   // selfMessage('caption = ' + caption)
