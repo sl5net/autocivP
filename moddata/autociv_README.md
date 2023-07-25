@@ -1,7 +1,52 @@
-# AutoCiv
+# AutoCivP plus some goodies
+
+Thanks to Nani ([most source is from Nani](https://github.com/nanihadesuka/autociv))
+
+Thanks to all the 0 A.D. players who found it useful.
+
+### Features
+- Wider Array of chat commands
+- Wider Array of autocompletition commands
+- Jitsi  (Voice Chat)
+- map-profiles
+- and More...
+-
+## Planned Features
+
+- change the polar_sea time slices to other minues (e.g. from 15 to 5 Minutes)
+
+## Questions & feedback
+For more information, questions and feedback, visit the thread on the [0 A.D. forum](https://wildfiregames.com/forum/topic/107371-autociv-add-ons-profiles-jitsi-team-call).
+
+# autoCivP and AutoCiv
+## autoCivP
+next text here is a copy from
+[autocivP](https://github.com/sl5net/autocivP)
+## AutoCiv from nani
+next text here is a copy from
+[nani autociv](https://github.com/nanihadesuka/autociv)
+
+participation is welcome. are you a developer or want to become one?
+
 This mod is an aggregation of features meant to enhance the 0 A.D. game experience. I usually implement these extra features as they come up with no general plan in mind.
 
-## Feature list
+## Feature list added by autocivP
+
+- General
+	- Help command: type /help matchWord to see all available commands. Also possible to use regEx searchpattern.
+	- Jitsi commands: type j<tab> to create and send a jitsi-audioChat-link
+	- open links alias: type li<tab> to open a link.
+ 	- type <tab><tab> to see available commands that you have already used (history is saved into user.cfg).
+	- some other little commands that works like: type command<tab>
+	- user Personlazistion options
+- Lobby
+	- nothing new (seeh autociv from Nani)
+ - Game setup
+	- Use Profiles to setup a game (Say enable Alliedview please, rated, map, biome, size, starting resources,  etc. ....)
+- In Game
+	- comands for easier comunications. audio and autocompletions
+
+## Feature list Autociv
 - General
 	- Readme: press Shift + F4 to open
 	- Player mute
@@ -47,17 +92,16 @@ This mod is an aggregation of features meant to enhance the 0 A.D. game experien
 - Settings
 	- Max corpses visible
 
-## Download
-There are three ways:
+## Download autocivP
 - Download and install from the wildfiregames forum autociv page topic (files on first page)
-	- https://wildfiregames.com/forum/topic/28753-autociv-mod-0ad-enhancer/
+	- not available jet
 - Download and install manually the github repository (installation file on the releases section)
-	- https://github.com/nanihadesuka/autociv
+	- https://github.com/sl5net/autocivP
 - Use 0 A.D. mod downloader (not always newest version)
-	- https://0ad.mod.io/autociv
+	- https://0ad.mod.io/autocivP
 
 
-## Instructions to install manually
+## Instructions to install autociv manually
 	#### MacOS (thanks @HMS-Surprise):
 		https://wildfiregames.com/forum/index.php?/topic/25444-how-to-install-autociv-mod-on-mac/
 
@@ -70,22 +114,39 @@ There are three ways:
 			- https://trac.wildfiregames.com/wiki/GameDataPaths
 
 
-## Mod compatibility(s)
+## Mod autociv compatibility(s)
 The mod is compatible with:
-- 0 A.D 0.0.26
-- Probable to work with the following mods
-	- boonGUI mod
-	- star mod
-	- ffm_visibility mod
-	- balanced maps mod
-	- spec mod (monitor) mod
-	- custom_rating mod
+- 0 A.D 0.0.26 and 0 A.D 0.0.27
 - Should work with all mods that don't have extensive code changes
-
-
-## More stuff & goodies
-For more info just read the whole thread where I post new features.
-https://wildfiregames.com/forum/topic/28753-autociv-mod-0ad-enhancer/
 
 ## Questions & feedback
 You don't understand how it works? Feeling confused? Just wanna comment? Ask and post.
+
+## Issues report here
+- https://github.com/sl5net/autocivP/issues
+- https://wildfiregames.com/forum/topic/107371-autocivp-add-ons-profiles-jitsi-team-call
+
+## Contributing
+
+1. Fork it.
+2. Create a new feature branch: `git checkout -b my-new-feature`
+3. Commit your changes: `git add .` and `git commit -m 'Add some feature'`
+4. Push it to the branch: `git push fork my-new-feature`
+5. Submit a pull request.
+
+
+---
+
+## Contributors
+
+The motivation for this mod was implement ideas and simplifications that are helpful for this game and learn bit JavaScript.
+
+- Helping with problems: @nani, @andy5995, @LangLangBart, @atric
+
+- Thanks to modders:
+  - @nani - [Autociv](https://github.com/nanihadesuka/autociv)
+  - @Mentula - https://gitlab.com/mentula0ad
+  - @Atric - https://gitlab.com/4trik
+  - @LangLangBart - https://github.com/LangLangBart
+
+- Thanks to all other modders

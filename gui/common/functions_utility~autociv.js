@@ -193,9 +193,7 @@ const autoCompleteText_newMerge = (guiObject, list) => {
       let captionTrimed = captionBegin.substring(iconPrefix.length)
       const minMatchScore = (captionTrimed.length > 20) ? 0.8 : (iconPrefix.length ? 0.3 :  0.55 ) // user name will be replaced later. i want have .3 but some users dont be found so easy ... hmmm
 
-
-
-      selfMessage(`220: gameState '${gameState}' `);
+      // selfMessage(`220: gameState '${gameState}' `);
       if(gameState == "ingame"){
        // Help me ☞here
        const pattern = /^help\b/i;

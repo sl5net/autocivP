@@ -5,7 +5,7 @@ function init()
     Engine.GetGUIObjectByName("buttonClose").caption = Engine.Translate("Close")
     Engine.GetGUIObjectByName("title").caption = Engine.Translate("Autociv readme")
 
-    const webpageURL = "https://wildfiregames.com/forum/index.php?/topic/28753-autociv-mod-0ad-enhancer/"
+    const webpageURL = "https://wildfiregames.com/forum/topic/107371-autocivp-add-ons-profiles-jitsi-team-call"
     Engine.GetGUIObjectByName("buttonWebpage").onPress = () => Engine.OpenURL(webpageURL)
 
     const markdown = Engine.ReadFile("moddata/autociv_README.md")
