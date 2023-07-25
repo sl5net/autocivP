@@ -190,8 +190,22 @@ const autoCompleteText_newMerge = (guiObject, list) => {
 
     if( is_transGGWP_needet( caption, firstChar, iconPrefix,guiObject) )  {
       const captionBegin = caption.toString()
-      const captionTrimed = captionBegin.substring(iconPrefix.length)
+      let captionTrimed = captionBegin.substring(iconPrefix.length)
       const minMatchScore = (captionTrimed.length > 20) ? 0.8 : (iconPrefix.length ? 0.3 :  0.55 ) // user name will be replaced later. i want have .3 but some users dont be found so easy ... hmmm
+
+
+
+      selfMessage(`220: gameState '${gameState}' `);
+      if(gameState == "ingame"){
+       // Help me ☞here
+       const pattern = /^help\b/i;
+       const hasPattern = pattern.test(guiObject.caption);
+       if(hasPattern){
+        //  selfMessage(`204: gameState '${gameState}' `);
+         captionTrimed = 'helpme' // ingame ist much more importand when help pings other team players then list all the commands via the /help command. more important to have a easy comunication with team. make sure that thiy keyword is still i the json file
+       }
+     }
+
       let allIconsInText =  Engine.Translate( transGGWP_markedStrings_I(captionTrimed, minMatchScore) )
       try {
         const guiObject = Engine.GetGUIObjectByName("chatInput");
@@ -213,6 +227,7 @@ const autoCompleteText_newMerge = (guiObject, list) => {
               return
             }
           }
+
           g_previousCaption = captionTrimed
           guiObject.caption = allIconsInText
 
