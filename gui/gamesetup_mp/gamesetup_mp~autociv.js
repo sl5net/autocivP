@@ -213,17 +213,15 @@ function nextGameStartTime() {
     let message =''
 
     if(!showCountrysCode || showCountrysCode === 'all')
-      message = `${tBerlinLondonSwedenDenmark.split(':').slice(0, 2).join(':')} EU/Berlin/London/Sweden/Denmark, ${tGreece.split(':').slice(0, 2).join(':')} EU/Greece, ${Asia_Kolkata.split(':').slice(0, 2).join(':')} Asia/Kolkata, ${USA_ET.split(':').slice(0, 2).join(':')} USA/NewYork , ${USA_Los_Angeles.split(':').slice(0, 2).join(':')} USA/LosAngeles`;
-    else if(showCountrysCode === 'London')
-      message = `${tBerlinLondonSwedenDenmark.split(':').slice(0, 2).join(':')} EU/Berlin/London/Sweden/Denmark`;
-    else if(showCountrysCode === 'Athens')
-      message = `${tGreece.split(':').slice(0, 2).join(':')} EU/Greece`;
-    else if(showCountrysCode === 'NewYork')
-      message = `${USA_ET.split(':').slice(0, 2).join(':')} USA/NewYork`;
-    else if(showCountrysCode === 'NewYork')
-      message = `${USA_ET.split(':').slice(0, 2).join(':')} USA/NewYork`;
-    else if(showCountrysCode === 'LosAngeles')
-      message = `${USA_Los_Angeles.split(':').slice(0, 2).join(':')} USA/LosAngeles`;
+      message += ` ${tBerlinLondonSwedenDenmark.split(':').slice(0, 2).join(':')} EU/Berlin/London/Sweden/Denmark, ${tGreece.split(':').slice(0, 2).join(':')} EU/Greece, ${Asia_Kolkata.split(':').slice(0, 2).join(':')} Asia/Kolkata, ${USA_ET.split(':').slice(0, 2).join(':')} USA/NewYork , ${USA_Los_Angeles.split(':').slice(0, 2).join(':')} USA/LosAngeles`;
+    if(showCountrysCode.indexOf('London') > -1)
+      message += ` ${tBerlinLondonSwedenDenmark.split(':').slice(0, 2).join(':')} EU/Berlin/London/Sweden/Denmark`;
+    if(showCountrysCode.indexOf('Athens')>-1)
+      message += ` ${tGreece.split(':').slice(0, 2).join(':')} EU/Greece`;
+    if(showCountrysCode.indexOf('NewYork')>-1)
+      message += ` ${USA_ET.split(':').slice(0, 2).join(':')} USA/NewYork`;
+    if(showCountrysCode.indexOf('LosAngeles')>-1)
+      message += ` ${USA_Los_Angeles.split(':').slice(0, 2).join(':')} USA/LosAngeles`;
 
 
     if(remove00) // autocivP.gamesetup.gameStart.inNextFullMinuteRemove00
