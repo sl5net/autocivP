@@ -114,21 +114,37 @@ function autociv_changeSomeHotkeysToKeyDownAsPressTypeCantBeDiscardedFromBeingCa
 		Engine.SetGlobalHotkey("chat", "KeyDown", () => {
 
 			const chatInput = Engine.GetGUIObjectByName("chatInput")
-
 			if(chatInput?.caption && chatInput.caption.length > 0){
 				selfMessage(`getting your chat "${chatInput.caption}" by press ⟦Tab⟧ later`);
 				g_backupMessageBeforeChangeContextViaHotkey = chatInput.caption
-			// fixe the autociv and autocivP problem with changing chat context via hotkey. it saves last chat context temporarily and put it in again when you press tab in empty chat 23-0724_1543-57
+				// fixe the autociv and autocivP problem with changing chat context via hotkey. it saves last chat context temporarily and put it in again when you press tab in empty chat 23-0724_1543-57
 			}
 
 			return that.openPage(g_IsObserver ? "/observers" : "/chat"); // works
 		});
 
 
-		Engine.SetGlobalHotkey("privatechat", "KeyDown", that.openPage.bind(that));
+		Engine.SetGlobalHotkey("privatechat", "KeyDown", () => {
+			// selfMessage("teamchat", "Press");
+			const chatInput = Engine.GetGUIObjectByName("chatInput")
+			if(chatInput?.caption && chatInput.caption.length > 0){
+				selfMessage(`getting your chat "${chatInput.caption}" by press ⟦Tab⟧ later`);
+				g_backupMessageBeforeChangeContextViaHotkey = chatInput.caption
+				// fixe the autociv and autocivP problem with changing chat context via hotkey. it saves last chat context temporarily and put it in again when you press tab in empty chat 23-0724_1543-57
+			}
+			return that.openPage.bind(that);
+		});
+
+
 
 		Engine.SetGlobalHotkey("teamchat", "KeyDown", () => {
 			// selfMessage("teamchat", "Press");
+			const chatInput = Engine.GetGUIObjectByName("chatInput")
+			if(chatInput?.caption && chatInput.caption.length > 0){
+				selfMessage(`getting your chat "${chatInput.caption}" by press ⟦Tab⟧ later`);
+				g_backupMessageBeforeChangeContextViaHotkey = chatInput.caption
+				// fixe the autociv and autocivP problem with changing chat context via hotkey. it saves last chat context temporarily and put it in again when you press tab in empty chat 23-0724_1543-57
+			}
 			return that.openPage(g_IsObserver ? "/observers" : "/allies");
 		});
 	}

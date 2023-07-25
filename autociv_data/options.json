@@ -310,7 +310,7 @@
 			},
 			{
 				"type": "dropdown",
-				"label": "[color=\"220 185 70\"]Postfix UserName[/color] or select rated unrated ...->",
+				"label": "[color=\"220 185 70\"]Postfix UserName[/color] or select rated,nub... ->",
 				"tooltip": "You can add a custom postfix - works in game",
 				"config": "autocivP.customusername",
 				"dependencies": ["customrating"],
@@ -355,6 +355,7 @@
 					{ "value": "NewYork", "label": "America/New_York: This refers to the Eastern Time Zone in the United States."  },
 					{ "value": "LosAngeles", "label": "America/Los_Angeles: This refers to the Eastern Time Zone in the United States."  },
 					{ "value": "LondonAthens", "label": "London and Athens"  },
+					{ "value": "AthensNewYork", "label": "Athens and America/NewYork"  },
 					{ "value": "LondonNewYork", "label": "London and America/NewYork"  },
 					{ "value": "LondonLosAngeles", "label": "London and America/Los_Angeles"  }
 				]
@@ -370,7 +371,7 @@
 
 			{
 				"type": "dropdown",
-				"label": "[color=\"220 185 70\"]Game name S.[/color] select normal, 2xSpeed... -->",
+				"label": "[color=\"220 185 70\"]Game name S.[/color] select normal,2xSpeed,spec..->",
 				"tooltip": "set to empty or select a name postfix",
 				"config": "autocivP.gamesetup.gameStart.suggestionKey",
 				"list": [
