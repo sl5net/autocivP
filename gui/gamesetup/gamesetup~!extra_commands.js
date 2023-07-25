@@ -276,6 +276,7 @@ g_NetworkCommands["/versionNr"] = (match) => { // if textAllSometing is somethin
   const version0ad = Engine.GetEngineInfo().mods[0].version
 
   const chatInput = Engine.GetGUIObjectByName("chatInput")
+  chatInput.focus()
   chatInput.caption = `i use autocivP Version is ${g_autocivPVersion} in 0ad ${version0ad}`
 }
 
@@ -285,6 +286,7 @@ g_NetworkCommands["/iconsList"] = (match) => { // if textAllSometing is somethin
   const keys = transGGWP_markedStrings_I('alliconkeys')
   selfMessage(keys)
   const chatInput = Engine.GetGUIObjectByName("chatInput")
+  chatInput.focus()
   chatInput.caption = keys
 
 

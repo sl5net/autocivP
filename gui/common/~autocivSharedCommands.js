@@ -383,6 +383,7 @@ const g_autociv_SharedCommands = {
 		"handler": () =>
 		{
 			const chatInput = Engine.GetGUIObjectByName("chatInput")
+			chatInput.focus()
 			chatInput.caption = whatsAutocivPMod
 		}
 	},
@@ -392,6 +393,7 @@ const g_autociv_SharedCommands = {
 		{
 			const whatsAutocivMod = 'AutoCiv mod is an aggregation of features meant to enhance the 0 A.D. HotKeys and more. Many players use it ( https://wildfiregames.com/forum/topic/28753-autociv-mod-0ad-enhancer ) .'
 			const chatInput = Engine.GetGUIObjectByName("chatInput")
+			chatInput.focus()
 			chatInput.caption = whatsAutocivMod
 		}
 	},
@@ -401,6 +403,7 @@ const g_autociv_SharedCommands = {
 		{
 			const JitsiText = 'Jitsi is a great way to have quick team calls without any setup process. It can also be used as an audio chat for your 0ad-team.'
 			const chatInput = Engine.GetGUIObjectByName("chatInput")
+			chatInput.focus()
 			chatInput.caption = JitsiText
 		}
 	},
@@ -410,6 +413,7 @@ const g_autociv_SharedCommands = {
 		{
 			const JitsiText = `feldmap mod adds the map "Mainland balanced". Alpine Mountains is also included ( https://https://wildfiregames.com/forum/topic/53880-feldmap ) `
 			const chatInput = Engine.GetGUIObjectByName("chatInput")
+			chatInput.focus()
 			chatInput.caption = JitsiText
 		}
 	},
@@ -425,8 +429,10 @@ const g_autociv_SharedCommands = {
 
 			if( gameState == "lobby" )
 				sendMessage(text)
-			else
+			else{
+				chatInput.focus()
 				chatInput.caption = text; // for some reasons this is not working in lobby at the moment 23-0724_0958-02. its ignored
+			}
 			if(g_selfNick =="seeh") //NOTE - 23-0705_2302-57 developers want to see the error in the console
 				selfMessage(`422: whatstimeNow: ${text} (gui/common/~autocivSharedCommands.js)`);
 		}
@@ -443,10 +449,12 @@ const g_autociv_SharedCommands = {
 
 			if( gameState == "lobby" )
 				sendMessage(text)
-			else
+			else{
+				chatInput.focus()
 				chatInput.caption = text; // for some reasons this is not working in lobby at the moment 23-0724_0958-02. its ignored
+			}
 			if(g_selfNick =="seeh") //NOTE - 23-0705_2302-57 developers want to see the error in the console
-				selfMessage(`410: timenow: ${text} (gui/common/~autocivSharedCommands.js)`);
+				selfMessage(`449: timenow: ${text} (gui/common/~autocivSharedCommands.js)`);
 		}
 	},
 	"modsImCurrentlyUsing": {
@@ -460,6 +468,7 @@ const g_autociv_SharedCommands = {
 			// sendMessage(`Mods I'm currently using: ${modEnabledmods.slice(11,)}` );
 			const text = `Mods I'm currently using: ${modEnabledmods.slice(11,)}`
 			const chatInput = Engine.GetGUIObjectByName("chatInput")
+			chatInput.focus()
 			chatInput.caption = text
 		}
 	},
@@ -473,6 +482,7 @@ const g_autociv_SharedCommands = {
 			// Engine.SendNetworkChat(text);
 
 			const chatInput = Engine.GetGUIObjectByName("chatInput")
+			chatInput.focus()
 			chatInput.caption = text
 
 		}
@@ -485,6 +495,7 @@ const g_autociv_SharedCommands = {
 			text = `write li⟦Tab⟧ or /link<enter> to open a link`;
 			// Engine.SendNetworkChat(text);
 			const chatInput = Engine.GetGUIObjectByName("chatInput")
+			chatInput.focus()
 			chatInput.caption = text
 		}
 	},
