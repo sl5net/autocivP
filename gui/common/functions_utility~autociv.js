@@ -226,7 +226,7 @@ const autoCompleteText_newMerge = function (guiObject, list)
 
   switch (caption.toLowerCase()) {
     case 'j':
-        return captionIs_j(caption);
+        return captionIs_j(guiObject);
     case 'li':
         guiObject.caption = '/link';
         return;
