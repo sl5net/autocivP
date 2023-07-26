@@ -339,7 +339,7 @@
 			{
 				"type": "string",
 				"label": "[color=\"220 185 70\"]Game name Suggestion[/color]. next fullMinute (default is next full 30 minutes ⟨ or empty)",
-				"tooltip": "e.g. next full 30 minutes 12:30 13:00.",
+				"tooltip": "e.g. next full 30 minutes 12:30 13:00. to disable, set to empty",
 				"config": "autocivP.gamesetup.gameStart.inNextFullMinute"
 			},
 			{
