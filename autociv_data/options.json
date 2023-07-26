@@ -365,7 +365,9 @@
 					{ "value": "LondonNewYork", "label": "London - NewYork America"  },
 					{ "value": "LondonLosAngeles", "label": "Berlin - Los_Angeles America/"  },
 					{ "value": "LondonMexiko", "label": "Berlin - Mexiko"  },
-					{ "value": "LondonRioGrandeDoSul", "label": "London/Berlin - Rio Grande do Sul"  }
+					{ "value": "LondonRioGrandeDoSul", "label": "London/Berlin - Rio Grande do Sul"  },
+					{ "value": "LatviaLondonRioGrandeDoSul", "label": "Latvia - Berlin - Rio Grande"  },
+					{ "value": "LatviaLondonChicagoRioGrandeDoSul", "label": "Latvia - Berlin - Chicago - Rio Grande"  }
 				]
 			},
 
