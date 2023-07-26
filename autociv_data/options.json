@@ -348,7 +348,7 @@
 				"tooltip": "set to empty or select a name postfix",
 				"config": "autocivP.gamesetup.gameStart.inNextFullMinuteCountrys",
 				"list": [
-					{ "value": "false", "label": ""  },
+					{ "value": "", "label": ""  },
 					{ "value": "all", "label": "show time for all countries."  },
 					{ "value": "Latvia", "label": "Europe/Lettland: This refers to the time zone of Latvia."  },
 					{ "value": "London", "label": "Europe/London: This refers to the time zone of London, which is in the United Kingdom."  },
@@ -357,13 +357,15 @@
 					{ "value": "Chicago", "label": "America/Chicago: This refers to the Eastern Time Zone in the United States."  },
 					{ "value": "NewYork", "label": "America/New_York: This refers to the Eastern Time Zone in the United States."  },
 					{ "value": "LosAngeles", "label": "America/Los_Angeles: This refers to the Eastern Time Zone in the United States."  },
-					{ "value": "RioGrandeDoSul", "label": "Brasilien/Rio Grande do Sul"  },
-					{ "value": "LondonAthens", "label": "London/Berlin and Athens"  },
-					{ "value": "LondonChicago", "label": "London/Berlin and America/Chicago"  },
-					{ "value": "AthensNewYork", "label": "Athens and America/NewYork"  },
-					{ "value": "LondonNewYork", "label": "London and America/NewYork"  },
-					{ "value": "LondonLosAngeles", "label": "London/Berlin and America/Los_Angeles"  },
-					{ "value": "LondonRioGrandeDoSul", "label": "London/Berlin and Rio Grande do Sul"  }
+					{ "value": "Mexiko", "label": "Mexiko"  },
+					{ "value": "RioGrandeDoSul", "label": "Rio Grande do Sul/Brasil"  },
+					{ "value": "LondonAthens", "label": "Athens - London/Berlin"  },
+					{ "value": "LondonChicago", "label": "Chicago - London/Berlin"  },
+					{ "value": "AthensNewYork", "label": "Athens - NewYork America"  },
+					{ "value": "LondonNewYork", "label": "London - NewYork America"  },
+					{ "value": "LondonLosAngeles", "label": "Berlin - Los_Angeles America/"  },
+					{ "value": "LondonMexiko", "label": "Berlin - Mexiko"  },
+					{ "value": "LondonRioGrandeDoSul", "label": "London/Berlin - Rio Grande do Sul"  }
 				]
 			},
 
@@ -381,7 +383,7 @@
 				"tooltip": "set to empty or select a name postfix",
 				"config": "autocivP.gamesetup.gameStart.suggestionKey",
 				"list": [
-					{ "value": "false", "label": ""  },
+					{ "value": "", "label": ""  },
 					{ "value": "^1", "label": "learn/teach/talk game"  },
 					{ "value": "^2", "label": "TotalGames>10"  },
 					{ "value": "^3", "label": "waiting for friends"  },
@@ -410,7 +412,7 @@
 				"tooltip": "set to empty or select a name postfix",
 				"config": "autocivP.gamesetup.gameStart.suggestionKey2",
 				"list": [
-					{ "value": "false", "label": ""  },
+					{ "value": "", "label": ""  },
 					{ "value": "^1", "label": "1v1"  },
 					{ "value": "^2", "label": "2v2"  },
 					{ "value": "^3", "label": "3v3, 4v4"  }

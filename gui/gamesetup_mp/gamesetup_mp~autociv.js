@@ -174,31 +174,35 @@ function nextGameStartTime() {
         hour: 'numeric',
         minute: 'numeric',
         hour12: true,
-        timeZone: timeZone,
+        timeZone,
       };
       return date.toLocaleTimeString('en-US', options);
     };
 
     const nextHalfHour = getNextHalfHour();
 
-
     // const gameStartTimeGMT = formatTime(nextHalfHour, 'GMT'); // same like 'Europe/London'
 
         // const message = `${gameStartTimeEU.split(':').slice(0, 2).join(':')} EU/Berlin, ${gameStartTimeIndian.split(':').slice(0, 2).join(':')} IST, ${gameStartTimeET.split(':').slice(0, 2).join(':')} ET, ${gameStartTimePT.split(':').slice(0, 2).join(':')} PT`; // GMT is same like europa london
 
+        // nut totally sure if this source is really correct. i tried to geht help here:
+        // https://stackoverflow.com/questions/76767940/es6-formattime-for-asia-kolkata-and-funplanat-moon-gives-always-the-same-result
 
+        const Latvia = formatTime(new Date(nextHalfHour.getTime() + (1 * 60 * 60 * 1000)), 'Europe/London');
 
     const tBerlinLondonSwedenDenmark = formatTime(nextHalfHour, 'Europe/London');
 
     // const tSweden = formatTime(new Date(nextHalfHour.getTime() + (1 * 60 * 60 * 1000)), 'Europe/Stockholm');
-    const Latvia = formatTime(new Date(nextHalfHour.getTime() + (1 * 60 * 60 * 1000)), 'Europe/London');
-    const RioGrandeDoSulBrasilien = formatTime(new Date(nextHalfHour.getTime() - (5 * 60 * 60 * 1000)), 'Europe/London');
     const tGreece = formatTime(new Date(nextHalfHour.getTime() + (1 * 60 * 60 * 1000)), 'Europe/Athens');
 
     const Asia_Kolkata = formatTime(new Date(nextHalfHour.getTime() + (3.5 * 60 * 60 * 1000)), 'Asia/Kolkata');
     const USA_ET = formatTime(new Date(nextHalfHour.getTime() - (6 * 60 * 60 * 1000)), 'America/New_York');
     const USA_Los_Angeles = formatTime(new Date(nextHalfHour.getTime() - (9 * 60 * 60 * 1000)), 'America/Los_Angeles');
     const USA_Chicago = formatTime(new Date(nextHalfHour.getTime() - (7 * 60 * 60 * 1000)), 'America/Los_Angeles');
+
+    const Mexiko = formatTime(new Date(nextHalfHour.getTime() - (8 * 60 * 60 * 1000)), 'Europe/London');
+
+    const RioGrandeDoSulBrasilien = formatTime(new Date(nextHalfHour.getTime() - (5 * 60 * 60 * 1000)), 'Europe/London');
 
     if(true){
 
@@ -216,27 +220,29 @@ function nextGameStartTime() {
     let message =''
 
     if(!showCountrysCode || showCountrysCode === 'all')
-      showCountrysCode = 'LatviaLondonAthensKolkataChicagoNewYorkLosAngelesRioGrandeDoSul';
-    if(showCountrysCode.indexOf('Latvia') > -1)
-      message += ` ${Latvia.split(':').slice(0, 2).join(':')} Latvia`;
+      showCountrysCode = 'LatviaLondonAthensKolkataChicagoNewYorkLosAngelesMexikoRioGrandeDoSul';
     if(showCountrysCode.indexOf('London') > -1)
       message += ` ${tBerlinLondonSwedenDenmark.split(':').slice(0, 2).join(':')} Berlin`;
+    if(showCountrysCode.indexOf('Latvia') > -1)
+      message += ` ${Latvia.split(':').slice(0, 2).join(':')} Latvia`;
     if(showCountrysCode.indexOf('Athens')>-1)
       message += ` ${tGreece.split(':').slice(0, 2).join(':')} Greece`;
     if(showCountrysCode.indexOf('Kolkata')>-1)
-      message += ` ${Asia_Kolkata.split(':').slice(0, 2).join(':')} Asia/Kolkata`;
+      message += ` ${Asia_Kolkata.split(':').slice(0, 2).join(':')} KolkataAsia`;
     if(showCountrysCode.indexOf('Chicago')>-1)
       message += ` ${USA_Chicago.split(':').slice(0, 2).join(':')} Chicago`;
     if(showCountrysCode.indexOf('NewYork')>-1)
       message += ` ${USA_ET.split(':').slice(0, 2).join(':')} NewYork`;
     if(showCountrysCode.indexOf('LosAngeles')>-1)
       message += ` ${USA_Los_Angeles.split(':').slice(0, 2).join(':')} LosAngeles`;
+    if(showCountrysCode.indexOf('Mexiko')>-1)
+      message += ` ${Mexiko.split(':').slice(0, 2).join(':')} Mexiko`;
     if(showCountrysCode.indexOf('RioGrandeDoSul')>-1)
-      message += ` ${RioGrandeDoSulBrasilien.split(':').slice(0, 2).join(':')} Rio Grande do Sul, Brasilien`;
+      message += ` ${RioGrandeDoSulBrasilien.split(':').slice(0, 2).join(':')} RioGrandeBrasil`;
 
 
     if(remove00) // autocivP.gamesetup.gameStart.inNextFullMinuteRemove00
-      message = message.replace(/\:00/g,'')
+      return message.replace(/\:00/g,'');
 
     // warn(message)
     return message;
