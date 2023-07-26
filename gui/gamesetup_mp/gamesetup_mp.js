@@ -88,10 +88,13 @@ function init(attribs) {
             customrating_value = customrating_value.replace(/^[^\d\w\-]*[0-9]+[^\d\w\-]*$/g, ''); // if its only a number. cut it out
         }
 
+        // warn(`112: customrating_value: ${customrating_value}`);
+
         if(g_proGUIPVersion){
             const temp = g_UserRating + "|proGUI";
-            customrating_value = ( isCustomratingEnabled && customrating_value) ? `${temp}|${customrating_value}` : temp ;
+            customrating_value = ( isCustomratingEnabled && customrating_value && customrating_value !== 'false') ? `${temp}|${customrating_value}` : temp ;
         }
+
 
 
         if (typeof g_LocalRatingsDatabase !== 'undefined') { // DODO sad its not available from autocivP ... means i need rebuild/copy some functions. should i do this ? 23-0722_1551-58 . i hope maybe Mentula will do it maybe in a day in future
@@ -101,16 +104,17 @@ function init(attribs) {
         }
 
 
-        if (customrating_value) {
-            //g_UserRating = customrating_value.substring(0,10)
-            // g_UserRating = customrating_value.substring(0,16);
-            g_UserRating = customrating_value.substring(0,42);
-            g_UserRating = customrating_value + ""; // customrating_value not empty with som texts
-        } else {
+        if (customrating_value === 'false') {
             //no rating in username
             // g_UserRating = attribs.rating + " or +100 maybe."; // if its empty . enabled but empty => works 2021-0902_1324-54
             // g_UserRating = attribs.rating + " or +100 maybe."; // if its empty . enabled but empty => works bot long for this field. end ) is not there 2021-0902_1326-08
             g_UserRating = attribs.rating //  + " +100 maybe"; // if its empty . enabled but empty => works bot long for this field. end ) is not there 2021-0902_1327-19
+        } else {
+            //g_UserRating = customrating_value.substring(0,10)
+            // g_UserRating = customrating_value.substring(0,16);
+            // warn(`112: customrating_value: ${customrating_value}`);
+            g_UserRating = customrating_value.substring(0,42);
+            g_UserRating = customrating_value + ""; // customrating_value not empty with som texts
         }
     } else {
         //warn(uneval("customrating numbers not allowed - adding spaces"));

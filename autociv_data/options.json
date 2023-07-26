@@ -388,9 +388,9 @@
 					{ "value": "^2", "label": "TotalGames>10"  },
 					{ "value": "^3", "label": "waiting for friends"  },
 					{ "value": "^4", "label": "YouTube"  },
-					{ "value": "^5", "label": "must have: progGUI, feldmap"  },
-					{ "value": "^5b", "label": "must have: progGUI, autocivP, feldmap"  },
-					{ "value": "^0", "label": "must have: progGUI, autocivP"  },
+					{ "value": "^5", "label": "must have: proGUI, feldmap"  },
+					{ "value": "^0", "label": "must have: proGUI, autocivP"  },
+					{ "value": "^5b", "label": "must have: proGUI, autocivP, feldmap"  },
 					{ "value": "^6", "label": "spec. not play!"  },
 					{ "value": "^7", "label": "not seriously. only a game"  },
 					{ "value": "^8", "label": "Rules: 1. enable autocivP mods, 2. use Jitsi-Audio-Chat later"  },
@@ -424,7 +424,7 @@
 				"tooltip": "set to empty or select a name postfix",
 				"config": "autocivP.gamesetup.gameStart.suggestionKey3",
 				"list": [
-					{ "value": "false", "label": ""  },
+					{ "value": "", "label": ""  },
 					{ "value": "^1", "label": "pingMe"  }
 				]
 			},
