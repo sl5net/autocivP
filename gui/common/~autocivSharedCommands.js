@@ -27,7 +27,7 @@ var g_backupMessageBeforeChangeContextViaHotkey = ''
 
 
 const versionOf0ad = Engine.GetEngineInfo().mods[0]['version']; // 0.0.26
-const whatsAutocivPMod = 'AutoCivP mod is AutoCiv but it also supports profiles during game configuration, jitsi, command-history⟦Tab⟧⟦Tab⟧ and a lot more ( https://wildfiregames.com/forum/topic/107371-autocivp-add-ons-profiles-jitsi-team-call ) \n 1. download new ZIP here https://github.com/sl5net/autocivP/releases \n 2. unzip it \n 3. rename folder to "autocivP" \n 4. copy this folder to "mods" folder. Path to user data: \n Linux     : ~/.config/0ad/mods \n Windows: %AppData%\\0ad\\mods \n macOS    : \/Users\/{YOUR USERNAME}\/Library\/Application\\ Support/0ad/mods ';
+const whatsAutocivPMod = 'AutoCivP mod is AutoCiv but it also supports profiles during game configuration, jitsi, command-history⟦Tab⟧⟦Tab⟧ and a lot more ( https://wildfiregames.com/forum/topic/107371-autocivp-add-ons-profiles-jitsi-team-call ) \n 1. download new ZIP here https://github.com/sl5net/autocivP/releases \n 2. unzip it \n 3. rename folder to "autocivP" \n 4. copy this folder to "mods" folder. Path to user data: \n Linux     : ~/.config/0ad/mods \n Windows: %AppData%\\0ad\\mods \n macOS    : \/Users\/{YOUR USERNAME}\/Library\/Application\\ Support/0ad/mods \n tart 0 A.D., click Settings and Mod Selection. \n Double-click it, click Save Configuration and Start Mods. ';
 
 
 /**
@@ -441,6 +441,8 @@ const g_autociv_SharedCommands = {
 		"description": "Time here in hoursMinute",
 		"handler": () =>
 		{
+			if( gameState == "ingame" )
+				selfMessage("for using timenow during a ingame chat, remove / and press ⟦Tab⟧");
 			const today = new Date();
 			const hours = today.getHours().toString().padStart(2, '0');
 			const minutes = today.getMinutes().toString().padStart(2, '0');
@@ -461,6 +463,9 @@ const g_autociv_SharedCommands = {
 		"description": "Mods I'm currently using. Or try without the postfix '/' and at the end of the command ⟦Tab⟧",
 		"handler": () =>
 		{
+			if( gameState == "ingame" )
+				selfMessage("for show Mods I'm currently using during a ingame chat, remove / and press ⟦Tab⟧");
+
 			const modEnabledmods = Engine.ConfigDB_GetValue(
 				"user",
 				"mod.enabledmods"
