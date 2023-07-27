@@ -887,6 +887,13 @@ function setCaption2nextCommandOfHistory(guiObject){
 }
 function captionCheckIs_communityModToggle(caption){
   if(caption.trim() == "communityModToggle"){
+
+
+    if(gameState == "ingame"){
+      selfMessage(`communityModToggle is not allowed in ingame.`)
+      return
+    }
+
     let modEnabledmods = Engine.ConfigDB_GetValue(
       "user",
       "mod.enabledmods"
