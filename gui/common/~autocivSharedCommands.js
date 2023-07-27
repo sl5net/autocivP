@@ -1,6 +1,6 @@
 var gameState = "lobby"; // Initial state // // TODO: howto set it like this? g_GameData = data // 	g_GameData.gui.isInGame
 
-var g_selfInHost = false
+var g_selfInHost = true
 
 const g_customIconJson = Engine.ReadJSONFile("moddata/autocivP_IconNames.json");
 var g_fuzzyArrayResult = getFuzzyArrayFromJsonFile(g_customIconJson, true)
