@@ -91,9 +91,13 @@ autociv_patchApplyN("init", function (target, that, args)
 	//   warn('82: have changed enabledmods? do you want restore last profile?');
 	  // g_NetworkCommands["/pRestoreLastProfile"]();
 	  // pRestoreLastProfile();
-	  let lastCommandToSetProfile = '/pRestoreLastProfile';
-	  const chatInput = Engine.GetGUIObjectByName("chatInput")
-	  chatInput.caption = lastCommandToSetProfile;
+
+	if(g_selfInHost){
+		let lastCommandToSetProfile = '/pRestoreLastProfile';
+		const chatInput = Engine.GetGUIObjectByName("chatInput")
+		chatInput.caption = lastCommandToSetProfile;
+	}else
+		// warn(`100: no need to restore last profile`);
 	}
 	const doCheckVersion = true;
 	if(doCheckVersion){

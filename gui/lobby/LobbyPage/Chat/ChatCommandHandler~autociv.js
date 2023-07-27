@@ -15,9 +15,12 @@ ChatCommandHandler.prototype.ChatCommands["pingall"] = {
         for (let game of gameList) {
             const players = game.players;
             const selfInHost = players.some(player => splitRatingFromNick(player.Name).nick == selfNick);
+
             for (let player of players)
-                if (selfInHost)
+                if (selfInHost){
                     ignore.add(splitRatingFromNick(player.Name).nick);
+                    g_selfInHost = selfInHost
+                }
                 else if (player.Team == "observer")
                     candidatesToAnnoy.add(splitRatingFromNick(player.Name).nick);
         }

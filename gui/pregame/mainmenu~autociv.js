@@ -91,9 +91,9 @@ function autociv_initCheck() {
 
     const allHotkeys = new Set(Object.keys(Engine.GetHotkeyMap()));
     // Normal check. Check for entries missing
-    if(g_selfNick =="seeh"){ //NOTE -developers want to see the error in the console
-      warn('Normal check. Check for entries missing')
-    }
+    // if(g_selfNick =="seeh"){ //NOTE -developers want to see the error in the console
+    //   warn('95: Normal check. Check for entries missing')
+    // }
 
    if(false) {
     for (let key in settings) {
