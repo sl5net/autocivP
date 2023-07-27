@@ -92,12 +92,10 @@ autociv_patchApplyN("init", function (target, that, args)
 	  // g_NetworkCommands["/pRestoreLastProfile"]();
 	  // pRestoreLastProfile();
 
-	if(g_selfInHost){
-		let lastCommandToSetProfile = '/pRestoreLastProfile';
-		const chatInput = Engine.GetGUIObjectByName("chatInput")
-		chatInput.caption = lastCommandToSetProfile;
-	}else{
-		// warn(`100: no need to restore last profile`);
+
+	  let lastCommandToSetProfile = ((g_selfInHost)) ? '/pRestoreLastProfile' : 'hi all :) ';
+	  const chatInput = Engine.GetGUIObjectByName("chatInput")
+	  chatInput.caption = lastCommandToSetProfile;
 	}
 	const doCheckVersion = true;
 	if(doCheckVersion){
