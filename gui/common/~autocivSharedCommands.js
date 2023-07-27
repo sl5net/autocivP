@@ -29,7 +29,7 @@ var g_backupMessageBeforeChangeContextViaHotkey = ''
 
 
 const versionOf0ad = Engine.GetEngineInfo().mods[0]['version']; // 0.0.26
-const whatsAutocivPMod = 'AutoCivP mod is AutoCiv but it also supports profiles during game configuration, jitsi, command-history⟦Tab⟧⟦Tab⟧ and a lot more ( https://wildfiregames.com/forum/topic/107371-autocivp-add-ons-profiles-jitsi-team-call ) \n 1. download new ZIP here https://github.com/sl5net/autocivP/releases \n 2. unzip it \n 3. rename folder to "autocivP" \n 4. copy this folder to "mods" folder. Path to user data: \n Linux     : ~/.config/0ad/mods \n Windows: %AppData%\\0ad\\mods \n macOS    : \/Users\/{YOUR USERNAME}\/Library\/Application\\ Support/0ad/mods \n tart 0 A.D., click Settings and Mod Selection. \n Double-click it, click Save Configuration and Start Mods. ';
+const whatsAutocivPMod = 'AutoCivP mod is AutoCiv but it also supports profiles during game configuration, jitsi, command-history⟦Tab⟧⟦Tab⟧ and a lot more ( https://wildfiregames.com/forum/topic/107371-autocivp-add-ons-profiles-jitsi-team-call ) \n 1. download newest ZIP here https://github.com/sl5net/autocivP/releases or this \n bit older: https://api.mod.io/v1/games/5/mods/3105810/files/4095886/download \n 2. unzip it \n 3. rename folder to "autocivP" \n 4. copy this folder to "mods" folder. Path to user data: \n Linux     : ~/.config/0ad/mods \n Windows: %AppData%\\0ad\\mods \n macOS    : \/Users\/{YOUR USERNAME}\/Library\/Application\\ Support/0ad/mods \n tart 0 A.D., click Settings and Mod Selection. \n Double-click it, click Save Configuration and Start Mods. ';
 
 
 /**
@@ -378,6 +378,15 @@ const g_autociv_SharedCommands = {
 				chatInput.caption = helloAllText
 					}
 			}
+	},
+	"zipOfAutocivPMod" : {
+		"description": "AutoCivP mod is ",
+		"handler": () =>
+		{
+			const chatInput = Engine.GetGUIObjectByName("chatInput")
+			chatInput.focus()
+			chatInput.caption = 'https://api.mod.io/v1/games/5/mods/3105810/files/4095886/download' // that version from 23-0728_0140-50
+		}
 	},
 	"whatsAutocivPMod" : {
 		"description": "AutoCivP mod is ",
