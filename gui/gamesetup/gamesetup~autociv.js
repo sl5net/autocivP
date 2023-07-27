@@ -96,7 +96,7 @@ autociv_patchApplyN("init", function (target, that, args)
 		let lastCommandToSetProfile = '/pRestoreLastProfile';
 		const chatInput = Engine.GetGUIObjectByName("chatInput")
 		chatInput.caption = lastCommandToSetProfile;
-	}else
+	}else{
 		// warn(`100: no need to restore last profile`);
 	}
 	const doCheckVersion = true;
