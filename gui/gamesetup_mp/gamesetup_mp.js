@@ -30,6 +30,7 @@ let g_UserRating;
 // added by custom rating
 let g_PlayerName;
 
+
 function init(attribs) {
     let g_UserRatingString;
     /*
@@ -51,7 +52,6 @@ function init(attribs) {
     let customrating_value = Engine.ConfigDB_GetValue("user", "autocivP.customusername");
     const customrating_trueFalse = Engine.ConfigDB_GetValue("user", "customrating");
 
-
     const modsObj = Engine.GetEngineInfo().mods
     for (const [key, value] of Object.entries(modsObj)) {
         if (value.name === "proGUI") {
@@ -63,7 +63,15 @@ function init(attribs) {
     if (customrating_trueFalse == "false" && !g_proGUIPVersion ) { // if g_proGUIP is used then always us customrating
         // Get only username without brackets
         g_UserRating = false;
-    } else if (isNaN(customrating_value)) {
+        // if(g_selfNick =="seeh"){ //NOTE -developers want to see the error in the console
+        //     warn('67: set: g_UserRating = false')
+        // }
+    } else if (true) { //  || isNaN(customrating_value)
+
+        // if(g_selfNick =="seeh"){ //NOTE -developers want to see the error in the console
+        //     warn('72: set: g_UserRating = false')
+        // }
+
         //replace extra chars (hav to do this coz options save button will save them in wrong charset)
         // customrating_value = customrating_value.replace(/\^1/g,"∞");
         // https://unicode-table.com/de/2665/
@@ -89,10 +97,15 @@ function init(attribs) {
         }
 
         // warn(`112: customrating_value: ${customrating_value}`);
+        // if(g_selfNick =="seeh"){ //NOTE -developers want to see the error in the console
+        //     warn(`g_proGUIPVersion: ${g_proGUIPVersion}`)
+        // }
 
         if(g_proGUIPVersion){
             const temp = g_UserRating + "|proGUI";
-            customrating_value = ( isCustomratingEnabled && customrating_value && customrating_value !== 'false') ? `${temp}|${customrating_value}` : temp ;
+            customrating_value = ( isCustomratingEnabled && customrating_value && customrating_value !== 'false')
+            ? `${temp}|${customrating_value}`
+            : temp ;
         }
 
 
@@ -104,7 +117,7 @@ function init(attribs) {
         }
 
 
-        if (customrating_value === 'false') {
+        if ( customrating_value === 'false') {
             //no rating in username
             // g_UserRating = attribs.rating + " or +100 maybe."; // if its empty . enabled but empty => works 2021-0902_1324-54
             // g_UserRating = attribs.rating + " or +100 maybe."; // if its empty . enabled but empty => works bot long for this field. end ) is not there 2021-0902_1326-08
@@ -122,7 +135,10 @@ function init(attribs) {
         g_UserRating = " " + customrating_value + " "; // <= need a space at the end . for prevent errors
     }
     //g_ServerPort = attribs.port;
-    g_PlayerName = !!attribs.name ? attribs.name + (g_UserRating ? " (" + g_UserRating + ")" : "") : "";
+    g_PlayerName = !!attribs.name
+        ? attribs.name + (g_UserRating ? " (" + g_UserRating + ")"
+        : "")
+        : "";
     //warn(uneval("attribs.name:" + attribs.name));
     //warn(uneval("g_UserRating:" + g_UserRating));
     // added by custom rating - END
