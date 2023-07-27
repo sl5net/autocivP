@@ -41,9 +41,10 @@ var g_ProjectInformation = {
 		"caption": getBuildString()
 	},
 	"productDescription": {
-		"caption": setStringTags(translate("Alpha XXVI: Zhuangzi"), { "font": "sans-bold-18" })
-		 + "\n"
-		 + setStringTags(translate(modsString.trim(), { "font": "sans-16" }))
+		"caption":
+		((modsString.length < 110 ) ? setStringTags(translate("Alpha XXVI: Zhuangzi"), { "font": "sans-bold-18" })   + "\n" : '')
+		 +
+		setStringTags(translate(modsString.trim(), { "font": "sans-16" }))
 		 + "\n"
 	}
 };
