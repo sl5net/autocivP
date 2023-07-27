@@ -396,6 +396,16 @@ const g_autociv_SharedCommands = {
 			chatInput.caption = whatsAutocivMod
 		}
 	},
+	"whatsBoonGUI" : {
+		"description": "AutoCiv mod is ",
+		"handler": () =>
+		{
+			const whatsThisMod = 'boonGUI is best  mod to watch replays (its build by Langbart and others. to could update was moved to https://github.com/0ad-matters/boonGUI ) .'
+			const chatInput = Engine.GetGUIObjectByName("chatInput")
+			chatInput.focus()
+			chatInput.caption = whatsThisMod
+		}
+	},
 	"whatsJitsi" : {
 		"description": "Jitsi is ",
 		"handler": () =>
