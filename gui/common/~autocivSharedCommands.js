@@ -420,19 +420,18 @@ const g_autociv_SharedCommands = {
 		"description": "whats Time now hoursMinute",
 		"handler": () =>
 		{
+			selfMessage(`423: whatstimeNow`)
+			warn(`423: whatstimeNow`)
+
 			const today = new Date();
 			const hours = today.getHours().toString().padStart(2, '0');
 			const minutes = today.getMinutes().toString().padStart(2, '0');
 			const text = `it's ${hours}:${minutes} here.`
 			const chatInput = Engine.GetGUIObjectByName("chatInput");
 
-			if( gameState == "lobby" )
-				sendMessage(text)
-			else{
-				chatInput.focus()
-				chatInput.caption = text; // for some reasons this is not working in lobby at the moment 23-0724_0958-02. its ignored
-				chatInput.buffer_position = text.length
-			}
+			chatInput.focus()
+			chatInput.caption = text; // for some reasons this is not working in lobby at the moment 23-0724_0958-02. its ignored
+			chatInput.buffer_position = text.length
 			// if(g_selfNick =="seeh") //NOTE - 23-0705_2302-57 developers want to see the error in the console
 			// 	selfMessage(`422: whatstimeNow: ${text} (gui/common/~autocivSharedCommands.js)`);
 		}
@@ -656,8 +655,10 @@ autociv_InitSharedCommands.pipe = {
 				// g_autociv_SharedCommands.whatstimeNow.handler()
 
 
+				// autociv_focus.chatInput
+
 				if(g_selfNick =="seeh"){ //NOTE - 23-0705_2302-57 developers want to see more
-					selfMessage(`619: SharedCommands: ${key} = ${text}`)
+					selfMessage(`619: SharedCommands: '${key}' = '${text}'`)
 				}
 				return true
 			}

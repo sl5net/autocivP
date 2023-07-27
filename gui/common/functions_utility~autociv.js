@@ -160,8 +160,27 @@ const autoCompleteText_newMerge = (guiObject, list) => {
           return captionIs_meURL(guiObject);
       case 'timeNow'.toLowerCase():
           // selfMessage('162: caption.toLowerCase() = ' + caption.toLowerCase());
-          return g_NetworkCommands["/whatstimeNow"]()
-      case 'modsImCurrentlyUsing'.toLowerCase():
+
+/*!SECTION
+todo: this is not working in lobby. needs implementd again
+JavaScript error:
+gui/common/functions_utility~autociv.js line 163
+g_NetworkCommands['/whatstimeNow'] is not a function
+*/
+try {
+  return g_NetworkCommands["/whatstimeNow"]()
+} catch (error) {
+  selfMessage('inside lobby whatstimeNow is not a function, at the moment. and there is no will to fix it at the moment ;) Motivate me. its not so very importand command. other stuff is fine.');
+  if(g_selfNick =="seeh"){ //NOTE -  developers want to see the error in the console
+    warn(error.message)
+    warn(error.stack)
+  }
+
+
+  return
+}
+
+case 'modsImCurrentlyUsing'.toLowerCase():
           return captionIs_modsImCurrentlyUsing(guiObject);
           // selfMessage('caption.toLowerCase() = ' + caption.toLowerCase());
     }

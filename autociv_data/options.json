@@ -355,7 +355,7 @@
 					{ "value": "Athens", "label": "Europe/Athens: This refers to the time zone of Athens, which is in Greece."  },
 					{ "value": "Kolkata", "label": "Asia/Kolkata."  },
 					{ "value": "Chicago", "label": "America/Chicago: This refers to the Eastern Time Zone in the United States."  },
-					{ "value": "NewYork", "label": "America/New_York: This refers to the Eastern Time Zone in the United States."  },
+					{ "value": "NewYork", "label": "America/New_York/North Carolina: This refers to the Eastern Time Zone in the United States."  },
 					{ "value": "LosAngeles", "label": "America/Los_Angeles: This refers to the Eastern Time Zone in the United States."  },
 					{ "value": "Mexiko", "label": "Mexiko"  },
 					{ "value": "RioGrandeDoSul", "label": "Rio Grande do Sul/Brasil"  },
