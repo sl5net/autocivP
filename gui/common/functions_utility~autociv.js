@@ -261,7 +261,7 @@ case 'modsImCurrentlyUsing'.toLowerCase():
 
           if( true ){
             // ‹away from keyboard
-            selfMessage(`264: away from keyboard`)
+            // selfMessage(`264: away from keyboard`)
             const pattern = /away from keyboard/;
             const hasPattern = pattern.test(allIconsInText);
             if(hasPattern)
