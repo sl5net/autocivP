@@ -249,8 +249,15 @@ case 'modsImCurrentlyUsing'.toLowerCase():
           g_previousCaption = captionTrimed
           guiObject.caption = allIconsInText
 
-          // sets the buffer/corsor position to the beginning
           guiObject.buffer_position = isCaptionNumeric ? 2 : allIconsInText.length;
+          // sets the buffer/corsor position to the beginning
+
+          if(gameState == "ingame"){
+            const pattern = /\d+ \w+ please/;
+            const hasPattern = pattern.test(allIconsInText);
+            if(hasPattern)
+             guiObject.buffer_position = 2 // set cursor to beginning of this(btw there a spaces before): 90 food please
+          }
 
           g_lastCommand = allIconsInText
           saveLastCommand2History(captionTrimed)
