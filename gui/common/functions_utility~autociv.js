@@ -259,6 +259,15 @@ case 'modsImCurrentlyUsing'.toLowerCase():
              guiObject.buffer_position = 2 // set cursor to beginning of this(btw there a spaces before): 90 food please
           }
 
+          if( true ){
+            // ‹away from keyboard
+            selfMessage(`264: away from keyboard`)
+            const pattern = /away from keyboard/;
+            const hasPattern = pattern.test(allIconsInText);
+            if(hasPattern)
+             guiObject.buffer_position = 21 // set cursor to beginning of this(btw there a spaces before): 90 food please
+          }
+
           g_lastCommand = allIconsInText
           saveLastCommand2History(captionTrimed)
           return // this return was maybe missing 23-0705_2302-57 without this return some crases happened in oberver mode !!!!!! 23-0705_2305-59
