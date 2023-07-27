@@ -46,6 +46,11 @@ function autociv_SetChatTextFromConfig()
 	const changeSize = Engine.ConfigDB_GetValue("user", "autociv.session.chatPanel.size.change") == "true"
 	const size = changeSize ? Engine.ConfigDB_GetValue("user", "autociv.session.chatPanel.size") : that.default_size
 	Engine.GetGUIObjectByName("chatPanel").size = size
+
+	const changeFont = Engine.ConfigDB_GetValue("user", "autociv.session.chatText.font.change") == "true"
+	const font = changeFont ? Engine.ConfigDB_GetValue("user", "autociv.session.chatText.font") : that.default_font
+	for (let child of Engine.GetGUIObjectByName("chatLines").children)
+		child.font = font
 }
 
 function getGuiObjectsWithHotkey()
@@ -105,48 +110,36 @@ function autociv_changeSomeHotkeysToKeyDownAsPressTypeCantBeDiscardedFromBeingCa
 		Engine.UnsetGlobalHotkey("teamchat", "Press");
 		Engine.UnsetGlobalHotkey("privatechat", "Press");
 
-		Engine.SetGlobalHotkey("chat", "KeyDown", that.openPage.bind(that));
-		// Engine.SetGlobalHotkey("chat", "KeyDown", () => {
-		// 	return that.openPage.bind(that);
-		// })
-			// selfMessage("chat", "Press"); // that everybody chat
+
+		// Engine.SetGlobalHotkey("teamchat", "KeyDown", () => { that.openPage(g_IsObserver ? "/observers" : "/allies"); });
+
+		// fix the autociv and autocivP problem with changing chat context via hotkey. it saves last chat context temporarily and put it in again when you press tab in empty chat 23-0724_1543-57
 
 		Engine.SetGlobalHotkey("chat", "KeyDown", () => {
-
 			const chatInput = Engine.GetGUIObjectByName("chatInput")
 			if(chatInput?.caption && chatInput.caption.length > 0){
-				selfMessage(`getting your chat "${chatInput.caption}" by press ⟦Tab⟧ later`);
+				selfMessage(`:) getting your chat "${chatInput.caption}" by press ⟦Tab⟧ later`);
 				g_backupMessageBeforeChangeContextViaHotkey = chatInput.caption
-				// fix the autociv and autocivP problem with changing chat context via hotkey. it saves last chat context temporarily and put it in again when you press tab in empty chat 23-0724_1543-57
 			}
-
-			return that.openPage(g_IsObserver ? "/observers" : "/chat"); // works
+			// return that.openPage(that.openPage.bind('/allchat')); // /chat dont wort
+			return that.openPage.bind(that)
 		});
 
+		// Engine.SetGlobalHotkey("chat", "KeyDown", that.openPage.bind(that));
+		// Engine.SetGlobalHotkey("chat", "KeyDown",  that.openPage.bind(that) );
 
-		Engine.SetGlobalHotkey("privatechat", "KeyDown", () => {
-			// selfMessage("teamchat", "Press");
+		Engine.SetGlobalHotkey("chat", "KeyDown", () => {
 			const chatInput = Engine.GetGUIObjectByName("chatInput")
 			if(chatInput?.caption && chatInput.caption.length > 0){
-				selfMessage(`getting your chat "${chatInput.caption}" by press ⟦Tab⟧ later`);
+				selfMessage(`:) getting your chat "${chatInput.caption}" by press ⟦Tab⟧ later`);
 				g_backupMessageBeforeChangeContextViaHotkey = chatInput.caption
-				// fix the autociv and autocivP problem with changing chat context via hotkey. it saves last chat context temporarily and put it in again when you press tab in empty chat 23-0724_1543-57
 			}
-			return that.openPage.bind(that);
-		});
+			that.openPage();
+		  });
 
+		Engine.SetGlobalHotkey("privatechat", "KeyDown", that.openPage.bind(that));
+		Engine.SetGlobalHotkey("teamchat", "KeyDown", () => { that.openPage(g_IsObserver ? "/observers" : "/allies"); });
 
-
-		Engine.SetGlobalHotkey("teamchat", "KeyDown", () => {
-			// selfMessage("teamchat", "Press");
-			const chatInput = Engine.GetGUIObjectByName("chatInput")
-			if(chatInput?.caption && chatInput.caption.length > 0){
-				selfMessage(`getting your chat "${chatInput.caption}" by press ⟦Tab⟧ later`);
-				g_backupMessageBeforeChangeContextViaHotkey = chatInput.caption
-				// fix the autociv and autocivP problem with changing chat context via hotkey. it saves last chat context temporarily and put it in again when you press tab in empty chat 23-0724_1543-57
-			}
-			return that.openPage(g_IsObserver ? "/observers" : "/allies");
-		});
 	}
 }
 
