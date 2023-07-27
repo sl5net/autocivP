@@ -69,9 +69,21 @@ function autociv_initCheck() {
 
     if (config.get("autociv.settings.reset.all2P") === "true")
       settings = Engine.ReadJSONFile("moddata/autocivP_default_config.json"); // https://www.convertsimple.com/convert-ini-to-json/ if u want use your user.cfg (seeh, 23-0619_1559-06 )
-    if (config.get("autociv.settings.reset.all") === "true") {
+    if (config.get("autociv.settings.reset.all") === "true"
+     || config.get("autociv.settings.reset.all2P") === "true"
+    ) {
       warn("RESET ALL");
-      for (let key in settings) config.set(key, settings[key]);
+      for (const key in settings){
+        const value = settings[key]
+        // warn(`settings[key] = ${settings[key]}`)
+        if(!(config.get("autociv.settings.reset.allowSuperKey") === "true")
+          && value.length > 4 && value.includes('Super+'))
+          {
+            warn("Super key not allowed. You need allow SuperKey explicitly in your settings.");
+            continue
+          }
+        config.set(key, value);
+      }
       config.save();
       state.reasons.add("AutoCiv settings reset by user.");
       return state;
@@ -79,6 +91,11 @@ function autociv_initCheck() {
 
     const allHotkeys = new Set(Object.keys(Engine.GetHotkeyMap()));
     // Normal check. Check for entries missing
+    if(g_selfNick =="seeh"){ //NOTE -developers want to see the error in the console
+      warn('Normal check. Check for entries missing')
+    }
+
+   if(false) {
     for (let key in settings) {
       if (key.startsWith("hotkey.")) {
         if (!allHotkeys.has(key.substring("hotkey.".length))) {
@@ -92,13 +109,18 @@ function autociv_initCheck() {
     }
   }
 
+
+  }
+
   // Check for showSuggestDefaultChanges
-  {
+  if(false) {
+    {
     const key = "autociv.mainmenu.suggestDefaultChanges";
     if (config.get(key) == "true") {
       state.showSuggestDefaultChanges = true;
       config.set(key, "false");
     }
+  }
   }
 
   // Check if show readme (first time user case)
@@ -121,7 +143,7 @@ Engine.SetGlobalHotkey("autociv.open.autociv_readme", "Press", () => {
 autociv_patchApplyN("init", function (target, that, args) {
   let state = autociv_initCheck();
   if (state.reasons.size != 0) {
-    let message = ["AutoCiv made some changes.\n"]
+    let message = ["AutoCivP made some changes.\n"]
       .concat(Array.from(state.reasons).map((v) => ` · ${v}`))
       .join("\n");
 

@@ -128,7 +128,7 @@
 			{
 				"type": "boolean",
 				"label": "[color=\"220 185 70\"]Global:[/color][color=\"255 0 0\"]Resets allAutoCiv settings. Backup first![/color] (more intuitive)",
-				"tooltip": "Resets all AutoCiv (REQUIRES RESTART) ([color=\"255 0 0\"]Backup first![/color])",
+				"tooltip": "Resets all AutoCivP (REQUIRES RESTART) ([color=\"255 0 0\"]Backup first![/color])",
 				"config": "autociv.settings.reset.all2P"
 			},
 			{

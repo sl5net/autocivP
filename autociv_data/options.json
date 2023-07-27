@@ -127,9 +127,15 @@
 			},
 			{
 				"type": "boolean",
-				"label": "[color=\"220 185 70\"]Global:[/color][color=\"255 0 0\"]Resets allAutoCiv settings. Backup first![/color] (more intuitive)",
+				"label": "[color=\"220 185 70\"]Global:[/color][color=\"255 0 0\"] Resets all AutoCivP settings.[/color] (more intuitive)",
 				"tooltip": "Resets all AutoCiv (REQUIRES RESTART) ([color=\"255 0 0\"]Backup first![/color])",
 				"config": "autociv.settings.reset.all2P"
+			},
+			{
+				"type": "boolean",
+				"label": "[color=\"220 185 70\"]Global:[/color][color=\"255 0 0\"] allow Super+Key in hotkeys[/color]",
+				"tooltip": "([color=\"255 0 0\"]conflicts with some keybindings eventually[/color])",
+				"config": "autociv.settings.reset.allowSuperKey"
 			},
 			{
 				"type": "string",
@@ -148,13 +154,13 @@
 			{
 				"type": "string",
 				"label": "('mod', 'public' included automatically)",
-				"tooltip": "all your mods that you want to enable (see below [color=\"255 0 0\"]mod.enabledmods[/color]).\n [color=\"255 0 0\"]",
+				"tooltip": "all your mods that you want to enable \n (if want add new: Settings > Mod Selection\n  read: [color=\"255 0 0\"]mod.enabledmods[/color]).\n [color=\"255 0 0\"]",
 				"config": "modProfile.p0"
 			},
 			{
 				"type": "string",
 				"label": "                                                   autoLabel: ",
-				"tooltip": "see below [color=\"255 0 0\"]mod.enabledmods[/color]).\n [color=\"255 0 0\"]",
+				"tooltip": "if want add new: Settings > Mod Selection\n  read: [color=\"255 0 0\"]mod.enabledmods[/color]).\n [color=\"255 0 0\"]",
 				"config": "modProfile.p0label"
 			},
 			{
@@ -166,13 +172,13 @@
 			{
 				"type": "string",
 				"label": "",
-				"tooltip": "all your mods that you want to enable (see below [color=\"255 0 0\"]mod.enabledmods[/color]).\n [color=\"255 0 0\"]",
+				"tooltip": "all your mods that you want to enable \n (if want add new: Settings > Mod Selection\n  read: [color=\"255 0 0\"]mod.enabledmods[/color]).\n [color=\"255 0 0\"]",
 				"config": "modProfile.p1"
 			},
 			{
 				"type": "string",
 				"label": "                                                   autoLabel: ",
-				"tooltip": "all your mods that you want to enable (see below [color=\"255 0 0\"]mod.enabledmods[/color]).\n [color=\"255 0 0\"]",
+				"tooltip": "all your mods that you want to enable \n (if want add new: Settings > Mod Selection\n  read: [color=\"255 0 0\"]mod.enabledmods[/color]).\n [color=\"255 0 0\"]",
 				"config": "modProfile.p1label"
 			},
 			{
@@ -184,13 +190,13 @@
 			{
 				"type": "string",
 				"label": "",
-				"tooltip": "all your mods that you want to enable (see below [color=\"255 0 0\"]mod.enabledmods[/color]).\n [color=\"255 0 0\"]",
+				"tooltip": "all your mods that you want to enable \n (if want add new: Settings > Mod Selection\n  read: [color=\"255 0 0\"]mod.enabledmods[/color]).\n [color=\"255 0 0\"]",
 				"config": "modProfile.p2"
 			},
 			{
 				"type": "string",
 				"label": "                                                   autoLabel: ",
-				"tooltip": "all your mods that you want to enable (see below [color=\"255 0 0\"]mod.enabledmods[/color]).\n [color=\"255 0 0\"]",
+				"tooltip": "all your mods that you want to enable \n (if want add new: Settings > Mod Selection\n  read: [color=\"255 0 0\"]mod.enabledmods[/color]).\n [color=\"255 0 0\"]",
 				"config": "modProfile.p2label"
 			},
 			{
@@ -202,13 +208,13 @@
 			{
 				"type": "string",
 				"label": "",
-				"tooltip": "all your mods that you want to enable (see below [color=\"255 0 0\"]mod.enabledmods[/color]).\n [color=\"255 0 0\"]",
+				"tooltip": "all your mods that you want to enable \n (if want add new: Settings > Mod Selection\n  read: [color=\"255 0 0\"]mod.enabledmods[/color]).\n [color=\"255 0 0\"]",
 				"config": "modProfile.p3"
 			},
 			{
 				"type": "string",
 				"label": "                                                   autoLabel: ",
-				"tooltip": "all your mods that you want to enable (see below [color=\"255 0 0\"]mod.enabledmods[/color]).\n [color=\"255 0 0\"]",
+				"tooltip": "all your mods that you want to enable \n (if want add new: Settings > Mod Selection\n  read: [color=\"255 0 0\"]mod.enabledmods[/color]).\n [color=\"255 0 0\"]",
 				"config": "modProfile.p3label"
 			},
 			{
@@ -220,13 +226,13 @@
 			{
 				"type": "string",
 				"label": "",
-				"tooltip": "all your mods that you want to enable (see below [color=\"255 0 0\"]mod.enabledmods[/color]).\n [color=\"255 0 0\"]",
+				"tooltip": "all your mods that you want to enable \n (if want add new: Settings > Mod Selection\n  read: [color=\"255 0 0\"]mod.enabledmods[/color]).\n [color=\"255 0 0\"]",
 				"config": "modProfile.p4"
 			},
 			{
 				"type": "string",
 				"label": "                                                   autoLabel: ",
-				"tooltip": "all your mods that you want to enable (see below [color=\"255 0 0\"]mod.enabledmods[/color]).\n [color=\"255 0 0\"]",
+				"tooltip": "all your mods that you want to enable \n (if want add new: Settings > Mod Selection\n  read: [color=\"255 0 0\"]mod.enabledmods[/color]).\n [color=\"255 0 0\"]",
 				"config": "modProfile.p4label"
 			},
 			{
@@ -238,13 +244,13 @@
 			{
 				"type": "string",
 				"label": "",
-				"tooltip": "all your mods that you want to enable (see below [color=\"255 0 0\"]mod.enabledmods[/color]).\n [color=\"255 0 0\"]",
+				"tooltip": "all your mods that you want to enable \n (if want add new: Settings > Mod Selection\n  read: [color=\"255 0 0\"]mod.enabledmods[/color]).\n [color=\"255 0 0\"]",
 				"config": "modProfile.p5"
 			},
 			{
 				"type": "string",
 				"label": "                                                   autoLabel: ",
-				"tooltip": "all your mods that you want to enable (see below [color=\"255 0 0\"]mod.enabledmods[/color]).\n [color=\"255 0 0\"]",
+				"tooltip": "all your mods that you want to enable \n (if want add new: Settings > Mod Selection\n  read: [color=\"255 0 0\"]mod.enabledmods[/color]).\n [color=\"255 0 0\"]",
 				"config": "modProfile.p5label"
 			},
 			{
@@ -261,7 +267,7 @@
 			},
 			{
 				"type": "string",
-				"label": "[color=\"255 0 0\"]backup[/color]: will be overwitten\n no need to edit edit. what you have used before",
+				"label": "[color=\"255 0 0\"]backup[/color]: will be overwitten\n",
 				"tooltip": "[color=\"255 0 0\"]i you maybe interested to lear more about GameDataPaths see https://trac.wildfiregames.com/wiki/GameDataPaths [/color]\n [color=\"255 0 0\"] ",
 				"config": "modProfile.backup"
 			},
