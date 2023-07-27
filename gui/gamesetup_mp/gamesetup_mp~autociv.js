@@ -111,7 +111,7 @@ autociv_patchApplyN("init", (target, that, args) => {
               // if(g_selfNick =="seeh") //NOTE - developers
               //   warn(`112: ${text} = text`)
             }else{
-              text = text.replace(/^[\| ]*(.*?)[\| ]*$/, "$1"); // trim from ending | delimiters
+              text = text.replace(/[\| ]*$/, ""); // trim from ending | delimiters
               input.caption += text
               input.buffer_position = lenFirst
             }
