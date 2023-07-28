@@ -132,10 +132,10 @@ function init(attribs) {
                 customrating_value = customrating_value.substring(0,maxLength - 2) + "..";
             }
 
-            const lastLetter = customrating_value.charAt(customrating_value.length - 1);
-            if(lastLetter != ')'){
-                customrating_value += ')';
-            }
+            // const lastLetter = customrating_value.charAt(customrating_value.length - 1);
+            // if(lastLetter != ')'){
+            //     customrating_value += ')';
+            // }
 
             g_UserRating = customrating_value;
             g_UserRating = customrating_value + ""; // customrating_value not empty with som texts
