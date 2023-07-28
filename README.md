@@ -7,7 +7,7 @@ Thanks to all the 0 A.D. players who found it useful.
 ### Features
 - Wider Array of chat commands
 - Jitsi  (Voice Chat)
-- map-profiles
+- map-profiles ( https://wildfiregames.com/forum/uploads/monthly_2023_07/Screenshot_20230725_150411.jpg.a954e52a74bb8dd0400c20e205933b61.jpg )
 - mod-profiles ( https://youtu.be/pt3VGm4N_Cw )
 - and More...
 - 
