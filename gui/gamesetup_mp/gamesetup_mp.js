@@ -102,7 +102,7 @@ function init(attribs) {
         // }
 
         if(g_proGUIPVersion){
-            const temp = g_UserRating + "|proGUI";
+            const temp = "proGUI";
             customrating_value = ( isCustomratingEnabled && customrating_value && customrating_value !== 'false')
             ? `${temp}|${customrating_value}`
             : temp ;
