@@ -137,13 +137,18 @@ function init(attribs) {
             //     customrating_value += ')';
             // }
 
-            g_UserRating = customrating_value;
-            g_UserRating = customrating_value + ""; // customrating_value not empty with som texts
+            if(false && g_selfNick =="seeh"){ //NOTE -developers want to see the error in the console
+                warn(`141: set: g_UserRating = ${g_UserRating} , \n customrating_value: ${customrating_value}`);
+                warn(`142: length: ${customrating_value.length} , \n customrating_value: ${customrating_value}`);
+            }
+
+            g_UserRating =  (customrating_value ) ? customrating_value + '' : g_UserRating;
+            // g_UserRating = customrating_value + ""; // customrating_value not empty with som texts
 
 
             if(false && g_selfNick =="seeh"){ //NOTE -developers want to see the error in the console
-                warn(`138: set: g_UserRating = ${g_UserRating} , \n customrating_value: ${customrating_value}`);
-                warn(`139: length: ${customrating_value.length} , \n customrating_value: ${customrating_value}`);
+                warn(`149: set: g_UserRating = ${g_UserRating} , \n customrating_value: ${customrating_value}`);
+                warn(`151: length: ${customrating_value.length} , \n customrating_value: ${customrating_value}`);
             }
 
         }
