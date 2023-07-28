@@ -9,8 +9,8 @@ Thanks to all the 0 A.D. players who found it useful.
 - Jitsi  (Voice Chat)
 - map-profiles ( https://wildfiregames.com/forum/uploads/monthly_2023_07/Screenshot_20230725_150411.jpg.a954e52a74bb8dd0400c20e205933b61.jpg )
 - mod-profiles ( https://youtu.be/pt3VGm4N_Cw )
+- Auto-save Drafts in Chat: Never Lose Your Message Again! when you use hotkey change beetween allies to all content or back). This feature ensures that the content of a chat message is not lost if it has not been sent yet. Instead, the content is saved and can be retrieved even if the user navigates away from the chat screen before sending the message. This can be useful to prevent users from losing their work in progress.
 - and More...
-- 
 ## Planned Features 
 
 - setup all defaults by type into the chat:
