@@ -7,14 +7,15 @@ Thanks to all the 0 A.D. players who found it useful.
 ### Features
 - Wider Array of chat commands
 - Jitsi  (Voice Chat)
-- map-profiles
+	- it makes sure that all team members use the same jitsi-chat
+- map-profiles ( https://wildfiregames.com/forum/uploads/monthly_2023_07/Screenshot_20230725_150411.jpg.a954e52a74bb8dd0400c20e205933b61.jpg )
+- mod-profiles ( https://youtu.be/pt3VGm4N_Cw )
+- Auto-save Drafts in Chat: Never Lose Your Message Again! when you use hotkey for toggle beetween allies-room to all-room content or back. This feature ensures that the content of a chat message is not lost if it has not been sent yet. Instead, the content is saved and can be retrieved even if the user navigates away from the chat screen before sending the message. This can be useful to prevent users from losing their work in progress.
+- setup all defaults by type into the chat:
+ feature value
 - and More...
-- 
 ## Planned Features 
 
-- setup all defaults by type into the chat:
-  - feature value
-- make sure that all team members use the same jitsi-chat
 - change the polar_sea time slices to other minues (e.g. from 15 to 5 Minutes)
 
 ## Questions & feedback
