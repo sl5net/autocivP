@@ -305,7 +305,7 @@
 			{
 				"type": "boolean",
 				"label": "[color=\"220 185 70\"]Postfix UserName / GameNames[/color]: enable?",
-				"tooltip": "Enable Postfix for UserName and/or Suggestions for game Names?",
+				"tooltip": "Enable Postfix for UserName and/or Suggestions for game Names? \n[color=\"255 0 0\"] max. 25 letter, then its cut off !! \n names + everything else.[/color] \n its not disturbing the game. \n but probably looks not beutiful. try it :) ",
 				"config": "customrating"
 			},
 			{

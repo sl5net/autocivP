@@ -88,7 +88,7 @@ function init(attribs) {
             customrating_value = customrating_value.replace(/\^4/g, " programmer\?");
             // customrating_value = customrating_value.replace(/\^5/g,"↑");
             customrating_value = customrating_value.replace(/\^5/g, " spec");
-            customrating_value = customrating_value.replace(/\^6/g, " spec\=i not play"); // max. 25 letter, then its not cut off.
+            customrating_value = customrating_value.replace(/\^6/g, " spec\=i not play"); // max. 25 letter, then its cut off.
             customrating_value = customrating_value.replace(/\^7/g, " ill today");
             customrating_value = customrating_value.replace(/\^8/g, " overrated");
             customrating_value = customrating_value.replace(/\^9/g, " underrated");
@@ -126,8 +126,26 @@ function init(attribs) {
             //g_UserRating = customrating_value.substring(0,10)
             // g_UserRating = customrating_value.substring(0,16);
             // warn(`112: customrating_value: ${customrating_value}`);
-            g_UserRating = customrating_value.substring(0,42);
+            const maxLength = 25; // 25 seems the maximum length possible 23-0728_1307-06
+            customrating_value = customrating_value.trim()
+            if(customrating_value.length > maxLength){
+                customrating_value = customrating_value.substring(0,maxLength - 3) + "...";
+            }
+
+            const lastLetter = customrating_value.charAt(customrating_value.length - 1);
+            if(lastLetter != ')'){
+                customrating_value += ')';
+            }
+
+            g_UserRating = customrating_value;
             g_UserRating = customrating_value + ""; // customrating_value not empty with som texts
+
+
+            if(false && g_selfNick =="seeh"){ //NOTE -developers want to see the error in the console
+                warn(`138: set: g_UserRating = ${g_UserRating} , \n customrating_value: ${customrating_value}`);
+                warn(`139: length: ${customrating_value.length} , \n customrating_value: ${customrating_value}`);
+            }
+
         }
     } else {
         //warn(uneval("customrating numbers not allowed - adding spaces"));
