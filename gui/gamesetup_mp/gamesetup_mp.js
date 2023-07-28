@@ -129,7 +129,7 @@ function init(attribs) {
             const maxLength = 25; // 25 seems the maximum length possible 23-0728_1307-06
             customrating_value = customrating_value.trim()
             if(customrating_value.length > maxLength){
-                customrating_value = customrating_value.substring(0,maxLength - 3) + "...";
+                customrating_value = customrating_value.substring(0,maxLength - 2) + "..";
             }
 
             const lastLetter = customrating_value.charAt(customrating_value.length - 1);

@@ -305,19 +305,19 @@
 			{
 				"type": "boolean",
 				"label": "[color=\"220 185 70\"]Postfix UserName / GameNames[/color]: enable?",
-				"tooltip": "Enable Postfix for UserName and/or Suggestions for game Names? \n[color=\"255 0 0\"] max. 25 letter, then its cut off !! \n names + everything else.[/color] \n its not disturbing the game. \n but probably looks not beutiful. try it :) ",
+				"tooltip": "Enable Postfix for UserName and/or Suggestions for game Names? ",
 				"config": "customrating"
 			},
 			{
 				"type": "string",
 				"label": "Any text (limited chars max. 42)",
-				"tooltip": "Any text you like. Maybe your Localrating here? Like LR:-9 or LR:5 for example",
+				"tooltip": "Any text you like. Maybe your Localrating here? Like LR:-9 or LR:5 for example\n[color=\"255 0 0\"] max. 25 letter, then its cut off !! \n names + everything else.[/color] \n its not disturbing the game. \n but probably looks not beutiful. try it :) ",
 				"config": "customrating.value"
 			},
 			{
 				"type": "dropdown",
 				"label": "[color=\"220 185 70\"]Postfix UserName[/color] or select rated,nub... ->",
-				"tooltip": "You can add a custom postfix - works in game",
+				"tooltip": "[color=\"255 0 0\"] max. 25 letter, then its cut off !! \n names + everything else.[/color] \n its not disturbing the game. \n but probably looks not beutiful. try it :) ",
 				"config": "autocivP.customusername",
 				"dependencies": ["customrating"],
 				"list": [
