@@ -58,7 +58,7 @@ function chatInputTooltipQuickFixUpdate() {
 	// this is a workaround. should be moved to gui/... /ChatInputPanel or something
 	const chatInput = Engine.GetGUIObjectByName("chatInput")
 	if(chatInput){
-	  chatInput.tooltip += ' Or try ‹Tab› to autocomplete commands for select profile, chosen icons (☯ ♪♣‹) or other commands. Write "⁄help" or  "⁄help ⁄∖d" or  "⁄help ⁄p" for more info about "/" commands.'
+	  chatInput.tooltip += ' Or try ‹Tab› to autocomplete commands for select profile, chosen icons ( /iconsList ☯ ♪♣‹) or other commands. Write "⁄help" or  "⁄help ⁄∖d" or  "⁄help ⁄p" for more info about "/" commands.'
 	  chatInput.tooltip += ' Matching algorithm is more strict when text is longer.\n'
 	  chatInput.tooltip += 'Use uppercase to temporarily reduce the sensitivity of the substitutions mechanism'
 	}
@@ -192,11 +192,19 @@ function transGGWP_markedStrings_I(gg, minMatchScore) {
 function translGGWP_U2Gg_III(gg, minMatchScore) {
 	let isDebug = false
 	// isDebug = true
+
+
+	if( g_selfNick =="seeh"){
+	}
+
 	if(isDebug)
 		selfMessage(`169: ____________ translGGWP_U2Gg_III(${gg}, ${minMatchScore}) ___________`);
-	if( !minMatchScore ){
-	  selfMessage(`140: minMatchScore = ${minMatchScore}`);
-	  error(`minMatchScore is not defined`);
+	if( !minMatchScore){
+		if( g_selfNick =="seeh" ){
+			// selfMessage(`140: minMatchScore = ${minMatchScore}`);
+			// error(`minMatchScore is not defined`);
+		}
+		minMatchScore = 0.8 // some value. quick fix. todo: why its empty? 23-0729_1618-01
 	}
 
 	let lowercaseGg = gg.toLowerCase()
