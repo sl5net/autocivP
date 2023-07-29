@@ -52,6 +52,7 @@ function init(attribs) {
     let customrating_value = Engine.ConfigDB_GetValue("user", "autocivP.customusername");
     const customrating_trueFalse = Engine.ConfigDB_GetValue("user", "customrating");
 
+
     const modsObj = Engine.GetEngineInfo().mods
     for (const [key, value] of Object.entries(modsObj)) {
         if (value.name === "proGUI") {
@@ -88,7 +89,7 @@ function init(attribs) {
             customrating_value = customrating_value.replace(/\^4/g, " programmer\?");
             // customrating_value = customrating_value.replace(/\^5/g,"↑");
             customrating_value = customrating_value.replace(/\^5/g, " spec");
-            customrating_value = customrating_value.replace(/\^6/g, " spec\=i not play"); // max. 25 letter, then its cut off.
+            customrating_value = customrating_value.replace(/\^6/g, " spec\=i not play");
             customrating_value = customrating_value.replace(/\^7/g, " ill today");
             customrating_value = customrating_value.replace(/\^8/g, " overrated");
             customrating_value = customrating_value.replace(/\^9/g, " underrated");
@@ -101,10 +102,11 @@ function init(attribs) {
         //     warn(`g_proGUIPVersion: ${g_proGUIPVersion}`)
         // }
 
+        const delimiterSymbol = "|"; // |
         if(g_proGUIPVersion){
             const temp = "proGUI";
             customrating_value = ( isCustomratingEnabled && customrating_value && customrating_value !== 'false')
-            ? `${temp}|${customrating_value}`
+            ? `${temp}${delimiterSymbol}${customrating_value}`
             : temp ;
         }
 
@@ -119,17 +121,20 @@ function init(attribs) {
 
         if ( customrating_value === 'false') {
             //no rating in username
-            // g_UserRating = attribs.rating + " or +100 maybe."; // if its empty . enabled but empty => works 2021-0902_1324-54
-            // g_UserRating = attribs.rating + " or +100 maybe."; // if its empty . enabled but empty => works bot long for this field. end ) is not there 2021-0902_1326-08
-            g_UserRating = attribs.rating //  + " +100 maybe"; // if its empty . enabled but empty => works bot long for this field. end ) is not there 2021-0902_1327-19
+            // g_UserRating = attribs.rating + " // if its empty . enabled but empty => works 2021-0902_1324-54
+            // g_UserRating = attribs.rating + " // if its empty . enabled but empty => works bot long for this field. end ) is not there 2021-0902_1326-08
+            g_UserRating = attribs.rating //  // if its empty . enabled but empty => works bot long for this field. end ) is not there 2021-0902_1327-19
         } else {
             //g_UserRating = customrating_value.substring(0,10)
             // g_UserRating = customrating_value.substring(0,16);
             // warn(`112: customrating_value: ${customrating_value}`);
-            const maxLength = 25; // 25 seems the maximum length possible 23-0728_1307-06
+            const maxLength = 24; // if you set here to long then later the ')' will cut off. 25 was a mistake. 25 seems the maximum length possible 23-0728_1307-06,  33 when you observer 23-0728_2214-44
+            // max. 25 letter, then its cut off. 33 when you observer 23-0728_2214-50
+            // local hosted game: max. 33 letter, then its cut off . Example(pink yourself): seeh (1205|proGUI|unfocused toda
             customrating_value = customrating_value.trim()
-            if(customrating_value.length > maxLength){
-                customrating_value = customrating_value.substring(0,maxLength - 2) + "..";
+            let length_ratingPlusCustomRating = g_UserRating.length + customrating_value.length + 1;
+            if(length_ratingPlusCustomRating > maxLength){
+                customrating_value = customrating_value.substring(0,maxLength - g_UserRating.length - 2) + "..";
             }
 
             // const lastLetter = customrating_value.charAt(customrating_value.length - 1);
@@ -141,6 +146,7 @@ function init(attribs) {
                 warn(`141: set: g_UserRating = ${g_UserRating} , \n customrating_value: ${customrating_value}`);
                 warn(`142: length: ${customrating_value.length} , \n customrating_value: ${customrating_value}`);
             }
+
 
             g_UserRating =  (customrating_value )
             ? g_UserRating + ((g_UserRating) ? '|': '') + customrating_value + ''
@@ -155,9 +161,12 @@ function init(attribs) {
 
         }
     } else {
+        warn('159: whish you good game. as observer your name is 33 letters max long');
         //warn(uneval("customrating numbers not allowed - adding spaces"));
         // g_UserRating = " " + customrating_value.substring(0,16) + " ";
         g_UserRating = " " + customrating_value + " "; // <= need a space at the end . for prevent errors
+        // here we observers
+        // // max. 25 letter, then its cut off. 33 when you observer 23-0728_2214-50
     }
     //g_ServerPort = attribs.port;
     g_PlayerName = !!attribs.name

@@ -59,7 +59,8 @@ function chatInputTooltipQuickFixUpdate() {
 	const chatInput = Engine.GetGUIObjectByName("chatInput")
 	if(chatInput){
 	  chatInput.tooltip += ' Or try ‹Tab› to autocomplete commands for select profile, chosen icons (☯ ♪♣‹) or other commands. Write "⁄help" or  "⁄help ⁄∖d" or  "⁄help ⁄p" for more info about "/" commands.'
-	  chatInput.tooltip += ' Matching algorithm is more strict when text is longer.'
+	  chatInput.tooltip += ' Matching algorithm is more strict when text is longer.\n'
+	  chatInput.tooltip += 'Use uppercase to temporarily reduce the sensitivity of the substitutions mechanism'
 	}
 
 	g_is_chatInputTooltipQuickFixUpdate_updated = true
@@ -432,6 +433,16 @@ const g_autociv_SharedCommands = {
 		"handler": () =>
 		{
 			const JitsiText = `feldmap mod adds the map "Mainland balanced". Alpine Mountains is also included ( https://https://wildfiregames.com/forum/topic/53880-feldmap ) `
+			const chatInput = Engine.GetGUIObjectByName("chatInput")
+			chatInput.focus()
+			chatInput.caption = JitsiText
+		}
+	},
+	"whatsCommunityMod" : {
+		"description": "communityMod is ",
+		"handler": () =>
+		{
+			const JitsiText = `communityMod is community-powered by the core team to improve the gameplay experience, particularly MP balance. The team wanted to give the community make it easier to contribute, thus this is hosted on gitlab and community members can request commit access ( https://gitlab.com/0ad/0ad-community-mod-a26 ) .`
 			const chatInput = Engine.GetGUIObjectByName("chatInput")
 			chatInput.focus()
 			chatInput.caption = JitsiText
