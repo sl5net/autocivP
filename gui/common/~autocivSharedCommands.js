@@ -225,7 +225,7 @@ function translGGWP_U2Gg_III(gg, minMatchScore) {
 		  s += `${k} < ${vArr}`
 		  s += ` | `
 	  })
-	  const t = `you dont need write it ecactly. it finds results also if you write to less or bit wrong (its fuzzy-search). disable all icons in settings in options menu.`
+	  const t = `you dont need write it ecactly. it finds results also if you write to less or bit wrong (its fuzzy-search). disable all icons in settings in options menu. some are contect senitive.`
 	  s += t
 	  if(doSend2allChatUsers)
 		  sendMessage(`${t}`);
