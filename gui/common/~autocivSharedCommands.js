@@ -341,7 +341,7 @@ function saveLastCommand2History(lastCommand){
 	  return;
 	if(lastCommand == g_lastCommand)
 	  return;
-	if(lastCommand == "communityModToggle"){ // maybe a bit to dangerous to trigger it exidentally. so maybe better keep it out of history. what you think?
+	if(lastCommand.toLocaleLowerCase() == "communityModToggle".toLocaleLowerCase()){ // maybe a bit to dangerous to trigger it exidentally. so maybe better keep it out of history. what you think?
 		g_lastCommand = lastCommand;
 		return;
 	}
