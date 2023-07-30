@@ -31,6 +31,12 @@ let g_PlayerName;
 
 
 function init(attribs) {
+
+    if(g_selfNick =="seeh"){ // programmer need to see bit more info
+        warn("35: Received attribs:", attribs)
+        warn("35: typeof attribs:", typeof attribs) // typeof attribs give no result
+    }
+
     let g_UserRatingString;
     /*
     https://wildfiregames.com/forum/topic/55450-howto-read-~snap0ad236localshare0adreplays00252021-08-05_0002metadatajson/?do=findComment&comment=452775
@@ -51,7 +57,6 @@ function init(attribs) {
     let customrating_string = Engine.ConfigDB_GetValue("user", "customrating.string") // usefull options to select
     let customrating_dropdown = Engine.ConfigDB_GetValue("user", "autocivP.customusernameDropdown"); // autocivP.customusernameDropdown is Dropdown with some funny or usefull options to select
     const customrating_trueFalse = Engine.ConfigDB_GetValue("user", "customrating");
-
 
     const modsObj = Engine.GetEngineInfo().mods
     for (const [key, value] of Object.entries(modsObj)) {
@@ -105,7 +110,7 @@ function init(attribs) {
             // customrating_value = customrating_value.replace('Host','');
             customrating_dropdown = customrating_dropdown.replace(/^[^\d\w\-]*[0-9]+[^\d\w\-]*$/g, ''); // if its only a number. cut it out
 
-            if(customrating_dropdown.length === 0){
+            if(customrating_dropdown.length === 0 || customrating_dropdown == 'false'){
                 customrating_dropdown = Engine.ConfigDB_GetValue("user", "customrating.string");
             }
 
@@ -119,7 +124,8 @@ function init(attribs) {
         const delimiterSymbol = "|"; // |
         if(false || g_proGUIPVersion){
             const temp = "proGUI*"; // this was now recorded, when i was playing in a bigh TG (not as host). funny. is this always? i was not able to reconstruct it when starting a local game 23-0730_1401-05
-            customrating_dropdown = ( isCustomratingEnabled && customrating_dropdown && customrating_dropdown !== 'false')
+            //  && customrating_dropdown !== 'false'
+            customrating_dropdown = ( isCustomratingEnabled && customrating_dropdown)
             ? `${temp}${delimiterSymbol}${customrating_dropdown}`
             : temp ;
         }
@@ -183,6 +189,8 @@ function init(attribs) {
         // // max. 25 letter, then its cut off. 33 when you observer 23-0728_2214-50
     }
     //g_ServerPort = attribs.port;
+
+    //  !!attribs.name is a double negation operator used to convert a value to its boolean representation.
     if(true)
         g_PlayerName = !!attribs.name
         ? attribs.name + (g_UserRating ? " (" + g_UserRating + ")"
@@ -199,6 +207,9 @@ function init(attribs) {
 
         // warn(`attribs: ${attribs.multiplayerGameType.prototype.toString()}`)
          // JSON.stringify() but specifically for converting JavaScript objects into a string representation
+         /*!SECTION
+         JSON.stringify()  ,   toString()    ,    You can create custom serialization methods for your objects by defining toJSON() or toObject() methods.
+         */
 
     }
     // added by custom rating - END
