@@ -29,8 +29,53 @@ var g_backupMessageBeforeChangeContextViaHotkey = ''
 
 
 const versionOf0ad = Engine.GetEngineInfo().mods[0]['version']; // 0.0.26
-const zipOfAutocivPMod = 'https://api.mod.io/v1/games/5/mods/3105810/files/4097856/download'
-const whatsAutocivPMod = `AutoCivP mod is AutoCiv but it also supports profiles during game configuration, jitsi, command-history⟦Tab⟧⟦Tab⟧ and a lot more ( https://wildfiregames.com/forum/topic/107371-autocivp-add-ons-profiles-jitsi-team-call ) \n 1. download newest ZIP here ${zipOfAutocivPMod} \n 2. unzip it \n 3. rename folder to "autocivP" \n 4. copy this folder to "mods" folder. Path to user data: \n Linux     : ~/.config/0ad/mods \n Windows: %AppData%\\0ad\\mods \n macOS    : \/Users\/{YOUR USERNAME}\/Library\/Application\\ Support/0ad/mods \n tart 0 A.D., click Settings and Mod Selection. \n Double-click it, click Save Configuration and Start Mods. `
+// const zipOfAutocivPMod = 'https://api.mod.io/v1/games/5/mods/3105810/files/4097856/download'
+const zipOfAutocivPMod = 'https://github.com/sl5net/autocivP/archive/refs/tags/v1.0.27.zip'
+
+const g_autocivPVersion_shared = get_autocivPVersion()
+
+const g_previous_autocivPVersion = get_previous_autocivPVersion(g_autocivPVersion_shared)
+
+const actuallyWorkingAtVersion = g_previous_autocivPVersion == g_autocivPVersion_shared ? '' : `actually working at version ${g_autocivPVersion_shared}`
+// warn(`actually working at version ${actuallyWorkingAtVersion}`)
+
+const whatsAutocivPMod = `AutoCivP mod is AutoCiv but it also supports profiles during game configuration, jitsi, command-history⟦Tab⟧⟦Tab⟧ and a lot more ( https://wildfiregames.com/forum/topic/107371-autocivp-add-ons-profiles-jitsi-team-call ) \n 1. download newest ZIP here ${zipOfAutocivPMod} \n 2. unzip it \n 3. rename folder to "autocivP" \n 4. copy this folder to "mods" folder. Path to user data: \n Linux     : ~/.config/0ad/mods \n Windows: %AppData%\\0ad\\mods \n macOS    : \/Users\/{YOUR USERNAME}\/Library\/Application\\ Support/0ad/mods \n tart 0 A.D., click Settings and Mod Selection. \n Double-click it, click Save Configuration and Start Mods. \n ${actuallyWorkingAtVersion} `
+
+
+
+// zipOfAutocivPMod = `https://github.com/sl5net/autocivP/archive/refs/tags/v${g_previous_autocivPVersion}.zip`
+
+
+
+function get_previous_autocivPVersion(g_autocivPVersion) {
+	const versionParts = g_autocivPVersion.split(".");
+	const major = parseInt(versionParts[0]);
+	const minor = parseInt(versionParts[1]);
+	const patch = parseInt(versionParts[2]);
+
+	// Subtract 1 from the patch version to get the previous version
+	const previousPatch = patch - 1;
+
+	// Check if the previous patch version is 0. If so, decrement the minor version and set the patch version to 99.
+	const previousMinor = (previousPatch === 0) ? minor - 1 : minor;
+	const previousPatchVersion = (previousPatch === 0) ? 99 : previousPatch;
+
+	// Construct the previous version string
+	const g_previous_autocivPVersion = `${major}.${previousMinor}.${previousPatchVersion}`;
+	return	g_previous_autocivPVersion
+}
+function get_autocivPVersion() {
+	let g_autocivPVersion
+	const modsObj = Engine.GetEngineInfo().mods
+	for (const [key, value] of Object.entries(modsObj)) {
+		if (value.name === "autocivP") {
+			g_autocivPVersion = value.version
+			break
+		}
+	}
+	return g_autocivPVersion
+}
+
 
 /**
  * Generates a fuzzy array from a given JSON file.

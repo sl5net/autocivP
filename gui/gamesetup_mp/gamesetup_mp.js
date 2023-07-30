@@ -168,7 +168,7 @@ function init(attribs) {
         // // max. 25 letter, then its cut off. 33 when you observer 23-0728_2214-50
     }
     //g_ServerPort = attribs.port;
-    if(false)
+    if(true)
         g_PlayerName = !!attribs.name
         ? attribs.name + (g_UserRating ? " (" + g_UserRating + ")"
         : "")
