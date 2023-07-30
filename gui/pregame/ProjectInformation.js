@@ -11,13 +11,7 @@ for (let [key, value] of Object.entries(modsObj)) {
 		}
 }
 
-var g_autocivPVersion = ''
-for (const [key, value] of Object.entries(modsObj)) {
-  if (value.name === "autocivP") {
-    g_autocivPVersion = value.version
-    break
-  }
-}
+var g_autocivPVersion = get_autocivPVersion()
 
 const versionName = Engine.GetEngineInfo().mods[0]['name'];
 
