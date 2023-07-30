@@ -478,7 +478,7 @@ function saveThisModProfile(nr, autoLabelManually) {
           clean = modsFromUserCfg_const.replaceAll(/[^\w\d\-]+/g, " ");
           break;
         case 1:
-          clean = ""; // proGUI was removed from default 23-0730_1210-33
+          clean = "no-blood-and-gore-mod"; // proGUI was removed from default 23-0730_1210-33
           break;
         case 2:
           clean = "community-mod proGUI";
