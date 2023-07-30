@@ -1,6 +1,23 @@
 autociv_patchApplyN("init", (target, that, args) => {
     const res = target.apply(that, args);
     const [attribs] = args
+
+
+    if(g_selfNick =="seeh"){ // programmer need to see bit more info
+      warn("7: attribs:", attribs)
+      warn("7: typeof attribs:", typeof attribs) // typeof attribs give no result
+      warn("7: attribs.rating:", attribs.rating) // give no result
+      warn("7: attribs.rating:", attribs.rating) // give no result
+      warn("7: (attribs.rating):", (attribs.rating)) // give no result
+      warn("7: { attribs }:", { attribs }) // give no result
+      warn("7: Object.keys(attribs):", Object.keys(attribs) ) // give no result
+      for (let i = 0; i < attribs.length; i++) {
+          warn(i); // Output: 0, 1, 2
+      }         // give no result
+      // it never gives me any results? when it gives results? 23-0730_2229-20
+  }
+
+
     if (attribs.hasPassword)
     {
         let input = Engine.GetGUIObjectByName("clientPassword");

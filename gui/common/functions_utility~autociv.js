@@ -780,6 +780,7 @@ function captionIs_modsImCurrentlyUsing(guiObject){ // this function will be tri
   // sendMessage(`Mods I'm currently using: ${modEnabledmods.slice(11,)}` );
   let text = `Mods I'm currently using: ${modEnabledmods.slice(11,)}`
   text = text.replace('feldmap', 'feldmap♒') //  ♡ autocivP❧♣▦▣ mod
+
   text = text.replace('proGUI', 'proGUI★') //  ♡ autocivP❧♣▦▣ mod
   text = text.replace('autocivP', 'autocivP☼') //  ♡ autocivP❧♣▦▣ mod
   guiObject.caption = text;

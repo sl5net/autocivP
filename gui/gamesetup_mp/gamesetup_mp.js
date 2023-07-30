@@ -29,12 +29,20 @@ let g_UserRating;
 // added by custom rating
 let g_PlayerName;
 
-
 function init(attribs) {
 
     if(g_selfNick =="seeh"){ // programmer need to see bit more info
-        warn("35: Received attribs:", attribs)
+        warn("35: attribs:", attribs)
         warn("35: typeof attribs:", typeof attribs) // typeof attribs give no result
+        warn("35: attribs.rating:", attribs.rating) // give no result
+        warn("35: attribs.rating:", attribs.rating) // give no result
+        warn("35: (attribs.rating):", (attribs.rating)) // give no result
+        warn("35: { attribs }:", { attribs }) // give no result
+        warn("35: Object.keys(attribs):", Object.keys(attribs) ) // give no result
+        for (let i = 0; i < attribs.length; i++) {
+            warn(i); // Output: 0, 1, 2
+        }         // give no result
+        // it never gives me any results? when it gives results? 23-0730_2229-20
     }
 
     let g_UserRatingString;
@@ -123,7 +131,22 @@ function init(attribs) {
 
         const delimiterSymbol = "|"; // |
         if(false || g_proGUIPVersion){
-            const temp = "proGUI*"; // this was now recorded, when i was playing in a bigh TG (not as host). funny. is this always? i was not able to reconstruct it when starting a local game 23-0730_1401-05
+
+            const showStarWhenUsingProGUI = Engine.ConfigDB_GetValue(
+                "user",
+                "autocivP.mod.showStarWhenUsingProGUI"
+              ) === "true"
+
+            const useitwithoutUnicode = Engine.ConfigDB_GetValue(
+                "user",
+                "autociv.chatText.font.useitwithoutUnicode"
+              ) === "true"
+
+            const temp = (showStarWhenUsingProGUI)
+                ? ((useitwithoutUnicode)
+                    ?'*':"★")
+                : "proGUI"; //
+            // this was now recorded, when i was playing in a bigh TG (not as host). funny. is this always? i was not able to reconstruct it when starting a local game 23-0730_1401-05
             //  && customrating_dropdown !== 'false'
             customrating_dropdown = ( isCustomratingEnabled && customrating_dropdown)
             ? `${temp}${delimiterSymbol}${customrating_dropdown}`

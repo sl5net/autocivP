@@ -338,6 +338,12 @@
 			},
 			{
 				"type": "boolean",
+				"label": "[color=\"220 185 70\"]Postfix UserName[/color]: use ★ or * to show when i using proGUI mod",
+				"tooltip": "its fairplay when other player know that you are using proGUI mod. `n it shows that you are using proGUI mod. `n but you could use ★ to show that you are using proGUI mod. as a shortcut.",
+				"config": "autocivP.mod.showStarWhenUsingProGUI"
+			},
+			{
+				"type": "boolean",
 				"label": "[color=\"220 185 70\"]no UserName in GameNames[/color]?",
 				"tooltip": "cuts of your username from game name Suggestions",
 				"config": "autocivP.gamesetup.noUsernameInGameName"
