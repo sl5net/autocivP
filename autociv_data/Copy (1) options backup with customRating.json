@@ -313,14 +313,14 @@
 				"type": "string",
 				"label": "Any text max 15 chars",
 				"tooltip": "Any text you like (max 15 chars long). Extra chars use those codes ^1  ∞, ^2 ♡, ^3 ™, ^4 ★, ^5 ↑ ",
-				"config": "customrating.value"
+				"config": "customrating.string"
 
 			},
 			{
 				"type": "dropdown",
 				"label": " or select presets --------->",
 				"tooltip": "You can modify your custom string in brackets - works in game",
-				"config": "customrating.value",
+				"config": "customrating.string",
 				"dependencies": ["customrating"],
 				"list": [
 					{ "value": "false", "label": "!No rating" },

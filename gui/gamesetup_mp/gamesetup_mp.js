@@ -48,7 +48,8 @@ function init(attribs) {
     }
 
     // added by custom rating - START
-    let customrating_value = Engine.ConfigDB_GetValue("user", "autocivP.customusername");
+    let customrating_string = Engine.ConfigDB_GetValue("user", "customrating.string") // usefull options to select
+    let customrating_dropdown = Engine.ConfigDB_GetValue("user", "autocivP.customusernameDropdown"); // autocivP.customusernameDropdown is Dropdown with some funny or usefull options to select
     const customrating_trueFalse = Engine.ConfigDB_GetValue("user", "customrating");
 
 
@@ -78,22 +79,36 @@ function init(attribs) {
 
         const isCustomratingEnabled = ( customrating_trueFalse != "false" )
         if(isCustomratingEnabled){
-            customrating_value = customrating_value.replace(/\^n/g, "nuub");
-            customrating_value = customrating_value.replace(/\^vn/g, "very nub");
-            customrating_value = customrating_value.replace(/\^0/g, "youtuber");
-            customrating_value = customrating_value.replace(/\^1/g, "unfocused today");
-            customrating_value = customrating_value.replace(/\^2/g, " rated");
-            customrating_value = customrating_value.replace(/\^3/g, " unrated");
+
+            /*!SECTION
+            customrating on / off
+            availeble fields:
+            customrating.string / string
+            autocivP.customusernameDropdown / radio field
+
+            */
+
+            customrating_dropdown = customrating_dropdown.replace(/\^n/g, "nuub");
+            customrating_dropdown = customrating_dropdown.replace(/\^vn/g, "very nub");
+            customrating_dropdown = customrating_dropdown.replace(/\^0/g, "youtuber");
+            customrating_dropdown = customrating_dropdown.replace(/\^1/g, "unfocused today");
+            customrating_dropdown = customrating_dropdown.replace(/\^2/g, " rated");
+            customrating_dropdown = customrating_dropdown.replace(/\^3/g, " unrated");
             // customrating_value = customrating_value.replace(/\^3/g,"™");
-            customrating_value = customrating_value.replace(/\^4/g, " programmer\?");
+            customrating_dropdown = customrating_dropdown.replace(/\^4/g, " programmer\?");
             // customrating_value = customrating_value.replace(/\^5/g,"↑");
-            customrating_value = customrating_value.replace(/\^5/g, " spec");
-            customrating_value = customrating_value.replace(/\^6/g, " spec\=i not play");
-            customrating_value = customrating_value.replace(/\^7/g, " ill today");
-            customrating_value = customrating_value.replace(/\^8/g, " overrated");
-            customrating_value = customrating_value.replace(/\^9/g, " underrated");
+            customrating_dropdown = customrating_dropdown.replace(/\^5/g, " spec");
+            customrating_dropdown = customrating_dropdown.replace(/\^6/g, " spec\=i not play");
+            customrating_dropdown = customrating_dropdown.replace(/\^7/g, " ill today");
+            customrating_dropdown = customrating_dropdown.replace(/\^8/g, " overrated");
+            customrating_dropdown = customrating_dropdown.replace(/\^9/g, " underrated");
             // customrating_value = customrating_value.replace('Host','');
-            customrating_value = customrating_value.replace(/^[^\d\w\-]*[0-9]+[^\d\w\-]*$/g, ''); // if its only a number. cut it out
+            customrating_dropdown = customrating_dropdown.replace(/^[^\d\w\-]*[0-9]+[^\d\w\-]*$/g, ''); // if its only a number. cut it out
+
+            if(customrating_dropdown.length === 0){
+                customrating_dropdown = Engine.ConfigDB_GetValue("user", "customrating.string");
+            }
+
         }
 
         // warn(`112: customrating_value: ${customrating_value}`);
@@ -104,8 +119,8 @@ function init(attribs) {
         const delimiterSymbol = "|"; // |
         if(false || g_proGUIPVersion){
             const temp = "proGUI*"; // this was now recorded, when i was playing in a bigh TG (not as host). funny. is this always? i was not able to reconstruct it when starting a local game 23-0730_1401-05
-            customrating_value = ( isCustomratingEnabled && customrating_value && customrating_value !== 'false')
-            ? `${temp}${delimiterSymbol}${customrating_value}`
+            customrating_dropdown = ( isCustomratingEnabled && customrating_dropdown && customrating_dropdown !== 'false')
+            ? `${temp}${delimiterSymbol}${customrating_dropdown}`
             : temp ;
         }
 
@@ -114,11 +129,11 @@ function init(attribs) {
         if (typeof g_LocalRatingsDatabase !== 'undefined') { // DODO sad its not available from autocivP ... means i need rebuild/copy some functions. should i do this ? 23-0722_1551-58 . i hope maybe Mentula will do it maybe in a day in future
             const playerName = 'seeh'
             const playerData = g_LocalRatingsDatabase[playerName];
-            customrating_value += ` LR ${playerData.rating}`;
+            customrating_dropdown += ` LR ${playerData.rating}`;
         }
 
 
-        if ( customrating_value === 'false') {
+        if ( customrating_dropdown === 'false') {
             //no rating in username
             // g_UserRating = attribs.rating + " // if its empty . enabled but empty => works 2021-0902_1324-54
             // g_UserRating = attribs.rating + " // if its empty . enabled but empty => works bot long for this field. end ) is not there 2021-0902_1326-08
@@ -130,10 +145,10 @@ function init(attribs) {
             const maxLength = 24; // if you set here to long then later the ')' will cut off. 25 was a mistake. 25 seems the maximum length possible 23-0728_1307-06,  33 when you observer 23-0728_2214-44
             // max. 25 letter, then its cut off. 33 when you observer 23-0728_2214-50
             // local hosted game: max. 33 letter, then its cut off . Example(pink yourself): seeh (1205|proGUI|unfocused toda
-            customrating_value = customrating_value.trim()
-            let length_ratingPlusCustomRating = g_UserRating.length + customrating_value.length + 1;
+            customrating_dropdown = customrating_dropdown.trim()
+            let length_ratingPlusCustomRating = g_UserRating.length + customrating_dropdown.length + 1;
             if(length_ratingPlusCustomRating > maxLength){
-                customrating_value = customrating_value.substring(0,maxLength - g_UserRating.length - 2) + "..";
+                customrating_dropdown = customrating_dropdown.substring(0,maxLength - g_UserRating.length - 2) + "..";
             }
 
             // const lastLetter = customrating_value.charAt(customrating_value.length - 1);
@@ -142,20 +157,20 @@ function init(attribs) {
             // }
             const bugIt = false
             if(bugIt && g_selfNick =="seeh"){ //NOTE -developers want to see the error in the console
-                warn(`141: set: g_UserRating = ${g_UserRating} , \n customrating_value: ${customrating_value}`);
-                warn(`142: length: ${customrating_value.length} , \n customrating_value: ${customrating_value}`);
+                warn(`141: set: g_UserRating = ${g_UserRating} , \n customrating_value: ${customrating_dropdown}`);
+                warn(`142: length: ${customrating_dropdown.length} , \n customrating_value: ${customrating_dropdown}`);
             }
 
 
-            g_UserRating =  (customrating_value )
-            ? g_UserRating + ((g_UserRating) ? '|': '') + customrating_value + ''
+            g_UserRating =  (customrating_dropdown )
+            ? g_UserRating + ((g_UserRating) ? '|': '') + customrating_dropdown + ''
             : g_UserRating;
             // g_UserRating = customrating_value + ""; // customrating_value not empty with som texts
 
 
             if(bugIt && g_selfNick =="seeh"){ //NOTE -developers want to see the error in the console
-                warn(`149: set: g_UserRating = ${g_UserRating} , \n customrating_value: ${customrating_value}`);
-                warn(`151: length: ${customrating_value.length} , \n customrating_value: ${customrating_value}`);
+                warn(`149: set: g_UserRating = ${g_UserRating} , \n customrating_value: ${customrating_dropdown}`);
+                warn(`151: length: ${customrating_dropdown.length} , \n customrating_value: ${customrating_dropdown}`);
             }
 
         }
@@ -163,7 +178,7 @@ function init(attribs) {
         warn('159: whish you good game. as observer your name is 33 letters max long');
         //warn(uneval("customrating numbers not allowed - adding spaces"));
         // g_UserRating = " " + customrating_value.substring(0,16) + " ";
-        g_UserRating = " " + customrating_value + " "; // <= need a space at the end . for prevent errors
+        g_UserRating = " " + customrating_dropdown + " "; // <= need a space at the end . for prevent errors
         // here we observers
         // // max. 25 letter, then its cut off. 33 when you observer 23-0728_2214-50
     }
@@ -175,9 +190,9 @@ function init(attribs) {
         : "";
 
     // g_PlayerName = 'seeh (1205)';
-    if(g_selfNick =="seeh"){ //NOTE -developers want to see the error in the console
-        warn(uneval("attribs.name:" + attribs.name));
-        warn(uneval("g_UserRating:" + g_UserRating));
+    if(false && g_selfNick =="seeh"){ //NOTE -developers want to see the error in the console
+        warn('179:' + uneval("attribs.name:" + attribs.name));
+        warn('180:' + uneval("g_UserRating:" + g_UserRating));
         warn(uneval("g_UserRatingString:" + g_UserRatingString));
         warn(uneval("g_GameType:" + g_GameType)); // undefined
         warn(uneval("g_PlayerName:" + g_PlayerName)); // undefined
