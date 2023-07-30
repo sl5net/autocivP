@@ -456,6 +456,19 @@ const g_autociv_SharedCommands = {
 			chatInput.caption = JitsiText
 		}
 	},
+	"programmers" : {
+		"description": "communityMod is ",
+		"handler": () =>
+		{
+const text = `If you have suggestions for changinge the source-code a bit, share results of your change. Instead of providing suggestions right away, you may could first try implementing your suggestions and then share the results or outcomes. This way, its easys to understand their impact.
+BTW for chat maybe use https://matrix.to/#/#0ad:matrix.org, https://webchat.quakenet.org/?channels=0ad, maybe https://discord.gg or any other chat service.
+BTW list of functions: https://trac.wildfiregames.com/wiki/EngineFunctions
+.`
+			const chatInput = Engine.GetGUIObjectByName("chatInput")
+			chatInput.focus()
+			chatInput.caption = text.replace(/\r\t/g, '') // tabe needs to be fut off. also ths wagenrücklauf
+		}
+	},
 	"whatstimeNow" : {
 		"description": "whats Time now hoursMinute",
 		"handler": () =>

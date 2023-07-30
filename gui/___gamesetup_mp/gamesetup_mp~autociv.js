@@ -103,12 +103,6 @@ autociv_patchApplyN("init", (target, that, args) => {
             // input.caption = nextGameStartTime()
 
 
-            // warn(`109: ${g_GameType} = g_GameType`)
-            // g_GameType undifined when local game name will be edited. game setup window will be opened soon
-            // g_GameType undifined again when in the game setup window
-            // g_GameType undifined again when in the game setup window
-            // g_GameType no message ingame then
-
             if ( Engine.ConfigDB_GetValue("user", "autocivP.gamesetup.noUsernameInGameName") == "true" ){
               // if(g_selfNick =="seeh") //NOTE - developers
               //   warn(`109: ${text} = text`)

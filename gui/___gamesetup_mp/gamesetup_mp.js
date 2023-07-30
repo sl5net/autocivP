@@ -1,3 +1,4 @@
+
 let g_proGUIPVersion = null;
 
 /**
@@ -102,8 +103,8 @@ function init(attribs) {
         // }
 
         const delimiterSymbol = "|"; // |
-        if(false || g_proGUIPVersion){
-            const temp = "proGUI*";
+        if(g_proGUIPVersion){
+            const temp = "proGUI";
             customrating_value = ( isCustomratingEnabled && customrating_value && customrating_value !== 'false')
             ? `${temp}${delimiterSymbol}${customrating_value}`
             : temp ;
@@ -172,19 +173,8 @@ function init(attribs) {
         ? attribs.name + (g_UserRating ? " (" + g_UserRating + ")"
         : "")
         : "";
-
-    g_PlayerName = 'seeh (1205)';
-    if(g_selfNick =="seeh"){ //NOTE -developers want to see the error in the console
-        warn(uneval("attribs.name:" + attribs.name));
-        warn(uneval("g_UserRating:" + g_UserRating));
-        warn(uneval("g_UserRatingString:" + g_UserRatingString));
-        warn(uneval("g_GameType:" + g_GameType)); // undefined
-        warn(uneval("g_PlayerName:" + g_PlayerName)); // undefined
-
-        // warn(`attribs: ${attribs.multiplayerGameType.prototype.toString()}`)
-         // JSON.stringify() but specifically for converting JavaScript objects into a string representation
-
-    }
+    //warn(uneval("attribs.name:" + attribs.name));
+    //warn(uneval("g_UserRating:" + g_UserRating));
     // added by custom rating - END
     switch (attribs.multiplayerGameType) {
         case "join": {
