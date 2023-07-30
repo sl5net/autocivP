@@ -103,7 +103,7 @@ function init(attribs) {
 
         const delimiterSymbol = "|"; // |
         if(false || g_proGUIPVersion){
-            const temp = "proGUI*";
+            const temp = "proGUI*"; // this was now recorded, when i was playing in a bigh TG (not as host). funny. is this always? i was not able to reconstruct it when starting a local game 23-0730_1401-05
             customrating_value = ( isCustomratingEnabled && customrating_value && customrating_value !== 'false')
             ? `${temp}${delimiterSymbol}${customrating_value}`
             : temp ;
@@ -168,12 +168,13 @@ function init(attribs) {
         // // max. 25 letter, then its cut off. 33 when you observer 23-0728_2214-50
     }
     //g_ServerPort = attribs.port;
-    g_PlayerName = !!attribs.name
+    if(false)
+        g_PlayerName = !!attribs.name
         ? attribs.name + (g_UserRating ? " (" + g_UserRating + ")"
         : "")
         : "";
 
-    g_PlayerName = 'seeh (1205)';
+    // g_PlayerName = 'seeh (1205)';
     if(g_selfNick =="seeh"){ //NOTE -developers want to see the error in the console
         warn(uneval("attribs.name:" + attribs.name));
         warn(uneval("g_UserRating:" + g_UserRating));

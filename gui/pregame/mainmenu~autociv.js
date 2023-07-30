@@ -192,7 +192,7 @@ ConfigDB_CreateAndSaveValueA26A27("user", "silhouettes", true);
     }
 
     // autocivP should be later than proGUI becouse the sepezial customr rating that should make the use use of proGUI visible 23-0722_1318-16
-    ConfigDB_CreateAndSaveValueA26A27("user", "customrating.readme_seen", true);
+    // ConfigDB_CreateAndSaveValueA26A27("user", "customrating.readme_seen", true);
 
     if (true && posAutocivP < posProGUI) { // autocivP should be later than proGUI becouse the sepezial customr rating that should make the use use of proGUI visible 23-0722_1318-16
 
