@@ -118,36 +118,36 @@ class ProfilePanel
 		this.ratioText.caption = ProfilePanel.FormatWinRate(attributes);
 		const ratingNumberIcon = parseInt(attributes.rating, 10);
 
-		switch (true)
-		{
-		case (attributes.rank == "1"):
-			this.roleText.caption = "Ruler";
-			this.rankIcon.caption = sprintf("%(icon_highest_rank)s", { "icon_highest_rank": '[icon="icon_highest_rank" displace="0 3"]' });
-			return;
-		case (ratingNumberIcon > 1600):
-			this.roleText.caption = "Conqueror";
-			this.rankIcon.caption = sprintf("%(icon_above_1600)s", { "icon_above_1600": '[icon="icon_above_1600" displace="0 3"]' });
-			return;
-		case (ratingNumberIcon > 1400):
-			this.roleText.caption = "Champion";
-			this.rankIcon.caption = sprintf("%(icon_above_1400)s", { "icon_above_1400": '[icon="icon_above_1400" displace="0 3"]' });
-			return;
-		case (ratingNumberIcon > 1200):
-			this.roleText.caption = "Warrior";
-			this.rankIcon.caption = sprintf("%(icon_above_1200)s", { "icon_above_1200": '[icon="icon_above_1200" displace="0 3"]' });
-			return;
-		case (ratingNumberIcon > 1000):
-			this.roleText.caption = "Footsoldier";
-			this.rankIcon.caption = sprintf("%(icon_above_1000)s", { "icon_above_1000": '[icon="icon_above_1000" displace="0 3"]' });
-			return;
-		case (ratingNumberIcon <= 1000):
-			this.roleText.caption = "n00b";
-			this.rankIcon.caption = sprintf("%(icon_below_1000)s", { "icon_below_1000": '[icon="icon_below_1000" displace="0 3"]' });
-			return;
-		default:
-			this.rankIcon.caption = "";
-			return;
-		}
+		// switch (true)
+		// {
+		// case (attributes.rank == "1"):
+		// 	this.roleText.caption = "Ruler";
+		// 	this.rankIcon.caption = sprintf("%(icon_highest_rank)s", { "icon_highest_rank": '[icon="icon_highest_rank" displace="0 3"]' });
+		// 	return;
+		// case (ratingNumberIcon > 1600):
+		// 	this.roleText.caption = "Conqueror";
+		// 	this.rankIcon.caption = sprintf("%(icon_above_1600)s", { "icon_above_1600": '[icon="icon_above_1600" displace="0 3"]' });
+		// 	return;
+		// case (ratingNumberIcon > 1400):
+		// 	this.roleText.caption = "Champion";
+		// 	this.rankIcon.caption = sprintf("%(icon_above_1400)s", { "icon_above_1400": '[icon="icon_above_1400" displace="0 3"]' });
+		// 	return;
+		// case (ratingNumberIcon > 1200):
+		// 	this.roleText.caption = "Warrior";
+		// 	this.rankIcon.caption = sprintf("%(icon_above_1200)s", { "icon_above_1200": '[icon="icon_above_1200" displace="0 3"]' });
+		// 	return;
+		// case (ratingNumberIcon > 1000):
+		// 	this.roleText.caption = "Footsoldier";
+		// 	this.rankIcon.caption = sprintf("%(icon_above_1000)s", { "icon_above_1000": '[icon="icon_above_1000" displace="0 3"]' });
+		// 	return;
+		// case (ratingNumberIcon <= 1000):
+		// 	this.roleText.caption = "n00b";
+		// 	this.rankIcon.caption = sprintf("%(icon_below_1000)s", { "icon_below_1000": '[icon="icon_below_1000" displace="0 3"]' });
+		// 	return;
+		// default:
+		// 	this.rankIcon.caption = "";
+		// 	return;
+		// }
 	}
 }
 
