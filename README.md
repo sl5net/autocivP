@@ -26,6 +26,10 @@ Thanks to all the 0 A.D. players who found it useful.
 
 - change the polar_sea time slices to other minues (e.g. from 15 to 5 Minutes)
 
+## Limitations
+
+There is a limitation in the game where replays are not saved when you are the host of a team or 1v1 game. However, replays are saved when you join and play 1v1 games or team games.
+
 ## Questions & feedback
 For more information, questions and feedback, visit the thread on the [0 A.D. forum](https://wildfiregames.com/forum/topic/107371-autociv-add-ons-profiles-jitsi-team-call).
 
