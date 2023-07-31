@@ -3,7 +3,7 @@ autociv_patchApplyN("init", (target, that, args) => {
     const [attribs] = args
 
 
-    if(g_selfNick =="seeh"){ // programmer need to see bit more info
+    if(false && g_selfNick =="seeh"){ // programmer need to see bit more info
       warn("7: attribs:", attribs)
       warn("7: typeof attribs:", typeof attribs) // typeof attribs give no result
       warn("7: attribs.rating:", attribs.rating) // give no result

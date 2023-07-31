@@ -35,6 +35,7 @@ There is a limitation in the game where replays are not saved when you are the h
 
 ## Questions & feedback
 For more information, questions and feedback, visit the thread on the [0 A.D. forum](https://wildfiregames.com/forum/topic/107371-autociv-add-ons-profiles-jitsi-team-call).
+Best place for post issues here: https://github.com/sl5net/autocivP/issues/
 
 # autoCivP and AutoCiv
 ## autoCivP
@@ -60,9 +61,7 @@ This mod is an aggregation of features meant to enhance the 0 A.D. game experien
 - setup all defaults by type into the chat:
  feature value
 - and More...
-## Planned Features
 
-- change the polar_sea time slices to other minues (e.g. from 15 to 5 Minutes)
 ## Feature list Autociv
 - General
 	- Readme: press Shift + F4 to open

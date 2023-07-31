@@ -33,6 +33,7 @@ There is a limitation in the game where replays are not saved when you are the h
 
 ## Questions & feedback
 For more information, questions and feedback, visit the thread on the [0 A.D. forum](https://wildfiregames.com/forum/topic/107371-autociv-add-ons-profiles-jitsi-team-call).
+Best place for post issues here: https://github.com/sl5net/autocivP/issues/
 
 # autoCivP and AutoCiv
 ## autoCivP
