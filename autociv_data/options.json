@@ -142,6 +142,12 @@
 				"label": "[color=\"220 185 70\"]Global:[/color] Chat panel icon delimiter (default is ⟨ or empty)",
 				"tooltip": "To improve command searchability, consider adding a prefix to special short icon (☯ ♪♣‹) commands like '<gg⟦Tab⟧' or '<mus⟦Tab⟧' ♪ to distinguish them from profile commands.",
 				"config": "autocivP.chat.iconPrefix"
+			},
+			{
+				"type": "string",
+				"label": "[color=\"220 185 70\"]Global:[/color] Suggestion. next fullMinute (default is next full 30 minutes ⟨ or empty)",
+				"tooltip": "e.g. next full 30 minutes 12:30 13:00.",
+				"config": "autocivP.gamesetup.gameStart.inNextFullMinute"
 			}
 
 		]

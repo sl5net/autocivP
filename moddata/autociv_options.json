@@ -118,9 +118,15 @@
 			},
 			{
 				"type": "boolean",
-				"label": "[color=\"220 185 70\"]Global:[/color][color=\"255 0 0\"]Resets allAutoCiv settings. Backup first![/color] (more intuitive)",
+				"label": "[color=\"220 185 70\"]Global:[/color][color=\"255 0 0\"] Resets all AutoCivP settings.[/color] (more intuitive)",
 				"tooltip": "Resets all AutoCiv (REQUIRES RESTART) ([color=\"255 0 0\"]Backup first![/color])",
 				"config": "autociv.settings.reset.all2P"
+			},
+			{
+				"type": "boolean",
+				"label": "[color=\"220 185 70\"]Global:[/color][color=\"255 0 0\"] allow Super+Key in hotkeys[/color]",
+				"tooltip": "([color=\"255 0 0\"]conflicts with some keybindings eventually[/color])",
+				"config": "autociv.settings.reset.allowSuperKey"
 			},
 			{
 				"type": "string",
@@ -145,85 +151,85 @@
 			{
 				"type": "string",
 				"label": "('mod', 'public' included automatically)",
-				"tooltip": "all your mods that you want to enable (BTW see line mod.enabledmods in your user.cfg).\n [color=\"255 0 0\"]more Details at https://trac.wildfiregames.com/wiki/GameDataPaths for example: [/color]\n Path to user data: \n Linux     : ~/.config/0ad/user.cfg \n Windows: %AppData%\\0ad\\user.cfg \n macOS    : \/Users\/{YOUR USERNAME}\/Library\/Application\\ Support/0ad/user.cfg ",
+				"tooltip": "all your mods that you want to enable \n (if want add new: Settings > Mod Selection\n  read: [color=\"255 0 0\"]mod.enabledmods[/color]).\n [color=\"255 0 0\"]",
 				"config": "modProfile.p0"
 			},
 			{
 				"type": "string",
 				"label": "                                                   autoLabel: ",
-				"tooltip": "BTW see line mod.enabledmods in your user.cfg).\n [color=\"255 0 0\"]more Details at https://trac.wildfiregames.com/wiki/GameDataPaths for example: [/color]\n Path to user data: \n Linux     : ~/.config/0ad/user.cfg \n Windows: %AppData%\\0ad\\user.cfg \n macOS    : \/Users\/{YOUR USERNAME}\/Library\/Application\\ Support/0ad/user.cfg ",
+				"tooltip": "if want add new: Settings > Mod Selection\n  read: [color=\"255 0 0\"]mod.enabledmods[/color]).\n [color=\"255 0 0\"]",
 				"config": "modProfile.p0label"
 			},
 			{
 				"type": "boolean",
 				"label": "[color=\"220 185 70\"]use 0[/color]",
-				"tooltip": "Set Hotkey-Profiles.\n[color=\"255 0 0\"]RESTART NECESSARY[/color]\n [color=\"255 0 0\"]more Details at https://trac.wildfiregames.com/wiki/GameDataPaths for example: [/color]\n Path to user data: \n Linux     : ~/.config/0ad/user.cfg \n Windows: %AppData%\\0ad\\user.cfg \n macOS    : \/Users\/{YOUR USERNAME}\/Library\/Application\\ Support/0ad/user.cfg ",
+				"tooltip": "Set Hotkey-Profiles.\n[color=\"255 0 0\"]RESTART NECESSARY[/color]\n [color=\"255 0 0\"]",
 				"config": "modProfile.p0enabled"
 			},
 			{
 				"type": "string",
 				"label": "",
-				"tooltip": "all your mods that you want to enable (BTW see line mod.enabledmods in your user.cfg).\n [color=\"255 0 0\"]more Details at https://trac.wildfiregames.com/wiki/GameDataPaths for example: [/color]\n Path to user data: \n Linux     : ~/.config/0ad/user.cfg \n Windows: %AppData%\\0ad\\user.cfg \n macOS    : \/Users\/{YOUR USERNAME}\/Library\/Application\\ Support/0ad/user.cfg ",
+				"tooltip": "all your mods that you want to enable \n (if want add new: Settings > Mod Selection\n  read: [color=\"255 0 0\"]mod.enabledmods[/color]).\n [color=\"255 0 0\"]",
 				"config": "modProfile.p1"
 			},
 			{
 				"type": "string",
 				"label": "                                                   autoLabel: ",
-				"tooltip": "all your mods that you want to enable (BTW see line mod.enabledmods in your user.cfg).\n [color=\"255 0 0\"]more Details at https://trac.wildfiregames.com/wiki/GameDataPaths for example: [/color]\n Path to user data: \n Linux     : ~/.config/0ad/user.cfg \n Windows: %AppData%\\0ad\\user.cfg \n macOS    : \/Users\/{YOUR USERNAME}\/Library\/Application\\ Support/0ad/user.cfg ",
+				"tooltip": "all your mods that you want to enable \n (if want add new: Settings > Mod Selection\n  read: [color=\"255 0 0\"]mod.enabledmods[/color]).\n [color=\"255 0 0\"]",
 				"config": "modProfile.p1label"
 			},
 			{
 				"type": "boolean",
 				"label": "[color=\"220 185 70\"]use 1[/color]\n",
-				"tooltip": "Set Hotkey-Profiles.\n[color=\"255 0 0\"]RESTART NECESSARY\n more Details at https://trac.wildfiregames.com/wiki/GameDataPaths for example: [/color]\n Path to user data: \n Linux     : ~/.config/0ad/user.cfg \n Windows: %AppData%\\0ad\\user.cfg \n macOS    : \/Users\/{YOUR USERNAME}\/Library\/Application\\ Support/0ad/user.cfg ",
+				"tooltip": "Set Hotkey-Profiles.\n[color=\"255 0 0\"]RESTART NECESSARY\n ",
 				"config": "modProfile.p1enabled"
 			},
 			{
 				"type": "string",
 				"label": "",
-				"tooltip": "all your mods that you want to enable (BTW see line mod.enabledmods in your user.cfg).\n [color=\"255 0 0\"]more Details at https://trac.wildfiregames.com/wiki/GameDataPaths for example: [/color]\n Path to user data: \n Linux     : ~/.config/0ad/user.cfg \n Windows: %AppData%\\0ad\\user.cfg \n macOS    : \/Users\/{YOUR USERNAME}\/Library\/Application\\ Support/0ad/user.cfg ",
+				"tooltip": "all your mods that you want to enable \n (if want add new: Settings > Mod Selection\n  read: [color=\"255 0 0\"]mod.enabledmods[/color]).\n [color=\"255 0 0\"]",
 				"config": "modProfile.p2"
 			},
 			{
 				"type": "string",
 				"label": "                                                   autoLabel: ",
-				"tooltip": "all your mods that you want to enable (BTW see line mod.enabledmods in your user.cfg).\n [color=\"255 0 0\"]more Details at https://trac.wildfiregames.com/wiki/GameDataPaths for example: [/color]\n Path to user data: \n Linux     : ~/.config/0ad/user.cfg \n Windows: %AppData%\\0ad\\user.cfg \n macOS    : \/Users\/{YOUR USERNAME}\/Library\/Application\\ Support/0ad/user.cfg ",
+				"tooltip": "all your mods that you want to enable \n (if want add new: Settings > Mod Selection\n  read: [color=\"255 0 0\"]mod.enabledmods[/color]).\n [color=\"255 0 0\"]",
 				"config": "modProfile.p2label"
 			},
 			{
 				"type": "boolean",
 				"label": "[color=\"220 185 70\"]use 2[/color]",
-				"tooltip": "Set Hotkey-Profiles.\n[color=\"255 0 0\"]RESTART NECESSARY[/color]\n [color=\"255 0 0\"]more Details at https://trac.wildfiregames.com/wiki/GameDataPaths for example: [/color]\n Path to user data: \n Linux     : ~/.config/0ad/user.cfg \n Windows: %AppData%\\0ad\\user.cfg \n macOS    : \/Users\/{YOUR USERNAME}\/Library\/Application\\ Support/0ad/user.cfg ",
+				"tooltip": "Set Hotkey-Profiles.\n[color=\"255 0 0\"]RESTART NECESSARY[/color]\n [color=\"255 0 0\"]",
 				"config": "modProfile.p2enabled"
 			},
 			{
 				"type": "string",
 				"label": "",
-				"tooltip": "all your mods that you want to enable (BTW see line mod.enabledmods in your user.cfg).\n [color=\"255 0 0\"]more Details at https://trac.wildfiregames.com/wiki/GameDataPaths for example: [/color]\n Path to user data: \n Linux     : ~/.config/0ad/user.cfg \n Windows: %AppData%\\0ad\\user.cfg \n macOS    : \/Users\/{YOUR USERNAME}\/Library\/Application\\ Support/0ad/user.cfg ",
+				"tooltip": "all your mods that you want to enable \n (if want add new: Settings > Mod Selection\n  read: [color=\"255 0 0\"]mod.enabledmods[/color]).\n [color=\"255 0 0\"]",
 				"config": "modProfile.p3"
 			},
 			{
 				"type": "string",
 				"label": "                                                   autoLabel: ",
-				"tooltip": "all your mods that you want to enable (BTW see line mod.enabledmods in your user.cfg).\n [color=\"255 0 0\"]more Details at https://trac.wildfiregames.com/wiki/GameDataPaths for example: [/color]\n Path to user data: \n Linux     : ~/.config/0ad/user.cfg \n Windows: %AppData%\\0ad\\user.cfg \n macOS    : \/Users\/{YOUR USERNAME}\/Library\/Application\\ Support/0ad/user.cfg ",
+				"tooltip": "all your mods that you want to enable \n (if want add new: Settings > Mod Selection\n  read: [color=\"255 0 0\"]mod.enabledmods[/color]).\n [color=\"255 0 0\"]",
 				"config": "modProfile.p3label"
 			},
 			{
 				"type": "boolean",
 				"label": "[color=\"220 185 70\"]use 3[/color]",
-				"tooltip": "Set Hotkey-Profiles.\n[color=\"255 0 0\"]RESTART NECESSARY[/color]\n [color=\"255 0 0\"]more Details at https://trac.wildfiregames.com/wiki/GameDataPaths for example: [/color]\n Path to user data: \n Linux     : ~/.config/0ad/user.cfg \n Windows: %AppData%\\0ad\\user.cfg \n macOS    : \/Users\/{YOUR USERNAME}\/Library\/Application\\ Support/0ad/user.cfg ",
+				"tooltip": "Set Hotkey-Profiles.\n[color=\"255 0 0\"]RESTART NECESSARY[/color]\n [color=\"255 0 0\"]",
 				"config": "modProfile.p3enabled"
 			},
 			{
 				"type": "string",
 				"label": "",
-				"tooltip": "all your mods that you want to enable (BTW see line mod.enabledmods in your user.cfg).\n [color=\"255 0 0\"]more Details at https://trac.wildfiregames.com/wiki/GameDataPaths for example: [/color]\n Path to user data: \n Linux     : ~/.config/0ad/user.cfg \n Windows: %AppData%\\0ad\\user.cfg \n macOS    : \/Users\/{YOUR USERNAME}\/Library\/Application\\ Support/0ad/user.cfg ",
+				"tooltip": "all your mods that you want to enable \n (if want add new: Settings > Mod Selection\n  read: [color=\"255 0 0\"]mod.enabledmods[/color]).\n [color=\"255 0 0\"]",
 				"config": "modProfile.p4"
 			},
 			{
 				"type": "string",
 				"label": "                                                   autoLabel: ",
-				"tooltip": "all your mods that you want to enable (BTW see line mod.enabledmods in your user.cfg).\n [color=\"255 0 0\"]more Details at https://trac.wildfiregames.com/wiki/GameDataPaths for example: [/color]\n Path to user data: \n Linux     : ~/.config/0ad/user.cfg \n Windows: %AppData%\\0ad\\user.cfg \n macOS    : \/Users\/{YOUR USERNAME}\/Library\/Application\\ Support/0ad/user.cfg ",
+				"tooltip": "all your mods that you want to enable \n (if want add new: Settings > Mod Selection\n  read: [color=\"255 0 0\"]mod.enabledmods[/color]).\n [color=\"255 0 0\"]",
 				"config": "modProfile.p4label"
 			},
 			{
@@ -235,19 +241,19 @@
 			{
 				"type": "string",
 				"label": "",
-				"tooltip": "all your mods that you want to enable (BTW see line mod.enabledmods in your user.cfg).\n [color=\"255 0 0\"]more Details at https://trac.wildfiregames.com/wiki/GameDataPaths for example: [/color]\n Path to user data: \n Linux     : ~/.config/0ad/user.cfg \n Windows: %AppData%\\0ad\\user.cfg \n macOS    : \/Users\/{YOUR USERNAME}\/Library\/Application\\ Support/0ad/user.cfg ",
+				"tooltip": "all your mods that you want to enable \n (if want add new: Settings > Mod Selection\n  read: [color=\"255 0 0\"]mod.enabledmods[/color]).\n [color=\"255 0 0\"]",
 				"config": "modProfile.p5"
 			},
 			{
 				"type": "string",
 				"label": "                                                   autoLabel: ",
-				"tooltip": "all your mods that you want to enable (BTW see line mod.enabledmods in your user.cfg).\n [color=\"255 0 0\"]more Details at https://trac.wildfiregames.com/wiki/GameDataPaths for example: [/color]\n Path to user data: \n Linux     : ~/.config/0ad/user.cfg \n Windows: %AppData%\\0ad\\user.cfg \n macOS    : \/Users\/{YOUR USERNAME}\/Library\/Application\\ Support/0ad/user.cfg ",
+				"tooltip": "all your mods that you want to enable \n (if want add new: Settings > Mod Selection\n  read: [color=\"255 0 0\"]mod.enabledmods[/color]).\n [color=\"255 0 0\"]",
 				"config": "modProfile.p5label"
 			},
 			{
 				"type": "boolean",
 				"label": "[color=\"220 185 70\"]use 5[/color]",
-				"tooltip": "Set Hotkey-Profiles.\n[color=\"255 0 0\"]RESTART NECESSARY[/color]\n [color=\"255 0 0\"]more Details at https://trac.wildfiregames.com/wiki/GameDataPaths for example: [/color]\n Path to user data: \n Linux     : ~/.config/0ad/user.cfg \n Windows: %AppData%\\0ad\\user.cfg \n macOS    : \/Users\/{YOUR USERNAME}\/Library\/Application\\ Support/0ad/user.cfg ",
+				"tooltip": "Set Hotkey-Profiles.\n[color=\"255 0 0\"]RESTART NECESSARY[/color]\n [color=\"255 0 0\"]",
 				"config": "modProfile.p5enabled"
 			},
 			{
@@ -258,13 +264,13 @@
 			},
 			{
 				"type": "string",
-				"label": "[color=\"255 0 0\"]backup[/color]: will be overwitten\ndont edit. what you have used before",
-				"tooltip": "[color=\"255 0 0\"]more Details at https://trac.wildfiregames.com/wiki/GameDataPaths for example: [/color]\n [color=\"255 0 0\"]more Details at https://trac.wildfiregames.com/wiki/GameDataPaths for example: [/color]\n Path to user data: \n Linux     : ~/.config/0ad/user.cfg \n Windows: %AppData%\\0ad\\user.cfg \n macOS    : \/Users\/{YOUR USERNAME}\/Library\/Application\\ Support/0ad/user.cfg ",
+				"label": "[color=\"255 0 0\"]backup[/color]: will be overwitten\n",
+				"tooltip": "[color=\"255 0 0\"]i you maybe interested to lear more about GameDataPaths see https://trac.wildfiregames.com/wiki/GameDataPaths [/color]\n [color=\"255 0 0\"] ",
 				"config": "modProfile.backup"
 			},
 			{
 				"type": "boolean",
-				"label": "edit autoLabel manually",
+				"label": "set autoLabel manually",
 				"tooltip": "default: autoLabel will be created automatically\n with the next game (firt 3 letter of each mod)\n if you have changed the mod-config in its line",
 				"config": "modProfile.autoLabelManually"
 			},
@@ -287,6 +293,183 @@
 				"tooltip": "",
 				"config": "modProfile.alwaysInReplay"
 			}
+		]
+	},
+	{
+		"label": "♥ Personalization",
+		"options":
+		[
+			{
+				"type": "boolean",
+				"label": "[color=\"220 185 70\"]Postfix UserName / GameNames[/color]: enable?",
+				"tooltip": "Enable Postfix for UserName and/or Suggestions for game Names? ",
+				"config": "customrating"
+			},
+			{
+				"type": "string",
+				"label": "Any text (limited chars max. 42)",
+				"tooltip": "Any text you like. Maybe your Localrating here? Like LR:-9 or LR:5 for example\n[color=\"255 0 0\"] max. 25 letter, then its cut off !! \n names + everything else.[/color] \n its not disturbing the game. \n but probably looks not beutiful. try it :) ",
+				"config": "customrating.string"
+			},
+			{
+				"type": "dropdown",
+				"label": "[color=\"220 185 70\"]Postfix UserName[/color] or select rated,nub... ->",
+				"tooltip": "[color=\"255 0 0\"] max. 25 letter, then its cut off !! \n names + everything else.[/color] \n its not disturbing the game. \n but probably looks not beutiful. try it :) ",
+				"config": "autocivP.customusernameDropdown",
+				"dependencies": ["customrating"],
+				"list": [
+					{ "value": "false", "label": ""  },
+					{ "value": "^n", "label": "noob"  },
+					{ "value": "^vn", "label": "very nub"  },
+					{ "value": "^0", "label": "youtuber"  },
+					{ "value": "^1", "label": "unfocused today"  },
+					{ "value": "^2", "label": "rated"  },
+					{ "value": "^3", "label": "unrated"  },
+					{ "value": "^4", "label": "programmer\\?"  },
+					{ "value": "^5", "label": "spec"  },
+					{ "value": "^6", "label": "spec. not play!"  },
+					{ "value": "^7", "label": "ill today"  },
+					{ "value": "^8", "label": "overrated"  },
+					{ "value": "^9", "label": "underrated"  }
+				]
+			},
+			{
+				"type": "boolean",
+				"label": "[color=\"220 185 70\"]Postfix UserName[/color]: use ★ or * to show when i using proGUI mod",
+				"tooltip": "its fairplay when other player know that you are using proGUI mod. \n it shows when you are using proGUI mod. \n but you could use ★ to show that you are using proGUI mod. as a shortcut.",
+				"config": "autocivP.mod.showStarWhenUsingProGUI"
+			},
+			{
+				"type": "boolean",
+				"label": "[color=\"220 185 70\"]Postfix UserName[/color]: use ♇ or AP to show when useing autocivP",
+				"tooltip": "not related to fairplay. \n it shows when you are using autocivP mod with a shortcut. \n ♇ for: P in autocivP, L for command Line.",
+				"config": "autocivP.mod.showIconWhenUsingAutocovP"
+			},
+			{
+				"type": "boolean",
+				"label": "[color=\"220 185 70\"]no UserName in GameNames[/color]?",
+				"tooltip": "cuts of your username from game name Suggestions",
+				"config": "autocivP.gamesetup.noUsernameInGameName"
+			},
+			{
+				"type": "string",
+				"label": "[color=\"220 185 70\"]Game name Suggestion[/color]. next fullMinute (default is next full 30 minutes ⟨ or empty)",
+				"tooltip": "e.g. next full 30 minutes 12:30 13:00. to disable, set to empty",
+				"config": "autocivP.gamesetup.gameStart.inNextFullMinute"
+			},
+			{
+				"type": "dropdown",
+				"label": "[color=\"220 185 70\"]Game name Suggestion[/color] chose countries... -->",
+				"tooltip": "set to empty or select a name postfix",
+				"config": "autocivP.gamesetup.gameStart.inNextFullMinuteCountrys",
+				"list": [
+					{ "value": "", "label": ""  },
+					{ "value": "all", "label": "show time for all countries."  },
+					{ "value": "Latvia", "label": "Europe/Lettland: This refers to the time zone of Latvia."  },
+					{ "value": "London", "label": "Europe/London: This refers to the time zone of London, which is in the United Kingdom."  },
+					{ "value": "Athens", "label": "Europe/Athens: This refers to the time zone of Athens, which is in Greece."  },
+					{ "value": "Kolkata", "label": "Asia/Kolkata."  },
+					{ "value": "Chicago", "label": "America/Chicago: This refers to the Eastern Time Zone in the United States."  },
+					{ "value": "NewYork", "label": "America/New_York/North Carolina: This refers to the Eastern Time Zone in the United States."  },
+					{ "value": "LosAngeles", "label": "America/Los_Angeles: This refers to the Eastern Time Zone in the United States."  },
+					{ "value": "Mexiko", "label": "Mexiko"  },
+					{ "value": "RioGrandeDoSul", "label": "Rio Grande do Sul/Brasil"  },
+					{ "value": "LondonAthens", "label": "Athens - London/Berlin"  },
+					{ "value": "LondonChicago", "label": "Chicago - London/Berlin"  },
+					{ "value": "AthensNewYork", "label": "Athens - NewYork America"  },
+					{ "value": "LondonNewYork", "label": "London - NewYork America"  },
+					{ "value": "LondonLosAngeles", "label": "Berlin - Los_Angeles America/"  },
+					{ "value": "LondonMexiko", "label": "Berlin - Mexiko"  },
+					{ "value": "LondonRioGrandeDoSul", "label": "London/Berlin - Rio Grande do Sul"  },
+					{ "value": "LatviaLondonRioGrandeDoSul", "label": "Latvia - Berlin - Rio Grande"  },
+					{ "value": "LatviaLondonChicagoRioGrandeDoSul", "label": "Latvia - Berlin - Chicago - Rio Grande"  }
+				]
+			},
+
+			{
+				"type": "boolean",
+				"label": "[color=\"220 185 70\"]Game name Suggestion[/color]: removes all :00 from time ?",
+				"tooltip": "removes all occurrences of :00 from the time",
+				"config": "autocivP.gamesetup.gameStart.inNextFullMinuteRemove00"
+			},
+
+
+			{
+				"type": "dropdown",
+				"label": "[color=\"220 185 70\"]Game name S.[/color] select normal,2xSpeed,spec..->",
+				"tooltip": "set to empty or select a name postfix",
+				"config": "autocivP.gamesetup.gameStart.suggestionKey",
+				"list": [
+					{ "value": "", "label": ""  },
+					{ "value": "^1", "label": "learn/teach/talk game"  },
+					{ "value": "^2", "label": "TotalGames>10"  },
+					{ "value": "^3", "label": "waiting for friends"  },
+					{ "value": "^4", "label": "YouTube"  },
+					{ "value": "^5", "label": "must have: proGUI, feldmap"  },
+					{ "value": "^0", "label": "must have: proGUI, autocivP"  },
+					{ "value": "^5b", "label": "must have: proGUI, autocivP, feldmap"  },
+					{ "value": "^6", "label": "spec. not play!"  },
+					{ "value": "^7", "label": "not seriously. only a game"  },
+					{ "value": "^8", "label": "Rules: 1. enable autocivP mods, 2. use Jitsi-Audio-Chat later"  },
+					{ "value": "^9", "label": "Rules: 1. enable autocivP, proGUI mods, 2. use Jitsi-Audio-Chat later 3. use share Resources with friends"  },
+					{ "value": "^a", "label": "game for drunken idiots - ping me by typing my name"  },
+					{ "value": "^b", "label": "1v1 - random map, join by typing my name , wait 1min, i say hi, ... , start"  },
+					{ "value": "^c", "label": "double speed"  },
+					{ "value": "^d", "label": "normal random map - no Cheats"  },
+					{ "value": "^f", "label": "2xSpeed randomMap - don't EXIT"  },
+					{ "value": "^g", "label": "2xSpeed CheatsNO randomMap - don't EXIT->ResignFirst thanks"  },
+					{ "value": "^h", "label": "use Map 'Extinct Volcano'. it has something like timeout inside. Default is 25 Minutes"  },
+					{ "value": "^i", "label": "talk and optional TG later"  },
+					{ "value": "^j", "label": "can you do me a favor and test my latest mod update with me? please load new modificatoin from githup first"  }
+				]
+			},
+			{
+				"type": "dropdown",
+				"label": "[color=\"220 185 70\"]Game name Suggestion[/color] 1v1 2v2 ... ----->",
+				"tooltip": "set to empty or select a name postfix",
+				"config": "autocivP.gamesetup.gameStart.suggestionKey2",
+				"list": [
+					{ "value": "", "label": ""  },
+					{ "value": "^1", "label": "1v1"  },
+					{ "value": "^2", "label": "2v2"  },
+					{ "value": "^3", "label": "3v3, 4v4"  }
+				]
+			},
+			{
+				"type": "dropdown",
+				"label": "[color=\"220 185 70\"]Game name Suggestion[/color] select presets ----->",
+				"tooltip": "set to empty or select a name postfix",
+				"config": "autocivP.gamesetup.gameStart.suggestionKey3",
+				"list": [
+					{ "value": "", "label": ""  },
+					{ "value": "^1", "label": "pingMe"  }
+				]
+			},
+			{
+				"type": "boolean",
+				"label": "[color=\"220 185 70\"]Game name Suggestion[/color]: add Mods I'm currently using ?",
+				"tooltip": "showModsInGameName",
+				"config": "autocivP.gamesetup.gameStart.showModsInGameName"
+			},
+			{
+				"type": "string",
+				"label": "[color=\"220 185 70\"]message [/color] helloAll or hiall",
+				"tooltip": "write helloAll⟦Tab⟧ or hiall⟦Tab⟧, set it here or hiall yourMessageText",
+				"config": "autocivP.msg.helloAll"
+			},
+			{
+				"type": "string",
+				"label": "[color=\"220 185 70\"]message[/color] Me⟦Tab⟧",
+				"tooltip": "write Me⟦Tab⟧",
+				"config": "autocivP.msg.me"
+			},
+			{
+				"type": "string",
+				"label": "[color=\"220 185 70\"]message[/color] my URL. write Meurl⟦Tab⟧",
+				"tooltip": "write Meurl⟦Tab⟧  meUrl⟦Tab⟧ . some need to share a URL often. e.g. youtuber",
+				"config": "autocivP.msg.meURL"
+			}
+
 		]
 	}
 ]
