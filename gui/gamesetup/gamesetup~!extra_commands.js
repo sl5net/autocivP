@@ -285,18 +285,26 @@ g_NetworkCommands["/iconsList"] = (match) => { // if textAllSometing is somethin
   selfMessage(transGGWP_markedStrings_I('allicons'))
   const keys = transGGWP_markedStrings_I('alliconkeys')
   selfMessage(keys)
+  selfMessage('List of Emojis and Symbols visible in 0ad: https://wildfiregames.com/forum/topic/107659-list-of-emojis-and-symbols-visible-in-0ad/')
   const chatInput = Engine.GetGUIObjectByName("chatInput")
   chatInput.focus()
   chatInput.caption = keys
-
-
   // let label = Engine.GetGUIObjectByName("option_label[" + i + "]");
   // label.caption = option.label;
   // label.tooltip = option.tooltip;
+}
 
-
-
-
+g_NetworkCommands["/listIcons"] = (match) => { // if textAllSometing is something then its will be sendet to all team. not only for yourself
+  selfMessage(transGGWP_markedStrings_I('allicons'))
+  const keys = transGGWP_markedStrings_I('alliconkeys')
+  selfMessage(keys)
+  selfMessage('List of Emojis and Symbols visible in 0ad: https://wildfiregames.com/forum/topic/107659-list-of-emojis-and-symbols-visible-in-0ad/')
+  const chatInput = Engine.GetGUIObjectByName("chatInput")
+  chatInput.focus()
+  chatInput.caption = keys
+  // let label = Engine.GetGUIObjectByName("option_label[" + i + "]");
+  // label.caption = option.label;
+  // label.tooltip = option.tooltip;
 }
 
 

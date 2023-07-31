@@ -31,7 +31,7 @@ let g_PlayerName;
 
 function init(attribs) {
 
-    if(g_selfNick =="seeh"){ // programmer need to see bit more info
+    if(false && g_selfNick =="seeh"){ // programmer need to see bit more info
         warn("35: attribs:", attribs)
         warn("35: typeof attribs:", typeof attribs) // typeof attribs give no result
         warn("35: attribs.rating:", attribs.rating) // give no result
@@ -132,9 +132,13 @@ function init(attribs) {
         const delimiterSymbol = "|"; // |
         if(false || g_proGUIPVersion){
 
-            const showStarWhenUsingProGUI = Engine.ConfigDB_GetValue(
+            const showStarWhenUsingProGUI = Engine.ConfigDB_GetValue( // maybe relevant for fairplay that its visible when using proGUI
                 "user",
                 "autocivP.mod.showStarWhenUsingProGUI"
+              ) === "true"
+            const showStarWhenUsingProGUI = Engine.ConfigDB_GetValue(  // not relevant for fairplay but maybe fun or useful
+                "user",
+                "autocivP.mod.showIconWhenUsingAutocovP"
               ) === "true"
 
             const useitwithoutUnicode = Engine.ConfigDB_GetValue(
@@ -142,10 +146,18 @@ function init(attribs) {
                 "autociv.chatText.font.useitwithoutUnicode"
               ) === "true"
 
-            const temp = (showStarWhenUsingProGUI)
+            let temp = (showStarWhenUsingProGUI)
                 ? ((useitwithoutUnicode)
                     ?'*':"★")
-                : "proGUI"; //
+                : "proGUI"
+
+            // ♇ // usually: ♇ (Unicode code point U+2647) is known as the Astrological Symbol for Pluto
+            // show use of this is optional. not relevant for fairplay
+            temp += (showIconWhenUsingAutocovP)
+                ? ((useitwithoutUnicode)
+                    ? 'AP' : 'A♇')
+                : ''
+
             // this was now recorded, when i was playing in a bigh TG (not as host). funny. is this always? i was not able to reconstruct it when starting a local game 23-0730_1401-05
             //  && customrating_dropdown !== 'false'
             customrating_dropdown = ( isCustomratingEnabled && customrating_dropdown)
