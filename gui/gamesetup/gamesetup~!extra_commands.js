@@ -307,7 +307,6 @@ g_NetworkCommands["/listIcons"] = (match) => { // if textAllSometing is somethin
   // label.tooltip = option.tooltip;
 }
 
-
 g_NetworkCommands["/help2All"] = (match) => { // if textAllSometing is something then its will be sendet to all team. not only for yourself
   g_NetworkCommands["/help"](match, true);
 }

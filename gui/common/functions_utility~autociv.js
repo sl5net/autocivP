@@ -783,8 +783,7 @@ function captionIs_modsImCurrentlyUsing(guiObject){ // this function will be tri
 
   text = text.replace('proGUI', 'proGUI★') //  ♡ autocivP❧♣▦▣ mod
   // text = text.replace('autocivP', 'autocivP☼') //  ♡ autocivP❧♣▦▣ mod
-  text = text.replace('autocivP', 'autocivP♇') //  ♡ autocivP❧♣▦▣ mod  ♇
-
+  text = text.replace('autocivP', 'autocivP♇') //  ♡ autocivP❧♣▦▣ mod
   guiObject.caption = text;
   return;
 }
