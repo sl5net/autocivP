@@ -345,7 +345,7 @@
 			{
 				"type": "boolean",
 				"label": "[color=\"220 185 70\"]Postfix UserName[/color]: use ♇ or AP to show when useing autocivP",
-				"tooltip": "not related to fairplay. \n it shows when you are using autocivP mod with a shortcut.",
+				"tooltip": "not related to fairplay. \n it shows when you are using autocivP mod with a shortcut. \n ♇ for: P in autocivP, L for command Line.",
 				"config": "autocivP.mod.showIconWhenUsingAutocovP"
 			},
 			{
