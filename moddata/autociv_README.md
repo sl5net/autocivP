@@ -24,17 +24,12 @@ For more information, questions and feedback, visit the thread on the [0 A.D. fo
 
 # autoCivP and AutoCiv
 ## autoCivP
-next text here is a copy from
-[autocivP](https://github.com/sl5net/autocivP)
-## AutoCiv from nani
-next text here is a copy from
-[nani autociv](https://github.com/nanihadesuka/autociv)
 
 participation is welcome. are you a developer or want to become one?
 
 This mod is an aggregation of features meant to enhance the 0 A.D. game experience. I usually implement these extra features as they come up with no general plan in mind.
 
-## Feature list added by autocivP
+## Feature list added by autocivP (most features from [autociv](https://github.com/nanihadesuka/autociv) )
 
 - General
 	- Help command: type /help matchWord to see all available commands. Also possible to use regEx searchpattern.
