@@ -28,6 +28,12 @@ var g_backupMessageBeforeChangeContextViaHotkey = ''
 // var g_GameData = GetEngineInfo().data.stat; // not defined
 
 
+/*!SECTION
+about mod names about mod.io here tips:
+https://wildfiregames.com/forum/topic/24333-guide-for-publishing-mods-on-modio/?do=findComment&comment=554945
+*/
+
+
 const versionOf0ad = Engine.GetEngineInfo().mods[0]['version']; // 0.0.26
 // const zipOfAutocivPMod = 'https://api.mod.io/v1/games/5/mods/3105810/files/4097856/download'
 const zipOfAutocivPMod = 'https://github.com/sl5net/autocivP/archive/refs/tags/v1.0.27.zip'
@@ -68,7 +74,7 @@ function get_autocivPVersion() {
 	let g_autocivPVersion
 	const modsObj = Engine.GetEngineInfo().mods
 	for (const [key, value] of Object.entries(modsObj)) {
-		if (value.name === "autocivP") {
+		if (value.name.toLowerCase() == "autocivP".toLowerCase()) {
 			g_autocivPVersion = value.version
 			break
 		}
@@ -451,6 +457,19 @@ const g_autociv_SharedCommands = {
 			chatInput.caption = whatsAutocivPMod
 		}
 	},
+	"legende" : {
+		"description": "legende of symbols",
+		"handler": () =>
+		{
+			const chatInput = Engine.GetGUIObjectByName("chatInput")
+			chatInput.focus()
+			chatInput.caption = `legende: ★ = proGUI mod, ♇ = autocivP mod`
+
+			// text = text.replace('proGUI', 'proGUI★') //  ♡ autocivP❧♣▦▣ mod
+			// text = text.replace(/\bautocivP\b/ig, 'autocivP♇') //  ♡ autocivP❧♣▦▣ mod
+
+		}
+	},
 	"whatsAutoCivMod" : {
 		"description": "AutoCiv mod is ",
 		"handler": () =>
@@ -782,7 +801,9 @@ autociv_InitSharedCommands.pipe = {
 
 			const modProfilealwaysInReplay = Engine.ConfigDB_GetValue("user", 'modProfile.alwaysInReplay');
 			let clean = modEnabledmods
-			const clean2 = clean.replace('autocivP', `${modProfilealwaysInReplay} autocivP` );
+			// let clean2 = clean.replace('autocivP', `${modProfilealwaysInReplay} autocivp` );
+			// let clean2 = clean.replace( 'autocivp', `${modProfilealwaysInReplay} autocivp` );
+			const clean2 = clean.replace(/\bautocivP\b/ig, `${modProfilealwaysInReplay} autocivp` );
 
 			if(!(modEnabledmods.indexOf(modProfilealwaysInReplay)>0)){
 				// warn(`Really want play a replay without 'boonGUI' mod ?`);

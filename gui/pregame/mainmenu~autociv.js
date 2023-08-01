@@ -170,7 +170,7 @@ autociv_patchApplyN("init", function (target, that, args) {
 
   const posProGUI = modsFromUserCfg_const.indexOf('proGUI')
   const posBoonGUI = modsFromUserCfg_const.indexOf('boonGUI')
-  const posAutocivP = modsFromUserCfg_const.indexOf('autocivP')
+  const posAutocivP = modsFromUserCfg_const.indexOf('autocivp')
 
   if (g_selfNick =="seeh" && state.showAutoFixModsOrder) { // quick lazy quick fix. TODO: fix this should be a in the options somwehere maybe
 

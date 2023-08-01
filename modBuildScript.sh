@@ -38,6 +38,7 @@ echo "copy_dir_from= $copy_dir_from"
 # Copy directories directly within $copy_dir_from
 find $copy_dir_from/* -maxdepth 0 -type d -exec cp -r {} $dir_temp \;
 
+
 # Copy non-hidden files, excluding tempList.text and tsconfig.json
 find $copy_dir_from -maxdepth 1 -type f -not -name ".*" -not -name "tempList.text" -not -name "tsconfig.json"  -not -name "error_unsolved.txt" -exec cp {} $dir_temp \;
 
@@ -94,4 +95,4 @@ zip -r ${dir_mods}/${mod_name}.zip .
 # Sleep for 1 second before continuing
 sleep 1
 
-firefox https://mod.io/g/0ad/m/${mod_name}
+# firefox https://mod.io/g/0ad/m/${mod_name}

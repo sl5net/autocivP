@@ -267,7 +267,7 @@ g_NetworkCommands["/versionNr"] = (match) => { // if textAllSometing is somethin
   const modsObj = Engine.GetEngineInfo().mods
   var g_autocivPVersion = ''
   for (const [key, value] of Object.entries(modsObj)) {
-    if (value.name === "autocivP") {
+    if (value.name.toLowerCase() == "autocivP".toLowerCase()) {
       g_autocivPVersion = value.version
       break
     }

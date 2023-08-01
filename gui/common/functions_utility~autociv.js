@@ -679,10 +679,10 @@ function addModProfileAlwaysInAlsoAddAutocivPatTheEnd(clean) {
     clean = clean.replaceAll(regex, "");
   });
 
-  if (!clean.includes(' autocivP'))
-    clean += ' autocivP';
+  if (!clean.includes(' autocivp'))
+    clean += ' autocivp';
 
-  return clean.replaceAll('autocivP', `${modProfileAlwaysIn} autocivP`);
+  return clean.replace(/\bautocivP\b/ig, `${modProfileAlwaysIn} autocivp` );
 }
 
 
@@ -783,7 +783,8 @@ function captionIs_modsImCurrentlyUsing(guiObject){ // this function will be tri
 
   text = text.replace('proGUI', 'proGUI★') //  ♡ autocivP❧♣▦▣ mod
   // text = text.replace('autocivP', 'autocivP☼') //  ♡ autocivP❧♣▦▣ mod
-  text = text.replace('autocivP', 'autocivP♇') //  ♡ autocivP❧♣▦▣ mod
+  text = text.replace(/\bautocivP\b/ig, 'autocivP♇') //  ♡ autocivP❧♣▦▣ mod
+
   guiObject.caption = text;
   return;
 }
