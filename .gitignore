@@ -2,4 +2,10 @@ moddata/autociv_0ad_keys.txt
 moddata/autociv_0ad_default.cfg
 /release.json
 *.zip
-tempList.text
+*tempList.text
+.vscode
+error_unsolved.txt
+.vscode
+.git*
+
+
