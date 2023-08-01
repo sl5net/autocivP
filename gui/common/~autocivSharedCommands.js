@@ -457,13 +457,13 @@ const g_autociv_SharedCommands = {
 			chatInput.caption = whatsAutocivPMod
 		}
 	},
-	"legende" : {
-		"description": "legende of symbols",
+	"legend" : {
+		"description": "legend of some special symbols",
 		"handler": () =>
 		{
 			const chatInput = Engine.GetGUIObjectByName("chatInput")
 			chatInput.focus()
-			chatInput.caption = `legende: ★ = proGUI mod, ♇ = autocivP mod`
+			chatInput.caption = `legend: ★ proGUI mod, ♇ autocivP mod`
 
 			// text = text.replace('proGUI', 'proGUI★') //  ♡ autocivP❧♣▦▣ mod
 			// text = text.replace(/\bautocivP\b/ig, 'autocivP♇') //  ♡ autocivP❧♣▦▣ mod
