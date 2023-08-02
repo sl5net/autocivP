@@ -1,16 +1,48 @@
 /**
  * IMPORTANT: Remember to update session/top_panel/BuildLabel.xml in sync with this.
  */
-let modsString = '';
-const modsObj = Engine.GetEngineInfo().mods
-for (let [key, value] of Object.entries(modsObj)) {
-		if(key<1) continue;
-		for (let [key2, value2] of Object.entries(Engine.GetEngineInfo().mods[key])) {
-			if(key2 != 'name' && key2 != 'version') continue;
-			modsString += ` ${value2}`; // mod/name/version : ...
+
+
+/**
+ * Retrieves the metadata for a replay.
+ *
+ * @return {Array} The replay metadata sorted by file modification time.
+ */
+function getReplayMetadata(){
+	let replayList = Engine.GetReplays().sort(function(x,y){
+		// warn(`x.fileMTime = ${x.fileMTime}`);
+		// warn(`x.fileMTime = ${y.fileMTime}`);
+		return x.fileMTime - y.fileMTime;
+	});
+
+	const replayListKeys = Object.keys(replayList);
+	for (let key of replayListKeys) {
+		warn(`key = ${key}`);
+		const replayListKeys2 = Object.keys(replayListKeys[key]);
+		for (let key2 of replayListKeys2) {
+			warn(`   key2 = ${key2}`);
+			warn(`   val2 = ${replayListKeys2[key2]}`);
+			// const replayListKeys = Object.keys(replayList);
+		}
 		}
 }
+// getReplayMetadata()
+// warn(`g_GameData.gui.replayDirectory = ${g_GameData.gui.replayDirectory}`);
 
+
+function get_modsString() {
+	let modsString = '';
+	const modsObj = Engine.GetEngineInfo().mods
+	for (let [key, value] of Object.entries(modsObj)) {
+			if(key<1) continue;
+			for (let [key2, value2] of Object.entries(Engine.GetEngineInfo().mods[key])) {
+				if(key2 != 'name' && key2 != 'version') continue;
+				modsString += ` ${value2}`; // mod/name/version : ...
+			}
+	}
+	return modsString
+}
+let modsString = get_modsString()
 var g_autocivPVersion = get_autocivPVersion()
 
 const versionName = Engine.GetEngineInfo().mods[0]['name'];

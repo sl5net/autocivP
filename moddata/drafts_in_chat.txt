@@ -1,0 +1,20 @@
+Here are a few examples that demonstrate the usefulness of using drafts in chats:
+
+# fix the loosing chat context when changing chat context via hotkey:
+
+Long and complex questions:
+Instead of typing out a lengthy and complex question in one go, you can start with a draft and refine it as you go. This allows you to organize your thoughts, review the question for clarity, and make any necessary edits before sending it.
+
+Collaborative discussions:
+In a collaborative chat environment, multiple participants may be working on a response simultaneously. By using drafts, each participant can work on their own response without interfering with each other. They can then review and refine their drafts before sending them as a complete and coherent message.
+
+Research and fact-checking:
+When asking questions that require research or fact-checking, drafts can be useful for jotting down initial thoughts or partial information. You can then continue researching or verifying the information and update the draft accordingly before finalizing and sending the question.
+
+Iterative problem-solving:
+When discussing a complex problem, drafts can be used to iteratively build and refine a proposed solution. You can start with a basic idea or partial solution, collaborate with others to gather feedback, make improvements, and update the draft until a final solution is ready to be shared.
+
+Avoiding accidental sending:
+Drafts act as a safeguard against accidentally sending incomplete or incorrect messages. By saving a draft, you can take your time to review and revise the message before sending it, reducing the chances of errors or misunderstandings.
+In summary, using drafts in chats provides the flexibility to refine and improve your messages before sending them. It helps in organizing thoughts, collaborating effectively, fact-checking, iterative problem-solving, and avoiding accidental sending.
+
