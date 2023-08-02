@@ -439,6 +439,7 @@
 					{ "value": "^j", "label": "can you do me a favor and test the chat draft function of my latest mod with me? please load new modificatoin first"  }
 				]
 			},
+
 			{
 				"type": "dropdown",
 				"label": "[color=\"220 185 70\"]Game name Suggestion[/color] 1v1 2v2 ... ----->",

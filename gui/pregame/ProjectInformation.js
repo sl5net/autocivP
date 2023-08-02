@@ -3,6 +3,28 @@
  */
 
 
+
+/**
+ * Determines if the autocivP module has just been installed.
+ *
+ * @return {boolean} Returns true if the autocivP module has just been installed, false otherwise.
+ */
+function is_autocivP_just_now_installed(){
+	  const inNextFullMinuteRemove00 = Engine.ConfigDB_GetValue(
+		"user",
+		"autocivP.gamesetup.gameStart.inNextFullMinuteRemove00" // only false or true valid when checkbox is used
+	  );
+	return !(inNextFullMinuteRemove00 === 'true' || inNextFullMinuteRemove00 === 'false')
+}
+
+if(is_autocivP_just_now_installed()){
+	// set a default value when the mod was never installed before
+	const value = 'Do you like: Auto-save Drafts in Chat? Never Lose Your Message Again'
+	ConfigDB_CreateAndSaveValueA26A27("user", 'autocivP.gamesetup.gameStart.string', value);
+}
+
+
+
 /**
  * Retrieves the metadata for a replay.
  *
@@ -28,6 +50,8 @@ function getReplayMetadata(){
 }
 // getReplayMetadata()
 // warn(`g_GameData.gui.replayDirectory = ${g_GameData.gui.replayDirectory}`);
+
+
 
 
 function get_modsString() {
