@@ -1,6 +1,21 @@
 #!/bin/bash
 
-# This script performs the following actions:
+# links:
+# https://wildfiregames.com/forum/topic/24333-guide-for-publishing-mods-on-modio/?do=findComment&comment=554945
+# may some interesting stuff also here: https://github.com/ModIO/
+
+# alternative may you want create mods also by using this script that use pyrogenesis:
+# rm ~/Downloads/autocivP.pyromod
+# rm ~/game/0ad/a27/a27build/binaries/system/autocivP.pyromod
+# cd ~/game/0ad/a27/a27build/binaries/system/
+# ./pyrogenesis -mod=mod -mod=public -mod=autocivP -archivebuild=/home/seeh/.local/share/0ad/mods/autocivP -archivebuild-output=autocivP.pyromod -archivebuild-compress
+# cp ~/game/0ad/a27/a27build/binaries/system/autocivP.pyromod ~/Downloads/autocivP.pyromod
+# rm ~/game/0ad/a27/a27build/binaries/system/autocivP.pyromod
+# cp ~/Downloads/autocivP.pyromod ~/Downloads/autocivP.zip
+# doublecmd ~/game/0ad/a27/a27build/binaries/system/ ~/Downloads/
+
+
+# This SH-script performs the following actions:
 #
 # Extracts the value of the mod_name variable from the mod.json file using the jq command-line tool.
 # Removes the existing ${mod_name}_temp directory and creates a new one.
