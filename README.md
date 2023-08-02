@@ -1,4 +1,4 @@
-# AutoCivP plus some goodies
+# ♇ AutoCivP plus some goodies
 
 Thanks to Nani ([most source is from Nani](https://github.com/nanihadesuka/autociv))
 
