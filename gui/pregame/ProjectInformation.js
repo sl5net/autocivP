@@ -6,7 +6,7 @@
 
 /**
  * Determines if the autocivP module has just been installed.
- *
+ * true when a checkbox is 'true' or 'false'
  * @return {boolean} Returns true if the autocivP module has just been installed, false otherwise.
  */
 function is_autocivP_just_now_installed(){

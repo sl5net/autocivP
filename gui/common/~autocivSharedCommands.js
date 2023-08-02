@@ -39,7 +39,9 @@ const versionOf0ad = Engine.GetEngineInfo().mods[0]['version']; // 0.0.26
 
 const g_autocivPVersion_shared = get_autocivPVersion()
 const g_previous_autocivPVersion = get_previous_autocivPVersion(g_autocivPVersion_shared)
-const zipOfAutocivPMod = `https://github.com/sl5net/autocivP/archive/refs/tags/v${g_previous_autocivPVersion}`
+const zipOfAutocivPMod = `https://github.com/sl5net/autocivP/releases/tag/v${g_previous_autocivPVersion}`
+
+// https://github.com/sl5net/autocivP/releases/tag/v1.0.30
 
 const actuallyWorkingAtVersion = g_previous_autocivPVersion == g_autocivPVersion_shared ? '' : `actually working at version ${g_autocivPVersion_shared}`
 // warn(`actually working at version ${actuallyWorkingAtVersion}`)
