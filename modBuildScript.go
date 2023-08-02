@@ -1,3 +1,14 @@
+
+ this dont work at the moment
+ this dont work at the moment
+ this dont work at the moment
+ this dont work at the moment
+ use the sh-version
+
+
+
+
+
 package main
 
 import (
@@ -15,9 +26,9 @@ func main() {
         fmt.Println("Failed to extract mod name:", err)
         return
     }
-    
+
     fmt.Println("modName:", modName)
-    
+
 
     // Remove existing ${mod_name}_temp directory and create a new one
     tempDir := "../" + modName + "_temp"
@@ -280,7 +291,7 @@ func copyFile(sourcePath, destinationPath string) error {
 
 func openBrowser(url string) error {
 
-    /* 
+    /*
      *     var err error
 
      * switch runtime.GOOS {

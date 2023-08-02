@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # This script performs the following actions:
-# 
+#
 # Extracts the value of the mod_name variable from the mod.json file using the jq command-line tool.
 # Removes the existing ${mod_name}_temp directory and creates a new one.
 # Copies directories directly within the copy_dir_from directory to the ${mod_name}_temp directory.
@@ -10,9 +10,7 @@
 # Creates a second temp directory (autocivP_temp2) and copies the mod.json file and the ${mod_name}_temp.zip file into it.
 # Creates a zip file (${mod_name}.zip) for the mod by compressing the contents of the ${mod_name}_temp2 directory.
 # Opens a web browser (Firefox) with a specific URL related to the mod.
-# Note: The script assumes that the jq command-line tool is installed, and it is recommended to use absolute paths when specifying directories to avoid any potential issues.
-
-# use this from inside your mod folder
+# Note: The script assumes that the jq command-line tool is installed and its run inside your mod folder
 
 clear
 
@@ -95,4 +93,4 @@ zip -r ${dir_mods}/${mod_name}.zip .
 # Sleep for 1 second before continuing
 sleep 1
 
-# firefox https://mod.io/g/0ad/m/${mod_name}
+firefox https://mod.io/g/0ad/m/${mod_name}
