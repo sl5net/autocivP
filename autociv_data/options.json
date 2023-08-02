@@ -367,6 +367,12 @@
 				"config": "autocivP.gamesetup.gameStart.inNextFullMinute"
 			},
 			{
+				"type": "string",
+				"label": "[color=\"220 185 70\"]Game name Suggestion[/color]. Any text you like",
+				"tooltip": "Any text you like. will be added to your others game names snippets.",
+				"config": "autocivP.gamesetup.gameStart.string"
+			},
+			{
 				"type": "dropdown",
 				"label": "[color=\"220 185 70\"]Game name Suggestion[/color] chose countries... -->",
 				"tooltip": "set to empty or select a name postfix",

@@ -41,7 +41,6 @@ autociv_patchApplyN("init", (target, that, args) => {
 
       const customrating_trueFalse = Engine.ConfigDB_GetValue("user", "customrating");
       const isCustomratingEnabled = ( customrating_trueFalse === "true" )
-
       let text = ''
       const gameStartSuggestionKey = Engine.ConfigDB_GetValue(
         "user",
@@ -85,6 +84,14 @@ autociv_patchApplyN("init", (target, that, args) => {
         value = (gameStartSuggestionKey == '^i') ? "talk and optional TG later": value
         value = (gameStartSuggestionKey == '^j') ? "can you do me a favor and test my latest mod update with me? please load new modificatoin from githup first": value
 
+        const gameStartSuggestion_string = Engine.ConfigDB_GetValue(
+          "user",
+          "autocivP.gamesetup.gameStart.string"
+          );
+
+          if(gameStartSuggestion_string.length > 0){
+            gameStartSuggestion_value += gameStartSuggestion_string // example: Hi :) Do you like: Auto-save Drafts in Chat? Never Lose Your Message Again
+          }
         gameStartSuggestion_value += `|${value}`
       }
       if(isCustomratingEnabled && gameStartSuggestionKey2 !== 'false' && gameStartSuggestionKey2.trim().length > 0){
