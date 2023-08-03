@@ -1,7 +1,11 @@
 #!/bin/bash
 
+# how to start maybe when using fish-shell :
+# alias cdCreateAutoCivPmodIOZip "cd ~/.local/share/0ad/mods/autocivp; pwd; ./modBuildScript.sh"
+
 # links:
 # https://wildfiregames.com/forum/topic/24333-guide-for-publishing-mods-on-modio/?do=findComment&comment=554945
+# https://wildfiregames.com/forum/topic/24333-guide-for-publishing-mods-on-modio/#comment-554994
 # may some interesting stuff also here: https://github.com/ModIO/
 
 # alternative may you want create mods also by using this script that use pyrogenesis:
@@ -94,13 +98,17 @@ echo "Number of files in ${dir_temp}: $num_files"
 echo "Number of folders in ${dir_temp}: $num_folders"
 
 # Create a zip file for mod
-rm -rf ${dir_mods}/${mod_name}_temp.zip
+# rm -rf ${dir_mods}/${mod_name}_temp.zip
 rm -rf ${dir_mods}/${mod_name}.zip
+rm -rf ${dir_mods}/${mod_name}_doubleZipedLikeMostModsWhenInUse.zip
 
 cd ${dir_temp}
 echo "zip -r ${dir_mods}/${mod_name}_temp.zip ."
-zip -r ${dir_mods}/${mod_name}_temp.zip .
+zip -r ${dir_mods}/${mod_name}_temp.zip .  # _readyForUploadToModIo.zip
 
+
+
+# _readyForUploadToModIo
 
 # Create a second temp directory
 rm -rf $dir_temp2
@@ -109,18 +117,16 @@ mkdir $dir_temp2
 # Copy the mod.io file to the second temp directory
 cp ${dir_mod}/mod.json $dir_temp2
 
-# Copy the ${mod_name}_temp.zip to the second temp directory
+# Copy the ${mod_name}_temp.zip
 cp ${dir_mods}/${mod_name}_temp.zip $dir_temp2/${mod_name}.zip
-
-# Zip the autocivP_temp_2 directory
-# echo dir_temp2=/absolute/path/to/${mod_name}/$dir_temp2
+cp ${dir_mods}/${mod_name}_temp.zip ${dir_mods}/${mod_name}.zip
 
 sleep 1
 cd ${pwd}
 sleep 1
 cd $dir_temp2
 sleep 1
-zip -r ${dir_mods}/${mod_name}.zip .
+zip -r ${dir_mods}/${mod_name}_doubleZipedLikeMostModsWhenInUse.zip .  # but not useful for upload in mod.io
 
 # Sleep for 1 second before continuing
 sleep 1

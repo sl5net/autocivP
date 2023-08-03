@@ -3,7 +3,6 @@
  */
 
 
-
 /**
  * Determines if the autocivP module has just been installed.
  * true when a checkbox is 'true' or 'false'
@@ -25,7 +24,7 @@ function is_autocivP_just_now_installed(){
 }
 
 
-setDefaults_OptionsPersonalization_WhenNewInstalled()
+setDefaultsInPersonalizationOnNewInstallation()
 
 /**
  * Sets defaults in personalization on new installation.
