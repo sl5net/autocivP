@@ -119,7 +119,7 @@ function handleInputBeforeGui (ev)
 	return false;
 }
 
-function autociv_InitBots ()
+function setDefaultsToOptionsPersonalizationWhenNewInstalled ()
 {
 	botManager.get("playerReminder").load(true);
 	botManager.get("mute").load(true);
@@ -140,7 +140,7 @@ autociv_patchApplyN("init", function (target, that, args)
 		updateTimers()
 	}
 
-	autociv_InitBots();
+	setDefaultsToOptionsPersonalizationWhenNewInstalled();
 
 	// SEND PATCH TO PHAB
 	Engine.GetGUIObjectByName("chatText").buffer_zone = 2.01

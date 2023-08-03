@@ -40,7 +40,7 @@ function handleInputBeforeGui(ev)
 	return false;
 }
 
-function autociv_InitBots()
+function setDefaultsToOptionsPersonalizationWhenNewInstalled()
 {
 	botManager.get("playerReminder").load(true);
 	botManager.get("mute").load(true);
@@ -58,7 +58,7 @@ autociv_patchApplyN("init", function (target, that, args)
 		left: 4, top: 4, bottom: -32
 	})
 
-	autociv_InitBots();
+	setDefaultsToOptionsPersonalizationWhenNewInstalled();
 
 	target.apply(that, args);
 

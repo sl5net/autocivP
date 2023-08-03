@@ -8,6 +8,13 @@
  * Determines if the autocivP module has just been installed.
  * true when a checkbox is 'true' or 'false'
  * @return {boolean} Returns true if the autocivP module has just been installed, false otherwise.
+ *
+ * BTW ( 23-0803_1713-24 ):
+Using a mix of camelCase and snake_case in long names can be a reasonable approach in certain cases. It can help improve readability and make the name more descriptive, especially if the name contains multiple words or phrases.
+
+For example, if you have a long name like isAutoCivPJustNowInstalled, you could consider using a mix of camelCase and snake_case to make it more readable, like is_autoCivP_just_now_installed.
+
+The key is to strike a balance between readability and consistency within the codebase. It's important to ensure that is clear and understandable to other developers who may be working on the codebase.
  */
 function is_autocivP_just_now_installed(){
 	  const inNextFullMinuteRemove00 = Engine.ConfigDB_GetValue(
@@ -17,14 +24,24 @@ function is_autocivP_just_now_installed(){
 	return !(inNextFullMinuteRemove00 === 'true' || inNextFullMinuteRemove00 === 'false')
 }
 
-if(is_autocivP_just_now_installed()){
-	// set a example default value when the mod was never installed before
-	// const value = 'Do you like: Auto-save Drafts in Chat? Never Lose Your Message Again'
-	const value2 = '0 A.D. Friendly Tournament'
-	ConfigDB_CreateAndSaveValueA26A27("user", 'autocivP.gamesetup.gameStart.string', value2);
-	ConfigDB_CreateAndSaveValueA26A27("user", 'autocivP.msg.helloAll', 'hi all :)' );
-	ConfigDB_CreateAndSaveValueA26A27("user", 'autocivP.msg.me', 'Do you like: Auto-save Drafts in Chat?' );
-	ConfigDB_CreateAndSaveValueA26A27("user", 'autocivP.msg.meURL', 'https://www.youtube.com/@plan0go or search for plan0go' );
+
+setDefaults_OptionsPersonalization_WhenNewInstalled()
+
+/**
+ * Sets defaults in personalization on new installation.
+ *
+ * @return {undefined} No return value.
+ */
+function setDefaultsInPersonalizationOnNewInstallation(){
+	if(is_autocivP_just_now_installed()){
+		// set a example default value when the mod was never installed before
+		// const value = 'Do you like: Auto-save Drafts in Chat? Never Lose Your Message Again'
+		const value2 = '0 A.D. Friendly Tournament'
+		ConfigDB_CreateAndSaveValueA26A27("user", 'autocivP.gamesetup.gameStart.string', value2);
+		ConfigDB_CreateAndSaveValueA26A27("user", 'autocivP.msg.helloAll', 'hi all :)' );
+		ConfigDB_CreateAndSaveValueA26A27("user", 'autocivP.msg.me', 'Do you like: Auto-save Drafts in Chat?' );
+		ConfigDB_CreateAndSaveValueA26A27("user", 'autocivP.msg.meURL', 'https://www.youtube.com/@plan0go or search for plan0go' );
+	}
 }
 
 /**
