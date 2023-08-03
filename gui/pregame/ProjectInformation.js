@@ -23,7 +23,6 @@ function is_autocivP_just_now_installed(){
 	return !(inNextFullMinuteRemove00 === 'true' || inNextFullMinuteRemove00 === 'false')
 }
 
-
 setDefaultsInPersonalizationOnNewInstallation()
 
 /**
