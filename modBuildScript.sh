@@ -32,10 +32,27 @@ clear
 # Extract the value of the mod_name variable from mod.json
 mod_name=$(jq -r '.name' mod.json)
 
+echo "${mod_name}"
+# clear
+
 dir_mod="$PWD"
 dir_mods="$PWD/.."
 dir_temp="${dir_mods}/${mod_name}_temp"
+echo "41: dir_temp= $dir_temp"
 dir_temp2="${dir_mods}/${mod_name}_temp2"
+
+# Clean the file path
+dir_mod=$(realpath "$(readlink -f "$dir_mod")")
+dir_mods=$(realpath "$(readlink -f "$dir_mods")")
+echo "47: dir_temp= $dir_temp"
+dir_temp=$(realpath "$(readlink -f "$dir_temp")")
+dir_temp2=$(realpath "$(readlink -f "$dir_temp2")")
+
+echo "PWD= $PWD"
+echo "dir_mod= $dir_mod"
+echo "dir_mods= $dir_mods"
+echo "53: dir_temp= $dir_temp"
+echo "53: dir_temp2= $dir_temp2"
 
 #!/bin/bash
 
@@ -47,6 +64,7 @@ mkdir $dir_temp
 
 copy_dir_from="${dir_mod}" # Use absolute path of the source directory
 echo "copy_dir_from= $copy_dir_from"
+
 
 # Copy directories directly within $copy_dir_from
 find $copy_dir_from/* -maxdepth 0 -type d -exec cp -r {} $dir_temp \;
@@ -97,7 +115,6 @@ cp ${dir_mods}/${mod_name}_temp.zip $dir_temp2/${mod_name}.zip
 # Zip the autocivP_temp_2 directory
 # echo dir_temp2=/absolute/path/to/${mod_name}/$dir_temp2
 
-clear
 sleep 1
 cd ${pwd}
 sleep 1

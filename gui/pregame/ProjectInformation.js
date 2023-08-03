@@ -18,12 +18,14 @@ function is_autocivP_just_now_installed(){
 }
 
 if(is_autocivP_just_now_installed()){
-	// set a default value when the mod was never installed before
-	const value = 'Do you like: Auto-save Drafts in Chat? Never Lose Your Message Again'
-	ConfigDB_CreateAndSaveValueA26A27("user", 'autocivP.gamesetup.gameStart.string', value);
+	// set a example default value when the mod was never installed before
+	// const value = 'Do you like: Auto-save Drafts in Chat? Never Lose Your Message Again'
+	const value2 = '0 A.D. Friendly Tournament'
+	ConfigDB_CreateAndSaveValueA26A27("user", 'autocivP.gamesetup.gameStart.string', value2);
+	ConfigDB_CreateAndSaveValueA26A27("user", 'autocivP.msg.helloAll', 'hi all :)' );
+	ConfigDB_CreateAndSaveValueA26A27("user", 'autocivP.msg.me', 'Do you like: Auto-save Drafts in Chat?' );
+	ConfigDB_CreateAndSaveValueA26A27("user", 'autocivP.msg.meURL', 'https://www.youtube.com/@plan0go or search for plan0go' );
 }
-
-
 
 /**
  * Retrieves the metadata for a replay.
