@@ -129,46 +129,42 @@ function init(attribs) {
         //     warn(`g_proGUIPVersion: ${g_proGUIPVersion}`)
         // }
 
+        const useitwithoutUnicode = Engine.ConfigDB_GetValue(
+            "user",
+            "autociv.chatText.font.useitwithoutUnicode"
+          ) === "true"
         const delimiterSymbol = "|"; // |
-        if(false || g_proGUIPVersion){
-
+        let temp = '';
+        if(g_proGUIPVersion){
             // maybe relevant for fairplay that its visible when using proGUI
             const showStarWhenUsingProGUI = Engine.ConfigDB_GetValue(
                 "user",
                 "autocivP.mod.showStarWhenUsingProGUI"
               ) === "true"
-
-            // not relevant for fairplay but maybe fun or useful
-            const showIconWhenUsingAutocovP = Engine.ConfigDB_GetValue(
-              "user",
-              "autocivP.mod.showIconWhenUsingAutocovP"
-            ) === "true"
-
-            const useitwithoutUnicode = Engine.ConfigDB_GetValue(
-                "user",
-                "autociv.chatText.font.useitwithoutUnicode"
-              ) === "true"
-
-            let temp = (showStarWhenUsingProGUI)
+            temp += (showStarWhenUsingProGUI)
                 ? ((useitwithoutUnicode)
                     ?'*':"★")
                 : "proGUI"
-
-
-            // ♇ // usually: ♇ (Unicode code point U+2647) is known as the Astrological Symbol for Pluto
-            // show use of this is optional. not relevant for fairplay
-            temp += (showIconWhenUsingAutocovP)
-                ? ((useitwithoutUnicode)
-                    ? 'AP' : '♇')
-                : ''
-
-
-            // this was now recorded, when i was playing in a bigh TG (not as host). funny. is this always? i was not able to reconstruct it when starting a local game 23-0730_1401-05
-            //  && customrating_dropdown !== 'false'
-            customrating_dropdown = ( isCustomratingEnabled && customrating_dropdown)
-            ? `${temp}${delimiterSymbol}${customrating_dropdown}`
-            : temp ;
         }
+        // not relevant for fairplay but maybe fun or useful
+        const showIconWhenUsingAutocovP = Engine.ConfigDB_GetValue(
+            "user",
+            "autocivP.mod.showIconWhenUsingAutocovP"
+            ) === "true"
+        // ♇ // usually: ♇ (Unicode code point U+2647) is known as the Astrological Symbol for Pluto
+        // show use of this is optional. not relevant for fairplay
+        temp += (showIconWhenUsingAutocovP)
+            ? ((useitwithoutUnicode)
+                ? 'AP' : '♇')
+            : ''
+
+
+
+        // this was now recorded, when i was playing in a bigh TG (not as host). funny. is this always? i was not able to reconstruct it when starting a local game 23-0730_1401-05
+        //  && customrating_dropdown !== 'false'
+        customrating_dropdown = ( isCustomratingEnabled && customrating_dropdown)
+        ? `${temp}${delimiterSymbol}${customrating_dropdown}`
+        : temp ;
 
 
 
