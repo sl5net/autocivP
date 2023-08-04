@@ -108,6 +108,21 @@ This mod is an aggregation of features meant to enhance the 0 A.D. game experien
 - Settings
 	- Max corpses visible
 
+## Tips:
+
+start 0ad in a infinite loop. So you never need to resart it manually when you change use TogglCommunityMod - Command or simply when changing the mode via mod-profiler. It allows for fast restart.
+For exit you then need to exit the calling app (typically a terminal).
+
+### Example when you use fish-shell:
+
+####  That's a fish-style endless loop; very useful with TogglComunityMod - Command or simly when changing the mode via mod-profiler. It allows for fast restart :
+alias 6game026start 'while true; cd ~/game/0ad/026/; ./0ad-0.0.26-alpha-2210110407-x86_64_0cdfe6000a403313b99d6ea006a92d81.AppImage; sleep 1; end; '
+
+
+### Bash-Style enless loops ( not tested ):
+
+ while true; do echo 'Hit CTRL+C'; sleep 10; done
+
 ## Download autocivP
 - Download and install from the wildfiregames forum autociv page topic (files on first page)
 	- not available jet
