@@ -16,12 +16,52 @@ For example, if you have a long name like isAutoCivPJustNowInstalled, you could 
 The key is to strike a balance between readability and consistency within the codebase. It's important to ensure that is clear and understandable to other developers who may be working on the codebase.
  */
 function is_autocivP_just_now_installed(){
-	  const inNextFullMinuteRemove00 = Engine.ConfigDB_GetValue(
-		"user",
-		"autocivP.gamesetup.gameStart.inNextFullMinuteRemove00" // only false or true valid when checkbox is used
-	  );
-	return !(inNextFullMinuteRemove00 === 'true' || inNextFullMinuteRemove00 === 'false')
+
+	// search for "type": "boolean", in  ***options***.json file/files
+
+	/* ====> NOTE - dont use customrating becouse enabled by default <===
+
+	*/
+
+
+	const isValid_showStarWhenUsingProGUI = isCheckBox_valid_boolean_string("autocivP.mod.showStarWhenUsingProGUI")
+	const isValid_showIconWhenUsingAutocovP = isCheckBox_valid_boolean_string("autocivP.mod.showIconWhenUsingAutocovP")
+	const isValid_noUsernameInGameName = isCheckBox_valid_boolean_string("autocivP.gamesetup.noUsernameInGameName")
+	const isValid_inNextFullMinuteRemove00 = isCheckBox_valid_boolean_string("autocivP.gamesetup.gameStart.inNextFullMinuteRemove00")
+	const isValid_showModsInGameName = isCheckBox_valid_boolean_string(
+		"autocivP.gamesetup.gameStart.showModsInGameName")
+	// const is_setuped_valid_for_Remove00 = (isValid_inNextFullMinuteRemove00 === 'true' || isValid_inNextFullMinuteRemove00 === 'false')
+
+	const isACheckboxValid =
+	( isValid_showStarWhenUsingProGUI
+		|| isValid_showIconWhenUsingAutocovP
+		|| isValid_noUsernameInGameName
+		|| isValid_inNextFullMinuteRemove00
+		|| isValid_showModsInGameName )
+
+		// g_selfNick =="seeh" &&
+	if(!isACheckboxValid ){ //NOTE -developers want to see the error in the console
+		// warn(`is_setuped_valid: ${isACheckboxValid}`)
+		// warn(`==> inNextFullMinuteRemove00: ${isValid_inNextFullMinuteRemove00}`)
+
+		// set something explicitly to false or true so we dont get an always its fresh installed true
+
+		// true becouse showStarWhenUsingProGUI i great :)
+		ConfigDB_CreateAndSaveValueA26A27("user", "autocivP.mod.showStarWhenUsingProGUI", 'true');
+
+	}
+	return !(isACheckboxValid)
+
 }
+
+function isCheckBox_valid_boolean_string(booleanCheckboxName){
+	const value = Engine.ConfigDB_GetValue(
+		"user",
+		booleanCheckboxName)
+	// warn(`value = ${value}`)
+	return (value === 'true' || value === 'false')
+}
+
 
 
 setDefaultsInPersonalizationOnNewInstallation()
