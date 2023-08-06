@@ -53,7 +53,7 @@ function is_autocivP_just_now_installed(){
 		messageBox(
 			500,
 			300,
-			message,
+			"Nice you just installed AutoCivP. Please be sure to don't exit game when autocamP-Folder is not lowercase",
 			"Nice you just installed AutoCivP. Please be sure to don't exit game when autocamP-Folder is not lowercase",
 			["Ok"],
 			[() => {}, () => {}]
