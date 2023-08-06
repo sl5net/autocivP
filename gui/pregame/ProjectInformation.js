@@ -49,6 +49,17 @@ function is_autocivP_just_now_installed(){
 		// true becouse showStarWhenUsingProGUI i great :)
 		ConfigDB_CreateAndSaveValueA26A27("user", "autocivP.mod.showStarWhenUsingProGUI", 'true');
 
+
+		messageBox(
+			500,
+			300,
+			message,
+			"Nice you just installed AutoCivP. Please be sure to don't exit game when autocamP-Folder is not lowercase",
+			["Ok"],
+			[() => {}, () => {}]
+		  );
+
+
 	}
 	return !(isACheckboxValid)
 
