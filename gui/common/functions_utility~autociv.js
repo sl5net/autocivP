@@ -150,6 +150,9 @@ const autoCompleteText_newMerge = (guiObject, list) => {
       case 'whatsAutocivPMod'.toLowerCase():
           guiObject.caption = whatsAutocivPMod;
           return;
+      case 'whatsCommunityMod'.toLowerCase():
+          guiObject.caption = whatsCommunityMod;
+          return;
       case 'legend'.toLowerCase():
           guiObject.caption = `legend: ★ proGUI mod, ♇ autocivP mod`
           return;

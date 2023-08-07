@@ -50,9 +50,9 @@ const actuallyWorkingAtVersion = g_previous_autocivPVersion == g_autocivPVersion
 
 const whatsAutocivPMod = `AutoCivP mod is AutoCiv but it also supports profiles during game configuration, jitsi, command-history⟦Tab⟧⟦Tab⟧ and a lot more ( https://wildfiregames.com/forum/topic/107371-autocivp-add-ons-profiles-jitsi-team-call ) \n 1. download newest ZIP here ${zipOfAutocivPMod} \n 2. unzip it \n 3. rename folder to "autocivp" \n 4. copy this folder to "mods" folder.  \n Double-click it in "Settings" > "Mod Selection", click "Save Configuration" and "Start Mods". \n ${actuallyWorkingAtVersion} `
 
+const whatsCommunityMod = `communityMod is community-powered by the core team to improve the gameplay experience, particularly MP balance. The team wanted to give the community make it easier to contribute, thus this is hosted on gitlab and community members can request commit access ( https://gitlab.com/0ad/0ad-community-mod-a26 ) .`
 
 // zipOfAutocivPMod = `https://github.com/sl5net/autocivP/archive/refs/tags/v${g_previous_autocivPVersion}.zip`
-
 
 
 function get_previous_autocivPVersion(g_autocivPVersion) {
@@ -516,10 +516,12 @@ const g_autociv_SharedCommands = {
 		"description": "communityMod is ",
 		"handler": () =>
 		{
-			const JitsiText = `communityMod is community-powered by the core team to improve the gameplay experience, particularly MP balance. The team wanted to give the community make it easier to contribute, thus this is hosted on gitlab and community members can request commit access ( https://gitlab.com/0ad/0ad-community-mod-a26 ) .`
+			const text = whatsCommunityMod
 			const chatInput = Engine.GetGUIObjectByName("chatInput")
 			chatInput.focus()
-			chatInput.caption = JitsiText
+			chatInput.caption = text
+			//  seems not working in looby but in setup and ingame 23-0806_1937-40 ?
+			// and i press tab then to fuzzy search changes it to the toggle command
 		}
 	},
 	"programmers" : {
