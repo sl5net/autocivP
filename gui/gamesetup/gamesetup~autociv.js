@@ -80,32 +80,36 @@ autociv_patchApplyN("init", function (target, that, args)
 	const modsFromUserCfg = Engine.ConfigDB_GetValue("user", "mod.enabledmods");
 	const modsFromUserCfg_backup = Engine.ConfigDB_GetValue("user", "autocivP.enabledmods.backup");
 	if(modsFromUserCfg != modsFromUserCfg_backup){
-
-
 		// const modsFromUserCfg = Engine.ConfigDB_GetValue("user", "mod.enabledmods");
 		// const modsFromUserCfg_backup = Engine.ConfigDB_GetValue("user", "autocivP.enabledmods.backup");
-
 		ConfigDB_CreateAndSaveValueA26A27("user", `autocivP.enabledmods.backup`, modsFromUserCfg);
 
-		  selfMessage('have changed enabledmods? do you want restore last profile?'); // selfMessage not exist
-	//   warn('82: have changed enabledmods? do you want restore last profile?');
-	  // g_NetworkCommands["/pRestoreLastProfile"]();
-	  // pRestoreLastProfile();
+		selfMessage('have changed enabledmods? do you want restore last profile?'); // selfMessage not exist
+		//   warn('82: have changed enabledmods? do you want restore last profile?');
+	  	// g_NetworkCommands["/pRestoreLastProfile"]();
+	  	// pRestoreLastProfile();
 
+		let lastCommandToSetProfile = ''
+		if(g_selfInHost){
+			const key = 'autocivP.gamesetup.lastCommandProfile'
+			const lastCommandProfile = Engine.ConfigDB_GetValue("user", `${key}`);
+			selfMessage(`your last used profile was: ${lastCommandProfile}`);
+			lastCommandToSetProfile = (lastCommandProfile) ? '/pRestoreLastProfile' : 'hi all :) ';
+		}else{
+			lastCommandToSetProfile = (g_selfInHost) ? '/pRestoreLastProfile' : 'hi all :) ';
+		}
+		const chatInput = Engine.GetGUIObjectByName("chatInput")
+		chatInput.caption = lastCommandToSetProfile;
 
-	  let lastCommandToSetProfile = ((g_selfInHost)) ? '/pRestoreLastProfile' : 'hi all :) ';
-	  const chatInput = Engine.GetGUIObjectByName("chatInput")
-	  chatInput.caption = lastCommandToSetProfile;
+		const doCheckVersion = true;
+		if(doCheckVersion){
+			// 		const versionName = Engine.GetEngineInfo().mods[0]['name'];
+			const versionOf0ad = Engine.GetEngineInfo().mods[0]['version']; // 0.0.26
+			// if(versionOf0ad != '0.0.27' )
+				// warn(versionOf0ad);
+			// selfMessage(`You use Version ${versionOf0ad} of 0 A.D. If you really want use Main>Setting>Options>Autociv then you need to use autociv from nani or use Version '0.0.27' of autocivP. This mod works best with  Version >= '0.0.27'. All command-line-commands works in both version. `);
+		}
 	}
-	const doCheckVersion = true;
-	if(doCheckVersion){
-// 		const versionName = Engine.GetEngineInfo().mods[0]['name'];
-	const versionOf0ad = Engine.GetEngineInfo().mods[0]['version']; // 0.0.26
-	// if(versionOf0ad != '0.0.27' )
-		// warn(versionOf0ad);
-	// selfMessage(`You use Version ${versionOf0ad} of 0 A.D. If you really want use Main>Setting>Options>Autociv then you need to use autociv from nani or use Version '0.0.27' of autocivP. This mod works best with  Version >= '0.0.27'. All command-line-commands works in both version. `);
-	}
-
 })
 
 function warnModIsNotEnabled(){
