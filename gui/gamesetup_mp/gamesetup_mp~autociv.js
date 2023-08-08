@@ -83,6 +83,7 @@ autociv_patchApplyN("init", (target, that, args) => {
         value = (gameStartSuggestionKey == '^h') ? "use Map 'Extinct Volcano'. it has something like timeout inside. Default is 25 Minutes": value
         value = (gameStartSuggestionKey == '^i') ? "talk and optional TG later": value
         value = (gameStartSuggestionKey == '^j') ? "can you do me a favor and test my latest mod update with me? please load new modificatoin from githup first": value
+        value = (gameStartSuggestionKey == '^k') ? "can you do me a favor and test the chat draft function of my latest mod with me? please load new modificatoin first": value
 
         const gameStartSuggestion_string = Engine.ConfigDB_GetValue(
           "user",

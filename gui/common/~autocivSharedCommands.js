@@ -13,6 +13,11 @@ var g_selfNick = Engine.ConfigDB_GetValue("user", `playername.multiplayer`);
 
 var g_backupMessageBeforeChangeContextViaHotkey = ''
 
+const chatInput = Engine.GetGUIObjectByName("chatInput")
+if(chatInput)
+  chatInput.caption = '/away 18'
+
+
 // Engine.GetCurrentReplayDirectory
 // GetEngineInfo.gameState.data
 // if (false && Engine.HasReplayInterface()) {
@@ -766,6 +771,17 @@ autociv_InitSharedCommands.pipe = {
 	"lobby": key =>
 	{
 		gameState = "lobby";
+		const chatInput = Engine.GetGUIObjectByName("chatInput")
+		if(chatInput && chatInput.caption.length < 1){
+			chatInput.focus()
+  			chatInput.caption = '/away' // just a suggestion. maybe you want to be away from the begginning. first check who is online. maybe want join as observer later. not always want play from the begginning.
+			// works without any problem, but pipe is maybe not the best way
+
+			// i peronally like to be away as suggestion in the caption because it is easy to read and a learning experience
+
+			// ohter very good implementation see:
+			// https://github.com/rossenburgg/godseye/blob/ALARIC/gui/lobby/autoAway.js#L83
+		}
 		ChatCommandHandler.prototype.ChatCommands[key] = {
 			"description": g_autociv_SharedCommands[key].description,
 			"handler": text =>
