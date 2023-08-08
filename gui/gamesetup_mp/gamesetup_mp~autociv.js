@@ -84,6 +84,9 @@ autociv_patchApplyN("init", (target, that, args) => {
         value = (gameStartSuggestionKey == '^i') ? "talk and optional TG later": value
         value = (gameStartSuggestionKey == '^j') ? "can you do me a favor and test my latest mod update with me? please load new modificatoin from githup first": value
         value = (gameStartSuggestionKey == '^k') ? "can you do me a favor and test the chat draft function of my latest mod with me? please load new modificatoin first": value
+        value = (gameStartSuggestionKey == '^l') ? "Mod Update Testing Party": value
+        value = (gameStartSuggestionKey == '^m') ? "New Mod Modification Showcase": value
+
 
         const gameStartSuggestion_string = Engine.ConfigDB_GetValue(
           "user",
