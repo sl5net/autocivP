@@ -131,6 +131,9 @@
 				"tooltip": "Resets all AutoCivP (REQUIRES RESTART) ([color=\"255 0 0\"]Backup first![/color])",
 				"config": "autociv.settings.reset.all2P"
 			},
+
+
+
 			{
 				"type": "string",
 				"label": "[color=\"220 185 70\"]Global:[/color] Chat panel icon delimiter (default is ⟨ or empty)",

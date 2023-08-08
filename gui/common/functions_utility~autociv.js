@@ -6,8 +6,9 @@ var g_lastCommandIDmax = 5;
 var g_lastCommandID = parseInt (Engine.ConfigDB_GetValue("user", `autocivP.chat.g_lastCommandID`));
 
 
-var g_iconPrefix = Engine.ConfigDB_GetValue("user", "autocivP.chat.iconPrefix"); // icon prefix iconPrefix should be default <
+var g_iconPrefix = Engine.ConfigDB_GetValue("user", "autocivP.chat.iconPrefix").trim(); // icon prefix iconPrefix should be default <
 
+// warn(`g_iconPrefix = >${g_iconPrefix}<`);
 
 var g_previousCaption = ''
 
@@ -164,49 +165,44 @@ const autoCompleteText_newMerge = (guiObject, list) => {
           return captionIs_meURL(guiObject);
       case 'meu': // synonym. if you in hurry
           return captionIs_meURL(guiObject);
-      case 'timeNow'.toLowerCase():
+      case 'modsImCurrentlyUsing'.toLowerCase():
+        return captionIs_modsImCurrentlyUsing(guiObject);
+        // selfMessage('caption.toLowerCase() = ' + caption.toLowerCase());
+
+        case 'timeNow'.toLowerCase():
           // selfMessage('162: caption.toLowerCase() = ' + caption.toLowerCase());
+          /*!SECTION
+          todo: this is not working in lobby. needs implementd again
+          JavaScript error:
+          gui/common/functions_utility~autociv.js line 163
+          g_NetworkCommands['/whatstimeNow'] is not a function
+          */
+          try {
+            return g_NetworkCommands["/whatstimeNow"]()
+          } catch (error) {
+            selfMessage('inside lobby whatstimeNow is not a function, at the moment. and there is no will to fix it at the moment ;) Motivate me. its not so very importand command. other stuff is fine.');
+            if(g_selfNick =="seeh"){ //NOTE -  developers want to see the error in the console
+              warn(error.message)
+              warn(error.stack)
+            }
+            return
+        }
 
-/*!SECTION
-todo: this is not working in lobby. needs implementd again
-JavaScript error:
-gui/common/functions_utility~autociv.js line 163
-g_NetworkCommands['/whatstimeNow'] is not a function
-*/
-try {
-  return g_NetworkCommands["/whatstimeNow"]()
-} catch (error) {
-  selfMessage('inside lobby whatstimeNow is not a function, at the moment. and there is no will to fix it at the moment ;) Motivate me. its not so very importand command. other stuff is fine.');
-  if(g_selfNick =="seeh"){ //NOTE -  developers want to see the error in the console
-    warn(error.message)
-    warn(error.stack)
-  }
+    } // switch end
 
-
-  return
-}
-
-case 'modsImCurrentlyUsing'.toLowerCase():
-          return captionIs_modsImCurrentlyUsing(guiObject);
-          // selfMessage('caption.toLowerCase() = ' + caption.toLowerCase());
-    }
-
-
-
-
-    const iconPrefix = g_iconPrefix; // icon prefix iconPrefix should be default <
     const firstChar = caption.toString().charAt(0); // or str[0]
 
 
     // selfMessage(`126: doppelPosting? '${g_lastCommand}' `);
     // selfMessage(`126: g_lastCommand = '${g_lastCommand}' , caption = '${caption}' `);
+
     if(g_previousCaption == caption){ // g_lastCommand
       // selfMessage(`127: doppelPosting? '${g_lastCommand}' `);
 
       const firstChar = caption.charAt(0); // or str[0]
       if(firstChar.match(/[‹›]/) ){
         g_previousCaption = caption
-        return captionIs_doppelPosting_with_delimiters(guiObject, caption);
+        return remove_delimiters_from_chat_icon_message(guiObject, caption);
 
       }
       // selfMessage(`138: doppelPosting? '${g_lastCommand}' `);
@@ -214,10 +210,10 @@ case 'modsImCurrentlyUsing'.toLowerCase():
     }
 
 
-    if( is_transGGWP_needet( caption, firstChar, iconPrefix,guiObject) )  {
+    if( is_transGGWP_needet( caption, firstChar, g_iconPrefix,guiObject) )  {
       const captionBegin = caption.toString()
-      let captionTrimed = captionBegin.substring(iconPrefix.length)
-      const minMatchScore = (captionTrimed.length > 20) ? 0.8 : (iconPrefix.length ? 0.3 :  0.55 ) // user name will be replaced later. i want have .3 but some users dont be found so easy ... hmmm
+      let captionTrimed = captionBegin.substring(g_iconPrefix.length)
+      const minMatchScore = (captionTrimed.length > 20) ? 0.8 : (g_iconPrefix.length ? 0.3 :  0.55 ) // user name will be replaced later. i want have .3 but some users dont be found so easy ... hmmm // user name will be replaced later. i want have .3 but some users dont be found so easy ... hmmm // user name will be replaced later. i want have .3 but some users dont be found so easy ... hmmm
 
       // selfMessage(`220: gameState '${gameState}' `);
       if(gameState == "ingame"){
@@ -230,12 +226,20 @@ case 'modsImCurrentlyUsing'.toLowerCase():
        }
      }
 
-      let allIconsInText =  Engine.Translate( transGGWP_markedStrings_I(captionTrimed, minMatchScore) )
+      // let allIconsInText =  Engine.Translate( transGGWP_markedStrings_I(captionTrimed, minMatchScore) )
+      let allIconsInText =  transGGWP_markedStrings_I(captionTrimed, minMatchScore)
+
+      const key = "autocivP.chat.no_icon_delimiters";
+      if( Engine.ConfigDB_GetValue("user", key) == "true")
+        allIconsInText = remove_delimiters_from_chat_icon_message(guiObject, allIconsInText);
+
+
       try {
         const guiObject = Engine.GetGUIObjectByName("chatInput");
         // guiObject.blur(); // remove the focus from a GUI element.
         guiObject.focus();
         // selfMessage('230: allIconsInText = ' + allIconsInText);
+
         if(captionBegin != allIconsInText){
           const isCaptionNumeric = (allIconsInText[0] >= '0' && allIconsInText[0] <= '9')
           if(isCaptionNumeric)
@@ -804,14 +808,14 @@ function captionIs_modsImCurrentlyUsing(guiObject){ // this function will be tri
  * @param {Object} guiObject - The GUI object to update.
  * @param {string} caption - The caption to process.
  */
-function captionIs_doppelPosting_with_delimiters(guiObject, caption){
-  caption =caption.replace(/[‹›]/g, ''); // cut out all special tags delimiter
+function remove_delimiters_from_chat_icon_message(guiObject, caption){
+  caption = caption.replace(/[‹›]/g, ''); // cut out all special tags delimiter
   g_lastCommand = caption
   // guiObject.caption = caption
   // selfMessage(`161 ${caption.toLowerCase()} = ${caption}`)
   // selfMessage(`169 ${caption}`)
   guiObject.caption = caption
-  return
+  return caption
 }
 
 /**
@@ -823,7 +827,7 @@ function captionIs_doppelPosting_with_delimiters(guiObject, caption){
  * @param {object} guiObject - The guiObject parameter.
  * @return {boolean} The result of the function.
  */
-function is_transGGWP_needet(caption, firstChar, iconPrefix,guiObject) {
+function is_transGGWP_needet(caption, firstChar, iconPrefix, guiObject) {
   const doTabReplacmentWor_gl_hf_gg_wp_stuff = true; // usefull for debugging maybe
   return doTabReplacmentWor_gl_hf_gg_wp_stuff
   &&

@@ -129,6 +129,13 @@
 				"config": "autociv.settings.reset.allowSuperKey"
 			},
 			{
+				"type": "boolean",
+				"label": "[color=\"220 185 70\"]Global:[/color] use icon without delimiter ",
+				"tooltip": "dont use <icon> delimiter in chat",
+				"config": "autocivP.chat.no_icon_delimiters"
+			},
+
+			{
 				"type": "string",
 				"label": "[color=\"220 185 70\"]Global:[/color] Chat panel icon delimiter (default is ⟨ or empty)",
 				"tooltip": "To improve command searchability, consider adding a prefix to special short icon (☯ ♪♣‹) commands like '<gg⟦Tab⟧' or '<mus⟦Tab⟧' ♪ to distinguish them from profile commands.",
