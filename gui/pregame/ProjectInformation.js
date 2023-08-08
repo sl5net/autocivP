@@ -145,7 +145,7 @@ if(versionName != '0ad')
 
 modsString = modsString.replace(/\s+([a-z])/gi , "\n$1"  ) ;
 modsString = modsString.replace(/\s+(proGUI)/g , "\n$1(boonGUI, BetterQuickStart)"  ) ;
-modsString = modsString.replace(/\s+(autocivP)/g , "\n$1(autociv)"  ) ;
+modsString = modsString.replace(/\s+(autocivP)/gi , "\n$1(autociv)"  ) ;
 var g_ProjectInformation = {
 	"organizationName": {
 		"caption": translate("WILDFIRE GAMES")

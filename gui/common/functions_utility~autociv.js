@@ -230,7 +230,8 @@ const autoCompleteText_newMerge = (guiObject, list) => {
       let allIconsInText =  transGGWP_markedStrings_I(captionTrimed, minMatchScore)
 
       const key = "autocivP.chat.no_icon_delimiters";
-      if( Engine.ConfigDB_GetValue("user", key) == "true")
+      const no_icon_delimiters = ( Engine.ConfigDB_GetValue("user", key) === "true" )
+      if( no_icon_delimiters )
         allIconsInText = remove_delimiters_from_chat_icon_message(guiObject, allIconsInText);
 
 
@@ -274,8 +275,9 @@ const autoCompleteText_newMerge = (guiObject, list) => {
             // selfMessage(`264: away from keyboard`)
             const pattern = /away from keyboard/;
             const hasPattern = pattern.test(allIconsInText);
-            if(hasPattern)
-             guiObject.buffer_position = 21 // set cursor to beginning of this(btw there a spaces before): 90 food please
+            if(hasPattern){
+             guiObject.buffer_position = (no_icon_delimiters) ? 20 : 21 // set cursor to beginning of this(btw there a spaces before): 90 food please
+            }
           }
 
           g_lastCommand = allIconsInText
