@@ -131,7 +131,7 @@
 			{
 				"type": "boolean",
 				"label": "[color=\"220 185 70\"]Global:[/color] use icon without delimiter ",
-				"tooltip": "dont use <icon> delimiter in chat",
+				"tooltip": "dont use <icon> delimiter in chat. default is dopple tab for rmove all icons delimiters",
 				"config": "autocivP.chat.no_icon_delimiters"
 			},
 
