@@ -103,6 +103,12 @@ tryAutoComplete = function (text, list, tries)
 //     }
 // }
 
+
+/**
+ * @param {Object} guiObject - the GUI object
+ * @param {Array} list - the list of items
+ * @return {undefined} - no return value
+ */
 const autoCompleteText_newMerge = (guiObject, list) => {
   // selfMessage('100: autoCompleteText_newMerge')
   // selfMessage('101: caption.length = ' + guiObject.caption.length)
@@ -415,9 +421,14 @@ function autoCompleteText_firstTry_eg_userName_civName(guiObject, caption, list)
 }
 
 
+/* autoCompleteText.state is not a global variable. It is a property of the autoCompleteText object.
+The autoCompleteText object is defined above in the code, and the .state property is used to store and track the previous texts for auto-completion.
+This object is likely used within the scope of the module or function where it is defined.
+*/
+
 
 // autoCompleteText = autoCompleteText_original
-autoCompleteText = autoCompleteText_newMerge
+autoCompleteText = autoCompleteText_newMerge // gui/common/functions_utility~autociv.js
 
 
 // Used to track previous texts from autocompletion to try next autocompletion if multiples apply.
@@ -427,6 +438,7 @@ autoCompleteText.state = {
     "oldCaption": "",
     "tries": 0
 }
+
 
 // Use the JS cache, instead of recomputing the same color
 const autociv_ColorsSeenBefore = {};
