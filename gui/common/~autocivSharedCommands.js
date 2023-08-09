@@ -267,7 +267,7 @@ function translGGWP_U2Gg_III(gg, minMatchScore) {
 
 	let lowercaseGg = gg.toLowerCase()
 	let doSend2allChatUsers = false
-	if (lowercaseGg == 'allIcons'.toLocaleLowerCase()) {
+	if (lowercaseGg == 'allicons2All'.toLocaleLowerCase()) {
 		doSend2allChatUsers = true
 		lowercaseGg = 'allicons'
 	}
