@@ -1,6 +1,7 @@
 {
    "/help /p": ["help", "search", "profiles", "iconsall" ],
    "allIcons": ["allicons", "allincon","allincons" ],
+   "listIcons": ["allIcons" ],
    "allIconKeys": ["alliconkeys","allinconcais","alliconskays" ],
    "timeNow": ["timenow" ],
    "modsImCurrentlyUsing": ["mods", "modsCurrent","modsUsing" ],
