@@ -67,7 +67,7 @@
   "⇔": ["<->","<-->","DOUBLEARROW"],
   "☞": ["right-small", "point", "hand"],
   "♡"   : ["<3", "love"],
-  "☺ :-)": ["smile", "happy"],
+  "☺ (◕‿◕)": ["smile", "happy"],
   "☻ :-)": [":)", "face"],
   "☹ :-("    : [":-(", ":(", "unhappy", "angry","sad" ],
   "☼"    : ["sun", "shine"],
@@ -94,5 +94,5 @@
   "♬♫♩": ["note", "fun", "sound"],
   "☯": ["yinYang", "balance", "harmony"],
   "☽": ["moon", "lunar", "night"],
-  "¯\\_⟨•_•⟩_/¯": ["meh", "shrug", "indifferent"]
+  "¯\\_⟨•_•⟩_/¯": ["meh", "shrug", "confused", "indifferent"]
 }

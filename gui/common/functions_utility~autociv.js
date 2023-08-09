@@ -209,6 +209,22 @@ const autoCompleteText_newMerge = (guiObject, list) => {
       captionCheckIs_communityModToggle(caption) // if is communitymodtoggle restart
     }
 
+    // const textBeforeBuffer = autoCompleteText.state.oldCaption.substring(0, autoCompleteText.state.buffer_position)
+    // const textBeforeBuffer = guiObject.caption
+
+
+
+  // selfMessage('caption = ' + caption)
+  // Engine.ConfigDB_CreateAndSaveValue("user", "autocivP.chat.lastCommand", caption); // is not a function error in Version a26 aut 23-0605_1920-25
+  const sameTry = ( autoCompleteText.state.newCaption == caption )
+  if (sameTry){
+    if(autoCompleteText_sameTry_eg_userName_civName(guiObject, list))
+      return // such result should not be saved in the command history. therefore return
+  }else{
+    if(autoCompleteText_firstTry_eg_userName_civName(guiObject, caption, list))
+      return // such result should not be saved in the command history. therefore return
+  }
+
 
     if( is_transGGWP_needet( caption, firstChar, g_iconPrefix,guiObject) )  {
       const captionBegin = caption.toString()
@@ -282,13 +298,14 @@ const autoCompleteText_newMerge = (guiObject, list) => {
 
           g_lastCommand = allIconsInText
           saveLastCommand2History(captionTrimed)
+
           return // this return was maybe missing 23-0705_2302-57 without this return some crases happened in oberver mode !!!!!! 23-0705_2305-59
         }
       }catch (error) {
 
         if(g_selfNick =="seeh"){ //NOTE - 23-0705_2302-57 developers want to see the error in the console
-          warn(error.message)
-          warn(error.stack)
+          warn('290: ' + error.message)
+          warn('291: ' + error.stack)
         }
       }
     }
@@ -313,73 +330,91 @@ const autoCompleteText_newMerge = (guiObject, list) => {
   g_previousCaption = caption
 
 
-  // selfMessage('caption = ' + caption)
-  // Engine.ConfigDB_CreateAndSaveValue("user", "autocivP.chat.lastCommand", caption); // is not a function error in Version a26 aut 23-0605_1920-25
-  const sameTry = autoCompleteText.state.newCaption == caption
-  if (sameTry){
-
-    // selfMessage(282)
-    const textBeforeBuffer = autoCompleteText.state.oldCaption.substring(0, autoCompleteText.state.buffer_position)
-    // selfMessage(284)
-    const completedText = tryAutoComplete(textBeforeBuffer, list, autoCompleteText.state.tries++)
-    // selfMessage(286)
-    const newCaptionText = completedText + autoCompleteText.state.oldCaption.substring(autoCompleteText.state.buffer_position)
-    // selfMessage(288)
-
-    autoCompleteText.state.newCaption = newCaptionText
-
-    try {
-      guiObject.caption = newCaptionText
-      guiObject.focus()
-    }catch (error) {
-      if(g_selfNick =="seeh"){ //NOTE - 23-0705_2302-57 developers want to see the error in the console
-        warn(error.message)
-        warn(error.stack)
-      }
-    }
-
-    // ConfigDB_CreateAndSaveValueA26A27("user", "autocivP.chat.lastCommand", newCaptionText);
-    try {
-      saveLastCommand2History(newCaptionText);
-    } catch (error) {
-      // happens in the lobby console when double press tab 23-0622_2013-26
-      if(g_selfNick =="seeh"){ //NOTE - 23-0705_2302-57 developers want to see the error in the console
-        error('double pressed tab to fast?')
-        warn(error.message)
-        warn(error.stack)
-      }
-    }
-    // selfMessage(295)
-    guiObject.buffer_position = autoCompleteText.state.buffer_position + (completedText.length - textBeforeBuffer.length)
-    // selfMessage(297)
-  }else{
-    const buffer_position = guiObject.buffer_position
-    autoCompleteText.state.buffer_position = buffer_position
-    autoCompleteText.state.oldCaption = caption
-    autoCompleteText.state.tries = 0
-
-    const textBeforeBuffer = caption.substring(0, buffer_position)
-    const completedText = tryAutoComplete(textBeforeBuffer, list, autoCompleteText.state.tries++)
-    const newCaptionText = completedText + caption.substring(buffer_position)
-
-    autoCompleteText.state.newCaption = newCaptionText
-
-    // selfMessage('324');
-
-    try{
-      guiObject.caption = newCaptionText
-      // selfMessage('326');
-      guiObject.focus();
-      guiObject.buffer_position = buffer_position + (completedText.length - textBeforeBuffer.length)
-    }catch (error) {
-      if(g_selfNick =="seeh"){ //NOTE - 23-0705_2302-57 developers want to see the error in the console
-        warn(error.message)
-        warn(error.stack)
-      }
-    }
-  // selfMessage('328');
-  }
 };
+
+
+/**
+ * Auto completes the text AGAIN in the given GUI object using the provided list of options.
+ *
+ * @param {object} guiObject - The GUI object to autocomplete the text in.
+ * @param {array} list - The list of options to use for autocompletion.
+ */
+function autoCompleteText_sameTry_eg_userName_civName(guiObject, list)
+{
+  const textBeforeBuffer = autoCompleteText.state.oldCaption.substring(0, autoCompleteText.state.buffer_position)
+  const completedText = tryAutoComplete(textBeforeBuffer, list, autoCompleteText.state.tries++)
+  const newCaptionText = completedText + autoCompleteText.state.oldCaption.substring(autoCompleteText.state.buffer_position)
+  autoCompleteText.state.newCaption = newCaptionText
+  try {
+    guiObject.caption = newCaptionText
+    guiObject.focus()
+  }catch (error) {
+    if(g_selfNick =="seeh"){ //NOTE - 23-0705_2302-57 developers want to see the error in the console
+      warn(error.message)
+      warn(error.stack)
+    }
+  }
+  // ConfigDB_CreateAndSaveValueA26A27("user", "autocivP.chat.lastCommand", newCaptionText);
+  try {
+    saveLastCommand2History(newCaptionText);
+  } catch (error) {
+    // happens in the lobby console when double press tab 23-0622_2013-26
+    if(g_selfNick =="seeh"){ //NOTE - 23-0705_2302-57 developers want to see the error in the console
+      error('double pressed tab to fast?')
+      warn(error.message)
+      warn(error.stack)
+    }
+  }
+  guiObject.buffer_position = autoCompleteText.state.buffer_position + (completedText.length - textBeforeBuffer.length)
+
+  if(textBeforeBuffer != completedText ){ // || g_lastCommand == caption
+    // warn(`370: true`)
+    return true
+  }
+  return false
+}
+
+
+/**
+ * Auto complete a given text like userName, civName in a user interface field.
+ *
+ * @param {Object} guiObject - the GUI object representing the user interface field.
+ * @param {string} caption - the current caption of the user interface field.
+ * @param {Array} list - the list of possible auto complete options.
+ * @return {boolean} true if the auto complete was successful, false otherwise.
+ */
+function autoCompleteText_firstTry_eg_userName_civName(guiObject, caption, list)
+{
+  const buffer_position = guiObject.buffer_position
+  autoCompleteText.state.buffer_position = buffer_position
+  autoCompleteText.state.oldCaption = caption
+  autoCompleteText.state.tries = 0
+
+  const textBeforeBuffer = caption.substring(0, buffer_position)
+  const completedText = tryAutoComplete(textBeforeBuffer, list, autoCompleteText.state.tries++)
+  const newCaptionText = completedText + caption.substring(buffer_position)
+
+  autoCompleteText.state.newCaption = newCaptionText
+
+  try{
+    guiObject.caption = newCaptionText
+    guiObject.focus();
+    guiObject.buffer_position = buffer_position + (completedText.length - textBeforeBuffer.length)
+
+    if(textBeforeBuffer != completedText ){ // || g_lastCommand == caption
+      return true
+    }
+
+  }catch (error) {
+    if(g_selfNick =="seeh"){ //NOTE - 23-0705_2302-57 developers want to see the error in the console
+      warn('396' + error.message)
+      warn('397' + error.stack)
+    }
+  }
+  return false
+}
+
+
 
 // autoCompleteText = autoCompleteText_original
 autoCompleteText = autoCompleteText_newMerge
@@ -873,6 +908,12 @@ function setCaption2LastCommandOfHistory(guiObject){
     return true
 }
 
+/**
+ * Sets the caption of the next command in the history to the given GUI object.
+ *
+ * @param {Object} guiObject - The GUI object to set the caption to.
+ * @return {boolean} Returns true if the caption is successfully set, false otherwise.
+ */
 function setCaption2nextCommandOfHistory(guiObject){
   let nextID = getNextLastCommandID()
   // selfMessage(`86: ${g_lastCommandID}' = g_lastCommandID`);
@@ -903,6 +944,7 @@ function setCaption2nextCommandOfHistory(guiObject){
   // g_lastCommandID = nextID;
   return false
 }
+
 function captionCheckIs_communityModToggle(caption){
   if(caption.trim() == "communityModToggle"){
 
