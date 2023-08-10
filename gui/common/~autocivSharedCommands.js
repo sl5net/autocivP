@@ -11,7 +11,7 @@ var g_is_chatInputTooltipQuickFixUpdate_updated = false
 // const selfNick = Engine.LobbyGetNick();
 var g_selfNick = Engine.ConfigDB_GetValue("user", `playername.multiplayer`);
 
-var g_backupMessageBeforeChangeContextViaHotkey = ''
+var g_textSuggestedInEmptyChatWhenTabPressed = ''
 
 const chatInput = Engine.GetGUIObjectByName("chatInput")
 if(chatInput)

@@ -119,7 +119,7 @@ function autociv_changeSomeHotkeysToKeyDownAsPressTypeCantBeDiscardedFromBeingCa
 			const chatInput = Engine.GetGUIObjectByName("chatInput")
 			if(chatInput?.caption && chatInput.caption.length > 0){
 				selfMessage(`:) getting your chat "${chatInput.caption}" by press ⟦Tab⟧ later`);
-				g_backupMessageBeforeChangeContextViaHotkey = chatInput.caption
+				g_textSuggestedInEmptyChatWhenTabPressed = chatInput.caption
 			}
 			// return that.openPage(that.openPage.bind('/allchat')); // /chat dont wort
 			return that.openPage.bind(that)
@@ -132,7 +132,7 @@ function autociv_changeSomeHotkeysToKeyDownAsPressTypeCantBeDiscardedFromBeingCa
 			const chatInput = Engine.GetGUIObjectByName("chatInput")
 			if(chatInput?.caption && chatInput.caption.length > 0){
 				selfMessage(`:) getting your chat "${chatInput.caption}" by press ⟦Tab⟧ later`);
-				g_backupMessageBeforeChangeContextViaHotkey = chatInput.caption
+				g_textSuggestedInEmptyChatWhenTabPressed = chatInput.caption
 			}
 			that.openPage();
 		  });
