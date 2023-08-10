@@ -109,13 +109,14 @@ tryAutoComplete = function (text, list, tries)
  * @param {Array} list - the list of items
  * @return {undefined} - no return value
  */
-const autoCompleteText_newMerge = (guiObject, list) => {
+const g_autoCompleteText_newMerge = (guiObject, list) => {
   // selfMessage('100: autoCompleteText_newMerge')
   // selfMessage('101: caption.length = ' + guiObject.caption.length)
 
   chatInputTooltipQuickFixUpdate()
 
-
+  // if(g_backupMessageBeforeChangeContextViaHotkey)
+  //   warn(`22: last text was >${g_backupMessageBeforeChangeContextViaHotkey}<`);
 
   const caption = guiObject.caption
   // let caption = guiObject.caption.trim()  // used long time to trim the caption to 23-0705_2249-00 idk if it may dangerous to trim here
@@ -421,16 +422,23 @@ function autoCompleteText_firstTry_eg_userName_civName(guiObject, caption, list)
 }
 
 
+
+
+/*!SECTION
+autoCompleteText cannot renamed in:
+gui/common/functions_utility~autociv.js line 431
+becouse then you get a error:
+assignment to undeclared variable g_autoCompleteText
+==> its defined in external
+*/
+autoCompleteText = g_autoCompleteText_newMerge // gui/common/functions_utility~autociv.js
+// autoCompleteText = autoCompleteText_original
+
+
 /* autoCompleteText.state is not a global variable. It is a property of the autoCompleteText object.
 The autoCompleteText object is defined above in the code, and the .state property is used to store and track the previous texts for auto-completion.
 This object is likely used within the scope of the module or function where it is defined.
 */
-
-
-// autoCompleteText = autoCompleteText_original
-autoCompleteText = autoCompleteText_newMerge // gui/common/functions_utility~autociv.js
-
-
 // Used to track previous texts from autocompletion to try next autocompletion if multiples apply.
 autoCompleteText.state = {
     "buffer_position": 0,
