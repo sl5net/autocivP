@@ -1,6 +1,19 @@
 var gameState = "lobby"; // Initial state // // TODO: howto set it like this? g_GameData = data // 	g_GameData.gui.isInGame
 
-var g_selfInHost = true // unused variable ? 23-0730_2242-25
+var g_selfInHost // unused variable ? 23-0730_2242-25
+
+// let g_PlayerAssignments;
+
+
+
+// Check if g_PlayerAssignments exists and has an object with the specified guid
+// if (g_PlayerAssignments && g_PlayerAssignments[guid]) {
+// 	const playerName = g_PlayerAssignments[guid].name;
+// 	warn(playerName);
+//   } else {
+// 	console.log("Player with the specified guid does not exist.");
+//   }
+
 
 const g_customIconJson = Engine.ReadJSONFile("moddata/autocivP_IconNames.json");
 var g_fuzzyArrayResult = getFuzzyArrayFromJsonFile(g_customIconJson, true)
@@ -16,7 +29,6 @@ var g_textSuggestedInEmptyChatWhenTabPressed = ''
 const chatInput = Engine.GetGUIObjectByName("chatInput")
 if(chatInput)
   chatInput.caption = '/away 18'
-
 
 // Engine.GetCurrentReplayDirectory
 // GetEngineInfo.gameState.data

@@ -29,11 +29,6 @@ var g_autociv_hotkeys = {
 
 
 
-
-
-
-
-
 function handleInputBeforeGui(ev)
 {
 	g_resizeBarManager.onEvent(ev);
@@ -75,41 +70,30 @@ autociv_patchApplyN("init", function (target, that, args)
 	Engine.GetGUIObjectByName("chatInput").blur();
 	Engine.GetGUIObjectByName("chatInput").focus();
 
+	// var g_PlayerAssignments = {};
+	// var playerNameHost = g_PlayerAssignments[0].name;
+	// warn(`g_PlayerAssignments.length = ${g_PlayerAssignments.length}`);
 
-
-	const modsFromUserCfg = Engine.ConfigDB_GetValue("user", "mod.enabledmods");
-	const modsFromUserCfg_backup = Engine.ConfigDB_GetValue("user", "autocivP.enabledmods.backup");
-	if(modsFromUserCfg != modsFromUserCfg_backup){
-		// const modsFromUserCfg = Engine.ConfigDB_GetValue("user", "mod.enabledmods");
-		// const modsFromUserCfg_backup = Engine.ConfigDB_GetValue("user", "autocivP.enabledmods.backup");
-		ConfigDB_CreateAndSaveValueA26A27("user", `autocivP.enabledmods.backup`, modsFromUserCfg);
-
-		selfMessage('have changed enabledmods? do you want restore last profile?'); // selfMessage not exist
-		//   warn('82: have changed enabledmods? do you want restore last profile?');
-	  	// g_NetworkCommands["/pRestoreLastProfile"]();
-	  	// pRestoreLastProfile();
-
-		let lastCommandToSetProfile = ''
-		if(g_selfInHost){
-			const key = 'autocivP.gamesetup.lastCommandProfile'
-			const lastCommandProfile = Engine.ConfigDB_GetValue("user", `${key}`);
-			selfMessage(`your last used profile was: ${lastCommandProfile}`);
-			lastCommandToSetProfile = (lastCommandProfile) ? '/pRestoreLastProfile' : 'hi all :) ';
-		}else{
-			lastCommandToSetProfile = (g_selfInHost) ? '/pRestoreLastProfile' : 'hi all :) ';
+	setTimeout(() => {
+		// Asynchronous operation
+		try {
+			g_selfInHost = isSelfHostAsync()
+			.then(result => {
+			// warn(`works`);
+			})
+			.catch(error => {
+			// warn(error);
+			});
+		} catch (error) {
+			// Handle the error gracefully or simply ignore it
 		}
-		const chatInput = Engine.GetGUIObjectByName("chatInput")
-		chatInput.caption = lastCommandToSetProfile;
+	}, 10);
 
-		const doCheckVersion = true;
-		if(doCheckVersion){
-			// 		const versionName = Engine.GetEngineInfo().mods[0]['name'];
-			const versionOf0ad = Engine.GetEngineInfo().mods[0]['version']; // 0.0.26
-			// if(versionOf0ad != '0.0.27' )
-				// warn(versionOf0ad);
-			// selfMessage(`You use Version ${versionOf0ad} of 0 A.D. If you really want use Main>Setting>Options>Autociv then you need to use autociv from nani or use Version '0.0.27' of autocivP. This mod works best with  Version >= '0.0.27'. All command-line-commands works in both version. `);
-		}
-	}
+	setTimeout(() => {
+		ifYouHostAndModsChangedRecomandRestoreLastProfile()
+	}, 20);
+
+
 })
 
 function warnModIsNotEnabled(){
@@ -142,5 +126,59 @@ function warnSilhouettesIsNotEnabled(){
 	);
 	if(silhouettes != "true"){
 		warn(`Really want play without silhouettes visible? (Settings > Graphics (general) > Unit Silhouettes. Its the fifth option)`);
+	}
+}
+
+
+/**
+ * Determine if the current player is the host player.
+ */
+function isSelfHostAsync(){ // maybe call it in a settimeout assync function
+	const selfGUID = Engine.GetPlayerGUID()
+	const firstPlayerGUID = Object.keys(g_PlayerAssignments)[0];
+
+	const selfPlayerAssignment = g_PlayerAssignments[Engine.GetPlayerGUID()];
+	const hostPlayerAssignment = g_PlayerAssignments[firstPlayerGUID];
+
+	g_selfInHost = selfGUID == firstPlayerGUID;
+
+	const bugIt = true // new implementation so i will watch longer
+	if(bugIt && g_selfNick =="seeh"){ //NOTE -developers want to see the error in the console
+		warn(`42: selfPlayerAssignment.name = ${selfPlayerAssignment.name}`);
+		warn(`43: hostPlayerAssignment.name = ${hostPlayerAssignment.name}`);
+		warn(`44: g_selfInHost =====> ${g_selfInHost} ${g_selfInHost} ${g_selfInHost} ${g_selfInHost} ${g_selfInHost}`);
+	}
+	warn(`45: g_selfInHost => ${g_selfInHost}`);
+	return g_selfInHost
+}
+
+
+/**
+ * Checks if self host and mods have changed and recommends restoring then the last profile.
+ */
+function ifYouHostAndModsChangedRecomandRestoreLastProfile(){
+	const modsFromUserCfg = Engine.ConfigDB_GetValue("user", "mod.enabledmods");
+	const modsFromUserCfg_backup = Engine.ConfigDB_GetValue("user", "autocivP.enabledmods.backup");
+	// warn(`ifYouHostAndModsChangedRecomandRestoreLastProfile`);
+	if(modsFromUserCfg != modsFromUserCfg_backup){
+		// const modsFromUserCfg = Engine.ConfigDB_GetValue("user", "mod.enabledmods");
+		// const modsFromUserCfg_backup = Engine.ConfigDB_GetValue("user", "autocivP.enabledmods.backup");
+		ConfigDB_CreateAndSaveValueA26A27("user", `autocivP.enabledmods.backup`, modsFromUserCfg);
+
+		selfMessage('have changed enabledmods? do you want restore last profile?'); // selfMessage not exist
+		//   warn('82: have changed enabledmods? do you want restore last profile?');
+	  	// g_NetworkCommands["/pRestoreLastProfile"]();
+	  	// pRestoreLastProfile();
+		let lastCommandToSetProfile = ''
+		if(g_selfInHost){
+			const key = 'autocivP.gamesetup.lastCommandProfile'
+			const lastCommandProfile = Engine.ConfigDB_GetValue("user", `${key}`);
+			selfMessage(`your last used profile was: ${lastCommandProfile}`);
+			lastCommandToSetProfile = (lastCommandProfile) ? '/pRestoreLastProfile' : 'hi all :) ';
+		}else{
+			lastCommandToSetProfile = (g_selfInHost) ? '/pRestoreLastProfile' : 'hi all :) ';
+		}
+		const chatInput = Engine.GetGUIObjectByName("chatInput")
+		chatInput.caption = lastCommandToSetProfile;
 	}
 }
