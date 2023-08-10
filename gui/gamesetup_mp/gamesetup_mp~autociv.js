@@ -95,7 +95,7 @@ autociv_patchApplyN("init", (target, that, args) => {
         "user",
         "autocivP.gamesetup.gameStart.string"
         );
-        warn(`95: gameStartSuggestion_string: ${gameStartSuggestion_string}`)
+        // warn(`95: gameStartSuggestion_string: ${gameStartSuggestion_string}`)
         if(gameStartSuggestion_string.length > 0){
           gameStartSuggestion_value += gameStartSuggestion_string // example: Hi :) Do you like: Auto-save Drafts in Chat? Never Lose Your Message Again
         }
