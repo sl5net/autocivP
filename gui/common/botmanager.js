@@ -189,7 +189,7 @@ class BotManager
 
 			this.selfMessage = text =>
 			{
-				let ftext = setStringTags(`== ${text}`, { "font": "sans-bold-13" })
+				const ftext = setStringTags(`== ${text}`, { "font": "sans-bold-13" })
 				g_LobbyHandler.lobbyPage.lobbyPage.panels.chatPanel.chatMessagesPanel.
 					addText(Date.now() / 1000, ftext)
 			}
@@ -204,7 +204,7 @@ class BotManager
 
 			this.selfMessage = text =>
 			{
-				let ftext = setStringTags(`== ${text}`, { "font": "sans-bold-13" })
+				const ftext = setStringTags(`== ${text}`, { "font": "sans-bold-13" })
 				g_SetupWindow.pages.GameSetupPage.panels.chatPanel.chatMessagesPanel.
 					addText(ftext)
 			}
