@@ -72,6 +72,9 @@ var game = {
     },
     numberOfSlots: (num) => {
       const playerCount = game.controls.PlayerCount;
+
+      selfMessage(`gui/gamesetup/gamesetup~!extra_commands.js 76: player count ${playerCount}`);
+
       let itemIdx = playerCount.values.indexOf(num);
       playerCount.onSelectionChange(itemIdx);
     },
@@ -107,6 +110,8 @@ var game = {
         for (let guid in g_PlayerAssignments) {
           let playerPos = g_PlayerAssignments[guid].player;
           // return if player already assigned
+          selfMessage(`gui/gamesetup/gamesetup~!extra_commands.js 76: playerId: ${playerId}`);
+
           if (guid === playerId && playerPos > 0 && playerPos <= numberOfSlots)
             return;
           assignedPos.add(playerPos);

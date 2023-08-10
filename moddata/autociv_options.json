@@ -409,7 +409,7 @@
 
 			{
 				"type": "dropdown",
-				"label": "[color=\"220 185 70\"]Game name S.[/color] select normal,2xSpeed,spec..->",
+				"label": "[color=\"204 133 0\"]Game name S.[/color] select normal,2xSpeed,spec..->",
 				"tooltip": "set to empty or select a name postfix",
 				"config": "autocivP.gamesetup.gameStart.suggestionKey",
 				"list": [
