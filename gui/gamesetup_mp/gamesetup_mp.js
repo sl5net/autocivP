@@ -62,7 +62,7 @@ function init(attribs) {
     }
 
     // added by custom rating - START
-    let customrating_string = Engine.ConfigDB_GetValue("user", "customrating.string") // usefull options to select
+    // let customrating_string = Engine.ConfigDB_GetValue("user", "customrating.string") // usefull options to select
     let customrating_dropdown = Engine.ConfigDB_GetValue("user", "autocivP.customusernameDropdown"); // autocivP.customusernameDropdown is Dropdown with some funny or usefull options to select
     const customrating_trueFalse = Engine.ConfigDB_GetValue("user", "customrating");
 
@@ -118,8 +118,10 @@ function init(attribs) {
             // customrating_value = customrating_value.replace('Host','');
             customrating_dropdown = customrating_dropdown.replace(/^[^\d\w\-]*[0-9]+[^\d\w\-]*$/g, ''); // if its only a number. cut it out
 
+            // warn(`121: customrating_dropdown: ${customrating_dropdown}`)
             if(customrating_dropdown.length === 0 || customrating_dropdown == 'false'){
                 customrating_dropdown = Engine.ConfigDB_GetValue("user", "customrating.string");
+                // warn(`123: customrating_dropdown: ${customrating_dropdown}`)
             }
 
         }

@@ -87,17 +87,20 @@ autociv_patchApplyN("init", (target, that, args) => {
         value = (gameStartSuggestionKey == '^l') ? "Mod Update Testing Party": value
         value = (gameStartSuggestionKey == '^m') ? "New Mod Modification Showcase": value
 
-
-        const gameStartSuggestion_string = Engine.ConfigDB_GetValue(
-          "user",
-          "autocivP.gamesetup.gameStart.string"
-          );
-
-          if(gameStartSuggestion_string.length > 0){
-            gameStartSuggestion_value += gameStartSuggestion_string // example: Hi :) Do you like: Auto-save Drafts in Chat? Never Lose Your Message Again
-          }
         gameStartSuggestion_value += `|${value}`
+        // end of key exist
       }
+
+      const gameStartSuggestion_string = Engine.ConfigDB_GetValue(
+        "user",
+        "autocivP.gamesetup.gameStart.string"
+        );
+        warn(`95: gameStartSuggestion_string: ${gameStartSuggestion_string}`)
+        if(gameStartSuggestion_string.length > 0){
+          gameStartSuggestion_value += gameStartSuggestion_string // example: Hi :) Do you like: Auto-save Drafts in Chat? Never Lose Your Message Again
+        }
+
+
       if(isCustomratingEnabled && gameStartSuggestionKey2 !== 'false' && gameStartSuggestionKey2.trim().length > 0){
         let value = ''
         value = (gameStartSuggestionKey2 == '^1') ? "1v1" : value
