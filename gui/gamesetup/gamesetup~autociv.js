@@ -148,7 +148,7 @@ function isSelfHostAsync(){ // maybe call it in a settimeout assync function
 		warn(`43: hostPlayerAssignment.name = ${hostPlayerAssignment.name}`);
 		warn(`44: g_selfInHost =====> ${g_selfInHost} ${g_selfInHost} ${g_selfInHost} ${g_selfInHost} ${g_selfInHost}`);
 	}
-	warn(`45: g_selfInHost => ${g_selfInHost}`);
+	// warn(`45: g_selfInHost => ${g_selfInHost}`);
 	return g_selfInHost
 }
 
