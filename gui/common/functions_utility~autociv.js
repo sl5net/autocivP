@@ -115,8 +115,7 @@ const g_autoCompleteText_newMerge = (guiObject, list) => {
 
   chatInputTooltipQuickFixUpdate()
 
-  // if(g_backupMessageBeforeChangeContextViaHotkey)
-  //   warn(`22: last text was >${g_backupMessageBeforeChangeContextViaHotkey}<`);
+    // warn(`22: last text was >${g_textSuggestedInEmptyChatWhenTabPressed}<`);
 
   const caption = guiObject.caption
   // let caption = guiObject.caption.trim()  // used long time to trim the caption to 23-0705_2249-00 idk if it may dangerous to trim here

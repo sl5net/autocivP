@@ -390,12 +390,37 @@ botManager.addBot("autociv", {
 		if (data.type != "chat")
 			return;
 
-		let clean = text => text.trim().split(" ")[0].toLowerCase();
+
+		// var g_selfNick = Engine.ConfigDB_GetValue("user", `playername.multiplayer`);
+		// warn(`var g_selfNick = ${g_selfNick} gui/common/botmanager.js:396`)
+
+		let clean = text =>
+		{
+
+			// Ignore if text is player name only (to avoid boring content)
+			if(text != g_selfNick){
+				/*!SECTION
+				The length of 0 A.D. user names can vary, but they typically have a minimum length of 3 characters and a maximum length of 25 characters.
+				*/
+				// warn(`text: ${text} gui/common/botmanager.js:396`)
+				if(text.includes(' ') || text.length > 18) // only longer texts are probably intersting (longer then user names. ao less missunderstandings)
+					g_textSuggestedInEmptyChatWhenTabPressed = text
+			}
+			text.trim().split(" ")[0].toLowerCase();
+		}
+
+
+		// warn(`clean: ${clean} gui/common/botmanager.js:396`)
+
 		let firstWord = clean(data.message);
+
+		// warn(`firstWord: ${firstWord} gui/common/botmanager.js:396`)
 
 		// Ignore if text is player name (to avoid similarity with civ names)
 		if (game.get.players.name().some(name => firstWord == clean(name)))
 			return;
+
+
 
 		// Special case: spec makes a player observer.
 		if (firstWord == "spec")

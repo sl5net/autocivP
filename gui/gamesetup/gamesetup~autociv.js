@@ -77,7 +77,7 @@ autociv_patchApplyN("init", function (target, that, args)
 	setTimeout(() => {
 		// Asynchronous operation
 		try {
-			g_selfInHost = isSelfHostAsync()
+			g_selfInHost = isSelfHost() // the g_selfInHost is set a bit later. so a delay is needed here
 			.then(result => {
 			// warn(`works`);
 			})
@@ -133,7 +133,7 @@ function warnSilhouettesIsNotEnabled(){
 /**
  * Determine if the current player is the host player.
  */
-function isSelfHostAsync(){ // maybe call it in a settimeout assync function
+function isSelfHost(){ // maybe call it in a settimeout assync function
 	const selfGUID = Engine.GetPlayerGUID()
 	const firstPlayerGUID = Object.keys(g_PlayerAssignments)[0];
 
@@ -142,7 +142,7 @@ function isSelfHostAsync(){ // maybe call it in a settimeout assync function
 
 	g_selfInHost = selfGUID == firstPlayerGUID;
 
-	const bugIt = true // new implementation so i will watch longer
+	const bugIt = false // new implementation so i will watch longer
 	if(bugIt && g_selfNick =="seeh"){ //NOTE -developers want to see the error in the console
 		warn(`42: selfPlayerAssignment.name = ${selfPlayerAssignment.name}`);
 		warn(`43: hostPlayerAssignment.name = ${hostPlayerAssignment.name}`);
