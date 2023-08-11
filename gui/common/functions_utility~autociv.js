@@ -124,7 +124,7 @@ const g_autoCompleteText_newMerge = (guiObject, list) => {
 	// doDebug = true // debug session
 
   if(doDebug)
-    selfMessage(`124: ${caption.toLowerCase()} = ${caption}      gui/common/functions_utility~autociv.js`) //TODO - add to json tab-commands
+    selfMessage(`127: ${caption.toLowerCase()} = ${caption}      gui/common/functions_utility~autociv.js`) //TODO - add to json tab-commands
 
 
   // End of caption is maybe not empty
@@ -159,6 +159,23 @@ const g_autoCompleteText_newMerge = (guiObject, list) => {
 
   if(caption?.length ){
 
+    if(g_previousCaption == 'communityModToggle'){
+      if(doDebug)
+        selfMessage(`164: now now now   gui/common/functions_utility~autociv.js `);
+        captionCheck_is_communityModToggle_optional_restartOad(caption, true)
+    }
+
+    if(captionCheck_is_communityModToggle_optional_restartOad(caption, false)){
+      if(doDebug)
+        selfMessage(`211: communitymodtoggle  gui/common/functions_utility~autociv.js `);
+
+      g_previousCaption = 'communityModToggle' // next time it should be restart then and do the chanches
+      guiObject.caption = 'communityModToggle' // for some reason that i dont understand must be now lowercase not communityModToggle
+      return
+    }
+
+
+
     switch (caption.toLowerCase()) {
       case 'j':
           return captionIs_j(guiObject);
@@ -185,25 +202,25 @@ const g_autoCompleteText_newMerge = (guiObject, list) => {
       case 'modsImCurrentlyUsing'.toLowerCase():
         return captionIs_modsImCurrentlyUsing(guiObject);
         // selfMessage('caption.toLowerCase() = ' + caption.toLowerCase());
-
-        case 'timeNow'.toLowerCase():
-          // selfMessage('162: caption.toLowerCase() = ' + caption.toLowerCase());
-          /*!SECTION
-          todo: this is not working in lobby. needs implementd again
-          JavaScript error:
-          gui/common/functions_utility~autociv.js line 163
-          g_NetworkCommands['/whatstimeNow'] is not a function
-          */
-          try {
-            return g_NetworkCommands["/whatstimeNow"]()
-          } catch (error) {
-            selfMessage('inside lobby whatstimeNow is not a function, at the moment. and there is no will to fix it at the moment ;) Motivate me. its not so very importand command. other stuff is fine.');
-            if(g_selfNick =="seeh"){ //NOTE -  developers want to see the error in the console
-              warn(error.message)
-              warn(error.stack)
-            }
-            return
+      case 'timeNow'.toLowerCase():
+        // selfMessage('162: caption.toLowerCase() = ' + caption.toLowerCase());
+        /*!SECTION
+        todo: this is not working in lobby. needs implementd again
+        JavaScript error:
+        gui/common/functions_utility~autociv.js line 163
+        g_NetworkCommands['/whatstimeNow'] is not a function
+        */
+        try {
+          return g_NetworkCommands["/whatstimeNow"]()
+        } catch (error) {
+          selfMessage('inside lobby whatstimeNow is not a function, at the moment. and there is no will to fix it at the moment ;) Motivate me. its not so very importand command. other stuff is fine.');
+          if(g_selfNick =="seeh"){ //NOTE -  developers want to see the error in the console
+            warn(error.message)
+            warn(error.stack)
+          }
+          return
         }
+      return
 
     } // switch end
 
@@ -211,6 +228,10 @@ const g_autoCompleteText_newMerge = (guiObject, list) => {
 
     // selfMessage(`203: doppelPosting? '${g_lastCommand}' `);
     // selfMessage(`126: g_lastCommand = '${g_lastCommand}' , caption = '${caption}' `);
+
+    if(doDebug)
+      selfMessage(`223: '${g_previousCaption}' ?= '${caption}'  gui/common/functions_utility~autociv.js `);
+
 
     if(g_previousCaption == caption){ // g_lastCommand
       // selfMessage(`207: doppelPosting? '${g_lastCommand}' gui/common/functions_utility~autociv.js `);
@@ -221,14 +242,16 @@ const g_autoCompleteText_newMerge = (guiObject, list) => {
         return remove_delimiters_from_chat_icon_message(guiObject, caption);
 
       }
-      // selfMessage(`215: doppelPosting? '${g_lastCommand}'  gui/common/functions_utility~autociv.js `);
-      captionCheckIs_communityModToggle(caption) // if is communitymodtoggle restart
+
+      if(doDebug)
+        selfMessage(`233: doppelPosting? '${g_lastCommand}' | captionCheck_is_communityModToggle_optional_restartOad |  gui/common/functions_utility~autociv.js `);
+      captionCheck_is_communityModToggle_optional_restartOad(caption, true) // if is communitymodtoggle restart
 
       if(setCaption2nextCommandOfHistory(guiObject)){
         g_previousCaption = caption
         return
       }
-    }
+    } // end of doppelPosting
 
 
     // const textBeforeBuffer = autoCompleteText.state.oldCaption.substring(0, autoCompleteText.state.buffer_position)
@@ -1012,7 +1035,7 @@ function setCaption2nextCommandOfHistory(guiObject){
 
 
 
-function captionCheckIs_communityModToggle(caption){
+function captionCheck_is_communityModToggle_optional_restartOad(caption, doRestart0ad = false){
   if(caption.trim() == "communityModToggle"){
 
 
@@ -1020,6 +1043,11 @@ function captionCheckIs_communityModToggle(caption){
       selfMessage(`communityModToggle is not allowed in ingame.`)
       return false
     }
+
+    if(!doRestart0ad){
+      return true // yes the caption is communityModToggle, but do not restart0ad now
+    }
+
 
     let modEnabledmods = Engine.ConfigDB_GetValue(
       "user",
