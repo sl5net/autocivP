@@ -74,8 +74,6 @@ autociv_patchApplyN("init", function (target, that, args)
 	// var playerNameHost = g_PlayerAssignments[0].name;
 	// warn(`g_PlayerAssignments.length = ${g_PlayerAssignments.length}`);
 
-	selfMessage(`set g_selfInHost`)
-
 	setTimeout(() => {
 		// Asynchronous operation
 		try {
