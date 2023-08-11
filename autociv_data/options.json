@@ -368,6 +368,12 @@
 				"config": "autocivP.gamesetup.noUsernameInGameName"
 			},
 			{
+				"type": "boolean",
+				"label": "[color=\"220 185 70\"]use your RatedDefault in GameNames[/color]?",
+				"tooltip": "you could set rated default in chat by typeping: rated true or rated false or empty value ",
+				"config": "autocivP.gamesetup.useRatedDefaultInGameName"
+			},
+			{
 				"type": "string",
 				"label": "[color=\"204 133 0\"]Game name Suggestion[/color]. next fullMinute (default is next full 30 minutes ⟨ or empty)",
 				"tooltip": "e.g. next full 30 minutes 12:30 13:00. to disable, set to empty",

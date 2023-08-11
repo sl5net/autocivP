@@ -96,8 +96,14 @@ autociv_patchApplyN("init", (target, that, args) => {
         gameStartSuggestion_value += `|${value}|`
       }else{
         // autocivP.gamesetup.ratedDefault = "false"
-        const isRatedDefault = ( Engine.ConfigDB_GetValue("user", "autocivP.gamesetup.ratedDefault") === "true" )
-        gameStartSuggestion_value += (isRatedDefault) ? '|rated|' :  '|unrated|' // is not expicited set in the options so suggest what rated default is
+
+        const useRatedDefaultInGameName = ( Engine.ConfigDB_GetValue("user", "autocivP.gamesetup.useRatedDefaultInGameName") === "true" )
+
+        if(useRatedDefaultInGameName){
+          const isRatedDefault = ( Engine.ConfigDB_GetValue("user", "autocivP.gamesetup.ratedDefault") === "true" )
+          gameStartSuggestion_value += (isRatedDefault) ? '|rated|' :  '|unrated|' // is not expicited set in the options so suggest what rated default is
+        }
+
       }
       if(isCustomratingEnabled && gameStartSuggestionKey3.trim().length > 0){
         let value = ''
