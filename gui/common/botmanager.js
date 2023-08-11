@@ -391,6 +391,9 @@ botManager.addBot("autociv", {
 			return;
 
 
+		let doDebug = false // debug session
+		// doDebug = true // debug session
+
 		// var g_selfNick = Engine.ConfigDB_GetValue("user", `playername.multiplayer`);
 		// warn(`var g_selfNick = ${g_selfNick} gui/common/botmanager.js:396`)
 
@@ -402,23 +405,46 @@ botManager.addBot("autociv", {
 				/*!SECTION
 				The length of 0 A.D. user names can vary, but they typically have a minimum length of 3 characters and a maximum length of 25 characters.
 				*/
-				// warn(`text: ${text} gui/common/botmanager.js:396`)
+
+				if(doDebug){
+					const debugMsg = `text: ${text} gui/common/botmanager.js:411`
+					selfMessage(debugMsg)
+				}
 
 				// check if a variable text contains a single space character repeated exactly twice (without any additional spaces in between) anywhere in the string
 				 // only longer texts are probably intersting (longer then user names. ao less missunderstandings)
-				if (/\b(\S+)\s\1\b/.test(text)
+
+				/*!SECTION
+				usernames could have:
+				- 2 letters and
+				- 3 number and
+				- differnz length.
+
+				no spaces inside ? right =
+				*/
+				const isWithTwoSpacesSomewhere = /\b(\S+)\s(\S+)\s\1\s\2\b/.test(text)
+				const isWithOneSpaces = /\s+/.test(text)
+
+				if ( false
+					|| isWithTwoSpacesSomewhere
+					|| (isWithOneSpaces && text.length > 5)
 					|| text.length > 18)
 					g_textSuggestedInEmptyChatWhenTabPressed = text
 			}
 			text.trim().split(" ")[0].toLowerCase();
 		}
 
-
-		// warn(`clean: ${clean} gui/common/botmanager.js:396`)
+		// if(doDebug)
+		// 	warn(`clean: ${clean} gui/common/botmanager.js:396`)
+		if(doDebug){
+			const debugMsg = `g_text: ${g_textSuggestedInEmptyChatWhenTabPressed} gui/common/botmanager.js:396`
+			selfMessage(`${debugMsg}`)
+		}
 
 		let firstWord = clean(data.message);
 
-		// warn(`firstWord: ${firstWord} gui/common/botmanager.js:396`)
+		// if(doDebug)
+		// 	warn(`firstWord: ${firstWord} gui/common/botmanager.js:396`)
 
 		// Ignore if text is player name (to avoid similarity with civ names)
 		if (game.get.players.name().some(name => firstWord == clean(name)))
