@@ -974,17 +974,36 @@ function is_transGGWP_needet(caption, firstChar, iconPrefix, guiObject) {
 }
 
 function setCaption2LastCommandOfHistory(guiObject){
+
+
+    let doDebug = false // debug session
+    // doDebug = true // debug session
+
     let lastCommand;
     const is_g_lastCommandID_correkt = ( !isNaN(g_lastCommandID) && g_lastCommandID >= 0 )
 
-    if( is_g_lastCommandID_correkt )
+    if( is_g_lastCommandID_correkt ){
         lastCommand = Engine.ConfigDB_GetValue("user", `autocivP.chat.lastCommand${g_lastCommandID}`);
-    else{
+
+
+        if(gameState == "ingame"){
+          if(/^\/p|^\/\d/.test(lastCommand)){ //  /p or /\d
+            // selfMessage(`hide mapCofigProfileComands in ingame state ( ${lastCommand} )`)
+            g_lastCommandID = getNextLastCommandID()
+            return true
+          }
+        }
+
+
+    }else{
         error('23-0628_0020-57')
         selfMessage(`ERROR: g_lastCommandID is not correct.`)
     }
     if(!lastCommand)
         return false
+
+    if(doDebug)
+      selfMessage(`1007: lastCommand = ${lastCommand}`)
 
     g_previousCaption = guiObject.caption
     guiObject.caption = lastCommand
@@ -1006,6 +1025,17 @@ function setCaption2nextCommandOfHistory(guiObject){
   let nextCommand = Engine.ConfigDB_GetValue("user", `autocivP.chat.lastCommand${nextID}`);
   // selfMessage(`941: >>>${nextCommand}<<<  gui/common/functions_utility~autociv.js`);
   // autocivP.chat.lastCommand4 = "jajaja"
+
+
+
+  if(gameState == "ingame"){
+    if(/^\/p|^\/\d/.test(nextCommand)){ //  /p or /\d
+      // selfMessage(`hide mapCofigProfileComands in ingame state ( ${nextCommand } )`)
+      g_lastCommandID = getNextLastCommandID()
+      return false
+    }
+  }
+
 
   if( !(nextCommand?.length) )
   {
