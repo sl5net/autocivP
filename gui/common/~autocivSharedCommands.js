@@ -352,12 +352,14 @@ function translGGWP_U2Gg_III(gg, minMatchScore) {
 
 
 function getNextLastCommandID(){
+	// selfMessage(`g_lastCommandID = ${g_lastCommandID}       gui/common/~autocivSharedCommands.js`);
 	let nextID = g_lastCommandID + 1
 	if(nextID > g_lastCommandIDmax) nextID = 0
 	return nextID
 }
 function saveLastCommand2History(lastCommand){
-	const doDebug = false // debug session
+	let doDebug = false // debug session
+	// doDebug = true // debug session
 	// selfMessage(`lastCommand = ${lastCommand}`);
 	if(!lastCommand)
 	  return;

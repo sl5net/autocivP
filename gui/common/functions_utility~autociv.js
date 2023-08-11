@@ -121,7 +121,7 @@ const g_autoCompleteText_newMerge = (guiObject, list) => {
   // let caption = guiObject.caption.trim()  // used long time to trim the caption to 23-0705_2249-00 idk if it may dangerous to trim here
 
 
-  // selfMessage(`216: ${caption.toLowerCase()} = ${caption}`) //TODO - add to json tab-commands
+  selfMessage(`216: ${caption.toLowerCase()} = ${caption}`) //TODO - add to json tab-commands
 
 
   // End of caption is maybe not empty
@@ -203,7 +203,7 @@ const g_autoCompleteText_newMerge = (guiObject, list) => {
     // selfMessage(`126: g_lastCommand = '${g_lastCommand}' , caption = '${caption}' `);
 
     if(g_previousCaption == caption){ // g_lastCommand
-      // selfMessage(`127: doppelPosting? '${g_lastCommand}' `);
+      selfMessage(`127: doppelPosting? '${g_lastCommand}' `);
 
       const firstChar = caption.charAt(0); // or str[0]
       if(firstChar.match(/[‹›]/) ){
@@ -303,7 +303,7 @@ const g_autoCompleteText_newMerge = (guiObject, list) => {
           }
 
           g_lastCommand = allIconsInText
-          // saveLastCommand2History(captionTrimed) // not everything should be saved. only the important commands. not all chat content
+          saveLastCommand2History(captionTrimed) // not everything should be saved. only the important commands. not all chat content
 
           return // this return was maybe missing 23-0705_2302-57 without this return some crases happened in oberver mode !!!!!! 23-0705_2305-59
         }
@@ -362,7 +362,7 @@ function autoCompleteText_sameTry_eg_userName_civName(guiObject, list)
   }
   // ConfigDB_CreateAndSaveValueA26A27("user", "autocivP.chat.lastCommand", newCaptionText);
   try {
-    saveLastCommand2History(newCaptionText);
+    // saveLastCommand2History(newCaptionText);     // not everything should be saved. only the important commands. not all chat content
   } catch (error) {
     // happens in the lobby console when double press tab 23-0622_2013-26
     if(g_selfNick =="seeh"){ //NOTE - 23-0705_2302-57 developers want to see the error in the console
@@ -935,18 +935,22 @@ function setCaption2LastCommandOfHistory(guiObject){
  */
 function setCaption2nextCommandOfHistory(guiObject){
   let nextID = getNextLastCommandID()
+  g_lastCommandID = nextID;
   // selfMessage(`86: ${g_lastCommandID}' = g_lastCommandID`);
-  // selfMessage(`164: nextID = ${nextID}'`);
+  // selfMessage(`939: nextID = ${nextID}'  gui/common/functions_utility~autociv.js`);
   let nextCommand = Engine.ConfigDB_GetValue("user", `autocivP.chat.lastCommand${nextID}`);
+  // selfMessage(`941: >>>${nextCommand}<<<  gui/common/functions_utility~autociv.js`);
   // autocivP.chat.lastCommand4 = "jajaja"
 
-  if( !(nextCommand?.length) && g_lastCommandID > 0 )
+  if( !(nextCommand?.length) )
   {
           nextID = 0
           nextCommand = Engine.ConfigDB_GetValue("user", `autocivP.chat.lastCommand${nextID}`);
           // selfMessage(`761: nextID = ${nextID}, g_lastCommandID = ${g_lastCommandID}, nextCommand = ${nextCommand}`);
           g_lastCommandID = nextID;
-          return false
+          // selfMessage(`951: ${g_lastCommandID}' = g_lastCommandID  gui/common/functions_utility~autociv.js`);
+          if(!(nextCommand?.length))
+            return false
   }
 
   if(nextCommand?.length){
@@ -963,6 +967,8 @@ function setCaption2nextCommandOfHistory(guiObject){
   // g_lastCommandID = nextID;
   return false
 }
+
+
 
 function captionCheckIs_communityModToggle(caption){
   if(caption.trim() == "communityModToggle"){
