@@ -303,7 +303,7 @@ const g_autoCompleteText_newMerge = (guiObject, list) => {
           }
 
           g_lastCommand = allIconsInText
-          saveLastCommand2History(captionTrimed)
+          // saveLastCommand2History(captionTrimed) // not everything should be saved. only the important commands. not all chat content
 
           return // this return was maybe missing 23-0705_2302-57 without this return some crases happened in oberver mode !!!!!! 23-0705_2305-59
         }
