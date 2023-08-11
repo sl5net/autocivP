@@ -121,7 +121,7 @@ const g_autoCompleteText_newMerge = (guiObject, list) => {
   // let caption = guiObject.caption.trim()  // used long time to trim the caption to 23-0705_2249-00 idk if it may dangerous to trim here
 
 	let doDebug = false // debug session
-	doDebug = true // debug session
+	// doDebug = true // debug session
 
   if(doDebug)
     selfMessage(`124: ${caption.toLowerCase()} = ${caption}      gui/common/functions_utility~autociv.js`) //TODO - add to json tab-commands
