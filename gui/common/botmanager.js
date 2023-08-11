@@ -403,7 +403,11 @@ botManager.addBot("autociv", {
 				The length of 0 A.D. user names can vary, but they typically have a minimum length of 3 characters and a maximum length of 25 characters.
 				*/
 				// warn(`text: ${text} gui/common/botmanager.js:396`)
-				if(text.includes(' ') || text.length > 18) // only longer texts are probably intersting (longer then user names. ao less missunderstandings)
+
+				// check if a variable text contains a single space character repeated exactly twice (without any additional spaces in between) anywhere in the string
+				 // only longer texts are probably intersting (longer then user names. ao less missunderstandings)
+				if (/\b(\S+)\s\1\b/.test(text)
+					|| text.length > 18)
 					g_textSuggestedInEmptyChatWhenTabPressed = text
 			}
 			text.trim().split(" ")[0].toLowerCase();
