@@ -986,7 +986,7 @@ function setCaption2LastCommandOfHistory(guiObject){
         lastCommand = Engine.ConfigDB_GetValue("user", `autocivP.chat.lastCommand${g_lastCommandID}`);
 
 
-        if(gameState == "ingame"){
+        if(gameState == "ingame" || isSelfHost() != true){
           if(/^\/p|^\/\d/.test(lastCommand)){ //  /p or /\d
             // selfMessage(`hide mapCofigProfileComands in ingame state ( ${lastCommand} )`)
             g_lastCommandID = getNextLastCommandID()
@@ -1026,9 +1026,10 @@ function setCaption2nextCommandOfHistory(guiObject){
   // selfMessage(`941: >>>${nextCommand}<<<  gui/common/functions_utility~autociv.js`);
   // autocivP.chat.lastCommand4 = "jajaja"
 
+  // if(isSelfHost() != true)
+  //   selfMessage(`1007: g_selfInHost = ${g_selfInHost}`)
 
-
-  if(gameState == "ingame"){
+  if(gameState == "ingame" || isSelfHost() != true){
     if(/^\/p|^\/\d/.test(nextCommand)){ //  /p or /\d
       // selfMessage(`hide mapCofigProfileComands in ingame state ( ${nextCommand } )`)
       g_lastCommandID = getNextLastCommandID()

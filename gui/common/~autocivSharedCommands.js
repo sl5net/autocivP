@@ -1,6 +1,6 @@
 var gameState = "lobby"; // Initial state // // TODO: howto set it like this? g_GameData = data // 	g_GameData.gui.isInGame
 
-var g_selfInHost // unused variable ? 23-0730_2242-25
+var g_selfInHost
 
 // let g_PlayerAssignments;
 

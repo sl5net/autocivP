@@ -74,6 +74,8 @@ autociv_patchApplyN("init", function (target, that, args)
 	// var playerNameHost = g_PlayerAssignments[0].name;
 	// warn(`g_PlayerAssignments.length = ${g_PlayerAssignments.length}`);
 
+	selfMessage(`set g_selfInHost`)
+
 	setTimeout(() => {
 		// Asynchronous operation
 		try {
@@ -134,6 +136,11 @@ function warnSilhouettesIsNotEnabled(){
  * Determine if the current player is the host player.
  */
 function isSelfHost(){ // maybe call it in a settimeout assync function
+	// selfMessage(`g_selfInHost: ${g_selfInHost}`);
+	if(g_selfInHost === true || g_selfInHost === false){
+		return g_selfInHost;
+	}
+	// selfMessage(`g_selfInHost: ${g_selfInHost}`);
 	const selfGUID = Engine.GetPlayerGUID()
 	const firstPlayerGUID = Object.keys(g_PlayerAssignments)[0];
 
