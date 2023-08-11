@@ -1,6 +1,7 @@
 warnModIsNotEnabled(); // check for feldmap mod is default 23-0624_0327-45
 warnSilhouettesIsNotEnabled()
 
+var g_selfInHost
 
 var g_autociv_maps = new Set(["maps/skirmishes/Volcano Island (8)"])
 
@@ -130,32 +131,7 @@ function warnSilhouettesIsNotEnabled(){
 }
 
 
-/**
- * Determine if the current player is the host player.
- */
-function isSelfHost(){ // maybe call it in a settimeout assync function
-	// selfMessage(`g_selfInHost: ${g_selfInHost}`);
-	if(g_selfInHost === true || g_selfInHost === false){
-		return g_selfInHost;
-	}
-	// selfMessage(`g_selfInHost: ${g_selfInHost}`);
-	const selfGUID = Engine.GetPlayerGUID()
-	const firstPlayerGUID = Object.keys(g_PlayerAssignments)[0];
 
-	const selfPlayerAssignment = g_PlayerAssignments[Engine.GetPlayerGUID()];
-	const hostPlayerAssignment = g_PlayerAssignments[firstPlayerGUID];
-
-	g_selfInHost = selfGUID == firstPlayerGUID;
-
-	const bugIt = false // new implementation so i will watch longer
-	if(bugIt && g_selfNick =="seeh"){ //NOTE -developers want to see the error in the console
-		warn(`42: selfPlayerAssignment.name = ${selfPlayerAssignment.name}`);
-		warn(`43: hostPlayerAssignment.name = ${hostPlayerAssignment.name}`);
-		warn(`44: g_selfInHost =====> ${g_selfInHost} ${g_selfInHost} ${g_selfInHost} ${g_selfInHost} ${g_selfInHost}`);
-	}
-	// warn(`45: g_selfInHost => ${g_selfInHost}`);
-	return g_selfInHost
-}
 
 
 /**

@@ -2,6 +2,60 @@ var gameState = "lobby"; // Initial state // // TODO: howto set it like this? g_
 
 var g_selfInHost
 
+
+
+
+/**
+ * Determine if the current player is the host player.
+ */
+function isSelfHost(){ // maybe call it in a settimeout assync function
+
+	let bugIt = false // new implementation so i will watch longer
+	// bugIt = true // new implementation so i will watch longer
+
+	if(bugIt)
+		selfMessage(`138: g_selfInHost gui/common/~autocivSharedCommands.js`);
+	if(g_selfInHost === true || g_selfInHost === false){
+		if(bugIt)
+			selfMessage(`138: g_selfInHost = ${g_selfInHost} , gui/common/~autocivSharedCommands.js`);
+		return g_selfInHost;
+	}
+	switch (typeof g_selfInHost) {
+		case 'undefined':
+			if(bugIt)
+				selfMessage(`140: g_selfInHost = undefined gui/common/~autocivSharedCommands.js`);
+			break;
+		default:
+			if(bugIt)
+				selfMessage(`141: g_selfInHost return  gui/common/~autocivSharedCommands.js`);
+			error(`148: g_selfInHost return  gui/common/~autocivSharedCommands.js`);
+			return
+	}
+	// selfMessage(`g_selfInHost: ${g_selfInHost}`);
+	const selfGUID = Engine.GetPlayerGUID()
+
+	if (typeof g_PlayerAssignments === 'undefined') {
+		return false
+	}
+
+	const firstPlayerGUID = Object.keys(g_PlayerAssignments)[0];
+
+	const selfPlayerAssignment = g_PlayerAssignments[Engine.GetPlayerGUID()];
+	const hostPlayerAssignment = g_PlayerAssignments[firstPlayerGUID];
+
+	g_selfInHost = selfGUID == firstPlayerGUID;
+
+	if(bugIt && g_selfNick =="seeh"){ //NOTE -developers want to see the error in the console
+		warn(`42: selfPlayerAssignment.name = ${selfPlayerAssignment.name}`);
+		warn(`43: hostPlayerAssignment.name = ${hostPlayerAssignment.name}`);
+		warn(`44: g_selfInHost =====> ${g_selfInHost} ${g_selfInHost} ${g_selfInHost} ${g_selfInHost} ${g_selfInHost}`);
+	}
+	// warn(`45: g_selfInHost => ${g_selfInHost}`);
+	return g_selfInHost
+}
+
+
+
 // let g_PlayerAssignments;
 
 
