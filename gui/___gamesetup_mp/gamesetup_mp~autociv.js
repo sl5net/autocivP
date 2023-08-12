@@ -97,6 +97,7 @@ autociv_patchApplyN("init", (target, that, args) => {
       }else{
         // autocivP.gamesetup.ratedDefault = "false"
 
+        //                                                                    autocivP.gamesetup.useRatedDefaultInGameName
         const useRatedDefaultInGameName = ( Engine.ConfigDB_GetValue("user", "autocivP.gamesetup.useRatedDefaultInGameName") === "true" )
 
         if(useRatedDefaultInGameName){
