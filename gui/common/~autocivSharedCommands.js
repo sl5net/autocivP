@@ -619,8 +619,8 @@ BTW list of functions: https://trac.wildfiregames.com/wiki/EngineFunctions
 		"description": "whats Time now hoursMinute",
 		"handler": () =>
 		{
-			selfMessage(`423: whatstimeNow`)
-			warn(`423: whatstimeNow`)
+			// selfMessage(`423: whatstimeNow`)
+			// warn(`423: whatstimeNow`)
 
 			const today = new Date();
 			const hours = today.getHours().toString().padStart(2, '0');
