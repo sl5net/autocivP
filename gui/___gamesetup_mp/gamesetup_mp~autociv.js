@@ -66,25 +66,6 @@ autociv_patchApplyN("init", (target, that, args) => {
         let value = ''
         value = (gameStartSuggestionKey == '^1') ? "learn/teach/talk game" : value
         value = (gameStartSuggestionKey == '^2') ? "TotalGames>10" : value
-        value = (gameStartSuggestionKey == '^3') ? "waiting for friends" : value
-        value = (gameStartSuggestionKey == '^4') ? "YouTube" : value
-        value = (gameStartSuggestionKey == '^5') ? "must have: progGUI, feldmap" : value
-        value = (gameStartSuggestionKey == '^5b') ? "must have: progGUI, autocivP, feldmap" : value
-        value = (gameStartSuggestionKey == '^0') ? "must have: progGUI, autocivP" : value
-        value = (gameStartSuggestionKey == '^6') ? "spec. not play!" : value
-        value = (gameStartSuggestionKey == '^7') ? "not seriously. only a game" : value
-        value = (gameStartSuggestionKey == '^8') ? "Rules: 1. enable autocivP mods, 2. use Jitsi-Audio-Chat later" : value
-        value = (gameStartSuggestionKey == '^9') ? "Rules: 1. enable autocivP, proGUI mods, 2. use Jitsi-Audio-Chat later 3. use share Resources with your friends later" : value
-        value = (gameStartSuggestionKey == '^a') ? "game for drunken idiots - ping me by typing my name": value
-        value = (gameStartSuggestionKey == '^b') ? "1v1 - random map, join by typing my name , wait 1min, i say hi, ... , start": value
-        value = (gameStartSuggestionKey == '^c') ? "double speed": value
-        value = (gameStartSuggestionKey == '^d') ? "normal random map - no Cheats": value
-        value = (gameStartSuggestionKey == '^e') ? "1v1, 2v2 random map": value
-        value = (gameStartSuggestionKey == '^f') ? "2xSpeed randomMap - don't EXIT": value
-        value = (gameStartSuggestionKey == '^g') ? "2xSpeed CheatsNO randomMap - don't EXIT->ResignFirst thanks": value
-        value = (gameStartSuggestionKey == '^h') ? "use Map 'Extinct Volcano'. it has something like timeout inside. Default is 25 Minutes": value
-        value = (gameStartSuggestionKey == '^i') ? "talk and optional TG later": value
-        value = (gameStartSuggestionKey == '^j') ? "can you do me a favor and test my latest mod update with me? please load new modificatoin from githup first": value
 
         gameStartSuggestion_value += `|${value}`
       }

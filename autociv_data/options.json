@@ -451,7 +451,11 @@
 					{ "value": "^l", "label": "Mod Update Testing Party"  },
 					{ "value": "^m", "label": "New Mod Modification Showcase"  },
 					{ "value": "^j", "label": "can you do me a favor and test my latest mod update with me? please load new modificatoin first"  },
-					{ "value": "^k", "label": "can you do me a favor and test the chat draft function of my latest mod with me? please load new modificatoin first"  }
+					{ "value": "^k", "label": "can you do me a favor and test the chat draft function of my latest mod with me? please load new modificatoin first"  },
+					{ "value": "^t1", "label": "1 player more for the tournament next week. My team of 4 is looking forward to it."  },
+					{ "value": "^t2", "label": "2 player more for the tournament next week. My team of 4 is looking forward to it."  },
+					{ "value": "^t3", "label": "3 player more for the tournament next week. My team of 4 is looking forward to it."  },
+					{ "value": "", "label": ""  }
 				]
 			},
 

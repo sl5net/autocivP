@@ -87,6 +87,10 @@ autociv_patchApplyN("init", (target, that, args) => {
         value = (gameStartSuggestionKey == '^l') ? "Mod Update Testing Party": value
         value = (gameStartSuggestionKey == '^m') ? "New Mod Modification Showcase": value
 
+        value = (gameStartSuggestionKey == '^t1') ? "1 player more for the tournament next week. My team of 4 is looking forward to it.": value
+        value = (gameStartSuggestionKey == '^t2') ? "2 player more for the tournament next week. My team of 4 is looking forward to it.": value
+        value = (gameStartSuggestionKey == '^t3') ? "3 player more for the tournament next week. My team of 4 is looking forward to it.": value
+
         gameStartSuggestion_value += `|${value}`
         // end of key exist
       }
