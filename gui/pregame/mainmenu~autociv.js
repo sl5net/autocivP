@@ -194,12 +194,15 @@ ConfigDB_CreateAndSaveValueA26A27("user", "silhouettes", true);
     // autocivP should be later than proGUI becouse the sepezial customr rating that should make the use use of proGUI visible 23-0722_1318-16
     // ConfigDB_CreateAndSaveValueA26A27("user", "customrating.readme_seen", true);
 
+    // mod.enabledmods = "mod public kush-extreme localratings feldmap autocivp community-maps-2 10ad proGUI"
+
+
     if (true && posAutocivP < posProGUI) { // autocivP should be later than proGUI becouse the sepezial customr rating that should make the use use of proGUI visible 23-0722_1318-16
 
         let clean = modsFromUserCfg_const
 
         clean = clean.replaceAll(/\bproGUI\b /g, '');
-        clean = clean.replaceAll(/\bautocivP\b /g, 'proGUI autocivP ');
+        clean = clean.replaceAll(/\bautocivP\b /gi, 'proGUI autocivp ');
         ConfigDB_CreateAndSaveValueA26A27("user", 'mod.enabledmods',clean)
 
         try {
