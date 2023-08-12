@@ -180,12 +180,16 @@ function chatInputTooltipQuickFixUpdate() {
 	if(g_is_chatInputTooltipQuickFixUpdate_updated) return
 
 	// this is a workaround. should be moved to gui/... /ChatInputPanel or something
+	// const ⟦Tab⟧ ‹Tab›
+	// const tab = '⟦[color=\"220 255 153\"]Tab[/color]⟧'
+	// const tab = '\[Tab\]' // => creates errors
+	const tab = '⟦Tab⟧'
 	const chatInput = Engine.GetGUIObjectByName("chatInput")
 	if(chatInput){
-	  chatInput.tooltip += ' Or try ‹Tab› to autocomplete commands for select profile, chosen icons ( /iconsList ☯ ♪♣‹) or other commands. Write "⁄help" or  "⁄help ⁄∖d" or  "⁄help ⁄p" for more info about "/" commands.'
+	  chatInput.tooltip += ` Or try ${tab}  to autocomplete commands for select profile, chosen icons ( /iconsList ☯ ♪♣‹) or other commands. Write "⁄help" or  "⁄help  ⁄∖d" or  "⁄help ⁄p" for more info about "/" commands.\n`
 	  chatInput.tooltip += ' Matching algorithm is more strict when text is longer.\n'
 	  chatInput.tooltip += 'Use uppercase to temporarily reduce the sensitivity of the substitutions mechanism\n'
-	  chatInput.tooltip += 'Use ‹Tab› in empty chat to 1. Copy a chat message that was posted to you. 2. Retrieve your chat draft.'
+	  chatInput.tooltip += `Use ${tab} in empty chat to 1. Copy a chat message that was posted to you. 2. Retrieve your chat draft.`
 	}
 
 	g_is_chatInputTooltipQuickFixUpdate_updated = true
