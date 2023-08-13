@@ -708,7 +708,7 @@ BTW list of functions: https://trac.wildfiregames.com/wiki/EngineFunctions
 		"handler": (player) =>
 		{
 			if (player == "")
-				return selfMessage("You need to type a nick to mute.")
+				return selfMessage("You need to type a nick to mute player at all places with chat.")
 			let nick = splitRatingFromNick(player).nick;
 			botManager.get("mute").instance.setValue(nick, nick);
 			selfMessage(`You have muted ${nick}.`);

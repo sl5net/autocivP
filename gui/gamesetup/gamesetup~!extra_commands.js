@@ -773,12 +773,6 @@ for (const command in g_NetworkCommands) {
 
 
 
-
-
-
-
-
-
 /*!SECTION
 "Set up teams for the game. Examples: '/team 3v4', '/team 2v2v2', '/team ffa', '/team 4v4'. If you use 'ffa', it will set up a Free-for-All game where everyone is on their own. The command automatically distributes players into teams based on the provided input. The input format is a combination of numbers and 'v' (for versus). For example, '3v4' means 3 players versus 4 players. You can specify up to 4 teams and a maximum of 8 players. If you don't specify the second number after 'v', it will default to the first number, allowing for more concise input. Additionally, you can also specify individual player numbers separated by commas. For example, '1,2' will assign players 1 and 2 to the same team.
 */
