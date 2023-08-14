@@ -180,7 +180,7 @@ const g_autoCompleteText_newMerge = (guiObject, list) => {
       if (match) {
         const number = match[1];
         // Handle the extracted number
-        selfMessage('gui/common/functions_utility~autociv.js ' + lineNumber())
+        // selfMessage('gui/common/functions_utility~autociv.js ' + lineNumber())
         const linesArray = g_textSuggestedInEmptyChatWhenTabPressed.trim().split('\n');
         const lastLines = linesArray.slice(-number);
         const lastLinesString = lastLines.join('\n');
