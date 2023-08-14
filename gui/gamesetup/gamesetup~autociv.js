@@ -72,13 +72,13 @@ autociv_patchApplyN("init", function (target, that, args)
 	Engine.GetGUIObjectByName("chatInput").focus();
 
 	g_selfIsHost = g_IsController // Synonymous variable with g_IsController. for easier to find
-
-	// obsolete todo: delete
-	if(false)
+	let selfIsHost_temp
+	// obsolete todo: delete , 23-0814_1558-15 but lets check if its always same first some days/weeks
+	if(true)
 	setTimeout(() => {
 		// Asynchronous operation
 		try {
-			g_selfIsHost = isSelfHost() // the g_selfInHost is set a bit later. so a delay is needed here
+			g_selfIsHost_temp = isSelfHost() // the g_selfInHost is set a bit later. so a delay is needed here
 			.then(result => {
 			// warn(`works`);
 			})

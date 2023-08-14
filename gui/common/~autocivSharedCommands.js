@@ -11,7 +11,6 @@ var g_selfIsHost
 function isSelfHost(){ // maybe call it in a settimeout assync function
 
 	let bugIt = false // new implementation so i will watch longer
-	bugIt = true && g_selfNick =="seeh" // new implementation so i will watch longer
 
 	if(bugIt)
 		selfMessage(`138: g_selfInHost gui/common/~autocivSharedCommands.js`);
@@ -43,18 +42,28 @@ function isSelfHost(){ // maybe call it in a settimeout assync function
 	const selfPlayerAssignment = g_PlayerAssignments[Engine.GetPlayerGUID()];
 	const hostPlayerAssignment = g_PlayerAssignments[firstPlayerGUID];
 
-	g_selfIsHost = selfGUID == firstPlayerGUID;
+	bugIt = true && g_selfNick =="seeh" // new implementation so i will watch longer
+	let selfIsHost_temp = selfGUID == firstPlayerGUID;
 
 	if(bugIt){ //NOTE -developers want to see the error in the console
 		warn(`42: selfPlayerAssignment.name = ${selfPlayerAssignment.name}`);
 		warn(`43: hostPlayerAssignment.name = ${hostPlayerAssignment.name}`);
-		warn(`44: g_selfInHost =====> ${g_selfIsHost} ${g_selfIsHost} ${g_selfIsHost} ${g_selfIsHost} ${g_selfIsHost}`);
-		warn(`45: g_selfInHost => ${g_selfIsHost}`);
+		warn(`44: g_selfInHost =====> ${selfIsHost_temp} ${selfIsHost_temp} ${selfIsHost_temp} ${selfIsHost_temp} ${selfIsHost_temp}`);
+		warn(`45: g_selfInHost => ${selfIsHost_temp}`);
 		warn(`45: g_IsController => ${g_IsController}`);
-	}
-	return g_selfIsHost
-}
 
+		if(selfIsHost_temp != g_IsController){
+			let bugIt = false // new implementation so i will watch longer
+			bugIt = true && g_selfNick =="seeh" // new implementation so i will watch longer
+			if(bugIt){
+				error(`g_IsController != selfIsHost_temp : ${g_IsController} != ${selfIsHost_temp}`);
+			}
+		}
+
+
+	}
+	return selfIsHost_temp
+}
 
 
 // let g_PlayerAssignments;
@@ -79,7 +88,7 @@ var g_is_chatInputTooltipQuickFixUpdate_updated = false
 // const selfNick = Engine.LobbyGetNick();
 var g_selfNick = Engine.ConfigDB_GetValue("user", `playername.multiplayer`);
 
-var g_textSuggestedInEmptyChatWhenTabPressed = ''
+var g_textSuggestedInEmptyChatWhenTabPressed
 
 const chatInput = Engine.GetGUIObjectByName("chatInput")
 if(chatInput)
@@ -1396,3 +1405,35 @@ function findBestMatch(query, fuzzyArray, minMatchScore = 0.3) {
 	  bestSimilarityScore: bestSimilarityScore
 	};
   }
+
+
+  /**
+   * Retrieves the line number where the 'getLineNumber' function is called.
+   * https://stackoverflow.com/a/27074218/2891692
+   * @return {number} The line number where the 'getLineNumber' function is called.
+   */
+  function lineNumber() {
+
+	// const lineNumber = getLineNumber();
+	// warn(lineNumber); // Output: Line number where 'getLineNumber' function is called
+
+	const e = new Error();
+	if (!e.stack) try {
+	  // IE requires the Error to actually be throw or else the Error's 'stack'
+	  // property is undefined.
+	  throw e;
+	} catch (e) {
+	  if (!e.stack) {
+		return 0; // IE < 10, likely
+	  }
+	}
+	const stack = e.stack.toString().split(/\r\n|\n/);
+	// We want our caller's frame. It's index into |stack| depends on the
+	// browser and browser version, so we need to search for the second frame:
+	// var frameRE = /:(\d+):(?:\d+)[^\d]*$/;
+	const frameRE = /:(\d+:\d+)[^\d]*$/; //  line and column numbers
+	do {
+	  var frame = stack.shift();
+	} while (!frameRE.exec(frame) && stack.length);
+	return frameRE.exec(stack.shift())[1];
+}

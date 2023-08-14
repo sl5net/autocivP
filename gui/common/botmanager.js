@@ -391,8 +391,12 @@ botManager.addBot("autociv", {
 			return;
 
 
-		let doDebug = false // debug session
+		let bugIt = false // debug session
 		// doDebug = true // debug session
+
+		bugIt = true && g_selfNick =="seeh" // new implementation so i will watch longer
+
+
 
 		// var g_selfNick = Engine.ConfigDB_GetValue("user", `playername.multiplayer`);
 		// warn(`var g_selfNick = ${g_selfNick} gui/common/botmanager.js:396`)
@@ -406,8 +410,8 @@ botManager.addBot("autociv", {
 				The length of 0 A.D. user names can vary, but they typically have a minimum length of 3 characters and a maximum length of 25 characters.
 				*/
 
-				if(doDebug){
-					const debugMsg = `text: ${text} gui/common/botmanager.js:411`
+				if(bugIt){
+					const debugMsg = `text: ${text} gui/common/botmanager.js:${lineNumber()}`
 					selfMessage(debugMsg)
 				}
 
@@ -436,7 +440,7 @@ botManager.addBot("autociv", {
 
 		// if(doDebug)
 		// 	warn(`clean: ${clean} gui/common/botmanager.js:396`)
-		if(doDebug){
+		if(bugIt){
 			const debugMsg = `g_text: ${g_textSuggestedInEmptyChatWhenTabPressed} gui/common/botmanager.js:396`
 			selfMessage(`${debugMsg}`)
 		}

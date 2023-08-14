@@ -432,7 +432,6 @@
 					{ "value": "^1", "label": "learn/teach/talk game"  },
 					{ "value": "^2", "label": "TotalGames>10"  },
 					{ "value": "^3", "label": "waiting for friends"  },
-					{ "value": "^4", "label": "YouTube"  },
 					{ "value": "^5", "label": "must have: proGUI, feldmap"  },
 					{ "value": "^0", "label": "must have: proGUI, autocivP"  },
 					{ "value": "^5b", "label": "must have: proGUI, autocivP, feldmap"  },
@@ -446,6 +445,7 @@
 					{ "value": "^d", "label": "normal random map - no Cheats"  },
 					{ "value": "^f", "label": "2xSpeed randomMap - don't EXIT"  },
 					{ "value": "^g", "label": "2xSpeed CheatsNO randomMap - don't EXIT->ResignFirst thanks"  },
+					{ "value": "^g", "label": "2xSpeed CheatsNO randomMap - don't EXIT->ResignFirst thanks"  },
 					{ "value": "^h", "label": "use Map 'Extinct Volcano'. it has something like timeout inside. Default is 25 Minutes"  },
 					{ "value": "^i", "label": "talk and optional TG later"  },
 					{ "value": "^l", "label": "Mod Update Testing Party"  },
@@ -455,6 +455,8 @@
 					{ "value": "^t1", "label": "1 player more for the tournament next week. My team of 4 is looking forward to it."  },
 					{ "value": "^t2", "label": "2 player more for the tournament next week. My team of 4 is looking forward to it."  },
 					{ "value": "^t3", "label": "3 player more for the tournament next week. My team of 4 is looking forward to it."  },
+					{ "value": "^4", "label": "YouTube"  },
+					{ "value": "^4yl", "label": "YouTube Lifestream: plan0go"  },
 					{ "value": "", "label": ""  }
 				]
 			},

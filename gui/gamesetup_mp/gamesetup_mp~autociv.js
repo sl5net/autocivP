@@ -66,6 +66,7 @@ autociv_patchApplyN("init", (target, that, args) => {
         value = (gameStartSuggestionKey == '^2') ? "TotalGames>10" : value
         value = (gameStartSuggestionKey == '^3') ? "waiting for friends" : value
         value = (gameStartSuggestionKey == '^4') ? "YouTube" : value
+        value = (gameStartSuggestionKey == '\^4yl') ? "YouTube Lifestream: plan0go" : value
         value = (gameStartSuggestionKey == '^5') ? "must have: progGUI, feldmap" : value
         value = (gameStartSuggestionKey == '^5b') ? "must have: progGUI, autocivP, feldmap" : value
         value = (gameStartSuggestionKey == '^0') ? "must have: progGUI, autocivP" : value

@@ -986,7 +986,8 @@ function setCaption2LastCommandOfHistory(guiObject){
         lastCommand = Engine.ConfigDB_GetValue("user", `autocivP.chat.lastCommand${g_lastCommandID}`);
 
 
-        if(gameState == "ingame" || isSelfHost() != true){
+        // if(gameState == "ingame" || isSelfHost() != true){
+        if(gameState == "ingame" || g_selfIsHost != true){
           if(/^\/p|^\/\d/.test(lastCommand)){ //  /p or /\d
             // selfMessage(`hide mapCofigProfileComands in ingame state ( ${lastCommand} )`)
             g_lastCommandID = getNextLastCommandID()
