@@ -192,6 +192,9 @@ const g_autoCompleteText_newMerge = (guiObject, list) => {
       case 'legend'.toLowerCase():
           guiObject.caption = `legend: ★ proGUI mod, ♇ autocivP mod`
           return;
+      case '/legend'.toLowerCase():
+          guiObject.caption = `legend: ★ proGUI mod, ♇ autocivP mod`
+          return;
       case 'hiall':
           return captionIs_hiall(guiObject);
       case 'me':

@@ -394,7 +394,7 @@ botManager.addBot("autociv", {
 		let bugIt = false // debug session
 		// doDebug = true // debug session
 
-		bugIt = true && g_selfNick =="seeh" // new implementation so i will watch longer
+		// bugIt = true && g_selfNick =="seeh" // new implementation so i will watch longer
 
 
 
