@@ -1,9 +1,10 @@
 {
   "name": "autocivp",
   "version": "1.0.40",
-  "label": "AutocivP mod 0 A.D. enhancer. Author: nani(99%),seeh(1%)",
-  "description": "Features: game profiles, chat link opener by li<tab>, etc. Compatible with vanilla.",
-  "dependencies": ["autocivp>=1.0.18","0ad>=0.0.26","0ad<=0.0.27"],
+  "label": "AutocivP mod 0 A.D. enhancer. PLEASE use newest version! thanks!",
+  "description": "Compatible with vanilla! Features: game profiles, chat link opener by li<tab>, etc. ",
+  "ignoreInCompatibilityChecks": true,
+  "dependencies": ["0ad>=0.0.26","0ad<=0.0.27"],
   "url": "https://wildfiregames.com/forum/topic/107371-autociv-add-ons-profiles-jitsi-team-call",
   "url_source_code": "https://github.com/sl5net/autocivP"
 }
