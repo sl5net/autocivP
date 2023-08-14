@@ -175,17 +175,20 @@ const g_autoCompleteText_newMerge = (guiObject, list) => {
       return
     }
 
-    const match = caption.toLowerCase().match(/msg(\d+)/);
-    if (match) {
-      const number = match[1];
-      // Handle the extracted number
-      // selfMessage('gui/common/functions_utility~autociv.js ' + lineNumber())
-      const linesArray = g_textSuggestedInEmptyChatWhenTabPressed.trim().split('\n');
-      const lastLines = linesArray.slice(-number);
-      const lastLinesString = lastLines.join('\n');
-      guiObject.caption = lastLinesString
-      g_previousCaption = guiObject.caption
-      return
+    if(g_textSuggestedInEmptyChatWhenTabPressed){
+      const match = caption.toLowerCase().match(/msg(\d+)/);
+      if (match) {
+        const number = match[1];
+        // Handle the extracted number
+        selfMessage('gui/common/functions_utility~autociv.js ' + lineNumber())
+        const linesArray = g_textSuggestedInEmptyChatWhenTabPressed.trim().split('\n');
+        const lastLines = linesArray.slice(-number);
+        const lastLinesString = lastLines.join('\n');
+        guiObject.caption = lastLinesString
+        g_previousCaption = guiObject.caption
+        guiObject.buffer_position = 0 //  lastLinesString.length;
+        return
+      }
     }
 
     switch (caption.toLowerCase()) {

@@ -401,7 +401,7 @@ botManager.addBot("autociv", {
 		// var g_selfNick = Engine.ConfigDB_GetValue("user", `playername.multiplayer`);
 		// warn(`var g_selfNick = ${g_selfNick} gui/common/botmanager.js:396`)
 
-		let clean = text =>
+		const clean = text =>
 		{
 
 			// Ignore if text is player name only (to avoid boring content)
@@ -411,8 +411,7 @@ botManager.addBot("autociv", {
 				*/
 
 				if(bugIt){
-					const debugMsg = `text: ${text} gui/common/botmanager.js:${lineNumber()}`
-					selfMessage(debugMsg)
+					selfMessage(`text: ${text} gui/common/botmanager.js:${lineNumber()}`)
 				}
 
 				// check if a variable text contains a single space character repeated exactly twice (without any additional spaces in between) anywhere in the string
@@ -433,16 +432,21 @@ botManager.addBot("autociv", {
 					|| isWithTwoSpacesSomewhere
 					|| (isWithOneSpaces && text.length > 5)
 					|| text.length > 18){
-
 					if(Engine.ConfigDB_GetValue("user", "autocivP.chat.copyAllChatMessages") !== "true" )
 						g_textSuggestedInEmptyChatWhenTabPressed = ''
 
-					g_textSuggestedInEmptyChatWhenTabPressed += text + "\n"
+					g_textSuggestedInEmptyChatWhenTabPressed += `${text}\n`
 					g_textSuggestedInEmptyChatWhenTabPressed_lines++
+
+					// selfMessage(`text: ${text} gui/common/botmanager.js:${lineNumber()}`)
 				}
 			}
-			text.trim().split(" ")[0].toLowerCase();
-		}
+			// selfMessage(`text: ${text} gui/common/botmanager.js:${lineNumber()}`)
+			return text.trim().split(" ")[0].toLowerCase();
+		} // end-of-clean function
+
+
+
 
 		// if(doDebug)
 		// 	warn(`clean: ${clean} gui/common/botmanager.js:396`)
@@ -451,10 +455,8 @@ botManager.addBot("autociv", {
 			selfMessage(`${debugMsg}`)
 		}
 
-		let firstWord = clean(data.message);
-
-		// if(doDebug)
-		// 	warn(`firstWord: ${firstWord} gui/common/botmanager.js:396`)
+		const firstWord = clean(data.message);
+		// const firstWord = 'Gauls';
 
 		// Ignore if text is player name (to avoid similarity with civ names)
 		if (game.get.players.name().some(name => firstWord == clean(name)))
