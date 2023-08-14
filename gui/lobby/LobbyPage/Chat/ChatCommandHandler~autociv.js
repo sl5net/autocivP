@@ -19,7 +19,7 @@ ChatCommandHandler.prototype.ChatCommands["pingall"] = {
             for (let player of players)
                 if (selfInHost){
                     ignore.add(splitRatingFromNick(player.Name).nick);
-                    g_selfInHost = selfInHost
+                    g_selfIsHost = selfInHost
                 }
                 else if (player.Team == "observer")
                     candidatesToAnnoy.add(splitRatingFromNick(player.Name).nick);

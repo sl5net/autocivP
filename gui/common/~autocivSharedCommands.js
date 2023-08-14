@@ -1,6 +1,6 @@
 var gameState = "lobby"; // Initial state // // TODO: howto set it like this? g_GameData = data // 	g_GameData.gui.isInGame
 
-var g_selfInHost
+var g_selfIsHost
 
 
 
@@ -11,16 +11,16 @@ var g_selfInHost
 function isSelfHost(){ // maybe call it in a settimeout assync function
 
 	let bugIt = false // new implementation so i will watch longer
-	// bugIt = true // new implementation so i will watch longer
+	bugIt = true && g_selfNick =="seeh" // new implementation so i will watch longer
 
 	if(bugIt)
 		selfMessage(`138: g_selfInHost gui/common/~autocivSharedCommands.js`);
-	if(g_selfInHost === true || g_selfInHost === false){
+	if(g_selfIsHost === true || g_selfIsHost === false){
 		if(bugIt)
-			selfMessage(`138: g_selfInHost = ${g_selfInHost} , gui/common/~autocivSharedCommands.js`);
-		return g_selfInHost;
+			selfMessage(`138: g_selfInHost = ${g_selfIsHost} , gui/common/~autocivSharedCommands.js`);
+		return g_selfIsHost;
 	}
-	switch (typeof g_selfInHost) {
+	switch (typeof g_selfIsHost) {
 		case 'undefined':
 			if(bugIt)
 				selfMessage(`140: g_selfInHost = undefined gui/common/~autocivSharedCommands.js`);
@@ -43,15 +43,16 @@ function isSelfHost(){ // maybe call it in a settimeout assync function
 	const selfPlayerAssignment = g_PlayerAssignments[Engine.GetPlayerGUID()];
 	const hostPlayerAssignment = g_PlayerAssignments[firstPlayerGUID];
 
-	g_selfInHost = selfGUID == firstPlayerGUID;
+	g_selfIsHost = selfGUID == firstPlayerGUID;
 
-	if(bugIt && g_selfNick =="seeh"){ //NOTE -developers want to see the error in the console
+	if(bugIt){ //NOTE -developers want to see the error in the console
 		warn(`42: selfPlayerAssignment.name = ${selfPlayerAssignment.name}`);
 		warn(`43: hostPlayerAssignment.name = ${hostPlayerAssignment.name}`);
-		warn(`44: g_selfInHost =====> ${g_selfInHost} ${g_selfInHost} ${g_selfInHost} ${g_selfInHost} ${g_selfInHost}`);
+		warn(`44: g_selfInHost =====> ${g_selfIsHost} ${g_selfIsHost} ${g_selfIsHost} ${g_selfIsHost} ${g_selfIsHost}`);
+		warn(`45: g_selfInHost => ${g_selfIsHost}`);
+		warn(`45: g_IsController => ${g_IsController}`);
 	}
-	// warn(`45: g_selfInHost => ${g_selfInHost}`);
-	return g_selfInHost
+	return g_selfIsHost
 }
 
 

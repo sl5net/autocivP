@@ -1029,7 +1029,9 @@ function setCaption2nextCommandOfHistory(guiObject){
   // if(isSelfHost() != true)
   //   selfMessage(`1007: g_selfInHost = ${g_selfInHost}`)
 
-  if(gameState == "ingame" || isSelfHost() != true){
+
+  // if(gameState == "ingame" || isSelfHost() != true){ // obsolete
+  if(gameState == "ingame" || g_selfIsHost != true){
     if(/^\/p|^\/\d/.test(nextCommand)){ //  /p or /\d
       // selfMessage(`hide mapCofigProfileComands in ingame state ( ${nextCommand } )`)
       g_lastCommandID = getNextLastCommandID()

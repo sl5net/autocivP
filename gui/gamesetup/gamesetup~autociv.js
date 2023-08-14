@@ -1,7 +1,7 @@
 warnModIsNotEnabled(); // check for feldmap mod is default 23-0624_0327-45
 warnSilhouettesIsNotEnabled()
 
-var g_selfInHost
+var g_selfIsHost
 
 var g_autociv_maps = new Set(["maps/skirmishes/Volcano Island (8)"])
 
@@ -75,10 +75,17 @@ autociv_patchApplyN("init", function (target, that, args)
 	// var playerNameHost = g_PlayerAssignments[0].name;
 	// warn(`g_PlayerAssignments.length = ${g_PlayerAssignments.length}`);
 
+
+	// warn(`45: g_IsController => ${g_IsController}`);
+
+	g_selfIsHost = g_IsController
+
+	// obsolete
+	if(false)
 	setTimeout(() => {
 		// Asynchronous operation
 		try {
-			g_selfInHost = isSelfHost() // the g_selfInHost is set a bit later. so a delay is needed here
+			g_selfIsHost = isSelfHost() // the g_selfInHost is set a bit later. so a delay is needed here
 			.then(result => {
 			// warn(`works`);
 			})
@@ -90,9 +97,12 @@ autociv_patchApplyN("init", function (target, that, args)
 		}
 	}, 10);
 
+	// obsolete
+	if(false)
 	setTimeout(() => {
 		ifYouHostAndModsChangedRecomandRestoreLastProfile()
 	}, 20);
+	ifYouHostAndModsChangedRecomandRestoreLastProfile()
 
 
 })
@@ -150,7 +160,7 @@ function ifYouHostAndModsChangedRecomandRestoreLastProfile(){
 	  	// g_NetworkCommands["/pRestoreLastProfile"]();
 	  	// pRestoreLastProfile();
 		let lastCommandToSetProfile = ''
-		if(g_selfInHost){
+		if(g_selfIsHost){
 			selfMessage('have changed enabledmods? do you want restore last profile?'); // selfMessage not exist
 			const key = 'autocivP.gamesetup.lastCommandProfile'
 			const lastCommandProfile = Engine.ConfigDB_GetValue("user", `${key}`);
