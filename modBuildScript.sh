@@ -92,6 +92,10 @@ pwd
 
 # delete somme files from $dir_temp
 rm $dir_temp/modBuildScript.*
+rm -r $dir_temp/*/__.*
+rm -r $dir_temp/*/Copy*.*
+rm -r $dir_temp/*/*.ahk
+rm -r $dir_temp/*/*.log
 
 # Count the number of files and folders in autocivP_temp (excluding the autocivP_temp directory itself)
 num_files=$(find $dir_temp -type f | wc -l)

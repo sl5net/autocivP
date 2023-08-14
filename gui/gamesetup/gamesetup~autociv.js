@@ -71,16 +71,9 @@ autociv_patchApplyN("init", function (target, that, args)
 	Engine.GetGUIObjectByName("chatInput").blur();
 	Engine.GetGUIObjectByName("chatInput").focus();
 
-	// var g_PlayerAssignments = {};
-	// var playerNameHost = g_PlayerAssignments[0].name;
-	// warn(`g_PlayerAssignments.length = ${g_PlayerAssignments.length}`);
+	g_selfIsHost = g_IsController // Synonymous variable with g_IsController. for easier to find
 
-
-	// warn(`45: g_IsController => ${g_IsController}`);
-
-	g_selfIsHost = g_IsController
-
-	// obsolete
+	// obsolete todo: delete
 	if(false)
 	setTimeout(() => {
 		// Asynchronous operation
