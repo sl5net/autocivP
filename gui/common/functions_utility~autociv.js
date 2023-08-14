@@ -178,6 +178,7 @@ const g_autoCompleteText_newMerge = (guiObject, list) => {
     if(g_textSuggestedInEmptyChatWhenTabPressed){
       const match = caption.toLowerCase().match(/msg(\d+)/);
       if (match) {
+        saveLastCommand2History(caption)
         const number = match[1];
         // Handle the extracted number
         // selfMessage('gui/common/functions_utility~autociv.js ' + lineNumber())
@@ -187,7 +188,10 @@ const g_autoCompleteText_newMerge = (guiObject, list) => {
         guiObject.caption = lastLinesString
         g_previousCaption = guiObject.caption
         guiObject.buffer_position = 0 //  lastLinesString.length;
-        return
+
+        ConfigDB_CreateAndSaveValueA26A27("user", "autocivP.chat.copyAllChatMessages", "true"); // if want select messages from all you net th have all chat messages first/next. => so set the flag to true
+
+    return
       }
     }
 
