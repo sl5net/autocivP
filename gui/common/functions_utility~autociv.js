@@ -175,9 +175,22 @@ const g_autoCompleteText_newMerge = (guiObject, list) => {
       return
     }
 
-
+    const match = caption.toLowerCase().match(/msg(\d+)/);
+    if (match) {
+      const number = match[1];
+      // Handle the extracted number
+      // selfMessage('gui/common/functions_utility~autociv.js ' + lineNumber())
+      const linesArray = g_textSuggestedInEmptyChatWhenTabPressed.trim().split('\n');
+      const lastLines = linesArray.slice(-number);
+      const lastLinesString = lastLines.join('\n');
+      guiObject.caption = lastLinesString
+      g_previousCaption = guiObject.caption
+      return
+    }
 
     switch (caption.toLowerCase()) {
+
+        // return captionIs_j(guiObject);
       case 'j':
           return captionIs_j(guiObject);
       case 'li':

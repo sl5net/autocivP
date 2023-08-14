@@ -153,7 +153,7 @@
 			{
 				"type": "boolean",
 				"label": "[color=\"220 185 70\"]Global:[/color] Copy all chat messages",
-				"tooltip": "default is copy only the last message sent to you \n empty your chat and pres ⟦Tab⟧. ",
+				"tooltip": "default is copy only the last message sent to you \n empty your chat and pres ⟦Tab⟧. \n get N mesages from your copy press msgN⟦Tab⟧ like msg1⟦Tab⟧ or msg3⟦Tab⟧.",
 				"config": "autocivP.chat.copyAllChatMessages"
 			},
 			{
