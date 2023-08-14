@@ -132,7 +132,12 @@ function autociv_changeSomeHotkeysToKeyDownAsPressTypeCantBeDiscardedFromBeingCa
 			const chatInput = Engine.GetGUIObjectByName("chatInput")
 			if(chatInput?.caption && chatInput.caption.length > 0){
 				selfMessage(`:) getting your chat "${chatInput.caption}" by press ⟦Tab⟧ later`);
-				g_textSuggestedInEmptyChatWhenTabPressed = chatInput.caption
+
+				if(Engine.ConfigDB_GetValue("user", "autocivP.chat.copyAllChatMessages") !== "true" )
+					g_textSuggestedInEmptyChatWhenTabPressed = ''
+
+				g_textSuggestedInEmptyChatWhenTabPressed += chatInput.caption + "\n"
+				g_textSuggestedInEmptyChatWhenTabPressed_lines++
 			}
 			that.openPage();
 		  });

@@ -138,7 +138,12 @@ class ChatMessageFormatPlayer
 		// Don't miss the opportunity to copy text! Simply select and copy your desired message.
 		// Also you have now stored your self written messages. could get it again by pressing tab.
 		// warn(`137: msg.text is ${msg.text}`);
-		g_textSuggestedInEmptyChatWhenTabPressed = msg.text;
+
+		if(Engine.ConfigDB_GetValue("user", "autocivP.chat.copyAllChatMessages") !== "true" )
+			g_textSuggestedInEmptyChatWhenTabPressed = ''
+
+		g_textSuggestedInEmptyChatWhenTabPressed += msg.text + "\n";
+		g_textSuggestedInEmptyChatWhenTabPressed_lines++
 		// variable name is for historical reasons. maybe should be changed a bit.
 		//--------------------------------------------------------------
 

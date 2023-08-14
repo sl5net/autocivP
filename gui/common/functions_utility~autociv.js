@@ -140,9 +140,10 @@ const g_autoCompleteText_newMerge = (guiObject, list) => {
         const debugMsg = `139: g_textSuggestedInEmptyChatWhenTabPressed = ${g_textSuggestedInEmptyChatWhenTabPressed}   gui/common/functions_utility~autociv.js`
         selfMessage(debugMsg)
       }
-      guiObject.caption = g_textSuggestedInEmptyChatWhenTabPressed
+      guiObject.caption = g_textSuggestedInEmptyChatWhenTabPressed.trim()
       guiObject.buffer_position = g_textSuggestedInEmptyChatWhenTabPressed.length;
       g_textSuggestedInEmptyChatWhenTabPressed = ''
+      g_textSuggestedInEmptyChatWhenTabPressed_lines = 0
       g_previousCaption = guiObject.caption
       return
     }

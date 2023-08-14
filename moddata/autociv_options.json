@@ -142,15 +142,19 @@
 				"config": "autocivP.chat.iconPrefix"
 			},
 			{
+				"type": "boolean",
+				"label": "[color=\"220 185 70\"]Global:[/color] Copy all chat messages",
+				"tooltip": "default is copy only the last message sent to you \n empty your chat and pres ⟦Tab⟧. ",
+				"config": "autocivP.chat.copyAllChatMessages"
+			},
+			{
 				"type": "string",
 				"label": "[color=\"220 185 70\"]Global:[/color] Suggestion. next fullMinute (default is next full 30 minutes ⟨ or empty)",
 				"tooltip": "e.g. next full 30 minutes 12:30 13:00.",
 				"config": "autocivP.gamesetup.gameStart.inNextFullMinute"
 			}
-
 		]
 	},
-
 
 	{
 		"label": "Mod Profile Selector",

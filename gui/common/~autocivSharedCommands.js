@@ -88,7 +88,8 @@ var g_is_chatInputTooltipQuickFixUpdate_updated = false
 // const selfNick = Engine.LobbyGetNick();
 var g_selfNick = Engine.ConfigDB_GetValue("user", `playername.multiplayer`);
 
-var g_textSuggestedInEmptyChatWhenTabPressed
+var g_textSuggestedInEmptyChatWhenTabPressed = ''
+var g_textSuggestedInEmptyChatWhenTabPressed_lines = 0
 
 const chatInput = Engine.GetGUIObjectByName("chatInput")
 if(chatInput)

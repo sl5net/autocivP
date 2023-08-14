@@ -22,11 +22,15 @@ class ChatMessageFormatSay
 
 		// Remove color tags using regex
 
-		g_textSuggestedInEmptyChatWhenTabPressed = `${sender}: ${text}`; // all senders. inclusive yourself
+		const temp = `${sender}: ${text}`; // all senders. inclusive yourself
 		// you could get it by pressing tab in a empty chat. so you could last message in your caption. then you could copy it. often missed opterionity to copy a text.
 		// if you login in the lobby it reads all messages. later it readys the last message only
 
-		g_textSuggestedInEmptyChatWhenTabPressed = g_textSuggestedInEmptyChatWhenTabPressed.replace(/\[([^\[\]]*)\]/g, ''); // usually colors in usernames
+		if(Engine.ConfigDB_GetValue("user", "autocivP.chat.copyAllChatMessages") !== "true" )
+			g_textSuggestedInEmptyChatWhenTabPressed = ''
+
+		g_textSuggestedInEmptyChatWhenTabPressed += temp.replace(/\[([^\[\]]*)\]/g, '') + "\n" ; // usually colors in usernames
+		g_textSuggestedInEmptyChatWhenTabPressed_lines++
 
 		// warn(`22: ${g_backupMessageBeforeChangeContextViaHotkey}`);
 

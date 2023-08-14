@@ -432,8 +432,14 @@ botManager.addBot("autociv", {
 				if ( false
 					|| isWithTwoSpacesSomewhere
 					|| (isWithOneSpaces && text.length > 5)
-					|| text.length > 18)
-					g_textSuggestedInEmptyChatWhenTabPressed = text
+					|| text.length > 18){
+
+					if(Engine.ConfigDB_GetValue("user", "autocivP.chat.copyAllChatMessages") !== "true" )
+						g_textSuggestedInEmptyChatWhenTabPressed = ''
+
+					g_textSuggestedInEmptyChatWhenTabPressed += text + "\n"
+					g_textSuggestedInEmptyChatWhenTabPressed_lines++
+				}
 			}
 			text.trim().split(" ")[0].toLowerCase();
 		}

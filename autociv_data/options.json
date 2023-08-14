@@ -146,9 +146,15 @@
 
 			{
 				"type": "string",
-				"label": "[color=\"220 185 70\"]Global:[/color] Chat panel icon delimiter (default is ⟨ or empty)",
+				"label": "[color=\"220 185 70\"]Global:[/color] Chat icon delimiter (default ⟨ or empty)",
 				"tooltip": "To improve command searchability, consider adding a prefix to special short icon (☯ ♪♣‹) commands like '<gg⟦Tab⟧' or '<mus⟦Tab⟧' ♪ to distinguish them from profile commands.",
 				"config": "autocivP.chat.iconPrefix"
+			},
+			{
+				"type": "boolean",
+				"label": "[color=\"220 185 70\"]Global:[/color] Copy all chat messages",
+				"tooltip": "default is copy only the last message sent to you \n empty your chat and pres ⟦Tab⟧. ",
+				"config": "autocivP.chat.copyAllChatMessages"
 			},
 			{
 				"type": "string",
