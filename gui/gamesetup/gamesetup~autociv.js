@@ -146,18 +146,18 @@ function ifYouHostAndModsChangedRecomandRestoreLastProfile(){
 		// const modsFromUserCfg_backup = Engine.ConfigDB_GetValue("user", "autocivP.enabledmods.backup");
 		ConfigDB_CreateAndSaveValueA26A27("user", `autocivP.enabledmods.backup`, modsFromUserCfg);
 
-		selfMessage('have changed enabledmods? do you want restore last profile?'); // selfMessage not exist
 		//   warn('82: have changed enabledmods? do you want restore last profile?');
 	  	// g_NetworkCommands["/pRestoreLastProfile"]();
 	  	// pRestoreLastProfile();
 		let lastCommandToSetProfile = ''
 		if(g_selfInHost){
+			selfMessage('have changed enabledmods? do you want restore last profile?'); // selfMessage not exist
 			const key = 'autocivP.gamesetup.lastCommandProfile'
 			const lastCommandProfile = Engine.ConfigDB_GetValue("user", `${key}`);
 			selfMessage(`your last used profile was: ${lastCommandProfile}`);
-			lastCommandToSetProfile = (lastCommandProfile) ? '/pRestoreLastProfile' : 'hi all :) ';
+			lastCommandToSetProfile = (lastCommandProfile) ? '/pRestoreLastProfile' : 'hi all ^_^';
 		}else{
-			lastCommandToSetProfile = (g_selfInHost) ? '/pRestoreLastProfile' : 'hi all :) ';
+			lastCommandToSetProfile = 'hi all (◕‿◕)';
 		}
 		const chatInput = Engine.GetGUIObjectByName("chatInput")
 		chatInput.caption = lastCommandToSetProfile;
