@@ -35,13 +35,15 @@ clear
 
 # Extract the value of the mod_name variable from mod.json
 mod_name=$(jq -r '.name' mod.json)
+mod_version=$(jq -r '.version' mod.json)
 
-echo "${mod_name}"
-# clear
+
+ignoreChecks=$(jq -r '.ignoreInCompatibilityChecks' mod.json)
+
 
 dir_mod="$PWD"
 dir_mods="$PWD/.."
-dir_temp="${dir_mods}/${mod_name}_temp"
+dir_temp="${dir_mods}/${mod_name}${mod_version}igCoCheck=${ignoreChecks}"
 echo "41: dir_temp= $dir_temp"
 dir_temp2="${dir_mods}/${mod_name}_temp2"
 
@@ -57,6 +59,13 @@ echo "dir_mod= $dir_mod"
 echo "dir_mods= $dir_mods"
 echo "53: dir_temp= $dir_temp"
 echo "53: dir_temp2= $dir_temp2"
+
+echo "mod_name=${mod_name}"
+echo "mod_version=${mod_version}"
+echo "ignoreChecks=${ignoreChecks}"
+
+# clear
+# exit
 
 #!/bin/bash
 
