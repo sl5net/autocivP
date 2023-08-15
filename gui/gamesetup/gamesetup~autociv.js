@@ -143,7 +143,14 @@ function warnSilhouettesIsNotEnabled(){
 function ifYouHostAndModsChangedRecomandRestoreLastProfile(){
 	const modsFromUserCfg = Engine.ConfigDB_GetValue("user", "mod.enabledmods");
 	const modsFromUserCfg_backup = Engine.ConfigDB_GetValue("user", "autocivP.enabledmods.backup");
-	// warn(`ifYouHostAndModsChangedRecomandRestoreLastProfile`);
+	const doHelloAutomaticSuggestionWhenJoinAgameSetup = Engine.ConfigDB_GetValue("user", "autocivP.msg.helloAutomaticSuggestionWhenJoinAgameSetup") === "true"
+
+	let newCaptionString = ''
+
+	let bugIt = false // new implementation so i will watch longer
+	// bugIt = true && g_selfNick =="seeh" // new implementation so i will watch longer
+
+
 	if(modsFromUserCfg != modsFromUserCfg_backup){
 		// const modsFromUserCfg = Engine.ConfigDB_GetValue("user", "mod.enabledmods");
 		// const modsFromUserCfg_backup = Engine.ConfigDB_GetValue("user", "autocivP.enabledmods.backup");
@@ -152,22 +159,43 @@ function ifYouHostAndModsChangedRecomandRestoreLastProfile(){
 		//   warn('82: have changed enabledmods? do you want restore last profile?');
 	  	// g_NetworkCommands["/pRestoreLastProfile"]();
 	  	// pRestoreLastProfile();
-		let lastCommandToSetProfile = ''
 		if(g_selfIsHost){
-			selfMessage('have changed enabledmods? do you want restore last profile?'); // selfMessage not exist
+			// selfMessage('have changed enabledmods? do you want restore last profile?'); // selfMessage not exist
 			const key = 'autocivP.gamesetup.lastCommandProfile'
 			const lastCommandProfile = Engine.ConfigDB_GetValue("user", `${key}`);
 			selfMessage(`your last used profile was: ${lastCommandProfile}`);
-			lastCommandToSetProfile = (lastCommandProfile) ? '/pRestoreLastProfile' : 'hi all ^_^';
+			newCaptionString = (lastCommandProfile) ? '/pRestoreLastProfile' : '/help /p'
+			if(bugIt)
+			warn(`newCaptionString: ${newCaptionString}, lineNumber: ${lineNumber()}`);
 		}else{
-			lastCommandToSetProfile = 'hi all (◕‿◕)';
+			// your not host
+			// if(doHelloAutomaticSuggestionWhenJoinAgameSetup)
+			newCaptionString = 'hi all (◕‿◕)'
+			warn(`newCaptionString: ${newCaptionString}, lineNumber: ${lineNumber()}`);
 		}
-		const chatInput = Engine.GetGUIObjectByName("chatInput")
-		chatInput.caption = lastCommandToSetProfile;
 	}else{
 		// mods have not changed
-		const chatInput = Engine.GetGUIObjectByName("chatInput")
-		chatInput.caption = 'hi all (◕‿◕) have fun';
+		if(g_selfIsHost){
+			if(doHelloAutomaticSuggestionWhenJoinAgameSetup)
+				newCaptionString = '/help /p'
+				// newCaptionString = '(◕‿◕) good luck with setup';
+				if(bugIt)
+			warn(`newCaptionString: ${newCaptionString}, lineNumber: ${lineNumber()}`);
+		}else{
+			// your not host
+			if(doHelloAutomaticSuggestionWhenJoinAgameSetup)
+				newCaptionString = 'hi all (◕‿◕)'
+				if(bugIt)
+			warn(`newCaptionString: ${newCaptionString}, lineNumber: ${lineNumber()}`);
+
+		}
 	}
 
+	if(bugIt)
+		warn(`newCaptionString: ${newCaptionString}, lineNumber: ${lineNumber()}`);
+
+	if(newCaptionString){
+		const chatInput = Engine.GetGUIObjectByName("chatInput")
+		chatInput.caption = newCaptionString
+	}
 }

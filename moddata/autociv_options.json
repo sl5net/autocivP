@@ -483,6 +483,12 @@
 				"config": "autocivP.msg.helloAll"
 			},
 			{
+				"type": "boolean",
+				"label": "[color=\"220 185 70\"]auto hello suggest [/color]",
+				"tooltip": "Suggestion When you Join A gameSetup",
+				"config": "autocivP.msg.helloAutomaticSuggestionWhenJoinAgameSetup"
+			},
+			{
 				"type": "string",
 				"label": "[color=\"220 185 70\"]message[/color] Me⟦Tab⟧",
 				"tooltip": "write Me⟦Tab⟧",
