@@ -93,9 +93,9 @@ autociv_patchApplyN("init", function (target, that, args)
 	// obsolete
 	if(false)
 	setTimeout(() => {
-		ifYouHostAndModsChangedRecomandRestoreLastProfile()
+		setCaptionWhenJoinOrStartGameSetup()
 	}, 20);
-	ifYouHostAndModsChangedRecomandRestoreLastProfile()
+	setCaptionWhenJoinOrStartGameSetup()
 
 
 })
@@ -140,7 +140,7 @@ function warnSilhouettesIsNotEnabled(){
 /**
  * Checks if self host and mods have changed and recommends restoring then the last profile.
  */
-function ifYouHostAndModsChangedRecomandRestoreLastProfile(){
+function setCaptionWhenJoinOrStartGameSetup(){
 	const modsFromUserCfg = Engine.ConfigDB_GetValue("user", "mod.enabledmods");
 	const modsFromUserCfg_backup = Engine.ConfigDB_GetValue("user", "autocivP.enabledmods.backup");
 	const doHelloAutomaticSuggestionWhenJoinAgameSetup = Engine.ConfigDB_GetValue("user", "autocivP.msg.helloAutomaticSuggestionWhenJoinAgameSetup") === "true"
@@ -171,6 +171,7 @@ function ifYouHostAndModsChangedRecomandRestoreLastProfile(){
 			// your not host
 			// if(doHelloAutomaticSuggestionWhenJoinAgameSetup)
 			newCaptionString = 'hi all (◕‿◕)'
+			if(bugIt)
 			warn(`newCaptionString: ${newCaptionString}, lineNumber: ${lineNumber()}`);
 		}
 	}else{

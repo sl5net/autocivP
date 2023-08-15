@@ -926,14 +926,17 @@ autociv_InitSharedCommands.pipe = {
 				}
 
 			}
+			// endOf is replay
 		}
 
-		if(gameState != "ingame"){
+		if(gameState != "ingame" && !g_IsObserver && !g_IsReplay){
 			// selfMessage(`g_selfNick: ${g_selfNick} - ${lineNumber()}`)
 			if(Engine.GetPlayerGUID() === undefined
 			||	g_PlayerAssignments[Engine.GetPlayerGUID()] === undefined
 			|| g_PlayerAssignments[Engine.GetPlayerGUID()].name.indexOf('|') == -1){
 				// selfMessage(`name: ${g_PlayerAssignments[Engine.GetPlayerGUID()].name} - ${lineNumber()}`)
+
+				selfMessage(`g_IsReplay: ${g_IsReplay} - ${lineNumber()}`)
 
 				const modEnabledmods = Engine.ConfigDB_GetValue(
 					"user",
@@ -944,8 +947,6 @@ autociv_InitSharedCommands.pipe = {
 				if(modEnabledmods.indexOf("proGUI") > -1){
 					const text = `Mods I use: ${modEnabledmods.slice(11)}`
 					// const text = `Mods I use: ${modEnabledmods.slice(11)}. \nSome say it's important for others to know \nwhich mods I use when game starts.`
-
-					sendMessage(text)
 				}
 			}
 		}
