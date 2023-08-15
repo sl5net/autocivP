@@ -143,7 +143,7 @@ const g_autoCompleteText_newMerge = (guiObject, list) => {
 
       if(gameState == 'ingame'){
         // in this state we want super careful
-        guiObject.caption = truncateString( g_textSuggestedInEmptyChatWhenTabPressed.trim(), 40 )
+        guiObject.caption = truncateString( g_textSuggestedInEmptyChatWhenTabPressed.trim(), 80 )
         guiObject.buffer_position = 0
       }else{
         guiObject.caption = g_textSuggestedInEmptyChatWhenTabPressed.trim()
