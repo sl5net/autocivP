@@ -930,7 +930,7 @@ autociv_InitSharedCommands.pipe = {
 
 		if(gameState != "ingame"){
 			// selfMessage(`g_selfNick: ${g_selfNick} - ${lineNumber()}`)
-			if(true || Engine.GetPlayerGUID() === undefined
+			if(Engine.GetPlayerGUID() === undefined
 			||	g_PlayerAssignments[Engine.GetPlayerGUID()] === undefined
 			|| g_PlayerAssignments[Engine.GetPlayerGUID()].name.indexOf('|') == -1){
 				// selfMessage(`name: ${g_PlayerAssignments[Engine.GetPlayerGUID()].name} - ${lineNumber()}`)
