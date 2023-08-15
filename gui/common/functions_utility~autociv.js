@@ -140,8 +140,15 @@ const g_autoCompleteText_newMerge = (guiObject, list) => {
         const debugMsg = `139: g_textSuggestedInEmptyChatWhenTabPressed = ${g_textSuggestedInEmptyChatWhenTabPressed}   gui/common/functions_utility~autociv.js`
         selfMessage(debugMsg)
       }
-      guiObject.caption = g_textSuggestedInEmptyChatWhenTabPressed.trim()
-      guiObject.buffer_position = g_textSuggestedInEmptyChatWhenTabPressed.length;
+
+      if(gameState == 'ingame'){
+        // in this state we want super careful
+        guiObject.caption = truncateString( g_textSuggestedInEmptyChatWhenTabPressed.trim(), 40 )
+        guiObject.buffer_position = 0
+      }else{
+        guiObject.caption = g_textSuggestedInEmptyChatWhenTabPressed.trim()
+        guiObject.buffer_position = 0
+      }
       g_textSuggestedInEmptyChatWhenTabPressed = ''
       g_textSuggestedInEmptyChatWhenTabPressed_lines = 0
       g_previousCaption = guiObject.caption
@@ -1120,5 +1127,13 @@ function captionCheck_is_communityModToggle_optional_restartOad(caption, doResta
     ConfigDB_CreateAndSaveValueA26A27("user", "mod.enabledmods", modEnabledmods.trim())
     selfMessage(`modEnabledmods = ${modEnabledmods}`);
     restart0ad()
+  }
+}
+
+function truncateString(str, num) {
+  if (str.length > num) {
+    return str.slice(0, num) + "...";
+  } else {
+    return str;
   }
 }

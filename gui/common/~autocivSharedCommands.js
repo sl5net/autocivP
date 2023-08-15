@@ -3,8 +3,6 @@ var gameState = "lobby"; // Initial state // // TODO: howto set it like this? g_
 var g_selfIsHost
 
 
-
-
 /**
  * Determine if the current player is the host player.
  */
@@ -88,6 +86,7 @@ var g_is_chatInputTooltipQuickFixUpdate_updated = false
 // const selfNick = Engine.LobbyGetNick();
 var g_selfNick = Engine.ConfigDB_GetValue("user", `playername.multiplayer`);
 
+// buzzwords: var g_chat ... g_textSuggestedInEmptyChatWhenTabPressed
 var g_textSuggestedInEmptyChatWhenTabPressed = ''
 var g_textSuggestedInEmptyChatWhenTabPressed_lines = 0
 
@@ -936,7 +935,7 @@ autociv_InitSharedCommands.pipe = {
 			|| g_PlayerAssignments[Engine.GetPlayerGUID()].name.indexOf('|') == -1){
 				// selfMessage(`name: ${g_PlayerAssignments[Engine.GetPlayerGUID()].name} - ${lineNumber()}`)
 
-				selfMessage(`g_IsReplay: ${g_IsReplay} - ${lineNumber()}`)
+				// selfMessage(`g_IsReplay: ${g_IsReplay} - ${lineNumber()}`)
 
 				const modEnabledmods = Engine.ConfigDB_GetValue(
 					"user",

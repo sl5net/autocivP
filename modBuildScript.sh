@@ -124,6 +124,12 @@ cp -r $dir_temp/* ${dir_temp_no_gamesetupmpJS}
 # Remove this file then you could also save replays when you are host
 rm -r $dir_temp_no_gamesetupmpJS/gui/gamesetup_mp/gamesetup_mp.js
 
+
+exit
+
+
+
+
 # Count the number of files and folders in autocivP_temp (excluding the autocivP_temp directory itself)
 num_files=$(find $dir_temp -type f | wc -l)
 num_folders=$(find $dir_temp -type d | wc -l)
