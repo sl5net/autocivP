@@ -198,24 +198,29 @@ ConfigDB_CreateAndSaveValueA26A27("user", "silhouettes", true);
 
     if (true && posAutocivP < posProGUI) { // autocivP should be later than proGUI becouse the sepezial customrrating that should make the use use of proGUI visible 23-0722_1318-16
 
+      warn(`posAutocivP < posProGUI = ${posAutocivP} < ${posProGUI}`)
 
 
-        let clean = modsFromUserCfg_const
+      let clean = modsFromUserCfg_const
+      /*NOTE - Allowing folder names to have optional postfixes for increased flexibility. Note that this approach is not recommended but can provide a better overview in certain cases.
+      */
+      const regex = /\bproGUI(.*?)\b/gi;
+      const match = clean.match(regex);
+      const postFixProGui = (match && match[1]) ? match[1] : '';
 
-        /*NOTE - Allowing folder names to have optional postfixes for increased flexibility. Note that this approach is not recommended but can provide a better overview in certain cases.
-        */
-        const regex = /\bproGUI(.*?)\b/gi;
-        const match = clean.match(regex);
-        const postFixProGui = match && match[1];
+      const pattern = new RegExp(`\\bproGUI${postFixProGui}\\b`, 'gi');
+      warn(`pattern = ${pattern}`)
+      clean = clean.replace(pattern, '');
+      clean = clean.replace(/\bautocivP\b(.*?)/gi, `proGUI${postFixProGui} autocivp$1 `);
 
-        const pattern = new RegExp(`\\bproGUI${postFixProGui}\\b(.*?) `, 'gi');
-        clean = clean.replace(pattern, '');
-        clean = clean.replace(/\bautocivP\b(.*?) /gi, `proGUI${postFixProGui ? postFixProGui : ''} autocivp$1 `);
+      warn(`modsFromUserCfg_const = \n${modsFromUserCfg_const}`)
+      warn(`new clean = \n${clean}`)
 
+      ConfigDB_CreateAndSaveValueA26A27("user", 'mod.enabledmods', clean.trim())
 
-        const key = "autocivP.reloadcount"
-        let reloadcount = parseInt( Engine.ConfigDB_GetValue("user", key) ) ;
-        reloadcount = (reloadcount) ? reloadcount + 1 : 1
+      const key = "autocivP.reloadcount"
+      let reloadcount = parseInt( Engine.ConfigDB_GetValue("user", key) ) ;
+      reloadcount = (reloadcount) ? reloadcount + 1 : 1
       warn(`reloadcount1 = ${reloadcount}`)
       ConfigDB_CreateAndSaveValueA26A27("user", key, reloadcount)
 
