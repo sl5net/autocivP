@@ -201,8 +201,19 @@ ConfigDB_CreateAndSaveValueA26A27("user", "silhouettes", true);
 
         let clean = modsFromUserCfg_const
 
-        clean = clean.replaceAll(/\bproGUI\b /g, '');
-        clean = clean.replaceAll(/\bautocivP\b /gi, 'proGUI autocivp ');
+        // clean = clean.replaceAll(/\bproGUI\b /g, '');
+        // clean = clean.replaceAll(/\bautocivP\b /gi, 'proGUI autocivp ');
+
+        const regex = /\bproGUI(.*?)\b/gi;
+        const match = clean.match(regex);
+        const postFixProGui = match && match[1];
+
+        const pattern = new RegExp(`\\bproGUI${postFixProGui}\\b(.*?) `, 'gi');
+        clean = clean.replace(pattern, '');
+        clean = clean.replace(/\bautocivP\b(.*?) /gi, `proGUI${postFixProGui ? postFixProGui : ''} autocivp$1 `);
+
+
+
         ConfigDB_CreateAndSaveValueA26A27("user", 'mod.enabledmods',clean)
 
         try {

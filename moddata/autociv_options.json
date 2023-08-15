@@ -269,7 +269,7 @@
 			},
 			{
 				"type": "string",
-				"label": "[color=\"255 0 0\"]mod.enabledmods[/color] = used at the moment",
+				"label": "[color=\"255 0 0\"]mod.enabledmods[/color] = folderNames of mods used at the moment",
 				"tooltip": "[color=\"255 0 0\"]will be overwitten\nbetter dont edit[/color].\nmods that you use at the moment\n [color=\"255 0 0\"]more Details at https://trac.wildfiregames.com/wiki/GameDataPaths for example: [/color]\n Path to user data: \n Linux     : ~/.config/0ad/user.cfg \n Windows: %AppData%\\0ad\\user.cfg \n macOS    : \/Users\/{YOUR USERNAME}\/Library\/Application\\ Support/0ad/user.cfg ",
 				"config": "mod.enabledmods"
 			},

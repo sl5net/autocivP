@@ -31,6 +31,11 @@
 # Opens a web browser (Firefox) with a specific URL related to the mod.
 # Note: The script assumes that the jq command-line tool is installed and its run inside your mod folder
 
+# bit off-topic but impotand: debugging: https://trac.wildfiregames.com/wiki/Debugging , https://trac.wildfiregames.com/wiki/GameDataPaths
+# cd ~/.config/0ad/logs/crashlog.txt
+
+# kate ~/.config/0ad/logs/crashlog.txt
+
 clear
 
 # Extract the value of the mod_name variable from mod.json
@@ -105,6 +110,9 @@ rm -r $dir_temp/*/__.*
 rm -r $dir_temp/*/Copy*.*
 rm -r $dir_temp/*/*.ahk
 rm -r $dir_temp/*/*.log
+
+# optional then you could also save replays when you are host
+# rm -r $dir_temp/gui/gamesetup_mp/gamesetup_mp.js
 
 # Count the number of files and folders in autocivP_temp (excluding the autocivP_temp directory itself)
 num_files=$(find $dir_temp -type f | wc -l)
