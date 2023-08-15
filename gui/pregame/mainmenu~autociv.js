@@ -196,14 +196,14 @@ ConfigDB_CreateAndSaveValueA26A27("user", "silhouettes", true);
 
     // mod.enabledmods = "mod public kush-extreme localratings feldmap autocivp community-maps-2 10ad proGUI"
 
+    if (true && posAutocivP < posProGUI) { // autocivP should be later than proGUI becouse the sepezial customrrating that should make the use use of proGUI visible 23-0722_1318-16
 
-    if (true && posAutocivP < posProGUI) { // autocivP should be later than proGUI becouse the sepezial customr rating that should make the use use of proGUI visible 23-0722_1318-16
+
 
         let clean = modsFromUserCfg_const
 
-        // clean = clean.replaceAll(/\bproGUI\b /g, '');
-        // clean = clean.replaceAll(/\bautocivP\b /gi, 'proGUI autocivp ');
-
+        /*NOTE - Allowing folder names to have optional postfixes for increased flexibility. Note that this approach is not recommended but can provide a better overview in certain cases.
+        */
         const regex = /\bproGUI(.*?)\b/gi;
         const match = clean.match(regex);
         const postFixProGui = match && match[1];
@@ -213,17 +213,27 @@ ConfigDB_CreateAndSaveValueA26A27("user", "silhouettes", true);
         clean = clean.replace(/\bautocivP\b(.*?) /gi, `proGUI${postFixProGui ? postFixProGui : ''} autocivp$1 `);
 
 
+        const key = "autocivP.reloadcount"
+        let reloadcount = parseInt( Engine.ConfigDB_GetValue("user", key) ) ;
+        reloadcount = (reloadcount) ? reloadcount + 1 : 1
+      warn(`reloadcount1 = ${reloadcount}`)
+      ConfigDB_CreateAndSaveValueA26A27("user", key, reloadcount)
 
-        ConfigDB_CreateAndSaveValueA26A27("user", 'mod.enabledmods',clean)
-
+      if(reloadcount <= 2){
         try {
           Engine.Restart(1);
         } catch (error) {
           Engine.Exit(1)
         }
+      }else{
+        warn(`Please reporte to the mod developer: reloadcount = ${reloadcount}`)
+      }
 
-
+    }else{
+      const key = "autocivP.reloadcount"
+      ConfigDB_CreateAndSaveValueA26A27("user", key, 0)
     }
+
 
 
 
