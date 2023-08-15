@@ -71,6 +71,13 @@ autociv_patchApplyN("init", function (target, that, args)
 	Engine.GetGUIObjectByName("chatInput").blur();
 	Engine.GetGUIObjectByName("chatInput").focus();
 
+
+
+    // selfMessage(`g_IsRatedGame: ${g_IsRatedGame} ${lineNumber()}`);
+
+    selfMessage(`game.is.rated(): ${game.is.rated()} ${lineNumber()}`);
+
+
 	g_selfIsHost = g_IsController // Synonymous variable with g_IsController. for easier to find
 	let selfIsHost_temp
 	// obsolete todo: delete , 23-0814_1558-15 but lets check if its always same first some days/weeks

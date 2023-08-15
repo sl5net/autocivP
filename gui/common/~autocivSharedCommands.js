@@ -928,6 +928,16 @@ autociv_InitSharedCommands.pipe = {
 			// endOf is replay
 		}
 
+		//TODO - delete it later 23-0815_2249-29
+		if(gameState != "ingame"){
+			let bugIt = false // new implementation so i will watch longer
+			bugIt = true && g_selfNick =="seeh" // new implementation so i will watch longer
+			if(bugIt){
+				// selfMessage(`rated(): ${g_GameSettings.rating.enabled} - gui/common/~autocivSharedCommands.js : ${lineNumber()}`)
+				selfMessage(`rated: ${g_InitAttributes.settings.RatingEnabled === true} - gui/common/~autocivSharedCommands.js : ${lineNumber()}`)
+			}
+		}
+
 		if(gameState != "ingame"
 		&& !g_IsObserver
 		&& !g_IsReplay){
@@ -944,12 +954,18 @@ autociv_InitSharedCommands.pipe = {
 					"mod.enabledmods"
 				);
 
-				// for more fairplay, some mods should be visible as text message when the user name not already show that this mod is used
-				if(modEnabledmods.indexOf("proGUI") > -1){
+
+				const isRated = g_InitAttributes.settings.RatingEnabled === true
+
+				// for more fairplay if isRated, some mods should be visible as text message when the user name not already show that this mod is used
+				if(isRated && modEnabledmods.indexOf("proGUI") > -1){
 					const text = `Mods I use: ${modEnabledmods.slice(11)}`
 					// const text = `Mods I use: ${modEnabledmods.slice(11)}. \nSome say it's important for others to know \nwhich mods I use when game starts.`
 					sendMessage(text)
+					selfMessage(`game.is.rated(): ${game.is.rated()} - ${lineNumber()}`)
 				}
+
+
 			}
 		}
 
