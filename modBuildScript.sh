@@ -113,25 +113,16 @@ pwd
 
 # delete somme files from $dir_temp
 rm $dir_temp/modBuildScript.*
-rm -r $dir_temp/*/__.*
-rm -r $dir_temp/*/Copy*.*
-rm -r $dir_temp/*/*.ahk
-rm -r $dir_temp/*/*.log
+rm -rf $dir_temp/*/__.*
+rm -rf $dir_temp/*/Copy*.*
+rm -rf $dir_temp/*/*.ahk
+rm -rf $dir_temp/*/*.log
 
 
 # Copy from $dir_temp to file ${dir_temp_no_gamesetupmpJS}
 cp -r $dir_temp/* ${dir_temp_no_gamesetupmpJS}
 # Remove this file then you could also save replays when you are host
 rm -r $dir_temp_no_gamesetupmpJS/gui/gamesetup_mp/gamesetup_mp.js
-
-
-exit
-
-
-
-
-
-
 
 # Count the number of files and folders in autocivP_temp (excluding the autocivP_temp directory itself)
 num_files=$(find $dir_temp -type f | wc -l)
