@@ -907,7 +907,7 @@ autociv_InitSharedCommands.pipe = {
 			let clean = modEnabledmods
 			// let clean2 = clean.replace('autocivP', `${modProfilealwaysInReplay} autocivp` );
 			// let clean2 = clean.replace( 'autocivp', `${modProfilealwaysInReplay} autocivp` );
-			const clean2 = clean.replace(/\bautocivP\b/ig, `${modProfilealwaysInReplay} autocivp` );
+			const clean2 = clean.replace(/\b(autocivP.*?)\b/ig, `${modProfilealwaysInReplay} $1` );
 
 			if(!(modEnabledmods.indexOf(modProfilealwaysInReplay)>0)){
 				// warn(`Really want play a replay without 'boonGUI' mod ?`);
