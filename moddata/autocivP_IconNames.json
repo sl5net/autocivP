@@ -3,6 +3,9 @@
    "allIcons": ["allicons", "allincon","allincons", "listIcons" ],
    "allIconKeys": ["alliconkeys","allinconcais","alliconskays" ],
    "timeNow": ["timenow" ],
+   "msg1": ["msg1" ],
+   "msg2": ["msg2" ],
+   "msg3": ["msg3" ],
    "modsImCurrentlyUsing": ["mods", "modsCurrent","modsUsing" ],
    "communityModToggle": [
     "comunitsmodstoggles",
@@ -19,6 +22,7 @@
     "comunitiymodtoggl",
     "comunitsmodtogle",
     "tglcomunmod",
+    "toglcm",
     "togglecommunityMod"
   ],
   "AutoCivP mod is AutoCiv but it also supports profiles during game configuration, jitsi, command-history⟦Tab⟧⟦Tab⟧ and a lot more.": ["whatsAutocivPMod", "autocivP" ],
