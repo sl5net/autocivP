@@ -942,7 +942,8 @@ autociv_InitSharedCommands.pipe = {
 
 				// for more fairplay, some mods should be visible as text message when the user name not already show that this mod is used
 				if(modEnabledmods.indexOf("proGUI") > -1){
-					const text = `Mods I use: ${modEnabledmods.slice(11)}. \nSome say it's important for others to know \nwhich mods I use when game starts.`
+					const text = `Mods I use: ${modEnabledmods.slice(11)}`
+					// const text = `Mods I use: ${modEnabledmods.slice(11)}. \nSome say it's important for others to know \nwhich mods I use when game starts.`
 
 					sendMessage(text)
 				}
