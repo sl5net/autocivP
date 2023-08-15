@@ -479,6 +479,7 @@
 					{ "value": "^3", "label": "3v3, 4v4"  }
 				]
 			},
+
 			{
 				"type": "dropdown",
 				"label": "[color=\"204 133 0\"]Game name Suggestion[/color] select presets ----->",
@@ -489,6 +490,14 @@
 					{ "value": "^1", "label": "pingMe"  }
 				]
 			},
+
+			{
+				"type": "boolean",
+				"label": "[color=\"204 133 0\"]Game name Suggestion[/color]: Autoupdate ratedDefault",
+				"tooltip": "You can manually set the ratedDefault in the chat field. \nbut Autoupdate is also possible.",
+				"config": "autocivP.gamesetup.gameStart.doRatedDefaultAutoupdate"
+			},
+
 			{
 				"type": "boolean",
 				"label": "[color=\"204 133 0\"]Game name Suggestion[/color]: add Mods I'm currently using ?",

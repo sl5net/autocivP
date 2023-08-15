@@ -930,6 +930,7 @@ autociv_InitSharedCommands.pipe = {
 
 		//TODO - delete it later 23-0815_2249-29
 		if(gameState != "ingame"){
+
 			let bugIt = false // new implementation so i will watch longer
 			bugIt = true && g_selfNick =="seeh" // new implementation so i will watch longer
 			if(bugIt){
@@ -956,6 +957,16 @@ autociv_InitSharedCommands.pipe = {
 
 
 				const isRated = g_InitAttributes.settings.RatingEnabled === true
+
+				const doRatedDefaultAutoupdate = ( Engine.ConfigDB_GetValue("user", "autocivP.gamesetup.gameStart.doRatedDefaultAutoupdate") === "true" )
+
+				if(doRatedDefaultAutoupdate){
+					const isRatedDefault = ( Engine.ConfigDB_GetValue("user", "autocivP.gamesetup.ratedDefault") === "true" )
+					// maybe update then rated default.
+					if(isRatedDefault != isRated)
+						ConfigDB_CreateAndSaveValueA26A27("user", "autocivP.gamesetup.ratedDefault", isRated)
+				}
+
 
 				// for more fairplay if isRated, some mods should be visible as text message when the user name not already show that this mod is used
 				if(isRated && modEnabledmods.indexOf("proGUI") > -1){
