@@ -927,7 +927,31 @@ autociv_InitSharedCommands.pipe = {
 
 			}
 		}
+
+		if(gameState != "ingame"){
+			// selfMessage(`g_selfNick: ${g_selfNick} - ${lineNumber()}`)
+			if(true || Engine.GetPlayerGUID() === undefined
+			||	g_PlayerAssignments[Engine.GetPlayerGUID()] === undefined
+			|| g_PlayerAssignments[Engine.GetPlayerGUID()].name.indexOf('|') == -1){
+				// selfMessage(`name: ${g_PlayerAssignments[Engine.GetPlayerGUID()].name} - ${lineNumber()}`)
+
+				const modEnabledmods = Engine.ConfigDB_GetValue(
+					"user",
+					"mod.enabledmods"
+				);
+
+				// for more fairplay, some mods should be visible as text message when the user name not already show that this mod is used
+				if(modEnabledmods.indexOf("proGUI") > -1){
+					const text = `Mods I use: ${modEnabledmods.slice(11)}. \nSome say it's important for others to know \nwhich mods I use when game starts.`
+
+					sendMessage(text)
+				}
+			}
+		}
+
 		gameState = "ingame";
+
+		// selfMessage(lineNumber())
 
 		g_NetworkCommands["/" + key] = text =>
 		{

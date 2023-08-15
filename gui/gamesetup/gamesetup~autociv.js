@@ -164,5 +164,10 @@ function ifYouHostAndModsChangedRecomandRestoreLastProfile(){
 		}
 		const chatInput = Engine.GetGUIObjectByName("chatInput")
 		chatInput.caption = lastCommandToSetProfile;
+	}else{
+		// mods have not changed
+		const chatInput = Engine.GetGUIObjectByName("chatInput")
+		chatInput.caption = 'hi all (◕‿◕) have fun';
 	}
+
 }

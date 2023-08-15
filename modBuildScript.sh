@@ -49,6 +49,10 @@ ignoreChecks=$(jq -r '.ignoreInCompatibilityChecks' mod.json)
 dir_mod="$PWD"
 dir_mods="$PWD/.."
 dir_temp="${dir_mods}/${mod_name}${mod_version}igCoCheck=${ignoreChecks}"
+
+dir_temp_no_gamesetupmpJS="${dir_temp}_no_gamesetupmpJS"
+
+
 echo "41: dir_temp= $dir_temp"
 dir_temp2="${dir_mods}/${mod_name}_temp2"
 
@@ -79,6 +83,9 @@ echo "ignoreChecks=${ignoreChecks}"
 # Remove existing autocivP_temp directory and create a new one
 rm -rf $dir_temp
 mkdir $dir_temp
+
+rm -rf $dir_temp_no_gamesetupmpJS
+mkdir $dir_temp_no_gamesetupmpJS
 
 copy_dir_from="${dir_mod}" # Use absolute path of the source directory
 echo "copy_dir_from= $copy_dir_from"
@@ -111,8 +118,20 @@ rm -r $dir_temp/*/Copy*.*
 rm -r $dir_temp/*/*.ahk
 rm -r $dir_temp/*/*.log
 
-# optional then you could also save replays when you are host
-# rm -r $dir_temp/gui/gamesetup_mp/gamesetup_mp.js
+
+# Copy from $dir_temp to file ${dir_temp_no_gamesetupmpJS}
+cp -r $dir_temp/* ${dir_temp_no_gamesetupmpJS}
+# Remove this file then you could also save replays when you are host
+rm -r $dir_temp_no_gamesetupmpJS/gui/gamesetup_mp/gamesetup_mp.js
+
+
+exit
+
+
+
+
+
+
 
 # Count the number of files and folders in autocivP_temp (excluding the autocivP_temp directory itself)
 num_files=$(find $dir_temp -type f | wc -l)
