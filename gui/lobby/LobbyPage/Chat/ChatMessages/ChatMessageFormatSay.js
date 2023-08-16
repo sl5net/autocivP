@@ -26,11 +26,13 @@ class ChatMessageFormatSay
 		// you could get it by pressing tab in a empty chat. so you could last message in your caption. then you could copy it. often missed opterionity to copy a text.
 		// if you login in the lobby it reads all messages. later it readys the last message only
 
-		if(Engine.ConfigDB_GetValue("user", "autocivP.chat.copyAllChatMessages") !== "true" )
-			g_textSuggestedInEmptyChatWhenTabPressed = ''
+		g_chat_draft
 
-		g_textSuggestedInEmptyChatWhenTabPressed += temp.replace(/\[([^\[\]]*)\]/g, '') + "\n" ; // usually colors in usernames
-		g_textSuggestedInEmptyChatWhenTabPressed_lines++
+		if(Engine.ConfigDB_GetValue("user", "autocivP.chat.copyAllChatMessages") !== "true" )
+			g_chatTextInInputFild_when_msgCommand = ''
+
+		g_chatTextInInputFild_when_msgCommand += temp.replace(/\[([^\[\]]*)\]/g, '') + "\n" ; // usually colors in usernames
+		g_chatTextInInputFild_when_msgCommand_lines++
 
 		// warn(`22: ${g_backupMessageBeforeChangeContextViaHotkey}`);
 

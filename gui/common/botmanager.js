@@ -436,7 +436,7 @@ botManager.addBot("autociv", {
 						g_chatTextInInputFild_when_msgCommand = ''
 
 					g_chatTextInInputFild_when_msgCommand += `${text}\n`
-					g_textSuggestedInEmptyChatWhenTabPressed_lines++
+					g_chatTextInInputFild_when_msgCommand_lines++
 
 					// selfMessage(`text: ${text} gui/common/botmanager.js:${ln()}`)
 				}

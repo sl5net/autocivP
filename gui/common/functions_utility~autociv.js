@@ -115,7 +115,7 @@ const g_autoCompleteText_newMerge = (guiObject, list) => {
 
   chatInputTooltipQuickFixUpdate()
 
-    // warn(`22: last text was >${g_textSuggestedInEmptyChatWhenTabPressed}<`);
+    // warn(`22: last text was >${g_chatTextInInputFild_when_msgCommand}<`);
 
   const caption = guiObject.caption
   // let caption = guiObject.caption.trim()  // used long time to trim the caption to 23-0705_2249-00 idk if it may dangerous to trim here
@@ -154,7 +154,7 @@ const g_autoCompleteText_newMerge = (guiObject, list) => {
         guiObject.buffer_position = 0
       }
       g_chat_draft = ''
-      // g_textSuggestedInEmptyChatWhenTabPressed_lines = 0
+      // g_chatTextInInputFild_when_msgCommand_lines = 0
       g_previousCaption = guiObject.caption
       return
     }

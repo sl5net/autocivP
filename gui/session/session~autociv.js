@@ -137,7 +137,7 @@ function autociv_changeSomeHotkeysToKeyDownAsPressTypeCantBeDiscardedFromBeingCa
 				// 	g_chat_draft = ''
 
 				g_chat_draft += chatInput.caption + "\n"
-				// g_textSuggestedInEmptyChatWhenTabPressed_lines++
+				// g_chatTextInInputFild_when_msgCommand_lines++
 			}
 			that.openPage();
 		  });

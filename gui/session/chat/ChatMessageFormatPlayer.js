@@ -143,7 +143,7 @@ class ChatMessageFormatPlayer
 			g_chatTextInInputFild_when_msgCommand = ''
 
 		g_chatTextInInputFild_when_msgCommand += msg.text + "\n";
-		g_textSuggestedInEmptyChatWhenTabPressed_lines++
+		g_chatTextInInputFild_when_msgCommand_lines++
 		// variable name is for historical reasons. maybe should be changed a bit.
 		//--------------------------------------------------------------
 

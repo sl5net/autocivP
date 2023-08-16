@@ -86,10 +86,11 @@ var g_is_chatInputTooltipQuickFixUpdate_updated = false
 // const selfNick = Engine.LobbyGetNick();
 var g_selfNick = Engine.ConfigDB_GetValue("user", `playername.multiplayer`);
 
-// buzzwords: var g_chat ... g_textSuggestedInEmptyChatWhenTabPressed
+// buzzwords: var g_chat ... g_chatTextInInputFild_when_msgCommand
 var g_chat_draft = ''
+// var g_chatTextInInputFild_when_msgCommand = ''
 var g_chatTextInInputFild_when_msgCommand = ''
-var g_textSuggestedInEmptyChatWhenTabPressed_lines = 0
+var g_chatTextInInputFild_when_msgCommand_lines = 0
 
 const chatInput = Engine.GetGUIObjectByName("chatInput")
 if(chatInput)
