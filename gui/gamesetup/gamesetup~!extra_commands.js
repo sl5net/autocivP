@@ -15,10 +15,12 @@ var game = {
     // thats a nneddet trick!!! becouse sometimes the other player dont see the updates!
     // but works , but needet trick ! 23-0816_1351-04
     const playerCount_backup = g_GameSettings.playerCount.nbPlayers
-    if(playerCount_backup<8){
+    if(playerCount_backup < 9){
       const playerCount_newTemp = playerCount_backup + 1
       g_GameSettings.playerCount.nbPlayers = playerCount_newTemp
       g_GameSettings.playerCount.nbPlayers = playerCount_backup
+    }else{
+/*!SECTION todo 23-0816_1351-04*/
     }
   },
   get controls() {
