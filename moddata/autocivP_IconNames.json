@@ -3,6 +3,7 @@
    "allIcons": ["allicons", "allincon","allincons", "listIcons", "iconsall" ],
    "allIconKeys": ["alliconkeys","allinconcais","alliconskays" ],
    "timeNow": ["timenow" ],
+   "msgall": ["msgall", "msga", "msgal" ],
    "msg1": ["msg1" ],
    "msg2": ["msg2" ],
    "msg3": ["msg3" ],

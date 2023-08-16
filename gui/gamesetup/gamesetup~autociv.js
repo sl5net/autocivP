@@ -73,7 +73,7 @@ autociv_patchApplyN("init", function (target, that, args)
 
 
 
-    // selfMessage(`g_IsRatedGame: ${g_IsRatedGame} ${lineNumber()}`);
+    // selfMessage(`g_IsRatedGame: ${g_IsRatedGame} ${ln()}`);
 
     // selfMessage(`game.is.rated(): ${game.is.rated()} ${ln()}`);
 

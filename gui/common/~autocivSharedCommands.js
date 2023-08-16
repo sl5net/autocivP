@@ -11,20 +11,20 @@ function isSelfHost(){ // maybe call it in a settimeout assync function
 	let bugIt = false // new implementation so i will watch longer
 
 	if(bugIt)
-		selfMessage(`138: g_selfInHost gui/common/~autocivSharedCommands.js`);
+		selfMessage(`${ln()}: g_selfInHost gui/common/~autocivSharedCommands.js`);
 	if(g_selfIsHost === true || g_selfIsHost === false){
 		if(bugIt)
-			selfMessage(`138: g_selfInHost = ${g_selfIsHost} , gui/common/~autocivSharedCommands.js`);
+			selfMessage(`${ln()}: g_selfInHost = ${g_selfIsHost} , gui/common/~autocivSharedCommands.js`);
 		return g_selfIsHost;
 	}
 	switch (typeof g_selfIsHost) {
 		case 'undefined':
 			if(bugIt)
-				selfMessage(`140: g_selfInHost = undefined gui/common/~autocivSharedCommands.js`);
+				selfMessage(`${ln()}: g_selfInHost = undefined gui/common/~autocivSharedCommands.js`);
 			break;
 		default:
 			if(bugIt)
-				selfMessage(`141: g_selfInHost return  gui/common/~autocivSharedCommands.js`);
+				selfMessage(`${ln()}: g_selfInHost return  gui/common/~autocivSharedCommands.js`);
 			error(`148: g_selfInHost return  gui/common/~autocivSharedCommands.js`);
 			return
 	}
@@ -87,7 +87,8 @@ var g_is_chatInputTooltipQuickFixUpdate_updated = false
 var g_selfNick = Engine.ConfigDB_GetValue("user", `playername.multiplayer`);
 
 // buzzwords: var g_chat ... g_textSuggestedInEmptyChatWhenTabPressed
-var g_textSuggestedInEmptyChatWhenTabPressed = ''
+var g_chat_draft = ''
+var g_chatTextInInputFild_when_msgCommand = ''
 var g_textSuggestedInEmptyChatWhenTabPressed_lines = 0
 
 const chatInput = Engine.GetGUIObjectByName("chatInput")
@@ -218,7 +219,7 @@ function translGGWP_splitInWords_II(captionTrimed, minMatchScore){
 		// selfMessage(`Index: ${index}, Value: ${splitArray[index]}`);
 	}
 	const joinedString = splitArray.join(' ');
-	// selfMessage(`78: ${joinedString}`);
+	// selfMessage(`${ln()}: ${joinedString}`);
 	return joinedString
 }
 
@@ -230,7 +231,7 @@ function translGGWP_splitInWords_II_part2(captionTrimed, minMatchScore){
 	if(captionTrimed == '<3')
 		captionTrimed = 'love'
 
-	// selfMessage(`70: translGGWP_splitInWords_II(${captionTrimed}, ${minMatchScore})`);
+	// selfMessage(`${ln()}: translGGWP_splitInWords_II(${captionTrimed}, ${minMatchScore})`);
 
 
 	if(!minMatchScore && isDebug)
@@ -240,7 +241,7 @@ function translGGWP_splitInWords_II_part2(captionTrimed, minMatchScore){
 	}
 
 	if(isDebug)
-		selfMessage(`82: splitInWords_II()== >${captionTrimed}<`);
+		selfMessage(`${ln()}: splitInWords_II()== >${captionTrimed}<`);
 	// const regex = /\b([^‹›\s,\.!;\?]+)\b/g;
 	const regex = /\b([^‹›\s]+)\b/g;
 	// const regex2 = /(?<!\S)[><](?!\S)/g // dont work
@@ -248,7 +249,7 @@ function translGGWP_splitInWords_II_part2(captionTrimed, minMatchScore){
 
 	let allIconsInText = captionTrimed.replace(regex, match => {
 		if(isDebug)
-	  		selfMessage(`91: translGGWP_splitInWords_II()==>  ||${match}||`)
+	  		selfMessage(`${ln()}: translGGWP_splitInWords_II()==>  ||${match}||`)
 	  const translated = translGGWP_U2Gg_III(match, minMatchScore)
 	  return translated !== null ? translated : match;
 	});
@@ -257,7 +258,7 @@ function translGGWP_splitInWords_II_part2(captionTrimed, minMatchScore){
 		// Handle the standalone < or > here
 		const isDebug = false
 		if(isDebug)
-				selfMessage(`79: ${match}`);
+				selfMessage(`${ln()}: ${match}`);
 		if(!minMatchScore && isDebug)
 		{
 			selfMessage('91: minMatchScore==${minMatchScore}');
@@ -269,7 +270,7 @@ function translGGWP_splitInWords_II_part2(captionTrimed, minMatchScore){
 	  });
 
 	  if(isDebug)
-			selfMessage(`84: translGGWP_splitInWords_II()==> allIconsInText = ||${allIconsInText}||`);
+			selfMessage(`${ln()}: translGGWP_splitInWords_II()==> allIconsInText = ||${allIconsInText}||`);
 	return allIconsInText
   }
 
@@ -285,9 +286,9 @@ function transGGWP_markedStrings_I(gg, minMatchScore) {
 	let isDebug = false
 	// isDebug = true
 	if(isDebug){
-		selfMessage(`79: ____________ transGGWP_markedStrings_I() ___________`);
+		selfMessage(`${ln()}: ____________ transGGWP_markedStrings_I() ___________`);
 		// gg = "‹Good game ❧ › ";
-		selfMessage(`81: gg=>${gg}<`);
+		selfMessage(`${ln()}: gg=>${gg}<`);
 	}
 	const ggBackup = gg;
 	const markedStringRegex = /(‹[^‹›]*›)/g;
@@ -298,14 +299,14 @@ function transGGWP_markedStrings_I(gg, minMatchScore) {
 		// Handle case when no marked strings are found
 		gg = translGGWP_splitInWords_II(gg, minMatchScore);
 		if(isDebug)
-			selfMessage(`74:transGGWP_markedStrings_I()=>  gg=${gg}`);
+			selfMessage(`${ln()}:transGGWP_markedStrings_I()=>  gg=${gg}`);
 		return gg;
 	}
 
 	if (markedStrings.length === 1 && allStrings.length === 1) {
 		// Handle case when only one marked string is found
 		if(isDebug)
-		selfMessage(`80:transGGWP_markedStrings_I()=> markedStrings[0]=${markedStrings[0]}`);
+		selfMessage(`${ln()}:transGGWP_markedStrings_I()=> markedStrings[0]=${markedStrings[0]}`);
 	  return markedStrings[0]; // Return the single marked string as is
 	}
 
@@ -314,7 +315,7 @@ function transGGWP_markedStrings_I(gg, minMatchScore) {
 		// Filter out the marked strings
 		let re = [translGGWP_splitInWords_II(value, minMatchScore), markedStrings[index / 2]];
 		if(isDebug)
-			selfMessage(`88:transGGWP_markedStrings_I()=> re=>${re}<`);
+			selfMessage(`${ln()}:transGGWP_markedStrings_I()=> re=>${re}<`);
 		return re
 	  }
 	//   return value;
@@ -322,7 +323,7 @@ function transGGWP_markedStrings_I(gg, minMatchScore) {
 
 	const re = ggParts.join(''); // Concatenate the array elements without a separator
 	if(isDebug)
-		selfMessage(`93: re=${re}`);
+		selfMessage(`${ln()}: re=${re}`);
 	return re;
   }
 
@@ -337,10 +338,10 @@ function translGGWP_U2Gg_III(gg, minMatchScore) {
 	}
 
 	if(isDebug)
-		selfMessage(`169: ____________ translGGWP_U2Gg_III(${gg}, ${minMatchScore}) ___________`);
+		selfMessage(`${ln()}: ____________ translGGWP_U2Gg_III(${gg}, ${minMatchScore}) ___________`);
 	if( !minMatchScore){
 		if( g_selfNick =="seeh" ){
-			// selfMessage(`140: minMatchScore = ${minMatchScore}`);
+			// selfMessage(`${ln()}: minMatchScore = ${minMatchScore}`);
 			// error(`minMatchScore is not defined`);
 		}
 		minMatchScore = 0.8 // some value. quick fix. todo: why its empty? 23-0729_1618-01
@@ -407,7 +408,7 @@ function translGGWP_U2Gg_III(gg, minMatchScore) {
 
 	if(isDebug){
 		warn(`120: Best match for query "${query}": ##${stringWithUnicode.bestMatch}## (${stringWithUnicode.bestMatchWord})`);
-		selfMessage(`120: Best match for query "${query}": ##${stringWithUnicode.bestMatch}## (${stringWithUnicode.bestMatchWord} , ${minMatchScore})`);
+		selfMessage(`${ln()}: Best match for query "${query}": ##${stringWithUnicode.bestMatch}## (${stringWithUnicode.bestMatchWord} , ${minMatchScore})`);
 		warn('\\________________________________')
 	}
 
@@ -449,7 +450,7 @@ function saveLastCommand2History(lastCommand){
 	let isFreeHistory = false
 	for (let i = 0; i <= g_lastCommandIDmax; i++) {
 	  lastCommandID_i = i + g_lastCommandID + offset; // maybe 5 6 7 8 9
-	  if(doDebug) selfMessage(`43: lastCommandID_i = ${lastCommandID_i}`)
+	  if(doDebug) selfMessage(`${ln()}: lastCommandID_i = ${lastCommandID_i}`)
 
 	  if (lastCommandID_i > g_lastCommandIDmax)
 	  	lastCommandID_i -= g_lastCommandIDmax; // maybe 1 2 3 4
@@ -458,17 +459,17 @@ function saveLastCommand2History(lastCommand){
 			if(!needChechedIdsFromBeging){
 				isFreeHistory = true
 				break;
-				if(doDebug) selfMessage(`51: lastCommandID_i = ${lastCommandID_i}`)
+				if(doDebug) selfMessage(`${ln()}: lastCommandID_i = ${lastCommandID_i}`)
 			}
 			else
 				{
 					offset = - i - g_lastCommandID // so loop start with 0
-					if(doDebug) selfMessage(`56: lastCommandID_i = ${lastCommandID_i}`)
+					if(doDebug) selfMessage(`${ln()}: lastCommandID_i = ${lastCommandID_i}`)
 					needChechedIdsFromBeging = false
 					continue
 				}
 	  }
-	  if(doDebug) selfMessage(`61: id=${lastCommandID_i} >${lastCommand}< ???? >${lastCommand_i}<`)
+	  if(doDebug) selfMessage(`${ln()}: id=${lastCommandID_i} >${lastCommand}< ???? >${lastCommand_i}<`)
 	  if(lastCommand == lastCommand_i) // dont save it twice
 	  {
 		  // selfMessage('dont save it twice');
@@ -483,8 +484,8 @@ function saveLastCommand2History(lastCommand){
 	g_lastCommand = lastCommand;
 	ConfigDB_CreateAndSaveValueA26A27("user", `autocivP.chat.lastCommand${g_lastCommandID}`, g_lastCommand);
 	ConfigDB_CreateAndSaveValueA26A27("user", `autocivP.chat.g_lastCommandID`, g_lastCommandID);
-	// selfMessage(`53: g_lastCommandID = ${g_lastCommandID} saved`);
-	if(doDebug) selfMessage(`77: id=${g_lastCommandID}  >${g_lastCommand}< saved`);
+	// selfMessage(`${ln()}: g_lastCommandID = ${g_lastCommandID} saved`);
+	if(doDebug) selfMessage(`${ln()}: id=${g_lastCommandID}  >${g_lastCommand}< saved`);
 	return;
   }
 
@@ -629,7 +630,7 @@ BTW list of functions: https://trac.wildfiregames.com/wiki/EngineFunctions
 		"description": "whats Time now hoursMinute",
 		"handler": () =>
 		{
-			// selfMessage(`423: whatstimeNow`)
+			// selfMessage(`${ln()}: whatstimeNow`)
 			// warn(`423: whatstimeNow`)
 
 			const today = new Date();
@@ -642,7 +643,7 @@ BTW list of functions: https://trac.wildfiregames.com/wiki/EngineFunctions
 			chatInput.caption = text; // for some reasons this is not working in lobby at the moment 23-0724_0958-02. its ignored
 			chatInput.buffer_position = text.length
 			// if(g_selfNick =="seeh") //NOTE - 23-0705_2302-57 developers want to see the error in the console
-			// 	selfMessage(`422: whatstimeNow: ${text} (gui/common/~autocivSharedCommands.js)`);
+			// 	selfMessage(`${ln()}: whatstimeNow: ${text} (gui/common/~autocivSharedCommands.js)`);
 		}
 	},
 	"timenow" : {
@@ -664,7 +665,7 @@ BTW list of functions: https://trac.wildfiregames.com/wiki/EngineFunctions
 				chatInput.caption = text; // for some reasons this is not working in lobby at the moment 23-0724_0958-02. its ignored
 			}
 			if(g_selfNick =="seeh") //NOTE - 23-0705_2302-57 developers want to see the error in the console
-				selfMessage(`449: timenow: ${text} (gui/common/~autocivSharedCommands.js)`);
+				selfMessage(`${ln()}: timenow: ${text} (gui/common/~autocivSharedCommands.js)`);
 		}
 	},
 	"modsImCurrentlyUsing": {
@@ -878,7 +879,7 @@ autociv_InitSharedCommands.pipe = {
 				// autociv_focus.chatInput
 
 				if(g_selfNick =="seeh"){ //NOTE - 23-0705_2302-57 developers want to see more
-					selfMessage(`619: SharedCommands: '${key}' = '${text}'`)
+					selfMessage(`${ln()}: SharedCommands: '${key}' = '${text}'`)
 				}
 				return true
 			}
@@ -934,7 +935,7 @@ autociv_InitSharedCommands.pipe = {
 			let bugIt = false // new implementation so i will watch longer
 			// bugIt = true && g_selfNick =="seeh" // new implementation so i will watch longer
 			if(bugIt){
-				// selfMessage(`rated(): ${g_GameSettings.rating.enabled} - gui/common/~autocivSharedCommands.js : ${lineNumber()}`)
+				// selfMessage(`rated(): ${g_GameSettings.rating.enabled} - gui/common/~autocivSharedCommands.js : ${ln()}`)
 				selfMessage(`${ln()}: rated: ${g_InitAttributes.settings.RatingEnabled === true} - gui/common/~autocivSharedCommands.js : ${ln()}`)
 			}
 		}
@@ -942,13 +943,13 @@ autociv_InitSharedCommands.pipe = {
 		if(gameState != "ingame"
 		&& !g_IsObserver
 		&& !g_IsReplay){
-			// selfMessage(`g_selfNick: ${g_selfNick} - ${lineNumber()}`)
+			// selfMessage(`g_selfNick: ${g_selfNick} - ${ln()}`)
 			if(Engine.GetPlayerGUID() === undefined
 			||	g_PlayerAssignments[Engine.GetPlayerGUID()] === undefined
 			|| g_PlayerAssignments[Engine.GetPlayerGUID()].name.indexOf('|') == -1){
-				// selfMessage(`name: ${g_PlayerAssignments[Engine.GetPlayerGUID()].name} - ${lineNumber()}`)
+				// selfMessage(`name: ${g_PlayerAssignments[Engine.GetPlayerGUID()].name} - ${ln()}`)
 
-				// selfMessage(`g_IsReplay: ${g_IsReplay} - ${lineNumber()}`)
+				// selfMessage(`g_IsReplay: ${g_IsReplay} - ${ln()}`)
 
 				const modEnabledmods = Engine.ConfigDB_GetValue(
 					"user",
@@ -982,7 +983,7 @@ autociv_InitSharedCommands.pipe = {
 
 		gameState = "ingame";
 
-		// selfMessage(lineNumber())
+		// selfMessage(ln())
 
 		g_NetworkCommands["/" + key] = text =>
 		{
@@ -1471,7 +1472,7 @@ function findBestMatch(query, fuzzyArray, minMatchScore = 0.3) {
   function ln() {
 	// return 55555555;
 
-	// const lineNumber = getLineNumber();
+	// const lineNumber = getln();
 	// warn(lineNumber); // Output: Line number where 'getLineNumber' function is called
 
 	const e = new Error();

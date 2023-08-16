@@ -140,9 +140,9 @@ class ChatMessageFormatPlayer
 		// warn(`137: msg.text is ${msg.text}`);
 
 		if(Engine.ConfigDB_GetValue("user", "autocivP.chat.copyAllChatMessages") !== "true" )
-			g_textSuggestedInEmptyChatWhenTabPressed = ''
+			g_chatTextInInputFild_when_msgCommand = ''
 
-		g_textSuggestedInEmptyChatWhenTabPressed += msg.text + "\n";
+		g_chatTextInInputFild_when_msgCommand += msg.text + "\n";
 		g_textSuggestedInEmptyChatWhenTabPressed_lines++
 		// variable name is for historical reasons. maybe should be changed a bit.
 		//--------------------------------------------------------------

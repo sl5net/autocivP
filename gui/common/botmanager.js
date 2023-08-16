@@ -433,15 +433,15 @@ botManager.addBot("autociv", {
 					|| (isWithOneSpaces && text.length > 5)
 					|| text.length > 18){
 					if(Engine.ConfigDB_GetValue("user", "autocivP.chat.copyAllChatMessages") !== "true" )
-						g_textSuggestedInEmptyChatWhenTabPressed = ''
+						g_chatTextInInputFild_when_msgCommand = ''
 
-					g_textSuggestedInEmptyChatWhenTabPressed += `${text}\n`
+					g_chatTextInInputFild_when_msgCommand += `${text}\n`
 					g_textSuggestedInEmptyChatWhenTabPressed_lines++
 
-					// selfMessage(`text: ${text} gui/common/botmanager.js:${lineNumber()}`)
+					// selfMessage(`text: ${text} gui/common/botmanager.js:${ln()}`)
 				}
 			}
-			// selfMessage(`text: ${text} gui/common/botmanager.js:${lineNumber()}`)
+			// selfMessage(`text: ${text} gui/common/botmanager.js:${ln()}`)
 			return text.trim().split(" ")[0].toLowerCase();
 		} // end-of-clean function
 
@@ -451,7 +451,7 @@ botManager.addBot("autociv", {
 		// if(doDebug)
 		// 	warn(`clean: ${clean} gui/common/botmanager.js:396`)
 		if(bugIt){
-			const debugMsg = `g_text: ${g_textSuggestedInEmptyChatWhenTabPressed} gui/common/botmanager.js:396`
+			const debugMsg = `g_text: ${g_chatTextInInputFild_when_msgCommand} gui/common/botmanager.js:396`
 			selfMessage(`${debugMsg}`)
 		}
 

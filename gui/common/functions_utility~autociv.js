@@ -126,7 +126,7 @@ const g_autoCompleteText_newMerge = (guiObject, list) => {
 
 
   if(bugIt)
-    selfMessage(`127: ${caption.toLowerCase()} = ${caption}      gui/common/functions_utility~autociv.js`) //TODO - add to json tab-commands
+    selfMessage(`${ln()}: ${caption.toLowerCase()} = ${caption}      gui/common/functions_utility~autociv.js`) //TODO - add to json tab-commands
 
 
   // End of caption is maybe not empty
@@ -134,25 +134,27 @@ const g_autoCompleteText_newMerge = (guiObject, list) => {
   // if(!caption) // trigers when no caption content is in
   if (!caption.length){ // trigers when no caption content is in
     if(bugIt)
-      selfMessage(`135: ${caption} = ${caption} gui/common/functions_utility~autociv.js`)
+      selfMessage(`${ln()}: ${caption} = ${caption} gui/common/functions_utility~autociv.js`)
 
-    if( g_textSuggestedInEmptyChatWhenTabPressed.length > 0 ) // this fixes the problem with changing chat context via hotkey a bit. it saves last chat context temporarily and but it in again when you press tab 23-0724_1543-57
+
+
+    if( g_chat_draft.length > 0 ) // this fixes the problem with changing chat context via hotkey a bit. it saves last chat context temporarily and but it in again when you press tab 23-0724_1543-57
     {
       if(bugIt){
-        const debugMsg = `139: g_textSuggestedInEmptyChatWhenTabPressed = ${g_textSuggestedInEmptyChatWhenTabPressed}   gui/common/functions_utility~autociv.js`
+        const debugMsg = `139: g_chat_draft = ${g_chat_draft}   gui/common/functions_utility~autociv.js`
         selfMessage(debugMsg)
       }
 
       if(gameState == 'ingame'){
         // in this state we want super careful
-        guiObject.caption = truncateString( g_textSuggestedInEmptyChatWhenTabPressed.trim(), 80 )
+        guiObject.caption = truncateString( g_chat_draft.trim(), 80 )
         guiObject.buffer_position = 0
       }else{
-        guiObject.caption = g_textSuggestedInEmptyChatWhenTabPressed.trim()
+        guiObject.caption = g_chat_draft.trim()
         guiObject.buffer_position = 0
       }
-      g_textSuggestedInEmptyChatWhenTabPressed = ''
-      g_textSuggestedInEmptyChatWhenTabPressed_lines = 0
+      g_chat_draft = ''
+      // g_textSuggestedInEmptyChatWhenTabPressed_lines = 0
       g_previousCaption = guiObject.caption
       return
     }
@@ -164,34 +166,40 @@ const g_autoCompleteText_newMerge = (guiObject, list) => {
   }
 
 
-  // selfMessage(`122:  '${g_lastCommand}' `);
+  // selfMessage(`${ln()}:  '${g_lastCommand}' `);
 
 
   if(caption?.length ){
 
     if(g_previousCaption == 'communityModToggle'){
       if(bugIt)
-        selfMessage(`164: now now now   gui/common/functions_utility~autociv.js `);
+        selfMessage(`${ln()}: now now now   gui/common/functions_utility~autociv.js `);
         captionCheck_is_communityModToggle_optional_restartOad(caption, true)
     }
 
     if(captionCheck_is_communityModToggle_optional_restartOad(caption, false)){
       if(bugIt)
-        selfMessage(`211: communitymodtoggle  gui/common/functions_utility~autociv.js `);
+        selfMessage(`${ln()}: communitymodtoggle  gui/common/functions_utility~autociv.js `);
 
       g_previousCaption = 'communityModToggle' // next time it should be restart then and do the chanches
       guiObject.caption = 'communityModToggle' // for some reason that i dont understand must be now lowercase not communityModToggle
       return
     }
 
-    if(g_textSuggestedInEmptyChatWhenTabPressed){
+    if(g_chatTextInInputFild_when_msgCommand.length > 0){
+      if (caption.toLowerCase() == 'msgall') {
+        guiObject.caption = g_chatTextInInputFild_when_msgCommand
+        g_previousCaption = guiObject.caption
+        guiObject.buffer_position = 0 //  lastLinesString.length;
+        return
+      }
       const match = caption.toLowerCase().match(/msg(\d+)/);
       if (match) {
         saveLastCommand2History(caption)
         const number = match[1];
         // Handle the extracted number
-        // selfMessage('gui/common/functions_utility~autociv.js ' + lineNumber())
-        const linesArray = g_textSuggestedInEmptyChatWhenTabPressed.trim().split('\n');
+        // selfMessage('gui/common/functions_utility~autociv.js ' + ln())
+        const linesArray = g_chatTextInInputFild_when_msgCommand.trim().split('\n');
         const lastLines = linesArray.slice(-number);
         const lastLinesString = lastLines.join('\n');
         guiObject.caption = lastLinesString
@@ -199,8 +207,7 @@ const g_autoCompleteText_newMerge = (guiObject, list) => {
         guiObject.buffer_position = 0 //  lastLinesString.length;
 
         ConfigDB_CreateAndSaveValueA26A27("user", "autocivP.chat.copyAllChatMessages", "true"); // if want select messages from all you net th have all chat messages first/next. => so set the flag to true
-
-    return
+        return
       }
     }
 
@@ -259,14 +266,14 @@ const g_autoCompleteText_newMerge = (guiObject, list) => {
 
     const firstChar = caption.toString().charAt(0); // or str[0]
 
-    // selfMessage(`203: doppelPosting? '${g_lastCommand}' `);
-    // selfMessage(`126: g_lastCommand = '${g_lastCommand}' , caption = '${caption}' `);
+    // selfMessage(`${ln()}: doppelPosting? '${g_lastCommand}' `);
+    // selfMessage(`${ln()}: g_lastCommand = '${g_lastCommand}' , caption = '${caption}' `);
 
     if(bugIt)
       selfMessage(`${ln()}: '${g_previousCaption}' ?= '${caption}'  gui/common/functions_utility~autociv.js `);
 
     if(g_previousCaption == caption){ // g_lastCommand
-      // selfMessage(`207: doppelPosting? '${g_lastCommand}' gui/common/functions_utility~autociv.js `);
+      // selfMessage(`${ln()}: doppelPosting? '${g_lastCommand}' gui/common/functions_utility~autociv.js `);
 
       const firstChar = caption.charAt(0); // or str[0]
       if(firstChar.match(/[‹›]/) ){
@@ -307,14 +314,14 @@ const g_autoCompleteText_newMerge = (guiObject, list) => {
       return // such result should not be saved in the command history. therefore return
     }else{
       if(bugIt)
-        selfMessage(`232: doppelPosting? '${g_lastCommand}' gui/common/functions_utility~autociv.js `);
+        selfMessage(`${ln()}: doppelPosting? '${g_lastCommand}' gui/common/functions_utility~autociv.js `);
         g_previousCaption = guiObject.caption
 
     }
 
   }else{
     if(bugIt)
-      selfMessage(`247:  gui/common/functions_utility~autociv.js `);
+      selfMessage(`${ln()}:  gui/common/functions_utility~autociv.js `);
 
     if(autoCompleteText_firstTry_eg_userName_civName(guiObject, caption, list)){
       g_previousCaption = guiObject.caption
@@ -331,13 +338,13 @@ const g_autoCompleteText_newMerge = (guiObject, list) => {
       let captionTrimed = captionBegin.substring(g_iconPrefix.length)
       const minMatchScore = (captionTrimed.length > 20) ? 0.8 : (g_iconPrefix.length ? 0.3 :  0.55 ) // user name will be replaced later. i want have .3 but some users dont be found so easy ... hmmm // user name will be replaced later. i want have .3 but some users dont be found so easy ... hmmm // user name will be replaced later. i want have .3 but some users dont be found so easy ... hmmm
 
-      // selfMessage(`220: gameState '${gameState}' `);
+      // selfMessage(`${ln()}: gameState '${gameState}' `);
       if(gameState == "ingame"){
        // Help me ☞here
        const pattern = /^help\b/i;
        const hasPattern = pattern.test(guiObject.caption);
        if(hasPattern){
-        //  selfMessage(`204: gameState '${gameState}' `);
+        //  selfMessage(`${ln()}: gameState '${gameState}' `);
          captionTrimed = 'helpme' // ingame ist much more importand when help pings other team players then list all the commands via the /help command. more important to have a easy comunication with team. make sure that thiy keyword is still i the json file
        }
      }
@@ -368,7 +375,7 @@ const g_autoCompleteText_newMerge = (guiObject, list) => {
             const pattern = /\d+ \w+ please/;
             const hasPattern = pattern.test(allIconsInText);
             if(hasPattern){
-              // selfMessage(`287: gameState '${gameState}' `);
+              // selfMessage(`${ln()}: gameState '${gameState}' `);
               return
             }
           }
@@ -389,7 +396,7 @@ const g_autoCompleteText_newMerge = (guiObject, list) => {
 
           if( true ){
             // ‹away from keyboard
-            // selfMessage(`264: away from keyboard`)
+            // selfMessage(`${ln()}: away from keyboard`)
             const pattern = /away from keyboard/;
             const hasPattern = pattern.test(allIconsInText);
             if(hasPattern){
@@ -417,11 +424,11 @@ const g_autoCompleteText_newMerge = (guiObject, list) => {
       }
     }
     // if(g_lastCommand == caption){
-    //   selfMessage(`180: doppelPosting? '${g_lastCommand}' `);
+    //   selfMessage(`${ln()}: doppelPosting? '${g_lastCommand}' `);
     //   setCaption2nextCommandOfHistory(guiObject)
     // }
     if(g_previousCaption == caption ){ // || g_lastCommand == caption
-      // selfMessage(`183: doppelPosting? '${g_lastCommand}' `);
+      // selfMessage(`${ln()}: doppelPosting? '${g_lastCommand}' `);
       if(setCaption2nextCommandOfHistory(guiObject)){
 
         g_previousCaption = guiObject.caption
@@ -437,7 +444,7 @@ const g_autoCompleteText_newMerge = (guiObject, list) => {
   // let minimapPanel = Engine.GetGUIObjectByName("minimapPanel")
   // minimapPanel.children[2].focus();
   // let objName = 'flar'
-  // selfMessage(`204: ${objName} = ${objName}`)
+  // selfMessage(`${ln()}: ${objName} = ${objName}`)
 
   g_previousCaption = caption
 
@@ -1090,7 +1097,7 @@ function setCaption2LastCommandOfHistory(guiObject){
         return false
 
     if(doDebug)
-      selfMessage(`1007: lastCommand = ${lastCommand}`)
+      selfMessage(`${ln()}: lastCommand = ${lastCommand}`)
 
     g_previousCaption = guiObject.caption
     guiObject.caption = lastCommand
@@ -1107,14 +1114,14 @@ function setCaption2LastCommandOfHistory(guiObject){
 function setCaption2nextCommandOfHistory(guiObject){
   let nextID = getNextLastCommandID()
   g_lastCommandID = nextID;
-  // selfMessage(`947: >>>>>>>>${g_lastCommandID}<<<<<<<< ' = g_lastCommandID`);
-  // selfMessage(`939: nextID = ${nextID}'  gui/common/functions_utility~autociv.js`);
+  // selfMessage(`${ln()}: >>>>>>>>${g_lastCommandID}<<<<<<<< ' = g_lastCommandID`);
+  // selfMessage(`${ln()}: nextID = ${nextID}'  gui/common/functions_utility~autociv.js`);
   let nextCommand = Engine.ConfigDB_GetValue("user", `autocivP.chat.lastCommand${nextID}`);
-  // selfMessage(`941: >>>${nextCommand}<<<  gui/common/functions_utility~autociv.js`);
+  // selfMessage(`${ln()}: >>>${nextCommand}<<<  gui/common/functions_utility~autociv.js`);
   // autocivP.chat.lastCommand4 = "jajaja"
 
   // if(isSelfHost() != true)
-  //   selfMessage(`1007: g_selfInHost = ${g_selfInHost}`)
+  //   selfMessage(`${ln()}: g_selfInHost = ${g_selfInHost}`)
 
 
   // if(gameState == "ingame" || isSelfHost() != true){ // obsolete
@@ -1131,9 +1138,9 @@ function setCaption2nextCommandOfHistory(guiObject){
   {
           nextID = 0
           nextCommand = Engine.ConfigDB_GetValue("user", `autocivP.chat.lastCommand${nextID}`);
-          // selfMessage(`761: nextID = ${nextID}, g_lastCommandID = ${g_lastCommandID}, nextCommand = ${nextCommand}`);
+          // selfMessage(`${ln()}: nextID = ${nextID}, g_lastCommandID = ${g_lastCommandID}, nextCommand = ${nextCommand}`);
           g_lastCommandID = nextID;
-          // selfMessage(`951: ${g_lastCommandID}' = g_lastCommandID  gui/common/functions_utility~autociv.js`);
+          // selfMessage(`${ln()}: ${g_lastCommandID}' = g_lastCommandID  gui/common/functions_utility~autociv.js`);
           if(!(nextCommand?.length))
             return false
   }
@@ -1144,7 +1151,7 @@ function setCaption2nextCommandOfHistory(guiObject){
       // caption = nextCommand ;
       g_previousCaption = guiObject.caption
       guiObject.caption = nextCommand; // use of guiObject.caption not caption solved a seldom critical crash
-      // selfMessage(`761: nextID = ${nextID}, g_lastCommandID = ${g_lastCommandID}, nextCommand = ${nextCommand}`);
+      // selfMessage(`${ln()}: nextID = ${nextID}, g_lastCommandID = ${g_lastCommandID}, nextCommand = ${nextCommand}`);
       return true;
   }
   // selfMessage('never heppens? 23-0628_1307-15')
