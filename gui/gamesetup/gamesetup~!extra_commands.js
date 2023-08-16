@@ -12,13 +12,14 @@ var game = {
     // g_SetupWindow.controls.gameSettingsController.updateGameAttributes()
     // g_SetupWindow.controls.gameSettingsController.setNetworkGameAttributes()
 
-
     // thats a nneddet trick!!! becouse sometimes the other player dont see the updates!
     // but works , but needet trick ! 23-0816_1351-04
     const playerCount_backup = g_GameSettings.playerCount.nbPlayers
-    const playerCount_newTemp = (playerCount_backup === 8) ? 7 : 8
-    g_GameSettings.playerCount.nbPlayers = playerCount_newTemp
-    g_GameSettings.playerCount.nbPlayers = playerCount_backup
+    if(playerCount_backup<8){
+      const playerCount_newTemp = playerCount_backup + 1
+      g_GameSettings.playerCount.nbPlayers = playerCount_newTemp
+      g_GameSettings.playerCount.nbPlayers = playerCount_backup
+    }
   },
   get controls() {
     return g_SetupWindow.pages.GameSetupPage.gameSettingControlManager
