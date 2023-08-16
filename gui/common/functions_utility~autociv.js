@@ -120,10 +120,12 @@ const g_autoCompleteText_newMerge = (guiObject, list) => {
   const caption = guiObject.caption
   // let caption = guiObject.caption.trim()  // used long time to trim the caption to 23-0705_2249-00 idk if it may dangerous to trim here
 
-	let doDebug = false // debug session
-	// doDebug = true // debug session
+  let bugIt = false // new implementation so i will watch longer
+	// bugIt = true &&  g_selfNick.includes("seeh") // new implementation so i will watch longer
 
-  if(doDebug)
+
+
+  if(bugIt)
     selfMessage(`127: ${caption.toLowerCase()} = ${caption}      gui/common/functions_utility~autociv.js`) //TODO - add to json tab-commands
 
 
@@ -131,12 +133,12 @@ const g_autoCompleteText_newMerge = (guiObject, list) => {
 
   // if(!caption) // trigers when no caption content is in
   if (!caption.length){ // trigers when no caption content is in
-    if(doDebug)
+    if(bugIt)
       selfMessage(`135: ${caption} = ${caption} gui/common/functions_utility~autociv.js`)
 
     if( g_textSuggestedInEmptyChatWhenTabPressed.length > 0 ) // this fixes the problem with changing chat context via hotkey a bit. it saves last chat context temporarily and but it in again when you press tab 23-0724_1543-57
     {
-      if(doDebug){
+      if(bugIt){
         const debugMsg = `139: g_textSuggestedInEmptyChatWhenTabPressed = ${g_textSuggestedInEmptyChatWhenTabPressed}   gui/common/functions_utility~autociv.js`
         selfMessage(debugMsg)
       }
@@ -168,13 +170,13 @@ const g_autoCompleteText_newMerge = (guiObject, list) => {
   if(caption?.length ){
 
     if(g_previousCaption == 'communityModToggle'){
-      if(doDebug)
+      if(bugIt)
         selfMessage(`164: now now now   gui/common/functions_utility~autociv.js `);
         captionCheck_is_communityModToggle_optional_restartOad(caption, true)
     }
 
     if(captionCheck_is_communityModToggle_optional_restartOad(caption, false)){
-      if(doDebug)
+      if(bugIt)
         selfMessage(`211: communitymodtoggle  gui/common/functions_utility~autociv.js `);
 
       g_previousCaption = 'communityModToggle' // next time it should be restart then and do the chanches
@@ -260,9 +262,8 @@ const g_autoCompleteText_newMerge = (guiObject, list) => {
     // selfMessage(`203: doppelPosting? '${g_lastCommand}' `);
     // selfMessage(`126: g_lastCommand = '${g_lastCommand}' , caption = '${caption}' `);
 
-    if(doDebug)
-      selfMessage(`223: '${g_previousCaption}' ?= '${caption}'  gui/common/functions_utility~autociv.js `);
-
+    if(bugIt)
+      selfMessage(`${ln()}: '${g_previousCaption}' ?= '${caption}'  gui/common/functions_utility~autociv.js `);
 
     if(g_previousCaption == caption){ // g_lastCommand
       // selfMessage(`207: doppelPosting? '${g_lastCommand}' gui/common/functions_utility~autociv.js `);
@@ -274,11 +275,15 @@ const g_autoCompleteText_newMerge = (guiObject, list) => {
 
       }
 
-      if(doDebug)
-        selfMessage(`233: doppelPosting? '${g_lastCommand}' | captionCheck_is_communityModToggle_optional_restartOad |  gui/common/functions_utility~autociv.js `);
+      if(bugIt)
+        selfMessage(`${ln()}: doppelPosting? '${g_lastCommand}' | captionCheck_is_communityModToggle_optional_restartOad |  gui/common/functions_utility~autociv.js `);
       captionCheck_is_communityModToggle_optional_restartOad(caption, true) // if is communitymodtoggle restart
 
-      if(setCaption2nextCommandOfHistory(guiObject)){
+      if(bugIt)
+        selfMessage(`${ln()}: tries = ${autoCompleteText.state.tries} |  gui/common/functions_utility~autociv.js `);
+
+
+      if(autoCompleteText.state.tries !=1 && setCaption2nextCommandOfHistory(guiObject)){
         g_previousCaption = caption
         return
       }
@@ -294,17 +299,21 @@ const g_autoCompleteText_newMerge = (guiObject, list) => {
   // Engine.ConfigDB_CreateAndSaveValue("user", "autocivP.chat.lastCommand", caption); // is not a function error in Version a26 aut 23-0605_1920-25
   const sameTry = ( autoCompleteText.state.newCaption == caption )
   if (sameTry){
+
+    if(bugIt)    selfMessage(`autoCompleteText.state.tries = ${autoCompleteText.state.tries} ${ln()}`);
+
+
     if(autoCompleteText_sameTry_eg_userName_civName(guiObject, list)){
       return // such result should not be saved in the command history. therefore return
     }else{
-      if(doDebug)
+      if(bugIt)
         selfMessage(`232: doppelPosting? '${g_lastCommand}' gui/common/functions_utility~autociv.js `);
         g_previousCaption = guiObject.caption
 
     }
 
   }else{
-    if(doDebug)
+    if(bugIt)
       selfMessage(`247:  gui/common/functions_utility~autociv.js `);
 
     if(autoCompleteText_firstTry_eg_userName_civName(guiObject, caption, list)){
@@ -368,6 +377,7 @@ const g_autoCompleteText_newMerge = (guiObject, list) => {
           guiObject.caption = allIconsInText
 
           guiObject.buffer_position = isCaptionNumeric ? 2 : allIconsInText.length;
+
           // sets the buffer/corsor position to the beginning
 
           if(gameState == "ingame"){
@@ -487,13 +497,20 @@ function autoCompleteText_sameTry_eg_userName_civName(guiObject, list)
  */
 function autoCompleteText_firstTry_eg_userName_civName(guiObject, caption, list)
 {
+  let bugIt = false // new implementation so i will watch longer
+  // bugIt = true &&  g_selfNick.includes("seeh") // new implementation so i will watch longer
+
   const buffer_position = guiObject.buffer_position
   autoCompleteText.state.buffer_position = buffer_position
   autoCompleteText.state.oldCaption = caption
   autoCompleteText.state.tries = 0
 
   const textBeforeBuffer = caption.substring(0, buffer_position)
+  if(bugIt)
+    selfMessage(`textBeforeBuffer = ${textBeforeBuffer} ${ln()}`);
   const completedText = tryAutoComplete(textBeforeBuffer, list, autoCompleteText.state.tries++)
+  if(bugIt)
+    selfMessage(`completedText = ${completedText} ${ln()}`);
   const newCaptionText = completedText + caption.substring(buffer_position)
 
   autoCompleteText.state.newCaption = newCaptionText
@@ -501,7 +518,17 @@ function autoCompleteText_firstTry_eg_userName_civName(guiObject, caption, list)
   try{
     guiObject.caption = newCaptionText
     guiObject.focus();
-    guiObject.buffer_position = buffer_position + (completedText.length - textBeforeBuffer.length)
+
+    // guiObject.buffer_position = buffer_position + (completedText.length - textBeforeBuffer.length)
+
+    guiObject.buffer_position = (textBeforeBuffer.length)
+
+
+
+    if(bugIt){
+      selfMessage(`buffer_position = ${guiObject.buffer_position} ${ln()}`);
+      selfMessage(`textBeforeBuffer = ${textBeforeBuffer} ${ln()}`);
+    }
 
     if(textBeforeBuffer != completedText ){ // || g_lastCommand == caption
       return true

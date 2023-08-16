@@ -13,14 +13,13 @@ var game = {
     // g_SetupWindow.controls.gameSettingsController.setNetworkGameAttributes()
 
     // thats a nneddet trick!!! becouse sometimes the other player dont see the updates!
-    // but works , but needet trick ! 23-0816_1351-04
+    // but works. btw its possible to set it to  9. dont worry , but needet trick ! 23-0816_1351-04
+    /*!SECTION todo: maybe find a more pretty solution then this trick, but seems work pretty well 23-0816_1351-04*/
     const playerCount_backup = g_GameSettings.playerCount.nbPlayers
     if(playerCount_backup < 9){
       const playerCount_newTemp = playerCount_backup + 1
       g_GameSettings.playerCount.nbPlayers = playerCount_newTemp
       g_GameSettings.playerCount.nbPlayers = playerCount_backup
-    }else{
-/*!SECTION todo 23-0816_1351-04*/
     }
   },
   get controls() {
@@ -941,7 +940,7 @@ function setDefaultsforPopmaxAlliedviewRatingTreasuresNomadExploration(sendMessa
   // selfMessage(`res= ${resources}`);
 
 
-  selfMessage(`your last used profile id was: ${g_lastCommandID} ${lineNumber()} `);
+  selfMessage(`your last used profile id was: ${g_lastCommandID} ${ln()} `);
 
 
 

@@ -935,7 +935,7 @@ autociv_InitSharedCommands.pipe = {
 			bugIt = true && g_selfNick =="seeh" // new implementation so i will watch longer
 			if(bugIt){
 				// selfMessage(`rated(): ${g_GameSettings.rating.enabled} - gui/common/~autocivSharedCommands.js : ${lineNumber()}`)
-				selfMessage(`rated: ${g_InitAttributes.settings.RatingEnabled === true} - gui/common/~autocivSharedCommands.js : ${lineNumber()}`)
+				selfMessage(`rated: ${g_InitAttributes.settings.RatingEnabled === true} - gui/common/~autocivSharedCommands.js : ${ln()}`)
 			}
 		}
 
@@ -973,7 +973,7 @@ autociv_InitSharedCommands.pipe = {
 					const text = `Mods I use: ${modEnabledmods.slice(11)}`
 					// const text = `Mods I use: ${modEnabledmods.slice(11)}. \nSome say it's important for others to know \nwhich mods I use when game starts.`
 					sendMessage(text)
-					selfMessage(`game.is.rated(): ${game.is.rated()} - ${lineNumber()}`)
+					// selfMessage(`game.is.rated(): ${game.is.rated()} - ${ln()}`)
 				}
 
 
@@ -1468,7 +1468,7 @@ function findBestMatch(query, fuzzyArray, minMatchScore = 0.3) {
    * https://stackoverflow.com/a/27074218/2891692
    * @return {number} The line number where the 'getLineNumber' function is called.
    */
-  function lineNumber() {
+  function ln() {
 	// return 55555555;
 
 	// const lineNumber = getLineNumber();

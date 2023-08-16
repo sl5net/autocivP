@@ -75,7 +75,7 @@ autociv_patchApplyN("init", function (target, that, args)
 
     // selfMessage(`g_IsRatedGame: ${g_IsRatedGame} ${lineNumber()}`);
 
-    selfMessage(`game.is.rated(): ${game.is.rated()} ${lineNumber()}`);
+    // selfMessage(`game.is.rated(): ${game.is.rated()} ${ln()}`);
 
 
 	g_selfIsHost = g_IsController // Synonymous variable with g_IsController. for easier to find
@@ -173,13 +173,13 @@ function setCaptionWhenJoinOrStartGameSetup(){
 			selfMessage(`your last used profile was: ${lastCommandProfile}`);
 			newCaptionString = (lastCommandProfile) ? '/pRestoreLastProfile' : '/help /p'
 			if(bugIt)
-			warn(`newCaptionString: ${newCaptionString}, lineNumber: ${lineNumber()}`);
+			warn(`newCaptionString: ${newCaptionString}, lineNumber: ${ln()}`);
 		}else{
 			// your not host
 			// if(doHelloAutomaticSuggestionWhenJoinAgameSetup)
 			newCaptionString = 'hi all (◕‿◕)'
 			if(bugIt)
-			warn(`newCaptionString: ${newCaptionString}, lineNumber: ${lineNumber()}`);
+			warn(`newCaptionString: ${newCaptionString}, lineNumber: ${ln()}`);
 		}
 	}else{
 		// mods have not changed
@@ -188,19 +188,19 @@ function setCaptionWhenJoinOrStartGameSetup(){
 				newCaptionString = '/help /p'
 				// newCaptionString = '(◕‿◕) good luck with setup';
 				if(bugIt)
-			warn(`newCaptionString: ${newCaptionString}, lineNumber: ${lineNumber()}`);
+			warn(`newCaptionString: ${newCaptionString}, lineNumber: ${ln()}`);
 		}else{
 			// your not host
 			if(doHelloAutomaticSuggestionWhenJoinAgameSetup)
 				newCaptionString = 'hi all (◕‿◕)'
 				if(bugIt)
-			warn(`newCaptionString: ${newCaptionString}, lineNumber: ${lineNumber()}`);
+			warn(`newCaptionString: ${newCaptionString}, lineNumber: ${ln()}`);
 
 		}
 	}
 
 	if(bugIt)
-		warn(`newCaptionString: ${newCaptionString}, lineNumber: ${lineNumber()}`);
+		warn(`newCaptionString: ${newCaptionString}, lineNumber: ${ln()}`);
 
 	if(newCaptionString){
 		const chatInput = Engine.GetGUIObjectByName("chatInput")

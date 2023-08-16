@@ -358,6 +358,11 @@ class Autociv_CLI
 		}
 	}
 
+	/**
+	 * Sets the selected suggestion in the GUI.
+	 *
+	 * @return {void}
+	 */
 	setSelectedSuggestion()
 	{
 		if (this.GUI.suggestions.selected == -1)
