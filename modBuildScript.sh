@@ -48,13 +48,12 @@ ignoreChecks=$(jq -r '.ignoreInCompatibilityChecks' mod.json)
 
 dir_mod="$PWD"
 dir_mods="$PWD/.."
-dir_temp="${dir_mods}/${mod_name}${mod_version}igCoCheck=${ignoreChecks}"
-
-dir_temp_no_gamesetupmpJS="${dir_temp}_no_gamesetupmpJS"
-
+dir_temp="${dir_mods}/${mod_name}${mod_version}_igCoCheck${ignoreChecks}"
 
 echo "41: dir_temp= $dir_temp"
 dir_temp2="${dir_mods}/${mod_name}_temp2"
+
+dir_temp_no_gamesetupmpJS="${dir_temp}_noMpJS"
 
 # Clean the file path
 dir_mod=$(realpath "$(readlink -f "$dir_mod")")
@@ -62,6 +61,8 @@ dir_mods=$(realpath "$(readlink -f "$dir_mods")")
 echo "47: dir_temp= $dir_temp"
 dir_temp=$(realpath "$(readlink -f "$dir_temp")")
 dir_temp2=$(realpath "$(readlink -f "$dir_temp2")")
+
+dir_temp_no_gamesetupmpJS=$(realpath "$(readlink -f "$dir_temp_no_gamesetupmpJS")")
 
 echo "PWD= $PWD"
 echo "dir_mod= $dir_mod"
@@ -125,7 +126,6 @@ cp -r $dir_temp/* ${dir_temp_no_gamesetupmpJS}
 rm -r $dir_temp_no_gamesetupmpJS/gui/gamesetup_mp/gamesetup_mp.js
 
 
-exit
 
 
 
@@ -142,10 +142,21 @@ echo "Number of folders in ${dir_temp}: $num_folders"
 rm -rf ${dir_mods}/${mod_name}.zip
 rm -rf ${dir_mods}/${mod_name}_doubleZipedLikeMostModsWhenInUse.zip
 
+
 cd ${dir_temp}
 echo "zip -r ${dir_mods}/${mod_name}_temp.zip ."
 zip -r ${dir_mods}/${mod_name}_temp.zip .  # _readyForUploadToModIo.zip
 
+
+
+# Create a zip file for mod without mpJS
+rm -rf ${dir_temp_no_gamesetupmpJS}.zip
+cd ${dir_temp_no_gamesetupmpJS}
+echo "zip -r ${dir_temp_no_gamesetupmpJS}.zip ."
+zip -r ${dir_temp_no_gamesetupmpJS}.zip .
+
+
+exit
 
 
 # _readyForUploadToModIo
