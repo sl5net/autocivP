@@ -3,6 +3,7 @@ var g_gameMapMapPrevious = null; // help prefent/debugging a errors, at the mome
 
 // warn('Loaded gamesetup~!extra_commands.js'); // is not defined. but later it will be
 
+
 var game = {
   // stuff that needs to be updated after the gui updates it (as it removes it before it)
   // undefined will mean it doesnt exist
@@ -10,6 +11,14 @@ var game = {
   updateSettings() {
     // g_SetupWindow.controls.gameSettingsController.updateGameAttributes()
     // g_SetupWindow.controls.gameSettingsController.setNetworkGameAttributes()
+
+
+    // thats a nneddet trick!!! becouse sometimes the other player dont see the updates!
+    // but works , but needet trick ! 23-0816_1351-04
+    const playerCount_backup = g_GameSettings.playerCount.nbPlayers
+    const playerCount_newTemp = (playerCount_backup === 8) ? 7 : 8
+    g_GameSettings.playerCount.nbPlayers = playerCount_newTemp
+    g_GameSettings.playerCount.nbPlayers = playerCount_backup
   },
   get controls() {
     return g_SetupWindow.pages.GameSetupPage.gameSettingControlManager
@@ -282,7 +291,6 @@ g_NetworkCommands["/versionNr"] = (match) => { // if textAllSometing is somethin
   chatInput.focus()
   chatInput.caption = `i use autocivP Version is ${g_autocivPVersion} in 0ad ${version0ad}`
 }
-
 
 g_NetworkCommands["/iconsList"] = (match) => { // if textAllSometing is something then its will be sendet to all team. not only for yourself
   selfMessage(transGGWP_markedStrings_I('allicons'))
@@ -568,6 +576,10 @@ function pExtinct_volcano_defaults() {
     "maps/random/extinct_volcano",
     "generic/temperate"
   );
+
+
+  // warning("extinct_volcano"); // thats n
+
   //   #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Sliders/SeaLevelRiseTime.js:38
   // msgid "Sea Level Rise Time"
   // g_GameSettings.SeaLevelRiseTime = 10; // no error but no effect. extinct_volcano SeaLevelRiseTime
@@ -866,8 +878,20 @@ function setMapTypeFilterNameBiome(name, biome, type = "random", filter = "defau
     filter;
   g_GameSettings.map.selectMap(name);
   g_GameSettings.biome.setBiome(biome);
+
+  game.updateSettings(); // thats needet? that other player see my changes?? for test you nee open 2 player!!! you only could test it if you see both player view
+
+  game.updateSettings(); // thats needet? that other player see my changes?? for test you nee open 2 player!!! you only could test it if you see both player view
+
+  game.updateSettings(); // thats needet? that other player see my changes?? for test you nee open 2 player!!! you only could test it if you see both player view
+
+  game.updateSettings(); // thats needet? that other player see my changes?? for test you nee open 2 player!!! you only could test it if you see both player view
+
   return selfMessage(`map = ${name}`);
 }
+
+
+
 function setDefaultsforPopmaxAlliedviewRatingTreasuresNomadExploration(sendMessageToAll = true){ // forPopmaxAlliedviewRatingTreasuresNomadExploration
   // this function also is(should) always used when a map/profile config is changing 23-0624_1433-08
 
@@ -914,7 +938,11 @@ function setDefaultsforPopmaxAlliedviewRatingTreasuresNomadExploration(sendMessa
   // selfMessage(`res= ${resources}`);
 
 
-  // selfMessage(`your last used profile id was: ${g_lastCommandID} `); // const lastCommand1 = Engine.ConfigDB_GetValue("user", `autocivP.chat.lastCommand${lastCommandID}`);
+  selfMessage(`your last used profile id was: ${g_lastCommandID} ${lineNumber()} `);
+
+
+
+  // const lastCommand1 = Engine.ConfigDB_GetValue("user", `autocivP.chat.lastCommand${lastCommandID}`);
   // const lastCommand = Engine.ConfigDB_GetValue("user", `autocivP.chat.lastCommand${g_lastCommandID}`);
   // selfMessage(`your last used profile was: ${g_lastCommand}`);
 
