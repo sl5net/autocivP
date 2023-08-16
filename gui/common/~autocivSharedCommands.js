@@ -929,13 +929,13 @@ autociv_InitSharedCommands.pipe = {
 		}
 
 		//TODO - delete it later 23-0815_2249-29
-		if(gameState != "ingame"){
+		if(gameState != "ingame"){ // to make sure this command is not now already set. later it will be
 
 			let bugIt = false // new implementation so i will watch longer
-			bugIt = true && g_selfNick =="seeh" // new implementation so i will watch longer
+			// bugIt = true && g_selfNick =="seeh" // new implementation so i will watch longer
 			if(bugIt){
 				// selfMessage(`rated(): ${g_GameSettings.rating.enabled} - gui/common/~autocivSharedCommands.js : ${lineNumber()}`)
-				selfMessage(`rated: ${g_InitAttributes.settings.RatingEnabled === true} - gui/common/~autocivSharedCommands.js : ${ln()}`)
+				selfMessage(`${ln()}: rated: ${g_InitAttributes.settings.RatingEnabled === true} - gui/common/~autocivSharedCommands.js : ${ln()}`)
 			}
 		}
 

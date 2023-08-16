@@ -1,6 +1,6 @@
 {
-   "/help /p": ["help", "search", "profiles", "iconsall" ],
-   "allIcons": ["allicons", "allincon","allincons", "listIcons" ],
+   "/help /p": ["help", "search", "profiles" ],
+   "allIcons": ["allicons", "allincon","allincons", "listIcons", "iconsall" ],
    "allIconKeys": ["alliconkeys","allinconcais","alliconskays" ],
    "timeNow": ["timenow" ],
    "msg1": ["msg1" ],

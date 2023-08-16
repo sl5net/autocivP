@@ -453,6 +453,10 @@ const g_autoCompleteText_newMerge = (guiObject, list) => {
  */
 function autoCompleteText_sameTry_eg_userName_civName(guiObject, list)
 {
+
+  let bugIt = false // new implementation so i will watch longer
+  bugIt = true &&  g_selfNick.includes("seeh") // new implementation so i will watch longer
+
   const textBeforeBuffer = autoCompleteText.state.oldCaption.substring(0, autoCompleteText.state.buffer_position)
   const completedText = tryAutoComplete(textBeforeBuffer, list, autoCompleteText.state.tries++)
   const newCaptionText = completedText + autoCompleteText.state.oldCaption.substring(autoCompleteText.state.buffer_position)
@@ -471,13 +475,18 @@ function autoCompleteText_sameTry_eg_userName_civName(guiObject, list)
     // saveLastCommand2History(newCaptionText);     // not everything should be saved. only the important commands. not all chat content
   } catch (error) {
     // happens in the lobby console when double press tab 23-0622_2013-26
-    if(g_selfNick =="seeh"){ //NOTE - 23-0705_2302-57 developers want to see the error in the console
+    if(bugIt){ //NOTE - 23-0705_2302-57 developers want to see the error in the console
       error('double pressed tab to fast?')
       warn(error.message)
       warn(error.stack)
     }
   }
-  guiObject.buffer_position = autoCompleteText.state.buffer_position + (completedText.length - textBeforeBuffer.length)
+
+  if(guiObject.caption.charAt(0) !== '/') {  // if you want toggle through the / commands it should be different from the the behavior wen you pink somebody
+    if(bugIt)
+      selfMessage(`${ln()}: textBeforeBuffer = '${textBeforeBuffer}' gui/common/functions_utility~autociv.js`)
+    guiObject.buffer_position = autoCompleteText.state.buffer_position + (completedText.length - textBeforeBuffer.length)
+  }
 
   if(textBeforeBuffer != completedText ){ // || g_lastCommand == caption
     // warn(`370: true`)
@@ -506,28 +515,50 @@ function autoCompleteText_firstTry_eg_userName_civName(guiObject, caption, list)
   autoCompleteText.state.tries = 0
 
   const textBeforeBuffer = caption.substring(0, buffer_position)
-  if(bugIt)
-    selfMessage(`textBeforeBuffer = ${textBeforeBuffer} ${ln()}`);
-  const completedText = tryAutoComplete(textBeforeBuffer, list, autoCompleteText.state.tries++)
-  if(bugIt)
-    selfMessage(`completedText = ${completedText} ${ln()}`);
+  if(bugIt){
+    selfMessage(`${ln()}: \n\n gui/common/functions_utility~autociv.js`);
+    selfMessage(`${ln()}: textBeforeBuffer = ${textBeforeBuffer}`);
+  }
+  let completedText = tryAutoComplete(textBeforeBuffer, list, autoCompleteText.state.tries++)
+  if(caption.charAt(0) !== '/') {
+    const usernamePattern = /^[\S]+\s\([^()]*\)/i;
+    // const username = "seeh (1205)";
+
+    if (usernamePattern.test(completedText))
+      completedText += ' ' // e.g. username ith a space helps to fast write next text
+
+  }
+
   const newCaptionText = completedText + caption.substring(buffer_position)
 
+
+
   autoCompleteText.state.newCaption = newCaptionText
+
+  if(bugIt){
+    selfMessage(`${ln()}: completedText = ${completedText}`);
+    selfMessage(`${ln()}: tries = ${autoCompleteText.state.tries}`);
+    selfMessage(`${ln()}: newCaptionText = ${newCaptionText}`);
+    selfMessage(`${ln()}: completedText = ${completedText}`);
+  }
 
   try{
     guiObject.caption = newCaptionText
     guiObject.focus();
 
-    // guiObject.buffer_position = buffer_position + (completedText.length - textBeforeBuffer.length)
-
-    guiObject.buffer_position = (textBeforeBuffer.length)
-
-
+    if(caption.charAt(0) === '/') {
+      if(bugIt)      selfMessage(`${ln()}: -----------------------------------------`)
+      // asumption that are slash commands maybe you want toggle through them
+      // guiObject.buffer_position = (textBeforeBuffer.length)
+    }else{
+      if(bugIt)      selfMessage(`${ln()}: =========================================`)
+      // if you want ping a user the cursor should be later at the end
+      guiObject.buffer_position = buffer_position + (completedText.length - textBeforeBuffer.length)
+    }
 
     if(bugIt){
-      selfMessage(`buffer_position = ${guiObject.buffer_position} ${ln()}`);
-      selfMessage(`textBeforeBuffer = ${textBeforeBuffer} ${ln()}`);
+      selfMessage(`${ln()}: buffer_position = ${guiObject.buffer_position}`);
+      selfMessage(`${ln()}: textBeforeBuffer = ${textBeforeBuffer}`);
     }
 
     if(textBeforeBuffer != completedText ){ // || g_lastCommand == caption
@@ -542,9 +573,6 @@ function autoCompleteText_firstTry_eg_userName_civName(guiObject, caption, list)
   }
   return false
 }
-
-
-
 
 /*!SECTION
 autoCompleteText cannot renamed in:

@@ -883,12 +883,6 @@ function setMapTypeFilterNameBiome(name, biome, type = "random", filter = "defau
 
   game.updateSettings(); // thats needet? that other player see my changes?? for test you nee open 2 player!!! you only could test it if you see both player view
 
-  game.updateSettings(); // thats needet? that other player see my changes?? for test you nee open 2 player!!! you only could test it if you see both player view
-
-  game.updateSettings(); // thats needet? that other player see my changes?? for test you nee open 2 player!!! you only could test it if you see both player view
-
-  game.updateSettings(); // thats needet? that other player see my changes?? for test you nee open 2 player!!! you only could test it if you see both player view
-
   return selfMessage(`map = ${name}`);
 }
 
