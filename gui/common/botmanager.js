@@ -108,16 +108,16 @@ class BotManager
 			"pipe": function (msg)
 			{
 				let bugIt = false // new implementation so i will watch longer
-				bugIt = true &&  g_selfNick.includes("seeh") // experimental
+				// bugIt = true &&  g_selfNick.includes("seeh") // experimental
 
 				if(msg.guid && bugIt){
 					if(bugIt)
-						warn(`${ln()}: TODO only when capton is empty. Welcome on board`)
+						warn(`${ln()}: TODO only when capton is empty. Welcome on board (gui/common/botmanager.js)`)
 					const chatInput = Engine.GetGUIObjectByName("chatInput")
-					if(chatInput
+					if(chatInput && chatInput.caption == ""
 						&& msg.guid != Engine.GetPlayerGUID()
 						&& !(playerIsGreeted.includes(msg.guid))){
-							    let bugIt = false // new implementation so i will watch longer
+						// new implementation so i will watch longer
     // bugIt = true &&  g_selfNick.includes("seeh") // new implementation so i will watch longer
 
 						chatInput.focus()

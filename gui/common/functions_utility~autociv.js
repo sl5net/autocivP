@@ -168,7 +168,7 @@ const g_autoCompleteText_newMerge = (guiObject, list) => {
  if( inputCopySearchReults(guiObject) )
   return
 
-  // selfMessage(`${ln()}:  '${g_lastCommand}' `);
+//   selfMessage(`${ln()}:  '${g_lastCommand}' `);
 
 
   if(caption?.length ){

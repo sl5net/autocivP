@@ -722,6 +722,10 @@ BTW list of functions: https://trac.wildfiregames.com/wiki/EngineFunctions
 			if (player == "")
 				return selfMessage("You need to type a nick to mute player at all places with chat.")
 			let nick = splitRatingFromNick(player).nick;
+
+			if(nick == g_selfNick)
+				return selfMessage("not allowed to mute yourself ${g_selfNick}.")
+
 			botManager.get("mute").instance.setValue(nick, nick);
 			selfMessage(`You have muted ${nick}.`);
 		}
