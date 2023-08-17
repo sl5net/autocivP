@@ -125,7 +125,7 @@ class BotManager
 
 							if(doHelloAutomaticSuggestionWhenJoinAgameSetup){
 								chatInput.focus()
-								chatInput.caption = (g_IsController) ? `Welcome on board ${nick}` : `(◕‿◕)`
+								chatInput.caption = (g_IsController) ? `Welcome on board ${nick}` : ``
 								playerIsGreeted.push(msg.guid);
 								selfMessage(`you dont want see this message? \n Game > Settings > Options > Personalization > auto hello Suggestion = false`);
 														}
