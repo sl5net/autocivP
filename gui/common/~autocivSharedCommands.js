@@ -198,7 +198,7 @@ function chatInputTooltipQuickFixUpdate() {
 	const tab = '⟦Tab⟧'
 	const chatInput = Engine.GetGUIObjectByName("chatInput")
 	if(chatInput){
-	  chatInput.tooltip += ` Or try ${tab}  to autocomplete commands for select profile, chosen icons ( /iconsList ☯ ♪♣‹) or other commands. Write "⁄help" or  "⁄help  ⁄∖d" or  "⁄help ⁄p" for more info about "/" commands.\n`
+	  chatInput.tooltip += ` Or try ${tab}  to autocomplete commands for select profile, chosen icons ( allicons+${tab} ☯ ♪♣‹) or other commands. Write "⁄help" or  "⁄help  ⁄∖d" or  "⁄help ⁄p" for more info about "/" commands.\n`
 	  chatInput.tooltip += ' Matching algorithm is more strict when text is longer.\n'
 	  chatInput.tooltip += 'Use uppercase to temporarily reduce the sensitivity of the substitutions mechanism\n'
 	  chatInput.tooltip += `Use ${tab} in empty chat to 1. Copy a chat message that was posted to you. 2. Retrieve your chat draft.`
