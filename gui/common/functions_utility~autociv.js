@@ -1216,6 +1216,11 @@ function inputCopySearchReults(chatInput){
   if(!inFilterMode)
     return false
 
+  if(text == "s?" && chatInput.buffer_position > 0){
+    chatInput.caption += g_selfNick
+    return true
+  }
+
   let chatText = Engine.GetGUIObjectByName("chatText")
   if(!chatText){
     // chatText = chatInput // has no list property ingame state
