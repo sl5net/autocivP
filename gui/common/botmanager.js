@@ -127,8 +127,8 @@ class BotManager
 								chatInput.focus()
 								chatInput.caption = (g_IsController) ? `Welcome on board ${nick}` : ``
 								playerIsGreeted.push(msg.guid);
-								selfMessage(`you dont want see this message? \n Game > Settings > Options > Personalization > auto hello Suggestion = false`);
-														}
+								// selfMessage(`you dont want see this message? \n Game > Settings > Options > Personalization > auto hello Suggestion = false`);
+							}
 
 						}
 					}
