@@ -90,7 +90,16 @@ var game = {
       playerCount.onSelectionChange(itemIdx);
     },
     player: {
+
+
       civ: (playerName, playerCivCode) => {
+
+        let bugIt = false // new implementation so i will watch longer
+        // bugIt = true &&  g_selfNick.includes("seeh") // new implementation so i will watch longer
+
+        if(bugIt)
+          selfMessage(`${ln()}: playerName = ${playerName}`)
+
         let playerPos = game.get.player.pos(playerName);
         if (playerPos === undefined || playerPos == -1) return;
 
