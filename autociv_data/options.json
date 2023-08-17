@@ -527,6 +527,12 @@
 				"label": "[color=\"220 185 70\"]message[/color] my URL. write Meurl⟦Tab⟧",
 				"tooltip": "write Meurl⟦Tab⟧  meUrl⟦Tab⟧ . some need to share a URL often. e.g. youtuber",
 				"config": "autocivP.msg.meURL"
+			},
+			{
+				"type": "string",
+				"label": "[color=\"220 185 70\"]message[/color] max join & leave messages in lobby",
+				"tooltip": "Remove all lobby join & leave messages except the last 30 ones (default) or ?",
+				"config": "maxJoinLeaveMessagesInLobby"
 			}
 
 		]

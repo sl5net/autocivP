@@ -7,7 +7,12 @@ autociv_patchApplyN(XmppMessages.prototype, "handleMessages", function (target, 
     // Remove all lobby join & leave messages except the last 30 ones
     {
         let count = 0
-        const max = 30
+
+        const maxJoinLeaveMessagesInLobby = parseInt(Engine.ConfigDB_GetValue("user", "autocivP.msg.maxJoinLeaveMessagesInLobby"))
+
+        const max = isNaN(maxJoinLeaveMessagesInLobby) ? 30 : maxJoinLeaveMessagesInLobby
+
+
         that.autociv_messageQueue.reverse()
         that.autociv_messageQueue = that.autociv_messageQueue.filter(msg =>
         {
