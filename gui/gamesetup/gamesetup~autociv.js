@@ -185,17 +185,22 @@ function setCaptionWhenJoinOrStartGameSetup(){
 	}else{
 		// mods have not changed
 		if(g_selfIsHost){
-			if(doHelloAutomaticSuggestionWhenJoinAgameSetup)
+			if(doHelloAutomaticSuggestionWhenJoinAgameSetup){
 				newCaptionString = '/help /p'
+				selfMessage(`you dont want see this message? \n Game > Settings > Options > Personalization > auto hello Suggestion = false`);
+			}
+
 				// newCaptionString = '(◕‿◕) good luck with setup';
 				if(bugIt)
-			warn(`newCaptionString: ${newCaptionString}, lineNumber: ${ln()}`);
+					warn(`newCaptionString: ${newCaptionString}, lineNumber: ${ln()}`);
 		}else{
 			// your not host
-			if(doHelloAutomaticSuggestionWhenJoinAgameSetup)
+			if(doHelloAutomaticSuggestionWhenJoinAgameSetup){
 				newCaptionString = 'hi all (◕‿◕)'
-				if(bugIt)
-			warn(`newCaptionString: ${newCaptionString}, lineNumber: ${ln()}`);
+				selfMessage(`you dont want see this message? \n Game > Settings > Options > Personalization > auto hello Suggestion = false`);
+			}
+			if(bugIt)
+				warn(`newCaptionString: ${newCaptionString}, lineNumber: ${ln()}`);
 
 		}
 	}
