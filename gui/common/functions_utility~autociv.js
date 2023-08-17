@@ -1216,7 +1216,12 @@ function inputCopySearchReults(chatInput){
   if(!inFilterMode)
     return false
 
-  const chatText = Engine.GetGUIObjectByName("chatText")
+  let chatText = Engine.GetGUIObjectByName("chatText")
+  if(!chatText){
+    // chatText = chatInput // has no list property ingame state
+    chatInput.caption = g_chatTextInInputFild_when_msgCommand
+    return true
+  }
 
   // warn(`${ln()} buffer_position: ${chatInput.buffer_position}`)
   let chatStr = ''
