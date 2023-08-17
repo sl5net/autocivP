@@ -108,23 +108,29 @@ class BotManager
 			"pipe": function (msg)
 			{
 				let bugIt = false // new implementation so i will watch longer
-				// bugIt = true &&  g_selfNick.includes("seeh") // experimental
+				bugIt = true &&  g_selfNick.includes("seeh") // experimental
 
-				if(msg.guid && bugIt){
-					if(bugIt)
-						warn(`${ln()}: TODO only when capton is empty. Welcome on board (gui/common/botmanager.js)`)
+				if(msg.guid){
 					const chatInput = Engine.GetGUIObjectByName("chatInput")
-					if(chatInput && chatInput.caption == ""
-						&& msg.guid != Engine.GetPlayerGUID()
-						&& !(playerIsGreeted.includes(msg.guid))){
-						// new implementation so i will watch longer
-    // bugIt = true &&  g_selfNick.includes("seeh") // new implementation so i will watch longer
+					if(chatInput && chatInput.caption == ""){
+						const nick = splitRatingFromNick(g_PlayerAssignments[msg.guid].name).nick
 
-						chatInput.focus()
-						chatInput.caption = `Welcome on board ` + splitRatingFromNick(g_PlayerAssignments[msg.guid].name).nick
+						if( nick != g_selfNick
+							&& !(playerIsGreeted.includes(msg.guid))){
+							// new implementation so i will watch longer
+							// bugIt = true &&  g_selfNick.includes("seeh") // new implementation so i will watch longer
+							// assumtion you are the host and a new plyer did fist think (message or selecint or so)
 
-						playerIsGreeted.push(msg.guid);
+							const doHelloAutomaticSuggestionWhenJoinAgameSetup = Engine.ConfigDB_GetValue("user", "autocivP.msg.helloAutomaticSuggestionWhenJoinAgameSetup") === "true"
 
+							if(doHelloAutomaticSuggestionWhenJoinAgameSetup){
+								chatInput.focus()
+								chatInput.caption = (g_IsController) ? `Welcome on board ${nick}` : `(◕‿◕)`
+								playerIsGreeted.push(msg.guid);
+								selfMessage(`you dont want see this message? \n Game > Settings > Options > Personalization > auto hello Suggestion = false`);
+														}
+
+						}
 					}
 
 				}
