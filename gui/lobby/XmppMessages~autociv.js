@@ -1,4 +1,7 @@
 // Chop the quantity of messages to process in a tick
+
+const maxJoinLeaveMessagesInLobby = parseInt(Engine.ConfigDB_GetValue("user", "autocivP.msg.maxJoinLeaveMessagesInLobby"))
+
 autociv_patchApplyN(XmppMessages.prototype, "handleMessages", function (target, that, args)
 {
     const [getMessages] = args
@@ -8,10 +11,8 @@ autociv_patchApplyN(XmppMessages.prototype, "handleMessages", function (target, 
     {
         let count = 0
 
-        const maxJoinLeaveMessagesInLobby = parseInt(Engine.ConfigDB_GetValue("user", "autocivP.msg.maxJoinLeaveMessagesInLobby"))
-
         const max = isNaN(maxJoinLeaveMessagesInLobby) ? 30 : maxJoinLeaveMessagesInLobby
-
+        // warn(`${ln}: max is ${max} (gui/lobby/XmppMessages~autociv.js)`) // not a good place for waarn messages
 
         that.autociv_messageQueue.reverse()
         that.autociv_messageQueue = that.autociv_messageQueue.filter(msg =>
