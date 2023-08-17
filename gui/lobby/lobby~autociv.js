@@ -205,6 +205,12 @@ function initChatFilterInput()
 		return res
 	})
 
+	/*NOTE - Search with "s?"
+	This code snippet is an event handler that is triggered when the user types in a chat input.
+	It checks if the text in the chat input starts with "s?".
+	If so, it updates the chatText.list to only display items that include the search text.
+	If the user is not in filter mode, it restores the original list of chat items.
+	*/
 	// This might cause some other functionality to stop working
 	chatInput.onTextEdit = () =>
 	{
@@ -221,6 +227,7 @@ function initChatFilterInput()
 			active = true
 			searchText = text.slice(2).trimStart()
 			chatText.list = originalList.filter(t => t.includes(searchText))
+			warn('cursor at beginning + [tab] ==> chat is copied to the chat text')
 		}
 		else
 		{

@@ -33,6 +33,7 @@ var g_autociv_hotkeys = {
 function handleInputBeforeGui(ev)
 {
 	g_resizeBarManager.onEvent(ev);
+	// warn(`${ln()}: handleInputBeforeGui`);
 	return false;
 }
 

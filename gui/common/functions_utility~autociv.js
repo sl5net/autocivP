@@ -165,6 +165,8 @@ const g_autoCompleteText_newMerge = (guiObject, list) => {
     }
   }
 
+ if( inputCopySearchReults(guiObject) )
+  return
 
   // selfMessage(`${ln()}:  '${g_lastCommand}' `);
 
@@ -188,7 +190,7 @@ const g_autoCompleteText_newMerge = (guiObject, list) => {
 
     if(g_chatTextInInputFild_when_msgCommand.length > 0){
       if (caption.toLowerCase() == 'msgall') {
-        guiObject.caption = g_chatTextInInputFild_when_msgCommand
+        guiObject.caption = g_chatTextInInputFild_when_msgCommand.trim()
         g_previousCaption = guiObject.caption
         guiObject.buffer_position = 0 //  lastLinesString.length;
         return
@@ -462,7 +464,7 @@ function autoCompleteText_sameTry_eg_userName_civName(guiObject, list)
 {
 
   let bugIt = false // new implementation so i will watch longer
-  bugIt = true &&  g_selfNick.includes("seeh") // new implementation so i will watch longer
+  // bugIt = true &&  g_selfNick.includes("seeh") // new implementation so i will watch longer
 
   const textBeforeBuffer = autoCompleteText.state.oldCaption.substring(0, autoCompleteText.state.buffer_position)
   const completedText = tryAutoComplete(textBeforeBuffer, list, autoCompleteText.state.tries++)
@@ -1198,4 +1200,29 @@ function truncateString(str, num) {
   } else {
     return str;
   }
+}
+
+
+function inputCopySearchReults(chatInput){
+  /**
+ * when:
+ * 1. the tab key is pressed in the chat input.
+ * 2. startsWith("s?")
+ * 3. cursor is at the beginning of the chat input ==> chat is copied to the chat text
+ */
+  // warn(`${ln()} buffer_position: ${chatInput.buffer_position}`)
+  const text = chatInput.caption
+  const inFilterMode = text.startsWith("s?")
+  if(!inFilterMode)
+    return false
+
+  const chatText = Engine.GetGUIObjectByName("chatText")
+
+  // warn(`${ln()} buffer_position: ${chatInput.buffer_position}`)
+  let chatStr = ''
+  chatText.list.filter(t => {
+    chatStr += t.replace(/\[.*?\]/g, '');
+  })
+  chatInput.caption = chatStr
+  return true
 }
