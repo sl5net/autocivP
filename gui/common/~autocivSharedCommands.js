@@ -945,6 +945,7 @@ autociv_InitSharedCommands.pipe = {
 			}
 		}
 
+		// to check thats first moment and not already set to "ingame"
 		if(gameState != "ingame"
 		&& !g_IsObserver
 		&& !g_IsReplay){
@@ -962,17 +963,19 @@ autociv_InitSharedCommands.pipe = {
 				);
 
 
+
 				const isRated = g_InitAttributes.settings.RatingEnabled === true
 
-				const doRatedDefaultAutoupdate = ( Engine.ConfigDB_GetValue("user", "autocivP.gamesetup.gameStart.doRatedDefaultAutoupdate") === "true" )
+				if(g_IsController){ // for your next setup becouse you are host
+					const doRatedDefaultAutoupdate = ( Engine.ConfigDB_GetValue("user", "autocivP.gamesetup.gameStart.doRatedDefaultAutoupdate") === "true" )
 
-				if(doRatedDefaultAutoupdate){
-					const isRatedDefault = ( Engine.ConfigDB_GetValue("user", "autocivP.gamesetup.ratedDefault") === "true" )
-					// maybe update then rated default.
-					if(isRatedDefault != isRated)
-						ConfigDB_CreateAndSaveValueA26A27("user", "autocivP.gamesetup.ratedDefault", isRated)
+					if(doRatedDefaultAutoupdate){
+						const isRatedDefault = ( Engine.ConfigDB_GetValue("user", "autocivP.gamesetup.ratedDefault") === "true" )
+						// maybe update then rated default.
+						if(isRatedDefault != isRated)
+							ConfigDB_CreateAndSaveValueA26A27("user", "autocivP.gamesetup.ratedDefault", isRated)
+					}
 				}
-
 
 				// for more fairplay if isRated, some mods should be visible as text message when the user name not already show that this mod is used
 				if(isRated && modEnabledmods.indexOf("proGUI") > -1){
