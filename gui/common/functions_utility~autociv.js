@@ -1007,7 +1007,7 @@ function captionIs_modsImCurrentlyUsing(guiObject){ // this function will be tri
     "mod.enabledmods"
   );
   // sendMessage(`Mods I'm currently using: ${modEnabledmods.slice(11,)}` );
-  let text = `Mods I'm currently using: ${modEnabledmods.slice(11,)}`
+  let text = `Mods I'm currently using: ${modEnabledmods.slice(11,)} ${g_previous_autocivPVersion}`;
   text = text.replace('feldmap', 'feldmap♒') //  ♡ autocivP❧♣▦▣ mod
 
   text = text.replace('proGUI', 'proGUI★') //  ♡ autocivP❧♣▦▣ mod

@@ -673,6 +673,10 @@ BTW list of functions: https://trac.wildfiregames.com/wiki/EngineFunctions
 		"description": "Mods I'm currently using. Or try without the postfix '/' and at the end of the command ⟦Tab⟧",
 		"handler": () =>
 		{
+
+
+
+
 			if( gameState == "ingame" )
 				selfMessage("for show Mods I'm currently using during a ingame chat, remove / and press ⟦Tab⟧");
 
@@ -681,7 +685,7 @@ BTW list of functions: https://trac.wildfiregames.com/wiki/EngineFunctions
 				"mod.enabledmods"
 			);
 			// sendMessage(`Mods I'm currently using: ${modEnabledmods.slice(11,)}` );
-			const text = `Mods I'm currently using: ${modEnabledmods.slice(11,)}`
+			const text = `Mods I'm currently using: ${modEnabledmods.slice(11,)} ${g_previous_autocivPVersion}`;
 			const chatInput = Engine.GetGUIObjectByName("chatInput")
 			chatInput.focus()
 			chatInput.caption = text
