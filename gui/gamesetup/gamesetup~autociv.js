@@ -215,9 +215,10 @@ function setCaptionWhenJoinOrStartGameSetup(){
 
 
 					}
-					newCaptionString = `hi ${countPlayers > 2 ? 'all ': hostName + ' ' }(◕‿◕).` //  good luck with setup
+					newCaptionString = `hi ${countPlayers > 2 ? 'all ': hostName + ' ' }(◕‿◕). ` //  good luck with setup
 					const chatInput = Engine.GetGUIObjectByName("chatInput")
 					chatInput.caption = newCaptionString
+					chatInput.buffer_position = newCaptionString.length
 					selfMessage(`you dont want see this message? \n Game > Settings > Options > Personalization > auto hello Suggestion = false`);
 				}, 15);
 			}
