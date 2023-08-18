@@ -186,7 +186,7 @@ function setCaptionWhenJoinOrStartGameSetup(){
 		// mods have not changed
 		if(g_selfIsHost){
 			if(doHelloAutomaticSuggestionWhenJoinAgameSetup){
-				newCaptionString = '/help /p'
+				newCaptionString = '' // /help /p
 				selfMessage(`you dont want see this message? \n Game > Settings > Options > Personalization > auto hello Suggestion = false`);
 			}
 
@@ -196,7 +196,8 @@ function setCaptionWhenJoinOrStartGameSetup(){
 		}else{
 			// your not host
 			if(doHelloAutomaticSuggestionWhenJoinAgameSetup){
-				newCaptionString = 'hi all (◕‿◕)'
+				const countPlayers = Object.keys(g_PlayerAssignments).length;
+				newCaptionString = `hi ${countPlayers > 1 ? 'all ':''}(◕‿◕)`
 				selfMessage(`you dont want see this message? \n Game > Settings > Options > Personalization > auto hello Suggestion = false`);
 			}
 			if(bugIt)
