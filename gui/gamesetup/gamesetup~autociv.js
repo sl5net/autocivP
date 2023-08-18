@@ -184,6 +184,10 @@ function setCaptionWhenJoinOrStartGameSetup(){
 		}
 	}else{
 		// mods have not changed
+		const countPlayers = Object.keys(g_PlayerAssignments).length;
+		selfMessage(`countPlayers: ${countPlayers}`);
+
+
 		if(g_selfIsHost){
 			if(doHelloAutomaticSuggestionWhenJoinAgameSetup){
 				newCaptionString = '' // /help /p
@@ -196,9 +200,15 @@ function setCaptionWhenJoinOrStartGameSetup(){
 		}else{
 			// your not host
 			if(doHelloAutomaticSuggestionWhenJoinAgameSetup){
-				const countPlayers = Object.keys(g_PlayerAssignments).length;
-				newCaptionString = `hi ${countPlayers > 1 ? 'all ':''}(◕‿◕)`
-				selfMessage(`you dont want see this message? \n Game > Settings > Options > Personalization > auto hello Suggestion = false`);
+				setTimeout(() => {
+					const countPlayers = Object.keys(g_PlayerAssignments).length;
+					 // is always 0 first when not waiting
+					 // dont forget count yourself
+					newCaptionString = `hi ${countPlayers > 2 ? 'all ':''}(◕‿◕).` //  good luck with setup
+					const chatInput = Engine.GetGUIObjectByName("chatInput")
+					chatInput.caption = newCaptionString
+					selfMessage(`you dont want see this message? \n Game > Settings > Options > Personalization > auto hello Suggestion = false`);
+				}, 15);
 			}
 			if(bugIt)
 				warn(`newCaptionString: ${newCaptionString}, lineNumber: ${ln()}`);
