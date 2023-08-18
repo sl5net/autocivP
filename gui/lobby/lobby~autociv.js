@@ -225,8 +225,17 @@ function initChatFilterInput()
 		if (inFilterMode)
 		{
 			active = true
+
 			searchText = text.slice(2).trimStart()
-			chatText.list = originalList.filter(t => t.includes(searchText))
+			if(false){
+				chatText.list = originalList.filter(t => t.includes(searchText))
+			}else{ // new. regex offers more options
+				const regex = new RegExp(searchText);
+				warn(searchText)
+				chatText.list = originalList.filter(t => regex.test(t));
+			}
+
+
 			warn('cursor at beginning + [tab] ==> chat is copied to the chat text')
 		}
 		else
