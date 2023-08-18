@@ -202,9 +202,20 @@ function setCaptionWhenJoinOrStartGameSetup(){
 			if(doHelloAutomaticSuggestionWhenJoinAgameSetup){
 				setTimeout(() => {
 					const countPlayers = Object.keys(g_PlayerAssignments).length;
+					// selfMessage(`countPlayers: ${countPlayers}`);
 					 // is always 0 first when not waiting
 					 // dont forget count yourself
-					newCaptionString = `hi ${countPlayers > 2 ? 'all ':''}(◕‿◕).` //  good luck with setup
+					// let hostName = Engine.LobbyGetNick()
+					let hostName = ''
+					if(countPlayers == 2){
+
+						const firstPlayerGUID = Object.keys(g_PlayerAssignments)[0];
+						hostName = g_PlayerAssignments[firstPlayerGUID].name;
+						hostName = splitRatingFromNick(hostName).nick
+
+
+					}
+					newCaptionString = `hi ${countPlayers > 2 ? 'all ': hostName + ' ' }(◕‿◕).` //  good luck with setup
 					const chatInput = Engine.GetGUIObjectByName("chatInput")
 					chatInput.caption = newCaptionString
 					selfMessage(`you dont want see this message? \n Game > Settings > Options > Personalization > auto hello Suggestion = false`);
