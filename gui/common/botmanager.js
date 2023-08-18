@@ -125,7 +125,12 @@ class BotManager
 
 							if(doHelloAutomaticSuggestionWhenJoinAgameSetup){
 								chatInput.focus()
-								chatInput.caption = (g_IsController) ? `Welcome on board ${nick}` : ``
+								chatInput.caption = (g_IsController) ? `Welcome on board ${nick}. ` : ``
+
+								chatInput.buffer_position = chatInput.caption.length
+								if(g_selfNick.includes("seeh"))
+									chatInput.caption += 'i ♡ autocivP♇ mod'
+
 								playerIsGreeted.push(msg.guid);
 								// selfMessage(`you dont want see this message? \n Game > Settings > Options > Personalization > auto hello Suggestion = false`);
 							}

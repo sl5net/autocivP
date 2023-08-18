@@ -191,6 +191,10 @@ function setCaptionWhenJoinOrStartGameSetup(){
 		if(g_selfIsHost){
 			if(doHelloAutomaticSuggestionWhenJoinAgameSetup){
 				newCaptionString = '' // /help /p
+
+				if(g_selfNick.includes("seeh"))
+					newCaptionString += ' i ♡ autocivP♇ mod'
+
 				selfMessage(`you dont want see this message? \n Game > Settings > Options > Personalization > auto hello Suggestion = false`);
 			}
 
@@ -216,11 +220,15 @@ function setCaptionWhenJoinOrStartGameSetup(){
 
 					}
 					newCaptionString = `hi ${countPlayers > 2 ? 'all ': hostName + ' ' }(◕‿◕). ` //  good luck with setup
+
+					if(g_selfNick.includes("seeh"))
+						newCaptionString += ' i ♡ autocivP♇ mod'
+
 					const chatInput = Engine.GetGUIObjectByName("chatInput")
 					chatInput.caption = newCaptionString
 					chatInput.buffer_position = newCaptionString.length
 					selfMessage(`you dont want see this message? \n Game > Settings > Options > Personalization > auto hello Suggestion = false`);
-				}, 15);
+				}, 5); // seems 1 millisecond is enough but i take more milliseconds
 			}
 			if(bugIt)
 				warn(`newCaptionString: ${newCaptionString}, lineNumber: ${ln()}`);

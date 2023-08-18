@@ -1008,13 +1008,15 @@ function captionIs_modsImCurrentlyUsing(guiObject){ // this function will be tri
   );
   // sendMessage(`Mods I'm currently using: ${modEnabledmods.slice(11,)}` );
   let text = `Mods I'm currently using: ${modEnabledmods.slice(11,)} ${g_previous_autocivPVersion}`;
-  text = text.replace('feldmap', 'feldmap♒') //  ♡ autocivP❧♣▦▣ mod
+  text = text.replace('localratings', 'localRatings♒') //  ♡ autocivP❧♣▦▣ mod
+  text = text.replace('feldmap', 'feldMap▦') //  ♡ autocivP❧♣▦▣ mod
 
   text = text.replace('proGUI', 'proGUI★') //  ♡ autocivP❧♣▦▣ mod
   // text = text.replace('autocivP', 'autocivP☼') //  ♡ autocivP❧♣▦▣ mod
   text = text.replace(/\bautocivP\b/ig, 'autocivP♇') //  ♡ autocivP❧♣▦▣ mod
 
   guiObject.caption = text;
+  guiObject.buffer_position = text.length
   return;
 }
 
