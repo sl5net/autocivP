@@ -220,13 +220,14 @@ function setCaptionWhenJoinOrStartGameSetup(){
 
 					}
 					newCaptionString = `hi ${countPlayers > 2 ? 'all ': hostName + ' ' }(◕‿◕). ` //  good luck with setup
+					const newBufferPosition = newCaptionString.length
 
 					if(g_selfNick.includes("seeh"))
 						newCaptionString += ' i ♡ autocivP♇ mod'
 
 					const chatInput = Engine.GetGUIObjectByName("chatInput")
 					chatInput.caption = newCaptionString
-					chatInput.buffer_position = newCaptionString.length
+					chatInput.buffer_position = newBufferPosition
 					selfMessage(`you dont want see this message? \n Game > Settings > Options > Personalization > auto hello Suggestion = false`);
 				}, 5); // seems 1 millisecond is enough but i take more milliseconds
 			}

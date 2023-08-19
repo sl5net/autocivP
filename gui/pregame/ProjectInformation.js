@@ -74,6 +74,8 @@ function isCheckBox_valid_boolean_string(booleanCheckboxName){
 }
 
 
+// Engine.BroadcastMessage("message", {   "message": "Changes saved",   "duration": 5  });`
+
 
 setDefaultsInPersonalizationOnNewInstallation()
 
