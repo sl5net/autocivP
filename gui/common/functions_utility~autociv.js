@@ -840,8 +840,11 @@ function saveThisModProfile(nr, autoLabelManually) {
             const key = "autocivP.gamesetup.restart";
             ConfigDB_CreateAndSaveValueA26A27("user", key, 'restart');
             Engine.SwitchGuiPage("page_pregame.xml");
-          }else
+          }else{
             Engine.Exit(1)
+
+
+          }
 
 
             // Engine.Restart(1) // works sometimes Engine. and sometimes: Restart is not a function

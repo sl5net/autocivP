@@ -3,6 +3,8 @@
  */
 
 
+
+
 /**
  * Determines if the autocivP module has just been installed.
  * true when a checkbox is 'true' or 'false'
@@ -16,6 +18,7 @@ For example, if you have a long name like isAutoCivPJustNowInstalled, you could 
 The key is to strike a balance between readability and consistency within the codebase. It's important to ensure that is clear and understandable to other developers who may be working on the codebase.
  */
 function is_autocivP_just_now_installed(){
+
 
 	// search for "type": "boolean", in  ***options***.json file/files
 
@@ -249,3 +252,16 @@ var g_CommunityButtons = [
 		}
 	}
 ];
+
+
+
+
+
+
+            // messageBox(
+			// 	400, 200,
+			// 	translate("need a resart"),
+			// 	translate("eed a resart"),
+			// 	[translate("Yes"), translate("Yes")],
+			// 	[null, null]
+			//   );

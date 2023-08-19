@@ -214,7 +214,9 @@ function setCaptionWhenJoinOrStartGameSetup(){
 				newCaptionString += ' i ♡ autocivP♇ mod .'
 
 
-
+			const chatInput = Engine.GetGUIObjectByName("chatInput")
+			chatInput.caption = newCaptionString
+			chatInput.buffer_position = newBufferPosition
 
 
 
@@ -224,7 +226,7 @@ function setCaptionWhenJoinOrStartGameSetup(){
 	}else{
 		// mods have not changed
 		const countPlayers = Object.keys(g_PlayerAssignments).length;
-		selfMessage(`countPlayers: ${countPlayers}`);
+		// selfMessage(`countPlayers: ${countPlayers}`);
 
 
 		if(g_selfIsHost){
@@ -261,7 +263,7 @@ function setCaptionWhenJoinOrStartGameSetup(){
 
 
 							// 23-0819_1300-37 now i got the case that i joined a game faster then the host :D becouse i got great internet connecten ==> then fix this like so:
-							if(hostName == splitRatingFromNick(g_selfNick))
+							if(hostName == g_selfNick)
 							{
 								firstPlayerGUID = Object.keys(g_PlayerAssignments)[1];
 								hostName = g_PlayerAssignments[firstPlayerGUID].name;
@@ -269,11 +271,13 @@ function setCaptionWhenJoinOrStartGameSetup(){
 							}
 					}
 					// i ♡ autocivP♇ mod
-					newCaptionString = `hi ${countPlayers > 2 ? 'all ': hostName + ' ' }(◕‿◕). ` //  good luck with setup
+					newCaptionString = `hi ${countPlayers > 2 ? 'all ': hostName + '' }(◕‿◕) ` //  good luck with setup
 					const newBufferPosition = newCaptionString.length
 
-					if(g_selfNick.includes("seeh"))
+					if(g_selfNick.includes("seeh")){
 						newCaptionString += ' i  ♡ autocivP♇ mod'
+						selfMessage(`${ln}: g_selfNick: ${g_selfNick}`);
+					}
 
 					const chatInput = Engine.GetGUIObjectByName("chatInput")
 					chatInput.caption = newCaptionString
