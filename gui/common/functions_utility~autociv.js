@@ -228,10 +228,10 @@ const g_autoCompleteText_newMerge = (guiObject, list) => {
           guiObject.caption = whatsCommunityMod;
           return;
       case 'legend'.toLowerCase():
-          guiObject.caption = `legend: ★ proGUI mod, ♇ autocivP mod`
+          guiObject.caption = `legend: ♤ proGUI mod, ♇ autocivP mod`
           return;
       case '/legend'.toLowerCase():
-          guiObject.caption = `legend: ★ proGUI mod, ♇ autocivP mod`
+          guiObject.caption = `legend: ♤ proGUI mod, ♇ autocivP mod`
           return;
       case 'hiall':
           return captionIs_hiall(guiObject);
@@ -1011,7 +1011,7 @@ function captionIs_modsImCurrentlyUsing(guiObject){ // this function will be tri
   text = text.replace('localratings', 'localRatings♒') //  ♡ autocivP❧♣▦▣ mod
   text = text.replace('feldmap', 'feldMap▦') //  ♡ autocivP❧♣▦▣ mod
 
-  text = text.replace('proGUI', 'proGUI★') //  ♡ autocivP❧♣▦▣ mod
+  text = text.replace('proGUI', 'proGUI♤') //  ♡ autocivP❧♣▦▣ mod
   // text = text.replace('autocivP', 'autocivP☼') //  ♡ autocivP❧♣▦▣ mod
   text = text.replace(/\bautocivP\b/ig, 'autocivP♇') //  ♡ autocivP❧♣▦▣ mod
 

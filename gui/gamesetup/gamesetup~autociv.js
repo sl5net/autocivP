@@ -180,9 +180,46 @@ function setCaptionWhenJoinOrStartGameSetup(){
 		}else{
 			// your not host
 			// if(doHelloAutomaticSuggestionWhenJoinAgameSetup)
-			newCaptionString = 'hi all (◕‿◕)'
+			// newCaptionString = 'hi all (◕‿◕)'
+
+
+
+
+			const countPlayers = Object.keys(g_PlayerAssignments).length;
+			// selfMessage(`countPlayers: ${countPlayers}`);
+			 // is always 0 first when not waiting
+			 // dont forget count yourself
+			// let hostName = Engine.LobbyGetNick()
+			let hostName = ''
+			if(countPlayers == 2){
+
+				let firstPlayerGUID = Object.keys(g_PlayerAssignments)[0];
+				hostName = g_PlayerAssignments[firstPlayerGUID].name;
+				hostName = splitRatingFromNick(hostName).nick
+
+
+					// 23-0819_1300-37 now i got the case that i joined a game faster then the host :D becouse i got great internet connecten ==> then fix this like so:
+					if(hostName == splitRatingFromNick(g_selfNick))
+					{
+						firstPlayerGUID = Object.keys(g_PlayerAssignments)[1];
+						hostName = g_PlayerAssignments[firstPlayerGUID].name;
+						hostName = splitRatingFromNick(hostName).nick
+					}
+			}
+			// i ♡ autocivP♇ mod
+			newCaptionString = `hi ${countPlayers > 2 ? 'all ': hostName + ' ' }(◕‿◕). ` //  good luck with setup
+			const newBufferPosition = newCaptionString.length
+
+			if(g_selfNick.includes("seeh"))
+				newCaptionString += ' i ♡ autocivP♇ mod .'
+
+
+
+
+
+
 			if(bugIt)
-			warn(`newCaptionString: ${newCaptionString}, lineNumber: ${ln()}`);
+				warn(`newCaptionString: ${newCaptionString}, lineNumber: ${ln()}`);
 		}
 	}else{
 		// mods have not changed
@@ -191,11 +228,12 @@ function setCaptionWhenJoinOrStartGameSetup(){
 
 
 		if(g_selfIsHost){
-			if(doHelloAutomaticSuggestionWhenJoinAgameSetup){
+			if(doHelloAutomaticSuggestionWhenJoinAgameSetup
+				&& countPlayers > 1){ // if you self host and have just started the setup the countPlayers is 1
 				newCaptionString = '' // /help /p
 
 				if(g_selfNick.includes("seeh"))
-					newCaptionString += ' i ♡ autocivP♇ mod'
+					newCaptionString += ' i ♡ autocivP♇  mod'
 
 				selfMessage(`you dont want see this message? \n Game > Settings > Options > Personalization > auto hello Suggestion = false`);
 			}
@@ -235,7 +273,7 @@ function setCaptionWhenJoinOrStartGameSetup(){
 					const newBufferPosition = newCaptionString.length
 
 					if(g_selfNick.includes("seeh"))
-						newCaptionString += ' i ♡ autocivP♇ mod'
+						newCaptionString += ' i  ♡ autocivP♇ mod'
 
 					const chatInput = Engine.GetGUIObjectByName("chatInput")
 					chatInput.caption = newCaptionString

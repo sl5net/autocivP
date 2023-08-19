@@ -555,9 +555,9 @@ const g_autociv_SharedCommands = {
 		{
 			const chatInput = Engine.GetGUIObjectByName("chatInput")
 			chatInput.focus()
-			chatInput.caption = `legend: ★ proGUI mod, ♇ autocivP mod`
+			chatInput.caption = `legend: ♤ proGUI mod, ♇ autocivP mod`
 
-			// text = text.replace('proGUI', 'proGUI★') //  ♡ autocivP❧♣▦▣ mod
+			// text = text.replace('proGUI', 'proGUI♤') //  ♡ autocivP❧♣▦▣ mod
 			// text = text.replace(/\bautocivP\b/ig, 'autocivP♇') //  ♡ autocivP❧♣▦▣ mod
 
 		}

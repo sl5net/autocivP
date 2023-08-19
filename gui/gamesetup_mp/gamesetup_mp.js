@@ -145,7 +145,7 @@ function init(attribs) {
               ) === "true"
             temp += (showStarWhenUsingProGUI)
                 ? ((useitwithoutUnicode)
-                    ?'*':"★")
+                    ?'*':"♤")
                 : "proGUI"
         }
         // not relevant for fairplay but maybe fun or useful

@@ -87,7 +87,7 @@ AutocivControls.StatsOverlay = class
             // Use options.json to teach the player the meaning of the symbol.
 
             if (userRating > 1800 || aiDiff === 5)
-                this.stateStrengthsCached[state.playerNumber] = "\u25B2"; // ▲ black up-pointing triangle
+                this.stateStrengthsCached[state.playerNumber] = "\u25B2"; // ♤ black up-pointing triangle
             else if (userRating > 1600 || aiDiff === 4)
                 this.stateStrengthsCached[state.playerNumber] = "\u25C6"; // ◆ black diamond
             else if (userRating > 1400 || aiDiff === 3)
