@@ -904,14 +904,31 @@ function setDefaultsforPopmaxAlliedviewRatingTreasuresNomadExploration(sendMessa
   g_GameSettings.mapExploration.allied = true; // woks :)  AlliedView
   if(sendMessageToAll)sendMessage('AlliedView = true');
 
+            // autocivP.gamesetup.ratedDefault
   const key = "autocivP.gamesetup.ratedDefault"; // in user.cfg
   const ratedDefault = Engine.ConfigDB_GetValue(
     "user",
     key
   );
 
-
   g_GameSettings.rating.enabled = (ratedDefault === 'true') ? true : false ; // no error and test in the lobby. it works
+  // game.updateSettings();
+
+  if(g_selfNick.includes("seeh")){
+
+if(ratedDefault == 'true'){
+  selfMessage(`${ln()}: rated shold enabled gui/gamesetup/gamesetup~!extra_commands.js`);
+}else{
+  selfMessage(`${ln()}: rated should not enabled gui/gamesetup/gamesetup~!extra_commands.js`);
+}
+
+    // i need test this again 23-0819_1608-030
+    selfMessage(`${ln()}: =========================================================== gui/gamesetup/gamesetup~!extra_commands.js`);
+    selfMessage(`${ln()}: ratedDefault: ${ratedDefault} = ${(ratedDefault === 'true')} = enabled={${g_GameSettings.rating.enabled}} gui/gamesetup/gamesetup~!extra_commands.js`);
+
+  }
+
+
   if(sendMessageToAll)sendMessage(`rating = ${ratedDefault}`);
 
   // gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/Treasures.js
@@ -935,7 +952,7 @@ function setDefaultsforPopmaxAlliedviewRatingTreasuresNomadExploration(sendMessa
   g_GameSettings.startingResources.resources = 300; // works ist a radio selct field
   if(sendMessageToAll)sendMessage('startingResources = ' + g_GameSettings.startingResources.resources);
 
-  game.updateSettings();
+  // game.updateSettings(); // this neds to disabled ! becouse some rating was not correct set
 
   // let resources = g_GameSettings.startingResources.resources; // works ist a radio selct field
   let populationMax = g_GameSettings.population.cap; // works its a number option vield
@@ -943,7 +960,7 @@ function setDefaultsforPopmaxAlliedviewRatingTreasuresNomadExploration(sendMessa
   // selfMessage(`res= ${resources}`);
 
 
-  selfMessage(`your last used profile id was: ${g_lastCommandID} ${ln()} `);
+  // selfMessage(`your last used profile id was: ${g_lastCommandID} ${ln()} `);
 
 
 

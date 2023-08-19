@@ -122,7 +122,8 @@ const versionOf0ad = Engine.GetEngineInfo().mods[0]['version']; // 0.0.26
 
 const g_autocivPVersion_shared = get_autocivPVersion()
 const g_previous_autocivPVersion = get_previous_autocivPVersion(g_autocivPVersion_shared)
-const zipOfAutocivPMod = `https://github.com/sl5net/autocivP/releases/tag/v${g_previous_autocivPVersion}`
+const zipOfAutocivPMod = `https://github.com/sl5net/autocivP/releases/latest`
+// const zipOfAutocivPMod = `https://github.com/sl5net/autocivP/releases/tag/v${g_previous_autocivPVersion}`
 
 // https://github.com/sl5net/autocivP/releases/tag/v1.0.30
 
@@ -131,7 +132,7 @@ const actuallyWorkingAtVersion = g_previous_autocivPVersion == g_autocivPVersion
 
 // const whatsAutocivPMod = `AutoCivP mod is AutoCiv but it also supports profiles during game configuration, jitsi, command-history⟦Tab⟧⟦Tab⟧ and a lot more ( https://wildfiregames.com/forum/topic/107371-autocivp-add-ons-profiles-jitsi-team-call ) \n 1. download newest ZIP here ${zipOfAutocivPMod} \n 2. unzip it \n 3. rename folder to "autocivP" \n 4. copy this folder to "mods" folder. Path to user data: \n Linux     : ~/.config/0ad/mods \n Windows: %AppData%\\0ad\\mods \n macOS    : \/Users\/{YOUR USERNAME}\/Library\/Application\\ Support/0ad/mods \n tart 0 A.D., click Settings and Mod Selection. \n Double-click it, click Save Configuration and Start Mods. \n ${actuallyWorkingAtVersion} `
 
-const whatsAutocivPMod = `AutoCivP mod is AutoCiv but it also supports profiles during game configuration, jitsi, command-history⟦Tab⟧⟦Tab⟧ and a lot more ( https://wildfiregames.com/forum/topic/107371-autocivp-add-ons-profiles-jitsi-team-call ) \n 1. download newest ZIP here ${zipOfAutocivPMod} \n 2. unzip it \n 3. rename folder to "autocivp" \n 4. copy this folder to "mods" folder.  \n Double-click it in "Settings" > "Mod Selection", click "Save Configuration" and "Start Mods". \n ${actuallyWorkingAtVersion} `
+const whatsAutocivPMod = `AutoCivP mod is AutoCiv but it also supports profiles during game configuration, jitsi and a lot more ( https://wildfiregames.com/forum/topic/107371-autocivp-add-ons-profiles-jitsi-team-call ) \n 1. download newest ZIP here ${zipOfAutocivPMod} \n 2. unzip it \n 3. copy this folder to "mods" folder.  4. \n Double-click it in "Settings" > "Mod Selection", click "Save Configuration" and "Start Mods". \n ${actuallyWorkingAtVersion} `
 
 const whatsCommunityMod = `communityMod is community-powered by the core team to improve the gameplay experience, particularly MP balance. The team wanted to give the community make it easier to contribute, thus this is hosted on gitlab and community members can request commit access ( https://gitlab.com/0ad/0ad-community-mod-a26 ) .`
 
