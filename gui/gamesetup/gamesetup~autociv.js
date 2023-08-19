@@ -3,6 +3,8 @@ warnSilhouettesIsNotEnabled()
 
 var g_selfIsHost
 
+var p_isJoinedGameGreeted = false
+
 var g_autociv_maps = new Set(["maps/skirmishes/Volcano Island (8)"])
 
 var g_autociv_hotkeys = {
@@ -203,7 +205,9 @@ function setCaptionWhenJoinOrStartGameSetup(){
 					warn(`newCaptionString: ${newCaptionString}, lineNumber: ${ln()}`);
 		}else{
 			// your not host
-			if(doHelloAutomaticSuggestionWhenJoinAgameSetup){
+			if(doHelloAutomaticSuggestionWhenJoinAgameSetup
+				&& p_isJoinedGameGreeted == false){
+				p_isJoinedGameGreeted = true
 				setTimeout(() => {
 					const countPlayers = Object.keys(g_PlayerAssignments).length;
 					// selfMessage(`countPlayers: ${countPlayers}`);
@@ -216,9 +220,8 @@ function setCaptionWhenJoinOrStartGameSetup(){
 						const firstPlayerGUID = Object.keys(g_PlayerAssignments)[0];
 						hostName = g_PlayerAssignments[firstPlayerGUID].name;
 						hostName = splitRatingFromNick(hostName).nick
-
-
 					}
+					// i ♡ autocivP♇ mod
 					newCaptionString = `hi ${countPlayers > 2 ? 'all ': hostName + ' ' }(◕‿◕). ` //  good luck with setup
 					const newBufferPosition = newCaptionString.length
 
