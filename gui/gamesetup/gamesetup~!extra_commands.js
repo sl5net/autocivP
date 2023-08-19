@@ -900,6 +900,9 @@ function setMapTypeFilterNameBiome(name, biome, type = "random", filter = "defau
 function setDefaultsforPopmaxAlliedviewRatingTreasuresNomadExploration(sendMessageToAll = true){ // forPopmaxAlliedviewRatingTreasuresNomadExploration
   // this function also is(should) always used when a map/profile config is changing 23-0624_1433-08
 
+  let bugIt = false // new implementation so i will watch longer
+  // bugIt = true &&  g_selfNick.includes("seeh") // new implementation so i will watch longer
+
 
   g_GameSettings.mapExploration.allied = true; // woks :)  AlliedView
   if(sendMessageToAll)sendMessage('AlliedView = true');
@@ -914,19 +917,15 @@ function setDefaultsforPopmaxAlliedviewRatingTreasuresNomadExploration(sendMessa
   g_GameSettings.rating.enabled = (ratedDefault === 'true') ? true : false ; // no error and test in the lobby. it works
   // game.updateSettings();
 
-  if(g_selfNick.includes("seeh")){
-
-if(ratedDefault == 'true'){
-  selfMessage(`${ln()}: rated shold enabled gui/gamesetup/gamesetup~!extra_commands.js`);
-}else{
-  selfMessage(`${ln()}: rated should not enabled gui/gamesetup/gamesetup~!extra_commands.js`);
-}
-
-    // i need test this again 23-0819_1608-030
-    selfMessage(`${ln()}: =========================================================== gui/gamesetup/gamesetup~!extra_commands.js`);
-    selfMessage(`${ln()}: ratedDefault: ${ratedDefault} = ${(ratedDefault === 'true')} = enabled={${g_GameSettings.rating.enabled}} gui/gamesetup/gamesetup~!extra_commands.js`);
-
-  }
+    if(bugIt){
+      if(ratedDefault == 'true'){
+        selfMessage(`${ln()}: rated shold enabled gui/gamesetup/gamesetup~!extra_commands.js`);
+      }else{
+        selfMessage(`${ln()}: rated should not enabled gui/gamesetup/gamesetup~!extra_commands.js`);
+      }
+      selfMessage(`${ln()}: =========================================================== gui/gamesetup/gamesetup~!extra_commands.js`);
+      selfMessage(`${ln()}: ratedDefault: ${ratedDefault} = ${(ratedDefault === 'true')} = enabled={${g_GameSettings.rating.enabled}} gui/gamesetup/gamesetup~!extra_commands.js`);
+    }
 
 
   if(sendMessageToAll)sendMessage(`rating = ${ratedDefault}`);

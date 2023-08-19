@@ -573,6 +573,16 @@ const g_autociv_SharedCommands = {
 			chatInput.caption = whatsAutocivMod
 		}
 	},
+	"whatsAlliedView" : {
+		"description": "AutoCiv mod is ",
+		"handler": () =>
+		{
+			const text = '"Allied View" is a game option thats been added to vanilla 0ad a26. When the option is enabled, allies will basically have "cartography mode" on at the start of the game. '
+			const chatInput = Engine.GetGUIObjectByName("chatInput")
+			chatInput.focus()
+			chatInput.caption = text
+		}
+	},
 	"whatsBoonGUI" : {
 		"description": "AutoCiv mod is ",
 		"handler": () =>
