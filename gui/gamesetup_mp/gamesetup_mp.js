@@ -99,16 +99,6 @@ function init (attribs) {
             const showStarWhenUsingProGUI   = getBoolOpt('autocivP.mod.showStarWhenUsingProGUI');
             const showIconWhenUsingAutocivP = getBoolOpt('autocivP.mod.showIconWhenUsingAutocivP');
 
-            // customRating = [
-            //     g_LocalRatingsUser && showLocalRatings ? g_LocalRatingsUser : g_UserRating,
-            //     (!g_proGUIPVersion ? null : (showStarWhenUsingProGUI ?
-            //         (useItWithoutUnicode ? '*' : "♤") : 'proGUI'))
-            //         +
-            //         (showIconWhenUsingAutocivP ?  (useItWithoutUnicode ? 'AP' : '♇') : ''),
-            //     customRating.trim()
-            // ].filter(Boolean).join('|');
-
-
             customRating = [
                 g_LocalRatingsUser && showLocalRatings ? g_LocalRatingsUser : g_UserRating,
                 (!g_proGUIPVersion ? null : (showStarWhenUsingProGUI ?
@@ -117,7 +107,6 @@ function init (attribs) {
                     (showIconWhenUsingAutocivP ?  (useItWithoutUnicode ? 'AP' : '♇') : ''),
                 customRating.trim()
             ].filter(Boolean).join('|');
-
 
             info(
               'customrating:', customRating,
