@@ -405,6 +405,13 @@
 
 
 			{
+				"type": "string",
+				"label": "[color=\"220 185 70\"]Global:[/color] Suggestion. next fullMinute",
+				"tooltip": "(default is next full 30 minutes ⟨ or empty)\n e.g. next full 30 minutes 12:30 13:00.",
+				"config": "autocivP.gamesetup.gameStart.inNextFullMinute"
+			}
+
+			{
 				"type": "boolean",
 				"label": "[color=\"204 133 0\"]Game name Suggestion[/color]: removes all :00 from time ?",
 				"tooltip": "removes all occurrences of :00 from the time",
