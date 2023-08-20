@@ -326,7 +326,7 @@
 				"type": "dropdown",
 				"label": "[color=\"220 185 70\"]Postfix UserName[/color] or select rated,nub... ->",
 				"tooltip": "[color=\"255 0 0\"] max. 25 letter, then its cut off !! \n names + everything else.[/color] \n its not disturbing the game. \n but probably looks not beutiful. try it :) ",
-				"config": "autocivP.customusernameDropdown",
+				"config": "autocivP.customUsernameDropdown",
 				"dependencies": ["customrating"],
 				"list": [
 					{ "value": "false", "label": ""  },
