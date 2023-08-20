@@ -109,6 +109,8 @@ function init (attribs) {
                 customRating.trim()
             ].filter(Boolean).join('|');
 
+            customRating = customRating.replace(/\|([^\d\w\-])/g, '$1'); // remove a pipe, when its still got to read, becouse name is sometimes a bit long
+
             info(
               'customrating:', customRating,
               'useItWithoutUnicode:', useItWithoutUnicode,
