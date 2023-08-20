@@ -146,14 +146,14 @@
 			{
 				"type": "boolean",
 				"label": "[color=\"220 185 70\"]Global:[/color] use icon without delimiter ",
-				"tooltip": "dont use <icon> delimiter in chat. default is dopple tab for rmove all icons delimiters",
+				"tooltip": "dont use <icon> delimiter in chat. default is dopple tab for remove all icons delimiters",
 				"config": "autocivP.chat.no_icon_delimiters"
 			},
 
 			{
 				"type": "string",
-				"label": "[color=\"220 185 70\"]Global:[/color] Chat icon delimiter (default ⟨ or empty)",
-				"tooltip": "To improve command searchability, consider adding a prefix to special short icon (☯ ♪♣‹) commands like '<gg⟦Tab⟧' or '<mus⟦Tab⟧' ♪ to distinguish them from profile commands.",
+				"label": "[color=\"220 185 70\"]Global:[/color] Chat icon delimiter",
+				"tooltip": "default is ⟨ or empty.\n To improve command searchability, consider adding a prefix to special short icon (☯ ♪♣‹) commands like '<gg⟦Tab⟧' or '<mus⟦Tab⟧' ♪ to distinguish them from profile commands.",
 				"config": "autocivP.chat.iconPrefix"
 			},
 			{
@@ -164,8 +164,8 @@
 			},
 			{
 				"type": "string",
-				"label": "[color=\"220 185 70\"]Global:[/color] Suggestion. next fullMinute (default is next full 30 minutes ⟨ or empty)",
-				"tooltip": "e.g. next full 30 minutes 12:30 13:00.",
+				"label": "[color=\"220 185 70\"]Global:[/color] Suggestion. next fullMinute",
+				"tooltip": "(default is next full 30 minutes ⟨ or empty)\n e.g. next full 30 minutes 12:30 13:00.",
 				"config": "autocivP.gamesetup.gameStart.inNextFullMinute"
 			}
 
@@ -405,8 +405,8 @@
 			},
 			{
 				"type": "string",
-				"label": "[color=\"204 133 0\"]Game name Suggestion[/color]. next fullMinute (default is next full 30 minutes ⟨ or empty)",
-				"tooltip": "e.g. next full 30 minutes 12:30 13:00. to disable, set to empty",
+				"label": "[color=\"204 133 0\"]Game name Suggestion[/color]. next fullMinute",
+				"tooltip": "(default is next full 30 minutes ⟨ or empty)\n e.g. next full 30 minutes 12:30 13:00. to disable, set to empty",
 				"config": "autocivP.gamesetup.gameStart.inNextFullMinute"
 			},
 			{
