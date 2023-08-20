@@ -54,8 +54,9 @@ function init (attribs) {
         info('try to use local ratings database, with user: ', g_selfNick);
         g_LocalRatingsUser = init_LocalRatings()[g_selfNick];
 
+        // if you want add matches but i feels its to long for usernames
         if (g_LocalRatingsUser) {
-            g_LocalRatingsUser = (g_LocalRatingsUser.rating * 100).toFixed(2) +'/'+ g_LocalRatingsUser.matches;
+            g_LocalRatingsUser = g_UserRating + '|' + (g_LocalRatingsUser.rating * 100).toFixed(2) ;
         }
 
         info('g_LocalRatingUser:', g_LocalRatingsUser);
