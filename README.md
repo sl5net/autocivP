@@ -206,6 +206,6 @@ The motivation for this mod was implement ideas and simplifications that are hel
   - @Atric - https://gitlab.com/4trik
   - @LangLangBart - https://github.com/LangLangBart
   - @leite - https://github.com/leite
-  - @leite - https://github.com/leite
+
 
 - Thanks to all other modders
