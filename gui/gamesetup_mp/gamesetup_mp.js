@@ -29,227 +29,106 @@ let g_UserRating;
 // added by custom rating
 let g_PlayerName;
 
-function init(attribs) {
+let g_LocalRatingsUser = null;
 
-    if(false &&  g_selfNick =="seeh"){ // programmer need to see bit more info
-        warn("35: attribs:", attribs)
-        warn("35: typeof attribs:", typeof attribs) // typeof attribs give no result
-        warn("35: attribs.rating:", attribs.rating) // give no result
-        warn("35: attribs.rating:", attribs.rating) // give no result
-        warn("35: (attribs.rating):", (attribs.rating)) // give no result
-        warn("35: { attribs }:", { attribs }) // give no result
-        warn("35: Object.keys(attribs):", Object.keys(attribs) ) // give no result
-        for (let i = 0; i < attribs.length; i++) {
-            warn(i); // Output: 0, 1, 2
-        }         // give no result
-        // it never gives me any results? when it gives results? 23-0730_2229-20
-    }
 
-    let g_UserRatingString;
-    /*
-    https://wildfiregames.com/forum/topic/55450-howto-read-~snap0ad236localshare0adreplays00252021-08-05_0002metadatajson/?do=findComment&comment=452775
-    how to read howTo read metadata.json from a mod ? (  ~/snap/0ad/236/.local/share/0ad/replays/0.0.25/2021-08-05_0002/metadata.json )
-    That file is used in the replaymenu in the public mod. It is loaded via Engine.GetReplayMetadata called from replay_menu.js
-     */
+function init (attribs) {
     if (!attribs || !attribs.rating) {
-        g_UserRatingString = Engine.ConfigDB_GetValue("user", "UserRatingBackup"); // get backup
-        g_UserRating = g_UserRatingString > 10 ? g_UserRatingString : '';
+        const currentRating = Engine.ConfigDB_GetValue("user", "UserRatingBackup"); // get backup
+        g_UserRating = parseInt(currentRating) > 10 ? currentRating : '';
     } else {
-        g_UserRating = (attribs.rating);
-        g_UserRatingString = "" + g_UserRating + "";
-        Engine.ConfigDB_CreateValue("user", "UserRatingBackup", g_UserRatingString); // 1 just as dummy
-        Engine.ConfigDB_WriteValueToFile("user", "UserRatingBackup", g_UserRatingString, "config/user.cfg"); // backup rating if rating-server is working
+        g_UserRating = attribs.rating;
+        Engine.ConfigDB_CreateValue("user", "UserRatingBackup", attribs.rating);
+        Engine.ConfigDB_WriteValueToFile("user", "UserRatingBackup", attribs.rating, "config/user.cfg"); // backup rating if rating-server is working
     }
 
-    // added by custom rating - START
-    // let customrating_string = Engine.ConfigDB_GetValue("user", "customrating.string") // usefull options to select
-    let customrating_dropdown = Engine.ConfigDB_GetValue("user", "autocivP.customUsernameDropdown"); // autocivP.customUsernameDropdown is Dropdown with some funny or usefull options to select
-    const customrating_trueFalse = Engine.ConfigDB_GetValue("user", "customrating");
+    let customRating        = '';
+    const usingCustomRating = getBoolOpt('customrating');
+    const useLocalRatings   = getBoolOpt('autocivP.mod.useLocalRatings');
+    const showLocalRatings  = getBoolOpt('autocivP.mod.showLocalRatings');
+    const hasLocalRatings   = typeof init_LocalRatings != 'undefined';
 
-    const modsObj = Engine.GetEngineInfo().mods
-    for (const [key, value] of Object.entries(modsObj)) {
+    info('useLocalRatings:', useLocalRatings,'showLocalRatings:', showLocalRatings, 'hasLocalRatings:', hasLocalRatings);
+
+    if (hasLocalRatings && (useLocalRatings || showLocalRatings)) {
+        info('try to use local ratings database, with user: ', g_selfNick);
+        g_LocalRatingsUser = init_LocalRatings()[g_selfNick];
+
+        if (g_LocalRatingsUser) {
+            g_LocalRatingsUser = (g_LocalRatingsUser.rating * 100).toFixed(2) +'/'+ g_LocalRatingsUser.matches;
+        }
+
+        info('g_LocalRatingUser:', g_LocalRatingsUser);
+    }
+
+    for (const [key, value] of Object.entries(Engine.GetEngineInfo().mods)) {
         if (value.name === "proGUI") {
             g_proGUIPVersion = value.version
         break
         }
     }
 
-    if (customrating_trueFalse == "false" && !g_proGUIPVersion ) { // if g_proGUIP is used then always us customrating
-        // Get only username without brackets
-        g_UserRating = false;
-        // if(g_selfNick =="seeh"){ //NOTE -developers want to see the error in the console
-        //     warn('67: set: g_UserRating = false')
-        // }
-    } else if (true) { //  || isNaN(customrating_value)
+    if (usingCustomRating) {
+        const appendToCustomRating = getBoolOpt('autocivP.mod.appendToCustomRating');
+        const optionsCustomRating  = {
+            '^n':    'nuub',
+            '^vn':   'very nub',
+            '^0':    'youtuber',
+            '^1':    'unfocused today',
+            '^2':    ' rated',
+            '^3':    ' unrated',
+            '^4':    ' programmer\?',
+            '^5':    ' spec',
+            '^6':    ' spec\=i not play',
+            '^7':    ' ill today',
+            '^8':    ' overrated',
+            '^9':    ' underrated',
+            'false': ' '
+        };
 
-        // if(g_selfNick =="seeh"){ //NOTE -developers want to see the error in the console
-        //     warn('72: set: g_UserRating = false')
-        // }
+        customRating = getOpt('autocivP.customUsernameDropdown');
+        info('proGUI:', g_proGUIPVersion, 'customrating:', customRating);
 
-        //replace extra chars (hav to do this coz options save button will save them in wrong charset)
-        // customrating_value = customrating_value.replace(/\^1/g,"∞");
-        // https://unicode-table.com/de/2665/
+        customRating = optionsCustomRating[customRating] || customRating;
+        customRating = customRating.replace(/^[^\d\w\-]*[0-9]+[^\d\w\-]*$/g, '');
+        customRating = customRating.length > 1 ? customRating : getOpt('customrating.string');
+        info('customrating:', customRating);
 
-        const isCustomratingEnabled = ( customrating_trueFalse != "false" )
-        if(isCustomratingEnabled){
+        if (appendToCustomRating) {
+            const useItWithoutUnicode       = getBoolOpt('autociv.chatText.font.useItWithoutUnicode');
+            const showStarWhenUsingProGUI   = getBoolOpt('autocivP.mod.showStarWhenUsingProGUI');
+            const showIconWhenUsingAutocivP = getBoolOpt('autocivP.mod.showIconWhenUsingAutocivP');
 
-            /*!SECTION
-            customrating on / off
-            availeble fields:
-            customrating.string / string
-            autocivP.customUsernameDropdown / radio field
+            customRating = [
+                g_LocalRatingsUser && showLocalRatings ? g_LocalRatingsUser : g_UserRating,
+                (!g_proGUIPVersion ? null : (showStarWhenUsingProGUI ? (useItWithoutUnicode ? '*' : "♤") : 'proGUI')) +
+                    (showIconWhenUsingAutocivP ?  (useItWithoutUnicode ? 'AP' : '♇') : ''),
+                customRating.trim()
+            ].filter(Boolean).join('|');
 
-            */
-
-            customrating_dropdown = customrating_dropdown.replace(/\^n/g, "nuub");
-            customrating_dropdown = customrating_dropdown.replace(/\^vn/g, "very nub");
-            customrating_dropdown = customrating_dropdown.replace(/\^0/g, "youtuber");
-            customrating_dropdown = customrating_dropdown.replace(/\^1/g, "unfocused today");
-            customrating_dropdown = customrating_dropdown.replace(/\^2/g, " rated");
-            customrating_dropdown = customrating_dropdown.replace(/\^3/g, " unrated");
-            // customrating_value = customrating_value.replace(/\^3/g,"™");
-            customrating_dropdown = customrating_dropdown.replace(/\^4/g, " programmer\?");
-            // customrating_value = customrating_value.replace(/\^5/g,"↑");
-            customrating_dropdown = customrating_dropdown.replace(/\^5/g, " spec");
-            customrating_dropdown = customrating_dropdown.replace(/\^6/g, " spec\=i not play");
-            customrating_dropdown = customrating_dropdown.replace(/\^7/g, " ill today");
-            customrating_dropdown = customrating_dropdown.replace(/\^8/g, " overrated");
-            customrating_dropdown = customrating_dropdown.replace(/\^9/g, " underrated");
-            // customrating_value = customrating_value.replace('Host','');
-            customrating_dropdown = customrating_dropdown.replace(/^[^\d\w\-]*[0-9]+[^\d\w\-]*$/g, ''); // if its only a number. cut it out
-
-            // warn(`121: customrating_dropdown: ${customrating_dropdown}`)
-            if(customrating_dropdown.length === 0 || customrating_dropdown == 'false'){
-                customrating_dropdown = Engine.ConfigDB_GetValue("user", "customrating.string");
-                // warn(`123: customrating_dropdown: ${customrating_dropdown}`)
-            }
-
+            info(
+              'customrating:', customRating,
+              'useItWithoutUnicode:', useItWithoutUnicode,
+              'showStarWhenUsingProGUI:', showStarWhenUsingProGUI,
+              'showIconWhenUsingAutocivP:', showIconWhenUsingAutocivP,
+              'showLocalRatings:', showLocalRatings,
+              'hasLocalRatings:', hasLocalRatings
+            );
         }
-
-        // warn(`112: customrating_value: ${customrating_value}`);
-        // if(g_selfNick =="seeh"){ //NOTE -developers want to see the error in the console
-        //     warn(`g_proGUIPVersion: ${g_proGUIPVersion}`)
-        // }
-
-        const useitwithoutUnicode = Engine.ConfigDB_GetValue(
-            "user",
-            "autociv.chatText.font.useitwithoutUnicode"
-          ) === "true"
-        const delimiterSymbol = "|"; // |
-        let temp = '';
-        if(g_proGUIPVersion){
-            // maybe relevant for fairplay that its visible when using proGUI
-            const showStarWhenUsingProGUI = Engine.ConfigDB_GetValue(
-                "user",
-                "autocivP.mod.showStarWhenUsingProGUI"
-              ) === "true"
-            temp += (showStarWhenUsingProGUI)
-                ? ((useitwithoutUnicode)
-                    ?'*':"♤")
-                : "proGUI"
-        }
-        // not relevant for fairplay but maybe fun or useful
-        const showIconWhenUsingAutocivP = Engine.ConfigDB_GetValue(
-            "user",
-            "autocivP.mod.showIconWhenUsingAutocivP"
-            ) === "true"
-        // ♇ // usually: ♇ (Unicode code point U+2647) is known as the Astrological Symbol for Pluto
-        // show use of this is optional. not relevant for fairplay
-        temp += (showIconWhenUsingAutocivP)
-            ? ((useitwithoutUnicode)
-                ? 'AP' : '♇')
-            : ''
-
-
-
-        // this was now recorded, when i was playing in a bigh TG (not as host). funny. is this always? i was not able to reconstruct it when starting a local game 23-0730_1401-05
-        //  && customrating_dropdown !== 'false'
-        customrating_dropdown = ( isCustomratingEnabled && customrating_dropdown)
-        ? `${temp}${delimiterSymbol}${customrating_dropdown}`
-        : temp ;
-
-
-
-        if (typeof g_LocalRatingsDatabase !== 'undefined') { // DODO sad its not available from autocivP ... means i need rebuild/copy some functions. should i do this ? 23-0722_1551-58 . i hope maybe Mentula will do it maybe in a day in future
-            const playerName = 'seeh'
-            const playerData = g_LocalRatingsDatabase[playerName];
-            customrating_dropdown += ` LR ${playerData.rating}`;
-        }
-
-
-        if ( customrating_dropdown === 'false') {
-            //no rating in username
-            // g_UserRating = attribs.rating + " // if its empty . enabled but empty => works 2021-0902_1324-54
-            // g_UserRating = attribs.rating + " // if its empty . enabled but empty => works bot long for this field. end ) is not there 2021-0902_1326-08
-            g_UserRating = attribs.rating //  // if its empty . enabled but empty => works bot long for this field. end ) is not there 2021-0902_1327-19
-        } else {
-            //g_UserRating = customrating_value.substring(0,10)
-            // g_UserRating = customrating_value.substring(0,16);
-            // warn(`112: customrating_value: ${customrating_value}`);
-            const maxLength = 24; // if you set here to long then later the ')' will cut off. 25 was a mistake. 25 seems the maximum length possible 23-0728_1307-06,  33 when you observer 23-0728_2214-44
-            // max. 25 letter, then its cut off. 33 when you observer 23-0728_2214-50
-            // local hosted game: max. 33 letter, then its cut off . Example(pink yourself): seeh (1205|proGUI|unfocused toda
-            customrating_dropdown = customrating_dropdown.trim()
-            let length_ratingPlusCustomRating = g_UserRating.length + customrating_dropdown.length + 1;
-            if(length_ratingPlusCustomRating > maxLength){
-                customrating_dropdown = customrating_dropdown.substring(0,maxLength - g_UserRating.length - 2) + "..";
-            }
-
-            // const lastLetter = customrating_value.charAt(customrating_value.length - 1);
-            // if(lastLetter != ')'){
-            //     customrating_value += ')';
-            // }
-            const bugIt = false
-            if(bugIt && g_selfNick =="seeh"){ //NOTE -developers want to see the error in the console
-                warn(`141: set: g_UserRating = ${g_UserRating} , \n customrating_value: ${customrating_dropdown}`);
-                warn(`142: length: ${customrating_dropdown.length} , \n customrating_value: ${customrating_dropdown}`);
-            }
-
-
-            g_UserRating =  (customrating_dropdown )
-            ? g_UserRating + ((g_UserRating) ? '|': '') + customrating_dropdown + ''
-            : g_UserRating;
-            // g_UserRating = customrating_value + ""; // customrating_value not empty with som texts
-
-
-            if(bugIt && g_selfNick =="seeh"){ //NOTE -developers want to see the error in the console
-                warn(`149: set: g_UserRating = ${g_UserRating} , \n customrating_value: ${customrating_dropdown}`);
-                warn(`151: length: ${customrating_dropdown.length} , \n customrating_value: ${customrating_dropdown}`);
-            }
-
-        }
-    } else {
-        warn('159: whish you good game. as observer your name is 33 letters max long');
-        //warn(uneval("customrating numbers not allowed - adding spaces"));
-        // g_UserRating = " " + customrating_value.substring(0,16) + " ";
-        g_UserRating = " " + customrating_dropdown + " "; // <= need a space at the end . for prevent errors
-        // here we observers
-        // // max. 25 letter, then its cut off. 33 when you observer 23-0728_2214-50
     }
-    //g_ServerPort = attribs.port;
 
-    //  !!attribs.name is a double negation operator used to convert a value to its boolean representation.
-    if(true)
-        g_PlayerName = !!attribs.name
-        ? attribs.name + (g_UserRating ? " (" + g_UserRating + ")"
-        : "")
-        : "";
+    customRating = customRating.length > 0 ? customRating : g_UserRating +'';
+    customRating = customRating.length > 24 ? customRating.substring(0,24) +'..' : customRating;
+    g_UserRating = getRatings(customRating);
+    g_PlayerName = !!attribs.name ? attribs.name + (g_UserRating.length > 0 ? ` (${g_UserRating})` : '') : '';
 
-    // g_PlayerName = 'seeh (1205)';
-    if(false && g_selfNick =="seeh"){ //NOTE -developers want to see the error in the console
-        warn('179:' + uneval("attribs.name:" + attribs.name));
-        warn('180:' + uneval("g_UserRating:" + g_UserRating));
-        warn(uneval("g_UserRatingString:" + g_UserRatingString));
-        warn(uneval("g_GameType:" + g_GameType)); // undefined
-        warn(uneval("g_PlayerName:" + g_PlayerName)); // undefined
+    info(
+        'attribs.name:', attribs.name,
+        'g_UserRating:', g_UserRating,
+        'g_GameType:', g_GameType,
+        'g_PlayerName:', g_PlayerName
+    );
 
-        // warn(`attribs: ${attribs.multiplayerGameType.prototype.toString()}`)
-         // JSON.stringify() but specifically for converting JavaScript objects into a string representation
-         /*!SECTION
-         JSON.stringify()  ,   toString()    ,    You can create custom serialization methods for your objects by defining toJSON() or toObject() methods.
-         */
-
-    }
     // added by custom rating - END
     switch (attribs.multiplayerGameType) {
         case "join": {
@@ -284,6 +163,37 @@ function init(attribs) {
             error("Unrecognised multiplayer game type: " + attribs.multiplayerGameType);
             break;
     }
+}
+
+
+function info (...args) {
+    const shouldDebug = getBoolOpt('autociv.settings.debug');
+
+    if (!shouldDebug)
+        return;
+
+    const stack = (new Error()).stack.toString().split(/\r\n|\n/);
+
+    warn(' [i] '+ stack[1] + '  '+ args.join(' '));
+}
+
+function getBoolOpt (option, context) {
+    return getOpt(option, context) === 'true';
+}
+
+function getOpt (option, context) {
+    context = context || 'user';
+    return Engine.ConfigDB_GetValue(context, option);
+}
+
+function getRatings (currentRating) {
+    const useLocalRatings = getBoolOpt('autocivP.mod.useLocalRatings');
+
+    currentRating = (currentRating || '').length > 0 ? currentRating || '' : '';
+
+    info('curentRating:', currentRating, 'useLocalRatings:', useLocalRatings);
+
+    return ((g_LocalRatingsUser && useLocalRatings) ? g_LocalRatingsUser : currentRating).trim();
 }
 
 function cancelSetup() {
