@@ -63,7 +63,7 @@ function init(attribs) {
 
     // added by custom rating - START
     // let customrating_string = Engine.ConfigDB_GetValue("user", "customrating.string") // usefull options to select
-    let customrating_dropdown = Engine.ConfigDB_GetValue("user", "autocivP.customusernameDropdown"); // autocivP.customusernameDropdown is Dropdown with some funny or usefull options to select
+    let customrating_dropdown = Engine.ConfigDB_GetValue("user", "autocivP.customUsernameDropdown"); // autocivP.customUsernameDropdown is Dropdown with some funny or usefull options to select
     const customrating_trueFalse = Engine.ConfigDB_GetValue("user", "customrating");
 
     const modsObj = Engine.GetEngineInfo().mods
@@ -97,7 +97,7 @@ function init(attribs) {
             customrating on / off
             availeble fields:
             customrating.string / string
-            autocivP.customusernameDropdown / radio field
+            autocivP.customUsernameDropdown / radio field
 
             */
 
@@ -149,13 +149,13 @@ function init(attribs) {
                 : "proGUI"
         }
         // not relevant for fairplay but maybe fun or useful
-        const showIconWhenUsingAutocovP = Engine.ConfigDB_GetValue(
+        const showIconWhenUsingAutocivP = Engine.ConfigDB_GetValue(
             "user",
-            "autocivP.mod.showIconWhenUsingAutocovP"
+            "autocivP.mod.showIconWhenUsingAutocivP"
             ) === "true"
         // ♇ // usually: ♇ (Unicode code point U+2647) is known as the Astrological Symbol for Pluto
         // show use of this is optional. not relevant for fairplay
-        temp += (showIconWhenUsingAutocovP)
+        temp += (showIconWhenUsingAutocivP)
             ? ((useitwithoutUnicode)
                 ? 'AP' : '♇')
             : ''

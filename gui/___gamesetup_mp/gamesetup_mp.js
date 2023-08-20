@@ -49,7 +49,7 @@ function init(attribs) {
     }
 
     // added by custom rating - START
-    let customrating_value = Engine.ConfigDB_GetValue("user", "autocivP.customusernameDropdown");
+    let customrating_value = Engine.ConfigDB_GetValue("user", "autocivP.customUsernameDropdown");
     const customrating_trueFalse = Engine.ConfigDB_GetValue("user", "customrating");
 
 

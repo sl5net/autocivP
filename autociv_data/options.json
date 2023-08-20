@@ -139,6 +139,12 @@
 			},
 			{
 				"type": "boolean",
+				"label": "[color=\"220 185 70\"]Global:[/color][color=\"255 0 0\"] debug[/color]",
+				"tooltip": "([color=\"255 0 0\"]enables debugging messages[/color])",
+				"config": "autociv.settings.debug"
+			},
+			{
+				"type": "boolean",
 				"label": "[color=\"220 185 70\"]Global:[/color] use icon without delimiter ",
 				"tooltip": "dont use <icon> delimiter in chat. default is dopple tab for rmove all icons delimiters",
 				"config": "autocivP.chat.no_icon_delimiters"
@@ -337,22 +343,22 @@
 				"type": "dropdown",
 				"label": "[color=\"220 185 70\"]Postfix UserName[/color] or select rated,nub... ->",
 				"tooltip": "[color=\"255 0 0\"] max. 25 letter, then its cut off !! \n names + everything else.[/color] \n its not disturbing the game. \n but probably looks not beutiful. try it :) ",
-				"config": "autocivP.customusernameDropdown",
+				"config": "autocivP.customUsernameDropdown",
 				"dependencies": ["customrating"],
 				"list": [
-					{ "value": "false", "label": ""  },
-					{ "value": "^n", "label": "noob"  },
-					{ "value": "^vn", "label": "very nub"  },
-					{ "value": "^0", "label": "youtuber"  },
-					{ "value": "^1", "label": "unfocused today"  },
-					{ "value": "^2", "label": "rated"  },
-					{ "value": "^3", "label": "unrated"  },
-					{ "value": "^4", "label": "programmer\\?"  },
-					{ "value": "^5", "label": "spec"  },
-					{ "value": "^6", "label": "spec. not play!"  },
-					{ "value": "^7", "label": "ill today"  },
-					{ "value": "^8", "label": "overrated"  },
-					{ "value": "^9", "label": "underrated"  }
+					{ "value": "false", "label": "" },
+					{ "value": "^n", "label": "noob" },
+					{ "value": "^vn", "label": "very nub" },
+					{ "value": "^0", "label": "youtuber" },
+					{ "value": "^1", "label": "unfocused today" },
+					{ "value": "^2", "label": "rated" },
+					{ "value": "^3", "label": "unrated" },
+					{ "value": "^4", "label": "programmer\\?" },
+					{ "value": "^5", "label": "spec" },
+					{ "value": "^6", "label": "spec. not play!" },
+					{ "value": "^7", "label": "ill today" },
+					{ "value": "^8", "label": "overrated" },
+					{ "value": "^9", "label": "underrated" }
 				]
 			},
 			{
@@ -365,7 +371,25 @@
 				"type": "boolean",
 				"label": "[color=\"220 185 70\"]Postfix UserName[/color]: use ♇ or AP to show when useing autocivP",
 				"tooltip": "not related to fairplay. \n it shows when you are using autocivP mod with a shortcut. \n ♇ for: P in autocivP, L for command Line.",
-				"config": "autocivP.mod.showIconWhenUsingAutocovP"
+				"config": "autocivP.mod.showIconWhenUsingAutocivP"
+			},
+      {
+        "type": "boolean",
+        "label": "[color=\"220 185 70\"]Postfix UserName[/color]: use local ratings?",
+        "tooltip": "appends local ratings to your custom ratings.\n",
+        "config": "autocivP.mod.showLocalRatings"
+      },
+      {
+        "type": "boolean",
+        "label": "[color=\"220 185 70\"]Postfix UserName[/color]: appends all above?",
+        "tooltip": "appends to custom rating.\n it appends all the optional values with '|',\n like myusername(1350|proGUI|spec. not play!).",
+        "config": "autocivP.mod.appendToCustomRating"
+      },
+      {
+        "type": "boolean",
+        "label": "[color=\"220 185 70\"]Use local ratings[/color]?",
+        "tooltip": "Use local ratings instead of ratings. \n",
+        "config": "autocivP.mod.useLocalRatings"
 			},
 			{
 				"type": "boolean",

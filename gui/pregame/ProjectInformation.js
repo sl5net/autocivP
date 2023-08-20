@@ -28,7 +28,7 @@ function is_autocivP_just_now_installed(){
 
 
 	const isValid_showStarWhenUsingProGUI = isCheckBox_valid_boolean_string("autocivP.mod.showStarWhenUsingProGUI")
-	const isValid_showIconWhenUsingAutocovP = isCheckBox_valid_boolean_string("autocivP.mod.showIconWhenUsingAutocovP")
+	const isValid_showIconWhenUsingAutocivP = isCheckBox_valid_boolean_string("autocivP.mod.showIconWhenUsingAutocivP")
 	const isValid_noUsernameInGameName = isCheckBox_valid_boolean_string("autocivP.gamesetup.noUsernameInGameName")
 	const isValid_inNextFullMinuteRemove00 = isCheckBox_valid_boolean_string("autocivP.gamesetup.gameStart.inNextFullMinuteRemove00")
 	const isValid_showModsInGameName = isCheckBox_valid_boolean_string(
@@ -37,7 +37,7 @@ function is_autocivP_just_now_installed(){
 
 	const isACheckboxValid =
 	( isValid_showStarWhenUsingProGUI
-		|| isValid_showIconWhenUsingAutocovP
+		|| isValid_showIconWhenUsingAutocivP
 		|| isValid_noUsernameInGameName
 		|| isValid_inNextFullMinuteRemove00
 		|| isValid_showModsInGameName )
