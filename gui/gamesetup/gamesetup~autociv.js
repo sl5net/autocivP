@@ -176,7 +176,7 @@ function setCaptionWhenJoinOrStartGameSetup(){
 			selfMessage(`your last used profile was: ${lastCommandProfile}`);
 			newCaptionString = (lastCommandProfile) ? '/pRestoreLastProfile' : '/help /p'
 			if(bugIt)
-			warn(`newCaptionString: ${newCaptionString}, lineNumber: ${ln()}`);
+			warn(`newCaptionString: ${newCaptionString}`);
 		}else{
 			// your not host
 			// if(doHelloAutomaticSuggestionWhenJoinAgameSetup)
@@ -221,7 +221,7 @@ function setCaptionWhenJoinOrStartGameSetup(){
 
 
 			if(bugIt)
-				warn(`newCaptionString: ${newCaptionString}, lineNumber: ${ln()}`);
+				warn(`newCaptionString: ${newCaptionString}`);
 		}
 	}else{
 		// mods have not changed
@@ -242,7 +242,7 @@ function setCaptionWhenJoinOrStartGameSetup(){
 
 				// newCaptionString = '(◕‿◕) good luck with setup';
 				if(bugIt)
-					warn(`newCaptionString: ${newCaptionString}, lineNumber: ${ln()}`);
+					warn(`newCaptionString: ${newCaptionString}`);
 		}else{
 			// your not host
 			if(doHelloAutomaticSuggestionWhenJoinAgameSetup
@@ -286,13 +286,13 @@ function setCaptionWhenJoinOrStartGameSetup(){
 				}, 5); // seems 1 millisecond is enough but i take more milliseconds
 			}
 			if(bugIt)
-				warn(`newCaptionString: ${newCaptionString}, lineNumber: ${ln()}`);
+				warn(`newCaptionString: ${newCaptionString}`);
 
 		}
 	}
 
 	if(bugIt)
-		warn(`newCaptionString: ${newCaptionString}, lineNumber: ${ln()}`);
+		warn(`newCaptionString: ${newCaptionString}`);
 
 	if(newCaptionString){
 		const chatInput = Engine.GetGUIObjectByName("chatInput")

@@ -1496,10 +1496,13 @@ function findBestMatch(query, fuzzyArray, minMatchScore = 0.3) {
 		return 0; // IE < 10, likely
 	  }
 	}
-	const stack = e.stack.toString().split(/\r\n|\n/);
-	const frameRE = /:(\d+:\d+)[^\d]+$/;
+	const stack = e.stack.toString()
+	  .replace(/\[.*?\]/g, '')
+	  .replace(/<[^>]*]>/g, '')
+	  .split(/\r\n|\n/);
+	const frameRE = /:(\d+:\d+)[^\d]+/;
 	do {
 	  var frame = stack.shift();
 	} while (!frameRE.exec(frame) && stack.length);
 	return frameRE.exec(stack.shift())[1];
-}
+  }

@@ -459,7 +459,7 @@ botManager.addBot("autociv", {
 				*/
 
 				if(bugIt){
-					selfMessage(`text: ${text} gui/common/botmanager.js:${ln()}`)
+					// selfMessage(`text: ${text} gui/common/botmanager.js:${ln()}`)
 				}
 
 				// check if a variable text contains a single space character repeated exactly twice (without any additional spaces in between) anywhere in the string
