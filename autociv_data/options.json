@@ -330,7 +330,7 @@
 			{
 				"type": "string",
 				"label": "Any text (limited chars max. 42)",
-				"tooltip": "Any text you like. Maybe your Localrating here? Like LR:-9 or LR:5 for example\n[color=\"255 0 0\"] max. 25 letter, then its cut off !! \n names + everything else.[/color] \n its not disturbing the game. \n but probably looks not beutiful. try it :) ",
+				"tooltip": "Any text you like.  ",
 				"config": "customrating.string"
 			},
 			{
@@ -367,12 +367,22 @@
 				"tooltip": "not related to fairplay. \n it shows when you are using autocivP mod with a shortcut. \n ♇ for: P in autocivP, L for command Line.",
 				"config": "autocivP.mod.showIconWhenUsingAutocivP"
 			},
-      {
-        "type": "boolean",
-        "label": "[color=\"220 185 70\"]Postfix UserName[/color]: use local ratings?",
-        "tooltip": "appends local ratings to your custom ratings.\n",
-        "config": "autocivP.mod.showLocalRatings"
-      },
+
+	  {
+		"type": "dropdown",
+		"label": "[color=\"220 185 70\"]Postfix UserName[/color]: use local ratings?",
+		"tooltip": "appends local ratings to your custom ratings.",
+		"config": "autocivP.mod.showLocalRatingsDropdown",
+		"list": [
+			{ "value": "false", "label": "" },
+			{ "value": "^lr", "label": "1200|5 (LR:number)" },
+			{ "value": "^lrPlusGames", "label": "1200|5|80 (LR:number|games)" },
+			{ "value": "^lrNoNormalRating", "label": "5 (without normal rating)" },
+			{ "value": "^lrPlusGamesPlusNormal", "label": "5|80 (without normal rating)" }
+		]
+	},
+
+
       {
         "type": "boolean",
         "label": "[color=\"220 185 70\"]Postfix UserName[/color]: appends all above?",

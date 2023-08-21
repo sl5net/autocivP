@@ -45,19 +45,35 @@ function init (attribs) {
     let customRating        = '';
     const usingCustomRating = getBoolOpt('customrating');
     const useLocalRatings   = getBoolOpt('autocivP.mod.useLocalRatings');
-    const showLocalRatings  = getBoolOpt('autocivP.mod.showLocalRatings');
+    // const showLocalRatings  = getBoolOpt('autocivP.mod.showLocalRatings');
+    const showLocalRatingsDropdown  = Engine.ConfigDB_GetValue("user", "autocivP.mod.showLocalRatingsDropdown");
+
+
     const hasLocalRatings   = typeof init_LocalRatings != 'undefined';
 
-    info('useLocalRatings:', useLocalRatings,'showLocalRatings:', showLocalRatings, 'hasLocalRatings:', hasLocalRatings);
+    info('showLocalRatingsDropdown:', showLocalRatingsDropdown,'showLocalRatingsDropdown:', showLocalRatingsDropdown, 'hasLocalRatings:', hasLocalRatings);
 
-    if (hasLocalRatings && (useLocalRatings || showLocalRatings)) {
+    if (hasLocalRatings && (useLocalRatings || showLocalRatingsDropdown)) {
         info('try to use local ratings database, with user: ', g_selfNick);
         g_LocalRatingsUser = init_LocalRatings()[g_selfNick];
 
         // if you want add g_LocalRatingsUser.matches but i feels its to long for usernames
         if (g_LocalRatingsUser) {
-            g_LocalRatingsUser = g_UserRating + '|' + (g_LocalRatingsUser.rating * 100).toFixed(2) + '|' + g_LocalRatingsUser.matches;
+
+            if(showLocalRatingsDropdown == '^lr')
+                g_LocalRatingsUser = (g_LocalRatingsUser.rating * 100).toFixed(2);
+            if(showLocalRatingsDropdown == '^lrPlusGames')
+                g_LocalRatingsUser = (g_LocalRatingsUser.rating * 100).toFixed(2) + '|' + g_LocalRatingsUser.matches;
+            if(showLocalRatingsDropdown == '^lrNoNormalRating')
+                g_LocalRatingsUser = (g_LocalRatingsUser.rating * 100).toFixed(2);
+            if(showLocalRatingsDropdown == '^lrPlusGamesPlusNormal')
+                g_LocalRatingsUser = g_UserRating + '|' + (g_LocalRatingsUser.rating * 100).toFixed(2) + '|' + g_LocalRatingsUser.matches;
+
+
         }
+
+
+
 
         info('g_LocalRatingUser:', g_LocalRatingsUser);
     }
@@ -101,7 +117,7 @@ function init (attribs) {
             const showIconWhenUsingAutocivP = getBoolOpt('autocivP.mod.showIconWhenUsingAutocivP');
 
             customRating = [
-                g_LocalRatingsUser && showLocalRatings ? g_LocalRatingsUser : g_UserRating,
+                g_LocalRatingsUser && showLocalRatingsDropdown ? g_LocalRatingsUser : g_UserRating,
                 (!g_proGUIPVersion ? null : (showStarWhenUsingProGUI ?
                     (useItWithoutUnicode ? '*' : "♤") : 'proGUI'))
                     +
@@ -117,7 +133,7 @@ function init (attribs) {
               'useItWithoutUnicode:', useItWithoutUnicode,
               'showStarWhenUsingProGUI:', showStarWhenUsingProGUI,
               'showIconWhenUsingAutocivP:', showIconWhenUsingAutocivP,
-              'showLocalRatings:', showLocalRatings,
+              'showLocalRatings:', showLocalRatingsDropdown,
               'hasLocalRatings:', hasLocalRatings
             );
         }
