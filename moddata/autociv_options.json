@@ -368,17 +368,17 @@
 
 
 
-			{
+			  {
 				"type": "dropdown",
 				"label": "[color=\"220 185 70\"]Postfix UserName[/color]: use local ratings?",
-				"tooltip": "appends local ratings to your custom ratings.\n",
+				"tooltip": "appends local ratings to your custom ratings.",
 				"config": "autocivP.mod.showLocalRatingsDropdown",
 				"list": [
 					{ "value": "false", "label": "" },
-					{ "value": "^lr", "label": "LR:5 (LR:number)" },
-					{ "value": "^lrPlusGames", "label": "LR:5|80 (LR:number|games)" },
-					{ "value": "^lrNoNormalRating", "label": "LR:5 (without normal rating)" },
-					{ "value": "^lrPlusGamesPlusNormal", "label": "LR:5|80 (without normal rating)" }
+					{ "value": "^lr", "label": "1200|5 (LR:number)" },
+					{ "value": "^lr_PlusGames", "label": "1200|5|80 (LR:number|games)" },
+					{ "value": "^lr_NoNormalRating", "label": "5 (without normal rating)" },
+					{ "value": "^lr_NoNormalRating_PlusGames", "label": "5|80 (without normal rating)" }
 				]
 			},
 

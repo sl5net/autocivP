@@ -942,7 +942,7 @@ autociv_InitSharedCommands.pipe = {
 						warn(error.stack)
 					  }
 					warn('well done. Please start 0ad now again.')
-					// Engine.Exit(1) // works
+					Engine.Exit(1) // works
 
 				}
 

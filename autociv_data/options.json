@@ -376,9 +376,9 @@
 		"list": [
 			{ "value": "false", "label": "" },
 			{ "value": "^lr", "label": "1200|5 (LR:number)" },
-			{ "value": "^lrPlusGames", "label": "1200|5|80 (LR:number|games)" },
-			{ "value": "^lrNoNormalRating", "label": "5 (without normal rating)" },
-			{ "value": "^lrPlusGamesPlusNormal", "label": "5|80 (without normal rating)" }
+			{ "value": "^lr_PlusGames", "label": "1200|5|80 (LR:number|games)" },
+			{ "value": "^lr_NoNormalRating", "label": "5 (without normal rating)" },
+			{ "value": "^lr_NoNormalRating_PlusGames", "label": "5|80 (without normal rating)" }
 		]
 	},
 
