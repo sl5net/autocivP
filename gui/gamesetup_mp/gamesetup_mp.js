@@ -77,9 +77,8 @@ function init (attribs) {
 
         }
 
-        warn(`g_LocalRatingsUser: ${g_LocalRatingsUser}`);
-        warn(`showLocalRatingsDropdown: ${showLocalRatingsDropdown}`);
-
+        // warn(`g_LocalRatingsUser: ${g_LocalRatingsUser}`);
+        // warn(`showLocalRatingsDropdown: ${showLocalRatingsDropdown}`);
 
         info('g_LocalRatingUser:', g_LocalRatingsUser);
     }
@@ -124,7 +123,7 @@ function init (attribs) {
 
             customRating = [
                 g_LocalRatingsUser && showLocalRatingsDropdown ? g_LocalRatingsUser : g_UserRating,
-                (!g_proGUIPVersion ? null : (showStartWhenUsingProGUI ?
+                (!g_proGUIPVersion ? '' : (showStartWhenUsingProGUI ?
                     (useItWithoutUnicode ? '*' : "♤") : 'proGUI'))
                     +
                     (showIconWhenUsingAutocivP ?  (useItWithoutUnicode ? 'AP' : '♇') : ''),
