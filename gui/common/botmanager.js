@@ -117,13 +117,17 @@ class BotManager
 
 
 						const now = new Date();
-						const minutes = now.getMinutes();
-						const moduloTen = minutes % 10;
-
+						const nowMinutes = now.getMinutes();
+						const nowMinModuloTen = nowMinutes % 10000000; // want message to be sent less often
+						// const now = Math.floor(Date.now() / 10000); rounded to the nearest 10 seconds.
+						// const now = Math.floor(Date.now() / 100000); rounded to the nearest 100 seconds.
+						// const now = Math.floor(Date.now() / 1000000); rounded to the nearest 1000 seconds.
+						// const now = Math.floor(Date.now() / 10000000); rounded to the nearest 10000 seconds.
+						// 10,000 seconds is approximately 2 hours and 46 minutes.
 
 						if( nick != g_selfNick
-							&& !(playerIsGreeted.includes(moduloTen))
-							&& !(playerIsGreeted.includes(moduloTen))
+							&& !(playerIsGreeted.includes(msg.guid))
+							&& !(playerIsGreeted.includes(nowMinModuloTen))
 							){
 
 							// new implementation so i will watch longer
@@ -145,7 +149,7 @@ class BotManager
 
 
 								playerIsGreeted.push(msg.guid);
-								playerIsGreeted.push(moduloTen);
+								playerIsGreeted.push(nowMinModuloTen);
 								// selfMessage(`you dont want see this message? \n Game > Settings > Options > Personalization > auto hello Suggestion = false`);
 							}
 

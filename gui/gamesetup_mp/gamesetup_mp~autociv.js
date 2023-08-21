@@ -198,7 +198,7 @@ function nextGameStartTime() {
 
     const getNextHalfHour = (inNextFullMinute) => {
       const now = new Date();
-      const minutes = now.getMinutes();
+      const nowMinutes = now.getMinutes();
 
 
 
