@@ -27,7 +27,7 @@ function is_autocivP_just_now_installed(){
 	*/
 
 
-	const isValid_showStarWhenUsingProGUI = isCheckBox_valid_boolean_string("autocivP.mod.showStarWhenUsingProGUI")
+	const isValid_showStartWhenUsingProGUI = isCheckBox_valid_boolean_string("autocivP.mod.showStartWhenUsingProGUI")
 	const isValid_showIconWhenUsingAutocivP = isCheckBox_valid_boolean_string("autocivP.mod.showIconWhenUsingAutocivP")
 	const isValid_noUsernameInGameName = isCheckBox_valid_boolean_string("autocivP.gamesetup.noUsernameInGameName")
 	const isValid_inNextFullMinuteRemove00 = isCheckBox_valid_boolean_string("autocivP.gamesetup.gameStart.inNextFullMinuteRemove00")
@@ -36,31 +36,48 @@ function is_autocivP_just_now_installed(){
 	// const is_setuped_valid_for_Remove00 = (isValid_inNextFullMinuteRemove00 === 'true' || isValid_inNextFullMinuteRemove00 === 'false')
 
 	const isACheckboxValid =
-	( isValid_showStarWhenUsingProGUI
+	( isValid_showStartWhenUsingProGUI
 		|| isValid_showIconWhenUsingAutocivP
 		|| isValid_noUsernameInGameName
 		|| isValid_inNextFullMinuteRemove00
 		|| isValid_showModsInGameName )
 
 		// g_selfNick =="seeh" &&
-	if(!isACheckboxValid ){ //NOTE -developers want to see the error in the console
+	if( !isACheckboxValid ){ //NOTE -developers want to see the error in the console
 		// warn(`is_setuped_valid: ${isACheckboxValid}`)
 		// warn(`==> inNextFullMinuteRemove00: ${isValid_inNextFullMinuteRemove00}`)
 
 		// set something explicitly to false or true so we dont get an always its fresh installed true
 
-		// true becouse showStarWhenUsingProGUI i great :)
-		ConfigDB_CreateAndSaveValueA26A27("user", "autocivP.mod.showStarWhenUsingProGUI", 'true');
+		// true becouse showStartWhenUsingProGUI i great :)
+		ConfigDB_CreateAndSaveValueA26A27("user", "autocivP.mod.showStartWhenUsingProGUI", 'true');
 
+		const importantNote = "Some changes may require a restart of the game\n" +
+		"(like when you change the mod profile).\n" +
+		"Then the game may exit.\n" +
+		"In such cases, it's your responsibility to start the game.\n" +
+		"This is not a game crash. Thank you for understanding.\n\n" +
+		"Not a bug, it's a feature ;)\n" +
+		"If you have any questions, please feel free to ask. Thank you.";
 
 		messageBox(
 			500,
 			300,
-			"Important Installation Note: Ensure AutocamP-FolderName is set to: autocivp . to prevent eventually errors. \n Lowercase without number to like",
-			"AutoCivP Installation Note",
+			importantNote,
+			"Important Installation Note:\n",
 			["Ok"],
 			[() => {}, () => {}]
 		  );
+
+
+		// messageBox(
+		// 	500,
+		// 	300,
+		// 	"Important Installation Note: Ensure AutocamP-FolderName is set to: autocivp . to prevent eventually errors. \n Lowercase without number to like",
+		// 	"AutoCivP Installation Note",
+		// 	["Ok"],
+		// 	[() => {}, () => {}]
+		//   );
 
 
 	}

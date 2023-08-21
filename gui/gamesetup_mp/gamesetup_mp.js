@@ -113,12 +113,12 @@ function init (attribs) {
 
         if (appendToCustomRating) {
             const useItWithoutUnicode       = getBoolOpt('autociv.chatText.font.useItWithoutUnicode');
-            const showStarWhenUsingProGUI   = getBoolOpt('autocivP.mod.showStarWhenUsingProGUI');
+            const showStartWhenUsingProGUI   = getBoolOpt('autocivP.mod.showStartWhenUsingProGUI');
             const showIconWhenUsingAutocivP = getBoolOpt('autocivP.mod.showIconWhenUsingAutocivP');
 
             customRating = [
                 g_LocalRatingsUser && showLocalRatingsDropdown ? g_LocalRatingsUser : g_UserRating,
-                (!g_proGUIPVersion ? null : (showStarWhenUsingProGUI ?
+                (!g_proGUIPVersion ? null : (showStartWhenUsingProGUI ?
                     (useItWithoutUnicode ? '*' : "♤") : 'proGUI'))
                     +
                     (showIconWhenUsingAutocivP ?  (useItWithoutUnicode ? 'AP' : '♇') : ''),
@@ -131,7 +131,7 @@ function init (attribs) {
             info(
               'customrating:', customRating,
               'useItWithoutUnicode:', useItWithoutUnicode,
-              'showStarWhenUsingProGUI:', showStarWhenUsingProGUI,
+              'showStartWhenUsingProGUI:', showStartWhenUsingProGUI,
               'showIconWhenUsingAutocivP:', showIconWhenUsingAutocivP,
               'showLocalRatings:', showLocalRatingsDropdown,
               'hasLocalRatings:', hasLocalRatings
