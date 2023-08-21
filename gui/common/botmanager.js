@@ -115,8 +115,17 @@ class BotManager
 					if(chatInput && chatInput.caption == ""){
 						const nick = splitRatingFromNick(g_PlayerAssignments[msg.guid].name).nick
 
+
+						const now = new Date();
+						const minutes = now.getMinutes();
+						const moduloTen = minutes % 10;
+
+
 						if( nick != g_selfNick
-							&& !(playerIsGreeted.includes(msg.guid))){
+							&& !(playerIsGreeted.includes(moduloTen))
+							&& !(playerIsGreeted.includes(moduloTen))
+							){
+
 							// new implementation so i will watch longer
 							// bugIt = true &&  g_selfNick.includes("seeh") // new implementation so i will watch longer
 							// assumtion you are the host and a new plyer did fist think (message or selecint or so)
@@ -131,7 +140,12 @@ class BotManager
 								if(g_selfNick.includes("seeh"))
 									chatInput.caption += 'i ♡ autocivP♇ mod.'
 
+
+
+
+
 								playerIsGreeted.push(msg.guid);
+								playerIsGreeted.push(moduloTen);
 								// selfMessage(`you dont want see this message? \n Game > Settings > Options > Personalization > auto hello Suggestion = false`);
 							}
 

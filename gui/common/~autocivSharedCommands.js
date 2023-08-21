@@ -1487,22 +1487,9 @@ function findBestMatch(query, fuzzyArray, minMatchScore = 0.3) {
 	};
   }
 
-
-  /**
-   * Retrieves the line number where the 'getLineNumber' function is called.
-   * https://stackoverflow.com/a/27074218/2891692
-   * @return {number} The line number where the 'getLineNumber' function is called.
-   */
   function ln() {
-	// return 55555555;
-
-	// const lineNumber = getln();
-	// warn(lineNumber); // Output: Line number where 'getLineNumber' function is called
-
 	const e = new Error();
 	if (!e.stack) try {
-	  // IE requires the Error to actually be throw or else the Error's 'stack'
-	  // property is undefined.
 	  throw e;
 	} catch (e) {
 	  if (!e.stack) {
@@ -1510,10 +1497,7 @@ function findBestMatch(query, fuzzyArray, minMatchScore = 0.3) {
 	  }
 	}
 	const stack = e.stack.toString().split(/\r\n|\n/);
-	// We want our caller's frame. It's index into |stack| depends on the
-	// browser and browser version, so we need to search for the second frame:
-	// var frameRE = /:(\d+):(?:\d+)[^\d]*$/;
-	const frameRE = /:(\d+:\d+)[^\d]*$/; //  line and column numbers
+	const frameRE = /:(\d+:\d+)[^\d]+$/;
 	do {
 	  var frame = stack.shift();
 	} while (!frameRE.exec(frame) && stack.length);

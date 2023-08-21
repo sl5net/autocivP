@@ -54,9 +54,9 @@ function init (attribs) {
         info('try to use local ratings database, with user: ', g_selfNick);
         g_LocalRatingsUser = init_LocalRatings()[g_selfNick];
 
-        // if you want add matches but i feels its to long for usernames
+        // if you want add g_LocalRatingsUser.matches but i feels its to long for usernames
         if (g_LocalRatingsUser) {
-            g_LocalRatingsUser = g_UserRating + '|' + (g_LocalRatingsUser.rating * 100).toFixed(2) ;
+            g_LocalRatingsUser = g_UserRating + '|' + (g_LocalRatingsUser.rating * 100).toFixed(2) + '|' + g_LocalRatingsUser.matches;
         }
 
         info('g_LocalRatingUser:', g_LocalRatingsUser);
@@ -109,7 +109,8 @@ function init (attribs) {
                 customRating.trim()
             ].filter(Boolean).join('|');
 
-            customRating = customRating.replace(/\|([^\d\w\-])/g, '$1'); // remove a pipe, when its still got to read, becouse name is sometimes a bit long
+            if(customRating)
+                customRating = customRating.replace(/\|([^\d\w\-])/, '$1'); // remove a pipe, when its still good to read, becouse name is sometimes a bit long
 
             info(
               'customrating:', customRating,
