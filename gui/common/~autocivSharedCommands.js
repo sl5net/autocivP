@@ -2,6 +2,7 @@ var gameState = "lobby"; // Initial state // // TODO: howto set it like this? g_
 
 var g_selfIsHost
 
+let playerIsGreeted = []
 
 /**
  * Determine if the current player is the host player.
@@ -11,20 +12,20 @@ function isSelfHost(){ // maybe call it in a settimeout assync function
 	let bugIt = false // new implementation so i will watch longer
 
 	if(bugIt)
-		selfMessage(`${ln()}: g_selfInHost gui/common/~autocivSharedCommands.js`);
+		selfMessage(`15: isSelfHost() gui/common/~autocivSharedCommands.js`);
 	if(g_selfIsHost === true || g_selfIsHost === false){
 		if(bugIt)
-			selfMessage(`${ln()}: g_selfInHost = ${g_selfIsHost} , gui/common/~autocivSharedCommands.js`);
+			selfMessage(`18: g_selfInHost = ${g_selfIsHost} , gui/common/~autocivSharedCommands.js`);
 		return g_selfIsHost;
 	}
 	switch (typeof g_selfIsHost) {
 		case 'undefined':
 			if(bugIt)
-				selfMessage(`${ln()}: g_selfInHost = undefined gui/common/~autocivSharedCommands.js`);
+				selfMessage(`24: g_selfInHost = undefined gui/common/~autocivSharedCommands.js`);
 			break;
 		default:
 			if(bugIt)
-				selfMessage(`${ln()}: g_selfInHost return  gui/common/~autocivSharedCommands.js`);
+				selfMessage(`28: g_selfInHost return  gui/common/~autocivSharedCommands.js`);
 			error(`148: g_selfInHost return  gui/common/~autocivSharedCommands.js`);
 			return
 	}

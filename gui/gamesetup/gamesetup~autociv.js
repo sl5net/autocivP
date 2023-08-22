@@ -1,6 +1,8 @@
 warnModIsNotEnabled(); // check for feldmap mod is default 23-0624_0327-45
 warnSilhouettesIsNotEnabled()
 
+// warn(`5: gui/gamesetup/gamesetup~autociv.js`)
+
 var g_selfIsHost
 
 var p_isJoinedGameGreeted = false
@@ -57,6 +59,8 @@ autociv_patchApplyN("init", function (target, that, args)
 		left: 4, top: 4, bottom: -32
 	})
 
+	// warn(`62: gui/gamesetup/gamesetup~autociv.js`)
+
 	setDefaultsToOptionsPersonalizationWhenNewInstalled();
 
 	target.apply(that, args);
@@ -76,39 +80,37 @@ autociv_patchApplyN("init", function (target, that, args)
 
 
 
-    // selfMessage(`g_IsRatedGame: ${g_IsRatedGame} ${ln()}`);
+    selfMessage(`83: gui/gamesetup/gamesetup~autociv.js`);
 
     // selfMessage(`game.is.rated(): ${game.is.rated()} ${ln()}`);
 
 
 	g_selfIsHost = g_IsController // Synonymous variable with g_IsController. for easier to find
-	let selfIsHost_temp
+	let g_selfIsHost_temp
 	// obsolete todo: delete , 23-0814_1558-15 but lets check if its always same first some days/weeks
 	if(true)
-	setTimeout(() => {
-		// Asynchronous operation
-		try {
-			g_selfIsHost_temp = isSelfHost() // the g_selfInHost is set a bit later. so a delay is needed here
-			.then(result => {
-			// warn(`works`);
-			})
-			.catch(error => {
-			// warn(error);
-			});
-		} catch (error) {
-			// Handle the error gracefully or simply ignore it
-		}
-	}, 10);
+		setTimeout(() => {
+			// Asynchronous operation
+			try {
+				g_selfIsHost_temp = isSelfHost()
+			} catch (error) {
+				// Handle the error gracefully or simply ignore it
+				warn(`109: ${error} | gui/gamesetup/gamesetup~autociv.js`);
+				warn(`110: gui/gamesetup/gamesetup~autociv.js`);
+			}
+		}, 10);
 
-	// obsolete
-	if(false)
-	setTimeout(() => {
-		setCaptionWhenJoinOrStartGameSetup()
-	}, 20);
-	setCaptionWhenJoinOrStartGameSetup()
 
+	// obsolete, seems not obsolete, 23-0822
+	if(true)
+		setTimeout(() => {
+			setCaption_when_JoinOrStart_Setup_suggestRestoreMods_when_modsChanged()
+		}, 20);
+	else
+		setCaption_when_JoinOrStart_Setup_suggestRestoreMods_when_modsChanged()
 
 })
+
 
 function warnModIsNotEnabled(){
 	const key = "autocivP.gamesetup.warnModIsNotEnabled";  // default it will warn
@@ -150,7 +152,8 @@ function warnSilhouettesIsNotEnabled(){
 /**
  * Checks if self host and mods have changed and recommends restoring then the last profile.
  */
-function setCaptionWhenJoinOrStartGameSetup(){
+function setCaption_when_JoinOrStart_Setup_suggestRestoreMods_when_modsChanged(){
+
 	const modsFromUserCfg = Engine.ConfigDB_GetValue("user", "mod.enabledmods");
 	const modsFromUserCfg_backup = Engine.ConfigDB_GetValue("user", "autocivP.enabledmods.backup");
 	const doHelloAutomaticSuggestionWhenJoinAgameSetup = Engine.ConfigDB_GetValue("user", "autocivP.msg.helloAutomaticSuggestionWhenJoinAgameSetup") === "true"
@@ -159,6 +162,11 @@ function setCaptionWhenJoinOrStartGameSetup(){
 
 	let bugIt = false // new implementation so i will watch longer
 	// bugIt = true && g_selfNick =="seeh" // new implementation so i will watch longer
+
+	if(bugIt && g_selfNick.includes("seeh")){
+		selfMessage(`175: g_selfIsHost=${g_selfIsHost}`);
+		selfMessage(`175: modsFromUserCfg=${modsFromUserCfg} , modsFromUserCfg_backup=${modsFromUserCfg_backup}`);
+	  }
 
 
 	if(modsFromUserCfg != modsFromUserCfg_backup){
@@ -169,7 +177,11 @@ function setCaptionWhenJoinOrStartGameSetup(){
 		//   warn('82: have changed enabledmods? do you want restore last profile?');
 	  	// g_NetworkCommands["/pRestoreLastProfile"]();
 	  	// pRestoreLastProfile();
+
+
+
 		if(g_selfIsHost){
+
 			// selfMessage('have changed enabledmods? do you want restore last profile?'); // selfMessage not exist
 			const key = 'autocivP.gamesetup.lastCommandProfile'
 			const lastCommandProfile = Engine.ConfigDB_GetValue("user", `${key}`);
@@ -274,6 +286,7 @@ function setCaptionWhenJoinOrStartGameSetup(){
 					newCaptionString = `hi ${countPlayers > 2 ? 'all ': hostName + '' }(◕‿◕) ` //  good luck with setup
 					const newBufferPosition = newCaptionString.length
 
+
 					if(g_selfNick.includes("seeh")){
 						newCaptionString += ' i  ♡ autocivP♇ mod'
 						selfMessage(`${ln}: g_selfNick: ${g_selfNick}`);
@@ -289,6 +302,7 @@ function setCaptionWhenJoinOrStartGameSetup(){
 				warn(`newCaptionString: ${newCaptionString}`);
 
 		}
+		// endOf: mods have not changed
 	}
 
 	if(bugIt)

@@ -1,4 +1,4 @@
-let playerIsGreeted = []
+
 class BotManager
 {
 	list = new Map();
@@ -118,7 +118,7 @@ class BotManager
 
 						const now = new Date();
 						const nowMinutes = now.getMinutes();
-						const nowMinModuloTen = nowMinutes % 10000000; // want message to be sent less often
+						const nowEvery30Min = Math.round(nowMinutes / 30) // want message to be sent less often
 						// const now = Math.floor(Date.now() / 10000); rounded to the nearest 10 seconds.
 						// const now = Math.floor(Date.now() / 100000); rounded to the nearest 100 seconds.
 						// const now = Math.floor(Date.now() / 1000000); rounded to the nearest 1000 seconds.
@@ -127,7 +127,7 @@ class BotManager
 
 						if( nick != g_selfNick
 							&& !(playerIsGreeted.includes(msg.guid))
-							&& !(playerIsGreeted.includes(nowMinModuloTen))
+							&& !(playerIsGreeted.includes(nowEvery30Min))
 							){
 
 							// new implementation so i will watch longer
@@ -141,15 +141,14 @@ class BotManager
 								chatInput.caption = (g_IsController) ? `Welcome on board ${nick}. ` : ``
 
 								chatInput.buffer_position = chatInput.caption.length
-								if(g_selfNick.includes("seeh"))
+								if(g_selfNick.includes("seeh")){
 									chatInput.caption += 'i ♡ autocivP♇ mod.'
-
-
-
+									selfMessage(`${nowEvery30Min} = nowEvery30Min`)
+								}
 
 
 								playerIsGreeted.push(msg.guid);
-								playerIsGreeted.push(nowMinModuloTen);
+								playerIsGreeted.push(nowEvery30Min);
 								// selfMessage(`you dont want see this message? \n Game > Settings > Options > Personalization > auto hello Suggestion = false`);
 							}
 
