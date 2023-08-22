@@ -51,9 +51,16 @@ function init (attribs) {
 
     const hasLocalRatings   = typeof init_LocalRatings != 'undefined';
 
+
     info('showLocalRatingsDropdown:', showLocalRatingsDropdown,'showLocalRatingsDropdown:', showLocalRatingsDropdown, 'hasLocalRatings:', hasLocalRatings);
 
-    if (hasLocalRatings && (useLocalRatings || showLocalRatingsDropdown)) {
+
+    if(!hasLocalRatings){
+        if ( (useLocalRatings || showLocalRatingsDropdown) ){
+            error(`for using local ratings you need to enable to LocalRatings mod`);
+        }
+    }
+    else if (hasLocalRatings && (useLocalRatings || showLocalRatingsDropdown)) {
         info('try to use local ratings database, with user: ', g_selfNick);
         g_LocalRatingsUser = init_LocalRatings()[g_selfNick];
 
@@ -77,8 +84,8 @@ function init (attribs) {
 
         }
 
-        // warn(`g_LocalRatingsUser: ${g_LocalRatingsUser}`);
-        // warn(`showLocalRatingsDropdown: ${showLocalRatingsDropdown}`);
+        warn(`g_LocalRatingsUser: ${g_LocalRatingsUser}`);
+        warn(`showLocalRatingsDropdown: ${showLocalRatingsDropdown}`);
 
         info('g_LocalRatingUser:', g_LocalRatingsUser);
     }

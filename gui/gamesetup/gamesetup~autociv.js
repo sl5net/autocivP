@@ -178,8 +178,6 @@ function setCaption_when_JoinOrStart_Setup_suggestRestoreMods_when_modsChanged()
 	  	// g_NetworkCommands["/pRestoreLastProfile"]();
 	  	// pRestoreLastProfile();
 
-
-
 		if(g_selfIsHost){
 			const difference =getDifference(modsFromUserCfg, modsFromUserCfg_backup).trim()
 
