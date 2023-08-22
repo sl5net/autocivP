@@ -191,7 +191,8 @@ function setCaption_when_JoinOrStart_Setup_suggestRestoreMods_when_modsChanged()
 				selfMessage(`${ln()}: \nmodsFromUserCfg_backup = \n${modsFromUserCfg_backup}`)
 				selfMessage(difference)
 			}
-			if(difference != 'feldmap'){
+			if(	difference != 'feldmap'
+				&& difference != 'proGUI'){
 				// ignore some mods. like feldmap. some mods are not makes it need to be ask for restore last profile
 
 
