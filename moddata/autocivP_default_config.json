@@ -263,7 +263,7 @@
     "hotkey.circularcamera.radius.decrease": "CapsLock+Minus",
     "hotkey.circularcamera.radius.increase": "CapsLock+Plus",
     "hotkey.circularcamera.radius.reset": "CapsLock+R",
-    "hotkey.console.toggle": "Ctrl+Shift",
+    "hotkey.console.toggle": "",
     "hotkey.macros.run": "F11",
     "hotkey.macros.toggle": "F10",
     "hotkey.progui.session.controlPanel.1": "1+X",
