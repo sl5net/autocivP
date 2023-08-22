@@ -161,7 +161,7 @@ function setCaption_when_JoinOrStart_Setup_suggestRestoreMods_when_modsChanged()
 	let newCaptionString = ''
 
 	let bugIt = false // new implementation so i will watch longer
-	// bugIt = true && g_selfNick =="seeh" // new implementation so i will watch longer
+	// bugIt = true && g_selfNick.includes("seeh") // new implementation so i will watch longer
 
 	if(bugIt && g_selfNick.includes("seeh")){
 		selfMessage(`175: g_selfIsHost=${g_selfIsHost}`);
@@ -181,19 +181,32 @@ function setCaption_when_JoinOrStart_Setup_suggestRestoreMods_when_modsChanged()
 
 
 		if(g_selfIsHost){
+			const difference =getDifference(modsFromUserCfg, modsFromUserCfg_backup).trim()
 
-			// selfMessage('have changed enabledmods? do you want restore last profile?'); // selfMessage not exist
-			const key = 'autocivP.gamesetup.lastCommandProfile'
-			const lastCommandProfile = Engine.ConfigDB_GetValue("user", `${key}`);
-			selfMessage(`your last used profile was: ${lastCommandProfile}`);
-			newCaptionString = (lastCommandProfile) ? '/pRestoreLastProfile' : '/help /p'
-			if(bugIt)
-			warn(`newCaptionString: ${newCaptionString}`);
+			// bugIt = g_selfNick.includes("seeh") // new implementation so i will watch longer
+
+			if(bugIt){
+				// sad we cannot use ${ln()} here at the moment.
+				selfMessage(`${ln()}: \nmodsFromUserCfg = \n${modsFromUserCfg}`)
+				selfMessage(`${ln()}: \nmodsFromUserCfg_backup = \n${modsFromUserCfg_backup}`)
+				selfMessage(difference)
+			}
+			if(difference != 'feldmap'){
+				// ignore some mods. like feldmap. some mods are not makes it need to be ask for restore last profile
+
+
+				// selfMessage('have changed enabledmods? do you want restore last profile?'); // selfMessage not exist
+				const key = 'autocivP.gamesetup.lastCommandProfile'
+				const lastCommandProfile = Engine.ConfigDB_GetValue("user", `${key}`);
+				selfMessage(`your last used profile was: ${lastCommandProfile}`);
+				newCaptionString = (lastCommandProfile) ? '/pRestoreLastProfile' : '/help /p'
+				if(bugIt)
+					warn(`newCaptionString: ${newCaptionString}`);
+			}
 		}else{
 			// your not host
 			// if(doHelloAutomaticSuggestionWhenJoinAgameSetup)
 			// newCaptionString = 'hi all (◕‿◕)'
-
 
 
 
