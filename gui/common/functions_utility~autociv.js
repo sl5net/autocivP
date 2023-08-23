@@ -179,6 +179,11 @@ const g_autoCompleteText_newMerge = (guiObject, list) => {
         captionCheck_is_communityModToggle_optional_restartOad(caption, true)
     }
 
+    captionCheck_is_prettyToggle(caption, true)
+
+
+
+
     if(captionCheck_is_communityModToggle_optional_restartOad(caption, false)){
       if(bugIt)
         selfMessage(`${ln()}: communitymodtoggle  gui/common/functions_utility~autociv.js `);
@@ -1169,6 +1174,90 @@ function setCaption2nextCommandOfHistory(guiObject){
 
 
 
+/**
+ * Checks if the caption is "communityModToggle" and performs certain actions based on the caption.
+ *
+ * @param {string} caption - The caption to be checked.
+ * @param {boolean} doRestart0ad - Optional parameter to indicate whether to restart 0ad.
+ *                                Defaults to false.
+ * @return {boolean} Returns true if the caption is "communityModToggle" and
+ *                   doRestart0ad is false. Otherwise, returns false.
+ */
+function captionCheck_is_prettyToggle(caption, doRestart0ad = false){
+  if(caption.trim() != "prettyToggle"){
+    return;
+  }
+  if(gameState == "ingame"){
+    selfMessage(`prettyToggle is not allowed in ingame.`)
+    return false
+  }
+
+  if(!doRestart0ad){
+    return true
+  }
+
+
+  const sharpness = Engine.ConfigDB_GetValue(
+    "user",
+    "sharpness"
+  );
+  const isPrettyMode = sharpness > 0.1
+
+  if(isPrettyMode){
+    prettyGraphicsDisable()
+  }else{
+    prettyGraphicsEnable()
+  }
+
+  restart0ad()
+}
+
+/**
+ * Enables pretty graphics settings.
+ *
+ * @return {void} No return value.
+ */
+function prettyGraphicsEnable() {
+  // Code to enable pretty graphics settings
+  // E.g., increase texture quality, enable antialiasing, etc.
+  ConfigDB_CreateAndSaveValueA26A27("user", "antialiasing", "msaa8");
+  ConfigDB_CreateAndSaveValueA26A27("user", "fog", "true");
+  ConfigDB_CreateAndSaveValueA26A27("user", "max_actor_quality", "150");
+  ConfigDB_CreateAndSaveValueA26A27("user", "shadowpcf", "true");
+  ConfigDB_CreateAndSaveValueA26A27("user", "shadowquality", "1");
+  ConfigDB_CreateAndSaveValueA26A27("user", "shadows", "true");
+  ConfigDB_CreateAndSaveValueA26A27("user", "sharpness", "0.14656737446784973");
+  ConfigDB_CreateAndSaveValueA26A27("user", "textures.quality", "1");
+}
+
+/**
+ * Disables pretty graphics settings.
+ *
+ * @return {undefined} No return value.
+ */
+function prettyGraphicsDisable() {
+  // Code to disable pretty graphics settings
+  // E.g., decrease texture quality, disable antialiasing, etc.
+  ConfigDB_CreateAndSaveValueA26A27("user", "fog", "false");
+  ConfigDB_CreateAndSaveValueA26A27("user", "max_actor_quality", "100");
+  ConfigDB_CreateAndSaveValueA26A27("user", "shadowpcf", "false");
+  ConfigDB_CreateAndSaveValueA26A27("user", "shadowquality", "-1");
+  ConfigDB_CreateAndSaveValueA26A27("user", "shadows", "false");
+  ConfigDB_CreateAndSaveValueA26A27("user", "sharpness", "0.09461931884288788");
+  ConfigDB_CreateAndSaveValueA26A27("user", "textures.quality", "0");
+}
+
+
+
+/**
+ * Checks if the caption is "communityModToggle" and performs certain actions based on the caption.
+ *
+ * @param {string} caption - The caption to be checked.
+ * @param {boolean} doRestart0ad - Optional parameter to indicate whether to restart 0ad.
+ *                                Defaults to false.
+ * @return {boolean} Returns true if the caption is "communityModToggle" and
+ *                   doRestart0ad is false. Otherwise, returns false.
+ */
 function captionCheck_is_communityModToggle_optional_restartOad(caption, doRestart0ad = false){
   if(caption.trim() == "communityModToggle"){
 
@@ -1198,6 +1287,12 @@ function captionCheck_is_communityModToggle_optional_restartOad(caption, doResta
     restart0ad()
   }
 }
+
+
+
+
+
+
 
 function truncateString(str, num) {
   if (str.length > num) {

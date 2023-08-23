@@ -27,6 +27,13 @@
     "toglcommode",
     "togglecommunityMod"
   ],
+   "prettyToggle": [
+    "prettyToggle",
+    "tglpretty",
+    "togpretty",
+    "toglpretty",
+    "togglepretty"
+  ],
   "AutoCivP mod is AutoCiv but it also supports profiles during game configuration, jitsi, command-history⟦Tab⟧⟦Tab⟧ and a lot more.": ["whatsAutocivPMod", "autocivP" ],
   "legend: ♤ proGUI mod, ♇ autocivP mod": ["legend" ],
   "proGUI mod helps beginners learn faster, could play more early in TG with OP players. Also helps OP players.": ["whatsProGUIMod", "proGUI" ],
