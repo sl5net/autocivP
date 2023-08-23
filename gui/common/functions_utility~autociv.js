@@ -179,7 +179,13 @@ const g_autoCompleteText_newMerge = (guiObject, list) => {
         captionCheck_is_communityModToggle_optional_restartOad(caption, true)
     }
 
-    captionCheck_is_prettyToggle(caption, true)
+    if(captionCheck_is_prettyToggle(caption, true))
+    {
+      // dont remove to comand from the caption maybe. maybe he will try mor often.
+      caption = 'prettyToggle'
+      guiObject.caption = 'prettyToggle'
+      return
+    }
 
 
 
@@ -1187,16 +1193,13 @@ function captionCheck_is_prettyToggle(caption, doRestart0ad = false){
   if(caption.trim() != "prettyToggle"){
     return;
   }
-  if(gameState == "ingame"){
-    selfMessage(`prettyToggle is not allowed in ingame.`)
-    return false
-  }
-
-  if(!doRestart0ad){
-    return true
-  }
-
-
+  // if(gameState == "ingame"){
+  //   selfMessage(`prettyToggle is not allowed in ingame.`)
+  //   return false
+  // }
+  // if(!doRestart0ad){
+  //   return true
+  // }
   const sharpness = Engine.ConfigDB_GetValue(
     "user",
     "sharpness"
@@ -1208,8 +1211,6 @@ function captionCheck_is_prettyToggle(caption, doRestart0ad = false){
   }else{
     prettyGraphicsEnable()
   }
-
-  restart0ad()
 }
 
 /**
