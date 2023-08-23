@@ -182,6 +182,7 @@ const g_autoCompleteText_newMerge = (guiObject, list) => {
     if(captionCheck_is_prettyToggle(caption, true))
     {
       // dont remove to comand from the caption maybe. maybe he will try mor often.
+      saveLastCommand2History(caption)
       caption = 'prettyToggle'
       guiObject.caption = 'prettyToggle'
       return
@@ -1208,8 +1209,10 @@ function captionCheck_is_prettyToggle(caption, doRestart0ad = false){
 
   if(isPrettyMode){
     prettyGraphicsDisable()
+    selfMessage(`pretty mode is disabled.`)
   }else{
     prettyGraphicsEnable()
+    selfMessage(`pretty mode is enabled.`)
   }
 }
 
