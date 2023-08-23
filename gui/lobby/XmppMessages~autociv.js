@@ -12,7 +12,7 @@ autociv_patchApplyN(XmppMessages.prototype, "handleMessages", function (target, 
         let count = 0
 
         const max = isNaN(maxJoinLeaveMessagesInLobby) ? 30 : maxJoinLeaveMessagesInLobby
-        // warn(`${linnr}: max is ${max} (gui/lobby/XmppMessages~autociv.js)`) // not a good place for waarn messages
+        // warn(`15: max is ${max} (gui/lobby/XmppMessages~autociv.js)`) // not a good place for waarn messages
 
         that.autociv_messageQueue.reverse()
         that.autociv_messageQueue = that.autociv_messageQueue.filter(msg =>

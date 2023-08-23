@@ -300,7 +300,7 @@ function setCaption_when_JoinOrStart_Setup_suggestRestoreMods_when_modsChanged()
 
 					if(g_selfNick.includes("seeh")){
 						newCaptionString += ' i  ♡ autocivP♇ mod'
-						selfMessage(`${linnr}: g_selfNick: ${g_selfNick}`);
+						selfMessage(`303: g_selfNick: ${g_selfNick}`);
 					}
 
 					const chatInput = Engine.GetGUIObjectByName("chatInput")
