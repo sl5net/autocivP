@@ -158,7 +158,7 @@ class BotManager
 					}
 
 				}
-				// selfMessage(`${linnr44()}: ${msg.guid} = msg.guid`)
+				// selfMessage(`161: ${msg.guid} = msg.guid`)
 				return this.types[msg.type]?.(msg)
 			},
 			"types":
@@ -464,7 +464,7 @@ botManager.addBot("autociv", {
 				*/
 
 				if(bugIt){
-					// selfMessage(`text: ${text} gui/common/botmanager.js:${linnr45()}`)
+					// selfMessage(`text: ${text} gui/common/botmanager.js:467`)
 				}
 
 				// check if a variable text contains a single space character repeated exactly twice (without any additional spaces in between) anywhere in the string
@@ -491,10 +491,10 @@ botManager.addBot("autociv", {
 					g_chatTextInInputFild_when_msgCommand += `${text}\n`
 					g_chatTextInInputFild_when_msgCommand_lines++
 
-					// selfMessage(`text: ${text} gui/common/botmanager.js:${linnr46()}`)
+					// selfMessage(`text: ${text} gui/common/botmanager.js:494`)
 				}
 			}
-			// selfMessage(`text: ${text} gui/common/botmanager.js:${linnr47()}`)
+			// selfMessage(`text: ${text} gui/common/botmanager.js:497`)
 			return text.trim().split(" ")[0].toLowerCase();
 		} // end-of-clean function
 

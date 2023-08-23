@@ -126,7 +126,7 @@ const g_autoCompleteText_newMerge = (guiObject, list) => {
 
 
   if(bugIt)
-    selfMessage(`${linnr1()}: ${caption.toLowerCase()} = ${caption}      gui/common/functions_utility~autociv.js`) //TODO - add to json tab-commands
+    selfMessage(`129: ${caption.toLowerCase()} = ${caption}      gui/common/functions_utility~autociv.js`) //TODO - add to json tab-commands
 
 
   // End of caption is maybe not empty
@@ -134,7 +134,7 @@ const g_autoCompleteText_newMerge = (guiObject, list) => {
   // if(!caption) // trigers when no caption content is in
   if (!caption.length){ // trigers when no caption content is in
     if(bugIt)
-      selfMessage(`${linnr2()}: ${caption} = ${caption} gui/common/functions_utility~autociv.js`)
+      selfMessage(`137: ${caption} = ${caption} gui/common/functions_utility~autociv.js`)
 
 
 
@@ -168,14 +168,14 @@ const g_autoCompleteText_newMerge = (guiObject, list) => {
  if( inputCopySearchReults(guiObject) )
   return
 
-//   selfMessage(`${linnr3()}:  '${g_lastCommand}' `);
+//   selfMessage(`171:  '${g_lastCommand}' `);
 
 
   if(caption?.length ){
 
     if(g_previousCaption == 'communityModToggle'){
       if(bugIt)
-        selfMessage(`${linnr4()}: now now now   gui/common/functions_utility~autociv.js `);
+        selfMessage(`178: now now now   gui/common/functions_utility~autociv.js `);
         captionCheck_is_communityModToggle_optional_restartOad(caption, true)
     }
 
@@ -193,7 +193,7 @@ const g_autoCompleteText_newMerge = (guiObject, list) => {
 
     if(captionCheck_is_communityModToggle_optional_restartOad(caption, false)){
       if(bugIt)
-        selfMessage(`${linnr5()}: communitymodtoggle  gui/common/functions_utility~autociv.js `);
+        selfMessage(`196: communitymodtoggle  gui/common/functions_utility~autociv.js `);
 
       g_previousCaption = 'communityModToggle' // next time it should be restart then and do the chanches
       guiObject.caption = 'communityModToggle' // for some reason that i dont understand must be now lowercase not communityModToggle
@@ -212,7 +212,7 @@ const g_autoCompleteText_newMerge = (guiObject, list) => {
         saveLastCommand2History(caption)
         const number = match[1];
         // Handle the extracted number
-        // selfMessage('gui/common/functions_utility~autociv.js ' + linnr6())
+        // selfMessage('gui/common/functions_utility~autociv.js ' + )
         const linesArray = g_chatTextInInputFild_when_msgCommand.trim().split('\n');
         const lastLines = linesArray.slice(-number);
         const lastLinesString = lastLines.join('\n');
@@ -280,14 +280,14 @@ const g_autoCompleteText_newMerge = (guiObject, list) => {
 
     const firstChar = caption.toString().charAt(0); // or str[0]
 
-    // selfMessage(`${linnr7()}: doppelPosting? '${g_lastCommand}' `);
-    // selfMessage(`${linnr8()}: g_lastCommand = '${g_lastCommand}' , caption = '${caption}' `);
+    // selfMessage(`283: doppelPosting? '${g_lastCommand}' `);
+    // selfMessage(`284: g_lastCommand = '${g_lastCommand}' , caption = '${caption}' `);
 
     if(bugIt)
-      selfMessage(`${linnr9()}: '${g_previousCaption}' ?= '${caption}'  gui/common/functions_utility~autociv.js `);
+      selfMessage(`287: '${g_previousCaption}' ?= '${caption}'  gui/common/functions_utility~autociv.js `);
 
     if(g_previousCaption == caption){ // g_lastCommand
-      // selfMessage(`${linnr10()}: doppelPosting? '${g_lastCommand}' gui/common/functions_utility~autociv.js `);
+      // selfMessage(`290: doppelPosting? '${g_lastCommand}' gui/common/functions_utility~autociv.js `);
 
       const firstChar = caption.charAt(0); // or str[0]
       if(firstChar.match(/[‹›]/) ){
@@ -297,11 +297,11 @@ const g_autoCompleteText_newMerge = (guiObject, list) => {
       }
 
       if(bugIt)
-        selfMessage(`${linnr11()}: doppelPosting? '${g_lastCommand}' | captionCheck_is_communityModToggle_optional_restartOad |  gui/common/functions_utility~autociv.js `);
+        selfMessage(`300: doppelPosting? '${g_lastCommand}' | captionCheck_is_communityModToggle_optional_restartOad |  gui/common/functions_utility~autociv.js `);
       captionCheck_is_communityModToggle_optional_restartOad(caption, true) // if is communitymodtoggle restart
 
       if(bugIt)
-        selfMessage(`${linnr12()}: tries = ${autoCompleteText.state.tries} |  gui/common/functions_utility~autociv.js `);
+        selfMessage(`304: tries = ${autoCompleteText.state.tries} |  gui/common/functions_utility~autociv.js `);
 
 
       if(autoCompleteText.state.tries !=1 && setCaption2nextCommandOfHistory(guiObject)){
@@ -321,21 +321,21 @@ const g_autoCompleteText_newMerge = (guiObject, list) => {
   const sameTry = ( autoCompleteText.state.newCaption == caption )
   if (sameTry){
 
-    if(bugIt)    selfMessage(`autoCompleteText.state.tries = ${autoCompleteText.state.tries} ${linnr13()}`);
+    if(bugIt)    selfMessage(`autoCompleteText.state.tries = ${autoCompleteText.state.tries} 324`);
 
 
     if(autoCompleteText_sameTry_eg_userName_civName(guiObject, list)){
       return // such result should not be saved in the command history. therefore return
     }else{
       if(bugIt)
-        selfMessage(`${linnr14()}: doppelPosting? '${g_lastCommand}' gui/common/functions_utility~autociv.js `);
+        selfMessage(`331: doppelPosting? '${g_lastCommand}' gui/common/functions_utility~autociv.js `);
         g_previousCaption = guiObject.caption
 
     }
 
   }else{
     if(bugIt)
-      selfMessage(`${linnr15()}:  gui/common/functions_utility~autociv.js `);
+      selfMessage(`338:  gui/common/functions_utility~autociv.js `);
 
     if(autoCompleteText_firstTry_eg_userName_civName(guiObject, caption, list)){
       g_previousCaption = guiObject.caption
@@ -352,13 +352,13 @@ const g_autoCompleteText_newMerge = (guiObject, list) => {
       let captionTrimed = captionBegin.substring(g_iconPrefix.length)
       const minMatchScore = (captionTrimed.length > 20) ? 0.8 : (g_iconPrefix.length ? 0.3 :  0.55 ) // user name will be replaced later. i want have .3 but some users dont be found so easy ... hmmm // user name will be replaced later. i want have .3 but some users dont be found so easy ... hmmm // user name will be replaced later. i want have .3 but some users dont be found so easy ... hmmm
 
-      // selfMessage(`${linnr16()}: gameState '${gameState}' `);
+      // selfMessage(`355: gameState '${gameState}' `);
       if(gameState == "ingame"){
        // Help me ☞here
        const pattern = /^help\b/i;
        const hasPattern = pattern.test(guiObject.caption);
        if(hasPattern){
-        //  selfMessage(`${linnr17()}: gameState '${gameState}' `);
+        //  selfMessage(`361: gameState '${gameState}' `);
          captionTrimed = 'helpme' // ingame ist much more importand when help pings other team players then list all the commands via the /help command. more important to have a easy comunication with team. make sure that thiy keyword is still i the json file
        }
      }
@@ -389,7 +389,7 @@ const g_autoCompleteText_newMerge = (guiObject, list) => {
             const pattern = /\d+ \w+ please/;
             const hasPattern = pattern.test(allIconsInText);
             if(hasPattern){
-              // selfMessage(`${linnr18()}: gameState '${gameState}' `);
+              // selfMessage(`392: gameState '${gameState}' `);
               return
             }
           }
@@ -410,7 +410,7 @@ const g_autoCompleteText_newMerge = (guiObject, list) => {
 
           if( true ){
             // ‹away from keyboard
-            // selfMessage(`${linnr19()}: away from keyboard`)
+            // selfMessage(`413: away from keyboard`)
             const pattern = /away from keyboard/;
             const hasPattern = pattern.test(allIconsInText);
             if(hasPattern){
@@ -438,11 +438,11 @@ const g_autoCompleteText_newMerge = (guiObject, list) => {
       }
     }
     // if(g_lastCommand == caption){
-    //   selfMessage(`${linnr20()}: doppelPosting? '${g_lastCommand}' `);
+    //   selfMessage(`441: doppelPosting? '${g_lastCommand}' `);
     //   setCaption2nextCommandOfHistory(guiObject)
     // }
     if(g_previousCaption == caption ){ // || g_lastCommand == caption
-      // selfMessage(`${linnr21()}: doppelPosting? '${g_lastCommand}' `);
+      // selfMessage(`445: doppelPosting? '${g_lastCommand}' `);
       if(setCaption2nextCommandOfHistory(guiObject)){
 
         g_previousCaption = guiObject.caption
@@ -458,7 +458,7 @@ const g_autoCompleteText_newMerge = (guiObject, list) => {
   // let minimapPanel = Engine.GetGUIObjectByName("minimapPanel")
   // minimapPanel.children[2].focus();
   // let objName = 'flar'
-  // selfMessage(`${linnr22()}: ${objName} = ${objName}`)
+  // selfMessage(`461: ${objName} = ${objName}`)
 
   g_previousCaption = caption
 
@@ -505,7 +505,7 @@ function autoCompleteText_sameTry_eg_userName_civName(guiObject, list)
 
   if(guiObject.caption.charAt(0) !== '/') {  // if you want toggle through the / commands it should be different from the the behavior wen you pink somebody
     if(bugIt)
-      selfMessage(`${linnr23()}: textBeforeBuffer = '${textBeforeBuffer}' gui/common/functions_utility~autociv.js`)
+      selfMessage(`508: textBeforeBuffer = '${textBeforeBuffer}' gui/common/functions_utility~autociv.js`)
     guiObject.buffer_position = autoCompleteText.state.buffer_position + (completedText.length - textBeforeBuffer.length)
   }
 
@@ -537,8 +537,8 @@ function autoCompleteText_firstTry_eg_userName_civName(guiObject, caption, list)
 
   const textBeforeBuffer = caption.substring(0, buffer_position)
   if(bugIt){
-    selfMessage(`${linnr24()}: \n\n gui/common/functions_utility~autociv.js`);
-    selfMessage(`${linnr25()}: textBeforeBuffer = ${textBeforeBuffer}`);
+    selfMessage(`540: \n\n gui/common/functions_utility~autociv.js`);
+    selfMessage(`541: textBeforeBuffer = ${textBeforeBuffer}`);
   }
   let completedText = tryAutoComplete(textBeforeBuffer, list, autoCompleteText.state.tries++)
   if(caption.charAt(0) !== '/') {
@@ -557,10 +557,10 @@ function autoCompleteText_firstTry_eg_userName_civName(guiObject, caption, list)
   autoCompleteText.state.newCaption = newCaptionText
 
   if(bugIt){
-    selfMessage(`${linnr26()}: completedText = ${completedText}`);
-    selfMessage(`${linnr27()}: tries = ${autoCompleteText.state.tries}`);
-    selfMessage(`${linnr28()}: newCaptionText = ${newCaptionText}`);
-    selfMessage(`${linnr29()}: completedText = ${completedText}`);
+    selfMessage(`560: completedText = ${completedText}`);
+    selfMessage(`561: tries = ${autoCompleteText.state.tries}`);
+    selfMessage(`562: newCaptionText = ${newCaptionText}`);
+    selfMessage(`563: completedText = ${completedText}`);
   }
 
   try{
@@ -568,18 +568,18 @@ function autoCompleteText_firstTry_eg_userName_civName(guiObject, caption, list)
     guiObject.focus();
 
     if(caption.charAt(0) === '/') {
-      if(bugIt)      selfMessage(`${linnr30()}: -----------------------------------------`)
+      if(bugIt)      selfMessage(`571: -----------------------------------------`)
       // asumption that are slash commands maybe you want toggle through them
       // guiObject.buffer_position = (textBeforeBuffer.length)
     }else{
-      if(bugIt)      selfMessage(`${linnr31()}: =========================================`)
+      if(bugIt)      selfMessage(`575: =========================================`)
       // if you want ping a user the cursor should be later at the end
       guiObject.buffer_position = buffer_position + (completedText.length - textBeforeBuffer.length)
     }
 
     if(bugIt){
-      selfMessage(`${linnr32()}: buffer_position = ${guiObject.buffer_position}`);
-      selfMessage(`${linnr33()}: textBeforeBuffer = ${textBeforeBuffer}`);
+      selfMessage(`581: buffer_position = ${guiObject.buffer_position}`);
+      selfMessage(`582: textBeforeBuffer = ${textBeforeBuffer}`);
     }
 
     if(textBeforeBuffer != completedText ){ // || g_lastCommand == caption
@@ -1116,7 +1116,7 @@ function setCaption2LastCommandOfHistory(guiObject){
         return false
 
     if(doDebug)
-      selfMessage(`${linnr34()}: lastCommand = ${lastCommand}`)
+      selfMessage(`1119: lastCommand = ${lastCommand}`)
 
     g_previousCaption = guiObject.caption
     guiObject.caption = lastCommand
@@ -1133,14 +1133,14 @@ function setCaption2LastCommandOfHistory(guiObject){
 function setCaption2nextCommandOfHistory(guiObject){
   let nextID = getNextLastCommandID()
   g_lastCommandID = nextID;
-  // selfMessage(`${linnr35()}: >>>>>>>>${g_lastCommandID}<<<<<<<< ' = g_lastCommandID`);
-  // selfMessage(`${linnr36()}: nextID = ${nextID}'  gui/common/functions_utility~autociv.js`);
+  // selfMessage(`1136: >>>>>>>>${g_lastCommandID}<<<<<<<< ' = g_lastCommandID`);
+  // selfMessage(`1137: nextID = ${nextID}'  gui/common/functions_utility~autociv.js`);
   let nextCommand = Engine.ConfigDB_GetValue("user", `autocivP.chat.lastCommand${nextID}`);
-  // selfMessage(`${linnr37()}: >>>${nextCommand}<<<  gui/common/functions_utility~autociv.js`);
+  // selfMessage(`1139: >>>${nextCommand}<<<  gui/common/functions_utility~autociv.js`);
   // autocivP.chat.lastCommand4 = "jajaja"
 
   // if(isSelfHost() != true)
-  //   selfMessage(`${linnr38()}: g_selfInHost = ${g_selfInHost}`)
+  //   selfMessage(`1143: g_selfInHost = ${g_selfInHost}`)
 
 
   // if(gameState == "ingame" || isSelfHost() != true){ // obsolete
@@ -1157,9 +1157,9 @@ function setCaption2nextCommandOfHistory(guiObject){
   {
           nextID = 0
           nextCommand = Engine.ConfigDB_GetValue("user", `autocivP.chat.lastCommand${nextID}`);
-          // selfMessage(`${linnr39()}: nextID = ${nextID}, g_lastCommandID = ${g_lastCommandID}, nextCommand = ${nextCommand}`);
+          // selfMessage(`1160: nextID = ${nextID}, g_lastCommandID = ${g_lastCommandID}, nextCommand = ${nextCommand}`);
           g_lastCommandID = nextID;
-          // selfMessage(`${linnr40()}: ${g_lastCommandID}' = g_lastCommandID  gui/common/functions_utility~autociv.js`);
+          // selfMessage(`1162: ${g_lastCommandID}' = g_lastCommandID  gui/common/functions_utility~autociv.js`);
           if(!(nextCommand?.length))
             return false
   }
@@ -1170,7 +1170,7 @@ function setCaption2nextCommandOfHistory(guiObject){
       // caption = nextCommand ;
       g_previousCaption = guiObject.caption
       guiObject.caption = nextCommand; // use of guiObject.caption not caption solved a seldom critical crash
-      // selfMessage(`${linnr41()}: nextID = ${nextID}, g_lastCommandID = ${g_lastCommandID}, nextCommand = ${nextCommand}`);
+      // selfMessage(`1173: nextID = ${nextID}, g_lastCommandID = ${g_lastCommandID}, nextCommand = ${nextCommand}`);
       return true;
   }
   // selfMessage('never heppens? 23-0628_1307-15')
@@ -1314,7 +1314,7 @@ function inputCopySearchReults(chatInput){
  * 2. startsWith("s?")
  * 3. cursor is at the beginning of the chat input ==> chat is copied to the chat text
  */
-  // warn(`${linnr42()} buffer_position: ${chatInput.buffer_position}`)
+  // warn(`1317 buffer_position: ${chatInput.buffer_position}`)
   const text = chatInput.caption
   const inFilterMode = text.startsWith("s?")
   if(!inFilterMode)
@@ -1332,7 +1332,7 @@ function inputCopySearchReults(chatInput){
     return true
   }
 
-  // warn(`${linnr43()} buffer_position: ${chatInput.buffer_position}`)
+  // warn(`1335 buffer_position: ${chatInput.buffer_position}`)
   let chatStr = ''
   chatText.list.filter(t => {
     chatStr += t.replace(/\[.*?\]/g, '');
