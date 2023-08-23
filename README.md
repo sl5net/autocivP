@@ -205,7 +205,7 @@ The motivation for this mod was implement ideas and simplifications that are hel
   - @Mentula - https://gitlab.com/mentula0ad
   - @Atric - https://gitlab.com/4trik
   - @LangLangBart - https://github.com/LangLangBart
-  - @leite - https://github.com/leite
+  - @leite - [autocivP](https://github.com/leite/autocivP) - [pull/21](https://github.com/sl5net/autocivP/pull/21)
 
 
 - Thanks to all other modders
