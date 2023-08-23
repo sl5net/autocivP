@@ -98,7 +98,7 @@ var game = {
         // bugIt = true &&  g_selfNick.includes("seeh") // new implementation so i will watch longer
 
         if(bugIt)
-          selfMessage(`${ln()}: playerName = ${playerName}`)
+          selfMessage(`${linnr86()}: playerName = ${playerName}`)
 
         let playerPos = game.get.player.pos(playerName);
         if (playerPos === undefined || playerPos == -1) return;
@@ -774,7 +774,7 @@ const originalNetworkCommands = Object.assign({}, g_NetworkCommands);
 for (const command in g_NetworkCommands) {
   const originalFunction = g_NetworkCommands[command];
   g_NetworkCommands[command] = function(text) {
-    // selfMessage(`${ln()}: Command sent: >${command}< >${text}<`);
+    // selfMessage(`${linnr87()}: Command sent: >${command}< >${text}<`);
     if(command.length > 2 && command.substring(0,2) == '/p' && command != "/pRestoreLastProfile" )
     {
       // selfMessage('profile command found')
@@ -919,12 +919,12 @@ function setDefaultsforPopmaxAlliedviewRatingTreasuresNomadExploration(sendMessa
 
     if(bugIt){
       if(ratedDefault == 'true'){
-        selfMessage(`${ln()}: rated shold enabled gui/gamesetup/gamesetup~!extra_commands.js`);
+        selfMessage(`${linnr88()}: rated shold enabled gui/gamesetup/gamesetup~!extra_commands.js`);
       }else{
-        selfMessage(`${ln()}: rated should not enabled gui/gamesetup/gamesetup~!extra_commands.js`);
+        selfMessage(`${linnr89()}: rated should not enabled gui/gamesetup/gamesetup~!extra_commands.js`);
       }
-      selfMessage(`${ln()}: =========================================================== gui/gamesetup/gamesetup~!extra_commands.js`);
-      selfMessage(`${ln()}: ratedDefault: ${ratedDefault} = ${(ratedDefault === 'true')} = enabled={${g_GameSettings.rating.enabled}} gui/gamesetup/gamesetup~!extra_commands.js`);
+      selfMessage(`${linnr90()}: =========================================================== gui/gamesetup/gamesetup~!extra_commands.js`);
+      selfMessage(`${linnr91()}: ratedDefault: ${ratedDefault} = ${(ratedDefault === 'true')} = enabled={${g_GameSettings.rating.enabled}} gui/gamesetup/gamesetup~!extra_commands.js`);
     }
 
 
@@ -959,7 +959,7 @@ function setDefaultsforPopmaxAlliedviewRatingTreasuresNomadExploration(sendMessa
   // selfMessage(`res= ${resources}`);
 
 
-  // selfMessage(`your last used profile id was: ${g_lastCommandID} ${ln()} `);
+  // selfMessage(`your last used profile id was: ${g_lastCommandID} ${linnr92()} `);
 
 
 

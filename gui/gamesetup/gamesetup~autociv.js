@@ -37,7 +37,7 @@ var g_autociv_hotkeys = {
 function handleInputBeforeGui(ev)
 {
 	g_resizeBarManager.onEvent(ev);
-	// warn(`${ln()}: handleInputBeforeGui`);
+	// warn(`${linnr81()}: handleInputBeforeGui`);
 	return false;
 }
 
@@ -80,9 +80,9 @@ autociv_patchApplyN("init", function (target, that, args)
 
 
 
-    selfMessage(`83: gui/gamesetup/gamesetup~autociv.js`);
+    selfMessage(`${linnr83()}: gui/gamesetup/gamesetup~autociv.js`);
 
-    // selfMessage(`game.is.rated(): ${game.is.rated()} ${ln()}`);
+    // selfMessage(`game.is.rated(): ${game.is.rated()} ${linnr82()}`);
 
 
 	g_selfIsHost = g_IsController // Synonymous variable with g_IsController. for easier to find
@@ -184,9 +184,9 @@ function setCaption_when_JoinOrStart_Setup_suggestRestoreMods_when_modsChanged()
 			// bugIt = g_selfNick.includes("seeh") // new implementation so i will watch longer
 
 			if(bugIt){
-				// sad we cannot use ${ln()} here at the moment.
-				selfMessage(`${ln()}: \nmodsFromUserCfg = \n${modsFromUserCfg}`)
-				selfMessage(`${ln()}: \nmodsFromUserCfg_backup = \n${modsFromUserCfg_backup}`)
+				// sad we cannot use ${linnr83()} here at the moment.
+				selfMessage(`${linnr84()}: \nmodsFromUserCfg = \n${modsFromUserCfg}`)
+				selfMessage(`${linnr85()}: \nmodsFromUserCfg_backup = \n${modsFromUserCfg_backup}`)
 				selfMessage(difference)
 			}
 			if(	!(difference == 'feldmap' || difference == 'proGUI') ){
@@ -300,7 +300,7 @@ function setCaption_when_JoinOrStart_Setup_suggestRestoreMods_when_modsChanged()
 
 					if(g_selfNick.includes("seeh")){
 						newCaptionString += ' i  ♡ autocivP♇ mod'
-						selfMessage(`${ln}: g_selfNick: ${g_selfNick}`);
+						selfMessage(`${linnr1}: g_selfNick: ${g_selfNick}`);
 					}
 
 					const chatInput = Engine.GetGUIObjectByName("chatInput")

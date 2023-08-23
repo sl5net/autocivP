@@ -222,7 +222,7 @@ function translGGWP_splitInWords_II(captionTrimed, minMatchScore){
 		// selfMessage(`Index: ${index}, Value: ${splitArray[index]}`);
 	}
 	const joinedString = splitArray.join(' ');
-	// selfMessage(`${ln()}: ${joinedString}`);
+	// selfMessage(`${linnr48()}: ${joinedString}`);
 	return joinedString
 }
 
@@ -234,7 +234,7 @@ function translGGWP_splitInWords_II_part2(captionTrimed, minMatchScore){
 	if(captionTrimed == '<3')
 		captionTrimed = 'love'
 
-	// selfMessage(`${ln()}: translGGWP_splitInWords_II(${captionTrimed}, ${minMatchScore})`);
+	// selfMessage(`${linnr49()}: translGGWP_splitInWords_II(${captionTrimed}, ${minMatchScore})`);
 
 
 	if(!minMatchScore && isDebug)
@@ -244,7 +244,7 @@ function translGGWP_splitInWords_II_part2(captionTrimed, minMatchScore){
 	}
 
 	if(isDebug)
-		selfMessage(`${ln()}: splitInWords_II()== >${captionTrimed}<`);
+		selfMessage(`${linnr50()}: splitInWords_II()== >${captionTrimed}<`);
 	// const regex = /\b([^‹›\s,\.!;\?]+)\b/g;
 	const regex = /\b([^‹›\s]+)\b/g;
 	// const regex2 = /(?<!\S)[><](?!\S)/g // dont work
@@ -252,7 +252,7 @@ function translGGWP_splitInWords_II_part2(captionTrimed, minMatchScore){
 
 	let allIconsInText = captionTrimed.replace(regex, match => {
 		if(isDebug)
-	  		selfMessage(`${ln()}: translGGWP_splitInWords_II()==>  ||${match}||`)
+	  		selfMessage(`${linnr51()}: translGGWP_splitInWords_II()==>  ||${match}||`)
 	  const translated = translGGWP_U2Gg_III(match, minMatchScore)
 	  return translated !== null ? translated : match;
 	});
@@ -261,7 +261,7 @@ function translGGWP_splitInWords_II_part2(captionTrimed, minMatchScore){
 		// Handle the standalone < or > here
 		const isDebug = false
 		if(isDebug)
-				selfMessage(`${ln()}: ${match}`);
+				selfMessage(`${linnr52()}: ${match}`);
 		if(!minMatchScore && isDebug)
 		{
 			selfMessage('91: minMatchScore==${minMatchScore}');
@@ -273,7 +273,7 @@ function translGGWP_splitInWords_II_part2(captionTrimed, minMatchScore){
 	  });
 
 	  if(isDebug)
-			selfMessage(`${ln()}: translGGWP_splitInWords_II()==> allIconsInText = ||${allIconsInText}||`);
+			selfMessage(`${linnr53()}: translGGWP_splitInWords_II()==> allIconsInText = ||${allIconsInText}||`);
 	return allIconsInText
   }
 
@@ -289,9 +289,9 @@ function transGGWP_markedStrings_I(gg, minMatchScore) {
 	let isDebug = false
 	// isDebug = true
 	if(isDebug){
-		selfMessage(`${ln()}: ____________ transGGWP_markedStrings_I() ___________`);
+		selfMessage(`${linnr54()}: ____________ transGGWP_markedStrings_I() ___________`);
 		// gg = "‹Good game ❧ › ";
-		selfMessage(`${ln()}: gg=>${gg}<`);
+		selfMessage(`${linnr55()}: gg=>${gg}<`);
 	}
 	const ggBackup = gg;
 	const markedStringRegex = /(‹[^‹›]*›)/g;
@@ -302,14 +302,14 @@ function transGGWP_markedStrings_I(gg, minMatchScore) {
 		// Handle case when no marked strings are found
 		gg = translGGWP_splitInWords_II(gg, minMatchScore);
 		if(isDebug)
-			selfMessage(`${ln()}:transGGWP_markedStrings_I()=>  gg=${gg}`);
+			selfMessage(`${linnr56()}:transGGWP_markedStrings_I()=>  gg=${gg}`);
 		return gg;
 	}
 
 	if (markedStrings.length === 1 && allStrings.length === 1) {
 		// Handle case when only one marked string is found
 		if(isDebug)
-		selfMessage(`${ln()}:transGGWP_markedStrings_I()=> markedStrings[0]=${markedStrings[0]}`);
+		selfMessage(`${linnr57()}:transGGWP_markedStrings_I()=> markedStrings[0]=${markedStrings[0]}`);
 	  return markedStrings[0]; // Return the single marked string as is
 	}
 
@@ -318,7 +318,7 @@ function transGGWP_markedStrings_I(gg, minMatchScore) {
 		// Filter out the marked strings
 		let re = [translGGWP_splitInWords_II(value, minMatchScore), markedStrings[index / 2]];
 		if(isDebug)
-			selfMessage(`${ln()}:transGGWP_markedStrings_I()=> re=>${re}<`);
+			selfMessage(`${linnr58()}:transGGWP_markedStrings_I()=> re=>${re}<`);
 		return re
 	  }
 	//   return value;
@@ -326,7 +326,7 @@ function transGGWP_markedStrings_I(gg, minMatchScore) {
 
 	const re = ggParts.join(''); // Concatenate the array elements without a separator
 	if(isDebug)
-		selfMessage(`${ln()}: re=${re}`);
+		selfMessage(`${linnr59()}: re=${re}`);
 	return re;
   }
 
@@ -341,10 +341,10 @@ function translGGWP_U2Gg_III(gg, minMatchScore) {
 	}
 
 	if(isDebug)
-		selfMessage(`${ln()}: ____________ translGGWP_U2Gg_III(${gg}, ${minMatchScore}) ___________`);
+		selfMessage(`${linnr60()}: ____________ translGGWP_U2Gg_III(${gg}, ${minMatchScore}) ___________`);
 	if( !minMatchScore){
 		if( g_selfNick =="seeh" ){
-			// selfMessage(`${ln()}: minMatchScore = ${minMatchScore}`);
+			// selfMessage(`${linnr61()}: minMatchScore = ${minMatchScore}`);
 			// error(`minMatchScore is not defined`);
 		}
 		minMatchScore = 0.8 // some value. quick fix. todo: why its empty? 23-0729_1618-01
@@ -411,7 +411,7 @@ function translGGWP_U2Gg_III(gg, minMatchScore) {
 
 	if(isDebug){
 		warn(`120: Best match for query "${query}": ##${stringWithUnicode.bestMatch}## (${stringWithUnicode.bestMatchWord})`);
-		selfMessage(`${ln()}: Best match for query "${query}": ##${stringWithUnicode.bestMatch}## (${stringWithUnicode.bestMatchWord} , ${minMatchScore})`);
+		selfMessage(`${linnr62()}: Best match for query "${query}": ##${stringWithUnicode.bestMatch}## (${stringWithUnicode.bestMatchWord} , ${minMatchScore})`);
 		warn('\\________________________________')
 	}
 
@@ -453,7 +453,7 @@ function saveLastCommand2History(lastCommand){
 	let isFreeHistory = false
 	for (let i = 0; i <= g_lastCommandIDmax; i++) {
 	  lastCommandID_i = i + g_lastCommandID + offset; // maybe 5 6 7 8 9
-	  if(doDebug) selfMessage(`${ln()}: lastCommandID_i = ${lastCommandID_i}`)
+	  if(doDebug) selfMessage(`${linnr63()}: lastCommandID_i = ${lastCommandID_i}`)
 
 	  if (lastCommandID_i > g_lastCommandIDmax)
 	  	lastCommandID_i -= g_lastCommandIDmax; // maybe 1 2 3 4
@@ -462,17 +462,17 @@ function saveLastCommand2History(lastCommand){
 			if(!needChechedIdsFromBeging){
 				isFreeHistory = true
 				break;
-				if(doDebug) selfMessage(`${ln()}: lastCommandID_i = ${lastCommandID_i}`)
+				if(doDebug) selfMessage(`${linnr64()}: lastCommandID_i = ${lastCommandID_i}`)
 			}
 			else
 				{
 					offset = - i - g_lastCommandID // so loop start with 0
-					if(doDebug) selfMessage(`${ln()}: lastCommandID_i = ${lastCommandID_i}`)
+					if(doDebug) selfMessage(`${linnr65()}: lastCommandID_i = ${lastCommandID_i}`)
 					needChechedIdsFromBeging = false
 					continue
 				}
 	  }
-	  if(doDebug) selfMessage(`${ln()}: id=${lastCommandID_i} >${lastCommand}< ???? >${lastCommand_i}<`)
+	  if(doDebug) selfMessage(`${linnr66()}: id=${lastCommandID_i} >${lastCommand}< ???? >${lastCommand_i}<`)
 	  if(lastCommand == lastCommand_i) // dont save it twice
 	  {
 		  // selfMessage('dont save it twice');
@@ -487,8 +487,8 @@ function saveLastCommand2History(lastCommand){
 	g_lastCommand = lastCommand;
 	ConfigDB_CreateAndSaveValueA26A27("user", `autocivP.chat.lastCommand${g_lastCommandID}`, g_lastCommand);
 	ConfigDB_CreateAndSaveValueA26A27("user", `autocivP.chat.g_lastCommandID`, g_lastCommandID);
-	// selfMessage(`${ln()}: g_lastCommandID = ${g_lastCommandID} saved`);
-	if(doDebug) selfMessage(`${ln()}: id=${g_lastCommandID}  >${g_lastCommand}< saved`);
+	// selfMessage(`${linnr67()}: g_lastCommandID = ${g_lastCommandID} saved`);
+	if(doDebug) selfMessage(`${linnr68()}: id=${g_lastCommandID}  >${g_lastCommand}< saved`);
 	return;
   }
 
@@ -643,7 +643,7 @@ BTW list of functions: https://trac.wildfiregames.com/wiki/EngineFunctions
 		"description": "whats Time now hoursMinute",
 		"handler": () =>
 		{
-			// selfMessage(`${ln()}: whatstimeNow`)
+			// selfMessage(`${linnr69()}: whatstimeNow`)
 			// warn(`423: whatstimeNow`)
 
 			const today = new Date();
@@ -656,7 +656,7 @@ BTW list of functions: https://trac.wildfiregames.com/wiki/EngineFunctions
 			chatInput.caption = text; // for some reasons this is not working in lobby at the moment 23-0724_0958-02. its ignored
 			chatInput.buffer_position = text.length
 			// if(g_selfNick =="seeh") //NOTE - 23-0705_2302-57 developers want to see the error in the console
-			// 	selfMessage(`${ln()}: whatstimeNow: ${text} (gui/common/~autocivSharedCommands.js)`);
+			// 	selfMessage(`${linnr70()}: whatstimeNow: ${text} (gui/common/~autocivSharedCommands.js)`);
 		}
 	},
 	"timenow" : {
@@ -678,7 +678,7 @@ BTW list of functions: https://trac.wildfiregames.com/wiki/EngineFunctions
 				chatInput.caption = text; // for some reasons this is not working in lobby at the moment 23-0724_0958-02. its ignored
 			}
 			if(g_selfNick =="seeh") //NOTE - 23-0705_2302-57 developers want to see the error in the console
-				selfMessage(`${ln()}: timenow: ${text} (gui/common/~autocivSharedCommands.js)`);
+				selfMessage(`${linnr71()}: timenow: ${text} (gui/common/~autocivSharedCommands.js)`);
 		}
 	},
 	"modsImCurrentlyUsing": {
@@ -900,7 +900,7 @@ autociv_InitSharedCommands.pipe = {
 				// autociv_focus.chatInput
 
 				if(g_selfNick =="seeh"){ //NOTE - 23-0705_2302-57 developers want to see more
-					selfMessage(`${ln()}: SharedCommands: '${key}' = '${text}'`)
+					selfMessage(`${linnr72()}: SharedCommands: '${key}' = '${text}'`)
 				}
 				return true
 			}
@@ -957,8 +957,8 @@ autociv_InitSharedCommands.pipe = {
 			let bugIt = false // new implementation so i will watch longer
 			// bugIt = true && g_selfNick =="seeh" // new implementation so i will watch longer
 			if(bugIt){
-				// selfMessage(`rated(): ${g_GameSettings.rating.enabled} - gui/common/~autocivSharedCommands.js : ${ln()}`)
-				selfMessage(`${ln()}: rated: ${g_InitAttributes.settings.RatingEnabled === true} - gui/common/~autocivSharedCommands.js : ${ln()}`)
+				// selfMessage(`rated(): ${g_GameSettings.rating.enabled} - gui/common/~autocivSharedCommands.js : ${linnr73()}`)
+				selfMessage(`${linnr74()}: rated: ${g_InitAttributes.settings.RatingEnabled === true} - gui/common/~autocivSharedCommands.js : ${linnr74()}`)
 			}
 		}
 
@@ -966,13 +966,13 @@ autociv_InitSharedCommands.pipe = {
 		if(gameState != "ingame"
 		&& !g_IsObserver
 		&& !g_IsReplay){
-			// selfMessage(`g_selfNick: ${g_selfNick} - ${ln()}`)
+			// selfMessage(`g_selfNick: ${g_selfNick} - ${linnr75()}`)
 			if(Engine.GetPlayerGUID() === undefined
 			||	g_PlayerAssignments[Engine.GetPlayerGUID()] === undefined
 			|| g_PlayerAssignments[Engine.GetPlayerGUID()].name.indexOf('|') == -1){
-				// selfMessage(`name: ${g_PlayerAssignments[Engine.GetPlayerGUID()].name} - ${ln()}`)
+				// selfMessage(`name: ${g_PlayerAssignments[Engine.GetPlayerGUID()].name} - ${linnr76()}`)
 
-				// selfMessage(`g_IsReplay: ${g_IsReplay} - ${ln()}`)
+				// selfMessage(`g_IsReplay: ${g_IsReplay} - ${linnr77()}`)
 
 				const modEnabledmods = Engine.ConfigDB_GetValue(
 					"user",
@@ -999,7 +999,7 @@ autociv_InitSharedCommands.pipe = {
 					const text = `Mods I use: ${modEnabledmods.slice(11)}`
 					// const text = `Mods I use: ${modEnabledmods.slice(11)}. \nSome say it's important for others to know \nwhich mods I use when game starts.`
 					sendMessage(text)
-					// selfMessage(`game.is.rated(): ${game.is.rated()} - ${ln()}`)
+					// selfMessage(`game.is.rated(): ${game.is.rated()} - ${linnr78()}`)
 				}
 
 
@@ -1008,7 +1008,7 @@ autociv_InitSharedCommands.pipe = {
 
 		gameState = "ingame";
 
-		// selfMessage(ln())
+		// selfMessage(linnr79())
 
 		g_NetworkCommands["/" + key] = text =>
 		{
@@ -1488,7 +1488,12 @@ function findBestMatch(query, fuzzyArray, minMatchScore = 0.3) {
 	};
   }
 
-  function ln() {
+
+
+
+
+
+  function linnr() {
 	const e = new Error();
 	if (!e.stack) try {
 	  throw e;
@@ -1506,7 +1511,15 @@ function findBestMatch(query, fuzzyArray, minMatchScore = 0.3) {
 	  var frame = stack.shift();
 	} while (!frameRE.exec(frame) && stack.length);
 	return frameRE.exec(stack.shift())[1];
-  }
+}
+
+// TODO: i crete many funtions names only for debuging. its bit special. later i will dete them 23-0823_1806-14
+for (let i = 1; i <= 100; i++) {
+const functionName = `linnr${i}`;
+const functionBody = `return linnr();`;
+const functionDefinition = new Function(functionBody);
+this[functionName] = functionDefinition;
+}
 
 
   function getDifference(str1, str2) {

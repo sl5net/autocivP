@@ -112,9 +112,11 @@ class BotManager
 
 				if(msg.guid){
 					const chatInput = Engine.GetGUIObjectByName("chatInput")
-					if(chatInput && chatInput.caption == ""){
+					if(chatInput && chatInput.caption == ""
+						&& g_PlayerAssignments[msg.guid]
+						&& g_PlayerAssignments[msg.guid].name)
+					{
 						const nick = splitRatingFromNick(g_PlayerAssignments[msg.guid].name).nick
-
 
 						const now = new Date();
 						const nowMinutes = now.getMinutes();
@@ -156,7 +158,7 @@ class BotManager
 					}
 
 				}
-				// selfMessage(`${ln()}: ${msg.guid} = msg.guid`)
+				// selfMessage(`${linnr44()}: ${msg.guid} = msg.guid`)
 				return this.types[msg.type]?.(msg)
 			},
 			"types":
@@ -462,7 +464,7 @@ botManager.addBot("autociv", {
 				*/
 
 				if(bugIt){
-					// selfMessage(`text: ${text} gui/common/botmanager.js:${ln()}`)
+					// selfMessage(`text: ${text} gui/common/botmanager.js:${linnr45()}`)
 				}
 
 				// check if a variable text contains a single space character repeated exactly twice (without any additional spaces in between) anywhere in the string
@@ -489,10 +491,10 @@ botManager.addBot("autociv", {
 					g_chatTextInInputFild_when_msgCommand += `${text}\n`
 					g_chatTextInInputFild_when_msgCommand_lines++
 
-					// selfMessage(`text: ${text} gui/common/botmanager.js:${ln()}`)
+					// selfMessage(`text: ${text} gui/common/botmanager.js:${linnr46()}`)
 				}
 			}
-			// selfMessage(`text: ${text} gui/common/botmanager.js:${ln()}`)
+			// selfMessage(`text: ${text} gui/common/botmanager.js:${linnr47()}`)
 			return text.trim().split(" ")[0].toLowerCase();
 		} // end-of-clean function
 

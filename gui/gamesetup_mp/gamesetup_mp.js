@@ -51,8 +51,11 @@ function init (attribs) {
 
     const hasLocalRatings   = typeof init_LocalRatings != 'undefined';
 
+    let bugIt = false // new implementation so i will watch longer
+	// bugIt = true &&  g_selfNick.includes("seeh") // new implementation so i will watch longer
 
-    info('showLocalRatingsDropdown:', showLocalRatingsDropdown,'showLocalRatingsDropdown:', showLocalRatingsDropdown, 'hasLocalRatings:', hasLocalRatings);
+    if(bugIt)
+        info('showLocalRatingsDropdown:', showLocalRatingsDropdown,'showLocalRatingsDropdown:', showLocalRatingsDropdown, 'hasLocalRatings:', hasLocalRatings);
 
 
     if(!hasLocalRatings){
@@ -84,10 +87,11 @@ function init (attribs) {
 
         }
 
+        if(bugIt){
         warn(`g_LocalRatingsUser: ${g_LocalRatingsUser}`);
         warn(`showLocalRatingsDropdown: ${showLocalRatingsDropdown}`);
-
         info('g_LocalRatingUser:', g_LocalRatingsUser);
+        }
     }
 
     for (const [key, value] of Object.entries(Engine.GetEngineInfo().mods)) {
