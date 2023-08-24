@@ -159,7 +159,7 @@ Ctrl+ s = select Storehouse Ship Stable ElephantStable Dock ...
 ```
 ## select Creatures examles:
 ```
-alt+w = select wimens
+alt+W = select wimens
 alt+I = select infrantrie
 alt+P = select picmans
 Alt+C = Cavalry

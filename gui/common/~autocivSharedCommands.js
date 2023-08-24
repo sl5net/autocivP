@@ -2,7 +2,7 @@ var gameState = "lobby"; // Initial state // // TODO: howto set it like this? g_
 
 var g_selfIsHost
 
-let playerIsGreeted = []
+var playerIsGreeted = []
 
 /**
  * Determine if the current player is the host player.
