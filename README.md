@@ -116,10 +116,6 @@ This mod is an aggregation of features meant to enhance the 0 A.D. game experien
 
 since 0ad A24 (was in other mod) intuitive hotkey feature are developed
 
-#### todo:
-
-in A24 skirmish cav are called cavalry_javelineer instead of javelinist
-
 #### you can't remember the hotkeys?
 try this:
 
