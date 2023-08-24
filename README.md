@@ -160,10 +160,12 @@ Ctrl+ s = select Storehouse Ship Stable ElephantStable Dock ...
 ## select Creatures examles:
 ```
 alt+w = select wimens
-alt+i = select infrantrie
-alt+i = select picmans
+alt+I = select infrantrie
+alt+P = select picmans
 Alt+C = Cavalry
-Alt+K = Catapult
+Alt+K = Catapult (exceptions becouse of conflict)
+Alt+H = Healer
+J = wounded (exceptions becouse near Healer)
 .... etc. understand?
 ```
 
