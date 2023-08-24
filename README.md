@@ -110,7 +110,116 @@ This mod is an aggregation of features meant to enhance the 0 A.D. game experien
 - Settings
 	- Max corpses visible
 
-## Tips:
+
+
+### more intuitive hotkey feature (optional)
+
+since 0ad A24 (was in other mod) intuitive hotkey feature are developed
+
+#### todo:
+
+in A24 skirmish cav are called cavalry_javelineer instead of javelinist
+
+#### you can't remember the hotkeys?
+try this:
+
+FirstLetter of the Building (press several times for toggling)
+ ==> build the Building
+
+Ctrl+FirstLetter of the Building
+ ==> selects Building or the Buildings
+
+ALT+FirstLetter of the Creature
+ ==> selects Creature or Creatures
+
+# intuitive h. examles:
+space = jump/toggle last attack
+
+## build examles:
+```
+space = jump/toggle last attack
+h = build house
+m = build markt
+b = build backack
+f = build farm
+f,f = build farmstead
+f,f,f = build fortress
+.... etc. understand?
+```
+
+## select buildings examles:
+```
+space = jump/toggle last attack
+ctrl+ h = select house
+ctrl+ m = select markt
+ctrl+ b = select backack
+ctrl+ f = select farm
+... etc.
+```
+## select Creatures examles:
+```
+alt+w = select wimens
+alt+i = select infrantrie
+alt+i = select picmans
+.... etc. understand?
+```
+
+### exceptionally other spellings:
+
+### this selects all >D<angerous E. archer-,war-,hero-Elephant,... (not Support&Elephant):
+hotkey.autociv.session.entity.by.class.select.(Elephant)&!Support = "Alt+D"
+
+### this selects only Support&Elephant (not all Elephant):
+hotkey.autociv.session.entity.by.class.select.(Support&Elephant) = "Alt+E"
+
+### select Barracks + ElephantStable + Stable) "Ctrl+X" (remember X like nearly everythink)
+hotkey.autociv.session.entity.by.class.select.(Barracks|ElephantStable|Stable) = "Ctrl+X"
+
+### select all military is of course Alt+M but also Alt+X (remember X like nearly everythink)
+hotkey.autociv.session.entity.by.class.select.(Soldier|Siege|Dog)&!Ship = "Alt+M", "Alt+X"
+
+### this selects only nowoundedonly using mouse (May think about oK. he is ok or so):
+hotkey.autociv.selection.nowoundedonly = "K"
+
+### this selects only woundedonly using mouse (think about: Lie down to bed better to geht healty again):
+hotkey.selection.woundedonly = "L"
+
+### dificult to remember: select Siege_Unit :
+
+select https://0ad.fandom.com/wiki/Siege_Unit 's :
+
+rams, not heros, Catapult, Bolt Shooter, Siege Tower
+
+hotkey.autociv.session.entity.by.class.select.Siege = "Alt+V"
+
+suggestion?
+
+### selects diplomacy with Ctrl+< (think about: give out, move resources to your partners):
+
+hotkey.session.gui.diplomacy.toggle = "Ctrl+SYM_100"
+
+
+### Howto find the names? i use create map scenario editor
+
+BTW cant find WarElephant into the scenario editor
+
+and taka a long in your user.cfg
+
+### some comments about the cnanges:
+little simplification:
+
+hotkey.autociv.session.entity.by.class.select.(Infantry&Archer|Infantry&Slinger|Infantry&Javelineer|Elephant&Archer) = "Alt+A"
+hotkey.autociv.session.entity.by.class.select.(Infantry&Soldier)&!Slinger&!Slinger&!Javelineer&!Archer&!Spearman = "Alt+S"
+hotkey.autociv.session.entity.by.class.select.(Infantry&Pikeman|Infantry&Spearman|Champion&Fanatic) = "Alt+P"
+
+=>
+
+hotkey.autociv.session.entity.by.class.select.(Archer|Slinger|Javelineer|Archer) = "Alt+A"
+hotkey.autociv.session.entity.by.class.select.(Soldier)&!Slinger&!Javelineer&!Archer&!Spearman = "Alt+S"
+hotkey.autociv.session.entity.by.class.select.(Pikeman|Spearman|Fanatic) = "Alt+P"
+
+
+## Tips for start the game:
 
 start 0ad in a infinite loop. So you never need to resart it manually when you change use TogglCommunityMod - Command or simply when changing the mode via mod-profiler. It allows for fast restart.
 For exit you then need to exit the calling app (typically a terminal).
@@ -139,7 +248,7 @@ useful with TogglComunityMod - Command or simly when changing the mode via mod-p
 ### Bash-Style enless loops ( not tested ):
 
 ```sh
-alias 6game026='while true; do cd ~/game/0ad/026/ && ./0ad-0.0.26-alpha-2210110407-x86_64_0cdfe6000a403313b99d6ea006a92d81.AppImage; sleep 1; done'
+alias 6game026='while true; do 0ad; sleep 1; done'
 ```
 
 ### for windows users ( not tested !!! ):
@@ -148,11 +257,10 @@ alias 6game026='while true; do cd ~/game/0ad/026/ && ./0ad-0.0.26-alpha-22101104
 @echo off
 :loop
 cd /d C:\path\to\game\0ad\026
-start "" 0ad-0.0.26-alpha-2210110407-x86_64_0cdfe6000a403313b99d6ea006a92d81.AppImage
+start "" 0ad
 timeout /t 1 >nul
 goto loop
 ```
-
 
 ## Download autocivP
 - Download and install from the wildfiregames forum autociv page topic (files on first page)
