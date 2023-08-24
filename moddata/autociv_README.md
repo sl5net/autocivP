@@ -33,6 +33,11 @@ Thanks to Nani ([most source is from Nani](https://github.com/nanihadesuka/autoc
 
 There is a limitation in the game where replays are not saved when you are the host of a team or 1v1 game. However, replays are saved when you join and play 1v1 games or team games.
 
+but no problem if you use from the newer releases :
+
+...noMpJS... .zip
+
+
 ## Questions & feedback
 For more information, questions and feedback, visit the thread on the [0 A.D. forum](https://wildfiregames.com/forum/topic/107371-autociv-add-ons-profiles-jitsi-team-call).
 Best place for post issues here: https://github.com/sl5net/autocivP/issues/
