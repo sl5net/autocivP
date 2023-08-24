@@ -162,6 +162,8 @@ Ctrl+ s = select Storehouse Ship Stable ElephantStable Dock ...
 alt+w = select wimens
 alt+i = select infrantrie
 alt+i = select picmans
+Alt+C = Cavalry
+Alt+K = Catapult
 .... etc. understand?
 ```
 

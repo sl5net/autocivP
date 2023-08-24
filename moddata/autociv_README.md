@@ -156,6 +156,8 @@ ctrl+ f = select farm
 alt+w = select wimens
 alt+i = select infrantrie
 alt+i = select picmans
+Alt+C = Cavalry
+Alt+K = Catapult
 .... etc. understand?
 ```
 
