@@ -142,7 +142,6 @@ space = jump/toggle last attack
 
 ## build examles:
 ```
-space = jump/toggle last attack
 h = build house
 m = build markt
 b = build backack
@@ -154,14 +153,13 @@ f,f,f = build fortress
 
 ## select buildings examles:
 ```
-space = jump/toggle last attack
 ctrl+ h = select house
 ctrl+ m = select markt
 ctrl+ b = select backack
 ctrl+ f = select farm
 Ctrl+ s = select Storehouse Ship Stable ElephantStable Dock ...
-... etc.
 Ctrl+ X = select Barracks + ElephantStable + Stable (remember X like nearly everything)
+... etc.
 
 
 ```
@@ -215,6 +213,39 @@ diplomacy.toggle = "<"
 BTW cant find WarElephant into the scenario editor
 
 and taka a long in your user.cfg
+
+
+# compare iHot (intuitive hotkeys) (optional) and niHot (non intuitive hotkeys) (optional)
+
+| intuitive hotkeys    | Action               | non intuitive hotkeys |
+| :------------------- | :------------------- | :------------------- |
+| h                    | build house          | Space+ H              |
+| m                    | build market         | Space+ M              |
+| b                    | build backpack       | Space+ B              |
+| f                    | build field    | Space+F |
+| f,f                  | build farmstead      | Space+ G      |
+| f,f,f                | build fortress       | Space+ R |
+| Ctrl+ H              | select house         | Ctrl+ H         |
+| ctrl+ M              | select market        | Ctrl+ M         |
+| ctrl+ B              | select backpack      | Ctrl+ X         |
+| ctrl+ F              | select farmstead     | Ctrl+ G         |
+| Ctrl+ S              | select Storehouse, Ship, Stable, ElephantStable, Dock ... | Ctrl+V = select Storehouse, Ctrl+Z Stable, elephant_stables: Ctrl+Q        |
+| Ctrl+ X              | select Barracks + ElephantStable + Stable (remember X like nearly everything) | Ctrl+X selects baracks        |
+| alt+ W               | select woman         | Alt+A     |
+| alt+ I               | select infantry      |           |
+| Alt+ P               | select Pikeman, Spearman, Fanatic |           |
+| Alt+ C               | select Cavalry       | Alt+Space+C          |
+| Alt+ A               | select Archer, Elephant&Archer, Slinger Javelineer, ... |           |
+| Alt+ S               | select Swordsman, .. |           |
+| Alt+ E               | select Elephant for Support |           |
+| Alt+ K               | select Catapult (exceptions due to conflict) |           |
+| Alt+ H               | select Healer        | Alt+Space+H          |
+| J                    | select wounded (exceptions due to proximity to Healer) |               |
+| k                    | select only non-wounded using mouse |               |
+| Alt+ D               | select Dangerous Elephants |           |
+| Alt+ V               | select Siege and Ministers (Siege: rams, not heroes, Catapult, Bolt Shooter, Siege Tower ...) |           |
+| Alt+ M or Alt+ X       | select all military (non-wounded only) |  |
+| Alt+ N               | select all non-military | Alt+Space+N          |
 
 
 ## Tips for start the game:
