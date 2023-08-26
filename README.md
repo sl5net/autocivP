@@ -161,32 +161,40 @@ ctrl+ b = select backack
 ctrl+ f = select farm
 Ctrl+ s = select Storehouse Ship Stable ElephantStable Dock ...
 ... etc.
+Ctrl+ X = select Barracks + ElephantStable + Stable (remember X like nearly everythink)
+
+
 ```
 ## select Creatures examles:
 ```
-alt+W = select wimens
-alt+I = select infrantrie
-alt+P = select picmans
-Alt+C = Cavalry
-Alt+K = Catapult (exceptions becouse of conflict)
-Alt+H = Healer
+alt+ W = select wimens
+alt+ I = select infrantrie
+alt+ P = select picmans
+Alt+ C = Cavalry
+Alt+ E = Elephant for Support
+Alt+ K = Catapult (exceptions becouse of conflict)
+Alt+ H = Healer
 J = wounded (exceptions becouse near Healer)
+k = selects only nowoundedonly using mouse
 .... etc. understand?
 ```
 
 ### exceptionally other spellings:
 
 ### this selects all >D<angerous E. archer-,war-,hero-Elephant,... (not Support&Elephant):
-hotkey.autociv.session.entity.by.class.select.(Elephant)&!Support = "Alt+D"
 
-### this selects only Support&Elephant (not all Elephant):
-hotkey.autociv.session.entity.by.class.select.(Support&Elephant) = "Alt+E"
+```
+Alt+ D = Dangerouse Elephants
+Alt+ V = Siege and Ministers (Siege: rams, not heros, Catapult, Bolt Shooter, Siege Tower ...)
+Alt+ M, Alt+X = select all military ( nowoundedonly )
+Alt+ N = select all non military
+... etc. please tell if you missing something
+```
+https://youtu.be/MSnrCGFqxjo
+
 
 ### select Barracks + ElephantStable + Stable) "Ctrl+X" (remember X like nearly everythink)
-hotkey.autociv.session.entity.by.class.select.(Barracks|ElephantStable|Stable) = "Ctrl+X"
-
-### select all military is of course Alt+M but also Alt+X (remember X like nearly everythink)
-hotkey.autociv.session.entity.by.class.select.(Soldier|Siege|Dog)&!Ship = "Alt+M", "Alt+X"
+Barracks, ElephantStable ,Stable = "Ctrl+X"
 
 ### this selects only nowoundedonly using mouse (May think about oK. he is ok or so):
 hotkey.autociv.selection.nowoundedonly = "K"
@@ -194,19 +202,10 @@ hotkey.autociv.selection.nowoundedonly = "K"
 ### this selects only woundedonly using mouse (think about: Lie down to bed better to geht healty again):
 hotkey.selection.woundedonly = "L"
 
-### dificult to remember: select Siege_Unit :
 
-select https://0ad.fandom.com/wiki/Siege_Unit 's :
+### selects diplomacy with < (think about: give out, move resources to your partners):
 
-rams, not heros, Catapult, Bolt Shooter, Siege Tower
-
-hotkey.autociv.session.entity.by.class.select.Siege = "Alt+V"
-
-suggestion?
-
-### selects diplomacy with Ctrl+< (think about: give out, move resources to your partners):
-
-hotkey.session.gui.diplomacy.toggle = "Ctrl+SYM_100"
+diplomacy.toggle = "<"
 
 
 ### Howto find the names? i use create map scenario editor
