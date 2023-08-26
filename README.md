@@ -225,6 +225,14 @@ and taka a long in your user.cfg
 | F                    | build field          | Space + F              |
 | F, F                 | build farmstead      | Space + G              |
 | F, F, F              | build fortress       | Space + R              |
+| D              | build dock       |    Space + J           |
+| D, D              | build defense_tower       |               |
+| E              | build elephant_stables   |               |
+| A              | build arsenal   |               |
+| A, A              | build ArmyCamp   |               |
+| A, A, A              | build Assembly   |               |
+| A, A, A, A              | build AmphitheaterPompeii   |               |
+| A, A, A, A, A              | build Arch   |               |
 | Ctrl + firstletter should work with all buildings             |      |                |
 | Ctrl + H             | select house         | Ctrl + H               |
 | Ctrl + M             | select market        | Ctrl + M               |
@@ -232,8 +240,11 @@ and taka a long in your user.cfg
 | Ctrl + F             | select farmstead     | Ctrl + G               |
 | Ctrl + S             | select Storehouse, Ship, Stable, ElephantStable, Dock ... | Ctrl + V for Storehouse, Ctrl + Z for Stable, Ctrl + Q for ElephantStable |
 | Ctrl + X             | select Barracks + ElephantStable + Stable (remember X like nearly everything) | Ctrl + X              |
-| Ctrl + C             | select civil_centre     | Ctrl + C               |
-| Ctrl+T             | select temple     | Ctrl+T               |
+| Ctrl + C             | select CivilCentre, Corral, Crannog     | Ctrl + C for CivilCentre               |
+| Ctrl + T             | select temple     | Ctrl + T               |
+| Ctrl + A             | select Arsenal, ArmyCamp, Assembly, AmphitheaterPompeii, Apadana, Arch     |                |
+| Ctrl + D             | select Dock, Defense_tower , Dog     |                |
+| Ctrl + L             | select Library     |                |
 | Alt + W              | select woman         | Alt + A                |
 | Alt + I              | select infantry      |                      |
 | Alt + P              | select Pikeman, Spearman, Fanatic |                |
