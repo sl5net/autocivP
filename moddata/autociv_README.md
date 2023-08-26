@@ -207,6 +207,54 @@ BTW cant find WarElephant into the scenario editor
 and taka a long in your user.cfg
 
 
+# compare iHot (intuitive hotkeys) (optional) and niHot (non intuitive hotkeys) (optional)
+
+| intuitive hotkeys    | Action               | non intuitive hotkeys |
+| :------------------- | :------------------- | :------------------- |
+| H                    | build house          | Space + H              |
+| M                    | build market         | Space + M              |
+| B                    | build backpack       | Space + B              |
+| F                    | build field          | Space + F              |
+| F, F                 | build farmstead      | Space + G              |
+| F, F, F              | build fortress       | Space + R              |
+| D              | build dock       |    Space + J           |
+| D, D              | build defense_tower       |               |
+| E              | build elephant_stables   |               |
+| A              | build arsenal   |               |
+| A, A              | build ArmyCamp   |               |
+| A, A, A              | build Assembly   |               |
+| A, A, A, A              | build AmphitheaterPompeii   |               |
+| A, A, A, A, A              | build Arch   |               |
+| Ctrl + firstletter should work with all buildings             |      |                |
+| Ctrl + H             | select house         | Ctrl + H               |
+| Ctrl + M             | select market        | Ctrl + M               |
+| Ctrl + B             | select backpack      | Ctrl + X               |
+| Ctrl + F             | select farmstead     | Ctrl + G               |
+| Ctrl + S             | select Storehouse, Ship, Stable, ElephantStable, Dock ... | Ctrl + V for Storehouse, Ctrl + Z for Stable, Ctrl + Q for ElephantStable |
+| Ctrl + X             | select Barracks + ElephantStable + Stable (remember X like nearly everything) | Ctrl + X              |
+| Ctrl + C             | select CivilCentre, Corral, Crannog     | Ctrl + C for CivilCentre               |
+| Ctrl + T             | select temple     | Ctrl + T               |
+| Ctrl + A             | select Arsenal, ArmyCamp, Assembly, AmphitheaterPompeii, Apadana, Arch     |                |
+| Ctrl + D             | select Dock, Defense_tower , Dog     |                |
+| Ctrl + L             | select Library     |                |
+| Alt + W              | select woman         | Alt + A                |
+| Alt + I              | select infantry      |                      |
+| Alt + P              | select Pikeman, Spearman, Fanatic |                |
+| Alt + C              | select Cavalry       | Alt + C                |
+| Alt + A              | select Archer, Elephant&Archer, Slinger Javelineer, ... | |
+| Alt + S              | select Swordsman, .. |                       |
+| Alt + E              | select Elephant for Support | Alt + E              |
+| Alt + K              | select Catapult (exceptions due to conflict) |         |
+| Alt + H              | select Healer        | Alt + H                |
+| J                    | select wounded (exceptions due to proximity to Healer) | |
+| K                    | select only non-wounded using mouse |               |
+| Alt + D              | select Dangerous Elephants |                      |
+| Alt + V              | select Siege and Ministers (Siege: rams, not heroes, Catapult, Bolt Shooter, Siege Tower ...) |  |
+| Alt + M or Alt + X   | select all military (non-wounded only) |               |
+| Alt + N              | select all non-military |                 |
+| < (need set manually)  |  send resources  | (need set manually) |
+
+
 ## Tips for start the game:
 
 start 0ad in a infinite loop. So you never need to resart it manually when you change use TogglCommunityMod - Command or simply when changing the mode via mod-profiler. It allows for fast restart.
