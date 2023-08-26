@@ -219,33 +219,35 @@ and taka a long in your user.cfg
 
 | intuitive hotkeys    | Action               | non intuitive hotkeys |
 | :------------------- | :------------------- | :------------------- |
-| h                    | build house          | Space+ H              |
-| m                    | build market         | Space+ M              |
-| b                    | build backpack       | Space+ B              |
-| f                    | build field    | Space+F |
-| f,f                  | build farmstead      | Space+ G      |
-| f,f,f                | build fortress       | Space+ R |
-| Ctrl+ H              | select house         | Ctrl+ H         |
-| ctrl+ M              | select market        | Ctrl+ M         |
-| ctrl+ B              | select backpack      | Ctrl+ X         |
-| ctrl+ F              | select farmstead     | Ctrl+ G         |
-| Ctrl+ S              | select Storehouse, Ship, Stable, ElephantStable, Dock ... | Ctrl+V = select Storehouse, Ctrl+Z Stable, elephant_stables: Ctrl+Q        |
-| Ctrl+ X              | select Barracks + ElephantStable + Stable (remember X like nearly everything) | Ctrl+X selects baracks        |
-| alt+ W               | select woman         | Alt+A     |
-| alt+ I               | select infantry      |           |
-| Alt+ P               | select Pikeman, Spearman, Fanatic |           |
-| Alt+ C               | select Cavalry       | Alt+Space+C          |
-| Alt+ A               | select Archer, Elephant&Archer, Slinger Javelineer, ... |           |
-| Alt+ S               | select Swordsman, .. |           |
-| Alt+ E               | select Elephant for Support |           |
-| Alt+ K               | select Catapult (exceptions due to conflict) |           |
-| Alt+ H               | select Healer        | Alt+Space+H          |
-| J                    | select wounded (exceptions due to proximity to Healer) |               |
-| k                    | select only non-wounded using mouse |               |
-| Alt+ D               | select Dangerous Elephants |           |
-| Alt+ V               | select Siege and Ministers (Siege: rams, not heroes, Catapult, Bolt Shooter, Siege Tower ...) |           |
-| Alt+ M or Alt+ X       | select all military (non-wounded only) |  |
-| Alt+ N               | select all non-military | Alt+Space+N          |
+| H                    | build house          | Space + H              |
+| M                    | build market         | Space + M              |
+| B                    | build backpack       | Space + B              |
+| F                    | build field          | Space + F              |
+| F, F                 | build farmstead      | Space + G              |
+| F, F, F              | build fortress       | Space + R              |
+| Ctrl + firstletter should work with all buildings             |      |                |
+| Ctrl + H             | select house         | Ctrl + H               |
+| Ctrl + M             | select market        | Ctrl + M               |
+| Ctrl + B             | select backpack      | Ctrl + X               |
+| Ctrl + F             | select farmstead     | Ctrl + G               |
+| Ctrl + S             | select Storehouse, Ship, Stable, ElephantStable, Dock ... | Ctrl + V for Storehouse, Ctrl + Z for Stable, Ctrl + Q for ElephantStable |
+| Ctrl + X             | select Barracks + ElephantStable + Stable (remember X like nearly everything) | Ctrl + X              |
+| Ctrl + C             | select civil_centre     | Ctrl + C               |
+| Alt + W              | select woman         | Alt + A                |
+| Alt + I              | select infantry      |                      |
+| Alt + P              | select Pikeman, Spearman, Fanatic |                |
+| Alt + C              | select Cavalry       | Alt + C                |
+| Alt + A              | select Archer, Elephant&Archer, Slinger Javelineer, ... | |
+| Alt + S              | select Swordsman, .. |                       |
+| Alt + E              | select Elephant for Support | Alt + E              |
+| Alt + K              | select Catapult (exceptions due to conflict) |         |
+| Alt + H              | select Healer        | Alt + H                |
+| J                    | select wounded (exceptions due to proximity to Healer) | |
+| K                    | select only non-wounded using mouse |               |
+| Alt + D              | select Dangerous Elephants |                      |
+| Alt + V              | select Siege and Ministers (Siege: rams, not heroes, Catapult, Bolt Shooter, Siege Tower ...) | Alt + V |
+| Alt + M or Alt + X   | select all military (non-wounded only) |               |
+| Alt + N              | select all non-military | Alt + N                |
 
 
 ## Tips for start the game:
