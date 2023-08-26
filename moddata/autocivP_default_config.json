@@ -131,7 +131,7 @@
     "hotkey.autociv.session.entity.by.class.select.Healer": "Alt+H",
     "hotkey.autociv.session.entity.by.class.select.Infantry": "Alt+I",
     "hotkey.autociv.session.entity.by.class.select.Ranged": "",
-    "hotkey.autociv.session.entity.by.class.select.Siege": "Alt+V",
+    "hotkey.autociv.session.entity.by.class.select.Siege|(Minister)": "Alt+V",
     "hotkey.autociv.session.entity.by.class.select.Support&Worker": "Alt+W",
     "hotkey.autociv.session.entity.by.class.select.Support&Worker|(Support&Elephant)": "Alt+N",
     "hotkey.autociv.session.entity.by.health.nowounded.by.class.select.Cavalry": "",
