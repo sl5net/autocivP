@@ -3,6 +3,18 @@ warnSilhouettesIsNotEnabled()
 
 // warn(`5: gui/gamesetup/gamesetup~autociv.js`)
 
+/*NOTE -
+ * In 0 A.D. mods or any JavaScript code,
+if you use const or let to declare a variable
+at the top level of a file or outside of any function,
+it will not create a global variable.
+Instead, it will create a variable that is scoped to the module or file where it is declared.
+Global variables:
+variable that can be accessed from anywhere in your code, you can use var to declare the variable at the top level of your file or outside of any function.
+in modern JavaScript development, the use of var is generally discouraged in favor of let and const.
+let and const provide block-scoping behavior, which can help prevent issues related to variable hoisting and unintended side effects.
+*/
+
 var g_selfIsHost
 
 var p_isJoinedGameGreeted = false

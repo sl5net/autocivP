@@ -6,7 +6,7 @@ Thanks to all the 0 A.D. players who found it useful.
 
 - General
 	- Help command: type /help matchWord to see all available commands. Also possible to use regEx searchpattern.
-	- Jitsi commands: type j<tab> to create and send a jitsi-audioChat-link
+	- Jitsi commands: [type j<tab>](https://youtu.be/rofNXCZzLDM?si=DfYfVDqN5ahYy7WN&t=777) to create and send a jitsi-audioChat-link
 	- open links alias: type li<tab> to open a link.
  	- type <tab><tab> to see available commands that you have already used (history is saved into user.cfg).
 	- some other little commands that works like: type command<tab>
@@ -16,10 +16,15 @@ Thanks to all the 0 A.D. players who found it useful.
 	- it makes sure that all team members use the same jitsi-chat
 - map-profiles ( https://wildfiregames.com/forum/uploads/monthly_2023_07/Screenshot_20230725_150411.jpg.a954e52a74bb8dd0400c20e205933b61.jpg )
 - mod-profiles ( https://youtu.be/pt3VGm4N_Cw )
+  - restart automatically when mod-profiles has changed: https://www.youtube.com/watch?v=cDZc-m2_mCY
+  - and More...
 - use Symbols for some mod (not all are optional)
 - Auto-save Drafts in Chat: Never Lose Your Message Again! when you use hotkey for toggle beetween allies-room to all-room content or back. This feature ensures that the content of a chat message is not lost if it has not been sent yet. Instead, the content is saved and can be retrieved even if the user navigates away from the chat screen before sending the message. This can be useful to prevent users from losing their work in progress.
 - setup all defaults by type into the chat:
  feature value
+- Tab-Commands (easy to find by very good fuzzy-search):
+  - TogglComunityMod - Command ( https://youtu.be/pt3VGm4N_Cw?si=KHH670bJdief61i6&t=465 )
+  - food/... please ( https://youtu.be/rofNXCZzLDM?si=ijxsv4hfKQNuUFyQ&t=353 )
 - and More...
 
 
