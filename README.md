@@ -161,13 +161,13 @@ ctrl+ b = select backack
 ctrl+ f = select farm
 Ctrl+ s = select Storehouse Ship Stable ElephantStable Dock ...
 ... etc.
-Ctrl+ X = select Barracks + ElephantStable + Stable (remember X like nearly everythink)
+Ctrl+ X = select Barracks + ElephantStable + Stable (remember X like nearly everything)
 
 
 ```
 ## select Creatures examles:
 ```
-alt+ W = select wimens
+alt+ W = select woman
 alt+ I = select infrantrie
 Alt+ P = select Pikeman, Spearman, Fanatic
 Alt+ C = Cavalry
@@ -195,7 +195,7 @@ Alt+ N = select all non military
 https://youtu.be/MSnrCGFqxjo
 
 
-### select Barracks + ElephantStable + Stable) "Ctrl+X" (remember X like nearly everythink)
+### select Barracks + ElephantStable + Stable) "Ctrl+X" (remember X like nearly everything)
 Barracks, ElephantStable ,Stable = "Ctrl+X"
 
 ### this selects only nowoundedonly using mouse (May think about oK. he is ok or so):
