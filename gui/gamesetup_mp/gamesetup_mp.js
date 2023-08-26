@@ -63,7 +63,7 @@ function init (attribs) {
             error(`for using local ratings you need to enable to LocalRatings mod`);
         }
     }
-    else if (hasLocalRatings && (useLocalRatings || showLocalRatingsDropdown)) {
+    else if (hasLocalRatings && (useLocalRatings && showLocalRatingsDropdown != 'false')) {
         info('try to use local ratings database, with user: ', g_selfNick);
         g_LocalRatingsUser = init_LocalRatings()[g_selfNick];
 
