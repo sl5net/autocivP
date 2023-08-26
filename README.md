@@ -169,8 +169,10 @@ Ctrl+ X = select Barracks + ElephantStable + Stable (remember X like nearly ever
 ```
 alt+ W = select wimens
 alt+ I = select infrantrie
-alt+ P = select picmans
+Alt+ P = select Pikeman, Spearman, Fanatic
 Alt+ C = Cavalry
+Alt+ A = Archer, Elephant&Archer, Slinger Javelineer, ...
+Alt+ S = Swordman , ..
 Alt+ E = Elephant for Support
 Alt+ K = Catapult (exceptions becouse of conflict)
 Alt+ H = Healer
@@ -213,19 +215,6 @@ diplomacy.toggle = "<"
 BTW cant find WarElephant into the scenario editor
 
 and taka a long in your user.cfg
-
-### some comments about the cnanges:
-little simplification:
-
-hotkey.autociv.session.entity.by.class.select.(Infantry&Archer|Infantry&Slinger|Infantry&Javelineer|Elephant&Archer) = "Alt+A"
-hotkey.autociv.session.entity.by.class.select.(Infantry&Soldier)&!Slinger&!Slinger&!Javelineer&!Archer&!Spearman = "Alt+S"
-hotkey.autociv.session.entity.by.class.select.(Infantry&Pikeman|Infantry&Spearman|Champion&Fanatic) = "Alt+P"
-
-=>
-
-hotkey.autociv.session.entity.by.class.select.(Archer|Slinger|Javelineer|Archer) = "Alt+A"
-hotkey.autociv.session.entity.by.class.select.(Soldier)&!Slinger&!Javelineer&!Archer&!Spearman = "Alt+S"
-hotkey.autociv.session.entity.by.class.select.(Pikeman|Spearman|Fanatic) = "Alt+P"
 
 
 ## Tips for start the game:
