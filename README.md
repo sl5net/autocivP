@@ -233,6 +233,7 @@ and taka a long in your user.cfg
 | Ctrl + S             | select Storehouse, Ship, Stable, ElephantStable, Dock ... | Ctrl + V for Storehouse, Ctrl + Z for Stable, Ctrl + Q for ElephantStable |
 | Ctrl + X             | select Barracks + ElephantStable + Stable (remember X like nearly everything) | Ctrl + X              |
 | Ctrl + C             | select civil_centre     | Ctrl + C               |
+| Ctrl+T             | select temple     | Ctrl+T               |
 | Alt + W              | select woman         | Alt + A                |
 | Alt + I              | select infantry      |                      |
 | Alt + P              | select Pikeman, Spearman, Fanatic |                |
@@ -248,6 +249,7 @@ and taka a long in your user.cfg
 | Alt + V              | select Siege and Ministers (Siege: rams, not heroes, Catapult, Bolt Shooter, Siege Tower ...) |  |
 | Alt + M or Alt + X   | select all military (non-wounded only) |               |
 | Alt + N              | select all non-military |                 |
+| < (need set manually)  |  send resources  | (need set manually) |
 
 
 ## Tips for start the game:
