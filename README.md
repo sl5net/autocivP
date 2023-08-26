@@ -245,9 +245,9 @@ and taka a long in your user.cfg
 | J                    | select wounded (exceptions due to proximity to Healer) | |
 | K                    | select only non-wounded using mouse |               |
 | Alt + D              | select Dangerous Elephants |                      |
-| Alt + V              | select Siege and Ministers (Siege: rams, not heroes, Catapult, Bolt Shooter, Siege Tower ...) | Alt + V |
+| Alt + V              | select Siege and Ministers (Siege: rams, not heroes, Catapult, Bolt Shooter, Siege Tower ...) |  |
 | Alt + M or Alt + X   | select all military (non-wounded only) |               |
-| Alt + N              | select all non-military | Alt + N                |
+| Alt + N              | select all non-military |                 |
 
 
 ## Tips for start the game:
