@@ -18,7 +18,9 @@ Thanks to all the 0 A.D. players who found it useful.
 - mod-profiles ( https://youtu.be/pt3VGm4N_Cw )
   - restart automatically when mod-profiles has changed: https://www.youtube.com/watch?v=cDZc-m2_mCY
   - and More...
-- use Symbols for some mod (not all are optional)
+- prettyToggle - quick/easy during the game: Lower Graphics <-> Gigher Lower Graphics Latest
+- communityModToggle - quick/easy not possible during the game
+- listIcons - command: use Symbols for some mod (not all are optional)
 - Auto-save Drafts in Chat: Never Lose Your Message Again! when you use hotkey for toggle beetween allies-room to all-room content or back. This feature ensures that the content of a chat message is not lost if it has not been sent yet. Instead, the content is saved and can be retrieved even if the user navigates away from the chat screen before sending the message. This can be useful to prevent users from losing their work in progress.
 - setup all defaults by type into the chat:
  feature value
