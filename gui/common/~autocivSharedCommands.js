@@ -2,7 +2,22 @@ var gameState = "lobby"; // Initial state // // TODO: howto set it like this? g_
 
 var g_selfIsHost
 
-var playerIsGreeted = []
+var g_playerIsGreeted = []
+
+// dont say hey here because its already done. this here should be late text,
+var g_seeh_greete_array = ["i ♡ autocivP♇ mod."
+,  "I want to translate texts from chat partner in 0ad. How you do it?"
+, 'You know that you can translate texts from chat partner?'
+, 'You kan translate texts from chat partner?'
+,'You know that you can team audioChat?'
+,'You know that you can reuse your chat drafts?'
+,'know how prettyToggle? quick/easy during the game: Lower Graphics <-> greater Graphics?'
+,'know communityModToggle? quick/easy?'
+,'know how listIcons?'
+,''];
+
+
+// ' i  ♡ autocivP♇ mod',
 
 /**
  * Determine if the current player is the host player.
@@ -133,7 +148,9 @@ const actuallyWorkingAtVersion = g_previous_autocivPVersion == g_autocivPVersion
 
 // const whatsAutocivPMod = `AutoCivP mod is AutoCiv but it also supports profiles during game configuration, jitsi, command-history⟦Tab⟧⟦Tab⟧ and a lot more ( https://wildfiregames.com/forum/topic/107371-autocivp-add-ons-profiles-jitsi-team-call ) \n 1. download newest ZIP here ${zipOfAutocivPMod} \n 2. unzip it \n 3. rename folder to "autocivP" \n 4. copy this folder to "mods" folder. Path to user data: \n Linux     : ~/.config/0ad/mods \n Windows: %AppData%\\0ad\\mods \n macOS    : \/Users\/{YOUR USERNAME}\/Library\/Application\\ Support/0ad/mods \n tart 0 A.D., click Settings and Mod Selection. \n Double-click it, click Save Configuration and Start Mods. \n ${actuallyWorkingAtVersion} `
 
-const whatsAutocivPMod = `AutoCivP mod is AutoCiv but it also supports profiles during game configuration, jitsi and a lot more ( https://wildfiregames.com/forum/topic/107371-autocivp-add-ons-profiles-jitsi-team-call ) \n 1. download newest ZIP here ${zipOfAutocivPMod} \n 2. unzip it \n 3. copy this folder to "mods" folder.  4. \n Double-click it in "Settings" > "Mod Selection", click "Save Configuration" and "Start Mods". \n ${actuallyWorkingAtVersion} `
+const whatsAutocivPMod = `AutoCivP supports profiles, audio chat, Reuse Drafts, toggle graphics quickly during the game, command-history, icon and a lot more ( https://wildfiregames.com/forum/topic/107371-autocivp-add-ons-profiles-jitsi-team-call ) \n ${actuallyWorkingAtVersion} `
+
+const whatsAutocivPMod_long = `AutoCivP mod is AutoCiv but it also supports profiles during game configuration, jitsi and a lot more ( https://wildfiregames.com/forum/topic/107371-autocivp-add-ons-profiles-jitsi-team-call ) \n 1. download newest ZIP here ${zipOfAutocivPMod} \n 2. unzip it \n 3. copy this folder to "mods" folder.  4. \n Double-click it in "Settings" > "Mod Selection", click "Save Configuration" and "Start Mods". \n ${actuallyWorkingAtVersion} `
 
 const whatsCommunityMod = `communityMod is community-powered by the core team to improve the gameplay experience, particularly MP balance. The team wanted to give the community make it easier to contribute, thus this is hosted on gitlab and community members can request commit access ( https://gitlab.com/0ad/0ad-community-mod-a26 ) .`
 

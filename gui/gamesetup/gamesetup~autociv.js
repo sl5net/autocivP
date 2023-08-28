@@ -246,7 +246,8 @@ function setCaption_when_JoinOrStart_Setup_suggestRestoreMods_when_modsChanged()
 			const newBufferPosition = newCaptionString.length
 
 			if(g_selfNick.includes("seeh"))
-				newCaptionString += ' i ♡ autocivP♇ mod .'
+				newCaptionString += g_seeh_greete_array[Math.floor(Math.random() * g_seeh_greete_array.length)]  + '..';
+				// newCaptionString += ' i ♡ autocivP♇ mod .'
 
 
 			const chatInput = Engine.GetGUIObjectByName("chatInput")
@@ -311,7 +312,8 @@ function setCaption_when_JoinOrStart_Setup_suggestRestoreMods_when_modsChanged()
 
 
 					if(g_selfNick.includes("seeh")){
-						newCaptionString += ' i  ♡ autocivP♇ mod'
+						// newCaptionString +=
+						newCaptionString += g_seeh_greete_array[Math.floor(Math.random() * g_seeh_greete_array.length)] + '...';
 						selfMessage(`303: g_selfNick: ${g_selfNick}`);
 					}
 

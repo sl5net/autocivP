@@ -18,7 +18,7 @@ Thanks to all the 0 A.D. players who found it useful.
 - mod-profiles ( https://youtu.be/pt3VGm4N_Cw )
   - restart automatically when mod-profiles has changed: https://www.youtube.com/watch?v=cDZc-m2_mCY
   - and More...
-- prettyToggle - quick/easy during the game: Lower Graphics <-> Gigher Lower Graphics Latest
+- prettyToggle - quick/easy during the game: Lower Graphics <-> Greater Graphics
 - communityModToggle - quick/easy not possible during the game
 - listIcons - command: use Symbols for some mod (not all are optional)
 - Auto-save Drafts in Chat: Never Lose Your Message Again! when you use hotkey for toggle beetween allies-room to all-room content or back. This feature ensures that the content of a chat message is not lost if it has not been sent yet. Instead, the content is saved and can be retrieved even if the user navigates away from the chat screen before sending the message. This can be useful to prevent users from losing their work in progress.
@@ -71,6 +71,7 @@ This mod is an aggregation of features meant to enhance the 0 A.D. game experien
 - mod-profiles: don't need to change your map config anymore when we have changed our mod config: https://wildfiregames.com/forum/topic/107371-autocivp-add-ons-profiles-jitsi-team-call/#comment-553794
 - Reuse Drafts: Your last chat message or the last chat message you received. Easy to select a portion and simple to copy. Type Tab in an empty chat.
 - Auto-save Drafts in Chat: Never Lose Your Message Again! when you use hotkey for toggle beetween allies-room to all-room content or back. This feature ensures that the content of a chat message is not lost if it has not been sent yet. Instead, the content is saved and can be retrieved even if the user navigates away from the chat screen before sending the message. This can be useful to prevent users from losing their work in progress.
+- msg2 copies 2 messages greater than 8. For example, now it's much easier to copy them to a translator app and translate them into our language.
 - setup all defaults by type into the chat:
  feature value
 - and More...

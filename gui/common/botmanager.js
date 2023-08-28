@@ -118,6 +118,9 @@ class BotManager
 					{
 						const nick = splitRatingFromNick(g_PlayerAssignments[msg.guid].name).nick
 
+						if(bugIt)
+							warn(`122: nick: ${nick}`);
+
 						const now = new Date();
 						const nowMinutes = now.getMinutes();
 						const nowEvery30Min = Math.round(nowMinutes / 30) // want message to be sent less often
@@ -128,8 +131,8 @@ class BotManager
 						// 10,000 seconds is approximately 2 hours and 46 minutes.
 
 						if( nick != g_selfNick
-							&& !(playerIsGreeted.includes(msg.guid))
-							&& !(playerIsGreeted.includes(nowEvery30Min))
+							&& !(g_playerIsGreeted.includes(msg.guid))
+							&& !(g_playerIsGreeted.includes(nowEvery30Min))
 							){
 
 							// new implementation so i will watch longer
@@ -144,13 +147,17 @@ class BotManager
 
 								chatInput.buffer_position = chatInput.caption.length
 								if(g_selfNick.includes("seeh")){
-									chatInput.caption += 'i ♡ autocivP♇ mod.'
+
+									const randomg_seeh_greet = g_seeh_greete_array[Math.floor(Math.random() * g_seeh_greete_array.length)];
+									chatInput.caption += randomg_seeh_greet + '.'
+									// chatInput.caption += 'i ♡ autocivP♇ mod.'
+
 									selfMessage(`${nowEvery30Min} = nowEvery30Min`)
 								}
 
 
-								playerIsGreeted.push(msg.guid);
-								playerIsGreeted.push(nowEvery30Min);
+								g_playerIsGreeted.push(msg.guid);
+								g_playerIsGreeted.push(nowEvery30Min);
 								// selfMessage(`you dont want see this message? \n Game > Settings > Options > Personalization > auto hello Suggestion = false`);
 							}
 
@@ -480,11 +487,13 @@ botManager.addBot("autociv", {
 				*/
 				const isWithTwoSpacesSomewhere = /\b(\S+)\s(\S+)\s\1\s\2\b/.test(text)
 				const isWithOneSpaces = /\s+/.test(text)
-
+				// Exampl: Uzbekistan
+				//         123456789012345678901234567890
+				// filter of 18 was really to much. set to 8 now. tought it was a but becouse some was not copied.
 				if ( false
 					|| isWithTwoSpacesSomewhere
 					|| (isWithOneSpaces && text.length > 5)
-					|| text.length > 18){
+					|| text.length > 8){
 					if(Engine.ConfigDB_GetValue("user", "autocivP.chat.copyAllChatMessages") !== "true" )
 						g_chatTextInInputFild_when_msgCommand = ''
 
