@@ -503,15 +503,6 @@ botManager.addBot("autociv", {
 
 					p_textBeforeTemp = text
 
-					const text2 = text.replace(/'/g, "ˈ");
-/*!SECTION
-i mean it has less conflict with other languages if used a alternative letter:
-Prime symbol: ′
-Modifier letter apostrophe: ʼ
-Modifier letter vertical line: ˈ
-Modifier letter turned comma: ʻ
-Modifier letter reversed comma: ʽ
-*/
 					g_chatTextInInputFild_when_msgCommand += `${text}\n`
 					// warn(`text: ${text}  , textBefore: ${p_textBeforeTemp}`)
 
