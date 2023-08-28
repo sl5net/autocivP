@@ -11,6 +11,7 @@ var g_seeh_greete_array = ["i ♡ autocivP♇ mod."
 , 'You kan translate texts from chat partner?'
 ,'You know that you can team audioChat?'
 ,'You know that you can reuse your chat drafts?'
+,'know msg2 copies 2 messages? for easier translate? or so'
 ,'know how prettyToggle? quick/easy during the game: Lower Graphics <-> greater Graphics?'
 ,'know communityModToggle? quick/easy?'
 ,'know how listIcons?'
@@ -107,6 +108,8 @@ var g_chat_draft = ''
 // var g_chatTextInInputFild_when_msgCommand = ''
 var g_chatTextInInputFild_when_msgCommand = ''
 var g_chatTextInInputFild_when_msgCommand_lines = 0
+
+var p_textBeforeTemp = ''
 
 const chatInput = Engine.GetGUIObjectByName("chatInput")
 if(chatInput)

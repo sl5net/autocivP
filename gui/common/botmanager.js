@@ -118,8 +118,8 @@ class BotManager
 					{
 						const nick = splitRatingFromNick(g_PlayerAssignments[msg.guid].name).nick
 
-						if(bugIt)
-							warn(`122: nick: ${nick}`);
+						// if(bugIt)
+						// 	warn(`122: nick: ${nick}`);
 
 						const now = new Date();
 						const nowMinutes = now.getMinutes();
@@ -458,6 +458,8 @@ botManager.addBot("autociv", {
 
 
 
+
+
 		// var g_selfNick = Engine.ConfigDB_GetValue("user", `playername.multiplayer`);
 		// warn(`var g_selfNick = ${g_selfNick} gui/common/botmanager.js:396`)
 
@@ -487,17 +489,33 @@ botManager.addBot("autociv", {
 				*/
 				const isWithTwoSpacesSomewhere = /\b(\S+)\s(\S+)\s\1\s\2\b/.test(text)
 				const isWithOneSpaces = /\s+/.test(text)
-				// Exampl: Uzbekistan
-				//         123456789012345678901234567890
-				// filter of 18 was really to much. set to 8 now. tought it was a but becouse some was not copied.
-				if ( false
-					|| isWithTwoSpacesSomewhere
-					|| (isWithOneSpaces && text.length > 5)
-					|| text.length > 8){
+				// text is usually sendet two times. idk whey. but should not stored two times then. so remember in p_textBeforeTemp . this is a quick fix. maybe next usa a arry to save data and not a strink
+				if ( p_textBeforeTemp != text
+					&& (
+						isWithTwoSpacesSomewhere
+						|| (isWithOneSpaces && text.length > 5)
+						|| text.length > 8
+					)
+				){
 					if(Engine.ConfigDB_GetValue("user", "autocivP.chat.copyAllChatMessages") !== "true" )
 						g_chatTextInInputFild_when_msgCommand = ''
 
+
+					p_textBeforeTemp = text
+
+					const text2 = text.replace(/'/g, "ˈ");
+/*!SECTION
+i mean it has less conflict with other languages if used a alternative letter:
+Prime symbol: ′
+Modifier letter apostrophe: ʼ
+Modifier letter vertical line: ˈ
+Modifier letter turned comma: ʻ
+Modifier letter reversed comma: ʽ
+*/
 					g_chatTextInInputFild_when_msgCommand += `${text}\n`
+					// warn(`text: ${text}  , textBefore: ${p_textBeforeTemp}`)
+
+					// g_chatTextInInputFild_when_msgCommand += `${text2}\n`
 					g_chatTextInInputFild_when_msgCommand_lines++
 
 					// selfMessage(`text: ${text} gui/common/botmanager.js:494`)
