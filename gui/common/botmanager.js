@@ -490,16 +490,37 @@ botManager.addBot("autociv", {
 				const isWithTwoSpacesSomewhere = /\b(\S+)\s(\S+)\s\1\s\2\b/.test(text)
 				const isWithOneSpaces = /\s+/.test(text)
 				// text is usually sendet two times. idk whey. but should not stored two times then. so remember in p_textBeforeTemp . this is a quick fix. maybe next usa a arry to save data and not a strink
-				if ( p_textBeforeTemp != text
-					&& (
+				// 23-0828_2259-14 text.length > 8 is to short?
+				// In 0 A.D., the username length is limited to a maximum of 20 characters.
+				// not allowed signs in username: !
+				/*!SECTION
+				characters (letters A-Z, a-z, and numbers 0-9) and underscores (_). Special characters, such as spaces, symbols, or punctuation marks, are not allowed in usernames.
+Alphanumeric characters: A-Z, a-z, 0-9
+Underscore: _
+Period: .
+				*/
+
+				const isProablyPingMessageRegex = /^[a-zA-Z0-9_.]{1,20} \(\d+/;  // levai (1460)
+
+				const usernameRegex = /^[a-zA-Z0-9_.]{1,20}$/;
+				// isNotUsername = !usernameRegex.test(text)
+
+				const maxLengthOfUserName = 20
+				if ( 	p_textBeforeTemp != text
+					&&
+						!isProablyPingMessageRegex.test(text)
+					&&
+					(
 						isWithTwoSpacesSomewhere
-						|| (isWithOneSpaces && text.length > 5)
-						|| text.length > 8
+						|| text.length > maxLengthOfUserName
+						|| (
+							text.length > 5
+							&& !usernameRegex.test(text)
+							)
 					)
 				){
 					if(Engine.ConfigDB_GetValue("user", "autocivP.chat.copyAllChatMessages") !== "true" )
 						g_chatTextInInputFild_when_msgCommand = ''
-
 
 					p_textBeforeTemp = text
 

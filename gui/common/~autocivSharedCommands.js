@@ -13,7 +13,7 @@ var g_seeh_greete_array = ["i ♡ autocivP♇ mod."
 ,'You know that you can reuse your chat drafts?'
 ,'know msg2 copies 2 messages? for easier translate? or so'
 ,'know how prettyToggle? quick/easy during the game: Lower Graphics <-> greater Graphics?'
-,'know communityModToggle? quick/easy?'
+,'know the communityModToggle command? quick/easy?'
 ,'know how listIcons?'
 ,''];
 
