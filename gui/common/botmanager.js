@@ -500,7 +500,7 @@ Underscore: _
 Period: .
 				*/
 
-				const isProablyPingMessageRegex = /^[a-zA-Z0-9_.]{1,20} \(\d+/;  // levai (1460)
+				const isProablyUserNameWithRatingRegex = /^[a-zA-Z0-9_.]{1,20} \(\d+[⁾]\)/;  // Example: userName (1460)
 
 				const usernameRegex = /^[a-zA-Z0-9_.]{1,20}$/;
 				// isNotUsername = !usernameRegex.test(text)
@@ -508,7 +508,7 @@ Period: .
 				const maxLengthOfUserName = 20
 				if ( 	p_textBeforeTemp != text
 					&&
-						!isProablyPingMessageRegex.test(text)
+						!isProablyUserNameWithRatingRegex.test(text)
 					&&
 					(
 						isWithTwoSpacesSomewhere

@@ -52,6 +52,7 @@ class ChatMessageFormatPlayer
 		}
 
 		// GUID for players, playerID for AIs
+		// very seldom not much disturbing error, says "color is undefined" here: https://github.com/nanihadesuka/autociv/issues/31
 		let coloredUsername = msg.guid != -1 ? colorizePlayernameByGUID(msg.guid) : colorizePlayernameByID(msg.player);
 
 		return {
