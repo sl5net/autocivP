@@ -621,6 +621,8 @@ Period: .
 	}
 });
 
+var p_regEx_is_correct_web_link = /(sftp:\/\/|ftp:\/\/|http:\/\/www\.|https:\/\/www\.|http:\/\/|https:\/\/)[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(:[0-9]{1,5})?(\/.*)?/gmi
+
 botManager.addBot("link", {
 	"name": "Text link grabber bot",
 	"linkList": [],
@@ -638,8 +640,11 @@ botManager.addBot("link", {
 	"openLink": function (text)
 	{
 		let i = parseInt(typeof text != "string" ? text : text.trim() != "" ? text : 0);
-		if (!Number.isInteger(i) || !this.linkList[i])
-			return "No links or invalid index.";
+		if (!Number.isInteger(i) || !this.linkList[i]){
+			if(!text)
+				warn(`Open Links works in hosted games. It's not working if you in a single player game.`)
+			return "No links or invalid index. ";
+		}
 
 		let url = String(this.linkList[i]);
 

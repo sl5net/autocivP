@@ -945,6 +945,7 @@ function restart0ad()
 }
 
 function captionIs_j(guiObject){
+
     // "Select chat addressee." "Everyone"=0 "Allies"=1 Enemies=2 Observers=3
     const chatAddressBox = Engine.GetGUIObjectByName("chatAddressee"); // found this name in binaries/data/mods/public/gui/session/chat/chat_window.xml
 
@@ -954,10 +955,21 @@ function captionIs_j(guiObject){
     return
 }
 
-if (g_linkLongTeam == null) {
+if (true) {
     const linkidShort = Date.now().toString().substring(10);
     // not open this link always. if you have it already probably
-    g_linkLongTeam = `https://meet.jit.si/0ad${linkidShort}audio`;
+    // g_linkLongTeam = `https://meet.jit.si/0ad${linkidShort}audio`;
+
+    const key = "autocivP.jitsiServerList";
+    const jitsiAddress = Engine.ConfigDB_GetValue("user", key)
+    if(!jitsiAddress){
+        error(`please set jitsiAddress in user config first`)
+        return false
+    }else{
+      g_linkLongTeam = `https://${jitsiAddress}`
+                            + `/0ad${linkidShort}audio`;
+    }
+
     // doOpenJitsiLink = true;
     if(false){ // maybe better not use it at the moment. maybe later. in a future version. to much confusion
         try {

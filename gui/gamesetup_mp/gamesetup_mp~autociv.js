@@ -114,7 +114,17 @@ autociv_patchApplyN("init", (target, that, args) => {
         gameStartSuggestion_value += `|${value}|`
       }else{
 
+        const useRatedDefaultInGameName = true
+        /*!SECTION
+        this must be temporary cut out because not enough space for it in the options
         const useRatedDefaultInGameName = ( Engine.ConfigDB_GetValue("user", "autocivP.gamesetup.useRatedDefaultInGameName") === "true" )
+            {
+				"type": "boolean",
+				"label": "[color=\"220 185 70\"]use your RatedDefault in GameNames[/color]?",
+				"tooltip": "you could set rated default in chat by typeping: rated true or rated false or empty value ",
+				"config": "autocivP.gamesetup.useRatedDefaultInGameName"
+			},
+        */
 
         if(useRatedDefaultInGameName){
           const isRatedDefault = ( Engine.ConfigDB_GetValue("user", "autocivP.gamesetup.ratedDefault") === "true" )
