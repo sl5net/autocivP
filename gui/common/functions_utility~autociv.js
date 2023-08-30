@@ -239,6 +239,8 @@ const g_autoCompleteText_newMerge = (guiObject, list) => {
           lastLinesString = translateText(lastLinesString,sourceLanguage, targetLanguage)
 
           if(gameState == "lobby"){
+            // danger fo to be band becouse of profanity, when you exidently copy all chat messages and paste them back to chat as link
+            // lastLinesString is probably a link now. but still dangerous efentually
             guiObject.caption = lastLinesString
             g_previousCaption = guiObject.caption
             guiObject.buffer_position = 0 //  lastLinesString.length;

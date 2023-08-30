@@ -5,7 +5,7 @@ var g_selfIsHost
 var g_playerIsGreeted = []
 
 // dont say hey here because its already done. this here should be late text,
-var g_seeh_greete_array = ["i ♡ autocivP♇ mod."
+var g_seeh_greet_array = ["i ♡ autocivP♇ mod."
 ,  "I want to translate texts from chat partner in 0ad. How you do it?"
 , 'You know that you can translate texts from chat partner?'
 , 'You kan translate texts from chat partner?'
@@ -15,6 +15,7 @@ var g_seeh_greete_array = ["i ♡ autocivP♇ mod."
 ,'know how prettyToggle? quick/easy during the game: Lower Graphics <-> greater Graphics?'
 ,'know the communityModToggle command? quick/easy?'
 ,'know how listIcons?'
+,'know you could translate chat to every language you want? Example last message from spanish (=es) to english (=en): msg1esen. good? '
 ,''];
 
 

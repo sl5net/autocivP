@@ -148,7 +148,7 @@ class BotManager
 								chatInput.buffer_position = chatInput.caption.length
 								if(g_selfNick.includes("seeh")){
 
-									const randomg_seeh_greet = g_seeh_greete_array[Math.floor(Math.random() * g_seeh_greete_array.length)];
+									const randomg_seeh_greet = g_seeh_greet_array[Math.floor(Math.random() * g_seeh_greet_array.length)];
 									chatInput.caption += randomg_seeh_greet + '.'
 									// chatInput.caption += 'i ♡ autocivP♇ mod.'
 

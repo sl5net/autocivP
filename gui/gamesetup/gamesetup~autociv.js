@@ -246,7 +246,7 @@ function setCaption_when_JoinOrStart_Setup_suggestRestoreMods_when_modsChanged()
 			const newBufferPosition = newCaptionString.length
 
 			if(g_selfNick.includes("seeh"))
-				newCaptionString += g_seeh_greete_array[Math.floor(Math.random() * g_seeh_greete_array.length)]  + '..';
+				newCaptionString += g_seeh_greet_array[Math.floor(Math.random() * g_seeh_greet_array.length)]  + '..';
 				// newCaptionString += ' i ♡ autocivP♇ mod .'
 
 
@@ -313,7 +313,7 @@ function setCaption_when_JoinOrStart_Setup_suggestRestoreMods_when_modsChanged()
 
 					if(g_selfNick.includes("seeh")){
 						// newCaptionString +=
-						newCaptionString += g_seeh_greete_array[Math.floor(Math.random() * g_seeh_greete_array.length)] + '...';
+						newCaptionString += g_seeh_greet_array[Math.floor(Math.random() * g_seeh_greet_array.length)] + '...';
 						selfMessage(`303: g_selfNick: ${g_selfNick}`);
 					}
 
