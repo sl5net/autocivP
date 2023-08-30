@@ -213,6 +213,11 @@ const g_autoCompleteText_newMerge = (guiObject, list) => {
         const number = match[1];
         let sourceLanguage = 'en'
         let targetLanguage = null
+
+        // selfMessage(`211: gameState = ${gameState}`)
+        // return
+
+
         if(match[3]){
           sourceLanguage = match[2]
           targetLanguage = match[3]
@@ -232,18 +237,27 @@ const g_autoCompleteText_newMerge = (guiObject, list) => {
 
         if(targetLanguage){
           lastLinesString = translateText(lastLinesString,sourceLanguage, targetLanguage)
-          sendMessage(lastLinesString)
 
-          setTimeout(() => {
-            try {
-              let err = botManager.get("link").openLink(0);
-              if (err)
-                selfMessage(err);
-            } catch (error) {
-              // Handle the error gracefully or simply ignore it
-              warn(`109: ${error} | gui/common/functions_utility~autociv.js`);
-            }
-          }, 50);
+          if(gameState == "lobby"){
+            guiObject.caption = lastLinesString
+            g_previousCaption = guiObject.caption
+            guiObject.buffer_position = 0 //  lastLinesString.length;
+          }
+          else
+          {
+            sendMessage(lastLinesString)
+
+            setTimeout(() => {
+              try {
+                let err = botManager.get("link").openLink(0);
+                if (err)
+                  selfMessage(err);
+              } catch (error) {
+                // Handle the error gracefully or simply ignore it
+                warn(`109: ${error} | gui/common/functions_utility~autociv.js`);
+              }
+            }, 50);
+          }
 
         }else{
           guiObject.caption = lastLinesString
