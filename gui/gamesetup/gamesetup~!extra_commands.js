@@ -12,7 +12,7 @@ var game = {
     // g_SetupWindow.controls.gameSettingsController.updateGameAttributes()
     // g_SetupWindow.controls.gameSettingsController.setNetworkGameAttributes()
 
-    // thats a nneddet trick!!! becouse sometimes the other player dont see the updates!
+    // thats a neddet trick!!! becouse sometimes the other player dont see the updates!
     // but works. btw its possible to set it to  9. dont worry , but needet trick ! 23-0816_1351-04
     /*!SECTION todo: maybe find a more pretty solution then this trick, but seems work pretty well 23-0816_1351-04*/
     const playerCount_backup = g_GameSettings.playerCount.nbPlayers

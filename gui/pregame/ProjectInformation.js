@@ -17,6 +17,7 @@ For example, if you have a long name like isAutoCivPJustNowInstalled, you could 
 
 The key is to strike a balance between readability and consistency within the codebase. It's important to ensure that is clear and understandable to other developers who may be working on the codebase.
  */
+
 function is_autocivP_just_now_installed(){
 
 

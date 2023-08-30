@@ -61,6 +61,8 @@ function init(attribs) {
         }
     }
 
+
+
     if (customrating_trueFalse == "false" && !g_proGUIPVersion ) { // if g_proGUIP is used then always us customrating
         // Get only username without brackets
         g_UserRating = false;
@@ -177,6 +179,7 @@ function init(attribs) {
     //warn(uneval("attribs.name:" + attribs.name));
     //warn(uneval("g_UserRating:" + g_UserRating));
     // added by custom rating - END
+
     switch (attribs.multiplayerGameType) {
         case "join": {
             if (!Engine.HasXmppClient()) {

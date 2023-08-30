@@ -33,6 +33,21 @@ let g_LocalRatingsUser = null;
 
 
 function init (attribs) {
+
+
+
+    const multiplayerserver_dropdown = Engine.ConfigDB_GetValue("user", "multiplayerserver_dropdown")
+    if(multiplayerserver_dropdown){
+        const multiplayerserver = Engine.ConfigDB_GetValue("user", "multiplayerserver")
+        if(true
+            && multiplayerserver && multiplayerserver_dropdown
+            && multiplayerserver != multiplayerserver_dropdown){
+            error(`set first the multiplayerserver_dropdown to empty before use your multiplayerserver string. \n multiplayerserver: ${multiplayerserver} \n multiplayerserver_dropdown: ${multiplayerserver_dropdown}`)
+        }else{
+            Engine.ConfigDB_CreateValue("user", "multiplayerserver", multiplayerserver_dropdown)
+        }
+    }
+
     if (!attribs || !attribs.rating) {
         const currentRating = Engine.ConfigDB_GetValue("user", "UserRatingBackup"); // get backup
         g_UserRating = parseInt(currentRating) > 10 ? currentRating : '';
@@ -50,6 +65,10 @@ function init (attribs) {
 
 
     const hasLocalRatings   = typeof init_LocalRatings != 'undefined';
+
+
+
+
 
     let bugIt = false // new implementation so i will watch longer
 	// bugIt = true &&  g_selfNick.includes("seeh") // new implementation so i will watch longer
@@ -154,6 +173,7 @@ function init (attribs) {
             );
         }
     }
+
 
     customRating = customRating.length > 0 ? customRating : g_UserRating +'';
     customRating = customRating.length > 24 ? customRating.substring(0,24) +'..' : customRating;

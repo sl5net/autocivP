@@ -1,4 +1,81 @@
 [
+
+	{
+		"label": "Server",
+		"options":
+		[
+
+			{
+				"type": "string",
+				"label": "Multi Player > Host",
+				"tooltip": "or use your own server at: Multi Player > Host Game",
+				"config": "multiplayerserver"
+			},
+			{
+				"type": "dropdown",
+				"label": "Multi Player > Host",
+				"tooltip": "or use your own server at: Multi Player > Host Game",
+				"config": "multiplayerserver_dropdown",
+				"list": [
+					{ "value": "localhost", "label": "localhost"  },
+					{ "value": "lobby.wildfiregames.com", "label": "lobby.wildfiregames.com - not tested"  },
+					{ "value": "not existing server", "label": "not existing server should produce error"  },
+					{ "value": "", "label": ""  }
+				]
+			},
+			{
+				"type": "dropdown",
+				"label": "Multi Player > HostPort",
+				"tooltip": "or use your own server at: Multi Player > Host Game",
+				"config": "multiplayerhosting.port",
+				"list": [
+					{ "value": "20596", "label": "20596"  },
+					{ "value": "", "label": ""  }
+				]
+			},
+			{
+				"type": "dropdown",
+				"label": "Multi Player > JoiningPort",
+				"tooltip": "or use your own server at: Multi Player > Host Game",
+				"config": "multiplayerjoining.port",
+				"list": [
+					{ "value": "20596", "label": "20596"  },
+					{ "value": "", "label": ""  }
+				]
+			},
+			{
+				"type": "dropdown",
+				"label": "[color=\"204 133 0\"]Jitsi Server List[/color]",
+				"tooltip": "[color=\"255 0 0\"] now waranty of this servers.[/color] \n is you want more/other servers please contact. ty ",
+				"config": "autocivP.jitsiServerList",
+				"list": [
+					{ "value": "meet.ffmuc.net", "label": "Freifunk Munich meet.ffmuc.net"  },
+					{ "value": "meet.adminforge.de", "label": "adminForge meet.adminforge.de"  },
+					{ "value": "talk.linux-whv.de", "label": "Linux user group Wilhelmshaven talk.linux-whv.de"  },
+					{ "value": "meet.piraten-witten.de", "label": "meet.jugendrecht.org"  },
+					{ "value": "meet.piraten-witten.de", "label": "Youth rights podcast meet.jugendrecht.org"  },
+					{ "value": "meet.in-berlin.de", "label": "Individual Network Berlin eV meet.in-berlin.de"  },
+					{ "value": "meet.osna.social", "label": "Chaostreff Osnabrück eV meet.osna.social"  },
+					{ "value": "jitsi.freifunk-duesseldorf.de", "label": "Mike Kuketz jitsi.freifunk-duesseldorf.de"  },
+					{ "value": "meet.scheible.it", "label": "meet.scheible.it"  },
+					{ "value": "", "label": ""  }
+				]
+			},
+			{
+				"type": "dropdown",
+				"label": "tranlator server like (e.g. google translate):",
+				"tooltip": "Howto use later in chat:\n msg{number}{toLang}⟦Tab⟧ or \n msg{number}{fromLang}{toLang}⟦Tab⟧ \nnumber = how many of the last chat messages you want to translate.\nfromLang = the language you want to translate from(default: en). \ntoLang = the language you want to translate to.\n e.g. languages: en|de|es|fr|it|ja|ko|pt|ru|zh|zh-tw ",
+				"config": "autocivP.translateServerList",
+				"list": [
+					{ "value": "deepl", "label": "deepl.com translator"  },
+					{ "value": "google", "label": "google.com  translator"  }
+				]
+			}
+
+
+		]
+	},
+
 	{
 		"label": "AutoCiv** for 0 A.D. 0.0.26",
 		"options": [
@@ -321,25 +398,6 @@
 		"label": "♥ Personalization",
 		"options":
 		[
-
-			{
-				"type": "dropdown",
-				"label": "[color=\"204 133 0\"]Jitsi Server List[/color] ----->",
-				"tooltip": "[color=\"255 0 0\"] now waranty of this servers.[/color] \n is you want more/other servers please contact. ty ",
-				"config": "autocivP.jitsiServerList",
-				"list": [
-					{ "value": "meet.ffmuc.net", "label": "Freifunk Munich meet.ffmuc.net"  },
-					{ "value": "meet.adminforge.de", "label": "adminForge meet.adminforge.de"  },
-					{ "value": "talk.linux-whv.de", "label": "Linux user group Wilhelmshaven talk.linux-whv.de"  },
-					{ "value": "meet.piraten-witten.de", "label": "meet.jugendrecht.org"  },
-					{ "value": "meet.piraten-witten.de", "label": "Youth rights podcast meet.jugendrecht.org"  },
-					{ "value": "meet.in-berlin.de", "label": "Individual Network Berlin eV meet.in-berlin.de"  },
-					{ "value": "meet.osna.social", "label": "Chaostreff Osnabrück eV meet.osna.social"  },
-					{ "value": "jitsi.freifunk-duesseldorf.de", "label": "Mike Kuketz jitsi.freifunk-duesseldorf.de"  },
-					{ "value": "meet.scheible.it", "label": "meet.scheible.it"  },
-					{ "value": "", "label": ""  }
-				]
-			},
 
 			{
 				"type": "boolean",

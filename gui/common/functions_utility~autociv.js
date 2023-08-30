@@ -1437,13 +1437,12 @@ function inputCopySearchReults(chatInput){
 }
 
 function translateText(textToTranslate = 'Hello, how are you?', sourceLanguage = 'en', targetLanguage = 'es'){
-  // const textToTranslate = 'Hello, how are you?';
+  const key = "autocivP.translateServerList";
+  const translateServer = Engine.ConfigDB_GetValue("user", key)
 
-  // const targetLanguage = 'es';
-
-  // https://translate.google.com/?sl=es&tl=de&text=%C2%BFHola%2C%20c%C3%B3mo%20est%C3%A1s%3F&op=translate
-
-  const googleTranslateLink = `https://translate.google.com/?sl=${sourceLanguage}&tl=${targetLanguage}&text=${encodeURIComponent(textToTranslate)}`;
-  return googleTranslateLink
-
-  };
+  if(translateServer == "google"){
+    return `https://translate.google.com/?sl=${sourceLanguage}&tl=${targetLanguage}&text=${encodeURIComponent(textToTranslate)}`;
+  }else{
+    return `https://www.deepl.com/de/translator#${sourceLanguage}/${targetLanguage}/${encodeURIComponent(textToTranslate)}`;
+  }
+};
