@@ -207,18 +207,49 @@ const g_autoCompleteText_newMerge = (guiObject, list) => {
         guiObject.buffer_position = 0 //  lastLinesString.length;
         return
       }
-      const match = caption.toLowerCase().match(/msg(\d+)/);
+      const match = caption.toLowerCase().match(/msg(\d+)([a-z]{2})?([a-z]{2})?/);
       if (match) {
         saveLastCommand2History(caption)
         const number = match[1];
+        let sourceLanguage = 'en'
+        let targetLanguage = null
+        if(match[3]){
+          sourceLanguage = match[2]
+          targetLanguage = match[3]
+        }else if(match[2]){
+          targetLanguage = match[2]
+        }
+
+        if(targetLanguage == 'sp'){ // correct typo. sp for spanish is wrong
+          targetLanguage = 'es' // spanish
+        }
+
         // Handle the extracted number
         // selfMessage('gui/common/functions_utility~autociv.js ' + )
         const linesArray = g_chatTextInInputFild_when_msgCommand.trim().split('\n');
         const lastLines = linesArray.slice(-number);
-        const lastLinesString = lastLines.join('\n');
-        guiObject.caption = lastLinesString
-        g_previousCaption = guiObject.caption
-        guiObject.buffer_position = 0 //  lastLinesString.length;
+        let lastLinesString = lastLines.join('\n');
+
+        if(targetLanguage){
+          lastLinesString = translateText(lastLinesString,sourceLanguage, targetLanguage)
+          sendMessage(lastLinesString)
+
+          setTimeout(() => {
+            try {
+              let err = botManager.get("link").openLink(0);
+              if (err)
+                selfMessage(err);
+            } catch (error) {
+              // Handle the error gracefully or simply ignore it
+              warn(`109: ${error} | gui/common/functions_utility~autociv.js`);
+            }
+          }, 50);
+
+        }else{
+          guiObject.caption = lastLinesString
+          g_previousCaption = guiObject.caption
+          guiObject.buffer_position = 0 //  lastLinesString.length;
+        }
 
         ConfigDB_CreateAndSaveValueA26A27("user", "autocivP.chat.copyAllChatMessages", "true"); // if want select messages from all you net th have all chat messages first/next. => so set the flag to true
         return
@@ -228,6 +259,8 @@ const g_autoCompleteText_newMerge = (guiObject, list) => {
     switch (caption.toLowerCase()) {
 
         // return captionIs_j(guiObject);
+      case 'sp':
+          return caption2_spanish(guiObject);
       case 'j':
           return captionIs_j(guiObject);
       case 'li':
@@ -944,6 +977,18 @@ function restart0ad()
 	}
 }
 
+function caption2_spanish(guiObject){
+  const targetLanguage = 'es';
+
+  const number = 3;
+  const linesArray = g_chatTextInInputFild_when_msgCommand.trim().split('\n');
+  const lastLines = linesArray.slice(-number);
+  const lastLinesString = lastLines.join('\n');
+
+
+  guiObject.caption = translateText(lastLinesString, targetLanguage)
+
+}
 function captionIs_j(guiObject){
 
     // "Select chat addressee." "Everyone"=0 "Allies"=1 Enemies=2 Observers=3
@@ -981,9 +1026,31 @@ if (true) {
 }
 //   selfMessage(Engine.team[0]); // state is not defined
   // caption = g_linkLongTeam;
-  const inviteJitsiText =  `Please open following link for team-audio-chat in your web browser. type li⟦Tab⟧ or /link<enter>. Only a web browser is required. ${g_linkLongTeam} `;
+  const inviteJitsiText =  `If the team-audio-chat link does does not automatically open in your web browser, type li⟦Tab⟧ or /link<enter>. Only a web browser is required. ${g_linkLongTeam} `;
 //   guiObject.caption = '/link'; //  inviteJitsiText;
-  guiObject.caption = inviteJitsiText;
+
+sendMessage(inviteJitsiText);
+
+setTimeout(() => {
+  try {
+    let err = botManager.get("link").openLink(0);
+    if (err)
+      selfMessage(err);
+  } catch (error) {
+    // Handle the error gracefully or simply ignore it
+    warn(`109: ${error} | gui/common/functions_utility~autociv.js`);
+  }
+}, 80);
+
+guiObject.buffer_position = 0
+guiObject.caption = ''
+
+
+  // guiObject.caption = inviteJitsiText;
+
+
+
+
 //   sendMessage(`${inviteJitsiText}`); // TODO: it send to all not only to Allied
 
 // selfMessage(g_linkLongTeam); // its only a selfMessage. not read by botManager
@@ -1352,3 +1419,15 @@ function inputCopySearchReults(chatInput){
   chatInput.caption = chatStr
   return true
 }
+
+function translateText(textToTranslate = 'Hello, how are you?', sourceLanguage = 'en', targetLanguage = 'es'){
+  // const textToTranslate = 'Hello, how are you?';
+
+  // const targetLanguage = 'es';
+
+  // https://translate.google.com/?sl=es&tl=de&text=%C2%BFHola%2C%20c%C3%B3mo%20est%C3%A1s%3F&op=translate
+
+  const googleTranslateLink = `https://translate.google.com/?sl=${sourceLanguage}&tl=${targetLanguage}&text=${encodeURIComponent(textToTranslate)}`;
+  return googleTranslateLink
+
+  };
