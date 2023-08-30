@@ -18,7 +18,12 @@ var game = {
     const playerCount_backup = g_GameSettings.playerCount.nbPlayers
     if(playerCount_backup < 9){
       const playerCount_newTemp = playerCount_backup + 1
-      g_GameSettings.playerCount.nbPlayers = playerCount_newTemp
+      try {
+        g_GameSettings.playerCount.nbPlayers = playerCount_newTemp
+      } catch (error) {
+          // supresed error: g_Settings.PlayerDefaults[(playerIndex + 1)] is undefined
+          // its a trick to make it work. becouse the other player dont see the updates sometimes if i dont do this trick
+      }
       g_GameSettings.playerCount.nbPlayers = playerCount_backup
     }
   },
