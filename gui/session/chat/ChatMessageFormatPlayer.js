@@ -55,6 +55,21 @@ class ChatMessageFormatPlayer
 		// very seldom not much disturbing error, says "color is undefined" here: https://github.com/nanihadesuka/autociv/issues/31
 		let coloredUsername = msg.guid != -1 ? colorizePlayernameByGUID(msg.guid) : colorizePlayernameByID(msg.player);
 
+
+		// selfMessage(`59: ${msg.context} = msg.context`) // is Ally is i send in allied chat
+		// selfMessage(`60:  = ` + translate(this.strings[isMe ? "me" : "regular"][msg.context ? "context" : "no-context"]), {
+		// 	"message": msg.text,
+		// 	"context": msg.context ? translateWithContext("chat message context", msg.context) : "",
+		// 	"user": coloredUsername,
+		// 	"userTag": sprintf(translate("<%(user)s>"), { "user": coloredUsername })
+		// })
+		// selfMessage(`60:  = ` + translate(this.strings[isMe ? "me" : "regular"][msg.context ? "context" : "no-context"]), {
+		// 	"message": msg.text,
+		// 	"context": msg.context ? translateWithContext("chat message context", msg.context) : "",
+		// 	"user": coloredUsername,
+		// 	"userTag": sprintf(translate("<%(user)s>"), { "user": coloredUsername })
+		// })
+
 		return {
 			"text": sprintf(translate(this.strings[isMe ? "me" : "regular"][msg.context ? "context" : "no-context"]), {
 				"message": msg.text,
@@ -130,7 +145,6 @@ class ChatMessageFormatPlayer
 
 		let visible = isSender || addresseeType.isAddressee(senderID, addresseeGUID);
 		msg.isVisiblePM = isPM && visible;
-
 
 		//--------------------------------------------------------------
 		// little feature added by me, rest is unchanged:
