@@ -976,7 +976,7 @@ autociv_InitSharedCommands.pipe = {
 		if(gameState != "ingame"){ // to make sure this command is not now already set. later it will be
 
 			let bugIt = false // new implementation so i will watch longer
-			// bugIt = true && g_selfNick =="seeh" // new implementation so i will watch longer
+			// bugIt = true &&  g_selfNick.includes("seeh") // new implementation so i will watch longer
 			if(bugIt){
 				// selfMessage(`rated(): ${g_GameSettings.rating.enabled} - gui/common/~autocivSharedCommands.js : 960`)
 				selfMessage(`961: rated: ${g_InitAttributes.settings.RatingEnabled === true} - gui/common/~autocivSharedCommands.js : ${linnr()}`)

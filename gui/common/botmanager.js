@@ -149,6 +149,9 @@ class BotManager
 								if(g_selfNick.includes("seeh")){
 
 									const randomg_seeh_greet = g_seeh_greet_array[Math.floor(Math.random() * g_seeh_greet_array.length)];
+
+									ConfigDB_CreateAndSaveValueA26A27("user", `AudioTTS.speak`, randomg_seeh_greet);
+
 									chatInput.caption += randomg_seeh_greet + '.'
 									// chatInput.caption += 'i ♡ autocivP♇ mod.'
 
@@ -530,6 +533,10 @@ Period: .
 					// g_chatTextInInputFild_when_msgCommand += `${text2}\n`
 					g_chatTextInInputFild_when_msgCommand_lines++
 
+					const ttsSolution = Engine.ConfigDB_GetValue("user", "autocivP.ttsSolution")
+					if(ttsSolution == "autokeyTTS")
+						ConfigDB_CreateAndSaveValueA26A27("user", `AudioTTS.speak`, text.replace('\n', ' ').replace('"', '')); // just for fun experimental
+
 					// selfMessage(`text: ${text} gui/common/botmanager.js:494`)
 				}
 			}
@@ -642,7 +649,7 @@ botManager.addBot("link", {
 		let i = parseInt(typeof text != "string" ? text : text.trim() != "" ? text : 0);
 		if (!Number.isInteger(i) || !this.linkList[i]){
 			if(!text)
-				warn(`Open Links works in hosted games. It's not working if you in a single player game.`)
+				warn(`Open Links works in hosted games. It's may not working if you in a single player game.`)
 			return "No links or invalid index. ";
 		}
 

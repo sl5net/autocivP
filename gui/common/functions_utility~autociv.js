@@ -235,8 +235,12 @@ const g_autoCompleteText_newMerge = (guiObject, list) => {
         const lastLines = linesArray.slice(-number);
         let lastLinesString = lastLines.join('\n');
 
+        const explainTranslation = `Translation from ${sourceLanguage} to ${targetLanguage} last ${number} lines`
+
+
         if(targetLanguage){
-          lastLinesString = translateText(lastLinesString,sourceLanguage, targetLanguage)
+
+          lastLinesString = `${explainTranslation} : ${translateText(lastLinesString,sourceLanguage, targetLanguage)}`
 
           if(gameState == "lobby"){
             // danger fo to be band becouse of profanity, when you exidently copy all chat messages and paste them back to chat as link
@@ -258,7 +262,7 @@ const g_autoCompleteText_newMerge = (guiObject, list) => {
                 // Handle the error gracefully or simply ignore it
                 warn(`109: ${error} | gui/common/functions_utility~autociv.js`);
               }
-            }, 50);
+            }, 70); // sometimes a larger delay then 50 is needed here
           }
 
         }else{
@@ -701,7 +705,6 @@ function brightenedColor(color, brightnessThreshold = 110)
 }
 
 function ConfigDB_CreateAndSaveValueA26A27(user, key, value, isEmptyAvalueAllowed = false){
-
     // ConfigDB_CreateAndSaveValue is not a function error in Version a26 but in a27 23-0605_1920-25
     if(!user || !key || ( !isEmptyAvalueAllowed && value.length <= 0 ) ){
         // error('23-0625_0609-52');

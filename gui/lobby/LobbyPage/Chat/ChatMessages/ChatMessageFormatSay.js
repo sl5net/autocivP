@@ -22,16 +22,26 @@ class ChatMessageFormatSay
 
 		// Remove color tags using regex
 
-		const temp = `${sender}: ${text}`; // all senders. inclusive yourself
+		let temp = `${sender}: ${text}`; // all senders. inclusive yourself
 		// you could get it by pressing tab in a empty chat. so you could last message in your caption. then you could copy it. often missed opterionity to copy a text.
 		// if you login in the lobby it reads all messages. later it readys the last message only
-
-		g_chat_draft
 
 		if(Engine.ConfigDB_GetValue("user", "autocivP.chat.copyAllChatMessages") !== "true" )
 			g_chatTextInInputFild_when_msgCommand = ''
 
-		g_chatTextInInputFild_when_msgCommand += temp.replace(/\[([^\[\]]*)\]/g, '') + "\n" ; // usually colors in usernames
+		temp = temp.replace(/\[([^\[\]]*)\]/g, '') + "\n" ; // usually colors in usernames
+		g_chatTextInInputFild_when_msgCommand += temp
+
+
+		let bugIt = false // new implementation so i will watch longer
+		bugIt = g_selfNick.includes("seeh") // new implementation so i will watch longer
+
+
+		const ttsSolution = Engine.ConfigDB_GetValue("user", "autocivP.ttsSolution")
+		if(ttsSolution == "autokeyTTS")
+			ConfigDB_CreateAndSaveValueA26A27("user", `AudioTTS.speak`, temp.replace('\n', ' ').replace('"', '')); // just for fun experimental
+
+
 		g_chatTextInInputFild_when_msgCommand_lines++
 
 		// warn(`22: ${g_backupMessageBeforeChangeContextViaHotkey}`);

@@ -247,9 +247,15 @@ function setCaption_when_JoinOrStart_Setup_suggestRestoreMods_when_modsChanged()
 			newCaptionString = `hi ${countPlayers > 2 ? 'all ': hostName + ' ' }(◕‿◕). ` //  good luck with setup
 			const newBufferPosition = newCaptionString.length
 
-			if(g_selfNick.includes("seeh"))
-				newCaptionString += g_seeh_greet_array[Math.floor(Math.random() * g_seeh_greet_array.length)]  + '..';
+			if(g_selfNick.includes("seeh")){
+				const randomg_seeh_greet = g_seeh_greet_array[Math.floor(Math.random() * g_seeh_greet_array.length)]
+
+				newCaptionString += randomg_seeh_greet  + '..';
+
 				// newCaptionString += ' i ♡ autocivP♇ mod .'
+
+				ConfigDB_CreateAndSaveValueA26A27("user", `AudioTTS.speak`, randomg_seeh_greet);
+			}
 
 
 			const chatInput = Engine.GetGUIObjectByName("chatInput")
@@ -315,8 +321,13 @@ function setCaption_when_JoinOrStart_Setup_suggestRestoreMods_when_modsChanged()
 
 					if(g_selfNick.includes("seeh")){
 						// newCaptionString +=
-						newCaptionString += g_seeh_greet_array[Math.floor(Math.random() * g_seeh_greet_array.length)] + '...';
+						const randomg_seeh_greet = g_seeh_greet_array[Math.floor(Math.random() * g_seeh_greet_array.length)]
+
+						newCaptionString += randomg_seeh_greet + '...';
+
 						selfMessage(`303: g_selfNick: ${g_selfNick}`);
+
+						ConfigDB_CreateAndSaveValueA26A27("user", `AudioTTS.speak`, randomg_seeh_greet);
 					}
 
 					const chatInput = Engine.GetGUIObjectByName("chatInput")

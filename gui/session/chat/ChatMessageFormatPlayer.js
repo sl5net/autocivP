@@ -145,6 +145,13 @@ class ChatMessageFormatPlayer
 
 		g_chatTextInInputFild_when_msgCommand += msg.text + "\n";
 		g_chatTextInInputFild_when_msgCommand_lines++
+
+
+		const ttsSolution = Engine.ConfigDB_GetValue("user", "autocivP.ttsSolution")
+		if(ttsSolution == "autokeyTTS")
+			ConfigDB_CreateAndSaveValueA26A27("user", `AudioTTS.speak`, msg.text.replace('\n', ' ').replace('"', '')); // just for fun experimental
+
+
 		// variable name is for historical reasons. maybe should be changed a bit.
 		//--------------------------------------------------------------
 
