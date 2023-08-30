@@ -13,7 +13,7 @@
 			},
 			{
 				"type": "dropdown",
-				"label": "Multi Player > Host",
+				"label": "Multi Player > Host (set empty when conflict) ",
 				"tooltip": "or use your own server at: Multi Player > Host Game",
 				"config": "multiplayerserver_dropdown",
 				"list": [
