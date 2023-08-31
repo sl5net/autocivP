@@ -77,7 +77,7 @@
 				"tooltip": "The lobby audio reader enables you to \n stay connected to the lobby environment \n even when you are away from your computer. \n By utilizing audio output, it allows you to listen to important updates, \n announcements, and conversations happening in the lobby,\n providing you with the flexibility to stay informed \n and engaged without needing to be physically present at the monitor. \n \n ask for phyton script link, because it is not yet included in this repository.",
 				"config": "autocivP.ttsSolution",
 				"list": [
-					{ "value": "autokeyTTS", "label": "Ubuntu: autokey-run -s 0ad_TTS_userCfg"  },
+					{ "value": "autokeyTTS", "label": "Ubuntu: autokey-run -s 0ad_TTS_userCfg \n autokey-run -s \"~/.local/share/0ad/mods/autocivp/moddata/0ad_TTS_userCfg.py\""  },
 					{ "value": "", "label": ""  }
 				]
 			}
