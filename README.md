@@ -268,46 +268,6 @@ and taka a long in your user.cfg
 
 ## Tips for start the game:
 
-start 0ad in a infinite loop. So you never need to resart it manually when you change use TogglCommunityMod - Command or simply when changing the mode via mod-profiler. It allows for fast restart.
-For exit you then need to exit the calling app (typically a terminal).
-
-### Example when you use fish-shell:
-
-####  That's a fish-style endless loop; very useful with TogglComunityMod - Command or simly when changing the mode via mod-profiler. It allows for fast restart :
-
-```fish
-alias 6game026start 'while true; cd ~/game/0ad/026/; ./0ad-0.0.26-alpha-2210110407-x86_64_0cdfe6000a403313b99d6ea006a92d81.AppImage; sleep 1; end; '
-```
-
-The command sets up an alias in the fish-shell. An alias is a way to create a shorthand or shortcut for a longer command.
-
-- alias: This is the command to define an alias.
-- 6game026: This is the name of the alias. It is the shorthand you want to use to refer to the longer command.
-- 'while true; ... end; ':
-- The longer command inside the single quotes is a loop that runs indefinitely (while true) and performs the following actions:
-
-1. `cd ~/game/0ad/026/` : Change the current directory to `~/game/0ad/026/` . The `~/` notation represents the user's home directory.
-2. `./0ad-0.0.26-alpha-2210110407-x86_64_0cdfe6000a403313b99d6ea006a92d81.AppImage` : Execute the 0ad AppImage
-
-The purpose of this alias is to provide a shortcut command (6game026) that allows for easy and infinite execution of the game. To stop the game, you will need to terminate the terminal session.
-
-useful with TogglComunityMod - Command or simly when changing the mode via mod-profiler.
-### Bash-Style enless loops ( not tested ):
-
-```sh
-alias 6game026='while true; do 0ad; sleep 1; done'
-```
-
-### for windows users ( not tested !!! ):
-
-```batch
-@echo off
-:loop
-cd /d C:\path\to\game\0ad\026
-start "" 0ad
-timeout /t 1 >nul
-goto loop
-```
 
 ## Download autocivP
 - Download and install from the wildfiregames forum autociv page topic (files on first page)
