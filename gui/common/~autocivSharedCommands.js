@@ -954,20 +954,9 @@ autociv_InitSharedCommands.pipe = {
 			if(!(modEnabledmods.indexOf(modProfilealwaysInReplay)>0)){
 				// warn(`Really want play a replay without 'boonGUI' mod ?`);
 				ConfigDB_CreateAndSaveValueA26A27("user", "mod.enabledmods", clean2)
-				check_modProfileSelector_settings()
-
-				try {
-					Engine.Restart(1) // works sometimes Engine. and sometimes: Restart is not a function
-				  } catch (error) {
-					if(g_selfNick =="seeh"){ //NOTE - 23-0705_2302-57 developers want to see the error in the console
-						warn(error.message)
-						warn(error.stack)
-					  }
-					warn('well done. Please start 0ad now again.')
-					Engine.Exit(1) // works
-
-				}
-
+				const clean_array = clean2.split(/\s+/);
+				Engine.SetModsAndRestartEngine(["mod",...clean_array])
+				Engine.SetModsAndRestartEngine(["mod",...Engine.GetEnabledMods()])
 			}
 			// endOf is replay
 		}

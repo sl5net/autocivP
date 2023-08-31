@@ -830,8 +830,8 @@ function saveThisModProfile(nr, autoLabelManually) {
 
 
       if (clean != modsFromUserCfg_const) {
-        warn("save:" + nr);
-        warn(clean);
+        warn("833: save:" + nr);
+        warn('834:' + clean);
 
         // function RestartEngine(): any;
 
@@ -846,90 +846,34 @@ function saveThisModProfile(nr, autoLabelManually) {
         //   "config/user.cfg"
         // );
 
+
+        // const modsEnabled = Engine.GetEnabledMods();
+
         ConfigDB_CreateAndSaveValueA26A27("user", "modProfile.backup",modsFromUserCfg_const)
         ConfigDB_CreateAndSaveValueA26A27("user", "mod.enabledmods",clean)
-        // Engine.SetMods(clean) // get error: Engine.SetMods is not a function
 
-        // return true;
-        // state.needsRestart = true;
-        // configSaveToMemoryAndToDisk(key, settings[key]);
+        const clean_array = clean.split(/\s+/);
 
-        // Engine.SetMods(clean); // SetMods is not a function here :(
-        // Engine.RestartEngine(); // RestartEngine(1);  is not a function here :(
+        // it seems for some reason i need to call this twice. like so:
+        Engine.SetModsAndRestartEngine(["mod",...clean_array])
+        Engine.SetModsAndRestartEngine(["mod",...Engine.GetEnabledMods()])
 
-        // state.reasons.add("New mode-profile settings added.");
-
-        // Engine.RestartInAtlas(1) // works. it start atlas ... 23-0703_1555-52 dont like it
-
-        // Engine.RestartInEngine(1) // is not a function
-        // Engine.RestartEngine(1) // is not a funtion
-        // Engine.RestartEngine.call(1) // is undefined
+        // print('857: clean_array: ' + JSON.stringify(clean_array) )
+        // print('858: modsEnabled: ' + JSON.stringify(modsEnabled) )
 
 
-        // Engine.SetMods()
-
-
-        // function GetAvailableMods(): any
-        // function RestartEngine(): any
-        // function SetMods(): any
-        // function ModIoStartGetGameId(): any
-        // function ModIoStartListMods(): any
-        // function ModIoStartDownloadMod(): any
-        // function ModIoAdvanceRequest(): any
-        // function ModIoCancelRequest(): any
-        // function ModIoGetMods(): any
-
-
-
-        // let message = `
-        // Mods changed
-        // Restart Engine ?`;
-        //     messageBox(
-        //       500,
-        //       300,
-        //       message,
-        //       "AutoCivP mod autoOrderFix notice",
-        //       ["Ok, change", "No"],
-        //       [
-        //         () => {
-        //           Engine.Restart(1) // works
-        //         },
-        //         () => {},
-        //       ]
-        //     );
-          // try {
-
-
-          if(false){ // outdated
-            const key = "autocivP.gamesetup.restart";
-            ConfigDB_CreateAndSaveValueA26A27("user", key, 'restart');
-            Engine.SwitchGuiPage("page_pregame.xml");
-          }else{
-            Engine.Exit(1)
-
-
-          }
-
-
-            // Engine.Restart(1) // works sometimes Engine. and sometimes: Restart is not a function
-          // } catch (error) {
-          //   warn(error.message)
-          //   warn(error.stack)
-          //   warn('well done. Please start 0ad now again.')
-          //   Engine.Exit(1) // works
-          // }
-
-        // Engine.Exit(1) // works
-
+        return clean;
       } else {
         // warn("dont save " + nr);
       }
-      return true;
+
     }
+    // its not different nothing was needet to change
     return false;
   }
 
   function check_modProfileSelector_settings() {
+
     const autoLabelManually = Engine.ConfigDB_GetValue("user", "modProfile.autoLabelManually") === "true";
 
     [...Array(6)].forEach((_, k0_5) => saveThisModProfile(k0_5, autoLabelManually));
@@ -940,7 +884,7 @@ function saveThisModProfile(nr, autoLabelManually) {
         if (enableThisModProfile(k0_5)) {
           warn(`${k0_5} was enabled as your default mod-configuration.`);
           ConfigDB_CreateAndSaveValueA26A27("user", nameOfCheckBox, "false");
-          warn(`${k0_5} checkBox disabled (if enabled have conflict with the normal mod selector)`);
+          // warn(`${k0_5} checkBox disabled (if enabled have conflict with the normal mod selector)`);
           return true;
         }
         break;
@@ -985,7 +929,7 @@ function addModProfileAlwaysInAlsoAddAutocivPatTheEnd(clean) {
 function restart0ad()
 {
 	try {
-		Engine.Restart(1) // works sometimes Engine. and sometimes: Restart is not a function
+		Engine.SetModsAndRestartEngine(["mod",...Engine.GetEnabledMods()]) // works sometimes Engine. and sometimes: Restart is not a function
 	} catch (error) {
 		if(g_selfNick =="seeh"){ //NOTE - 23-0705_2302-57 developers want to see the error in the console
 			warn(error.message)
@@ -1386,7 +1330,15 @@ function captionCheck_is_communityModToggle_optional_restartOad(caption, doResta
 
     ConfigDB_CreateAndSaveValueA26A27("user", "mod.enabledmods", modEnabledmods.trim())
     selfMessage(`modEnabledmods = ${modEnabledmods}`);
-    restart0ad()
+
+
+    const clean_array = modEnabledmods.trim().split(/\s+/);
+
+    Engine.SetModsAndRestartEngine(["mod",...clean_array])
+    Engine.SetModsAndRestartEngine(["mod",...Engine.GetEnabledMods()])
+
+
+    // restart0ad()
   }
 }
 

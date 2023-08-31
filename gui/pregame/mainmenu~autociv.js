@@ -7,7 +7,7 @@ if(false){
   if(helloAllText == 'restart'){
     ConfigDB_CreateAndSaveValueA26A27("user", key, 'lalilu'); // should be a trick but restart not work if its from otther side. only if its the first call.
     try {
-      Engine.Restart(1);
+      Engine.SetModsAndRestartEngine(["mod",...Engine.GetEnabledMods()]);
     } catch (error) {
       Engine.Exit(1)
     }
@@ -38,7 +38,7 @@ var config = {
 
     // restart
     // try {
-    //   Engine.Restart(1);
+    //   Engine.SetModsAndRestartEngine(["mod",...Engine.GetEnabledMods()]);
     // } catch (error) {
     //   Engine.Exit(1);
     // }
@@ -226,7 +226,7 @@ ConfigDB_CreateAndSaveValueA26A27("user", "silhouettes", true);
 
       if(reloadcount <= 2){
         try {
-          Engine.Restart(1);
+          Engine.SetModsAndRestartEngine(["mod",...Engine.GetEnabledMods()]);
         } catch (error) {
           Engine.Exit(1)
         }
@@ -282,12 +282,9 @@ Do you want autofix some think (no guaranty for all)?
           clean = clean.replaceAll(/\bboonGUI\b /g, 'proGUI boonGUI ');
           ConfigDB_CreateAndSaveValueA26A27("user", 'mod.enabledmods',clean)
 
-          try {
-            Engine.Restart(1);
-          } catch (error) {
-            Engine.Exit(1)
-          }
-
+          const clean_array = clean.split(/\s+/);
+          Engine.SetModsAndRestartEngine(["mod",...clean_array])
+          Engine.SetModsAndRestartEngine(["mod",...Engine.GetEnabledMods()])
 
 
         },
