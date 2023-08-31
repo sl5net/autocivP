@@ -257,7 +257,10 @@ and taka a long in your user.cfg
 
 ## Tips for start the game:
 
-
+        const clean_array = clean.split(/\s+/);
+          Engine.SetModsAndRestartEngine(["mod",...clean_array])
+          Engine.SetModsAndRestartEngine(["mod",...Engine.GetEnabledMods()])
+  w
 ## Download autocivP
 - Download and install from the wildfiregames forum autociv page topic (files on first page)
 	- not available jet
