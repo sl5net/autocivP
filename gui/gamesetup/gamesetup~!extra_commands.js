@@ -619,15 +619,6 @@ function pMBMainland_2v2_defaults() {
 
 
 function pMainland_1v1_defaults() {
-  // game.panelsButtons.startGameButton.onPress(); // works :)) for starting game without anything. maybe good when debugging.
-  // game.panelsButtons.backButton.onPress(); // error: backButton is not defined
-  // game.panelsButtons.cancelButton.onPress(); // error: is not a function
-  // game.panelsButtons.cancelButton().press(true);  // error: is not a function
-  // game.panelsButtons.cancelButton().press(true);  // error: is not a function
-  // game.cancelButton.onPress(); // undefined
-  // game.panelsButtons.exit not exist
-  // game.exit(1);
-  // return;
   setTeams("team 1v1");
   setMapTypeFilterNameBiome(
     "maps/random/mainland",

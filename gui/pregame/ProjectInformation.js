@@ -73,17 +73,6 @@ function is_autocivP_just_now_installed(){
 			[() => {}, () => {}]
 		  );
 
-
-		// messageBox(
-		// 	500,
-		// 	300,
-		// 	"Important Installation Note: Ensure AutocamP-FolderName is set to: autocivp . to prevent eventually errors. \n Lowercase without number to like",
-		// 	"AutoCivP Installation Note",
-		// 	["Ok"],
-		// 	[() => {}, () => {}]
-		//   );
-
-
 	}
 	return !(isACheckboxValid)
 

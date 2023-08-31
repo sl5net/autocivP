@@ -23,17 +23,6 @@ var autociv_focus = {
 		const posboonGUI = modsFromUserCfg_const.indexOf('boonGUI')
 		const posproGUI = modsFromUserCfg_const.indexOf('proGUI')
 
-		if(autoFixModsOrder === "true" && !posproGUI){
-			warn(`posproGUI not found`)
-
-			//TODO - fix this msgbox was not showed
-			messageBox(
-				400, 200,
-				translate("modProfile showAutoFixModsOrder need a resart"),
-				translate("Confirmation"),
-				[translate("No"), translate("Yes")],
-				[null, restart0ad()]);
-		}
 		if(autoFixModsOrder === "true" && posboonGUI && posproGUI < posboonGUI ){
 			warn(`posproGUI < posboonGUI`)
 
@@ -43,19 +32,10 @@ var autociv_focus = {
 			// clean = clean.replaceAll(/\bboonGUI\b /g, 'proGUI boonGUI ');
 			ConfigDB_CreateAndSaveValueA26A27("user", 'mod.enabledmods',clean)
 
-			//TODO - fix this msgbox was not showed
-			messageBox(
-				400, 200,
-				translate("modProfile showAutoFixModsOrder need a resart"),
-				translate("Confirmation"),
-				[translate("No"), translate("Yes")],
-				[null, restart0ad()]);
-
-			// messageBox(500, 200, translate("modProfile showAutoFixModsOrder need a resart"), translate("Error"))
-
+			const clean_array = modEnabledmods.trim().split(/\s+/);
+			Engine.SetModsAndRestartEngine(["mod",...clean_array])
+			Engine.SetModsAndRestartEngine(["mod",...Engine.GetEnabledMods()])
 		}
-
-
 	}
 }
 

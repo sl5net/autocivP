@@ -925,21 +925,6 @@ function addModProfileAlwaysInAlsoAddAutocivPatTheEnd(clean) {
   return clean.replace(/\bautocivP\b/ig, `${modProfileAlwaysIn} autocivp` );
 }
 
-
-function restart0ad()
-{
-	try {
-		Engine.SetModsAndRestartEngine(["mod",...Engine.GetEnabledMods()]) // works sometimes Engine. and sometimes: Restart is not a function
-	} catch (error) {
-		if(g_selfNick =="seeh"){ //NOTE - 23-0705_2302-57 developers want to see the error in the console
-			warn(error.message)
-			warn(error.stack)
-		}
-		warn('well done. Please start 0ad now again.')
-		Engine.Exit(1) // works
-	}
-}
-
 function caption2_spanish(guiObject){
   const targetLanguage = 'es';
 
@@ -1333,12 +1318,7 @@ function captionCheck_is_communityModToggle_optional_restartOad(caption, doResta
 
 
     const clean_array = modEnabledmods.trim().split(/\s+/);
-
     Engine.SetModsAndRestartEngine(["mod",...clean_array])
-    Engine.SetModsAndRestartEngine(["mod",...Engine.GetEnabledMods()])
-
-
-    // restart0ad()
   }
 }
 

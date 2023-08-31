@@ -235,35 +235,7 @@ enableButtons = function ()
 	const combinedHandler = () => {
 		// Call the existing handler first
 		existingHandler();
-
-		// restart / exit command is in follwoing function:
 		check_modProfileSelector_settings()
-
-		// print('243: modsEnabled: ' + JSON.stringify(modsEnabled) )
-		// print('244: modsEnabled: ' + [...Engine.GetEnabledMods()] )
-
-		/*!SECTION
-		 ["mod","public","proGUI","kush-extreme","no-blood-and-gore-mod","localratings","autocivp"]244: modsEnabled: mod,public,proGUI,kush-extreme,no-blood-and-gore-mod,localratings,autocivp
-
-		 243: modsEnabled: ["mod","public","proGUI","kush-extreme","no-blood-and-gore-mod","localratings","autocivp"]
-
-		 244: modsEnabled: mod,public,proGUI,kush-extreme,no-blood-and-gore-mod,localratings,autocivp
-
-		 243: modsEnabled: ["mod","public","proGUI","kush-extreme","no-blood-and-gore-mod","localratings","autocivp"]
-
-		 244: modsEnabled: mod,public,proGUI,kush-extreme,no-blood-and-gore-mod,localratings,autocivpTIMER|
-		*/
-
-
-
-
-
-		if(false) // not necesary anymore at the mometn.
-		  try {
-			Engine.SetModsAndRestartEngine(["mod",...Engine.GetEnabledMods()])
-		  } catch (error) {
-			Engine.Exit(1)
-		  }
 	};
 	Engine.GetGUIObjectByName("saveChanges").onPress = combinedHandler;
 }

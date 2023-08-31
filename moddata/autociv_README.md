@@ -317,5 +317,6 @@ The motivation for this mod was implement ideas and simplifications that are hel
   - @Mentula - https://gitlab.com/mentula0ad
   - @Atric - https://gitlab.com/4trik
   - @LangLangBart - https://github.com/LangLangBart
+  - @Ilan - https://github.com/IlanFrumer
 
 - Thanks to all other modders
