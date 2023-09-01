@@ -134,12 +134,12 @@ while True:
                         if not line:
                             break
                             
-                            
-                            
                         if line[:14] == "AudioTTS.speak":
                             vRE = re.search('"(.+)"', line)
                             msg = vRE.group(1) if vRE else ""  # looks a bit ugly. that could be better.
-                            espeakThis(msg, lang)
+                            if msgOld != msg:
+                                espeakThis(msg, lang)
+                                msgOld = msg; 
                             break
                             
                         if line[:18] == "AudioTTS.timestamp":

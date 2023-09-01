@@ -852,7 +852,6 @@ function saveThisModProfile(nr, autoLabelManually) {
         ConfigDB_CreateAndSaveValueA26A27("user", "modProfile.backup",modsFromUserCfg_const)
 
 
-
         if( gameState == "ingame"){
           warn(`in games autoRestart is disabled`)
           ConfigDB_CreateAndSaveValueA26A27("user", "mod.enabledmods",clean)

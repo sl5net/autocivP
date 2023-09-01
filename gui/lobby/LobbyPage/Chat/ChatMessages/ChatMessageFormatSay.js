@@ -3,6 +3,11 @@
  * The nickname and the message content will be assumed to be player input, thus escaped,
  * meaning that one cannot use colorized messages here.
  */
+
+
+var g_AudioTTSspeak_lastSpeak = date
+
+
 class ChatMessageFormatSay
 {
 	constructor()
@@ -36,11 +41,16 @@ class ChatMessageFormatSay
 		let bugIt = false // new implementation so i will watch longer
 		bugIt = g_selfNick.includes("seeh") // new implementation so i will watch longer
 
-
-		const ttsSolution = Engine.ConfigDB_GetValue("user", "autocivP.ttsSolution")
-		if(ttsSolution == "autokeyTTS")
-			ConfigDB_CreateAndSaveValueA26A27("user", `AudioTTS.speak`, temp.replace('\n', ' ').replace('"', '')); // just for fun experimental
-
+		if(true){
+			const diffSeconds = Math.abs((new Date()) - g_AudioTTSspeak_lastSpeak) / 1000;
+			// const diffMin = Math.round( Math.abs((new Date()) - this.dateStart) / 1000 / 60 * 10) / 10;
+			// limit save moments
+			if(diffSeconds > 2){
+				const ttsSolution = Engine.ConfigDB_GetValue("user", "autocivP.ttsSolution")
+				if(ttsSolution == "autokeyTTS")
+					ConfigDB_CreateAndSaveValueA26A27("user", `AudioTTS.speak`, temp.replace('\n', ' ').replace('"', '')); // just for fun experimental
+			}
+		}
 
 		g_chatTextInInputFild_when_msgCommand_lines++
 
