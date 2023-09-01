@@ -5,7 +5,7 @@
  */
 
 
-var g_AudioTTSspeak_lastSpeak = date
+var g_AudioTTSspeak_lastSpeak = new Date();
 
 
 class ChatMessageFormatSay
