@@ -161,11 +161,25 @@ class ChatMessageFormatPlayer
 		g_chatTextInInputFild_when_msgCommand_lines++
 
 
-		const ttsSolution = Engine.ConfigDB_GetValue("user", "autocivP.ttsSolution")
-		if(ttsSolution == "autokeyTTS")
-			ConfigDB_CreateAndSaveValueA26A27("user", `AudioTTS.speak`, msg.text.replace('\n', ' ').replace('"', '')); // just for fun experimental
+		if( !(msg.text).match(/^\s*https?:\/\//i)  ){
+			// dont read links as audio
+
+			const diffSeconds = Math.abs((new Date()) - g_AudioTTSspeak_lastSpeak) / 1000;
+			// warn(JSON.stringify(diffSeconds));
+			// warn(`22: diffSeconds: ${diffSeconds}`);
+			// const diffMin = Math.round( Math.abs((new Date()) - this.dateStart) / 1000 / 60 * 10) / 10;
+			// limit save moments
+
+			if(diffSeconds > 2){
+				g_AudioTTSspeak_lastSpeak = new Date();
 
 
+				const ttsSolution = Engine.ConfigDB_GetValue("user", "autocivP.ttsSolution")
+				if(ttsSolution == "autokeyTTS")
+					ConfigDB_CreateAndSaveValueA26A27("user", `AudioTTS.speak`, msg.text.replace('\n', ' ').replace('"', '')); // just for fun experimental
+			}
+
+		}
 		// variable name is for historical reasons. maybe should be changed a bit.
 		//--------------------------------------------------------------
 

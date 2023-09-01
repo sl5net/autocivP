@@ -41,7 +41,9 @@ class ChatMessageFormatSay
 		let bugIt = false // new implementation so i will watch longer
 		bugIt = g_selfNick.includes("seeh") // new implementation so i will watch longer
 
-		if(true){
+		if( !temp.match(/^\s*https?:\/\//i)  ){
+			// dont read links as audio
+
 			const diffSeconds = Math.abs((new Date()) - g_AudioTTSspeak_lastSpeak) / 1000;
 			// warn(JSON.stringify(diffSeconds));
 			// warn(`22: diffSeconds: ${diffSeconds}`);

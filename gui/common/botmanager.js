@@ -1,3 +1,4 @@
+var g_AudioTTSspeak_lastSpeak = new Date();
 
 class BotManager
 {
@@ -6,13 +7,7 @@ class BotManager
 
 	constructor()
 	{
-
-
-
-
-
-
-
+		// warn(this.AudioTTSspeak_lastSpeak.getTime())
 	}
 
 	addBot(name, object)
@@ -533,9 +528,30 @@ Period: .
 					// g_chatTextInInputFild_when_msgCommand += `${text2}\n`
 					g_chatTextInInputFild_when_msgCommand_lines++
 
-					const ttsSolution = Engine.ConfigDB_GetValue("user", "autocivP.ttsSolution")
-					if(ttsSolution == "autokeyTTS")
-						ConfigDB_CreateAndSaveValueA26A27("user", `AudioTTS.speak`, text.replace('\n', ' ').replace('"', '')); // just for fun experimental
+
+					if( !text.match(/^\s*https?:\/\//i)  ){
+						// dont read links as audio
+
+						const diffSeconds = Math.abs((new Date()) - g_AudioTTSspeak_lastSpeak) / 1000;
+						// warn(JSON.stringify(diffSeconds));
+						// warn(`22: diffSeconds: ${diffSeconds}`);
+
+						// warn(typeof g_AudioTTSspeak_lastSpeak); // should be "object" (for a valid date object)
+						// warn(typeof new Date()); // should be "object" (for a valid date object)
+
+
+						// const diffMin = Math.round( Math.abs((new Date()) - this.dateStart) / 1000 / 60 * 10) / 10;
+						// limit save moments
+						if(diffSeconds > 2){
+							g_AudioTTSspeak_lastSpeak = new Date();
+
+
+							const ttsSolution = Engine.ConfigDB_GetValue("user", "autocivP.ttsSolution")
+							if(ttsSolution == "autokeyTTS")
+								ConfigDB_CreateAndSaveValueA26A27("user", `AudioTTS.speak`, text.replace('\n', ' ').replace('"', '')); // just for fun experimental
+
+						}
+					}
 
 					// selfMessage(`text: ${text} gui/common/botmanager.js:494`)
 				}
