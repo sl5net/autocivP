@@ -16,6 +16,7 @@ var g_seeh_greet_array = ["i ♡ autocivP♇ mod."
 ,'know the communityModToggle command? quick/easy?'
 ,'know how listIcons?'
 ,'know you could translate chat to every language you want? Example last message from spanish (=es) to english (=en): msg1esen. good? '
+,'know that I can listen to your messages as audio read by AI? This way, I don\'t need to read. Good mod?'
 ,''];
 
 

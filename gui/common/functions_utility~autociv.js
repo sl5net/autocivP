@@ -850,16 +850,20 @@ function saveThisModProfile(nr, autoLabelManually) {
         // const modsEnabled = Engine.GetEnabledMods();
 
         ConfigDB_CreateAndSaveValueA26A27("user", "modProfile.backup",modsFromUserCfg_const)
-        ConfigDB_CreateAndSaveValueA26A27("user", "mod.enabledmods",clean)
 
-        const clean_array = clean.split(/\s+/);
 
-        // it seems for some reason i need to call this twice. like so:
-        Engine.SetModsAndRestartEngine(["mod",...clean_array])
-        Engine.SetModsAndRestartEngine(["mod",...Engine.GetEnabledMods()])
 
+        if( gameState == "ingame"){
+          warn(`in games autoRestart is disabled`)
+          ConfigDB_CreateAndSaveValueA26A27("user", "mod.enabledmods",clean)
+        }else{
+          const clean_array = clean.split(/\s+/);
+          // BTW when you want resarte but mod not changed you need call this function twice
+          Engine.SetModsAndRestartEngine(["mod",...clean_array])
+          // Engine.SetModsAndRestartEngine(["mod",...Engine.GetEnabledMods()])
         // print('857: clean_array: ' + JSON.stringify(clean_array) )
         // print('858: modsEnabled: ' + JSON.stringify(modsEnabled) )
+      }
 
 
         return clean;
