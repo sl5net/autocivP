@@ -94,6 +94,9 @@ startIsoTimeStr = time.strftime("%FT%H:%M:%S")
 
 
 espeakThis("Gleich gehts los" , 'de')
+time.sleep(2)
+espeakThis("esta por comenzar" , 'es')
+
 
 # espeakThis("espeak script started")
 
