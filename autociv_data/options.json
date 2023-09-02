@@ -411,7 +411,7 @@
 
 			{
 				"type": "boolean",
-				"label": "[color=\"220 185 70\"]Postfix UserName / GameNames[/color]: enable?",
+				"label": "[color=\"220 185 220\"]Postfix UserName / GameNames[/color]: enable?",
 				"tooltip": "Enable Postfix for UserName and/or Suggestions for game Names? ",
 				"config": "customrating"
 			},
@@ -491,19 +491,13 @@
 			},
 			{
 				"type": "string",
-				"label": "[color=\"204 133 0\"]Game name Suggestion[/color]. next fullMinute",
-				"tooltip": "(default is next full 30 minutes ⟨ or empty)\n e.g. next full 30 minutes 12:30 13:00. to disable, set to empty \n hint: \n 1 hour = 60 minutes \n 2 hours = 120 minutes \n 3 hours = 180 minutes\n 4 hours = 240 minutes\n 5 hours = 300 minutes \n 6 hours = 360 minutes \n 7 hours = 420 minutes \n 8 hours = 480 minutes \n 9 hours = 540 minutes \n 10 hours = 600 minutes \n 1 day = 1440 minutes",
-				"config": "autocivP.gamesetup.gameStart.inNextFullMinute"
-			},
-			{
-				"type": "string",
 				"label": "[color=\"204 133 0\"]Game name Suggestion[/color]. Any text you like",
 				"tooltip": "Any text you like. will be added to your others game names snippets.",
 				"config": "autocivP.gamesetup.gameStart.string"
 			},
 			{
 				"type": "dropdown",
-				"label": "[color=\"204 133 0\"]Game name Suggestion[/color] chose countries... -->",
+				"label": "[color=\"204 133 0\"]Game name Suggestion[/color] chose countries ☼☽",
 				"tooltip": "set to empty or select a name postfix",
 				"config": "autocivP.gamesetup.gameStart.inNextFullMinuteCountrys",
 				"list": [
@@ -532,8 +526,15 @@
 
 
 			{
+				"type": "string",
+				"label": "[color=\"204 133 0\"]Game name Suggestion[/color]. next fullMinute ☼☽",
+				"tooltip": "(default is next full 30 minutes ⟨ or empty)\n e.g. next full 30 minutes 12:30 13:00. to disable, set to empty \n hint: \n 1 hour = 60 minutes \n 2 hours = 120 minutes \n 3 hours = 180 minutes\n 4 hours = 240 minutes\n 5 hours = 300 minutes \n 6 hours = 360 minutes \n 7 hours = 420 minutes \n 8 hours = 480 minutes \n 9 hours = 540 minutes \n 10 hours = 600 minutes \n 1 day = 1440 minutes",
+				"config": "autocivP.gamesetup.gameStart.inNextFullMinute"
+			},
+
+			{
 				"type": "boolean",
-				"label": "[color=\"204 133 0\"]Game name Suggestion[/color]: removes all :00 from time ?",
+				"label": "[color=\"204 133 0\"]Game name Suggestion[/color]: removes all :00 from time ? ☼☽",
 				"tooltip": "removes all occurrences of :00 from the time",
 				"config": "autocivP.gamesetup.gameStart.inNextFullMinuteRemove00"
 			},
@@ -541,7 +542,7 @@
 
 			{
 				"type": "dropdown",
-				"label": "[color=\"204 133 0\"]Game name S.[/color] select normal,2xSpeed,spec..->",
+				"label": "[color=\"204 133 0\"]Game name S.[/color] select normal, 2xSpeed, spec..",
 				"tooltip": "set to empty or select a name postfix",
 				"config": "autocivP.gamesetup.gameStart.suggestionKey",
 				"list": [
@@ -593,13 +594,20 @@
 
 			{
 				"type": "dropdown",
-				"label": "[color=\"204 133 0\"]Game name Suggestion[/color] select presets ----->",
+				"label": "[color=\"204 133 0\"]Game name Suggestion[/color] pingMe ? or emty?",
 				"tooltip": "set to empty or select a name postfix",
 				"config": "autocivP.gamesetup.gameStart.suggestionKey3",
 				"list": [
 					{ "value": "", "label": ""  },
 					{ "value": "^1", "label": "pingMe"  }
 				]
+			},
+
+			{
+				"type": "boolean",
+				"label": "[color=\"220 185 70\"]use your RatedDefault in GameNames[/color]?",
+				"tooltip": "you could set rated default in chat by type: rated true or rated false or empty value ",
+				"config": "autocivP.gamesetup.useRatedDefaultInGameName"
 			},
 
 			{
