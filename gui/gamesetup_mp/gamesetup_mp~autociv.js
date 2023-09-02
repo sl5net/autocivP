@@ -123,7 +123,7 @@ autociv_patchApplyN("init", (target, that, args) => {
       {
 				"type": "boolean",
 				"label": "[color=\"220 185 70\"]use your RatedDefault in GameNames[/color]?",
-				"tooltip": "you could set rated default in chat by typeping: rated true or rated false or empty value ",
+				"tooltip": "you could set rated default in chat by type: rated true or rated false or empty value ",
 				"config": "autocivP.gamesetup.useRatedDefaultInGameName"
 			},
         */
