@@ -216,7 +216,7 @@ function nextGameStartTime() {
         inNextFullMinute = 30
       else inNextFullMinute = parseInt(inNextFullMinute)
 
-      const roundedMinutes = Math.ceil(minutes / inNextFullMinute) * inNextFullMinute;
+      const roundedMinutes = Math.ceil(nowMinutes / inNextFullMinute) * inNextFullMinute;
       const nextHalfHour = new Date(now.getFullYear(), now.getMonth(), now.getDate(), now.getHours(), roundedMinutes, 0);
       if (roundedMinutes === 60) {
         nextHalfHour.setHours(now.getHours() + 1);
