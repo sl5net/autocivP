@@ -114,11 +114,13 @@ autociv_patchApplyN("init", (target, that, args) => {
         gameStartSuggestion_value += `|${value}|`
       }else{
 
-        const useRatedDefaultInGameName = true
+        const useRatedDefaultInGameName = ( Engine.ConfigDB_GetValue("user", "autocivP.gamesetup.useRatedDefaultInGameName") === "true" )
+
         /*!SECTION
         this must be temporary cut out because not enough space for it in the options
         const useRatedDefaultInGameName = ( Engine.ConfigDB_GetValue("user", "autocivP.gamesetup.useRatedDefaultInGameName") === "true" )
-            {
+
+      {
 				"type": "boolean",
 				"label": "[color=\"220 185 70\"]use your RatedDefault in GameNames[/color]?",
 				"tooltip": "you could set rated default in chat by typeping: rated true or rated false or empty value ",
@@ -210,18 +212,27 @@ function nextGameStartTime() {
       const now = new Date();
       const nowMinutes = now.getMinutes();
 
+      if (!inNextFullMinute && isNaN(inNextFullMinute))
+        inNextFullMinute = 30;
+      else inNextFullMinute = parseInt(inNextFullMinute);
 
+      let additionalMinutes = 0;
 
-      if(!inNextFullMinute && isNaN(inNextFullMinute))
-        inNextFullMinute = 30
-      else inNextFullMinute = parseInt(inNextFullMinute)
-
-      const roundedMinutes = Math.ceil(nowMinutes / inNextFullMinute) * inNextFullMinute;
-      const nextHalfHour = new Date(now.getFullYear(), now.getMonth(), now.getDate(), now.getHours(), roundedMinutes, 0);
-      if (roundedMinutes === 60) {
-        nextHalfHour.setHours(now.getHours() + 1);
-        nextHalfHour.setMinutes(0);
+      if (nowMinutes % inNextFullMinute !== 0) {
+        additionalMinutes = inNextFullMinute - (nowMinutes % inNextFullMinute);
       }
+
+      if (additionalMinutes === 0) {
+        additionalMinutes = inNextFullMinute;
+      }
+
+      const nextHalfHour = new Date(now.getFullYear(), now.getMonth(), now.getDate(), now.getHours(), now.getMinutes() + additionalMinutes, 0);
+
+      if (nowMinutes + additionalMinutes >= 60) {
+        nextHalfHour.setHours(now.getHours() + Math.floor((nowMinutes + additionalMinutes) / 60));
+        nextHalfHour.setMinutes((nowMinutes + additionalMinutes) % 60);
+      }
+
       return nextHalfHour;
     };
 
