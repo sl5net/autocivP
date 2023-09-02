@@ -187,10 +187,17 @@ autociv_patchApplyN("init", (target, that, args) => {
 function nextGameStartTime() {
 
 
+  let bugIt = false // new implementation so i will watch longer
+  // bugIt = g_selfNick.includes("seeh") // new implementation so i will watch longer
+
+
   let inNextFullMinute = Engine.ConfigDB_GetValue(
     "user",
     "autocivP.gamesetup.gameStart.inNextFullMinute"
     );
+
+    if(bugIt)
+      warn(`200: inNextFullMinute = ${inNextFullMinute}`)
 
   let showCountrysCode = Engine.ConfigDB_GetValue(
     "user",
@@ -208,9 +215,11 @@ function nextGameStartTime() {
   if(inNextFullMinute.length < 1 || isNaN(inNextFullMinute))
     return false
 
-    const getNextHalfHour = (inNextFullMinute) => {
+    const getNextHalfHour = (timeAtMoment, inNextFullMinute) => {
+      const [hour, minute] = timeAtMoment.split(':').map(Number);
       const now = new Date();
-      const nowMinutes = now.getMinutes();
+      now.setHours(hour);
+      now.setMinutes(minute);
 
       if (!inNextFullMinute && isNaN(inNextFullMinute))
         inNextFullMinute = 30;
@@ -218,23 +227,21 @@ function nextGameStartTime() {
 
       let additionalMinutes = 0;
 
-      if (nowMinutes % inNextFullMinute !== 0) {
-        additionalMinutes = inNextFullMinute - (nowMinutes % inNextFullMinute);
-      }
-
-      if (additionalMinutes === 0) {
-        additionalMinutes = inNextFullMinute;
+      if (now.getMinutes() % inNextFullMinute !== 0) {
+        additionalMinutes = Math.ceil(now.getMinutes() / inNextFullMinute) * inNextFullMinute;
+        additionalMinutes -= now.getMinutes();
       }
 
       const nextHalfHour = new Date(now.getFullYear(), now.getMonth(), now.getDate(), now.getHours(), now.getMinutes() + additionalMinutes, 0);
 
-      if (nowMinutes + additionalMinutes >= 60) {
-        nextHalfHour.setHours(now.getHours() + Math.floor((nowMinutes + additionalMinutes) / 60));
-        nextHalfHour.setMinutes((nowMinutes + additionalMinutes) % 60);
+      if (now.getMinutes() + additionalMinutes >= 60) {
+        nextHalfHour.setHours(now.getHours() + Math.floor((now.getMinutes() + additionalMinutes) / 60));
+        nextHalfHour.setMinutes((now.getMinutes() + additionalMinutes) % 60);
       }
 
-      return nextHalfHour;
+      return nextHalfHour
     };
+
 
     const formatTime = (date, timeZone) => {
       const options = {
@@ -246,7 +253,16 @@ function nextGameStartTime() {
       return date.toLocaleTimeString('en-US', options);
     };
 
-    const nextHalfHour = getNextHalfHour();
+    const now = new Date();
+    const hours = now.getHours().toString().padStart(2, '0');
+    const minutes = now.getMinutes().toString().padStart(2, '0');
+    let timeAtMoment = `${hours}:${minutes}`;
+
+    // if(bugIt)
+    //   timeAtMoment ='9:06'
+
+    const nextHalfHour = getNextHalfHour(timeAtMoment, inNextFullMinute);
+
 
     // const gameStartTimeGMT = formatTime(nextHalfHour, 'GMT'); // same like 'Europe/London'
 
