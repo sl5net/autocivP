@@ -148,9 +148,25 @@ autociv_patchApplyN("init", (target, that, args) => {
               ? `| ${modEnabledmods.slice(11,)} ← Mods I'm currently using`
               : ''
 
-            if(gameStartTime)
-              text = `${gameStartSuggestion_value} ${nextGameStartTime()} ${modsInGameName}`
-            else
+            if(gameStartTime){
+
+              let inNextFullMinute = Engine.ConfigDB_GetValue(
+                "user",
+                "autocivP.gamesetup.gameStart.inNextFullMinute"
+                );
+                const aDayInMinutes = 24 * 60 // 1440
+                let days = null
+
+              text += `${gameStartSuggestion_value} `
+
+              if(inNextFullMinute
+                && parseInt(inNextFullMinute) > aDayInMinutes ){
+                  days = Math.floor( parseInt(inNextFullMinute) / aDayInMinutes )
+                inNextFullMinute -= days * aDayInMinutes
+                text += `|in ${days} ${days>1 ? 'days' : 'day'} at `
+              }
+              text += `${nextGameStartTime()} ${modsInGameName}`
+            }else
               text = `${gameStartSuggestion_value} ${modsInGameName}`
             // input.caption = nextGameStartTime()
 

@@ -151,7 +151,7 @@
 			{
 				"type": "string",
 				"label": "[color=\"204 133 0\"]Game name Suggestion[/color]. next fullMinute",
-				"tooltip": "(default is next full 30 minutes ⟨ or empty)\n e.g. next full 30 minutes 12:30 13:00. to disable, set to empty \n hint: \n 1 hour = 60 minutes \n 2 hours = 120 minutes \n 3 hours = 180 minutes\n 4 hours = 240 minutes\n 5 hours = 300 minutes \n 6 hours = 360 minutes \n 7 hours = 420 minutes \n 8 hours = 480 minutes \n 9 hours = 540 minutes \n 10 hours = 600 minutes \n 1 day = 720 minutes",
+				"tooltip": "(default is next full 30 minutes ⟨ or empty)\n e.g. next full 30 minutes 12:30 13:00. to disable, set to empty \n hint: \n 1 hour = 60 minutes \n 2 hours = 120 minutes \n 3 hours = 180 minutes\n 4 hours = 240 minutes\n 5 hours = 300 minutes \n 6 hours = 360 minutes \n 7 hours = 420 minutes \n 8 hours = 480 minutes \n 9 hours = 540 minutes \n 10 hours = 600 minutes \n 1 day = 1440 minutes",
 				"config": "autocivP.gamesetup.gameStart.inNextFullMinute"
 			}
 		]
