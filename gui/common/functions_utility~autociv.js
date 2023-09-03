@@ -757,7 +757,7 @@ function saveThisModProfile(nr, autoLabelManually) {
     const alwaysInReplayDefaultsKey = 'modProfile.alwaysInReplay'
     const alwaysInReplayDefaults = 'boonGUI'
     const modProfilealwaysInReplay = Engine.ConfigDB_GetValue("user", );
-    if(!modProfilealwaysInReplay)
+    if(!modProfilealwaysInReplay && modProfilealwaysInReplay != "")
       ConfigDB_CreateAndSaveValueA26A27("user", alwaysInReplayDefaultsKey, alwaysInReplayDefaults)
 
     if (!modProfile) { // add defaults
