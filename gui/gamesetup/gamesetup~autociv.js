@@ -262,8 +262,6 @@ function setCaption_when_JoinOrStart_Setup_suggestRestoreMods_when_modsChanged()
 			chatInput.caption = newCaptionString
 			chatInput.buffer_position = newBufferPosition
 
-
-
 			if(bugIt)
 				warn(`newCaptionString: ${newCaptionString}`);
 		}

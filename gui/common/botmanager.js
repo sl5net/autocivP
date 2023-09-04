@@ -147,7 +147,7 @@ class BotManager
 
 									ConfigDB_CreateAndSaveValueA26A27("user", `AudioTTS.speak`, randomg_seeh_greet);
 
-									chatInput.caption += randomg_seeh_greet + '.'
+									chatInput.caption += randomg_seeh_greet + ' .'
 									// chatInput.caption += 'i ♡ autocivP♇ mod.'
 
 									selfMessage(`${nowEvery30Min} = nowEvery30Min`)

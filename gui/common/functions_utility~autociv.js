@@ -1391,36 +1391,44 @@ function sendChatTranslated(guiObject, text, sourceLanguage, targetLanguage) {
   text = text.replace(/\[\n\t\r\s\W]+/gi, ' ')
 
 
-  const explainTranslation = `Translation from ${sourceLanguage} to ${targetLanguage} last lines`
+  const explainTranslation = `its translation from ${sourceLanguage} to ${targetLanguage} last lines`
 
-  const translatedText = `${translateText(text, sourceLanguage, targetLanguage)}`
+  let translatedText = `${translateText(text, sourceLanguage, targetLanguage)}`
 
-    if(gameState == "lobby"){
-      // danger fo to be band becouse of profanity, when you exidently copy all chat messages and paste them back to chat as link
-      // lastLinesString is probably a link now. but still dangerous efentually
-      guiObject.caption = translatedText
-      g_previousCaption = guiObject.caption
-      guiObject.buffer_position = 0 //  lastLinesString.length;
-    }
-    else
-    if(g_selfIsHost && g_selfIsHost === true){
-        sendMessage(translatedText)
-        guiObject.caption = explainTranslation
-        guiObject.buffer_position = explainTranslation.length
-        setTimeout(() => {
-          try {
-            let err = botManager.get("link").openLink(0);
-            if (err)
-              selfMessage(err);
-          } catch (error) {
-            // Handle the error gracefully or simply ignore it
-            warn(`109: ${error} | gui/common/functions_utility~autociv.js`);
-          }
-        }, 70); // sometimes a larger delay then 50 is needed here
-      }else{
-        guiObject.caption = translatedText + ' /link '
-        guiObject.buffer_position = translatedText.length +1
-      // explainTranslation
-    }
+  const doHelloAutomaticSuggestionWhenJoinAgameSetup = Engine.ConfigDB_GetValue("user", "autocivP.msg.helloAutomaticSuggestionWhenJoinAgameSetup")
+  if(doHelloAutomaticSuggestionWhenJoinAgameSetup == 'PLine'){
+    translatedText += ` ${g_PLineGithub.replace(/https:\/\//, '')}`
+  }
+
+
+  if(gameState == "lobby"){
+    // danger fo to be band becouse of profanity, when you exidently copy all chat messages and paste them back to chat as link
+    // lastLinesString is probably a link now. but still dangerous efentually
+    guiObject.caption = translatedText
+    g_previousCaption = guiObject.caption
+    guiObject.buffer_position = 0 //  lastLinesString.length;
+  }
+  else
+  if(g_selfIsHost && g_selfIsHost === true)
+  {
+    sendMessage(translatedText)
+    guiObject.caption = explainTranslation
+    guiObject.buffer_position = explainTranslation.length
+    setTimeout(() => {
+      try {
+        let err = botManager.get("link").openLink(0);
+        if (err)
+          selfMessage(err);
+      } catch (error) {
+        // Handle the error gracefully or simply ignore it
+        warn(`109: ${error} | gui/common/functions_utility~autociv.js`);
+      }
+    }, 70); // sometimes a larger delay then 50 is needed here
+  }else{
+    guiObject.caption = translatedText + ' /link '
+    guiObject.buffer_position = translatedText.length +1
+  // explainTranslation
+  }
+
   return true
 }
