@@ -6,8 +6,9 @@ var g_playerIsGreeted = []
 
 var g_PLineGithub = 'https://github.com/sl5net/PLine';
 
+// `i ♡ ${g_PLineGithub} mod.`,
+
 var g_PromotePLineWhenGreetInChatMessages = [
-  `i ♡ autocivP♇ mod. ${g_PLineGithub}`,
   `I want to translate texts from chat partner in 0ad. How do you do it? ${g_PLineGithub}`,
   `You know that you can translate texts from chat partner? ${g_PLineGithub}`,
   `You kan translate texts from chat partner? ${g_PLineGithub}`,

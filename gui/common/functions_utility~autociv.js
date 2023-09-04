@@ -182,8 +182,6 @@ const g_autoCompleteText_newMerge = (guiObject, list) => {
     {
       // dont remove to comand from the caption maybe. maybe he will try mor often.
       saveLastCommand2History(caption)
-      caption = 'prettyToggle'
-      guiObject.caption = 'prettyToggle'
       return
     }
 
@@ -1221,7 +1219,7 @@ function setCaption2nextCommandOfHistory(guiObject){
  */
 function captionCheck_is_prettyToggle(caption, doRestart0ad = false){
   if(caption.trim() != "prettyToggle"){
-    return;
+    return false;
   }
   // if(gameState == "ingame"){
   //   selfMessage(`prettyToggle is not allowed in ingame.`)
@@ -1243,6 +1241,7 @@ function captionCheck_is_prettyToggle(caption, doRestart0ad = false){
     prettyGraphicsEnable()
     selfMessage(`pretty mode is enabled.`)
   }
+  return true
 }
 
 /**
