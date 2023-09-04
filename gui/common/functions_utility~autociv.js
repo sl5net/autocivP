@@ -1403,10 +1403,10 @@ function sendChatTranslated(guiObject, text, sourceLanguage, targetLanguage) {
       guiObject.buffer_position = 0 //  lastLinesString.length;
     }
     else
-    {
-      if(false){
+    if(g_selfIsHost && g_selfIsHost === true){
         sendMessage(translatedText)
         guiObject.caption = explainTranslation
+        guiObject.buffer_position = explainTranslation.length
         setTimeout(() => {
           try {
             let err = botManager.get("link").openLink(0);
@@ -1422,6 +1422,5 @@ function sendChatTranslated(guiObject, text, sourceLanguage, targetLanguage) {
         guiObject.buffer_position = translatedText.length +1
       // explainTranslation
     }
-  }
   return true
 }
