@@ -944,21 +944,26 @@ autociv_InitSharedCommands.pipe = {
 	"ingame": key =>
 	{
 		if(gameState != "ingame" && g_IsReplay){  // default it will warn
-			const modEnabledmods = Engine.ConfigDB_GetValue(
+			const enabledmods = Engine.ConfigDB_GetValue(
 				"user",
 				"mod.enabledmods"
 			);
 
 			const modProfilealwaysInReplay = Engine.ConfigDB_GetValue("user", 'modProfile.alwaysInReplay');
-			let clean = modEnabledmods
 			// let clean2 = clean.replace('autocivP', `${modProfilealwaysInReplay} autocivp` );
 			// let clean2 = clean.replace( 'autocivp', `${modProfilealwaysInReplay} autocivp` );
-			const clean2 = clean.replace(/\b(autocivP.*?)\b/ig, `${modProfilealwaysInReplay} $1` );
+			const clean2 = enabledmods.replace(/\b(autocivP\w*?)\b/ig, `${modProfilealwaysInReplay} $1` );
 
-			if(modProfilealwaysInReplay && !(modEnabledmods.indexOf(modProfilealwaysInReplay)>0)){
-				// warn(`Really want play a replay without 'boonGUI' mod ?`);
+			if(modProfilealwaysInReplay && !(enabledmods.indexOf(modProfilealwaysInReplay)>0)){
+				print(`959: Really want play a replay without ${modProfilealwaysInReplay} mod ?\n\n`);
 				const clean_array = clean2.split(/\s+/);
+				// print(`modProfilealwaysInReplay: ${modProfilealwaysInReplay}\n`);
+				// print(`clean2: ${clean2}\n\n`);
+				// print(`enabledmods: ${enabledmods}\n\n`);
+				// Engine.Exit(1)
+				ConfigDB_CreateAndSaveValueA26A27("user", "mod.enabledmods", clean2);
 				Engine.SetModsAndRestartEngine(["mod",...clean_array])
+
 			}
 			// endOf is replay
 		}

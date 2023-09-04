@@ -629,7 +629,6 @@
 				"tooltip": "write helloAll⟦Tab⟧ or hiall⟦Tab⟧, set it here or hiall yourMessageText",
 				"config": "autocivP.msg.helloAll"
 			},
-
 			{
 				"type": "dropdown",
 				"label": "[color=\"204 133 0\"]Game join Suggestion[/color]",
@@ -641,7 +640,6 @@
 					{ "value": "PLine", "label": "suggest promote PLine When Greet in ChatMessages"  }
 				]
 			},
-
 			{
 				"type": "string",
 				"label": "[color=\"220 185 70\"]message[/color] Me⟦Tab⟧",
