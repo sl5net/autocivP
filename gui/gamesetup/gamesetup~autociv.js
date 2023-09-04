@@ -137,13 +137,13 @@ function warnModIsNotEnabled(){
 		ConfigDB_CreateAndSaveValueA26A27("user", key, warnThisModIsNotEnabled);
 	}
 	if(warnThisModIsNotEnabled != 'false'){  // default it will warn
-		const modEnabledmods = Engine.ConfigDB_GetValue(
+		const enabledmods = Engine.ConfigDB_GetValue(
 			"user",
 			"mod.enabledmods"
 		);
-		if(!(modEnabledmods.indexOf(warnThisModIsNotEnabled)>0)){
+		if(!(enabledmods.indexOf(warnThisModIsNotEnabled)>0)){
 			warn(`Really want play without ${warnThisModIsNotEnabled} mod ?`);
-			// warn(`modEnabledmods: ${modEnabledmods} ?`);
+			// warn(`enabledmods: ${enabledmods} ?`);
 		}
 	}
 }

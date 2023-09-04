@@ -35,7 +35,7 @@ autociv_patchApplyN("init", (target, that, args) => {
             input.caption = '♡mods: proGUI(bot?) autocivP(audio,setups) localRatings GodsEye(setups) ... ♡ YouTube LiveStreaming';
 
         else{
-            const modEnabledmods = Engine.ConfigDB_GetValue(
+            const enabledmods = Engine.ConfigDB_GetValue(
 				"user",
 				"mod.enabledmods"
 			);
@@ -98,7 +98,7 @@ autociv_patchApplyN("init", (target, that, args) => {
 
             const modsInGameName
               = Engine.ConfigDB_GetValue("user", "autocivP.gamesetup.gameStart.showModsInGameName") == "true"
-              ? `| ${modEnabledmods.slice(11,)} ← Mods I'm currently using`
+              ? `| ${enabledmods.slice(11,)} ← Mods I'm currently using`
               : ''
 
             if(gameStartTime)

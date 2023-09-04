@@ -1046,12 +1046,12 @@ function captionIs_hiall(guiObject){
   return;
 }
 function captionIs_modsImCurrentlyUsing(guiObject){ // this function will be triggerd from by in game chat
-  const modEnabledmods = Engine.ConfigDB_GetValue(
+  const enabledmods = Engine.ConfigDB_GetValue(
     "user",
     "mod.enabledmods"
   );
-  // sendMessage(`Mods I'm currently using: ${modEnabledmods.slice(11,)}` );
-  let text = `Mods I'm currently using: ${modEnabledmods.slice(11,)} ${g_previous_autocivPVersion}`;
+  // sendMessage(`Mods I'm currently using: ${enabledmods.slice(11,)}` );
+  let text = `Mods I'm currently using: ${enabledmods.slice(11,)} ${g_previous_autocivPVersion}`;
   text = text.replace('localratings', 'localRatings♒') //  ♡ autocivP❧♣▦▣ mod
   text = text.replace('feldmap', 'feldMap▦') //  ♡ autocivP❧♣▦▣ mod
 
@@ -1305,21 +1305,21 @@ function captionCheck_is_communityModToggle_optional_restartOad(caption, doResta
     }
 
 
-    let modEnabledmods = Engine.ConfigDB_GetValue(
+    let enabledmods = Engine.ConfigDB_GetValue(
       "user",
       "mod.enabledmods"
     );
-    selfMessage(`modEnabledmods = ${modEnabledmods}`);
-    if(modEnabledmods.indexOf("community-mod") == -1)
-      modEnabledmods += ' community-mod'
+    selfMessage(`enabledmods = ${enabledmods}`);
+    if(enabledmods.indexOf("community-mod") == -1)
+      enabledmods += ' community-mod'
     else
-      modEnabledmods = modEnabledmods.replace(/\s*\bcommunity-mod\b\s*/, " ")
+      enabledmods = enabledmods.replace(/\s*\bcommunity-mod\b\s*/, " ")
 
-    ConfigDB_CreateAndSaveValueA26A27("user", "mod.enabledmods", modEnabledmods.trim())
-    selfMessage(`modEnabledmods = ${modEnabledmods}`);
+    ConfigDB_CreateAndSaveValueA26A27("user", "mod.enabledmods", enabledmods.trim())
+    selfMessage(`enabledmods = ${enabledmods}`);
 
 
-    const clean_array = modEnabledmods.trim().split(/\s+/);
+    const clean_array = enabledmods.trim().split(/\s+/);
     Engine.SetModsAndRestartEngine(["mod",...clean_array])
   }
 }

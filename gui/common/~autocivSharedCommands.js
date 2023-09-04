@@ -717,12 +717,12 @@ BTW list of functions: https://trac.wildfiregames.com/wiki/EngineFunctions
 			if( gameState == "ingame" )
 				selfMessage("for show Mods I'm currently using during a ingame chat, remove / and press ⟦Tab⟧");
 
-			const modEnabledmods = Engine.ConfigDB_GetValue(
+			const enabledmods = Engine.ConfigDB_GetValue(
 				"user",
 				"mod.enabledmods"
 			);
-			// sendMessage(`Mods I'm currently using: ${modEnabledmods.slice(11,)}` );
-			const text = `Mods I'm currently using: ${modEnabledmods.slice(11,)} ${g_previous_autocivPVersion}`;
+			// sendMessage(`Mods I'm currently using: ${enabledmods.slice(11,)}` );
+			const text = `Mods I'm currently using: ${enabledmods.slice(11,)} ${g_previous_autocivPVersion}`;
 			const chatInput = Engine.GetGUIObjectByName("chatInput")
 			chatInput.focus()
 			chatInput.caption = text
@@ -991,7 +991,7 @@ autociv_InitSharedCommands.pipe = {
 
 				// selfMessage(`g_IsReplay: ${g_IsReplay} - 975`)
 
-				const modEnabledmods = Engine.ConfigDB_GetValue(
+				const enabledmods = Engine.ConfigDB_GetValue(
 					"user",
 					"mod.enabledmods"
 				);
@@ -1012,9 +1012,9 @@ autociv_InitSharedCommands.pipe = {
 				}
 
 				// for more fairplay if isRated, some mods should be visible as text message when the user name not already show that this mod is used
-				if(isRated && modEnabledmods.indexOf("proGUI") > -1){
-					const text = `Mods I use: ${modEnabledmods.slice(11)}`
-					// const text = `Mods I use: ${modEnabledmods.slice(11)}. \nSome say it's important for others to know \nwhich mods I use when game starts.`
+				if(isRated && enabledmods.indexOf("proGUI") > -1){
+					const text = `Mods I use: ${enabledmods.slice(11)}`
+					// const text = `Mods I use: ${enabledmods.slice(11)}. \nSome say it's important for others to know \nwhich mods I use when game starts.`
 					sendMessage(text)
 					// selfMessage(`game.is.rated(): ${game.is.rated()} - 1002`)
 				}
