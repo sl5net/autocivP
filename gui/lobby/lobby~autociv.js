@@ -32,7 +32,7 @@ var autociv_focus = {
 			// clean = clean.replaceAll(/\bboonGUI\b /g, 'proGUI boonGUI ');
 			ConfigDB_CreateAndSaveValueA26A27("user", 'mod.enabledmods',clean)
 
-			const clean_array = enabledmods.trim().split(/\s+/);
+			const clean_array = clean.trim().split(/\s+/);
 			Engine.SetModsAndRestartEngine(["mod",...clean_array])
 			Engine.SetModsAndRestartEngine(["mod",...Engine.GetEnabledMods()])
 		}
