@@ -134,16 +134,16 @@ class BotManager
 							// bugIt = true &&  g_selfNick.includes("seeh") // new implementation so i will watch longer
 							// assumtion you are the host and a new plyer did fist think (message or selecint or so)
 
-							const doHelloAutomaticSuggestionWhenJoinAgameSetup = Engine.ConfigDB_GetValue("user", "autocivP.msg.helloAutomaticSuggestionWhenJoinAgameSetup") === "true"
+							const doHelloAutomaticSuggestionWhenJoinAgameSetup = Engine.ConfigDB_GetValue("user", "autocivP.msg.helloAutomaticSuggestionWhenJoinAgameSetup")
 
 							if(doHelloAutomaticSuggestionWhenJoinAgameSetup){
 								chatInput.focus()
 								chatInput.caption = (g_IsController) ? `Welcome on board ${nick}. ` : ``
 
 								chatInput.buffer_position = chatInput.caption.length
-								if(g_selfNick.includes("seeh")){
+								if(doHelloAutomaticSuggestionWhenJoinAgameSetup == 'PLine'){
 
-									const randomg_seeh_greet = g_seeh_greet_array[Math.floor(Math.random() * g_seeh_greet_array.length)];
+									const randomg_seeh_greet = g_PromotePLineWhenGreetInChatMessages[Math.floor(Math.random() * g_PromotePLineWhenGreetInChatMessages.length)];
 
 									ConfigDB_CreateAndSaveValueA26A27("user", `AudioTTS.speak`, randomg_seeh_greet);
 

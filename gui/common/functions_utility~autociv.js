@@ -16,7 +16,6 @@ if(isNaN(g_lastCommandID))g_lastCommandID = 0;
 // warn('g_lastCommandID = ' + g_lastCommandID); // selfMessage function dont work here
 
 
-
 /**
  * @param {*} text - Slice of the text from start to buffer position
  * @param {*} list - List of texts to try to auto-complete

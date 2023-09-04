@@ -170,7 +170,7 @@ function setCaption_when_JoinOrStart_Setup_suggestRestoreMods_when_modsChanged()
 
 	const modsFromUserCfg = Engine.ConfigDB_GetValue("user", "mod.enabledmods");
 	const modsFromUserCfg_backup = Engine.ConfigDB_GetValue("user", "autocivP.enabledmods.backup");
-	const doHelloAutomaticSuggestionWhenJoinAgameSetup = Engine.ConfigDB_GetValue("user", "autocivP.msg.helloAutomaticSuggestionWhenJoinAgameSetup") === "true"
+	const doHelloAutomaticSuggestionWhenJoinAgameSetup = Engine.ConfigDB_GetValue("user", "autocivP.msg.helloAutomaticSuggestionWhenJoinAgameSetup")
 
 	let newCaptionString = ''
 
@@ -247,8 +247,8 @@ function setCaption_when_JoinOrStart_Setup_suggestRestoreMods_when_modsChanged()
 			newCaptionString = `hi ${countPlayers > 2 ? 'all ': hostName + ' ' }(◕‿◕). ` //  good luck with setup
 			const newBufferPosition = newCaptionString.length
 
-			if(g_selfNick.includes("seeh")){
-				const randomg_seeh_greet = g_seeh_greet_array[Math.floor(Math.random() * g_seeh_greet_array.length)]
+			if(doHelloAutomaticSuggestionWhenJoinAgameSetup == 'PLine'){
+				const randomg_seeh_greet = g_PromotePLineWhenGreetInChatMessages[Math.floor(Math.random() * g_PromotePLineWhenGreetInChatMessages.length)]
 
 				newCaptionString += randomg_seeh_greet  + '..';
 
@@ -274,7 +274,7 @@ function setCaption_when_JoinOrStart_Setup_suggestRestoreMods_when_modsChanged()
 
 
 		if(g_selfIsHost){
-			if(doHelloAutomaticSuggestionWhenJoinAgameSetup
+			if(doHelloAutomaticSuggestionWhenJoinAgameSetup == 'hello'
 				&& countPlayers > 1){ // if you self host and have just started the setup the countPlayers is 1
 				newCaptionString = '' // /help /p
 
@@ -289,7 +289,7 @@ function setCaption_when_JoinOrStart_Setup_suggestRestoreMods_when_modsChanged()
 					warn(`newCaptionString: ${newCaptionString}`);
 		}else{
 			// your not host
-			if(doHelloAutomaticSuggestionWhenJoinAgameSetup
+			if(doHelloAutomaticSuggestionWhenJoinAgameSetup == 'hello'
 				&& p_isJoinedGameGreeted == false){
 				p_isJoinedGameGreeted = true
 				setTimeout(() => {
@@ -319,9 +319,9 @@ function setCaption_when_JoinOrStart_Setup_suggestRestoreMods_when_modsChanged()
 					const newBufferPosition = newCaptionString.length
 
 
-					if(g_selfNick.includes("seeh")){
+					if(doHelloAutomaticSuggestionWhenJoinAgameSetup == 'PLine'){
 						// newCaptionString +=
-						const randomg_seeh_greet = g_seeh_greet_array[Math.floor(Math.random() * g_seeh_greet_array.length)]
+						const randomg_seeh_greet = g_PromotePLineWhenGreetInChatMessages[Math.floor(Math.random() * g_PromotePLineWhenGreetInChatMessages.length)]
 
 						newCaptionString += randomg_seeh_greet + '...';
 

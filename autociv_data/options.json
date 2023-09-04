@@ -629,12 +629,19 @@
 				"tooltip": "write helloAll⟦Tab⟧ or hiall⟦Tab⟧, set it here or hiall yourMessageText",
 				"config": "autocivP.msg.helloAll"
 			},
+
 			{
-				"type": "boolean",
-				"label": "[color=\"220 185 70\"]auto hello suggest [/color]",
+				"type": "dropdown",
+				"label": "[color=\"204 133 0\"]Game join Suggestion[/color]",
 				"tooltip": "Suggestion When you Join A gameSetup",
-				"config": "autocivP.msg.helloAutomaticSuggestionWhenJoinAgameSetup"
+				"config": "autocivP.msg.helloAutomaticSuggestionWhenJoinAgameSetup",
+				"list": [
+					{ "value": "", "label": ""  },
+					{ "value": "hello", "label": "suggest hello When Greet in ChatMessages"  },
+					{ "value": "PLine", "label": "suggest promote PLine When Greet in ChatMessages"  }
+				]
 			},
+
 			{
 				"type": "string",
 				"label": "[color=\"220 185 70\"]message[/color] Me⟦Tab⟧",

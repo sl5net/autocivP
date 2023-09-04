@@ -4,22 +4,24 @@ var g_selfIsHost
 
 var g_playerIsGreeted = []
 
-// dont say hey here because its already done. this here should be late text,
-var g_seeh_greet_array = ["i ♡ autocivP♇ mod."
-,  "I want to translate texts from chat partner in 0ad. How you do it?"
-, 'You know that you can translate texts from chat partner?'
-, 'You kan translate texts from chat partner?'
-,'You know that you can team audioChat?'
-,'You know that you can reuse your chat drafts?'
-,'know msg2 copies 2 messages? for easier translate? or so'
-,'know how prettyToggle? quick/easy during the game: Lower Graphics <-> greater Graphics?'
-,'know the communityModToggle command? quick/easy?'
-,'know how listIcons?'
-,'know you could translate chat to every language you want? Example last message from spanish (=es) to english (=en): msg1esen. good? '
-,'know that I can listen to your messages as audio read by AI? This way, I don\'t need to read. Good mod?'
-,'know all features are optional in autocivP mod? Good mod? example: you only want to use the autdio talk feature, then only use the audio talk feature.'
-,''];
+var g_PLineGithub = 'https://github.com/sl5net/PLine';
 
+var g_PromotePLineWhenGreetInChatMessages = [
+  `i ♡ autocivP♇ mod. ${g_PLineGithub}`,
+  `I want to translate texts from chat partner in 0ad. How do you do it? ${g_PLineGithub}`,
+  `You know that you can translate texts from chat partner? ${g_PLineGithub}`,
+  `You kan translate texts from chat partner? ${g_PLineGithub}`,
+  `You know that you can team audioChat? ${g_PLineGithub}`,
+  `You know that you can reuse your chat drafts? ${g_PLineGithub}`,
+  `Know msg2 copies 2 messages? For easier translate? Or so ${g_PLineGithub}`,
+  `Know how prettyToggle? Quick/easy during the game: Lower Graphics <-> greater Graphics? ${g_PLineGithub}`,
+  `Know the communityModToggle command? Quick/easy? ${g_PLineGithub}`,
+  `Know how listIcons? ${g_PLineGithub}`,
+  `Know you could translate chat to every language you want? Example last message from Spanish (=es) to English (=en): msg1esen. Good? ${g_PLineGithub}`,
+  `Know that I can listen to your messages as audio read by AI? This way, I don't need to read. Good? ${g_PLineGithub}`,
+  `Know all features are optional in autocivP mod? Good mod? Example: you only want to use the audio talk feature, then only use the audio talk feature. ${g_PLineGithub}`,
+  `${g_PLineGithub}`
+];
 
 // ' i  ♡ autocivP♇ mod',
 
