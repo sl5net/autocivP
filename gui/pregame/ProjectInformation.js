@@ -58,9 +58,7 @@ function is_autocivP_just_now_installed(){
 
 		const importantNote = "Some changes may require a restart of the game\n" +
 		"(like when you change the mod profile).\n" +
-		"Then the game may exit.\n" +
-		"In such cases, it's your responsibility to start the game.\n" +
-		"This is not a game crash. Thank you for understanding.\n\n" +
+		"Then the game restart.\n" +
 		"Not a bug, it's a feature ;)\n" +
 		"If you have any questions, please feel free to ask. Thank you.";
 

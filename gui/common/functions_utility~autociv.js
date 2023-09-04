@@ -199,11 +199,17 @@ const g_autoCompleteText_newMerge = (guiObject, list) => {
 
     if(g_chatTextInInputFild_when_msgCommand.length > 0){
       if (caption.toLowerCase() == 'msgall') {
-        guiObject.caption = g_chatTextInInputFild_when_msgCommand.trim()
-        g_previousCaption = guiObject.caption
-        guiObject.buffer_position = 0 //  lastLinesString.length;
+
+
+        if(!sendChatTranslated(guiObject, g_chatTextInInputFild_when_msgCommand.trim, sourceLanguage, targetLanguage))
+        {
+          guiObject.caption = g_chatTextInInputFild_when_msgCommand.trim()
+          g_previousCaption = guiObject.caption
+          guiObject.buffer_position = 0 //  lastLinesString.length;
+        }
         return
       }
+      // Example use: msg2es
       const match = caption.toLowerCase().match(/msg(\d+)([a-z]{2})?([a-z]{2})?/);
       if (match) {
         saveLastCommand2History(caption)
@@ -214,7 +220,6 @@ const g_autoCompleteText_newMerge = (guiObject, list) => {
         // selfMessage(`211: gameState = ${gameState}`)
         // return
 
-
         if(match[3]){
           sourceLanguage = match[2]
           targetLanguage = match[3]
@@ -222,9 +227,7 @@ const g_autoCompleteText_newMerge = (guiObject, list) => {
           targetLanguage = match[2]
         }
 
-        if(targetLanguage == 'sp'){ // correct typo. sp for spanish is wrong
-          targetLanguage = 'es' // spanish
-        }
+        // selfMessage(`221: number = ${number}  sourceLanguage = ${sourceLanguage}  targetLanguage = ${targetLanguage}`)
 
         // Handle the extracted number
         // selfMessage('gui/common/functions_utility~autociv.js ' + )
@@ -232,37 +235,7 @@ const g_autoCompleteText_newMerge = (guiObject, list) => {
         const lastLines = linesArray.slice(-number);
         let lastLinesString = lastLines.join('\n');
 
-        const explainTranslation = `Translation from ${sourceLanguage} to ${targetLanguage} last ${number} lines`
-
-
-        if(targetLanguage){
-
-          lastLinesString = `${explainTranslation} : ${translateText(lastLinesString,sourceLanguage, targetLanguage)}`
-
-          if(gameState == "lobby"){
-            // danger fo to be band becouse of profanity, when you exidently copy all chat messages and paste them back to chat as link
-            // lastLinesString is probably a link now. but still dangerous efentually
-            guiObject.caption = lastLinesString
-            g_previousCaption = guiObject.caption
-            guiObject.buffer_position = 0 //  lastLinesString.length;
-          }
-          else
-          {
-            sendMessage(lastLinesString)
-
-            setTimeout(() => {
-              try {
-                let err = botManager.get("link").openLink(0);
-                if (err)
-                  selfMessage(err);
-              } catch (error) {
-                // Handle the error gracefully or simply ignore it
-                warn(`109: ${error} | gui/common/functions_utility~autociv.js`);
-              }
-            }, 70); // sometimes a larger delay then 50 is needed here
-          }
-
-        }else{
+        if(!sendChatTranslated(guiObject, lastLinesString, sourceLanguage, targetLanguage)){
           guiObject.caption = lastLinesString
           g_previousCaption = guiObject.caption
           guiObject.buffer_position = 0 //  lastLinesString.length;
@@ -1382,3 +1355,73 @@ function translateText(textToTranslate = 'Hello, how are you?', sourceLanguage =
     return `https://www.deepl.com/de/translator#${sourceLanguage}/${targetLanguage}/${encodeURIComponent(textToTranslate)}`;
   }
 };
+
+function sendChatTranslated(guiObject, text, sourceLanguage, targetLanguage) {
+
+  if(!targetLanguage){
+    error(`targetLanguage is empty.`)
+    return false
+  }
+
+  if(sourceLanguage == targetLanguage ) {
+    error(`sourceLanguage == targetLanguage.`)
+    return false
+  }
+
+  if(targetLanguage == 'sp'){ // correct typo. sp for spanish is wrong
+    targetLanguage = 'es' // spanish
+  }
+
+
+  const german = {
+    "ä": "ae",
+    "ö": "oe",
+    "ß": "ss",
+    "ü": "ue",
+    "æ": "ae",
+    "ø": "oe",
+    "å": "aa",
+    "é": "e",
+    "è": "e"
+  };
+
+  for (const key in german) {
+    text = text.replace(new RegExp(key, "g"), german[key]);
+  }
+  text = text.replace(/\[\n\t\r\s\W]+/gi, ' ')
+
+
+  const explainTranslation = `Translation from ${sourceLanguage} to ${targetLanguage} last lines`
+
+  const translatedText = `${translateText(text, sourceLanguage, targetLanguage)}`
+
+    if(gameState == "lobby"){
+      // danger fo to be band becouse of profanity, when you exidently copy all chat messages and paste them back to chat as link
+      // lastLinesString is probably a link now. but still dangerous efentually
+      guiObject.caption = translatedText
+      g_previousCaption = guiObject.caption
+      guiObject.buffer_position = 0 //  lastLinesString.length;
+    }
+    else
+    {
+      if(false){
+        sendMessage(translatedText)
+        guiObject.caption = explainTranslation
+        setTimeout(() => {
+          try {
+            let err = botManager.get("link").openLink(0);
+            if (err)
+              selfMessage(err);
+          } catch (error) {
+            // Handle the error gracefully or simply ignore it
+            warn(`109: ${error} | gui/common/functions_utility~autociv.js`);
+          }
+        }, 70); // sometimes a larger delay then 50 is needed here
+      }else{
+        guiObject.caption = translatedText + ' /link '
+        guiObject.buffer_position = translatedText.length +1
+      // explainTranslation
+    }
+  }
+  return true
+}
