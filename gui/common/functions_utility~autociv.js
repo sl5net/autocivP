@@ -198,19 +198,19 @@ const g_autoCompleteText_newMerge = (guiObject, list) => {
     }
 
     if(g_chatTextInInputFild_when_msgCommand.length > 0){
-      if (caption.toLowerCase() == 'msgall') {
+      // if (caption.toLowerCase() == 'msgall') {
 
 
-        if(!sendChatTranslated(guiObject, g_chatTextInInputFild_when_msgCommand.trim, sourceLanguage, targetLanguage))
-        {
-          guiObject.caption = g_chatTextInInputFild_when_msgCommand.trim()
-          g_previousCaption = guiObject.caption
-          guiObject.buffer_position = 0 //  lastLinesString.length;
-        }
-        return
-      }
+      //   if(!sendChatTranslated(guiObject, g_chatTextInInputFild_when_msgCommand.trim, sourceLanguage, targetLanguage))
+      //   {
+      //     guiObject.caption = g_chatTextInInputFild_when_msgCommand.trim()
+      //     g_previousCaption = guiObject.caption
+      //     guiObject.buffer_position = 0 //  lastLinesString.length;
+      //   }
+      //   return
+      // }
       // Example use: msg2es
-      const match = caption.toLowerCase().match(/msg(\d+)([a-z]{2})?([a-z]{2})?/);
+      const match = caption.toLowerCase().match(/msg(\d+|all)([a-z]{2})?([a-z]{2})?/);
       if (match) {
         saveLastCommand2History(caption)
         const number = match[1];
@@ -232,8 +232,8 @@ const g_autoCompleteText_newMerge = (guiObject, list) => {
         // Handle the extracted number
         // selfMessage('gui/common/functions_utility~autociv.js ' + )
         const linesArray = g_chatTextInInputFild_when_msgCommand.trim().split('\n');
-        const lastLines = linesArray.slice(-number);
-        let lastLinesString = lastLines.join('\n');
+        const lastLines = number == 'all' ? linesArray : linesArray.slice(-number);
+        const lastLinesString = lastLines.join('\n');
 
         if(!sendChatTranslated(guiObject, lastLinesString, sourceLanguage, targetLanguage)){
           guiObject.caption = lastLinesString
