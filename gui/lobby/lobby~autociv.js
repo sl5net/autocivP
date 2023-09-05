@@ -74,6 +74,7 @@ var g_autociv_hotkeys = {
 };
 
 
+
 function autociv_showLastGameSummary ()
 {
 	const replays = Engine.GetReplays(false)
