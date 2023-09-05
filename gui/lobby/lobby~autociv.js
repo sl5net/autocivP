@@ -11,30 +11,44 @@ var autociv_focus = {
 		GUIobject.blur();
 		GUIobject.focus();
 
-		const modsFromUserCfg_const = Engine.ConfigDB_GetValue(
+		let do_restartEngine = false
+		let clean_array
+
+		const enabledmods = Engine.ConfigDB_GetValue(
 			"user",
 			"mod.enabledmods"
 		  );
+
+		const modProfile_alwaysIn = Engine.ConfigDB_GetValue("user", 'modProfile.alwaysIn');
+		let clean = enabledmods;
+
+		if(modProfile_alwaysIn && !(enabledmods.indexOf(modProfile_alwaysIn)>0)){
+			clean = clean.replace(/\b(autocivP\w*?)\b/ig, `${modProfile_alwaysIn} $1` );
+			do_restartEngine = true
+		}
+
 		const autoFixModsOrder = Engine.ConfigDB_GetValue(
 			"user",
 			"modProfile.showAutoFixModsOrder"
 		  );
-
-		const posboonGUI = modsFromUserCfg_const.indexOf('boonGUI')
-		const posproGUI = modsFromUserCfg_const.indexOf('proGUI')
+		const posboonGUI = enabledmods.indexOf('boonGUI')
+		const posproGUI = enabledmods.indexOf('proGUI')
 
 		if(autoFixModsOrder === "true" && posboonGUI && posproGUI < posboonGUI ){
 			warn(`posproGUI < posboonGUI`)
 
-			let clean = '';
-			clean = modsFromUserCfg_const.replaceAll(/\s+\bproGUI\b/g, ' '); // remove proGUI
+			clean = clean.replaceAll(/\s+\bproGUI\b/g, ' '); // remove proGUI
 			clean = clean.replaceAll(/\s*\bboonGUI\b\s*/g, ' proGUI '); // include proGUI instead boonGUI
 			// clean = clean.replaceAll(/\bboonGUI\b /g, 'proGUI boonGUI ');
-			ConfigDB_CreateAndSaveValueA26A27("user", 'mod.enabledmods',clean)
+			do_restartEngine = true
+		}
 
+		if(do_restartEngine){
 			const clean_array = clean.trim().split(/\s+/);
+			ConfigDB_CreateAndSaveValueA26A27("user", 'mod.enabledmods',clean)
 			Engine.SetModsAndRestartEngine(["mod",...clean_array])
 			Engine.SetModsAndRestartEngine(["mod",...Engine.GetEnabledMods()])
+
 		}
 	}
 }
