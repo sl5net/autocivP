@@ -8,7 +8,23 @@
    "msg2": ["msg2" ],
    "msg3": ["msg3" ],
    "modsImCurrentlyUsing": ["mods", "modsCurrent","modsUsing" ],
-   "communityModToggle": [
+   "mainlandTwilightToggle": [
+    "mainlangtwikligtogle",
+    "mainlandTwlight",
+    "mainlandTwighlight",
+    "mainlandTwilgiht",
+    "mainlandTwighlight",
+    "mainlandTwiligh",
+    "mainlandTwilighg",
+    "mainlandTwilght",
+    "mainlandTwiligt",
+    "mainladnTwilight",
+    "maintwiliglgogle",
+    "twilingmaintogle",
+    "maitnltwilingttogl",
+    "mainwiligtogle"
+  ],
+  "communityModToggle": [
     "comunitsmodstoggles",
     "comunitymodtoggle",
     "comunitiymodstogle",
@@ -27,7 +43,7 @@
     "toglcommode",
     "togglecommunityMod"
   ],
-   "prettyToggle": [
+    "prettyToggle": [
     "prettyToggle",
     "prettytogle",
     "tglpretty",

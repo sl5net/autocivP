@@ -172,11 +172,12 @@ const g_autoCompleteText_newMerge = (guiObject, list) => {
 
   if(caption?.length ){
 
-    if(g_previousCaption == 'communityModToggle'){
-      if(bugIt)
-        selfMessage(`178: now now now   gui/common/functions_utility~autociv.js `);
-        captionCheck_is_communityModToggle_optional_restartOad(caption, true)
-    }
+    // if(g_previousCaption == 'communityModToggle'
+    //   || g_previousCaption == 'mainlandTwilightToggle'){
+    //   if(bugIt)
+    //     selfMessage(`178: now now now   gui/common/functions_utility~autociv.js `);
+    //     captionCheck_is_communityModToggle_OR_mainlandTwilightToggle_optional_restartOad(caption, true)
+    // }
 
     if(captionCheck_is_prettyToggle(caption, true))
     {
@@ -188,7 +189,7 @@ const g_autoCompleteText_newMerge = (guiObject, list) => {
 
 
 
-    if(captionCheck_is_communityModToggle_optional_restartOad(caption, false)){
+    if(captionCheck_is_communityModToggle_OR_mainlandTwilightToggle_optional_restartOad(caption, true)){
       if(bugIt)
         selfMessage(`196: communitymodtoggle  gui/common/functions_utility~autociv.js `);
 
@@ -321,7 +322,7 @@ const g_autoCompleteText_newMerge = (guiObject, list) => {
 
       if(bugIt)
         selfMessage(`300: doppelPosting? '${g_lastCommand}' | captionCheck_is_communityModToggle_optional_restartOad |  gui/common/functions_utility~autociv.js `);
-      captionCheck_is_communityModToggle_optional_restartOad(caption, true) // if is communitymodtoggle restart
+      captionCheck_is_communityModToggle_OR_mainlandTwilightToggle_optional_restartOad(caption, true) // if is communitymodtoggle restart
 
       if(bugIt)
         selfMessage(`304: tries = ${autoCompleteText.state.tries} |  gui/common/functions_utility~autociv.js `);
@@ -1263,12 +1264,13 @@ function prettyGraphicsDisable() {
  * @return {boolean} Returns true if the caption is "communityModToggle" and
  *                   doRestart0ad is false. Otherwise, returns false.
  */
-function captionCheck_is_communityModToggle_optional_restartOad(caption, doRestart0ad = false){
-  if(caption.trim() == "communityModToggle"){
+function captionCheck_is_communityModToggle_OR_mainlandTwilightToggle_optional_restartOad(caption, doRestart0ad = false){
+  if(caption.trim() == "communityModToggle"
+  || caption.trim() == "mainlandTwilightToggle"){
 
 
     if(gameState == "ingame"){
-      selfMessage(`communityModToggle is not allowed in ingame.`)
+      selfMessage(`...ModToggle is not allowed in ingame.`)
       return false
     }
 
@@ -1282,11 +1284,19 @@ function captionCheck_is_communityModToggle_optional_restartOad(caption, doResta
       "mod.enabledmods"
     );
     selfMessage(`enabledmods = ${enabledmods}`);
-    if(enabledmods.indexOf("community-mod") == -1)
-      enabledmods += ' community-mod'
-    else
-      enabledmods = enabledmods.replace(/\s*\bcommunity-mod\b\s*/, " ")
 
+    if(caption.trim() == "mainlandTwilightToggle"){
+      if(enabledmods.indexOf("mainland-twilight") == -1)
+        enabledmods += ' mainland-twilight'
+      else
+        enabledmods = enabledmods.replace(/\s*\bmainland-twilight\b\s*/, " ")
+    }
+    else{
+      if(enabledmods.indexOf("community-mod") == -1)
+        enabledmods += ' community-mod'
+      else
+        enabledmods = enabledmods.replace(/\s*\bcommunity-mod\b\s*/, " ")
+    }
     ConfigDB_CreateAndSaveValueA26A27("user", "mod.enabledmods", enabledmods.trim())
     selfMessage(`enabledmods = ${enabledmods}`);
 
