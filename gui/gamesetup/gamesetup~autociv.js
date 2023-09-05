@@ -321,7 +321,7 @@ function setCaption_when_JoinOrStart_Setup_suggestRestoreMods_when_modsChanged()
 						// newCaptionString +=
 						const randomg_seeh_greet = g_PromotePLineWhenGreetInChatMessages[Math.floor(Math.random() * g_PromotePLineWhenGreetInChatMessages.length)]
 
-						newCaptionString += randomg_seeh_greet + '...';
+						newCaptionString += randomg_seeh_greet + ' ';
 
 						selfMessage(`303: g_selfNick: ${g_selfNick}`);
 
