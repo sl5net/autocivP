@@ -1278,7 +1278,6 @@ function captionCheck_is_communityModToggle_OR_mainlandTwilightToggle_optional_r
       return true // yes the caption is communityModToggle, but do not restart0ad now
     }
 
-
     let enabledmods = Engine.ConfigDB_GetValue(
       "user",
       "mod.enabledmods"
