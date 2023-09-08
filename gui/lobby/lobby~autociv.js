@@ -212,6 +212,11 @@ function initChatFilterInput()
 		const text = chatInput.caption
 		const inFilterMode = text.startsWith("s?")
 
+		// const inFilterTranlateMode = text.startsWith("t?")
+		// if(inFilterTranlateMode)
+		// 	inFilterMode = true
+
+
 		if(inFilterMode && !active)
 		{
 			originalList = chatText.list
@@ -219,9 +224,41 @@ function initChatFilterInput()
 
 		if (inFilterMode)
 		{
+
 			active = true
 
-			searchText = text.slice(2).trimStart()
+
+			const textWithoutFilterPrefix = text.slice(2)
+			warn(`textWithoutFilterPrefix = ${textWithoutFilterPrefix}`)
+
+
+		// const inFilterTranlateMode = text.startsWith("t?")
+
+
+/*NOTE -
+searchText"L1L2 in lobby chat
+
+The "searchText" is a regular expression that represents the text to be searched or translated.
+The fist double quotes is optional and can be used to indicate a specific phrase or text.
+L1 represents the language code for the source language from which the text is being translated.
+L2 represents the language code for the target language to which the text is being translated.
+The language codes are expected to be two-letter codes that represent specific languages.
+For example, "en" for English, "es" for Spanish, "fr" for French, and so on.
+
+If the sourceLanguage is equal to the targetLanguage, then you could copy the result from the caption.
+
+*/
+
+			let inFilterTranlateMode = false
+			const match = textWithoutFilterPrefix.toLowerCase().match(/["']?([^\n]+)["']([a-z]{2})([a-z]{2})/);
+			if(match){
+				searchText = match[1]
+				inFilterTranlateMode = true
+				warn(`inFilterTranlateMode = ${inFilterTranlateMode}`)
+				warn(`searchText = ${searchText}`)
+			}else
+				searchText = text.slice(2).trimStart()
+
 			if(false){
 				chatText.list = originalList.filter(t => t.includes(searchText))
 			}else{ // new. regex offers more options
@@ -230,8 +267,38 @@ function initChatFilterInput()
 				chatText.list = originalList.filter(t => regex.test(t));
 			}
 
-
 			warn('cursor at beginning + [tab] ==> chat is copied to the chat text')
+
+			if(inFilterTranlateMode){
+				// const number = match[1];
+				const number = 'all';
+				let sourceLanguage = 'en'
+				let targetLanguage = null
+
+				// selfMessage(`211: gameState = ${gameState}`)
+				// return
+
+				if(match[3]){
+					sourceLanguage = match[2]
+					targetLanguage = match[3]
+				}else if(match[2]){
+					targetLanguage = match[2]
+				}
+
+				const linesArray = chatText.list;
+
+				const lastLines = number == 'all' ? linesArray : linesArray.slice(-number);
+
+				// remove all format like [...] now:
+				const lastLinesString = lastLines.join('\n').replace(/\[[^\[\]]*\]+/gi, '');
+
+				if(!sendChatTranslated(chatInput, lastLinesString, sourceLanguage, targetLanguage)){
+					// when sourceLanguage == targetLanguage then its false end then you jump here
+					// then you simply could copy the result from the caption
+					chatInput.caption = lastLinesString
+				}
+			}
+
 		}
 		else
 		{
