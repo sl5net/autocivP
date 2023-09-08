@@ -35,7 +35,7 @@ var autociv_focus = {
 		const posproGUI = enabledmods.indexOf('proGUI')
 
 		if(autoFixModsOrder === "true" && posboonGUI && posproGUI < posboonGUI ){
-			warn(`posproGUI < posboonGUI`)
+			warn(`38: posproGUI < posboonGUI`)
 
 			clean = clean.replaceAll(/\s+\bproGUI\b/g, ' '); // remove proGUI
 			clean = clean.replaceAll(/\s*\bboonGUI\b\s*/g, ' proGUI '); // include proGUI instead boonGUI
@@ -254,8 +254,8 @@ If the sourceLanguage is equal to the targetLanguage, then you could copy the re
 			if(match){
 				searchText = match[1]
 				inFilterTranlateMode = true
-				warn(`inFilterTranlateMode = ${inFilterTranlateMode}`)
-				warn(`searchText = ${searchText}`)
+				// warn(`inFilterTranlateMode = ${inFilterTranlateMode}`)
+				// warn(`searchText = ${searchText}`)
 			}else
 				searchText = text.slice(2).trimStart()
 
@@ -263,11 +263,11 @@ If the sourceLanguage is equal to the targetLanguage, then you could copy the re
 				chatText.list = originalList.filter(t => t.includes(searchText))
 			}else{ // new. regex offers more options
 				const regex = new RegExp(searchText);
-				warn(searchText)
+				// warn(searchText)
 				chatText.list = originalList.filter(t => regex.test(t));
 			}
 
-			warn('cursor at beginning + [tab] ==> chat is copied to the chat text')
+			// warn('cursor at beginning + [tab] ==> chat is copied to the chat text')
 
 			if(inFilterTranlateMode){
 				// const number = match[1];
