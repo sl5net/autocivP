@@ -595,6 +595,26 @@ const g_autociv_SharedCommands = {
 
 		}
 	},
+	"whatsBatchTraining" : {
+		"description": "BatchTraining is ",
+		"handler": () =>
+		{
+			const text = '2021: When BatchTraining reach 27 units, Batching will match 1by1 in Total ActiveTime generated ( https://wildfiregames.com/forum/topic/53327-batch-training-the-good-the-bad-and-the-ugly/ ) '
+			const chatInput = Engine.GetGUIObjectByName("chatInput")
+			chatInput.focus()
+			chatInput.caption = text
+		}
+	},
+	"whatsProGUI" : {
+		"description": "ProGUI mod is ",
+		"handler": () =>
+		{
+			const text = 'Some call ProGUI a better AutoQueue or smart Eco-Management ( https://wildfiregames.com/forum/topic/106491-progui/page/7/ ) .'
+			const chatInput = Engine.GetGUIObjectByName("chatInput")
+			chatInput.focus()
+			chatInput.caption = text
+		}
+	},
 	"whatsAutoCivMod" : {
 		"description": "AutoCiv mod is ",
 		"handler": () =>
