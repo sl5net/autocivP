@@ -1399,6 +1399,8 @@ function sendChatTranslated(guiObject, text, sourceLanguage, targetLanguage) {
   }
   text = text.replace(/\[\n\t\r\s\W]+/gi, ' ')
 
+  // dont send links to tranlater api
+  text = text.replace(/[^\s]+:\/\/[^\s]+/gi, '…')
 
   const explainTranslation = `its translation from ${sourceLanguage} to ${targetLanguage} last lines`
 
