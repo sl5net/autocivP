@@ -893,7 +893,7 @@ function addModProfileAlwaysInAlsoAddAutocivPatTheEnd(clean) {
     clean = clean.replaceAll(regex, "");
   });
 
-  if (!clean.includes(' autocivp'))
+  if (!clean.lower().includes(' autocivp'))
     clean += ' autocivp';
 
   return clean.replace(/\bautocivP\b/ig, `${modProfileAlwaysIn} autocivp` );
