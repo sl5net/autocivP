@@ -174,7 +174,6 @@ function init (attribs) {
         }
     }
 
-
     customRating = customRating.length > 0 ? customRating : g_UserRating +'';
     customRating = customRating.length > 24 ? customRating.substring(0,24) +'..' : customRating;
     g_UserRating = getRatings(customRating);

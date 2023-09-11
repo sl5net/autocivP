@@ -94,8 +94,8 @@ startIsoTimeStr = time.strftime("%FT%H:%M:%S")
 
 # https://espeak.sourceforge.net/languages.html
 
-espeakThis("Gleich gehts los" , 'de')
-time.sleep(2)
+# espeakThis("Gleich gehts los" , 'de')
+# time.sleep(2)
 espeakThis("esta por comenzar" , 'es')
 time.sleep(2)
 espeakThis("Ja vai começar" , 'pt')
@@ -145,6 +145,7 @@ while True:
                             vRE = re.search('"(.+)"', line)
                             msg = vRE.group(1) if vRE else ""  # looks a bit ugly. that could be better.
                             if msgOld != msg:
+#                                if 'seeh' in msg:
                                 espeakThis(msg, lang)
                                 msgOld = msg; 
                             break
