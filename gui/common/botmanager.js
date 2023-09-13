@@ -7,7 +7,6 @@ class BotManager
 
 	constructor()
 	{
-		// warn(this.AudioTTSspeak_lastSpeak.getTime())
 	}
 
 	addBot(name, object)

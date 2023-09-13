@@ -20,9 +20,10 @@ var g_PromotePLineWhenGreetInChatMessages = [
   `Know how listIcons? ${g_PLineGithub}`,
   `Know you could translate chat to every language you want? Example last message from Spanish (=es) to English (=en): msg1esen. Good? ${g_PLineGithub}`,
   `Know that I can listen to your messages as audio read by AI? This way, I don't need to read. Good? ${g_PLineGithub}`,
-  `Know all features are optional in autocivP mod? Good mod? Example: you only want to use the audio talk feature, then only use the audio talk feature. ${g_PLineGithub}`,
-  `${g_PLineGithub}`
+  `Know all features are optional in autocivP mod? Example: you only want to use the audio talk feature, then only use the audio talk feature. ${g_PLineGithub}`,
+  ``
 ];
+
 
 // ' i  ♡ autocivP♇ mod',
 
