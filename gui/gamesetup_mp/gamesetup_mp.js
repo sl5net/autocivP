@@ -90,17 +90,17 @@ function init (attribs) {
         if (g_LocalRatingsUser) {
 
             if(showLocalRatingsDropdown == '^lr')
-                g_LocalRatingsUser = g_UserRating + '|' + (g_LocalRatingsUser.rating * 100).toFixed(2);
+                g_LocalRatingsUser = g_UserRating + '|' + (g_LocalRatingsUser.rating * 100).toFixed(0);
 
             if(showLocalRatingsDropdown == '^lr_PlusGames')
-                g_LocalRatingsUser = g_UserRating + '|' + (g_LocalRatingsUser.rating * 100).toFixed(2)
+                g_LocalRatingsUser = g_UserRating + '|' + (g_LocalRatingsUser.rating * 100).toFixed(0)
                 + '|' + g_LocalRatingsUser.matches;
 
             if(showLocalRatingsDropdown == '^lr_NoNormalRating')
-                g_LocalRatingsUser = (g_LocalRatingsUser.rating * 100).toFixed(2);
+                g_LocalRatingsUser = (g_LocalRatingsUser.rating * 100).toFixed(0);
 
             if(showLocalRatingsDropdown == '^lr_NoNormalRating_PlusGames')
-                g_LocalRatingsUser = (g_LocalRatingsUser.rating * 100).toFixed(2)
+                g_LocalRatingsUser = (g_LocalRatingsUser.rating * 100).toFixed(0)
                 + '|' + g_LocalRatingsUser.matches;
 
 
