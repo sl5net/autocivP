@@ -25,7 +25,7 @@ var g_autociv_countdown = {
 		const isRated = g_InitAttributes.settings.RatingEnabled
 		const startingResources = g_GameSettings.startingResources.resources
 		let m = `popMax=${popMax} , rated=${isRated}, resources=${startingResources}, remaining ${this.time} seconds`;
-		selfMessage(m)
+		sendMessage(m)
 
 
 		// sendMessage(`Start in ${this.time} seconds.` )
