@@ -273,6 +273,8 @@ g_NetworkCommandsDescriptions = Object.assign(g_NetworkCommandsDescriptions, {
   "/list": "List all the players and observers currently here",
   "/clear": "Clear the chat comments",
   "/pMainland_1v1_defaults": " for mainland, popMax, 300res, and more",
+  "/p0_75popMax":
+    "/super little game",
   "/p1v1Mainland_defaults":
     "/pNumber is alias to some proviles. e.g. /p1... to /pMainland_1v1... or /p4...",
   "/pMainland_2v2_defaults":
@@ -474,6 +476,9 @@ g_NetworkCommands["/pRestoreLastProfile"] = () => {
 };
 
 
+g_NetworkCommands["/p0_75popMax"] = (text) => {
+  p0_75popMax_Mainland();
+};
 g_NetworkCommands["/pMainland_1v1_defaults"] = (text) => {
   pMainland_1v1_defaults();
 };
@@ -616,6 +621,47 @@ function pMBMainland_2v2_defaults() {
   return setDefaultsforPopmaxAlliedviewRatingTreasuresNomadExploration();
 }
 
+function p0_75popMax_Mainland() {
+  setTeams("team 1v1");
+  setMapTypeFilterNameBiome(
+    "maps/random/mainland",
+    "generic/temperate"
+  );
+
+
+
+  game.updateSettings(); // maybe needet before call mapsize
+  let mapSize = 128; // 128 tiny, 192 small,  256 normal, 320 medium // game.set.mapsize(mapsize); //
+  if (false) {
+    // true only for testing / debugging
+    mapSize = g_GameSettings.mapSize.size;
+  } else {
+    g_GameSettings.mapSize.size = mapSize;
+    game.updateSettings();
+  }
+
+
+
+  setDefaultsforPopmaxAlliedviewRatingTreasuresNomadExploration();
+
+  g_GameSettings.population.cap = 75; // popMaxDefault; // works its a number option vield
+  sendMessageMapSizeSetTo(mapSize)
+  game.updateSettings();
+
+
+  selfMessage(
+    `popMaxDefault is set to ~75. And map size 128 tiny`
+  );
+  selfMessage(
+    `popMaxDefault is set to ~75. And map size 128 tiny`
+  );
+  selfMessage(
+    `popMaxDefault is set to ~75. And map size 128 tiny`
+  );
+
+  return 75;
+
+}
 
 
 function pMainland_1v1_defaults() {
