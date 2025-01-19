@@ -21,14 +21,15 @@ var g_autociv_countdown = {
 			return
 		}
 
+		if(true){
 		const popMax= g_GameSettings.population.cap
-		const isRated = g_InitAttributes.settings.RatingEnabled
-		const startingResources = g_GameSettings.startingResources.resources
-		let m = `popMax=${popMax} , rated=${isRated}, resources=${startingResources}, remaining ${this.time} seconds`;
+		// const isRated = g_InitAttributes.settings.RatingEnabled
+		// const isRated = g_InitAttributes.settings.RatingEnabled === true
+		// const startingResources = g_GameSettings.startingResources.resources
+		let m = `popMax=${popMax}, remaining ${this.time} seconds`;
 		sendMessage(m)
-
-
-		// sendMessage(`Start in ${this.time} seconds.` )
+		}
+		sendMessage(`Start in ${this.time} seconds.` )
 
 
 
