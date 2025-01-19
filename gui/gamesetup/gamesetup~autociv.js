@@ -245,7 +245,7 @@ function setCaption_when_JoinOrStart_Setup_suggestRestoreMods_when_modsChanged()
 			}
 			// i ♡ autocivP♇ mod
 
-			const popMax = g_GameSettings.population.capg_GameSettings.population.cap
+			const popMax = g_GameSettings.population.cap
 
 			newCaptionString = `hi ${countPlayers > 2 ? 'all ': hostName + ' ' }(◕‿◕) BTW: popMax: ${popMax}` //  good luck with setup
 			const newBufferPosition = newCaptionString.length
