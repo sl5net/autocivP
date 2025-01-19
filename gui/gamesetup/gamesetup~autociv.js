@@ -244,7 +244,10 @@ function setCaption_when_JoinOrStart_Setup_suggestRestoreMods_when_modsChanged()
 					}
 			}
 			// i ♡ autocivP♇ mod
-			newCaptionString = `hi ${countPlayers > 2 ? 'all ': hostName + ' ' }(◕‿◕). ` //  good luck with setup
+
+			const popMax = g_GameSettings.population.capg_GameSettings.population.cap
+
+			newCaptionString = `hi ${countPlayers > 2 ? 'all ': hostName + ' ' }(◕‿◕) BTW: popMax: ${popMax}` //  good luck with setup
 			const newBufferPosition = newCaptionString.length
 
 			if(doHelloAutomaticSuggestionWhenJoinAgameSetup == 'PLine'){
@@ -313,7 +316,7 @@ function setCaption_when_JoinOrStart_Setup_suggestRestoreMods_when_modsChanged()
 							}
 					}
 					// i ♡ autocivP♇ mod
-					newCaptionString = `hi ${countPlayers > 2 ? 'all ': hostName + '' }(◕‿◕) ` //  good luck with setup
+					newCaptionString = `hi ${countPlayers > 2 ? 'all ': hostName + '' }(◕‿◕) BTW popMax is ${popMax}` //  good luck with setup
 					const newBufferPosition = newCaptionString.length
 
 
