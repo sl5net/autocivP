@@ -720,7 +720,7 @@ function saveThisModProfile(nr, autoLabelManually) {
     // warn("check if ModProfiles has changed")
 
     const modProfile_alwaysIn_Key = 'modProfile.alwaysIn'
-    const modProfile_alwaysIn_Default = 'localratings feldmap'
+    const modProfile_alwaysIn_Default = ''
     const mo = Engine.ConfigDB_GetValue("user", modProfile_alwaysIn_Key );
     if(!mo)
       ConfigDB_CreateAndSaveValueA26A27("user", modProfile_alwaysIn_Key, modProfile_alwaysIn_Default)
