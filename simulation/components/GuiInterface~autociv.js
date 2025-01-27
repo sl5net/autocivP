@@ -178,20 +178,14 @@ GuiInterface.prototype.autociv_FindEntitiesWithClassesExpression = function (pla
  */
 GuiInterface.prototype.autociv_GetStatsOverlay = function ()
 {
-    let temp = ""
-    try {
-	temp = Engine.ConfigDB_GetValue("user", 'autociv.session.statsOverlay.visible')
-    } catch (err) {
-	// for show no error when a new version of autociv is released and maybe cant not show this.
-	// so still possibel to play without disturbing errur at beginning
-	// 25-0127_1503-49
-	return false
-    }
-
-	
-	const ret = {
+    const ret = {
         "players": []
     };
+
+
+try {
+    // no errors should be thrown in alpha 27 . quick fix
+
 
     const cmpPlayerManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_PlayerManager);
     const numPlayers = cmpPlayerManager.GetNumPlayers();
@@ -234,6 +228,12 @@ GuiInterface.prototype.autociv_GetStatsOverlay = function ()
             "enemyUnitsKilledTotal": cmpPlayerStatisticsTracker?.enemyUnitsKilled.total ?? 0
         });
     }
+
+} catch (error) {
+    return false
+
+}
+
 
     return ret;
 };
