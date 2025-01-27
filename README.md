@@ -26,8 +26,7 @@ Thanks to all the 0 A.D. players who found it useful.
  feature value
 - Tab-Commands (tab key and it will give you fuzzy-search hints, even if you missspell a command):
   - TogglComunityMod - Command ( https://youtu.be/pt3VGm4N_Cw?si=KHH670bJdief61i6&t=465 )
-  - food/... please ( https://youtu.be/rofNXCZzLDM?si=ijxsv4hfKQNuUFyQ&t=353 )
-- and More...
+  - `food/wood/stone... please` ( https://youtu.be/rofNXCZzLDM?si=ijxsv4hfKQNuUFyQ&t=353 ) . Quickly request resources by typing `wood` or `wd`. This will insert `99 wood please ♣` into the chat with the cursor right before `99`. You can then easily change the amount. For example, typing `1` will change it to `199 wood please ♣`.
 
 
 ## Planned Features
