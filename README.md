@@ -5,7 +5,7 @@ Thanks to Nani ([most source is from Nani](https://github.com/nanihadesuka/autoc
 Thanks to all the 0 A.D. players who found it useful.
 
 - General
-	- Help command: type /help matchWord to see all available commands. Also possible to use regEx searchpattern.
+ 	- Help command: type `/help <keyword>` to see available commands. You can also use special search patterns called regular expressions, (or regEx for short, to search for commands).
 	- Jitsi commands: [type j<tab>](https://youtu.be/rofNXCZzLDM?si=DfYfVDqN5ahYy7WN&t=777) to create and send a jitsi-audioChat-link
 	- open links alias: type li<tab> to open a link.
  	- type <tab><tab> to see available commands that you have already used (history is saved into user.cfg).
@@ -24,7 +24,7 @@ Thanks to all the 0 A.D. players who found it useful.
 - Auto-save Drafts in Chat: Never Lose Your Message Again! when you use hotkey for toggle beetween allies-room to all-room content or back. This feature ensures that the content of a chat message is not lost if it has not been sent yet. Instead, the content is saved and can be retrieved even if the user navigates away from the chat screen before sending the message. This can be useful to prevent users from losing their work in progress.
 - setup all defaults by type into the chat:
  feature value
-- Tab-Commands (easy to find by very good fuzzy-search):
+- Tab-Commands (tab key and it will give you fuzzy-search hints, even if you missspell a command):
   - TogglComunityMod - Command ( https://youtu.be/pt3VGm4N_Cw?si=KHH670bJdief61i6&t=465 )
   - food/... please ( https://youtu.be/rofNXCZzLDM?si=ijxsv4hfKQNuUFyQ&t=353 )
 - and More...
@@ -90,7 +90,7 @@ This mod is an aggregation of features meant to enhance the 0 A.D. game experien
 	- Remember playerlist state
 	- Better performance when reloading lobby
 	- Shortcuts to create host, navigate gamelist
-	- Write s?search_text_here at the chat input to search lobby chat
+	- Write `s?search_text_here` at the chat input to search lobby chat (dont enter just type). e.g. `s?anna|bob` shows all entries contains anna or bob
 - Game setup
 	- Auto-assign civilization with chat (only works if host has the mod)
 	- Custom population limit
@@ -129,6 +129,9 @@ This mod is an aggregation of features meant to enhance the 0 A.D. game experien
 since 0ad A24 (was in other mod) intuitive hotkey feature are developed
 
 #### you can't remember the hotkeys?
+
+You can use single letters to build.
+
 try this:
 
 FirstLetter of the Building (press several times for toggling)
