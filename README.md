@@ -92,7 +92,7 @@ This mod is an aggregation of features meant to enhance the 0 A.D. game experien
 	- Shortcuts to create host, navigate gamelist
 	- Write `s?search_text_here` at the chat input to search lobby chat (dont enter just type). e.g. `s?anna|bob` shows all entries contains anna or bob
 - Game setup
-	- Auto-assign civilization with chat (only works if host has the mod)
+        - Auto-assign civilization with chat (Only works if host has the mod). To temporarily disable case-insensitive auto-completion and have more precise control over civilization assignment, use an uppercase letter.
 	- Custom population limit
 	- Custom starting resources
 	- Custom map size
