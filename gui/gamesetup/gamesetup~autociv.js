@@ -133,8 +133,9 @@ function warnModIsNotEnabled(){
 		key
 	);
 	if(!warnThisModIsNotEnabled){
-		warnThisModIsNotEnabled = 'feldmap'; // default it will warn
-		ConfigDB_CreateAndSaveValueA26A27("user", key, warnThisModIsNotEnabled);
+		// warnThisModIsNotEnabled = 'feldmap'; // default it will warn. e.g. feldmap
+		// ConfigDB_CreateAndSaveValueA26A27("user", key, warnThisModIsNotEnabled);
+		return false
 	}
 	if(warnThisModIsNotEnabled != 'false'){  // default it will warn
 		const enabledmods = Engine.ConfigDB_GetValue(
