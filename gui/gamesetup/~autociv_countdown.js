@@ -81,7 +81,7 @@ var g_autociv_countdown = {
 
 			let isTreasuresStr = ""
 			if (g_GameSettings && g_GameSettings.disableTreasures )
-				isTreasuresStr = g_GameSettings.disableTreasures.enabled  ? " ❀Treasures" : "";
+				isTreasuresStr = g_GameSettings.disableTreasures.enabled  ? " ⓧnoTreasures" : " ★?Treasures?";
 
 			if ( this.time % 4 == 0){
 				// let m = `popMax=${popMax} isRatedStr=${isRatedStr}, isNomadStr=${isNomadStr} isTreasuresStr=${isTreasuresStr} remaining ${this.time} seconds. You know already https://replay-pallas.wildfiregames.ovh/LocalRatings ? Its great for TG's`
