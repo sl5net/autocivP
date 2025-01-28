@@ -5,6 +5,52 @@ var g_autociv_countdown = {
 	"time": undefined,
 	"timeoutid": null,
 	"running": false,
+	"fileLines": [],
+	"fileLine": 0,
+    "filePath": "autociv_data/countdown_messages.txt",
+    "fileRead": false,
+
+	"readTextFile": function (filePath) {
+        try {
+            let fileContent = Engine.ReadFile(filePath);
+            if (!fileContent) {
+                warn(`Could not read the file from: ${filePath}`);
+                return null
+            }
+            return fileContent.split("\n");
+        } catch (e) {
+            warn(`Error reading file: ${filePath}: ${e}`);
+            return null
+        }
+    },
+
+	"getMessageLineBySecond": function(second) {
+		if(!this.fileRead) {
+			  this.fileLines = this.readTextFile(this.filePath);
+			 if(this.fileLines != null)
+			 {
+			  this.fileRead = true;
+			   print(`Successfully read file ${this.filePath}`);
+			  }
+			   else
+			   {
+				   return "";
+			   }
+
+		 }
+		  if(this.fileLines && this.fileLines.length > 0)
+		  {
+			 let line = this.fileLines[second % this.fileLines.length]
+			 if(line)
+			 {
+				 return line
+			 }
+		  }
+		  return "";
+	  },
+
+
+
 	"next": function ()
 	{
 		if (this.time <= 0)
@@ -29,7 +75,6 @@ var g_autociv_countdown = {
 			if (g_GameSettings && g_GameSettings.rated)
 				isRatedStr = g_GameSettings.rated.isRated ? " ∑Rated" : ""
 
-
 			let isNomadStr = ""
 			if (g_GameSettings && g_GameSettings.nomad)
 				isNomadStr = g_GameSettings.nomad.enabled ? " ⇅Nomad" : ""
@@ -38,12 +83,18 @@ var g_autociv_countdown = {
 			if (g_GameSettings && g_GameSettings.disableTreasures )
 				isTreasuresStr = g_GameSettings.disableTreasures.enabled  ? " ❀Treasures" : "";
 
-			// let m = `popMax=${popMax} isRatedStr=${isRatedStr}, isNomadStr=${isNomadStr} isTreasuresStr=${isTreasuresStr} remaining ${this.time} seconds. You know already https://replay-pallas.wildfiregames.ovh/LocalRatings ? Its great for TG's`
-			let m = `popMax=${popMax}${isRatedStr}${isNomadStr}${isTreasuresStr} remaining ${this.time} seconds. You know already https://replay-pallas.wildfiregames.ovh/LocalRatings ? Its great for TG's`
-			print(m)
-			sendMessage(m)
+			if ( this.time % 4 == 0){
+				// let m = `popMax=${popMax} isRatedStr=${isRatedStr}, isNomadStr=${isNomadStr} isTreasuresStr=${isTreasuresStr} remaining ${this.time} seconds. You know already https://replay-pallas.wildfiregames.ovh/LocalRatings ? Its great for TG's`
+				let m = `${this.time}: popMax=${popMax}${isRatedStr}${isNomadStr}${isTreasuresStr}`
+				// print(m)
+				sendMessage(m)
+			}else{
+				let fileMessage = this.getMessageLineBySecond(this.fileLine++);
+				// print(fileMessage)
+				sendMessage(`${this.time}: ${fileMessage} `)
+			}
 		} catch (error) {
-			sendMessage(`Start in ${this.time} seconds. 25-0128_0922-29` )
+			sendMessage(`Start in ${this.time} seconds.` )
 
 			if(g_selfNick =="seeh"){ //NOTE - 23-0705_2302-57 developers want to see the error in the console
 				warn(error.message)
@@ -52,9 +103,6 @@ var g_autociv_countdown = {
 			}
 
 		}
-
-
-
 
 		this.timeoutid = setTimeout(() =>
 		{
