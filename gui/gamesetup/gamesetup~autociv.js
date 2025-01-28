@@ -143,7 +143,7 @@ function warnModIsNotEnabled(){
 			"mod.enabledmods"
 		);
 		if(!(enabledmods.indexOf(warnThisModIsNotEnabled)>0)){
-			warn(`Really want play without ${warnThisModIsNotEnabled} mod ?`);
+			warn(`Really want play without '${warnThisModIsNotEnabled}' mod ?`);
 			// warn(`enabledmods: ${enabledmods} ?`);
 		}
 	}
@@ -248,8 +248,10 @@ function setCaption_when_JoinOrStart_Setup_suggestRestoreMods_when_modsChanged()
 
 			const popMax = g_GameSettings.population.cap
 
-			newCaptionString = `hi ${countPlayers > 2 ? 'all ': hostName + ' ' }(◕‿◕) BTW: popMax: ${popMax}` //  good luck with setup
-			const newBufferPosition = newCaptionString.length
+			if(hostName != g_selfNick){ // dont greet yourself
+				newCaptionString = `hi ${countPlayers > 2 ? 'all ': hostName + ' ' }(◕‿◕) BTW: popMax: ${popMax}` //  good luck with setup
+				const newBufferPosition = newCaptionString.length
+			}
 
 			if(doHelloAutomaticSuggestionWhenJoinAgameSetup == 'PLine'){
 				const randomg_seeh_greet = g_PromotePLineWhenGreetInChatMessages[Math.floor(Math.random() * g_PromotePLineWhenGreetInChatMessages.length)]
@@ -317,9 +319,19 @@ function setCaption_when_JoinOrStart_Setup_suggestRestoreMods_when_modsChanged()
 							}
 					}
 					// i ♡ autocivP♇ mod
-					newCaptionString = `hi ${countPlayers > 2 ? 'all ': hostName + '' }(◕‿◕) BTW popMax is ${popMax}` //  good luck with setup
-					const newBufferPosition = newCaptionString.length
 
+/*
+		const isRated = g_GameSettings.rated.isRated ? "Rated" : ""
+
+		const isTreasuresIn = g_GameSettings.disableTreasures.enabled  ? "Treasures" : "";
+		const isNomad = g_GameSettings.nomad.enabled ? "Nomad" : ""
+
+*/
+
+if(hostName != g_selfNick){ // dont greet yourself
+					newCaptionString = `hi ${countPlayers > 2 ? 'all ': hostName + '' }(◕‿◕) BTW popMax is ${popMax}, ${isTreasuresIn}, ${isNomad}` //  good luck with setup
+					const newBufferPosition = newCaptionString.length
+}
 
 					if(doHelloAutomaticSuggestionWhenJoinAgameSetup == 'PLine'){
 						// newCaptionString +=
