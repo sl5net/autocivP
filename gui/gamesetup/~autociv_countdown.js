@@ -21,25 +21,42 @@ var g_autociv_countdown = {
 			return
 		}
 
-		const popMax= g_GameSettings.population.cap
+		try {
+			let popMax= g_GameSettings.population.cap
+			// todo: fix this. this is a quick fix. 25-0128_0727-55
+			// isRated is already set in autocivSharedCommands.js
+			// let isNomadStr="", isRatedStr=""
 
-		// todo: fix this. this is a quick fix. 25-0128_0727-55
-		let isRated = ""
-		if (g_GameSettings && g_GameSettings.rated !== undefined)
-			isRated = g_GameSettings.rated.isRated ? "Rated" : ""
+			let isRatedStr = ""
+			if (g_GameSettings && g_GameSettings.rated)
+				isRatedStr = g_GameSettings.rated.isRated ? "Rated" : ""
 
-		const isTreasuresIn = g_GameSettings.disableTreasures.enabled  ? "Treasures" : "";
-		const isNomad = g_GameSettings.nomad.enabled ? "Nomad" : ""
+			let isNomadStr = ""
+			if (g_GameSettings && g_GameSettings.nomad)
+				isNomadStr = g_GameSettings.nomad.enabled ? "Nomad" : ""
 
-		let m = `popMax=${popMax}, remaining ${this.time} seconds. You know already https://replay-pallas.wildfiregames.ovh/LocalRatings ? Its great for TG's`;
-		sendMessage(m)
-		// sendMessage(`Start in ${this.time} seconds.` )
+			let isTreasuresStr = ""
+			if (g_GameSettings && g_GameSettings.disableTreasures )
+				isTreasuresStr = g_GameSettings.disableTreasures.enabled  ? "Treasures" : "";
+
+			// const isTreasuresIn = g_GameSettings.disableTreasures.enabled  ? "Treasures" : "";
+			// isNomadStr = g_GameSettings.nomad.enabled ? "Nomad" : ""
+			let m = `popMax=${popMax} isRatedStr=${isRatedStr}, isNomadStr=${isNomadStr} isTreasuresStr=${isTreasuresStr} remaining ${this.time} seconds. You know already https://replay-pallas.wildfiregames.ovh/LocalRatings ? Its great for TG's`
+			print(m)
+			sendMessage(m)
+		} catch (error) {
+			sendMessage(`Start in ${this.time} seconds. 25-0128_0922-29` )
+
+			if(g_selfNick =="seeh"){ //NOTE - 23-0705_2302-57 developers want to see the error in the console
+				warn(error.message)
+				print(error.message)
+				warn(error.stack)
+			}
+
+		}
 
 
 
-
-
-		
 
 		this.timeoutid = setTimeout(() =>
 		{
