@@ -622,13 +622,29 @@ function pMBMainland_2v2_defaults() {
 }
 
 function p0_75popMax_Mainland() {
+
+
+  if (Engine.ConfigDB_GetValue("user", "autociv.gamesetup.countdown.enabled") == "false"){
+    // g_autociv_countdown.toggle(true)
+    ConfigDB_CreateAndSaveValueA26A27("user", `autociv.gamesetup.countdown.enabled`, 'true');
+
+    Engine.ConfigDB_CreateValue("user", `autociv.gamesetup.countdown.enabled`, 'true');
+
+    g_autociv_countdown.init();
+
+    g_autociv_countdown.gameUpdateSoft(); // trigger an update to start the timer.
+
+    game.updateSettings();
+
+
+  }
+
+
   setTeams("team 1v1");
   setMapTypeFilterNameBiome(
     "maps/random/mainland",
     "generic/temperate"
   );
-
-
 
   game.updateSettings(); // maybe needet before call mapsize
   let mapSize = 128; // 128 tiny, 192 small,  256 normal, 320 medium // game.set.mapsize(mapsize); //
@@ -640,12 +656,10 @@ function p0_75popMax_Mainland() {
     game.updateSettings();
   }
 
-
-
   setDefaultsforPopmaxAlliedviewRatingTreasuresNomadExploration();
 
   g_GameSettings.population.cap = 75; // popMaxDefault; // works its a number option vield
-  let m = `Population cap is set to: ~75 (popMax)`;
+  let m = `Population cap is set to: ~75 (popMax) OOOOOOOOOOO`;
 
   sendMessageMapSizeSetTo(mapSize)
   game.updateSettings();
@@ -654,6 +668,13 @@ function p0_75popMax_Mainland() {
   selfMessage(
     m
   );
+
+
+  // if (g_IsController && Engine.ConfigDB_GetValue("user", "autociv.gamesetup.countdown.enabled") == "true")
+  //   g_autociv_countdown.toggle(true)
+
+
+
   return 75;
 
 }
