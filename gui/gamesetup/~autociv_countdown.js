@@ -7,7 +7,7 @@ var g_autociv_countdown = {
 	"running": false,
 	"fileLines": [],
 	"fileLine": 0,
-    "filePath": "autociv_data/countdown_messages.txt",
+    "filePath": "moddata/countdown_messages.txt",
     "fileRead": false,
 
 	"readTextFile": function (filePath) {
