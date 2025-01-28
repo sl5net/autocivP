@@ -22,7 +22,6 @@ var g_autociv_countdown = {
 		}
 
 		const popMax= g_GameSettings.population.cap
-		const popMax= g_GameSettings.population.cap
 
 		// todo: fix this. this is a quick fix. 25-0128_0727-55
 		let isRated = ""
