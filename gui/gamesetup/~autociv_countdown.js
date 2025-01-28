@@ -22,26 +22,24 @@ var g_autociv_countdown = {
 		}
 
 		try {
+			// we can live without this. but its nice 25-0128_1002-10
 			let popMax= g_GameSettings.population.cap
-			// todo: fix this. this is a quick fix. 25-0128_0727-55
-			// isRated is already set in autocivSharedCommands.js
-			// let isNomadStr="", isRatedStr=""
 
 			let isRatedStr = ""
 			if (g_GameSettings && g_GameSettings.rated)
-				isRatedStr = g_GameSettings.rated.isRated ? "Rated" : ""
+				isRatedStr = g_GameSettings.rated.isRated ? " ∑Rated" : ""
+
 
 			let isNomadStr = ""
 			if (g_GameSettings && g_GameSettings.nomad)
-				isNomadStr = g_GameSettings.nomad.enabled ? "Nomad" : ""
+				isNomadStr = g_GameSettings.nomad.enabled ? " ⇅Nomad" : ""
 
 			let isTreasuresStr = ""
 			if (g_GameSettings && g_GameSettings.disableTreasures )
-				isTreasuresStr = g_GameSettings.disableTreasures.enabled  ? "Treasures" : "";
+				isTreasuresStr = g_GameSettings.disableTreasures.enabled  ? " ❀Treasures" : "";
 
-			// const isTreasuresIn = g_GameSettings.disableTreasures.enabled  ? "Treasures" : "";
-			// isNomadStr = g_GameSettings.nomad.enabled ? "Nomad" : ""
-			let m = `popMax=${popMax} isRatedStr=${isRatedStr}, isNomadStr=${isNomadStr} isTreasuresStr=${isTreasuresStr} remaining ${this.time} seconds. You know already https://replay-pallas.wildfiregames.ovh/LocalRatings ? Its great for TG's`
+			// let m = `popMax=${popMax} isRatedStr=${isRatedStr}, isNomadStr=${isNomadStr} isTreasuresStr=${isTreasuresStr} remaining ${this.time} seconds. You know already https://replay-pallas.wildfiregames.ovh/LocalRatings ? Its great for TG's`
+			let m = `popMax=${popMax}${isRatedStr}${isNomadStr}${isTreasuresStr} remaining ${this.time} seconds. You know already https://replay-pallas.wildfiregames.ovh/LocalRatings ? Its great for TG's`
 			print(m)
 			sendMessage(m)
 		} catch (error) {
