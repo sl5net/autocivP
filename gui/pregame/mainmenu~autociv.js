@@ -183,16 +183,36 @@ ConfigDB_CreateAndSaveValueA26A27("user", "silhouettes", true);
     // mod.enabledmods = "mod public kush-extreme localratings feldmap autocivp community-maps-2 10ad proGUI"
 
 
+    function getRevisionNumber(versionString) {
+      const match = versionString.match(/(\d{2})/); // Matches 2 digits
+      return match[1];
+    }
+    const revisionNumber = getRevisionNumber(versionOf0ad);
+    // error("revisionNumber " + revisionNumber);
   // add feldmap automatically when feldmal not exist and versionOf0ad < 27
-  // "0.0.26", "0.0.27", or "0.0.28", etc.
-  if (versionOf0ad.split(".")[2] < 27 && modsFromUserCfg_const.indexOf("feldmap") === -1){
+  // "0.0.26", "0.27.0", or "0.0.28", etc.
+  if (revisionNumber < 27 && modsFromUserCfg_const.indexOf("feldmap") === -1){
     error("modsFromUserCfg_const.indexOf " + modsFromUserCfg_const.indexOf("feldmap"));
-    const clean = modsFromUserCfg_const + " feldmap"
+    error("versionOf0ad " + versionOf0ad);
+    let clean = modsFromUserCfg_const
+    clean = clean.replace(/\bautocivp-no-guioptions\b/gi, '');
+    clean += ' feldmap proGUI_0.6.12 autocivp'
     ConfigDB_CreateAndSaveValueA26A27("user", 'mod.enabledmods',clean)
-
     const clean_array = clean.trim().split(/\s+/);
     Engine.SetModsAndRestartEngine(["mod",...clean_array])
-  }
+} else{
+  const march2025 = new Date(2025, 2, 1);
+  const currentDate = new Date();
+  if (revisionNumber >= 28){
+    let clean = modsFromUserCfg_const
+    clean = clean.replace(/\bautocivp\b/gi, 'autocivp-no-guioptions');
+    if( modsFromUserCfg_const.indexOf("feldmap") !== -1 && currentDate < march2025 ) {
+      clean = clean.replace(/\bfeldmap\b/gi, '');
+      clean = clean.replace(/\bproGUI_0\.6\.12\b/gi, '');
+      ConfigDB_CreateAndSaveValueA26A27("user", 'mod.enabledmods',clean)
+      const clean_array = clean.trim().split(/\s+/);
+      Engine.SetModsAndRestartEngine(["mod",...clean_array])
+}}}
 
 
     if (true && posAutocivP < posProGUI) { // autocivP should be later than proGUI becouse the sepezial customrrating that should make the use use of proGUI visible 23-0722_1318-16
