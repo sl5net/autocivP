@@ -96,7 +96,7 @@ This mod is an aggregation of features meant to enhance the 0 A.D. game experien
 	- Custom population limit
 	- Custom starting resources
 	- Custom map size
-	- Countdown to start the game
+	- Countdown to start the game ( also see `moddata/countdown_messages.txt` )
 - Maps
 	- Skirmish:
 		- Volcano island (8)
