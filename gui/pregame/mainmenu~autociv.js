@@ -175,10 +175,25 @@ ConfigDB_CreateAndSaveValueA26A27("user", "silhouettes", true);
 
     }
 
+
+
     // autocivP should be later than proGUI becouse the sepezial customr rating that should make the use use of proGUI visible 23-0722_1318-16
     // ConfigDB_CreateAndSaveValueA26A27("user", "customrating.readme_seen", true);
 
     // mod.enabledmods = "mod public kush-extreme localratings feldmap autocivp community-maps-2 10ad proGUI"
+
+
+  // add feldmap automatically when feldmal not exist and versionOf0ad < 27
+  // "0.0.26", "0.0.27", or "0.0.28", etc.
+  if (versionOf0ad.split(".")[2] < 27 && modsFromUserCfg_const.indexOf("feldmap") === -1){
+    error("modsFromUserCfg_const.indexOf " + modsFromUserCfg_const.indexOf("feldmap"));
+    const clean = modsFromUserCfg_const + " feldmap"
+    ConfigDB_CreateAndSaveValueA26A27("user", 'mod.enabledmods',clean)
+
+    const clean_array = clean.trim().split(/\s+/);
+    Engine.SetModsAndRestartEngine(["mod",...clean_array])
+  }
+
 
     if (true && posAutocivP < posProGUI) { // autocivP should be later than proGUI becouse the sepezial customrrating that should make the use use of proGUI visible 23-0722_1318-16
 
