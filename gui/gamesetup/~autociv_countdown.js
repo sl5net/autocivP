@@ -7,7 +7,7 @@ var g_autociv_countdown = {
 	"running": false,
 	"fileLines": [],
 	"fileLine": 0,
-    "filePath": "moddata/countdown_messages.txt",
+    "filePath": "autociv_data/countdown_messages.txt",
     "fileRead": false,
 
 	"readTextFile": function (filePath) {
@@ -63,7 +63,20 @@ var g_autociv_countdown = {
 			}
 
 			this.stopCountdown()
-			game.panelsButtons.startGameButton.onPress()
+
+			// game.panelsButtons.startGameButton.onPress()
+			if (game && game.panelsButtons && game.panelsButtons.startGameButton && typeof game.panelsButtons.startGameButton.onPress === 'function') {
+				game.panelsButtons.startGameButton.onPress();
+			} else {
+				if(g_selfNick =="seeh"){ //NOTE - 23-0705_2302-57 developers want to see the error in the console
+					let m = "Warning: onPress function is missing, not an object or not a function"
+					warn(m)
+					print(m)
+				}
+			}
+
+
+
 			return
 		}
 
@@ -82,6 +95,7 @@ var g_autociv_countdown = {
 			let isTreasuresStr = ""
 			if (g_GameSettings && g_GameSettings.disableTreasures )
 				isTreasuresStr = g_GameSettings.disableTreasures.enabled  ? " ⓧnoTreasures" : " ★?Treasures?";
+
 
 			if ( this.time % 4 == 0){
 				// let m = `popMax=${popMax} isRatedStr=${isRatedStr}, isNomadStr=${isNomadStr} isTreasuresStr=${isTreasuresStr} remaining ${this.time} seconds. You know already https://replay-pallas.wildfiregames.ovh/LocalRatings ? Its great for TG's`
