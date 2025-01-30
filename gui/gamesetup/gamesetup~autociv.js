@@ -247,9 +247,13 @@ function setCaption_when_JoinOrStart_Setup_suggestRestoreMods_when_modsChanged()
 			// i ♡ autocivP♇ mod
 
 			const popMax = g_GameSettings.population.cap
+			let newBufferPosition = 0
 
-			newCaptionString = `hi ${countPlayers > 2 ? 'all ': hostName + ' ' }(◕‿◕) BTW: popMax: ${popMax}` //  good luck with setup
-			const newBufferPosition = newCaptionString.length
+			if(hostName != g_selfNick){ // dont greet yourself
+				// needs more tested when is time and get priority 25-0128_1615-15
+				newCaptionString = `hi ${countPlayers > 2 ? 'all ': hostName + ' ' }(◕‿◕) BTW: popMax: ${popMax}` //  good luck with setup
+			}
+			newBufferPosition = newCaptionString.length
 
 			if(doHelloAutomaticSuggestionWhenJoinAgameSetup == 'PLine'){
 				const randomg_seeh_greet = g_PromotePLineWhenGreetInChatMessages[Math.floor(Math.random() * g_PromotePLineWhenGreetInChatMessages.length)]
@@ -261,13 +265,13 @@ function setCaption_when_JoinOrStart_Setup_suggestRestoreMods_when_modsChanged()
 				ConfigDB_CreateAndSaveValueA26A27("user", `AudioTTS.speak`, randomg_seeh_greet);
 			}
 
+
 			const chatInput = Engine.GetGUIObjectByName("chatInput")
-			if(newCaptionString && newBufferPosition){
-				chatInput.caption = newCaptionString
-				chatInput.buffer_position = newBufferPosition
-				if(bugIt)
-					warn(`newCaptionString: ${newCaptionString}`);
-			}
+			chatInput.caption = newCaptionString
+			chatInput.buffer_position = newBufferPosition
+
+			if(bugIt)
+				warn(`newCaptionString: ${newCaptionString}`);
 		}
 	}else{
 		// mods have not changed
