@@ -67,21 +67,37 @@ g_OptionType["autociv_dropdown_runtime_load"] = {
 	"guiSetter": "onSelectionChange",
 	"initGUI": (option, control) =>
 	{
-		if (!option.list)
-			option.list = global[option.autociv_list_load]()
 
-		control.list = option.list.map(e => e.label);
-		control.list_data = option.list.map(e => e.value);
-		control.onHoverChange = () =>
-		{
-			let item = option.list[control.hovered];
-			control.tooltip = item && item.tooltip || option.tooltip;
-		};
-	}
+		// todo: make this work ? or remove? what is this? Donnerstag, 30. Januar 2025 08:14:35 CET 25-0130_0814-41
+		if(g_selfNick =="seeh"){ //NOTE - 23-0705_2302-57 developers want to see the error in the console
+			error("todo: make this work in A27 ? or remove? what is this? 25-0130_0814-41")
+		}
+
+		function getRevisionNumber(versionString) {
+			const match = versionString.match(/(\d{2})/); // Matches 2 digits
+			return match[1];
+		  }
+		  const revisionNumber = getRevisionNumber(versionOf0ad);
+
+
+		if (revisionNumber < 27){
+			if (!option.list)
+				option.list = global[option.autociv_list_load]()
+			control.list = option.list.map(e => e.label);
+			control.list_data = option.list.map(e => e.value);
+			control.onHoverChange = () =>
+			{
+				let item = option.list[control.hovered];
+				control.tooltip = item && item.tooltip || option.tooltip;
+			};
+		}
+
+	},
 }
 
 function autociv_getAvailableFonts()
 {
+	// return true
 	return Engine.ListDirectoryFiles("fonts/", "*").
 		map(v => v.match(/fonts\/(.+)\.fnt/)?.[1]).
 		filter(v => v).
@@ -90,7 +106,7 @@ function autociv_getAvailableFonts()
 
 if (!global.g_autociv_optionsFiles)
 	var g_autociv_optionsFiles = ["gui/options/options.json"]
-g_autociv_optionsFiles.push("autociv_data/options.json")
+g_autociv_optionsFiles.push("moddata/options.json")
 
 init = function (data, hotloadData)
 {
