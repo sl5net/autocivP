@@ -248,10 +248,8 @@ function setCaption_when_JoinOrStart_Setup_suggestRestoreMods_when_modsChanged()
 
 			const popMax = g_GameSettings.population.cap
 
-			if(hostName != g_selfNick){ // dont greet yourself
-				newCaptionString = `hi ${countPlayers > 2 ? 'all ': hostName + ' ' }(◕‿◕) BTW: popMax: ${popMax}` //  good luck with setup
-				const newBufferPosition = newCaptionString.length
-			}
+			newCaptionString = `hi ${countPlayers > 2 ? 'all ': hostName + ' ' }(◕‿◕) BTW: popMax: ${popMax}` //  good luck with setup
+			const newBufferPosition = newCaptionString.length
 
 			if(doHelloAutomaticSuggestionWhenJoinAgameSetup == 'PLine'){
 				const randomg_seeh_greet = g_PromotePLineWhenGreetInChatMessages[Math.floor(Math.random() * g_PromotePLineWhenGreetInChatMessages.length)]
@@ -263,13 +261,13 @@ function setCaption_when_JoinOrStart_Setup_suggestRestoreMods_when_modsChanged()
 				ConfigDB_CreateAndSaveValueA26A27("user", `AudioTTS.speak`, randomg_seeh_greet);
 			}
 
-
 			const chatInput = Engine.GetGUIObjectByName("chatInput")
-			chatInput.caption = newCaptionString
-			chatInput.buffer_position = newBufferPosition
-
-			if(bugIt)
-				warn(`newCaptionString: ${newCaptionString}`);
+			if(newCaptionString && newBufferPosition){
+				chatInput.caption = newCaptionString
+				chatInput.buffer_position = newBufferPosition
+				if(bugIt)
+					warn(`newCaptionString: ${newCaptionString}`);
+			}
 		}
 	}else{
 		// mods have not changed
@@ -328,10 +326,9 @@ function setCaption_when_JoinOrStart_Setup_suggestRestoreMods_when_modsChanged()
 
 */
 
-if(hostName != g_selfNick){ // dont greet yourself
 					newCaptionString = `hi ${countPlayers > 2 ? 'all ': hostName + '' }(◕‿◕) BTW popMax is ${popMax}, ${isTreasuresIn}, ${isNomad}` //  good luck with setup
 					const newBufferPosition = newCaptionString.length
-}
+
 
 					if(doHelloAutomaticSuggestionWhenJoinAgameSetup == 'PLine'){
 						// newCaptionString +=
