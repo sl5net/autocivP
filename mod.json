@@ -4,7 +4,7 @@
   "label": "AutocivP mod 0 A.D. enhancer. PLEASE use newest version! thanks!",
   "description": "Compatible with vanilla! Features: game profiles, chat link opener by li<tab>, etc. ",
   "ignoreInCompatibilityChecks": true,
-  "dependencies": ["0ad=0.0.26","0ad<=postcardware"],
+  "dependencies": ["0ad>postcardware","0ad<postcardware"],
   "url": "https://wildfiregames.com/forum/topic/107371-autociv-add-ons-profiles-jitsi-team-call",
   "url_source_code": "https://github.com/sl5net/autocivP"
 }
