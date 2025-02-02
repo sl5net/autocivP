@@ -15,7 +15,7 @@ Tips: vlc ./music/  ▐github.com/JustusAvramenko/delenda_est/tree/master/audio/
 Tips for one-handed:  5 buttons mouses , mods: proGui BetterQuickStart , ▐wildfiregames.com/forum/topic/127457-one-handed-players-double-click-to-select-all-idle-units
 
 Kush-Extreme: This mod boosts Kushite unit to a more challenging AI opponent, for fewer, stronger AI.
-https://mod.io/g/0ad/m/kush-extreme
+▐mod.io/g/0ad/m/kush-extreme
 
 Reach me ♡ write me ♡ or video coffee me ♡
 _______________________________________________
