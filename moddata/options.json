@@ -236,7 +236,7 @@
 					{ "value": "", "label": ""  },
 					{ "value": "/away", "label": "suggest to set /away (changes your status and color)"  },
 					{ "value": "s? seeh", "label": "shows/searches only messages using your name (in this example its player seeh)"  },
-					{ "value": "s? /away", "label": "s? /away just for fun. dosesnt makes since"  }
+					{ "value": "s?/away", "label": "s? /away just for fun. dosesnt makes since"  }
 				]
 			}
 

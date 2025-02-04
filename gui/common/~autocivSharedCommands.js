@@ -142,6 +142,7 @@ about mod names about mod.io here tips:
 https://wildfiregames.com/forum/topic/24333-guide-for-publishing-mods-on-modio/?do=findComment&comment=554945
 */
 
+const howToRememberIt = `. take a photo with your phone or better take a screenshot, if you know how. Visit the website and take it. good luck.`
 
 const versionOf0ad = Engine.GetEngineInfo().mods[0]['version']; // 0.0.26
 // const zipOfAutocivPMod = 'https://api.mod.io/v1/games/5/mods/3105810/files/4097856/download'
@@ -158,16 +159,16 @@ const actuallyWorkingAtVersion = g_previous_autocivPVersion == g_autocivPVersion
 
 // const whatsAutocivPMod = `AutoCivP mod is AutoCiv but it also supports profiles during game configuration, jitsi, command-history⟦Tab⟧⟦Tab⟧ and a lot more ( https://wildfiregames.com/forum/topic/107371-autocivp-add-ons-profiles-jitsi-team-call ) \n 1. download newest ZIP here ${zipOfAutocivPMod} \n 2. unzip it \n 3. rename folder to "autocivP" \n 4. copy this folder to "mods" folder. Path to user data: \n Linux     : ~/.config/0ad/mods \n Windows: %AppData%\\0ad\\mods \n macOS    : \/Users\/{YOUR USERNAME}\/Library\/Application\\ Support/0ad/mods \n tart 0 A.D., click Settings and Mod Selection. \n Double-click it, click Save Configuration and Start Mods. \n ${actuallyWorkingAtVersion} `
 //
-const whatsAutocivPMod = `AutoCivP for 027 maybe https://github.com/sl5net/autocivP/releases/download/v1.0.56/autocivp-a27.zip`
+const whatsAutocivPMod = `AutoCivP for 027 maybe https://github.com/sl5net/autocivP/releases/download/v1.0.56/autocivp-a27.zip ${howToRememberIt}`
 
-const whatsAutocivPMod_long = `AutoCivP mod is AutoCiv but it also supports profiles during game configuration, jitsi and a lot more ( https://wildfiregames.com/forum/topic/107371-autocivp-add-ons-profiles-jitsi-team-call ) \n 1. download newest ZIP here ${zipOfAutocivPMod} \n 2. unzip it \n 3. copy this folder to "mods" folder.  4. \n Double-click it in "Settings" > "Mod Selection", click "Save Configuration" and "Start Mods". \n ${actuallyWorkingAtVersion} `
+const whatsAutocivPMod_long = `AutoCivP mod is AutoCiv but it also supports profiles during game configuration, jitsi and a lot more ( https://wildfiregames.com/forum/topic/107371-autocivp-add-ons-profiles-jitsi-team-call ) \n 1. download newest ZIP here ${zipOfAutocivPMod} \n 2. unzip it \n 3. copy this folder to "mods" folder.  4. \n Double-click it in "Settings" > "Mod Selection", click "Save Configuration" and "Start Mods". \n ${actuallyWorkingAtVersion} ${howToRememberIt}`
 
-const whatsCommunityMod = `communityMod is community-powered by the core team to improve the gameplay experience, particularly MP balance. The team wanted to give the community make it easier to contribute, thus this is hosted on gitlab and community members can request commit access ( https://gitlab.com/0ad/0ad-community-mod-a26 ) .`
+const whatsCommunityMod = `communityMod is community-powered by the core team to improve the gameplay experience, particularly MP balance. The team wanted to give the community make it easier to contribute, thus this is hosted on gitlab and community members can request commit access ( https://gitlab.com/0ad/0ad-community-mod-a26 ) . ${howToRememberIt}`
 
-const whatsReplay_pallas = ` https://replay-pallas.wildfiregames.ovh/LocalRatings . LocalRatings compares the "Total score" graphs of a player with the "Total score" average graphs.`
+const whatsReplay_pallas = ` https://replay-pallas.wildfiregames.ovh/LocalRatings . LocalRatings compares the "Total score" graphs of a player with the "Total score" average graphs. ${howToRememberIt}`
 // zipOfAutocivPMod = `https://github.com/sl5net/autocivP/archive/refs/tags/v${g_previous_autocivPVersion}.zip`
 
-const whatsModernGUIA27 = ` https://gitlab.com/4trik/proGUI/-/tree/modernGUIA27 . proGUI-modernGUIA27 or modernGUIA27 looks like BoonGUI but for A27`
+const whatsModernGUIA27 = ` https://gitlab.com/4trik/proGUI/-/tree/modernGUIA27 . proGUI-modernGUIA27 or modernGUIA27 looks like BoonGUI but for A27 ${howToRememberIt}`
 // https://gitlab.com/4trik/proGUI/-/tree/modernGUIA27
 //
 
