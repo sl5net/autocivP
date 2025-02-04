@@ -114,7 +114,7 @@
 				"config": "autociv.lobby.pingPlayers.ignoreList"
 			},
 			{
-				"type": "autociv_number_int",
+				"type": "string",
 				"label": "[color=\"220 185 70\"]Graphics:[/color] corpses max",
 				"tooltip": "Maximum number of corpses to show. 0 means none, 200 means unlimited. Performance degrades above 50",
 				"config": "autociv.session.graphics.corpses.max",
@@ -128,7 +128,7 @@
 				"config": "autociv.gamesetup.countdown.enabled"
 			},
 			{
-				"type": "autociv_number_int",
+				"type": "string",
 				"label": "[color=\"220 185 70\"]Game setup:[/color] countdown default time ",
 				"tooltip": "Countdown default time in (seconds)",
 				"config": "autociv.gamesetup.countdown.time",
@@ -140,15 +140,6 @@
 				"label": "[color=\"220 185 70\"]Game:[/color] stats overlay visible",
 				"tooltip": "Show players basic statistics in an overlay",
 				"config": "autociv.session.statsOverlay.visible"
-			},
-			{
-				"type": "slider",
-				"label": "[color=\"220 185 70\"]Game:[/color] Brightness of player names",
-				"tooltip": "Adjust the brightness intensity for the player names.",
-				"config": "autociv.session.statsOverlay.brightnessThreshold",
-				"dependencies": ["autociv.session.statsOverlay.visible"],
-				"min": 50,
-				"max": 150
 			},
 			{
 				"type": "boolean",
@@ -182,24 +173,11 @@
 				"config": "autociv.session.chatText.font.change"
 			},
 			{
-				"type": "autociv_dropdown_runtime_load",
-				"autociv_list_load": "autociv_getAvailableFonts",
-				"label": "[color=\"220 185 70\"]Game:[/color] Chat panel font",
-				"tooltip": "Font string",
-				"config": "autociv.session.chatText.font",
-				"dependencies": ["autociv.session.chatText.font.change"]
-			},
-
-			{
 				"type": "boolean",
 				"label": "[color=\"220 185 70\"]Global:[/color] remove all Unicode characters",
 				"tooltip": "remove all Unicode characters. Some users don't use a keyboard that support this icons it in the chat.",
 				"config": "autociv.chatText.font.useitwithoutUnicode"
 			},
-
-
-
-
 			{
 				"type": "boolean",
 				"label": "[color=\"220 185 70\"]Game:[/color] Default stance healers",
@@ -248,25 +226,36 @@
 				"label": "[color=\"220 185 70\"]Global:[/color] Copy all chat messages",
 				"tooltip": "default is copy only the last message sent to you \n empty your chat and pres ⟦Tab⟧. \n get N mesages from your copy press msgN⟦Tab⟧ like msg1⟦Tab⟧ or msg3⟦Tab⟧.",
 				"config": "autocivP.chat.copyAllChatMessages"
+			},
+			{
+				"type": "dropdown",
+				"label": "[color=\"204 133 0\"]Lobby join Suggestion[/color]",
+				"tooltip": "Suggestion When you Join the lobby",
+				"config": "autocivP.lobby.InitialCaption",
+				"list": [
+					{ "value": "", "label": ""  },
+					{ "value": "/away", "label": "suggest to set /away (changes your status and color)"  },
+					{ "value": "s? seeh", "label": "shows/searches only messages using your name (in this example its player seeh)"  },
+					{ "value": "s? /away", "label": "s? /away just for fun. dosesnt makes since"  }
+				]
 			}
+
 
 		]
 	},
-
-
 	{
 		"label": "Mod Profile Selector",
 		"options": [
 			{
 				"type": "string",
 				"label": "('mod', 'public' included automatically)",
-				"tooltip": "all your mods that you want to enable \n (if want add new: Settings > Mod Selection\n  read: [color=\"255 0 0\"]mod.enabledmods[/color]).\n [color=\"255 0 0\"]",
+				"tooltip": "all your mods that you want to enable ",
 				"config": "modProfile.p0"
 			},
 			{
 				"type": "string",
 				"label": "                                                   autoLabel: ",
-				"tooltip": "if want add new: Settings > Mod Selection\n  read: [color=\"255 0 0\"]mod.enabledmods[/color]).\n [color=\"255 0 0\"]",
+				"tooltip": "if want add new: Settings > Mod Selection",
 				"config": "modProfile.p0label"
 			},
 			{

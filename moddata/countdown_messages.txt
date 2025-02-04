@@ -1,7 +1,7 @@
 Reach me ♡ write me ♡ or video coffee me ♡
 
-AutocivP - Profiles... ❀( github.com/sl5net/autocivP/releases/latest )
-a ZIP-File for Version Alpha 27 is there ▛▙▛▌
+AutocivP - Profiles... ❀( ▐github.com/sl5net/autocivP/releases/download/v1.0.56/autocivp-a27.zip )
+ZIP-File for Version Alpha 27 there ▛▙▛▌   Forge it like it!
 ♡thanks to: nani (autociv source is from Nani), andy5995, Mentula, Atric, LangLangBart, leite, Ilan, Thanks to all other modders ♁
 
 our game can you download later here: ▐replay-pallas.wildfiregames.ovh (for TG's !! ☙ )
@@ -13,6 +13,9 @@ discuss: Short-Address: ▐matrix.to/#/#0ad-unofficial:matrix.org
 Tips: mentula ▐wildfiregames.com/forum/topic/102586-a-collection-of-tips-tricks-that-might-help-players-improving/  ▐gitlab.com/mentula0ad/0ad-tips-and-tricks
 Tips: vlc ./music/  ▐github.com/JustusAvramenko/delenda_est/tree/master/audio/music
 Tips for one-handed:  5 buttons mouses , mods: proGui BetterQuickStart , ▐wildfiregames.com/forum/topic/127457-one-handed-players-double-click-to-select-all-idle-units
+
+Kush-Extreme: This mod boosts Kushite unit to a more challenging AI opponent, for fewer, stronger AI.
+▐mod.io/g/0ad/m/kush-extreme
 
 Reach me ♡ write me ♡ or video coffee me ♡
 _______________________________________________

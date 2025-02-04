@@ -12,11 +12,16 @@ autociv_patchApplyN("init", function (target, that, args)
     }
     else if (attribs.multiplayerGameType == "host")
     {
-        let input = Engine.GetGUIObjectByName("hostServerName");
-        input.blur()
-        input.focus()
-        input.buffer_position = input.caption.length;
-        input.onPress = () => confirmSetup()
+        try {
+            let input = Engine.GetGUIObjectByName("hostServerName");
+            input.blur()
+            input.focus()
+            input.buffer_position = input.caption.length;
+            // todo: fix this . works with mouse. its not really needed
+            input.onPress = () => confirmSetup()
+        } catch (error) {
+
+        }
     }
     return res
 })

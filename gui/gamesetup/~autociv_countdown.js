@@ -7,7 +7,7 @@ var g_autociv_countdown = {
 	"running": false,
 	"fileLines": [],
 	"fileLine": 0,
-    "filePath": "autociv_data/countdown_messages.txt",
+    "filePath": "moddata/countdown_messages.txt",
     "fileRead": false,
 
 	"readTextFile": function (filePath) {
@@ -99,7 +99,7 @@ var g_autociv_countdown = {
 
 			if ( this.time % 4 == 0){
 				// let m = `popMax=${popMax} isRatedStr=${isRatedStr}, isNomadStr=${isNomadStr} isTreasuresStr=${isTreasuresStr} remaining ${this.time} seconds. You know already https://replay-pallas.wildfiregames.ovh/LocalRatings ? Its great for TG's`
-				let m = `${this.time}: popMax=${popMax}${isRatedStr}${isNomadStr}${isTreasuresStr}`
+				let m = `${this.time}: █ popMax=${popMax}${isRatedStr}${isNomadStr}${isTreasuresStr} █`
 				// print(m)
 				sendMessage(m)
 			}else{

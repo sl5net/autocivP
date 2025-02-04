@@ -1,9 +1,6 @@
 var g_linkLong = null; // init should be available during the game and not changed
 var g_gameMapMapPrevious = null; // help prefent/debugging a errors, at the moment
 
-// warn('Loaded gamesetup~!extra_commands.js'); // is not defined. but later it will be
-
-
 var game = {
   // stuff that needs to be updated after the gui updates it (as it removes it before it)
   // undefined will mean it doesnt exist
@@ -659,7 +656,7 @@ function p0_75popMax_Mainland() {
   setDefaultsforPopmaxAlliedviewRatingTreasuresNomadExploration();
 
   g_GameSettings.population.cap = 75; // popMaxDefault; // works its a number option vield
-  let m = `Population cap is set to: ~75 (popMax) OOOOOOOOOOO`;
+  let m = `Population cap is set to: ~75 (popMax)`;
 
   sendMessageMapSizeSetTo(mapSize)
   game.updateSettings();

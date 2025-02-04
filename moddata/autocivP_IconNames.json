@@ -4,9 +4,8 @@
    "allIconKeys": ["alliconkeys","allinconcais","alliconskays" ],
    "timeNow": ["timenow" ],
    "msgall": ["msgall", "msga", "msgal" ],
-   "msg1": ["msg1" ],
-   "msg2": ["msg2" ],
    "msg3": ["msg3" ],
+
    "modsImCurrentlyUsing": ["mods", "modsCurrent","modsUsing" ],
    "mainlandTwilightToggle": [
     "mainlangtwikligtogle",
@@ -51,6 +50,34 @@
     "toglpretty",
     "toglegrafic",
     "togglepretty"
+  ],
+  "prettyEnable": [
+    "prettyEnable",
+    "prettyenable",
+    "prettyenble",
+    "pretyenable",
+    "pretyenble",
+    "enablepretty",
+    "enblepretty",
+    "enpretty",
+    "enprety",
+    "prettyon",
+    "prettyOn",
+    "enableHighGraphics"
+  ],
+  "prettyDisable": [
+    "prettyDisable",
+    "prettydisable",
+    "prettydisable",
+    "pretydisable",
+    "pretydisble",
+    "disablepretty",
+    "disblepretty",
+    "dispretty",
+    "disprety",
+    "prettyoff",
+    "prettyOff",
+    "disableHighGraphics"
   ],
   "AutoCivP mod is AutoCiv but it also supports profiles during game configuration, jitsi, command-history⟦Tab⟧⟦Tab⟧ and a lot more.": ["whatsAutocivPMod", "autocivP" ],
   "legend: ♤ proGUI mod, ♇ autocivP mod": ["legend" ],

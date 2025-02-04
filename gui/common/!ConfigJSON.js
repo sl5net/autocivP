@@ -27,10 +27,13 @@ class ConfigJSON {
         Engine.ConfigDB_CreateValue("user", this.key, value);
         if (this.saveToDisk){
             try {
-                Engine.ConfigDB_WriteValueToFile("user", this.key, value, "config/user.cfg"); // nani vorson from about 2019
+                // Engine.ConfigDB_WriteValueToFile("user", this.key, value, "config/user.cfg"); // nani vorson from about 2019
+                ConfigDB_CreateAndSaveValueA26A27("user", this.key, value, "config/user.cfg");
             } catch (error) {
                 // very seldom i got a error here . maybe 1 time in replay when i run a reply (not sure maybe it has happend also as obeserver. was only a messsage. game not crashed or so)
-                ConfigDB_WriteValueToFile("user", this.key, value)                    // its this alpha version 0.0.27 code?
+                // ConfigDB_WriteValueToFile("user", this.key, value)
+                ConfigDB_CreateAndSaveValueA26A27("user", this.key, value)
+                          // its this alpha version 0.0.27 code?
 
 
                 if(g_selfNick =="seeh"){ //NOTE - 23-0705_2302-57 developers want to see the error in the console

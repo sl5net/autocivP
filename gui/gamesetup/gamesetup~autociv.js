@@ -330,9 +330,11 @@ function setCaption_when_JoinOrStart_Setup_suggestRestoreMods_when_modsChanged()
 
 */
 
+				if(hostName != g_selfNick){ // dont greet yourself
+					// needs more tested when is time and get priority 25-0128_1615-15
 					newCaptionString = `hi ${countPlayers > 2 ? 'all ': hostName + '' }(◕‿◕) BTW popMax is ${popMax}, ${isTreasuresIn}, ${isNomad}` //  good luck with setup
 					const newBufferPosition = newCaptionString.length
-
+				}
 
 					if(doHelloAutomaticSuggestionWhenJoinAgameSetup == 'PLine'){
 						// newCaptionString +=

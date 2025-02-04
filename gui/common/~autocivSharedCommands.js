@@ -157,14 +157,22 @@ const actuallyWorkingAtVersion = g_previous_autocivPVersion == g_autocivPVersion
 // warn(`actually working at version ${actuallyWorkingAtVersion}`)
 
 // const whatsAutocivPMod = `AutoCivP mod is AutoCiv but it also supports profiles during game configuration, jitsi, command-history⟦Tab⟧⟦Tab⟧ and a lot more ( https://wildfiregames.com/forum/topic/107371-autocivp-add-ons-profiles-jitsi-team-call ) \n 1. download newest ZIP here ${zipOfAutocivPMod} \n 2. unzip it \n 3. rename folder to "autocivP" \n 4. copy this folder to "mods" folder. Path to user data: \n Linux     : ~/.config/0ad/mods \n Windows: %AppData%\\0ad\\mods \n macOS    : \/Users\/{YOUR USERNAME}\/Library\/Application\\ Support/0ad/mods \n tart 0 A.D., click Settings and Mod Selection. \n Double-click it, click Save Configuration and Start Mods. \n ${actuallyWorkingAtVersion} `
-
-const whatsAutocivPMod = `AutoCivP supports profiles, audio chat, Reuse Drafts, toggle graphics quickly during the game, command-history, icon and a lot more ( https://wildfiregames.com/forum/topic/107371-autocivp-add-ons-profiles-jitsi-team-call ) \n ${actuallyWorkingAtVersion} `
+//
+const whatsAutocivPMod = `AutoCivP for 027 maybe https://github.com/sl5net/autocivP/releases/download/v1.0.56/autocivp-a27.zip`
 
 const whatsAutocivPMod_long = `AutoCivP mod is AutoCiv but it also supports profiles during game configuration, jitsi and a lot more ( https://wildfiregames.com/forum/topic/107371-autocivp-add-ons-profiles-jitsi-team-call ) \n 1. download newest ZIP here ${zipOfAutocivPMod} \n 2. unzip it \n 3. copy this folder to "mods" folder.  4. \n Double-click it in "Settings" > "Mod Selection", click "Save Configuration" and "Start Mods". \n ${actuallyWorkingAtVersion} `
 
 const whatsCommunityMod = `communityMod is community-powered by the core team to improve the gameplay experience, particularly MP balance. The team wanted to give the community make it easier to contribute, thus this is hosted on gitlab and community members can request commit access ( https://gitlab.com/0ad/0ad-community-mod-a26 ) .`
 
+const whatsReplay_pallas = ` https://replay-pallas.wildfiregames.ovh/LocalRatings . LocalRatings compares the "Total score" graphs of a player with the "Total score" average graphs.`
 // zipOfAutocivPMod = `https://github.com/sl5net/autocivP/archive/refs/tags/v${g_previous_autocivPVersion}.zip`
+
+const whatsModernGUIA27 = ` https://gitlab.com/4trik/proGUI/-/tree/modernGUIA27 . proGUI-modernGUIA27 or modernGUIA27 looks like BoonGUI but for A27`
+// https://gitlab.com/4trik/proGUI/-/tree/modernGUIA27
+//
+
+
+
 
 
 function get_previous_autocivPVersion(g_autocivPVersion) {
@@ -678,6 +686,26 @@ const g_autociv_SharedCommands = {
 			// and i press tab then to fuzzy search changes it to the toggle command
 		}
 	},
+	"whatsReplay_pallas" : {
+		"description": "Replay_pallas is ",
+		"handler": () =>
+		{
+			const text = whatsReplay_pallas
+			const chatInput = Engine.GetGUIObjectByName("chatInput")
+			chatInput.focus()
+			chatInput.caption = text
+		}
+	},
+	"whatsModernGUIA27" : {
+		"description": "ModernGUIA27 is ",
+		"handler": () =>
+		{
+			const text = whatsModernGUIA27
+			const chatInput = Engine.GetGUIObjectByName("chatInput")
+			chatInput.focus()
+			chatInput.caption = text
+		}
+	},
 	"programmers" : {
 		"description": "communityMod is ",
 		"handler": () =>
@@ -796,6 +824,38 @@ BTW list of functions: https://trac.wildfiregames.com/wiki/EngineFunctions
 
 			botManager.get("mute").instance.setValue(nick, nick);
 			selfMessage(`You have muted ${nick}.`);
+		}
+	},
+	"m": {
+		"description": "Mute player (m = mute).",
+		"handler": (player) =>
+		{
+			if (player == "")
+				return selfMessage("You need to type a nick to mute player at all places with chat.")
+			let nick = splitRatingFromNick(player).nick;
+
+			if(nick == g_selfNick)
+				return selfMessage(`not allowed to mute yourself ${g_selfNick}.`)
+
+			botManager.get("mute").instance.setValue(nick, nick);
+			selfMessage(`You have muted ${nick}.`);
+		}
+	},
+	"u": {
+		"description": "Clear list of muted players (u = unmute all).",
+		"handler": () =>
+		{
+			botManager.get("mute").instance.removeAllValues();
+			selfMessage("You have cleared muted list.");
+		}
+	},
+	"p": {
+		"description": "whatsAutocivPMod",
+		"handler": () =>
+		{
+			const chatInput = Engine.GetGUIObjectByName("chatInput")
+			chatInput.focus()
+			chatInput.caption = whatsAutocivPMod
 		}
 	},
 	"unmute": {
@@ -931,7 +991,18 @@ autociv_InitSharedCommands.pipe = {
 		const chatInput = Engine.GetGUIObjectByName("chatInput")
 		if(chatInput && chatInput.caption.length < 1){
 			chatInput.focus()
-  			chatInput.caption = '/away' // just a suggestion. maybe you want to be away from the begginning. first check who is online. maybe want join as observer later. not always want play from the begginning.
+
+			let lobbyInitialCaption  = Engine.ConfigDB_GetValue(
+				"user",
+				"autocivP.lobby.InitialCaption"
+				);
+
+				if(lobbyInitialCaption.length < 1){
+					lobbyInitialCaption  = '/away'
+				}
+
+
+  			chatInput.caption =lobbyInitialCaption  // '/away' // just a suggestion. maybe you want to be away from the begginning. first check who is online. maybe want join as observer later. not always want play from the begginning.
 			// works without any problem, but pipe is maybe not the best way
 
 			// i peronally like to be away as suggestion in the caption because it is easy to read and a learning experience

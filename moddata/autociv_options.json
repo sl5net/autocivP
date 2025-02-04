@@ -146,7 +146,19 @@
 				"label": "[color=\"220 185 70\"]Global:[/color] Copy all chat messages",
 				"tooltip": "default is copy only the last message sent to you \n empty your chat and pres ⟦Tab⟧. \n get N mesages from your copy press msgN⟦Tab⟧ like msg1⟦Tab⟧ or msg3⟦Tab⟧.",
 				"config": "autocivP.chat.copyAllChatMessages"
+			},
+			{
+				"type": "dropdown",
+				"label": "[color=\"204 133 0\"]Lobby join Suggestion[/color]",
+				"tooltip": "Suggestion When you Join the lobby",
+				"config": "autocivP.lobby.InitialCaption",
+				"list": [
+					{ "value": "", "label": ""  },
+					{ "value": "/away", "label": "suggest to set /away (changes your status and color)"  },
+					{ "value": "s? me", "label": "shows/searches only messages using your name"  }
+				]
 			}
+
 
 		]
 	},

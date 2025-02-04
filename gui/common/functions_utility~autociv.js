@@ -1,3 +1,8 @@
+// Engine.IncludeScript("gui/common/functions_utility~autociv.js"); // Error: is not a function
+// const functionsUtility = require("gui/common/functions_utility~autociv.js"); // Error: is not defined
+
+
+
 var g_linkLongTeam = null; // init should be available during the game and not changed
 
 var g_lastCommand = "";
@@ -170,14 +175,27 @@ const g_autoCompleteText_newMerge = (guiObject, list) => {
 //   selfMessage(`171:  '${g_lastCommand}' `);
 
 
-  if(caption?.length ){
-
     // if(g_previousCaption == 'communityModToggle'
     //   || g_previousCaption == 'mainlandTwilightToggle'){
     //   if(bugIt)
     //     selfMessage(`178: now now now   gui/common/functions_utility~autociv.js `);
     //     captionCheck_is_communityModToggle_OR_mainlandTwilightToggle_optional_restartOad(caption, true)
     // }
+
+  if(caption?.length ){
+    if(caption == "prettyEnable")
+    {
+      warn(`188: caption = ${caption}  gui/common/functions_utility~autociv.js`)
+      prettyGraphicsEnable()
+      saveLastCommand2History(caption)
+      return
+    }else {if(caption == "prettyDisable")
+    {
+      warn(`194: caption = ${caption}  gui/common/functions_utility~autociv.js`)
+      prettyGraphicsDisable()
+      saveLastCommand2History(caption)
+      return
+    }}
 
     if(captionCheck_is_prettyToggle(caption, true))
     {
@@ -263,7 +281,13 @@ const g_autoCompleteText_newMerge = (guiObject, list) => {
       case 'whatsCommunityMod'.toLowerCase():
           guiObject.caption = whatsCommunityMod;
           return;
-      case 'legend'.toLowerCase():
+          case 'whatsReplay_pallas'.toLowerCase():
+            guiObject.caption = whatsReplay_pallas;
+            return;
+          case 'whatsModernGUIA27'.toLowerCase():
+            guiObject.caption = whatsModernGUIA27;
+            return;
+          case 'legend'.toLowerCase():
           guiObject.caption = `legend: ♤ proGUI mod, ♇ autocivP mod`
           return;
       case '/legend'.toLowerCase():
@@ -885,6 +909,8 @@ function saveThisModProfile(nr, autoLabelManually) {
 
 function addModProfileAlwaysInAlsoAddAutocivPatTheEnd(clean) {
   const modProfileAlwaysIn = Engine.ConfigDB_GetValue("user", 'modProfile.alwaysIn');
+
+
   const modProfileAlwaysInArray = modProfileAlwaysIn.split(/\s/);
 
   modProfileAlwaysInArray.forEach(value => {
@@ -1219,40 +1245,188 @@ function captionCheck_is_prettyToggle(caption, doRestart0ad = false){
 }
 
 /**
- * Enables pretty graphics settings.
+ * Enables pretty graphics settings. Aims to maximize visual fidelity, potentially at the cost of performance.
+ * Contains a backup/restore mechanism for toggling.
+ * Includes intelligent handling of water effects dependencies.
+ * Includes sky visibility and upscaling technique.
  *
  * @return {void} No return value.
  */
+let prettyGraphicsBackup = {}; // Store backup for easy toggling.
+
 function prettyGraphicsEnable() {
-  // Code to enable pretty graphics settings
-  // E.g., increase texture quality, enable antialiasing, etc.
-  ConfigDB_CreateAndSaveValueA26A27("user", "antialiasing", "msaa8");
-  ConfigDB_CreateAndSaveValueA26A27("user", "fog", "true");
-  ConfigDB_CreateAndSaveValueA26A27("user", "max_actor_quality", "150");
-  ConfigDB_CreateAndSaveValueA26A27("user", "shadowpcf", "true");
-  ConfigDB_CreateAndSaveValueA26A27("user", "shadowquality", "1");
-  ConfigDB_CreateAndSaveValueA26A27("user", "shadows", "true");
-  ConfigDB_CreateAndSaveValueA26A27("user", "sharpness", "0.14656737446784973");
-  ConfigDB_CreateAndSaveValueA26A27("user", "textures.quality", "1");
+
+    // Check if a backup exists. If so, restore the settings instead of applying "pretty" defaults.
+    if (Object.keys(prettyGraphicsBackup).length > 0) {
+        restoreSettings();
+        return; // Exit after restoring, so we don't apply "pretty" defaults again.
+    }
+
+    backupSettings(); // Create a backup of the current settings.
+
+    // Antialiasing smooths jagged edges. MSAA8 provides a good balance between quality and performance.  HIGH IMPORTANCE for visual quality.
+    ConfigDB_CreateAndSaveValueA26A27("user", "antialiasing", "msaa8");
+
+    // Fog adds atmospheric depth. Can have a moderate performance impact, especially on large maps. MEDIUM IMPORTANCE.
+    ConfigDB_CreateAndSaveValueA26A27("user", "fog", "true");
+
+    // max_actor_quality controls the level of detail of units and other actors. Higher values look better but use more resources.  MEDIUM/HIGH IMPORTANCE, especially with many units on screen.  150 is quite high; consider if it needs to be this high.
+    ConfigDB_CreateAndSaveValueA26A27("user", "max_actor_quality", "150");
+
+    // shadowpcf enables Percentage Closer Filtering for shadows, making them softer and more realistic.  HIGH IMPORTANCE for visual quality.
+    ConfigDB_CreateAndSaveValueA26A27("user", "shadowpcf", "true");
+
+    // shadowquality controls the resolution of shadows. Higher values look better but are more expensive.  MEDIUM IMPORTANCE. 1 is a reasonable starting point.
+    ConfigDB_CreateAndSaveValueA26A27("user", "shadowquality", "1");
+
+    // shadows enables or disables shadows. Disabling this can significantly improve performance. HIGH IMPORTANCE for performance.
+    ConfigDB_CreateAndSaveValueA26A27("user", "shadows", "true");
+
+    // Sharpness adjusts the level of detail in the image. Subtle adjustments can improve clarity without significant performance impact. LOW IMPORTANCE.  The given value is within a reasonable range, but the ideal value is subjective.
+    ConfigDB_CreateAndSaveValueA26A27("user", "sharpness", "0.14656737446784973");
+
+    // textures.quality controls the resolution of textures. Higher values look better but require more VRAM.  HIGH IMPORTANCE for visual quality and VRAM usage. 1 is the highest setting.
+    ConfigDB_CreateAndSaveValueA26A27("user", "textures.quality", "1");
+
+    ConfigDB_CreateAndSaveValueA26A27("user", "textures.maxanisotropy", "16");
+
+    // Water effects: Enable base effects and fancy effects for visual fidelity
+    ConfigDB_CreateAndSaveValueA26A27("user", "watereffects", "true");
+    ConfigDB_CreateAndSaveValueA26A27("user", "waterfancyeffects", "true");
+
+    //Since waterreflection and waterrefraction only have effect when watereffects = true, we enable those too
+    ConfigDB_CreateAndSaveValueA26A27("user", "waterreflection", "true");
+    ConfigDB_CreateAndSaveValueA26A27("user", "waterrefraction", "true");
+
+    // Show sky: Enable sky rendering for visual appeal.  Can have a slight performance impact.
+    ConfigDB_CreateAndSaveValueA26A27("user", "showsky", "true");
+
+    // Upscaling: Use a higher-quality upscaling technique (e.g., bilinear) for better visuals.  May have a slight performance cost compared to pixelated.
+    ConfigDB_CreateAndSaveValueA26A27("user", "renderer.upscale.technique", "bilinear");
+
+    // materialmgr.quality  Likely controls overall material quality. HIGH IMPORTANCE.  Adjusted to a higher setting for better visuals
+    ConfigDB_CreateAndSaveValueA26A27("user", "materialmgr.quality", "1.213517665863037");
+
 }
 
 /**
- * Disables pretty graphics settings.
+ * Disables pretty graphics settings. Aims to maximize performance, potentially at the cost of visual fidelity.
+ * Contains a backup/restore mechanism for toggling.
+ * Includes intelligent handling of water effects dependencies.
+ * Includes sky visibility and upscaling technique.
  *
  * @return {undefined} No return value.
  */
 function prettyGraphicsDisable() {
-  // Code to disable pretty graphics settings
-  // E.g., decrease texture quality, disable antialiasing, etc.
-  ConfigDB_CreateAndSaveValueA26A27("user", "fog", "false");
-  ConfigDB_CreateAndSaveValueA26A27("user", "max_actor_quality", "100");
-  ConfigDB_CreateAndSaveValueA26A27("user", "shadowpcf", "false");
-  ConfigDB_CreateAndSaveValueA26A27("user", "shadowquality", "-1");
-  ConfigDB_CreateAndSaveValueA26A27("user", "shadows", "false");
-  ConfigDB_CreateAndSaveValueA26A27("user", "sharpness", "0.09461931884288788");
-  ConfigDB_CreateAndSaveValueA26A27("user", "textures.quality", "0");
+    // Check if a backup exists. If so, restore the settings instead of applying "pretty" defaults.
+    if (Object.keys(prettyGraphicsBackup).length > 0) {
+        restoreSettings();
+        return; // Exit after restoring, so we don't apply "pretty" defaults again.
+    }
+
+    backupSettings(); // Create a backup of the current settings.
+
+    // Antialiasing disabled improves performance. HIGH IMPORTANCE for performance.
+    ConfigDB_CreateAndSaveValueA26A27("user", "antialiasing", "disabled");
+
+    // Fog adds atmospheric depth. Can have a moderate performance impact, especially on large maps. MEDIUM IMPORTANCE. Disabling it could increase performance.
+    ConfigDB_CreateAndSaveValueA26A27("user", "fog", "false");
+
+    // max_actor_quality controls the level of detail of units and other actors. Lowering it significantly improves performance, especially with many units on screen. MEDIUM/HIGH IMPORTANCE. 100 is a reasonable low setting.
+    ConfigDB_CreateAndSaveValueA26A27("user", "max_actor_quality", "100");
+
+    // shadowpcf enables Percentage Closer Filtering for shadows. HIGH IMPORTANCE for visual quality.  Disabling it improves performance.
+    ConfigDB_CreateAndSaveValueA26A27("user", "shadowpcf", "false");
+
+    // shadowquality controls the resolution of shadows. Lower values improve performance. MEDIUM IMPORTANCE. Setting to -1 likely disables shadows.
+    ConfigDB_CreateAndSaveValueA26A27("user", "shadowquality", "-1");
+
+    // shadows enables or disables shadows. Disabling this can significantly improve performance. HIGH IMPORTANCE for performance.
+    ConfigDB_CreateAndSaveValueA26A27("user", "shadows", "false");
+
+    // Sharpness adjusts the level of detail in the image. LOW IMPORTANCE.  The given value is within a reasonable range, but the ideal value is subjective.
+    ConfigDB_CreateAndSaveValueA26A27("user", "sharpness", "0.09461931884288788");
+
+    // textures.quality controls the resolution of textures. Lower values improve performance. HIGH IMPORTANCE. 0 is the lowest setting.
+    ConfigDB_CreateAndSaveValueA26A27("user", "textures.quality", "0");
+
+    ConfigDB_CreateAndSaveValueA26A27("user", "textures.maxanisotropy", "1");
+
+    // Water effects: Disable all water effects for maximum performance
+    ConfigDB_CreateAndSaveValueA26A27("user", "watereffects", "false");
+    ConfigDB_CreateAndSaveValueA26A27("user", "waterfancyeffects", "false");
+
+    //Waterreflection and waterrefraction depend on watereffects, so we disable those too.
+    ConfigDB_CreateAndSaveValueA26A27("user", "waterreflection", "false");
+    ConfigDB_CreateAndSaveValueA26A27("user", "waterrefraction", "false");
+
+    // Show sky: Disable sky rendering for increased performance.
+    ConfigDB_CreateAndSaveValueA26A27("user", "showsky", "false");
+
+    // Upscaling: Use a pixelated upscaling technique for maximum performance.
+    ConfigDB_CreateAndSaveValueA26A27("user", "renderer.upscale.technique", "pixelated");
+
+    // materialmgr.quality  Likely controls overall material quality. HIGH IMPORTANCE.  Set to a lower setting for better performance
+        ConfigDB_CreateAndSaveValueA26A27("user", "materialmgr.quality", "1.0"); // Or find a value that is lower.
+
 }
 
+/**
+ * Backs up the current graphics settings to the `prettyGraphicsBackup` object.
+ *
+ * @return {void}
+ */
+function backupSettings() {
+  prettyGraphicsBackup = {
+      "antialiasing": Engine.ConfigDB_GetValue("user", "antialiasing"),
+      "fog": Engine.ConfigDB_GetValue("user", "fog"),
+      "max_actor_quality": Engine.ConfigDB_GetValue("user", "max_actor_quality"),
+      "shadowpcf": Engine.ConfigDB_GetValue("user", "shadowpcf"),
+      "shadowquality": Engine.ConfigDB_GetValue("user", "shadowquality"),
+      "shadows": Engine.ConfigDB_GetValue("user", "shadows"),
+      "sharpness": Engine.ConfigDB_GetValue("user", "sharpness"),
+      "textures.quality": Engine.ConfigDB_GetValue("user", "textures.quality"),
+      "textures.maxanisotropy": Engine.ConfigDB_GetValue("user", "textures.maxanisotropy"),
+      "watereffects": Engine.ConfigDB_GetValue("user", "watereffects"),
+      "waterfancyeffects": Engine.ConfigDB_GetValue("user", "waterfancyeffects"),
+      "waterreflection": Engine.ConfigDB_GetValue("user", "waterreflection"),
+      "waterrefraction": Engine.ConfigDB_GetValue("user", "waterrefraction"),
+      "showsky": Engine.ConfigDB_GetValue("user", "showsky"),
+      "renderer.upscale.technique": Engine.ConfigDB_GetValue("user", "renderer.upscale.technique"),
+      "materialmgr.quality": Engine.ConfigDB_GetValue("user", "materialmgr.quality")
+  };
+}
+
+/**
+ * Restores the graphics settings from the `prettyGraphicsBackup` object.
+ * Clears backup after restore.
+ *
+ * @return {void}
+ */
+function restoreSettings() {
+    if (Object.keys(prettyGraphicsBackup).length === 0) {
+        return; // No backup to restore.
+    }
+
+    ConfigDB_CreateAndSaveValueA26A27("user", "antialiasing", prettyGraphicsBackup["antialiasing"]);
+    ConfigDB_CreateAndSaveValueA26A27("user", "fog", prettyGraphicsBackup["fog"]);
+    ConfigDB_CreateAndSaveValueA26A27("user", "max_actor_quality", prettyGraphicsBackup["max_actor_quality"]);
+    ConfigDB_CreateAndSaveValueA26A27("user", "shadowpcf", prettyGraphicsBackup["shadowpcf"]);
+    ConfigDB_CreateAndSaveValueA26A27("user", "shadowquality", prettyGraphicsBackup["shadowquality"]);
+    ConfigDB_CreateAndSaveValueA26A27("user", "shadows", prettyGraphicsBackup["shadows"]);
+    ConfigDB_CreateAndSaveValueA26A27("user", "sharpness", prettyGraphicsBackup["sharpness"]);
+    ConfigDB_CreateAndSaveValueA26A27("user", "textures.quality", prettyGraphicsBackup["textures.quality"]);
+    ConfigDB_CreateAndSaveValueA26A27("user", "textures.maxanisotropy", prettyGraphicsBackup["textures.maxanisotropy"]);
+    ConfigDB_CreateAndSaveValueA26A27("user", "watereffects", prettyGraphicsBackup["watereffects"]);
+    ConfigDB_CreateAndSaveValueA26A27("user", "waterfancyeffects", prettyGraphicsBackup["waterfancyeffects"]);
+    ConfigDB_CreateAndSaveValueA26A27("user", "waterreflection", prettyGraphicsBackup["waterreflection"]);
+    ConfigDB_CreateAndSaveValueA26A27("user", "waterrefraction", prettyGraphicsBackup["waterrefraction"]);
+    ConfigDB_CreateAndSaveValueA26A27("user", "showsky", prettyGraphicsBackup["showsky"]);
+    ConfigDB_CreateAndSaveValueA26A27("user", "renderer.upscale.technique", prettyGraphicsBackup["renderer.upscale.technique"]);
+    ConfigDB_CreateAndSaveValueA26A27("user", "materialmgr.quality", prettyGraphicsBackup["materialmgr.quality"]);
+
+    prettyGraphicsBackup = {}; // Clear the backup after restoring.
+}
 
 
 /**

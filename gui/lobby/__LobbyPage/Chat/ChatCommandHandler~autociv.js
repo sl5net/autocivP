@@ -1,26 +1,30 @@
-ChatCommandHandler.prototype.ChatCommands["pingall"] = {
+ChatCommandHandler.prototype.ChatCommands["pingallOFFOFFOFFF_notWantedAnyMore_25-0204_1135-29"] = {
     "description": translate("Ping all 'Online' and 'Observer' players."),
     "ignoredUsers": new Set(),
     "ignoreListConfigKey": "autociv.lobby.pingPlayers.ignoreList",
-    "botsListIgnore": [
-        "ModerationBot",
-        "RatingsBot",
-    ],
-    "handler": function (args) {
-        // the caller changes function call context, must grab original one
+    "handler": function (args)
+    {
+        warn('9: seems to be deprecated. seems comunty dont want this feature anymore. will be removed maybe in next version. 25-0204_1136-38')
+        return false
+
+        // the caller changes function call conte
+        // xt, must grab original one
         const that = this.ChatCommands["pingall"]
         that.init()
         const selfNick = Engine.LobbyGetNick();
-        const ignore = new Set([selfNick].concat(thisbotsListIgnore));
+        const ignore = new Set([selfNick]);
         const candidatesToAnnoy = new Set();
 
         const gameList = g_LobbyHandler.lobbyPage.lobbyPage.panels.gameList.gameList;
         for (let game of gameList) {
             const players = game.players;
             const selfInHost = players.some(player => splitRatingFromNick(player.Name).nick == selfNick);
+
             for (let player of players)
-                if (selfInHost)
+                if (selfInHost){
                     ignore.add(splitRatingFromNick(player.Name).nick);
+                    g_selfIsHost = selfInHost
+                }
                 else if (player.Team == "observer")
                     candidatesToAnnoy.add(splitRatingFromNick(player.Name).nick);
         }
@@ -62,7 +66,8 @@ ChatCommandHandler.prototype.ChatCommands["pingall"] = {
 
 ChatCommandHandler.prototype.ChatCommands["pingall"]["playing"] = {
     "description": translate("Set your state to 'Playing'."),
-    "handler": function () {
+    "handler": function ()
+    {
         Engine.LobbySetPlayerPresence("playing");
         return true;
     }

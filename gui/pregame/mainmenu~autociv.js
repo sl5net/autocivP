@@ -177,6 +177,13 @@ ConfigDB_CreateAndSaveValueA26A27("user", "silhouettes", true);
 
 
 
+    // autocivP should be later than proGUI becouse the sepezial customr rating that should make the use use of proGUI visible 23-0722_1318-16
+    // ConfigDB_CreateAndSaveValueA26A27("user", "customrating.readme_seen", true);
+
+    // mod.enabledmods = "mod public kush-extreme localratings feldmap autocivp community-maps-2 10ad proGUI"
+
+
+
     function getRevisionNumber(versionString) {
       const match = versionString.match(/(\d{2})/); // Matches 2 digits
       return match[1];
@@ -196,7 +203,7 @@ ConfigDB_CreateAndSaveValueA26A27("user", "silhouettes", true);
       clean = clean.replace(/\bautocivp\b/gi, '');
       clean += ' proGUI_0.6.12 autocivp'
     }
-    clean = clean.replace(/\bautocivp-no-guioptions\b/gi, '');
+    clean = clean.replace(/\bautocivp-a27\b/gi, '');
     if(clean != modsFromUserCfg_const){
       ConfigDB_CreateAndSaveValueA26A27("user", 'mod.enabledmods',clean)
       const clean_array = clean.trim().split(/\s+/);
@@ -209,8 +216,8 @@ ConfigDB_CreateAndSaveValueA26A27("user", "silhouettes", true);
 
     let clean = modsFromUserCfg_const
 
-    if( modsFromUserCfg_backup.indexOf("autocivp-no-guioptions") > 0)
-      clean = clean.replace(/\bautocivp\b/gi, 'autocivp-no-guioptions');
+    if( modsFromUserCfg_backup.indexOf("autocivp-a27") > 0)
+      clean = clean.replace(/\bautocivp\b/gi, 'autocivp-a27');
 
     if( modsFromUserCfg_const.indexOf("feldmap") !== -1 && currentDate < march2025 ) {
       clean = clean.replace(/\bfeldmap\b/gi, '');
@@ -223,10 +230,7 @@ ConfigDB_CreateAndSaveValueA26A27("user", "silhouettes", true);
 }}}
 
 
-    // autocivP should be later than proGUI becouse the sepezial customr rating that should make the use use of proGUI visible 23-0722_1318-16
-    // ConfigDB_CreateAndSaveValueA26A27("user", "customrating.readme_seen", true);
 
-    // mod.enabledmods = "mod public kush-extreme localratings feldmap autocivp community-maps-2 10ad proGUI"
 
     if (true && posAutocivP < posProGUI) { // autocivP should be later than proGUI becouse the sepezial customrrating that should make the use use of proGUI visible 23-0722_1318-16
 
