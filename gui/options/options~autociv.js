@@ -73,6 +73,7 @@ g_OptionType["autociv_dropdown_runtime_load"] = {
 			error("todo: make this work in A27 ? or remove? what is this? 25-0130_0814-41")
 		}
 
+
 		function getRevisionNumber(versionString) {
 			const match = versionString.match(/(\d{2})/); // Matches 2 digits
 			return match[1];
@@ -106,7 +107,15 @@ function autociv_getAvailableFonts()
 
 if (!global.g_autociv_optionsFiles)
 	var g_autociv_optionsFiles = ["gui/options/options.json"]
-g_autociv_optionsFiles.push("moddata/options.json")
+
+
+// revisionNumber = getRevisionNumber(versionOf0ad);
+warn("revisionNumber: "+revisionNumber)
+if(revisionNumber>=27)
+	g_autociv_optionsFiles.push("moddata/options.json")
+else
+if(revisionNumber==26)
+	g_autociv_optionsFiles.push("autociv_data/options.json")
 
 init = function (data, hotloadData)
 {

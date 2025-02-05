@@ -2,6 +2,14 @@ var gameState = "lobby"; // Initial state // // TODO: howto set it like this? g_
 
 var g_selfIsHost
 
+var g_isnitialIsSet_prettyDisable_prettyEnable = false
+
+const auto_prettyDisable_when_playersNR = Engine.ConfigDB_GetValue(
+	"user",
+	"autocivP.auto_prettyDisable_when_playersNR"
+);
+
+
 var g_playerIsGreeted = []
 
 var g_PLineGithub = 'https://github.com/sl5net/PLine';
@@ -145,6 +153,12 @@ https://wildfiregames.com/forum/topic/24333-guide-for-publishing-mods-on-modio/?
 const howToRememberIt = `. take a photo with your phone or better take a screenshot, if you know how. Visit the website and take it. good luck.`
 
 const versionOf0ad = Engine.GetEngineInfo().mods[0]['version']; // 0.0.26
+function getRevisionNumber(versionString) {
+	const match = versionString.match(/(\d{2})/); // Matches 2 digits
+	return match[1];
+  }
+  const revisionNumber = getRevisionNumber(versionOf0ad);
+
 // const zipOfAutocivPMod = 'https://api.mod.io/v1/games/5/mods/3105810/files/4097856/download'
 
 const g_autocivPVersion_shared = get_autocivPVersion()
@@ -159,7 +173,7 @@ const actuallyWorkingAtVersion = g_previous_autocivPVersion == g_autocivPVersion
 
 // const whatsAutocivPMod = `AutoCivP mod is AutoCiv but it also supports profiles during game configuration, jitsi, command-history⟦Tab⟧⟦Tab⟧ and a lot more ( https://wildfiregames.com/forum/topic/107371-autocivp-add-ons-profiles-jitsi-team-call ) \n 1. download newest ZIP here ${zipOfAutocivPMod} \n 2. unzip it \n 3. rename folder to "autocivP" \n 4. copy this folder to "mods" folder. Path to user data: \n Linux     : ~/.config/0ad/mods \n Windows: %AppData%\\0ad\\mods \n macOS    : \/Users\/{YOUR USERNAME}\/Library\/Application\\ Support/0ad/mods \n tart 0 A.D., click Settings and Mod Selection. \n Double-click it, click Save Configuration and Start Mods. \n ${actuallyWorkingAtVersion} `
 //
-const whatsAutocivPMod = `AutoCivP for 027 maybe https://github.com/sl5net/autocivP/releases/download/v1.0.56/autocivp-a27.zip ${howToRememberIt}`
+const whatsAutocivPMod = `AutoCivP for 027 maybe https://github.com/sl5net/autocivP/releases/download/v1.0.56/autocivp.zip ${howToRememberIt}`
 
 const whatsAutocivPMod_long = `AutoCivP mod is AutoCiv but it also supports profiles during game configuration, jitsi and a lot more ( https://wildfiregames.com/forum/topic/107371-autocivp-add-ons-profiles-jitsi-team-call ) \n 1. download newest ZIP here ${zipOfAutocivPMod} \n 2. unzip it \n 3. copy this folder to "mods" folder.  4. \n Double-click it in "Settings" > "Mod Selection", click "Save Configuration" and "Start Mods". \n ${actuallyWorkingAtVersion} ${howToRememberIt}`
 
@@ -1077,6 +1091,31 @@ autociv_InitSharedCommands.pipe = {
 				selfMessage(`961: rated: ${g_InitAttributes.settings.RatingEnabled === true} - gui/common/~autocivSharedCommands.js : ${linnr()}`)
 			}
 		}
+
+		// works without error:
+		//  selfMessage(JSON.stringify(g_PlayerAssignments));
+		// selfMessage(`1093: ${g_Players.length}`) // this also counts Gaia
+
+		// if(!auto_prettyDisable_when_playersNR){
+		// 	error('25-0205_1123-17')
+		// 	selfMessage(`1094: ${g_isnitialIsSet_prettyDisable_prettyEnable}`)
+		// }
+
+		// not useful because of error:
+		//  selfMessage(JSON.stringify(g_ProjectInformation));
+
+
+		if(
+			g_isnitialIsSet_prettyDisable_prettyEnable == false
+			&& auto_prettyDisable_when_playersNR
+			&& g_Players.length > auto_prettyDisable_when_playersNR){
+				g_isnitialIsSet_prettyDisable_prettyEnable = true
+				// selfMessage(`1093: ${g_Players.length}`) // this also counts Gaia
+				prettyGraphicsDisable()
+		}
+
+
+
 
 		// to check thats first moment and not already set to "ingame"
 		if(gameState != "ingame"

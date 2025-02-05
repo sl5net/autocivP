@@ -1,0 +1,126 @@
+[
+	{
+		"label": "AutoCiv",
+		"options": [
+			{
+				"type": "boolean",
+				"label": "[color=\"220 185 70\"]Lobby:[/color] chat subject hide",
+				"tooltip": "Hide initial lobby subject message",
+				"config": "autociv.lobby.chat.subject.hide"
+			},
+			{
+				"type": "boolean",
+				"label": "[color=\"220 185 70\"]Lobby:[/color] game list show host name",
+				"tooltip": "Show the name of the host for every game in the list",
+				"config": "autociv.lobby.gamelist.showHostName"
+			},
+			{
+				"type": "boolean",
+				"label": "[color=\"220 185 70\"]Lobby:[/color] resize bars enabled",
+				"tooltip": "Have resize bars enabled",
+				"config": "autociv.resizebar.enabled"
+			},
+			{
+				"type": "string",
+				"label": "[color=\"220 185 70\"]Lobby:[/color] pingall ignore users list",
+				"tooltip": "List of users you don't want to ping when using the command pingall. Each entry must be separated by a comma.",
+				"config": "autociv.lobby.pingPlayers.ignoreList"
+			},
+			{
+				"type": "autociv_number_int",
+				"label": "[color=\"220 185 70\"]Graphics:[/color] corpses max",
+				"tooltip": "Maximum number of corpses to show. 0 means none, 200 means unlimited. Performance degrades above 50",
+				"config": "autociv.session.graphics.corpses.max",
+				"min": 0,
+				"max": 200
+			},
+			{
+				"type": "boolean",
+				"label": "[color=\"220 185 70\"]Game setup:[/color] countdown enable",
+				"tooltip": "Automatically enable countdown when hosting",
+				"config": "autociv.gamesetup.countdown.enabled"
+			},
+			{
+				"type": "autociv_number_int",
+				"label": "[color=\"220 185 70\"]Game setup:[/color] countdown default time ",
+				"tooltip": "Countdown default time in (seconds)",
+				"config": "autociv.gamesetup.countdown.time",
+				"min": 0,
+				"max": 60
+			},
+			{
+				"type": "boolean",
+				"label": "[color=\"220 185 70\"]Game:[/color] stats overlay visible",
+				"tooltip": "Show players basic statistics in an overlay",
+				"config": "autociv.session.statsOverlay.visible"
+			},
+			{
+				"type": "boolean",
+				"label": "[color=\"220 185 70\"]Game:[/color] Symbolize the rating",
+				"tooltip": "Transform the user rating or the AI difficulty level into an icon to indicate their strength.\n\n[color=\"220 185 70\"]\u25B2[/color]  Top\n[color=\"220 185 70\"]\u25C6[/color]  Good\n[color=\"220 185 70\"]\u25A0[/color]  Decent\n[color=\"220 185 70\"]\u25AC[/color]  Beginner\n[color=\"220 185 70\"]\u25A1[/color]  Noob\n",
+				"config": "autociv.session.statsOverlay.symbolizeRating",
+				"dependencies": ["autociv.session.statsOverlay.visible"]
+			},
+			{
+				"type": "slider",
+				"label": "[color=\"220 185 70\"]Game:[/color] Brightness of player names",
+				"tooltip": "Adjust the brightness intensity for the player names.",
+				"config": "autociv.session.statsOverlay.brightnessThreshold",
+				"dependencies": ["autociv.session.statsOverlay.visible"],
+				"min": 50,
+				"max": 150
+			},
+			{
+				"type": "boolean",
+				"label": "[color=\"220 185 70\"]Game:[/color] players overlay visible",
+				"tooltip": "Show observers and offline players in an overlay",
+				"config": "autociv.session.playersOverlay.visible"
+			},
+			{
+				"type": "boolean",
+				"label": "[color=\"220 185 70\"]Game:[/color] Delete no warning",
+				"tooltip": "Don't show confirmation dialog when deleting unit",
+				"config": "autociv.session.kill.nowarning"
+			},
+			{
+				"type": "boolean",
+				"label": "[color=\"220 185 70\"]Game:[/color] Chat panel size change",
+				"tooltip": "Modify chat panel size",
+				"config": "autociv.session.chatPanel.size.change"
+			},
+			{
+				"type": "string",
+				"label": "[color=\"220 185 70\"]Game:[/color] Chat panel size",
+				"tooltip": "Size string",
+				"config": "autociv.session.chatPanel.size",
+				"dependencies": ["autociv.session.chatPanel.size.change"]
+			},
+			{
+				"type": "boolean",
+				"label": "[color=\"220 185 70\"]Game:[/color] Chat panel font change",
+				"tooltip": "Modify chat panel font",
+				"config": "autociv.session.chatText.font.change"
+			},
+			{
+				"type": "autociv_dropdown_runtime_load",
+				"autociv_list_load": "autociv_getAvailableFonts",
+				"label": "[color=\"220 185 70\"]Game:[/color] Chat panel font",
+				"tooltip": "Font string",
+				"config": "autociv.session.chatText.font",
+				"dependencies": ["autociv.session.chatText.font.change"]
+			},
+			{
+				"type": "boolean",
+				"label": "[color=\"220 185 70\"]Game:[/color] Default stance healers",
+				"tooltip": "Default stance healers have when they spawn",
+				"config": "autociv.session.setHealersInitialStanceAggressive"
+			},
+			{
+				"type": "boolean",
+				"label": "[color=\"220 185 70\"]Global:[/color] Reset all AutoCiv settings",
+				"tooltip": "Resets all AutoCiv (REQUIRES RESTART) (DOESN'T RESET CUSTOM AUTOCIV SETTINGS)",
+				"config": "autociv.settings.reset.all"
+			}
+		]
+	}
+]

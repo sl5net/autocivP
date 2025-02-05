@@ -155,7 +155,7 @@
 				"list": [
 					{ "value": "", "label": ""  },
 					{ "value": "/away", "label": "suggest to set /away (changes your status and color)"  },
-					{ "value": "s? →me", "label": "searches only messages using your name"  },
+					{ "value": "s?→me", "label": "searches only messages using your name"  },
 					{ "value": "s?/away", "label": "funny :) easy to modify"  }
 				]
 			}

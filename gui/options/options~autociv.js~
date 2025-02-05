@@ -90,7 +90,14 @@ function autociv_getAvailableFonts()
 
 if (!global.g_autociv_optionsFiles)
 	var g_autociv_optionsFiles = ["gui/options/options.json"]
-g_autociv_optionsFiles.push("moddata/options.json")
+
+if(!revisionNumber)
+	let revisionNumber = getRevisionNumber(versionOf0ad);
+if(revisionNumber>=27)
+	g_autociv_optionsFiles.push("moddata/options.json")
+else
+	g_autociv_optionsFiles.push("autociv_data/options.json")
+
 
 init = function (data, hotloadData)
 {

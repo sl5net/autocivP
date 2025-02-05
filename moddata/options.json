@@ -122,6 +122,14 @@
 				"max": 200
 			},
 			{
+				"type": "string",
+				"label": "[color=\"220 185 70\"]Graphics:[/color] auto prettyDisable when players above NR",
+				"tooltip": "Performance degrades above 5",
+				"config": "autocivP.auto_prettyDisable_when_playersNR",
+				"min": 0,
+				"max": 8
+			},
+			{
 				"type": "boolean",
 				"label": "[color=\"220 185 70\"]Game setup:[/color] countdown enable",
 				"tooltip": "Automatically enable countdown when hosting",
@@ -235,7 +243,7 @@
 				"list": [
 					{ "value": "", "label": ""  },
 					{ "value": "/away", "label": "suggest to set /away (changes your status and color)"  },
-					{ "value": "s? seeh", "label": "shows/searches only messages using your name (in this example its player seeh)"  },
+					{ "value": "s?→me", "label": "shows only messages using containt you name"  },
 					{ "value": "s?/away", "label": "s? /away just for fun. dosesnt makes since"  }
 				]
 			}

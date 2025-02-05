@@ -43,7 +43,13 @@ function autociv_initCheck() {
 
   // Check settings
   {
-    let settings = Engine.ReadJSONFile("moddata/autocivP_default_config.json"); // https://www.convertsimple.com/convert-ini-to-json/ if u want use your user.cfg (seeh, 23-0619_1559-06 )
+    let settings
+    if(revisionNumber>=27)
+      settings = Engine.ReadJSONFile("moddata/autocivP_default_config.json"); // https://www.convertsimple.com/convert-ini-to-json/ if u want use your user.cfg (seeh, 23-0619_1559-06 )
+    else
+      settings = Engine.ReadJSONFile("autociv_data/autocivP_default_config.json"); // https://www.convertsimple.com/convert-ini-to-json/ if u want use your user.cfg (seeh, 23-0619_1559-06 )
+
+
     // Reset all autociv settings to default. Custom autociv settings added won't be affected.
 
 
@@ -51,9 +57,15 @@ function autociv_initCheck() {
       state.showAutoFixModsOrder = true
 
 
-    if (config.get("autociv.settings.reset.all2P") === "true")
-      settings = Engine.ReadJSONFile("moddata/autocivP_default_config.json"); // https://www.convertsimple.com/convert-ini-to-json/ if u want use your user.cfg (seeh, 23-0619_1559-06 )
-    if (config.get("autociv.settings.reset.all") === "true"
+    if (config.get("autociv.settings.reset.all2P") === "true"){
+
+      if(revisionNumber>=27)
+        settings = Engine.ReadJSONFile("moddata/autocivP_default_config.json"); // https://www.convertsimple.com/convert-ini-to-json/ if u want use your user.cfg (seeh, 23-0619_1559-06 )
+      else
+        settings = Engine.ReadJSONFile("autociv_data/autocivP_default_config.json"); // https://www.convertsimple.com/convert-ini-to-json/ if u want use your user.cfg (seeh, 23-0619_1559-06 )
+    }
+
+      if (config.get("autociv.settings.reset.all") === "true"
      || config.get("autociv.settings.reset.all2P") === "true"
     ) {
       warn("RESET ALL");
@@ -203,7 +215,7 @@ ConfigDB_CreateAndSaveValueA26A27("user", "silhouettes", true);
       clean = clean.replace(/\bautocivp\b/gi, '');
       clean += ' proGUI_0.6.12 autocivp'
     }
-    clean = clean.replace(/\bautocivp-a27\b/gi, '');
+    clean = clean.replace(/\bautocivp\b/gi, '');
     if(clean != modsFromUserCfg_const){
       ConfigDB_CreateAndSaveValueA26A27("user", 'mod.enabledmods',clean)
       const clean_array = clean.trim().split(/\s+/);
@@ -216,8 +228,8 @@ ConfigDB_CreateAndSaveValueA26A27("user", "silhouettes", true);
 
     let clean = modsFromUserCfg_const
 
-    if( modsFromUserCfg_backup.indexOf("autocivp-a27") > 0)
-      clean = clean.replace(/\bautocivp\b/gi, 'autocivp-a27');
+    if( modsFromUserCfg_backup.indexOf("autocivp") > 0)
+      clean = clean.replace(/\bautocivp\b/gi, 'autocivp');
 
     if( modsFromUserCfg_const.indexOf("feldmap") !== -1 && currentDate < march2025 ) {
       clean = clean.replace(/\bfeldmap\b/gi, '');
