@@ -209,7 +209,7 @@ function initChatFilterInput()
 	// This might cause some other functionality to stop working
 	chatInput.onTextEdit = () =>
 	{
-		const text = chatInput.caption
+		let text = chatInput.caption
 		const inFilterMode = text.startsWith("s?")
 
 		// const inFilterTranlateMode = text.startsWith("t?")
@@ -227,9 +227,12 @@ function initChatFilterInput()
 
 			active = true
 
+			text = text.replace(/→me/g, g_selfNick); // searches for messages for your from you or where you name is mentioned
+  			warn(`231: ${text}`)
+
 
 			const textWithoutFilterPrefix = text.slice(2)
-			warn(`textWithoutFilterPrefix = ${textWithoutFilterPrefix}`)
+			// warn(`textWithoutFilterPrefix = ${textWithoutFilterPrefix}`)
 
 
 		// const inFilterTranlateMode = text.startsWith("t?")

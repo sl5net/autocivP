@@ -1524,6 +1524,10 @@ function inputCopySearchReults(chatInput){
   chatText.list.filter(t => {
     chatStr += t.replace(/\[.*?\]/g, '');
   })
+
+  chatStr = chatStr.replace(/→me/g, g_selfNick);
+  warn(`1529: ${chatStr}`)
+
   chatInput.caption = chatStr
   return true
 }
