@@ -24,17 +24,6 @@
     "mainwiligtogle"
   ],
   "kateModToggle": [
-  "katemod",
-  "kaetmod",
-  "ktemod",
-  "ktaemod",
-  "ktaemods",
-  "kaytemod",
-  "kaytemods",
-  "kaetemod",
-  "katmod",
-  "kattemod",
-  "katemodded",
   "togglekatemod",
   "enablekatemod",
   "disablekatemod",
@@ -45,6 +34,7 @@
   "onkatemod",
   "offkatemod",
   "katemodtoggle",
+  "kattoggle",
   "katemodenable",
   "katemoddisable",
   "katemodactivate",
@@ -62,10 +52,7 @@
   "katemodenabel",
   "katemoddisabel",
   "katemodactivat",
-  "katemoddeactivat",
-  "KateMod",
-  "kATEMOD",
-  "Katemod"
+  "katemoddeactivat"
 ],
   "communityModToggle": [
     "comunitsmodstoggles",
