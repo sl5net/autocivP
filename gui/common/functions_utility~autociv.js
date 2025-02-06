@@ -1452,6 +1452,7 @@ function captionCheck_is_communityModToggle_OR_mainlandTwilightToggle_optional_r
   const captiontrim = caption.trim()
   if(captiontrim == "communityModToggle"
   || captiontrim == "mainlandTwilightToggle"
+  || captiontrim == "kateModToggle"
   || captiontrim == "kateToggle"
 ){
 
@@ -1485,7 +1486,7 @@ function captionCheck_is_communityModToggle_OR_mainlandTwilightToggle_optional_r
         enabledmods = enabledmods.replace(/\s*\bcommunity-mod\b\s*/, " ")
     }
 
-    if(captiontrim == "kateToggle"){
+    if(captiontrim == "kateModToggle" || captiontrim == "kateToggle"){
       if(enabledmods.indexOf("kateToggle") == -1)
         enabledmods += ' kate-overhaul'
       else
