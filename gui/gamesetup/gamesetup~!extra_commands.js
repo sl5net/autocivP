@@ -606,7 +606,14 @@ function pExtinct_volcano_defaults() {
   // g_GameSettings.seaLevelRiseTime.value = 10; // error undefined but no effect. extinct_volcano SeaLevelRiseTime
   // g_GameSettings.SeaLevelRiseTime.cap = 10; // erro. extinct_volcano SeaLevelRiseTime
   setTeams("team 2v2");
-  return setDefaultsforPopmaxAlliedviewRatingTreasuresNomadExploration();
+  setDefaultsforPopmaxAlliedviewRatingTreasuresNomadExploration();
+
+  let ceasefireValue = 15;
+  g_GameSettings.ceasefire.value = ceasefireValue
+  let ceasefireStr = `Ceasefire: ${ceasefireValue} minutes`;
+  sendMessage(ceasefireStr);
+
+  return true
 }
 
 function pMBMainland_2v2_defaults() {
@@ -1026,6 +1033,8 @@ function setDefaultsforPopmaxAlliedviewRatingTreasuresNomadExploration(sendMessa
 
   // const key2 = 'autocivP.gamesetup.lastCommand4Profile'
   // ConfigDB_CreateAndSaveValueA26A27("user", key2, g_lastCommandID);
+
+  g_GameSettings.ceasefire.value = 0
 
   return populationMax;
 }

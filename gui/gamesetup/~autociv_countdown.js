@@ -97,6 +97,9 @@ var g_autociv_countdown = {
 				isTreasuresStr = g_GameSettings.disableTreasures.enabled  ? " ⓧnoTreasures" : " ★?Treasures?";
 
 
+			// found online!!!! not in offline c++ source code but in online source code. use onine: https://github.com/0ad/0ad/blob/master/binaries/data/mods/public/gamesettings/attributes/Ceasefire.js
+			// 25-0206_2212-54
+
 
 			let ceasefireValue = g_GameSettings.ceasefire.value;
 			let ceasefireStr = "";
