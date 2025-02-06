@@ -150,8 +150,36 @@ var g_autociv_countdown = {
 	},
 	"gameUpdate": function ()
 	{
-		warn('autociv_countdown.gameUpdate:' + game.get.numberOfSlots())
-// idk if this has effect. 25-0206_1039-23
+		warn('153: Wow. This source part is really visited. 25-0206_1039-00. autociv_countdown.gameUpdate:' + game.get.numberOfSlots())
+		warn('153: Wow. This source part is really visited. 25-0206_1039-00. autociv_countdown.gameUpdate:' + game.get.numberOfSlots())
+		warn('153: Wow. This source part is really visited. 25-0206_1039-00. autociv_countdown.gameUpdate:' + game.get.numberOfSlots())
+		warn('153: Wow. This source part is really visited. 25-0206_1039-00. autociv_countdown.gameUpdate:' + game.get.numberOfSlots())
+		warn('153: Wow. This source part is really visited. 25-0206_1039-00. autociv_countdown.gameUpdate:' + game.get.numberOfSlots())
+		warn('153: Wow. This source part is really visited. 25-0206_1039-00. autociv_countdown.gameUpdate:' + game.get.numberOfSlots())
+		warn('153: Wow. This source part is really visited. 25-0206_1039-00. autociv_countdown.gameUpdate:' + game.get.numberOfSlots())
+		warn('153: Wow. This source part is really visited. 25-0206_1039-00. autociv_countdown.gameUpdate:' + game.get.numberOfSlots())
+		warn('153: Wow. This source part is really visited. 25-0206_1039-00. autociv_countdown.gameUpdate:' + game.get.numberOfSlots())
+		warn('153: Wow. This source part is really visited. 25-0206_1039-00. autociv_countdown.gameUpdate:' + game.get.numberOfSlots())
+		warn('153: Wow. This source part is really visited. 25-0206_1039-00. autociv_countdown.gameUpdate:' + game.get.numberOfSlots())
+		warn('153: Wow. This source part is really visited. 25-0206_1039-00. autociv_countdown.gameUpdate:' + game.get.numberOfSlots())
+		warn('153: Wow. This source part is really visited. 25-0206_1039-00. autociv_countdown.gameUpdate:' + game.get.numberOfSlots())
+		warn('153: Wow. This source part is really visited. 25-0206_1039-00. autociv_countdown.gameUpdate:' + game.get.numberOfSlots())
+		warn('153: Wow. This source part is really visited. 25-0206_1039-00. autociv_countdown.gameUpdate:' + game.get.numberOfSlots())
+		warn('153: Wow. This source part is really visited. 25-0206_1039-00. autociv_countdown.gameUpdate:' + game.get.numberOfSlots())
+		warn('153: Wow. This source part is really visited. 25-0206_1039-00. autociv_countdown.gameUpdate:' + game.get.numberOfSlots())
+		// for me it seems tis not needed. but i let it here. maybe its needed? ??? don't know. it is not disturbing.
+
+	if(game.get.numberOfSlots()>7){
+		const auto_enable_wehen_join_8_players_game = Engine.ConfigDB_GetValue(
+			"user",
+			"modProfile.auto_enable_wehen_join_8_players_game")
+		if(auto_enable_wehen_join_8_players_game !== "false"){
+			const enabledmods = Engine.ConfigDB_GetValue(
+				"user",
+				"mod.enabledmods")
+			if(enabledmods.indexOf("kate-overhaul") == -1)
+				captionCheck_is_communityModToggle_OR_mainlandTwilightToggle_optional_restartOad("kateModToggle", true)
+		}}
 
 
 		if (!this.active)
@@ -164,29 +192,20 @@ var g_autociv_countdown = {
 	},
 	"gameUpdateSoft": function ()
 	{
-		warn('autociv_countdown.gameUpdateSoft:' + game.get.numberOfSlots())
+		// warn('autociv_countdown.gameUpdateSoft:' + game.get.numberOfSlots())
 		// this line has worked for me :) 25-0206_1039-00
 
 		if(game.get.numberOfSlots()>7){
-
             const auto_enable_wehen_join_8_players_game = Engine.ConfigDB_GetValue(
 				"user",
 				"modProfile.auto_enable_wehen_join_8_players_game")
-
-			error('autociv_countdown.gameUpdateSoft:' + game.get.numberOfSlots())
-
 			if(auto_enable_wehen_join_8_players_game !== "false"){
-
-
 				const enabledmods = Engine.ConfigDB_GetValue(
 					"user",
 					"mod.enabledmods")
-
 				if(enabledmods.indexOf("kate-overhaul") == -1)
 					captionCheck_is_communityModToggle_OR_mainlandTwilightToggle_optional_restartOad("kateModToggle", true)
 			}
-
-
 		}
 
 
