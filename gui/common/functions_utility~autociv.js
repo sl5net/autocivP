@@ -1499,6 +1499,7 @@ function captionCheck_is_communityModToggle_OR_mainlandTwilightToggle_optional_r
 
     const clean_array = enabledmods.trim().split(/\s+/);
     Engine.SetModsAndRestartEngine(["mod",...clean_array])
+    Engine.SetModsAndRestartEngine(["mod",...Engine.GetEnabledMods()])
   }
 }
 

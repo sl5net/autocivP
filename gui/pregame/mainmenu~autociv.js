@@ -220,6 +220,7 @@ ConfigDB_CreateAndSaveValueA26A27("user", "silhouettes", true);
       ConfigDB_CreateAndSaveValueA26A27("user", 'mod.enabledmods',clean)
       const clean_array = clean.trim().split(/\s+/);
       Engine.SetModsAndRestartEngine(["mod",...clean_array])
+      Engine.SetModsAndRestartEngine(["mod",...Engine.GetEnabledMods()])
     }
 } else{
   const march2025 = new Date(2025, 2, 1);
@@ -239,6 +240,7 @@ ConfigDB_CreateAndSaveValueA26A27("user", "silhouettes", true);
     ConfigDB_CreateAndSaveValueA26A27("user", 'mod.enabledmods',clean)
     const clean_array = clean.trim().split(/\s+/);
     Engine.SetModsAndRestartEngine(["mod",...clean_array])
+    Engine.SetModsAndRestartEngine(["mod",...Engine.GetEnabledMods()])
 }}}
 
 
