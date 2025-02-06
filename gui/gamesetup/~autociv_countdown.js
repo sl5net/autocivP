@@ -168,13 +168,25 @@ var g_autociv_countdown = {
 		// this line has worked for me :) 25-0206_1039-00
 
 		if(game.get.numberOfSlots()>7){
-			error('autociv_countdown.gameUpdateSoft:' + game.get.numberOfSlots())
-            const enabledmods = Engine.ConfigDB_GetValue(
-				"user",
-				"mod.enabledmods")
 
-			if(enabledmods.indexOf("kate-overhaul") == -1)
-				captionCheck_is_communityModToggle_OR_mainlandTwilightToggle_optional_restartOad("kateModToggle", true)
+            const auto_enable_wehen_join_8_players_game = Engine.ConfigDB_GetValue(
+				"user",
+				"modProfile.auto_enable_wehen_join_8_players_game")
+
+			error('autociv_countdown.gameUpdateSoft:' + game.get.numberOfSlots())
+
+			if(auto_enable_wehen_join_8_players_game !== "false"){
+
+
+				const enabledmods = Engine.ConfigDB_GetValue(
+					"user",
+					"mod.enabledmods")
+
+				if(enabledmods.indexOf("kate-overhaul") == -1)
+					captionCheck_is_communityModToggle_OR_mainlandTwilightToggle_optional_restartOad("kateModToggle", true)
+			}
+
+
 		}
 
 

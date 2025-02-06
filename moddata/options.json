@@ -345,8 +345,8 @@
 				"config": "modProfile.p4enabled"
 			},
 			{
-				"type": "string",
-				"label": "  auto_enable_in 8pl game(DRAFT DRAFT DRAFT not implemented already): ",
+				"type": "boolean",
+				"label": "Automatically Enable Kate Overhaul in 8-Player Games: ",
 				"tooltip": "auto_enable_wehen_join_8_players_game",
 				"config": "modProfile.auto_enable_wehen_join_8_players_game"
 			},
