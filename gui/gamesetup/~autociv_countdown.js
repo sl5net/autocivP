@@ -97,11 +97,23 @@ var g_autociv_countdown = {
 				isTreasuresStr = g_GameSettings.disableTreasures.enabled  ? " ⓧnoTreasures" : " ★?Treasures?";
 
 
+
+			let ceasefireValue = g_GameSettings.ceasefire.value;
+			let ceasefireStr = "";
+			if (ceasefireValue > 0){
+				ceasefireStr = `   [o]Ceasefire: ${ceasefireValue} minutes[o]`;
+			}
+			// selfMessage(" ⌚ ⏰ 🕐 ⏲ 🕝 🕰 [o] ceasefireStr: ");
+
+
+
+
 			if ( this.time % 4 == 0){
 				// let m = `popMax=${popMax} isRatedStr=${isRatedStr}, isNomadStr=${isNomadStr} isTreasuresStr=${isTreasuresStr} remaining ${this.time} seconds. You know already https://replay-pallas.wildfiregames.ovh/LocalRatings ? Its great for TG's`
-				let m = `${this.time}: █ popMax=${popMax}${isRatedStr}${isNomadStr}${isTreasuresStr} █`
+				let m = `${this.time}: █ popMax=${popMax}${isRatedStr}${ceasefireStr}${isNomadStr}${isTreasuresStr} █`
 				// print(m)
 				sendMessage(m)
+				sendMessage(ceasefireStr)
 			}else{
 				let fileMessage = this.getMessageLineBySecond(this.fileLine++);
 				// print(fileMessage)
@@ -195,6 +207,7 @@ var g_autociv_countdown = {
 		// warn('autociv_countdown.gameUpdateSoft:' + game.get.numberOfSlots())
 		// this line has worked for me :) 25-0206_1039-00
 
+
 		if(game.get.numberOfSlots()>7){
             const auto_enable_wehen_join_8_players_game = Engine.ConfigDB_GetValue(
 				"user",
@@ -246,3 +259,12 @@ autociv_patchApplyN("init", function (target, that, args)
 	ctrl.readyController.registerResetReadyHandler(() => g_autociv_countdown.gameUpdateSoft())
 	ctrl.netMessages.registerNetMessageHandler("ready", () => g_autociv_countdown.gameUpdateSoft())
 })
+
+
+function checkCeasefireValue() {
+	let ceasefireObject = g_GameSettings.Attributes.Ceasefire;
+	warn("Ceasefire Object: " + ceasefireObject);
+
+	let ceasefireValue = ceasefireObject.value;
+	warn("Ceasefire Value: " + ceasefireValue);
+  }
