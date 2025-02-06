@@ -1324,7 +1324,12 @@ function prettyGraphicsDisable() {
         return; // Exit after restoring, so we don't apply "pretty" defaults again.
     }
 
+
     backupSettings(); // Create a backup of the current settings.
+
+    if(prettyGraphicsBackup["graphics.corpses.max"] > 50){
+      ConfigDB_CreateAndSaveValueA26A27("user", "autociv.session.graphics.corpses.max", "50");
+    }
 
     // Antialiasing disabled improves performance. HIGH IMPORTANCE for performance.
     ConfigDB_CreateAndSaveValueA26A27("user", "antialiasing", "disabled");
@@ -1378,7 +1383,9 @@ function prettyGraphicsDisable() {
  */
 function backupSettings() {
   prettyGraphicsBackup = {
-      "antialiasing": Engine.ConfigDB_GetValue("user", "antialiasing"),
+    "graphics.corpses.max": Engine.ConfigDB_GetValue("user", "autociv.session.graphics.corpses.max"),
+
+    "antialiasing": Engine.ConfigDB_GetValue("user", "antialiasing"),
       "fog": Engine.ConfigDB_GetValue("user", "fog"),
       "max_actor_quality": Engine.ConfigDB_GetValue("user", "max_actor_quality"),
       "shadowpcf": Engine.ConfigDB_GetValue("user", "shadowpcf"),
@@ -1407,6 +1414,9 @@ function restoreSettings() {
     if (Object.keys(prettyGraphicsBackup).length === 0) {
         return; // No backup to restore.
     }
+
+    ConfigDB_CreateAndSaveValueA26A27("user", "autociv.session.graphics.corpses.max", prettyGraphicsBackup["graphics.corpses.max"]);
+
 
     ConfigDB_CreateAndSaveValueA26A27("user", "antialiasing", prettyGraphicsBackup["antialiasing"]);
     ConfigDB_CreateAndSaveValueA26A27("user", "fog", prettyGraphicsBackup["fog"]);

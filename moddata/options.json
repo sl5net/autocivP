@@ -346,21 +346,9 @@
 			},
 			{
 				"type": "string",
-				"label": "",
-				"tooltip": "all your mods that you want to enable \n (if want add new: Settings > Mod Selection\n  read: [color=\"255 0 0\"]mod.enabledmods[/color]).\n [color=\"255 0 0\"]",
-				"config": "modProfile.p5"
-			},
-			{
-				"type": "string",
-				"label": "                                                   autoLabel: ",
-				"tooltip": "all your mods that you want to enable \n (if want add new: Settings > Mod Selection\n  read: [color=\"255 0 0\"]mod.enabledmods[/color]).\n [color=\"255 0 0\"]",
-				"config": "modProfile.p5label"
-			},
-			{
-				"type": "boolean",
-				"label": "[color=\"220 185 70\"]use 5[/color]",
-				"tooltip": "Set Hotkey-Profiles.\n[color=\"255 0 0\"]RESTART NECESSARY[/color]\n [color=\"255 0 0\"]",
-				"config": "modProfile.p5enabled"
+				"label": "  auto_enable_in 8pl game(DRAFT DRAFT DRAFT not implemented already): ",
+				"tooltip": "auto_enable_wehen_join_8_players_game",
+				"config": "modProfile.auto_enable_wehen_join_8_players_game"
 			},
 			{
 				"type": "string",
@@ -386,7 +374,6 @@
 				"tooltip": "Mods sometimes work better when enabled in a special order ",
 				"config": "modProfile.showAutoFixModsOrder"
 			},
-
 			{
 				"type": "string",
 				"label": "set mods that should always in. e.g. feldmap: ",
