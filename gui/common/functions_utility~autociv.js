@@ -1449,8 +1449,11 @@ function restoreSettings() {
  *                   doRestart0ad is false. Otherwise, returns false.
  */
 function captionCheck_is_communityModToggle_OR_mainlandTwilightToggle_optional_restartOad(caption, doRestart0ad = false){
-  if(caption.trim() == "communityModToggle"
-  || caption.trim() == "mainlandTwilightToggle"){
+  const captiontrim = caption.trim()
+  if(captiontrim == "communityModToggle"
+  || captiontrim == "mainlandTwilightToggle"
+  || captiontrim == "kateToggle"
+){
 
 
     if(gameState == "ingame"){
@@ -1468,18 +1471,27 @@ function captionCheck_is_communityModToggle_OR_mainlandTwilightToggle_optional_r
     );
     selfMessage(`enabledmods = ${enabledmods}`);
 
-    if(caption.trim() == "mainlandTwilightToggle"){
+    if(captiontrim == "mainlandTwilightToggle"){
       if(enabledmods.indexOf("mainland-twilight") == -1)
         enabledmods += ' mainland-twilight'
       else
         enabledmods = enabledmods.replace(/\s*\bmainland-twilight\b\s*/, " ")
     }
-    else{
+
+    if(captiontrim == "communityModToggle"){
       if(enabledmods.indexOf("community-mod") == -1)
         enabledmods += ' community-mod'
       else
         enabledmods = enabledmods.replace(/\s*\bcommunity-mod\b\s*/, " ")
     }
+
+    if(captiontrim == "kateToggle"){
+      if(enabledmods.indexOf("kateToggle") == -1)
+        enabledmods += ' kate-overhaul'
+      else
+        enabledmods = enabledmods.replace(/\s*\bkate-overhaul\b\s*/, " ")
+    }
+
     ConfigDB_CreateAndSaveValueA26A27("user", "mod.enabledmods", enabledmods.trim())
     selfMessage(`enabledmods = ${enabledmods}`);
 
