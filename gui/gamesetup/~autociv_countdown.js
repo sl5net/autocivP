@@ -150,6 +150,10 @@ var g_autociv_countdown = {
 	},
 	"gameUpdate": function ()
 	{
+		warn('autociv_countdown.gameUpdate:' + game.get.numberOfSlots())
+// idk if this has effect. 25-0206_1039-23
+
+
 		if (!this.active)
 			return
 
@@ -160,6 +164,20 @@ var g_autociv_countdown = {
 	},
 	"gameUpdateSoft": function ()
 	{
+		warn('autociv_countdown.gameUpdateSoft:' + game.get.numberOfSlots())
+		// this line has worked for me :) 25-0206_1039-00
+
+		if(game.get.numberOfSlots()>7){
+			error('autociv_countdown.gameUpdateSoft:' + game.get.numberOfSlots())
+            const enabledmods = Engine.ConfigDB_GetValue(
+				"user",
+				"mod.enabledmods")
+
+			if(enabledmods.indexOf("kateToggle") == -1)
+				captionCheck_is_communityModToggle_OR_mainlandTwilightToggle_optional_restartOad("kateModToggle", true)
+		}
+
+
 		if (!this.active)
 			return
 
