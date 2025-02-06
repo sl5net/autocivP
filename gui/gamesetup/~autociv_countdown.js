@@ -173,7 +173,7 @@ var g_autociv_countdown = {
 				"user",
 				"mod.enabledmods")
 
-			if(enabledmods.indexOf("kateToggle") == -1)
+			if(enabledmods.indexOf("kate-overhaul") == -1)
 				captionCheck_is_communityModToggle_OR_mainlandTwilightToggle_optional_restartOad("kateModToggle", true)
 		}
 

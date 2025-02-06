@@ -1487,7 +1487,7 @@ function captionCheck_is_communityModToggle_OR_mainlandTwilightToggle_optional_r
     }
 
     if(captiontrim == "kateModToggle" || captiontrim == "kateToggle"){
-      if(enabledmods.indexOf("kateToggle") == -1)
+      if(enabledmods.indexOf("kate-overhaul") == -1)
         enabledmods += ' kate-overhaul'
       else
         enabledmods = enabledmods.replace(/\s*\bkate-overhaul\b\s*/, " ")
