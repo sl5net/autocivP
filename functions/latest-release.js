@@ -3,8 +3,8 @@ const fetch = require('node-fetch');
 
 exports.handler = async (event, context) => {
   try {
-    const owner = process.env.GITHUB_OWNER; // Your GitHub username or organization
-    const repo = process.env.GITHUB_REPO;   // Your GitHub repository name
+    const owner = process.env.sl5net; // Your GitHub username or organization
+    const repo = process.env.autocivp;   // Your GitHub repository name
 
     if (!owner || !repo) {
       return {
