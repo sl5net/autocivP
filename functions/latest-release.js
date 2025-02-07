@@ -1,4 +1,3 @@
-// functions/latest-release.js
 const fetch = require('node-fetch');
 
 exports.handler = async (event, context) => {
@@ -9,6 +8,10 @@ exports.handler = async (event, context) => {
     if (!owner || !repo) {
       return {
         statusCode: 500,
+        headers: {
+          "Content-Type": "application/json",
+          "Access-Control-Allow-Origin": "*",
+        },
         body: JSON.stringify({ error: "GITHUB_OWNER and GITHUB_REPO environment variables must be defined." }),
       };
     }
@@ -24,22 +27,43 @@ exports.handler = async (event, context) => {
 
     if (!response.ok) {
       console.error(`GitHub API error: ${response.status} - ${response.statusText}`);
+      let errorMessage = `GitHub API error: ${response.status} - ${response.statusText}`;
+
+      if (response.status === 403) {
+        errorMessage = "GitHub API rate limit exceeded. Please try again later.";
+      }
+
       return {
         statusCode: response.status,
-        body: JSON.stringify({ error: `GitHub API error: ${response.status} - ${response.statusText}` }),
+        headers: {
+          "Content-Type": "application/json",
+          "Access-Control-Allow-Origin": "*",
+        },
+        body: JSON.stringify({ error: errorMessage }),
       };
     }
 
     const data = await response.json();
 
+    // Get the tag name from the latest release
+    const tagName = data.tag_name;
+
+    // Construct the download URL for the ZIP file
+    const downloadUrl = `https://github.com/${owner}/${repo}/archive/refs/tags/${tagName}.zip`;
+
+
     return {
       statusCode: 200,
+      headers: {
+        "Content-Type": "application/json",
+        "Access-Control-Allow-Origin": "*",
+      },
       body: JSON.stringify({
         tagName: data.tag_name,
         name: data.name,
         htmlUrl: data.html_url,
         publishedAt: data.published_at,
-        // You can include other relevant fields from the release data here
+        downloadUrl: downloadUrl, // Add the download URL to the response!
       }),
     };
 
@@ -47,6 +71,10 @@ exports.handler = async (event, context) => {
     console.error("Error fetching latest release:", error);
     return {
       statusCode: 500,
+      headers: {
+        "Content-Type": "application/json",
+        "Access-Control-Allow-Origin": "*",
+      },
       body: JSON.stringify({ error: error.message }),
     };
   }
