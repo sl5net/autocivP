@@ -13,7 +13,6 @@ exports.handler = async (event, context) => {
       repo = "autocivp"; // Replace with your actual repository name
     }
 
-
     if (!owner || !repo) {
       return {
         statusCode: 500,
@@ -77,19 +76,30 @@ exports.handler = async (event, context) => {
       };
     }
 
+    // Download the ZIP file and return it as the response
+    const zipResponse = await fetch(zipAssetUrl);
+    if (!zipResponse.ok) {
+      console.error(`Error downloading ZIP file: ${zipResponse.status} - ${zipResponse.statusText}`);
+      return {
+        statusCode: zipResponse.status,
+        headers: {
+          "Content-Type": "application/json",
+          "Access-Control-Allow-Origin": "*",
+        },
+        body: JSON.stringify({ error: `Error downloading ZIP file: ${zipResponse.status} - ${zipResponse.statusText}` }),
+      };
+    }
+
+    const zipBuffer = await zipResponse.arrayBuffer();
+
     return {
       statusCode: 200,
       headers: {
-        "Content-Type": "application/json",
-        "Access-Control-Allow-Origin": "*",
+        "Content-Type": "application/zip",
+        "Content-Disposition": `attachment; filename="latest.zip"`,
       },
-      body: JSON.stringify({
-        tagName: data.tag_name,
-        name: data.name,
-        htmlUrl: data.html_url,
-        publishedAt: data.published_at,
-        downloadUrl: zipAssetUrl, // Use the correct download URL from the asset
-      }),
+      body: Buffer.from(zipBuffer).toString('base64'),
+      isBase64Encoded: true,
     };
 
   } catch (error) {
