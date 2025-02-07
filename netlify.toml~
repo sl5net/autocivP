@@ -6,3 +6,4 @@
   from = "/download/latest.zip"
   to = "/.netlify/functions/latest-release"
   status = 200
+
