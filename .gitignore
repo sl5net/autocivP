@@ -7,5 +7,6 @@ moddata/autociv_0ad_default.cfg
 error_unsolved.txt
 .vscode
 .git*
+.netlify
 
 
