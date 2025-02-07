@@ -1,0 +1,83 @@
+name: Create GitHub Release on Version Change
+
+on:
+  push:
+    paths:
+      - 'mod.json'
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0 # Wichtig für die Ermittlung von Commits seit dem letzten Tag
+
+      - name: Get Version from mod.json
+        id: get_version
+        run: |
+          VERSION=$(jq -r .version mod.json)
+          echo "VERSION=$VERSION" >> $GITHUB_OUTPUT
+
+      - name: Calculate Previous Version
+        id: calculate_previous_version
+        run: |
+          # Extract the parts of the version number
+          MAJOR=$(echo ${{ steps.get_version.outputs.VERSION }} | cut -d'.' -f1)
+          MINOR=$(echo ${{ steps.get_version.outputs.VERSION }} | cut -d'.' -f2)
+          PATCH=$(echo ${{ steps.get_version.outputs.VERSION }} | cut -d'.' -f3)
+
+          # Calculate the previous version
+          if [[ "$PATCH" -gt 0 ]]; then
+            PREVIOUS_VERSION="$MAJOR.$MINOR.$((PATCH - 1))"
+          elif [[ "$MINOR" -gt 0 ]]; then
+            PREVIOUS_VERSION="$MAJOR.$((MINOR - 1)).99"  # Assuming 99 is the last patch version
+          elif [[ "$MAJOR" -gt 0 ]]; then
+            PREVIOUS_VERSION="$((MAJOR - 1)).99.99" # Assuming 99 is the last minor version
+          else
+            PREVIOUS_VERSION="0.0.0" # Or whatever makes sense for your project
+          fi
+          echo "PREVIOUS_VERSION=$PREVIOUS_VERSION" >> $GITHUB_OUTPUT
+
+      - name: Determine Previous Tag
+        id: determine_tag
+        run: |
+          PREVIOUS_VERSION="${{ steps.calculate_previous_version.outputs.PREVIOUS_VERSION }}"
+          PREVIOUS_TAG="v$PREVIOUS_VERSION"
+
+          # Check if the tag exists. If it doesn't then it should still generate the release notes
+          git fetch --tags
+          if git rev-parse --verify "refs/tags/$PREVIOUS_TAG" >/dev/null 2>&1; then
+            echo "PREVIOUS_TAG=$PREVIOUS_TAG" >> $GITHUB_OUTPUT
+          else
+            echo "PREVIOUS_TAG=" >> $GITHUB_OUTPUT
+            echo "No Previous Tag Found, Creating Initial Release Notes"
+          fi
+
+      - name: Generate Release Notes
+        id: generate_release_notes
+        run: |
+          PREVIOUS_TAG="${{ steps.determine_tag.outputs.PREVIOUS_TAG }}"
+
+          if [[ -z "$PREVIOUS_TAG" ]]; then
+            echo "No previous tag found. Creating initial release notes."
+            RELEASE_NOTES="Initial release."
+          else
+            echo "Previous tag is $PREVIOUS_TAG"
+            # Using git log to get commits since the last tag
+            RELEASE_NOTES=$(git log $PREVIOUS_TAG..HEAD --pretty=format:"- %s")
+          fi
+          echo "RELEASE_NOTES<<EOF" >> $GITHUB_OUTPUT
+          echo "$RELEASE_NOTES" >> $GITHUB_OUTPUT
+          echo "EOF" >> $GITHUB_OUTPUT
+
+      - name: Create Release
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # VERY IMPORTANT: Store your token in GitHub repo settings
+        with:
+          tag_name: v${{ steps.calculate_previous_version.outputs.PREVIOUS_VERSION }}
+          release_name: Release v${{ steps.calculate_previous_version.outputs.PREVIOUS_VERSION }}
+          body: ${{ steps.generate_release_notes.outputs.RELEASE_NOTES }}
+          draft: false
+          prerelease: false
