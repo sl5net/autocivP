@@ -1,9 +1,18 @@
 exports.handler = async (event, context) => {
-  const fetch = (...args) => import('node-fetch').then(({default: fetch}) => fetch(...args));
+  const fetch = (...args) => import('node-fetch').then(({ default: fetch }) => fetch(...args));
 
   try {
-    const owner = process.env.sl5net;
-    const repo = process.env.autocivp;
+    let owner = process.env.sl5net;
+    let repo = process.env.autocivp;
+
+    // Provide default values IF environment variables are not set.
+    if (!owner) {
+      owner = "sl5net"; // Replace with your actual GitHub username/org
+    }
+    if (!repo) {
+      repo = "autocivp"; // Replace with your actual repository name
+    }
+
 
     if (!owner || !repo) {
       return {
@@ -12,7 +21,7 @@ exports.handler = async (event, context) => {
           "Content-Type": "application/json",
           "Access-Control-Allow-Origin": "*",
         },
-        body: JSON.stringify({ error: "GITHUB_OWNER and GITHUB_REPO environment variables must be defined." }),
+        body: JSON.stringify({ error: "GITHUB_OWNER and GITHUB_REPO environment variables must be defined. Check the configuration." }),
       };
     }
 
