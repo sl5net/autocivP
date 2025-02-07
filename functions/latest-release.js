@@ -1,6 +1,6 @@
-const fetch = require('node-fetch');
-
 exports.handler = async (event, context) => {
+  const fetch = (...args) => import('node-fetch').then(({default: fetch}) => fetch(...args));
+
   try {
     const owner = process.env.sl5net;
     const repo = process.env.autocivp;
