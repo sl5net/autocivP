@@ -2,8 +2,8 @@ const fetch = require('node-fetch');
 
 exports.handler = async (event, context) => {
   try {
-    const owner = process.env.sl5net; // Your GitHub username or organization
-    const repo = process.env.autocivp;   // Your GitHub repository name
+    const owner = process.env.sl5net;
+    const repo = process.env.autocivp;
 
     if (!owner || !repo) {
       return {
@@ -20,7 +20,7 @@ exports.handler = async (event, context) => {
 
     const response = await fetch(apiUrl, {
       headers: {
-        'Authorization': `token ${process.env.GITHUB_TOKEN}`, // Optional, but recommended for rate limiting
+        'Authorization': `token ${process.env.GITHUB_TOKEN}`,
         'Accept': 'application/vnd.github.v3+json',
       },
     });
@@ -45,12 +45,28 @@ exports.handler = async (event, context) => {
 
     const data = await response.json();
 
-    // Get the tag name from the latest release
-    const tagName = data.tag_name;
+    // Find the ZIP asset in the release
+    let zipAssetUrl = null;
+    if (data.assets && data.assets.length > 0) {
+      for (const asset of data.assets) {
+        if (asset.name.endsWith(".zip")) {
+          zipAssetUrl = asset.browser_download_url;
+          break; // Stop searching after finding the first ZIP
+        }
+      }
+    }
 
-    // Construct the download URL for the ZIP file
-    const downloadUrl = `https://github.com/${owner}/${repo}/archive/refs/tags/${tagName}.zip`;
-
+    if (!zipAssetUrl) {
+      console.error("No ZIP asset found in the latest release.");
+      return {
+        statusCode: 404,
+        headers: {
+          "Content-Type": "application/json",
+          "Access-Control-Allow-Origin": "*",
+        },
+        body: JSON.stringify({ error: "No ZIP asset found in the latest release." }),
+      };
+    }
 
     return {
       statusCode: 200,
@@ -63,7 +79,7 @@ exports.handler = async (event, context) => {
         name: data.name,
         htmlUrl: data.html_url,
         publishedAt: data.published_at,
-        downloadUrl: downloadUrl, // Add the download URL to the response!
+        downloadUrl: zipAssetUrl, // Use the correct download URL from the asset
       }),
     };
 
