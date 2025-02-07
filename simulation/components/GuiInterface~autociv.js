@@ -209,15 +209,16 @@ try {
         }
 
         const cmpPlayerStatisticsTracker = QueryPlayerIDInterface(player, IID_StatisticsTracker);
-        const classCounts = cmpTechnologyManager?.GetClassCounts()
+        const classCounts = cmpTechnologyManager?.GetClassCounts();
+        const cmpDiplomacy = Engine.QueryInterface(playerEnt, IID_Diplomacy);
 
         ret.players.push({
             "name": cmpIdentity.GetName(),
             "popCount": cmpPlayer.GetPopulationCount(),
             "resourceCounts": cmpPlayer.GetResourceCounts(),
             "state": cmpPlayer.GetState(),
-            "team": cmpPlayer.GetTeam(),
-            "hasSharedLos": cmpPlayer.HasSharedLos(),
+            "team": cmpDiplomacy.GetTeam(),
+            "hasSharedLos": cmpDiplomacy.HasSharedLos(),
             "phase": phase,
             "researchedTechsCount": cmpTechnologyManager?.GetResearchedTechs().size ?? 0,
             "classCounts_Support": classCounts?.Support ?? 0,
@@ -225,7 +226,7 @@ try {
             "classCounts_Cavalry": classCounts?.Cavalry ?? 0,
             "classCounts_Siege": (classCounts?.Siege ?? 0),
             "classCounts_Champion": (classCounts?.Champion ?? 0),
-            "enemyUnitsKilledTotal": cmpPlayerStatisticsTracker?.enemyUnitsKilled.total ?? 0
+            "enemyUnitsKilledTotal": cmpPlayerStatisticsTracker?.enemyUnitsKilled.Unit ?? 0
         });
     }
 
