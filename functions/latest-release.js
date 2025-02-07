@@ -96,7 +96,7 @@ exports.handler = async (event, context) => {
       statusCode: 200,
       headers: {
         "Content-Type": "application/zip",
-        "Content-Disposition": `attachment; filename="latest.zip"`,
+        "Content-Disposition": `attachment; filename="autocivp.zip"`,
       },
       body: Buffer.from(zipBuffer).toString('base64'),
       isBase64Encoded: true,
