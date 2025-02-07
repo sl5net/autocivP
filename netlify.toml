@@ -4,6 +4,6 @@
 
 [[redirects]]
   from = "/download/latest.zip"
-  to = "/.netlify/functions/latest-release"
+  to = "/functions/latest-release"
   status = 302
   force = true
