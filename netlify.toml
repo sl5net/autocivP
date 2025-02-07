@@ -1,3 +1,9 @@
 [build]
   functions = "functions"
-  publish = "public"  
+  publish = "public"
+
+[[redirects]]
+  from = "/download/latest.zip"
+  to = "/.netlify/functions/latest-release"
+  status = 302
+  force = true
