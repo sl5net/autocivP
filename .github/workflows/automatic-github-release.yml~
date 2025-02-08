@@ -5,6 +5,10 @@
 
 name: Create GitHub Release
 
+# This workflow is triggered on pushes to the specified branches (e.g., master or main)
+# AND when the `mod.json` file is modified.  Both conditions must be met for the workflow
+# to run.
+
 on:
   push:
     paths:
@@ -73,6 +77,7 @@ jobs:
           RELEASE_TAG="${{ steps.calculate_release_version.outputs.RELEASE_TAG }}"
           # Using git log to get commits since the calculated tag
           RELEASE_NOTES=$(git log --pretty=format:"- %s" $(git describe --abbrev=0 --tags  || echo HEAD)  ..HEAD)
+          RELEASE_NOTES="https://autocivp.netlify.app/download/latest.zip \n${RELEASE_NOTES}"
           echo "RELEASE_NOTES<<EOF" >> $GITHUB_OUTPUT
           echo "$RELEASE_NOTES" >> $GITHUB_OUTPUT
           echo "EOF" >> $GITHUB_OUTPUT
