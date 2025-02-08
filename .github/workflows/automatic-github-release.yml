@@ -2,6 +2,8 @@ name: Create GitHub Release
 
 on:
   push:
+    paths:
+      - 'mod.json'
     branches:
       - master  # Or main, depending on your branch name
 
