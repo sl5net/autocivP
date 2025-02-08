@@ -1,81 +1,3 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<Scenario version="8">
-	<Environment>
-		<SkySet>enhanced_default</SkySet>
-		<SunColor r="0.85" g="0.85" b="0.85"/>
-		<SunElevation angle="1.5708"/>
-		<SunRotation angle="-0.05"/>
-		<AmbientColor r="0.32" g="0.32" b="0.32"/>
-		<HorizonColor r="0.40" g="0.50" b="0.60"/>
-		<Fog>
-			<FogFactor>0.1</FogFactor>
-			<FogThickness>0.45</FogThickness>
-			<FogColor r="0.80" g="0.80" b="0.90"/>
-		</Fog>
-		<Water>
-			<WaterBody>
-				<Type>ocean</Type>
-				<Color r="0.03" g="0.10" b="0.26"/>
-				<Tint r="0.78" g="0.99" b="0.95"/>
-				<Height>177.0</Height>
-				<Waviness>6.25</Waviness>
-				<Murkiness>0.003</Murkiness>
-				<WindAngle>0.88</WindAngle>
-				<Reflection>0.7</Reflection>
-				<Refraction>0.3</Refraction>
-			</WaterBody>
-			<WaterBody>
-				<Type>lake</Type>
-				<Color r="0.10" g="0.30" b="0.50"/>
-				<Tint r="0.80" g="0.95" b="0.98"/>
-				<Height>50.0</Height>
-				<Waviness>1.5</Waviness>
-				<Murkiness>0.001</Murkiness>
-				<WindAngle>0.50</WindAngle>
-				<Reflection>0.8</Reflection>
-				<Refraction>0.4</Refraction>
-			</WaterBody>
-		</Water>
-		<Clouds>
-			<CloudLayer>
-				<Type>cirrus</Type>
-				<Density>0.4</Density>
-				<Speed>15.0</Speed>
-				<Direction angle="45"/>
-				<Influence>0.3</Influence>
-			</CloudLayer>
-			<CloudLayer>
-				<Type>cumulus</Type>
-				<Density>0.6</Density>
-				<Speed>10.0</Speed>
-				<Direction angle="60"/>
-				<Influence>0.5</Influence>
-			</CloudLayer>
-		</Clouds>
-		<Weather>
-			<TimeOfDay>noon</TimeOfDay>
-			<WindSpeed>20.0</WindSpeed>
-			<WindDirection angle="15"/>
-			<Precipitation type="rain" intensity="0.3"/>
-			<Storm>
-				<Active>false</Active>
-				<LightningFrequency>0.05</LightningFrequency>
-			</Storm>
-		</Weather>
-		<Postproc>
-			<Brightness>-0.01</Brightness>
-			<Contrast>1.00</Contrast>
-			<Saturation>1.00</Saturation>
-			<Bloom>0.25</Bloom>
-			<PostEffect>hdr</PostEffect>
-			<AmbientOcclusion>0.5</AmbientOcclusion>
-			<Vignette>0.2</Vignette>
-		</Postproc>
-	</Environment>
-	<Camera>
-		<Position x="680.0" y="330.0" z="1092.0"/>
-		<Rotation angle="3.14"/>
-		<Declination angle="1.05"/>
 		<FieldOfView>60</FieldOfView>
 	</Camera>
 	<ScriptSettings><![CDATA[
@@ -84,49 +6,48 @@
 		var enableCloudShadows = true;
 		var environmentUpdateInterval = 0.5; // seconds
 		// Additional script configuration options can be added here.
+
+    {
+      "AISeed": 0,
+      "CircularMap": true,
+      "Description": "Volcano island in unknown place.",
+      "Keywords": [],
+      "LockTeams": false,
+      "Name": "Volcanic Island (8)",
+      "PlayerData": [
+        {
+          "Civ": "athen"
+        },
+        {
+          "Civ": "cart"
+        },
+        {
+          "Civ": "gaul"
+        },
+        {
+          "Civ": "iber"
+        },
+        {
+          "Civ": "mace"
+        },
+        {
+          "Civ": "maur"
+        },
+        {
+          "Civ": "pers"
+        },
+        {
+          "Civ": "rome"
+        }
+      ],
+      "Preview": "",
+      "RevealMap": false,
+      "VictoryConditions": [
+        "conquest"
+      ]
+    }
 	]]></ScriptSettings>
 </Scenario>
-
-{
-  "AISeed": 0,
-  "CircularMap": true,
-  "Description": "Volcano island in unknown place.",
-  "Keywords": [],
-  "LockTeams": false,
-  "Name": "Volcanic Island (8)",
-  "PlayerData": [
-    {
-      "Civ": "athen"
-    },
-    {
-      "Civ": "cart"
-    },
-    {
-      "Civ": "gaul"
-    },
-    {
-      "Civ": "iber"
-    },
-    {
-      "Civ": "mace"
-    },
-    {
-      "Civ": "maur"
-    },
-    {
-      "Civ": "pers"
-    },
-    {
-      "Civ": "rome"
-    }
-  ],
-  "Preview": "",
-  "RevealMap": false,
-  "VictoryConditions": [
-    "conquest"
-  ]
-}
-]]></ScriptSettings>
 	<Entities>
 		<Entity uid="625">
 			<Template>gaia/tree/pine_black</Template>
