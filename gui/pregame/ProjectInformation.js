@@ -174,7 +174,7 @@ var g_ProjectInformation = {
 	},
 	"productDescription": {
 		"caption":
-		((modsString.length < 110 ) ? setStringTags(translate("Alpha 27: Agni"), { "font": "sans-bold-16" })   + "\n" : '')
+		((modsString.length < 110 ) ? setStringTags(translate(`Alpha ${revisionNumber} : Agni`), { "font": "sans-bold-18" })   + "\n" : '')
 		 +
 		setStringTags(translate(modsString.trim(), { "font": "sans-16" }))
 		 + "\n"
