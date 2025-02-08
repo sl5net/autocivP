@@ -33,7 +33,19 @@
     "hotkey.autociv.selection.nowoundedonly": "K",
     "hotkey.autociv.session.building.autoqueueoff": "Super+W",
     "hotkey.autociv.session.building.autotrain.disable": "\"Super+Q\", \"Super+W\"",
-    "hotkey.autociv.session.building.autotrain.enable": "\"X\", \"C\", \"B\", \"N\", \"Semicolon\", \"Semicolon\"",
+    "hotkey.autociv.session.building.autotrain.enable": [
+      "X",
+      "C",
+      "B",
+      "N"
+    ],
+    "hotkey.session.queueunit.autoqueueon":
+    [
+      "Y",
+      "C",
+      "B",
+      "N"
+    ],
     "hotkey.autociv.session.building.place.amphitheater_pompeii": "",
     "hotkey.autociv.session.building.place.apadana": "",
     "hotkey.autociv.session.building.place.arch": "",
@@ -279,7 +291,6 @@
     "hotkey.resetqueue.all": "Super+R",
     "hotkey.resetqueue.resetqueue": "Shift+Esc",
     "hotkey.session.queueunit.autoqueueoff": "Alt+W",
-    "hotkey.session.queueunit.autoqueueon": "\"Y\", \"X\", \"C\", \"B\", \"N\", \"N\", \"N\"",
     "hotkey.session.stop": "",
     "hotkey.togglefullscreen": "F11"
   }
