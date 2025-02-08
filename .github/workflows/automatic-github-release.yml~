@@ -24,9 +24,22 @@ jobs:
         run: |
           VERSION="${{ steps.get_version.outputs.VERSION }}"
 
-          # Calculate the release version (one less than current version in mod.json)
-          # This uses awk to handle decimal subtraction correctly
-          RELEASE_VERSION=$(echo "$VERSION - 0.001" | awk '{printf "%.3f", $1}')  # Adjust precision as needed
+          # Extract the parts of the version number
+          MAJOR=$(echo "$VERSION" | cut -d'.' -f1)
+          MINOR=$(echo "$VERSION" | cut -d'.' -f2)
+          PATCH=$(echo "$VERSION" | cut -d'.' -f3)
+
+          # Calculate the RELEASE version (one less than current version in mod.json)
+          if [[ "$PATCH" -gt 0 ]]; then
+            RELEASE_VERSION="$MAJOR.$MINOR.$((PATCH - 1))"
+          elif [[ "$MINOR" -gt 0 ]]; then
+            RELEASE_VERSION="$MAJOR.$((MINOR - 1)).99"  # Assuming 99 is the last patch version
+          elif [[ "$MAJOR" -gt 0 ]]; then
+            RELEASE_VERSION="$((MAJOR - 1)).99.99" # Assuming 99 is the last minor version
+          else
+            RELEASE_VERSION="0.0.0" # Or whatever makes sense for your project
+          fi
+
           RELEASE_TAG="v$RELEASE_VERSION"
 
           echo "RELEASE_VERSION=$RELEASE_VERSION" >> $GITHUB_OUTPUT
@@ -49,9 +62,10 @@ jobs:
         id: generate_release_notes
         if: steps.check_tag_exists.outputs.TAG_EXISTS == 'false'
         run: |
+          VERSION="${{ steps.get_version.outputs.VERSION }}"
           RELEASE_TAG="${{ steps.calculate_release_version.outputs.RELEASE_TAG }}"
           # Using git log to get commits since the calculated tag
-          RELEASE_NOTES=$(git log $RELEASE_TAG..HEAD --pretty=format:"- %s")
+          RELEASE_NOTES=$(git log --pretty=format:"- %s" $(git describe --abbrev=0 --tags  || echo HEAD)  ..HEAD)
           echo "RELEASE_NOTES<<EOF" >> $GITHUB_OUTPUT
           echo "$RELEASE_NOTES" >> $GITHUB_OUTPUT
           echo "EOF" >> $GITHUB_OUTPUT
@@ -71,6 +85,7 @@ jobs:
       - name: Create Tag (if it doesn't exist)
         if: steps.check_tag_exists.outputs.TAG_EXISTS == 'false'
         run: |
+          VERSION="${{ steps.get_version.outputs.VERSION }}"
           RELEASE_TAG="${{ steps.calculate_release_version.outputs.RELEASE_TAG }}"
           git tag $RELEASE_TAG
           git push origin $RELEASE_TAG
