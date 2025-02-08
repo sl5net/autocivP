@@ -174,13 +174,15 @@ var g_ProjectInformation = {
 	},
 	"productDescription": {
 		"caption":
-		((modsString.length < 110 ) ? setStringTags(translate("Alpha XXVI: Zhuangzi"), { "font": "sans-bold-18" })   + "\n" : '')
+		((modsString.length < 110 ) ? setStringTags(translate("Alpha 27: Agni"), { "font": "sans-bold-16" })   + "\n" : '')
 		 +
 		setStringTags(translate(modsString.trim(), { "font": "sans-16" }))
 		 + "\n"
 	}
 };
 
+// Alpha 26 XXVI: Zhuangzi
+// 0 A.D. Alpha 27: Agni
 
 // var g_ProjectInformation = {
 // 	"organizationName": {
