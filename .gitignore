@@ -6,8 +6,14 @@ moddata/autociv_0ad_default.cfg
 # Archive
 *.zip
 
-# Temporäre Dateien
+# Ignore temporary files
 *tempList.text
+ *~
+ *.bak
+
+# Ignore Kate editor backup files
+*@auto
+*.kate-swp
 
 # IDE / Editor
 .vscode/
@@ -18,4 +24,3 @@ error_unsolved.txt
 
 # Ignoriere nur die Inhalte, nicht den Ordner selbst!
 .netlify/functions/*
-
