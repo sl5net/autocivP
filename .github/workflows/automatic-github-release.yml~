@@ -90,3 +90,4 @@ jobs:
           git tag $RELEASE_TAG
           git push origin $RELEASE_TAG
           echo "Created tag $RELEASE_TAG"
+

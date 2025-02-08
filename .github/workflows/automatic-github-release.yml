@@ -65,12 +65,7 @@ jobs:
           VERSION="${{ steps.get_version.outputs.VERSION }}"
           RELEASE_TAG="${{ steps.calculate_release_version.outputs.RELEASE_TAG }}"
           # Using git log to get commits since the calculated tag
-          if [[ -z $(git tag -l "$RELEASE_TAG") ]]; then
-            RELEASE_NOTES="Initial release"
-          else
-            RELEASE_NOTES=$(git log --pretty=format:"- %s" "$RELEASE_TAG"..HEAD)
-          fi
-
+          RELEASE_NOTES=$(git log --pretty=format:"- %s" $(git describe --abbrev=0 --tags  || echo HEAD)  ..HEAD)
           echo "RELEASE_NOTES<<EOF" >> $GITHUB_OUTPUT
           echo "$RELEASE_NOTES" >> $GITHUB_OUTPUT
           echo "EOF" >> $GITHUB_OUTPUT
@@ -95,3 +90,4 @@ jobs:
           git tag $RELEASE_TAG
           git push origin $RELEASE_TAG
           echo "Created tag $RELEASE_TAG"
+
