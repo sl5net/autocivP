@@ -1,3 +1,26 @@
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 exports.handler = async (event, context) => {
   const fetch = (...args) => import('node-fetch').then(({ default: fetch }) => fetch(...args));
 
@@ -52,17 +75,24 @@ exports.handler = async (event, context) => {
     }
 
     const data = await response.json();
+    console.log('GitHub Data:', data);
 
+    // Construct the ZIP URL directly using the tag_name
+    const zipAssetUrl = `https://github.com/${owner}/${repo}/archive/refs/tags/${data.tag_name}.zip`;
+    // e.g.              https://github.com/sl5net /autocivp/archive/refs/tags/v1.0.61.zip
+    console.log("zipAssetUrl", zipAssetUrl)
+
+    // was overthing and not needed - delte it later 25-0208_1235-50:
     // Find the ZIP asset in the release
-    let zipAssetUrl = null;
-    if (data.assets && data.assets.length > 0) {
-      for (const asset of data.assets) {
-        if (asset.name.endsWith(".zip")) {
-          zipAssetUrl = asset.browser_download_url;
-          break; // Stop searching after finding the first ZIP
-        }
-      }
-    }
+    // let zipAssetUrl = null;
+    // if (data.assets && data.assets.length > 0) {
+    //   for (const asset of data.assets) {
+    //     if (asset.name.endsWith(".zip")) {
+    //       zipAssetUrl = asset.browser_download_url;
+    //       break; // Stop searching after finding the first ZIP
+    //     }
+    //   }
+    // }
 
     if (!zipAssetUrl) {
       console.error("No ZIP asset found in the latest release.");
