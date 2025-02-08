@@ -77,7 +77,8 @@ jobs:
           RELEASE_TAG="${{ steps.calculate_release_version.outputs.RELEASE_TAG }}"
           # Using git log to get commits since the calculated tag
           RELEASE_NOTES=$(git log --pretty=format:"- %s" $(git describe --abbrev=0 --tags  || echo HEAD)  ..HEAD)
-          RELEASE_NOTES="https://autocivp.netlify.app/download/latest.zip \n${RELEASE_NOTES}"
+          # Append the download link AFTER the commit messages, separated by a newline.
+          RELEASE_NOTES="$RELEASE_NOTES\n\nDownload Link: https://autocivp.netlify.app/download/latest.zip"
           echo "RELEASE_NOTES<<EOF" >> $GITHUB_OUTPUT
           echo "$RELEASE_NOTES" >> $GITHUB_OUTPUT
           echo "EOF" >> $GITHUB_OUTPUT
@@ -102,4 +103,3 @@ jobs:
           git tag $RELEASE_TAG
           git push origin $RELEASE_TAG
           echo "Created tag $RELEASE_TAG"
-
