@@ -159,6 +159,51 @@ if(versionName != '0ad')
 modsString = modsString.replace(/\s+([a-z])/gi , "\n$1"  ) ;
 modsString = modsString.replace(/\s+(proGUI)/g , "\n$1(boonGUI, BetterQuickStart)"  ) ;
 modsString = modsString.replace(/\s+(autocivP)/gi , "\nAutoCivP(AutoCiv)"  ) ;
+
+
+
+
+
+
+
+
+
+function toRoman(num) {
+	if (num < 1 || num > 3999) {
+	  return "Number out of range (1-3999)";
+	}
+
+	const romanMap = {
+	  M: 1000,
+	  CM: 900,
+	  D: 500,
+	  CD: 400,
+	  C: 100,
+	  XC: 90,
+	  L: 50,
+	  XL: 40,
+	  X: 10,
+	  IX: 9,
+	  V: 5,
+	  IV: 4,
+	  I: 1,
+	};
+
+	let roman = "";
+	for (const key in romanMap) {
+	  while (num >= romanMap[key]) {
+		roman += key;
+		num -= romanMap[key];
+	  }
+	}
+
+	return roman;
+  }
+
+  	// warn(`toRoman: ${toRoman(revisionNumber)}`);
+
+
+
 var g_ProjectInformation = {
 	"organizationName": {
 		"caption": translate("WILDFIRE GAMES")
@@ -174,11 +219,15 @@ var g_ProjectInformation = {
 	},
 	"productDescription": {
 		"caption":
-		((modsString.length < 110 ) ? setStringTags(translate(`Alpha ${revisionNumber} : Agni`), { "font": "sans-bold-18" })   + "\n" : '')
+		((modsString.length < 110 ) ? setStringTags(translate(`Alpha ${toRoman(revisionNumber)} Agni`), { "font": "sans-bold-18" })
+		+ setStringTags(translate(`(${revisionNumber})`, { "font": "sans-bold-8" }))
+		  + "\n" : '')
 		 +
 		setStringTags(translate(modsString.trim(), { "font": "sans-16" }))
 		 + "\n"
 	}
+	// idk whats the smallest font size. maybe 8 do not is realy 8. mabe larger.
+
 };
 
 // Alpha 26 XXVI: Zhuangzi
