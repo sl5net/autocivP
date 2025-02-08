@@ -5,7 +5,6 @@ title: [FEATURE] - Concise description of the feature
 labels: feature request, gameplay, UI
 assignees: ''
 ---
-
 **Mod Name:**
 
 Specify which mod this feature request is for.
@@ -38,7 +37,9 @@ Add any other relevant information or context that might be helpful for the deve
 
 Provide specific examples of how the feature would be used in the game. This helps developers understand the use case and prioritize accordingly.
 
-**Checklist:**
+**Checklist :**
+
+
 
 - [ ] I have searched the existing issues and have not found a similar request.
 - [ ] I am willing to contribute to the implementation of this feature (optional).
