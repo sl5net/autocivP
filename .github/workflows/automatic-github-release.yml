@@ -1,13 +1,19 @@
+# let the workflow clarifie. the reasoning behind releasing the previous version.
+# The mod.json file in th main branch contains the next version.
+# it declares the next version that's under development,
+# and the workflow's purpose is to create a release for the code that represents the previous stable version.
+# This is an unusual but valid workflow.
+
 # This workflow automates the process of creating GitHub Releases when a new version
 # is detected in the `mod.json` file. It ensures that a release is created only if
 # the version number in `mod.json` has been incremented, and it generates release notes
 # based on the commits since the last release.
 
-name: Create GitHub Release
-
 # This workflow is triggered on pushes to the specified branches (e.g., master or main)
 # AND when the `mod.json` file is modified.  Both conditions must be met for the workflow
 # to run.
+
+name: Create GitHub Release
 
 on:
   push:
@@ -69,19 +75,37 @@ jobs:
             echo "Tag $RELEASE_TAG does not exist. Proceeding with release creation."
           fi
 
-      - name: Generate Release Notes
-        id: generate_release_notes
-        if: steps.check_tag_exists.outputs.TAG_EXISTS == 'false'
-        run: |
-          VERSION="${{ steps.get_version.outputs.VERSION }}"
-          RELEASE_TAG="${{ steps.calculate_release_version.outputs.RELEASE_TAG }}"
-          # Using git log to get commits since the calculated tag
-          RELEASE_NOTES=$(git log --pretty=format:"- %s" $(git describe --abbrev=0 --tags  || echo HEAD)  ..HEAD)
-          # Append the download link AFTER the commit messages, separated by a newline.
-          RELEASE_NOTES="$RELEASE_NOTES\n\nDownload Link: https://autocivp.netlify.app/download/latest.zip"
-          echo "RELEASE_NOTES<<EOF" >> $GITHUB_OUTPUT
-          echo "$RELEASE_NOTES" >> $GITHUB_OUTPUT
-          echo "EOF" >> $GITHUB_OUTPUT
+        - name: Generate Release Notes
+          id: generate_release_notes
+          if: steps.check_tag_exists.outputs.TAG_EXISTS == 'false'
+          run: |
+            VERSION="${{ steps.get_version.outputs.VERSION }}"
+            RELEASE_TAG="${{ steps.calculate_release_version.outputs.RELEASE_TAG }}"
+
+            # Get a list of contributors for this release
+            CONTRIBUTORS=$(git log --pretty="%an <%ae>" --since="$RELEASE_TAG" | sort -u)
+
+            # Generate the commit list, explicitly handling the first release case
+            if [[ "$(git describe --abbrev=0 --tags 2>/dev/null)" ]]; then
+              RELEASE_NOTES=$(git log --pretty=format:"- %s" $(git describe --abbrev=0 --tags)..HEAD)
+            else
+              # No tags exist yet, so grab ALL commits
+              RELEASE_NOTES=$(git log --pretty=format:"- %s" $(git rev-list --max-parents=0 HEAD)..HEAD)
+            fi
+
+            # Construct the full release notes
+            INTRO="Release notes for version $RELEASE_TAG.\n\n"
+            if [[ -n "$CONTRIBUTORS" ]]; then
+              INTRO="$INTRO Contributors: $CONTRIBUTORS \n\n"
+            fi
+
+            DOWNLOAD_LINK="Download Link: https://autocivp.netlify.app/download/latest.zip\n\n"
+            FULL_RELEASE_NOTES="$INTRO$DOWNLOAD_LINK$RELEASE_NOTES"
+
+            # Output the release notes
+            echo "RELEASE_NOTES<<EOF" >> $GITHUB_OUTPUT
+            echo "$FULL_RELEASE_NOTES" >> $GITHUB_OUTPUT
+            echo "EOF" >> $GITHUB_OUTPUT
 
       - name: Create Release
         uses: actions/create-release@v1
