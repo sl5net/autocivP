@@ -34,7 +34,7 @@ jobs:
         id: get_version
         run: |
           VERSION=$(jq -r .version mod.json)
-          echo "VERSION=$VERSION" >> $GITHUB_OUTPUT
+          echo -e "VERSION=$VERSION" >> $GITHUB_OUTPUT
 
       - name: Calculate Release Version and Tag
         id: calculate_release_version
@@ -42,9 +42,9 @@ jobs:
           VERSION="${{ steps.get_version.outputs.VERSION }}"
 
           # Extract the parts of the version number
-          MAJOR=$(echo "$VERSION" | cut -d'.' -f1)
-          MINOR=$(echo "$VERSION" | cut -d'.' -f2)
-          PATCH=$(echo "$VERSION" | cut -d'.' -f3)
+          MAJOR=$(echo -e "$VERSION" | cut -d'.' -f1)
+          MINOR=$(echo -e "$VERSION" | cut -d'.' -f2)
+          PATCH=$(echo -e "$VERSION" | cut -d'.' -f3)
 
           # Calculate the RELEASE version (one less than current version in mod.json)
           if [[ "$PATCH" -gt 0 ]]; then
@@ -59,8 +59,8 @@ jobs:
 
           RELEASE_TAG="v$RELEASE_VERSION"
 
-          echo "RELEASE_VERSION=$RELEASE_VERSION" >> $GITHUB_OUTPUT
-          echo "RELEASE_TAG=$RELEASE_TAG" >> $GITHUB_OUTPUT
+          echo -e "RELEASE_VERSION=$RELEASE_VERSION" >> $GITHUB_OUTPUT
+          echo -e "RELEASE_TAG=$RELEASE_TAG" >> $GITHUB_OUTPUT
 
       - name: Check if Tag Exists
         id: check_tag_exists
@@ -68,11 +68,11 @@ jobs:
           RELEASE_TAG="${{ steps.calculate_release_version.outputs.RELEASE_TAG }}"
           git fetch --tags
           if git rev-parse --verify "refs/tags/$RELEASE_TAG" >/dev/null 2>&1; then
-            echo "TAG_EXISTS=true" >> $GITHUB_OUTPUT
-            echo "Tag $RELEASE_TAG already exists. Skipping release creation."
+            echo -e "TAG_EXISTS=true" >> $GITHUB_OUTPUT
+            echo -e "Tag $RELEASE_TAG already exists. Skipping release creation."
           else
-            echo "TAG_EXISTS=false" >> $GITHUB_OUTPUT
-            echo "Tag $RELEASE_TAG does not exist. Proceeding with release creation."
+            echo -e "TAG_EXISTS=false" >> $GITHUB_OUTPUT
+            echo -e "Tag $RELEASE_TAG does not exist. Proceeding with release creation."
           fi
 
       - name: Generate Release Notes
@@ -94,18 +94,18 @@ jobs:
           fi
 
           # Construct the full release notes
-          INTRO="Release notes for version $RELEASE_TAG.\n\n"
+          INTRO="Release notes for version $RELEASE_TAG. \n "
           if [[ -n "$CONTRIBUTORS" ]]; then
-            INTRO="$INTRO Contributors: $CONTRIBUTORS \n\n"
+            INTRO="$INTRO Contributors: $CONTRIBUTORS \n"
           fi
 
-          DOWNLOAD_LINK="Download Link: https://autocivp.netlify.app/download/latest.zip\n\n"
+          DOWNLOAD_LINK="Download Link: https://autocivp.netlify.app/download/latest.zip \n"
           FULL_RELEASE_NOTES="$INTRO$DOWNLOAD_LINK$RELEASE_NOTES"
 
           # Output the release notes
-          echo "RELEASE_NOTES<<EOF" >> $GITHUB_OUTPUT
-          echo "$FULL_RELEASE_NOTES" >> $GITHUB_OUTPUT
-          echo "EOF" >> $GITHUB_OUTPUT
+          echo -e "RELEASE_NOTES<<EOF" >> $GITHUB_OUTPUT
+          echo -e "$FULL_RELEASE_NOTES" >> $GITHUB_OUTPUT
+          echo -e "EOF" >> $GITHUB_OUTPUT
 
       - name: Create Release
         uses: actions/create-release@v1
@@ -126,4 +126,4 @@ jobs:
           RELEASE_TAG="${{ steps.calculate_release_version.outputs.RELEASE_TAG }}"
           git tag $RELEASE_TAG
           git push origin $RELEASE_TAG
-          echo "Created tag $RELEASE_TAG"
+          echo -e "Created tag $RELEASE_TAG"
