@@ -398,7 +398,9 @@ const g_autoCompleteText_newMerge = (guiObject, list) => {
     if( is_transGGWP_needet( caption, firstChar, g_iconPrefix,guiObject) )  {
       const captionBegin = caption.toString()
       let captionTrimed = captionBegin.substring(g_iconPrefix.length)
-      const minMatchScore = (captionTrimed.length > 20) ? 0.8 : (g_iconPrefix.length ? 0.3 :  0.55 ) // user name will be replaced later. i want have .3 but some users dont be found so easy ... hmmm // user name will be replaced later. i want have .3 but some users dont be found so easy ... hmmm // user name will be replaced later. i want have .3 but some users dont be found so easy ... hmmm
+      const minMatchScore = (captionTrimed.length > 20) ? 0.8 : (g_iconPrefix.length ? 0.3 :  g_minMatchScore )
+      // const minMatchScore = (captionTrimed.length > 20) ? 0.8 : (g_iconPrefix.length ? 0.3 :  0.55 )
+      // user name will be replaced later. i want have .3 but some users dont be found so easy ... hmmm // user name will be replaced later. i want have .3 but some users dont be found so easy ... hmmm // user name will be replaced later. i want have .3 but some users dont be found so easy ... hmmm
 
       // selfMessage(`355: gameState '${gameState}' `);
       if(gameState == "ingame"){
@@ -424,7 +426,8 @@ const g_autoCompleteText_newMerge = (guiObject, list) => {
         const guiObject = Engine.GetGUIObjectByName("chatInput");
         // guiObject.blur(); // remove the focus from a GUI element.
         guiObject.focus();
-        // selfMessage('230: allIconsInText = ' + allIconsInText);
+        if(bugIt)
+          selfMessage('230: allIconsInText = ' + allIconsInText);
 
         if(captionBegin != allIconsInText){
           const isCaptionNumeric = (allIconsInText[0] >= '0' && allIconsInText[0] <= '9')
@@ -437,12 +440,19 @@ const g_autoCompleteText_newMerge = (guiObject, list) => {
             const pattern = /\d+ \w+ please/;
             const hasPattern = pattern.test(allIconsInText);
             if(hasPattern){
-              // selfMessage(`392: gameState '${gameState}' `);
+
+              if(bugIt)
+                selfMessage(`392: gameState '${gameState}' `);
               return
             }
           }
 
-          g_previousCaption = captionTrimed
+          if(guiObject.caption == allIconsInText){
+            if(bugIt)
+              selfMessage(`452: caption == allIconsInText`);
+          }else{
+            g_previousCaption = captionTrimed
+          }
           guiObject.caption = allIconsInText
 
           guiObject.buffer_position = isCaptionNumeric ? 2 : allIconsInText.length;
@@ -490,15 +500,33 @@ const g_autoCompleteText_newMerge = (guiObject, list) => {
     //   setCaption2nextCommandOfHistory(guiObject)
     // }
     if(g_previousCaption == caption ){ // || g_lastCommand == caption
-      // selfMessage(`445: doppelPosting? '${g_lastCommand}' `);
-      if(setCaption2nextCommandOfHistory(guiObject)){
 
-        g_previousCaption = guiObject.caption
+        // selfMessage(`445: doppelPosting? '${g_lastCommand}' `);
+        selfMessage(`dont found the command '${caption}' `);
+        selfMessage(`command before was command '${g_previousCaption}' `);
+
+      // double tab could maybe mean icons should be removed
+      // are nonalphabetic characters in the string?
+      const hasMoreThanAscii = /^[\u0000-\u007f]*$/.test(caption);
+      if(!hasMoreThanAscii){
+        if(bugIt)
+          selfMessage(`445: nonalphabetic characters found '${caption}' `);
+      }else{
+
+        if( caption.length < 10 ){ // be careful with this command. overwrite text that someone else was typing and was not very sort
+          if(setCaption2nextCommandOfHistory(guiObject)){
+            g_previousCaption = guiObject.caption
+            if(bugIt)
+              selfMessage(`507: g_previousCaption = ${g_previousCaption}`);
+          }
+
         // setCaption2nextCommandOfHistory(guiObject)
 
-        return
       }
-    }
+    } // end of if( caption.length < 10 )
+    return
+
+    } // end of if(g_lastCommand == caption)
 
   }
 

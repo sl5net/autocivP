@@ -10,6 +10,11 @@ const auto_prettyDisable_when_playersNR = Engine.ConfigDB_GetValue(
 );
 
 
+var g_minMatchScore =  Engine.ConfigDB_GetValue(
+	"user",
+	"autocivP.fuzzy_minMatchScore"
+);
+
 var g_playerIsGreeted = []
 
 var g_PLineGithub = 'https://github.com/sl5net/PLine';
@@ -1324,9 +1329,15 @@ function FuzzySet(arr, useLevenshtein, gramSizeLower, gramSizeUpper)
 	fuzzyset.get = function(value, defaultValue, minMatchScore)
 	{
 		// check for value in set, returning defaultValue or null if none found
+
+
 		if (minMatchScore === undefined)
 		{
-			minMatchScore = 0.33;
+			// warn(` uuuuuuuuuuuuu ${g_minMatchScore})`);
+			if(g_minMatchScore)
+				minMatchScore = g_minMatchScore
+			else
+				minMatchScore = 0.33;
 		}
 		let result = this._get(value, minMatchScore);
 		if (!result && typeof defaultValue !== 'undefined')
@@ -1575,6 +1586,10 @@ function FuzzySet(arr, useLevenshtein, gramSizeLower, gramSizeUpper)
  *
  * @param {string} query - The query to search for.
  * @param {object} fuzzyArray - The fuzzy array to search in.
+ * @param {number} minMatchScore - The minimum similarity score to consider a match (default is 0.3).
+ * Higher minMatchScore: Setting a higher minMatchScore will make the function more selective.
+ * It will only return very strong matches.
+ * This can reduce the number of false positives but might also lead to the function returning null (no match) more often.
  * @return {object} An object containing the best match, the matched word, and the similarity score.
  */
 function findBestMatch(query, fuzzyArray, minMatchScore = 0.3) {
@@ -1586,8 +1601,11 @@ function findBestMatch(query, fuzzyArray, minMatchScore = 0.3) {
 
 	if(!query)
 		return ''
-	if(isDebug)
-		selfMessage(`findBestMatch for query "${query}"`);
+	if(isDebug){
+		selfMessage(`1605: autocivSharedCommands.js: findBestMatch`);
+		selfMessage(`1605: findBestMatch for query "${query}"`);
+		selfMessage(`1605: minMatchScore = ${minMatchScore}`);
+	}
 
 
 

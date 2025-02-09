@@ -92,9 +92,10 @@ autociv_patchApplyN("init", function (target, that, args)
 	Engine.GetGUIObjectByName("chatInput").blur();
 	Engine.GetGUIObjectByName("chatInput").focus();
 
-
-
-    selfMessage(`83: gui/gamesetup/gamesetup~autociv.js`);
+	let bugIt = false
+	bugIt = bugIt && g_selfNick.includes("seeh") // new implementation so i will watch longer
+	if(bugIt)
+    	selfMessage(`83: gui/gamesetup/gamesetup~autociv.js`);
 
     // selfMessage(`game.is.rated(): ${game.is.rated()} 85`);
 

@@ -385,7 +385,14 @@
 				"label": "set mods that should always in replays. e.g. boonGUI : ",
 				"tooltip": "",
 				"config": "modProfile.alwaysInReplay"
+			},
+			{
+				"type": "string",
+				"label": "Chat minimum similarity for commands:",
+				"tooltip": "Higher reduce the risk of misinterpreting commands. Maximum value: 1.0. Really high values mabe 0.8. 0.3 matches easier.",
+				"config": "autocivP.fuzzy_minMatchScore"
 			}
+
 		]
 	},
 	{
