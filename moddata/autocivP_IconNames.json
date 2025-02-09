@@ -81,7 +81,6 @@
     "togglepretty"
   ],
   "prettyEnable": [
-    "prettyEnable",
     "prettyenable",
     "prettyenble",
     "pretyenable",
@@ -91,7 +90,6 @@
     "enpretty",
     "enprety",
     "prettyon",
-    "prettyOn",
     "enableHighGraphics"
   ],
   "prettyDisable": [
