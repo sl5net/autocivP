@@ -83,7 +83,7 @@ jobs:
           RELEASE_TAG="${{ steps.calculate_release_version.outputs.RELEASE_TAG }}"
 
           # Get a list of contributors for this release
-          CONTRIBUTORS=$(git log --pretty="%an" --since="$RELEASE_TAG" | sort -u | xargs)
+          CONTRIBUTORS=$(git log --pretty="%an" --since="$RELEASE_TAG" | sort -u | sed 's/^\(.*\)$/@\1/g' | xargs)
 
           # Generate the commit list, explicitly handling the first release case
           if [[ "$(git describe --abbrev=0 --tags 2>/dev/null)" ]]; then
