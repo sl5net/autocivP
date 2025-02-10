@@ -155,7 +155,16 @@ about mod names about mod.io here tips:
 https://wildfiregames.com/forum/topic/24333-guide-for-publishing-mods-on-modio/?do=findComment&comment=554945
 */
 
-const howToRememberIt = `. take a photo with your phone or better take a screenshot, if you know how. Visit the website and take it. good luck.`
+// const howToRememberIt = `. take a photo with your phone or better take a screenshot, if you know how. Visit the website and take it. BTW with ...P mod you can copy text from chat.  `
+
+
+// const howToRememberIt1 = ". Need to remember this? Take a screenshot! Or, if you know the location, take a photo with your phone. If you're in [Platform name - e.g., Discord], the ...P mod can let you copy text from the chat."
+
+// const howToRememberIt2 = ". Need to remember this? The easiest way is to take a screenshot. Or, if you know the location, take a photo with your phone. If the text is selectable, you could also copy and paste it into a document."
+
+// const howToRememberIt3 = ". Having trouble remembering this? Try taking a screenshot or a photo with your phone!"
+
+const howToRememberIt = ". Screenshot it / Photo with your phone. Bonus: With autocivP mod, you can copy chat!";
 
 const versionOf0ad = Engine.GetEngineInfo().mods[0]['version']; // 0.0.26
 function getRevisionNumber(versionString) {
