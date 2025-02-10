@@ -130,7 +130,7 @@ const g_autoCompleteText_newMerge = (guiObject, list) => {
 
 
   if(bugIt)
-    selfMessage(`129: ${caption.toLowerCase()} = ${caption}      gui/common/functions_utility~autociv.js`) //TODO - add to json tab-commands
+    selfMessage(`133: ${caption.toLowerCase()} = ${caption}      gui/common/functions_utility~autociv.js`) //TODO - add to json tab-commands
 
 
   // End of caption is maybe not empty
@@ -160,14 +160,27 @@ const g_autoCompleteText_newMerge = (guiObject, list) => {
       g_chat_draft = ''
       // g_chatTextInInputFild_when_msgCommand_lines = 0
       g_previousCaption = guiObject.caption
+
+      if(bugIt)
+        selfMessage(`165: return ||| caption = ${caption}  gui/common/functions_utility~autociv.js`)
+
+
       return
     }
 
     if(setCaption2LastCommandOfHistory(guiObject)){
       g_previousCaption = guiObject.caption
+
+      if(bugIt)
+        selfMessage(`175: ${caption.toLowerCase()} = ${caption}      gui/common/functions_utility~autociv.js`) //TODO - add to json tab-commands
+
       return // now the caption is not empty anymore
     }
-  }
+  } // end of caption not empty
+
+  if(bugIt)
+    selfMessage(`282: caption = ${caption}  gui/common/functions_utility~autociv.js`)
+
 
  if( inputCopySearchReults(guiObject) )
   return
@@ -205,7 +218,8 @@ const g_autoCompleteText_newMerge = (guiObject, list) => {
     }
 
 
-
+if(bugIt)
+  selfMessage(`222: caption = ${caption}  gui/common/functions_utility~autociv.js`)
 
     if(captionCheck_is_communityModToggle_OR_mainlandTwilightToggle_optional_restartOad(caption, true)){
       if(bugIt)
@@ -216,7 +230,10 @@ const g_autoCompleteText_newMerge = (guiObject, list) => {
       return
     }
 
-    if(g_chatTextInInputFild_when_msgCommand.length > 0){
+if(bugIt)
+  selfMessage(`234: caption = ${caption}  gui/common/functions_utility~autociv.js`)
+
+    if(caption.length > 0){
       // if (caption.toLowerCase() == 'msgall') {
 
 
@@ -502,8 +519,13 @@ const g_autoCompleteText_newMerge = (guiObject, list) => {
     if(g_previousCaption == caption ){ // || g_lastCommand == caption
 
         // selfMessage(`445: doppelPosting? '${g_lastCommand}' `);
-        selfMessage(`dont found the command '${caption}' `);
-        selfMessage(`command before was command '${g_previousCaption}' `);
+        selfMessage(`505: dont found the command '${caption}' `);
+        selfMessage(`506: command before was command '${g_previousCaption}' `);
+
+        // whats about command msg1 msg2 msg3 ????
+        // tats in line 232
+
+
 
       // double tab could maybe mean icons should be removed
       // are nonalphabetic characters in the string?

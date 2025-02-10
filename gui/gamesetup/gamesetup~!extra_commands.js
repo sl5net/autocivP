@@ -284,6 +284,10 @@ g_NetworkCommandsDescriptions = Object.assign(g_NetworkCommandsDescriptions, {
     "type pE⟦Tab⟧ for extinct_volcano",
     "/pExtinct_pVulcano_Extrem":
     "type pE⟦Tab⟧ for Vulcano_Extrem",
+
+  "/pExtinct_pVulcano_Extrem_kush-extreme":
+    "type pEE⟦Tab⟧ for Vulcano_Extrem + kush-extreme",
+
   "/pRestoreLastProfile":
     "/pRestoreLastProfile<enter> when you want restore last profile",
   "/iconsList":
@@ -636,6 +640,15 @@ function pExtinct_pVulcano_Extrem() {
   g_GameSettings.nomad.enabled = true; // works
   g_GameSettings.startingResources.resources = 100; // 100 is equal to very low
   game.updateSettings();
+}
+
+function
+pExtinct_pVulcano_Extrem_kush_extreme () {
+  // setTeams("team 3v3");
+  sendMessageMapSizeSetTo('use kush for AI and with kush-extrem mod AIs get super strong');
+  // todo: add kush-extrem mod automatically
+
+  pExtinct_pVulcano_Extrem()
 }
 
 function pMBMainland_2v2_defaults() {
