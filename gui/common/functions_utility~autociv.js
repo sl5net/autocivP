@@ -519,9 +519,11 @@ if(bugIt)
     if(g_previousCaption == caption ){ // || g_lastCommand == caption
 
         // selfMessage(`445: doppelPosting? '${g_lastCommand}' `);
-        selfMessage(`505: dont found the command '${caption}' `);
-        selfMessage(`506: command before was command '${g_previousCaption}' `);
-
+        if(bugIt)
+        {
+            selfMessage(`505: dont found the command '${caption}' `);
+            selfMessage(`506: command before was command '${g_previousCaption}' `);
+        }
         // whats about command msg1 msg2 msg3 ????
         // tats in line 232
 
