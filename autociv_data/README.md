@@ -1,4 +1,4 @@
-# AutoCiv
+# AutoCivP
 This mod is an aggregation of features meant to enhance the 0 A.D. game experience. I usually implement these extra features as they come up with no general plan in mind.
 
 ## Feature list
@@ -72,7 +72,7 @@ There are three ways:
 
 ## Mod compatibility(s)
 The mod is compatible with:
-- 0 A.D 0.0.26
+- 0 A.D 0.0.26 and  0.27.0
 - Probable to work with the following mods
 	- boonGUI mod
 	- star mod

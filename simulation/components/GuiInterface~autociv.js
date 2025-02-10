@@ -182,18 +182,15 @@ GuiInterface.prototype.autociv_GetStatsOverlay = function ()
         "players": []
     };
 
-
-try {
-    // no errors should be thrown in alpha 27 . quick fix
-
-
     const cmpPlayerManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_PlayerManager);
     const numPlayers = cmpPlayerManager.GetNumPlayers();
     for (let player = 0; player < numPlayers; ++player)
     {
         const playerEnt = cmpPlayerManager.GetPlayerByID(player);
         const cmpPlayer = Engine.QueryInterface(playerEnt, IID_Player);
-   		const cmpIdentity = Engine.QueryInterface(playerEnt, IID_Identity);
+        const comDiplomacy = QueryPlayerIDInterface(player, IID_Diplomacy);
+        const cmpIdentity = Engine.QueryInterface(playerEnt, IID_Identity);
+
 
         // Work out which phase we are in.
         let phase = 0;
@@ -209,16 +206,15 @@ try {
         }
 
         const cmpPlayerStatisticsTracker = QueryPlayerIDInterface(player, IID_StatisticsTracker);
-        const classCounts = cmpTechnologyManager?.GetClassCounts();
-        const cmpDiplomacy = Engine.QueryInterface(playerEnt, IID_Diplomacy);
+        const classCounts = cmpTechnologyManager?.GetClassCounts()
 
         ret.players.push({
             "name": cmpIdentity.GetName(),
             "popCount": cmpPlayer.GetPopulationCount(),
             "resourceCounts": cmpPlayer.GetResourceCounts(),
-            "state": cmpPlayer.GetState(),
-            "team": cmpDiplomacy.GetTeam(),
-            "hasSharedLos": cmpDiplomacy.HasSharedLos(),
+            "state": cmpPlayer?.GetState() ?? "",
+            "team": comDiplomacy.GetTeam(),
+            "hasSharedLos": comDiplomacy.HasSharedLos(),
             "phase": phase,
             "researchedTechsCount": cmpTechnologyManager?.GetResearchedTechs().size ?? 0,
             "classCounts_Support": classCounts?.Support ?? 0,
@@ -226,15 +222,9 @@ try {
             "classCounts_Cavalry": classCounts?.Cavalry ?? 0,
             "classCounts_Siege": (classCounts?.Siege ?? 0),
             "classCounts_Champion": (classCounts?.Champion ?? 0),
-            "enemyUnitsKilledTotal": cmpPlayerStatisticsTracker?.enemyUnitsKilled.Unit ?? 0
+            "enemyUnitsKilledTotal": cmpPlayerStatisticsTracker?.enemyUnitsKilled.total ?? 0
         });
     }
-
-} catch (error) {
-    return false
-
-}
-
 
     return ret;
 };
