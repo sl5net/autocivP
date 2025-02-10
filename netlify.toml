@@ -3,7 +3,7 @@
   publish = "public"
 
 [[functions]]
-  name = "typeScript Version for next use latest-release"
+  name = "typeScript Version for next use latest-release.ts"
   ignore = true
 
 [[redirects]]
