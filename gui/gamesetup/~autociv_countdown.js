@@ -108,12 +108,18 @@ var g_autociv_countdown = {
 			}
 			// selfMessage(" ⌚ ⏰ 🕐 ⏲ 🕝 🕰 [o] ceasefireStr: ");
 
+			let seaLevelRiseStr = "";
 
-
-
+// g_GameSettings.seaLevelRise.value if (typeof variable !== 'undefined') {
+if(typeof g_GameSettings.seaLevelRise.value !== 'undefined'){
+	seaLevelRiseStr = `~~ Sea Level Rise: ${g_GameSettings.seaLevelRise.value} ~~ `;
+	if(g_GameSettings.seaLevelRise.value===0){
+		seaLevelRiseStr += "in 20min your land is under water. in 21min you cant stay in buildings anymore";
+	}
+}
 			if ( this.time % 4 == 0){
 				// let m = `popMax=${popMax} isRatedStr=${isRatedStr}, isNomadStr=${isNomadStr} isTreasuresStr=${isTreasuresStr} remaining ${this.time} seconds. You know already https://replay-pallas.wildfiregames.ovh/LocalRatings ? Its great for TG's`
-				let m = `${this.time}: █ popMax=${popMax}${isRatedStr}${ceasefireStr}${isNomadStr}${isTreasuresStr} █`
+				let m = `${this.time}: █ popMax=${popMax}${isRatedStr}${ceasefireStr}${seaLevelRiseStr}${isNomadStr}${isTreasuresStr} █`
 				// print(m)
 				sendMessage(m)
 				sendMessage(ceasefireStr)

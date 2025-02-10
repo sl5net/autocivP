@@ -515,7 +515,10 @@ g_NetworkCommands["/pMBMainland_2v2_defaults"] = (text) => {
 g_NetworkCommands["/pExtinct_volcano_defaults"] = (text) => {
   pExtinct_volcano_defaults();
 };
-g_NetworkCommands["/pVolcano_Extinct_defaults"] = (text) => {
+g_NetworkCommands["/pVolcano_Extinct_defaults"] = (text) => { // a often happening typo . it should be extinct_volcano but be more tollerant
+  pExtinct_volcano_defaults();
+};
+g_NetworkCommands["/pVulcano_Extinct_defaults"] = (text) => {
   pExtinct_volcano_defaults();
 };
 g_NetworkCommands["/pUnknown_defaults"] = (text) => {
@@ -608,10 +611,18 @@ function pExtinct_volcano_defaults() {
   setTeams("team 2v2");
   setDefaultsforPopmaxAlliedviewRatingTreasuresNomadExploration();
 
-  let ceasefireValue = 15;
+  // https://github.com/0ad/0ad/blob/61a3b9507d974084e6badb88a0826bd89a6d5b8b/binaries/data/mods/public/gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Sliders/SeaLevelRiseTime.js#L1
+  // binaries/data/mods/public/gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Sliders/SeaLevelRiseTime.js
+
+  g_GameSettings.seaLevelRise.value = 0
+  let ceasefireValue = 2; // 2 minutes it takes that you cant move out of your mountain, when seaLevelRise = 0
+
   g_GameSettings.ceasefire.value = ceasefireValue
   let ceasefireStr = `Ceasefire: ${ceasefireValue} minutes`;
   sendMessage(ceasefireStr);
+
+  game.updateSettings();
+
 
   return true
 }
