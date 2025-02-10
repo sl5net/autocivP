@@ -518,6 +518,9 @@ g_NetworkCommands["/pExtinct_volcano_defaults"] = (text) => {
 g_NetworkCommands["/pVolcano_Extinct_defaults"] = (text) => { // a often happening typo . it should be extinct_volcano but be more tollerant
   pExtinct_volcano_defaults();
 };
+g_NetworkCommands["/pVulcano_Extrem"] = (text) => { // a often happening typo . it should be extinct_volcano but be more tollerant
+  pExtinct_pVulcano_Extrem();
+};
 g_NetworkCommands["/pVulcano_Extinct_defaults"] = (text) => {
   pExtinct_volcano_defaults();
 };
@@ -608,7 +611,7 @@ function pExtinct_volcano_defaults() {
   // g_GameSettings.SeaLevelRiseTime.value = 10; // error but no effect. extinct_volcano SeaLevelRiseTime
   // g_GameSettings.seaLevelRiseTime.value = 10; // error undefined but no effect. extinct_volcano SeaLevelRiseTime
   // g_GameSettings.SeaLevelRiseTime.cap = 10; // erro. extinct_volcano SeaLevelRiseTime
-  setTeams("team 2v2");
+  // setTeams("team 2v2");
   setDefaultsforPopmaxAlliedviewRatingTreasuresNomadExploration();
 
   // https://github.com/0ad/0ad/blob/61a3b9507d974084e6badb88a0826bd89a6d5b8b/binaries/data/mods/public/gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Sliders/SeaLevelRiseTime.js#L1
@@ -625,6 +628,12 @@ function pExtinct_volcano_defaults() {
 
 
   return true
+}
+function pExtinct_pVulcano_Extrem() {
+  pExtinct_volcano_defaults()
+  g_GameSettings.nomad.enabled = true; // works
+  g_GameSettings.startingResources.resources = 100; // 100 is equal to very low
+  game.updateSettings();
 }
 
 function pMBMainland_2v2_defaults() {
