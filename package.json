@@ -1,6 +1,11 @@
 {
   "dependencies": {
-    "node-fetch": "^3.3.2",
     "translate": "^3.0.1"
+  },
+  "devDependencies": {
+    "@netlify/functions": "^3.0.0",
+    "@types/node": "^22.13.1",
+    "@types/node-fetch": "^2.6.12",
+    "node-fetch": "^3.3.2"
   }
 }
