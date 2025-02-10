@@ -281,7 +281,9 @@ g_NetworkCommandsDescriptions = Object.assign(g_NetworkCommandsDescriptions, {
   "/pUnknown_defaults":
     "type pU⟦Tab⟧ for  map unknown, popMax, 300res, and more",
   "/pExtinct_volcano_defaults":
-    "type pU⟦Tab⟧ for extinct_volcano and other defaults",
+    "type pE⟦Tab⟧ for extinct_volcano",
+    "/pExtinct_pVulcano_Extrem":
+    "type pE⟦Tab⟧ for Vulcano_Extrem",
   "/pRestoreLastProfile":
     "/pRestoreLastProfile<enter> when you want restore last profile",
   "/iconsList":
