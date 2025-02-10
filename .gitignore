@@ -8,8 +8,8 @@ moddata/autociv_0ad_default.cfg
 
 # Ignore temporary files
 *tempList.text
- *~
- *.bak
+*~
+*.bak
 
 # Ignore Kate editor backup files
 *@auto
@@ -23,4 +23,4 @@ error_unsolved.txt
 .netlify/cache/
 
 # Ignoriere nur die Inhalte, nicht den Ordner selbst!
-.netlify/functions/*
+# .netlify/functions/*
