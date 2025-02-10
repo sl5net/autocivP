@@ -1617,8 +1617,10 @@ function translateText(textToTranslate = 'Hello, how are you?', sourceLanguage =
 
 function sendChatTranslated(guiObject, text, sourceLanguage, targetLanguage) {
 
+  // bugIt = true &&  g_selfNick.includes("seeh") // new implementation so i will watch longer
   if(!targetLanguage){
-    error(`targetLanguage is empty.`)
+    // if(bugIt)
+    //   error(`targetLanguage is empty.`)
     return false
   }
 
