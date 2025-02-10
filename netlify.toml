@@ -2,10 +2,6 @@
   functions = ".netlify/functions"  # Corrected path
   publish = "public"
 
-[[functions]]
-  name = "typeScript Version for next use latest-release.ts"
-  ignore = true
-
 [[redirects]]
   from = "/download/latest.zip"
   to = "/.netlify/functions/latest-release"
