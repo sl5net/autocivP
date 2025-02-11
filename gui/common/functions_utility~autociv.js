@@ -940,30 +940,19 @@ function saveThisModProfile(nr, autoLabelManually) {
 
         // function RestartEngine(): any;
 
-        warn(clean);
-        warn("is enabled next when 0ad is started.");
-        // warn(modsFromUserCfg_const);
-        // warn("_____________________");
-        // Engine.ConfigDB_WriteValueToFile(
-        //   "user",
-        //   "modProfile.restartNext",
-        //   "true",
-        //   "config/user.cfg"
-        // );
-
-
-        // const modsEnabled = Engine.GetEnabledMods();
-
-        ConfigDB_CreateAndSaveValueA26A27("user", "modProfile.backup",modsFromUserCfg_const)
 
 
         if( gameState == "ingame"){
           warn(`in games autoRestart is disabled`)
           ConfigDB_CreateAndSaveValueA26A27("user", "mod.enabledmods",clean)
         }else{
-          const clean_array = clean.split(/\s+/);
-          // BTW when you want resarte but mod not changed you need call this function twice
+          const clean_array = clean.trim().split(/\s+/);
+          ConfigDB_CreateAndSaveValueA26A27("user", 'mod.enabledmods',clean)
           Engine.SetModsAndRestartEngine(["mod",...clean_array])
+          Engine.SetModsAndRestartEngine(["mod",...Engine.GetEnabledMods()])
+
+          // BTW when you want resarte but mod not changed you need call this function twice
+          // Engine.SetModsAndRestartEngine(["mod",...clean_array])
           // Engine.SetModsAndRestartEngine(["mod",...Engine.GetEnabledMods()])
         // print('857: clean_array: ' + JSON.stringify(clean_array) )
         // print('858: modsEnabled: ' + JSON.stringify(modsEnabled) )
@@ -1029,7 +1018,7 @@ function addModProfileAlwaysInAlsoAddAutocivPatTheEnd(clean) {
     clean = clean.replaceAll(regex, "");
   });
 
-  if (!clean.lower().includes(' autocivp'))
+  if (!clean.toLowerCase().includes(' autocivp'))
     clean += ' autocivp';
 
   return clean.replace(/\bautocivP\b/ig, `${modProfileAlwaysIn} autocivp` );
