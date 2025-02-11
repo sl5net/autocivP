@@ -342,7 +342,21 @@ if(bugIt)
         g_NetworkCommands['/whatstimeNow'] is not a function
         */
         try {
-          return g_NetworkCommands["/whatstimeNow"]()
+          // return g_NetworkCommands["/whatstimeNow"]() // is not a function
+
+
+          const today = new Date();
+          const hours = today.getHours().toString().padStart(2, '0');
+          const minutes = today.getMinutes().toString().padStart(2, '0');
+          const text = `it's ${hours}:${minutes} here.`
+          const chatInput = Engine.GetGUIObjectByName("chatInput");
+
+          // chatInput.focus()
+          chatInput.caption = text;
+          chatInput.buffer_position = text.length
+
+
+
         } catch (error) {
           selfMessage('inside lobby whatstimeNow is not a function, at the moment. and there is no will to fix it at the moment ;) Motivate me. its not so very importand command. other stuff is fine.');
           if(g_selfNick =="seeh"){ //NOTE -  developers want to see the error in the console
