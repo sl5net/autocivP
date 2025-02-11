@@ -401,7 +401,7 @@ function transGGWP_markedStrings_I(gg, minMatchScore) {
 
 
 
-  function translGGWP_U2Gg_III(gg, minMatchScore, reduceAmount = false) {
+  function translGGWP_U2Gg_III(gg, minMatchScore, reduceAmount = false, startIndex = 0, endIndex = 99999) {
     let isDebug = false;
 
     if (g_selfNick == "seeh") {}
@@ -428,7 +428,11 @@ function transGGWP_markedStrings_I(gg, minMatchScore) {
     if (lowercaseGg == 'allicons') {
         const vArr = Object.keys(g_customIconJson);
         let s = 'allicons: ';
-        vArr.forEach((k, v) => {
+
+		for (let i = startIndex; i < endIndex && i < vArr.length; i++) {
+			const k = vArr[i]; // Get key by index
+
+        // vArr.forEach((k, v) => {
             let displayValue;
             if (reduceAmount === true) {
                 // Show only the first value if reduceAmount is true
@@ -446,7 +450,7 @@ function transGGWP_markedStrings_I(gg, minMatchScore) {
                 selfMessage(output);
 
             s += `${k} < ${displayValue} | `;
-        });
+        }
 
         // let t = `you dont need write it ecactly. it finds results also if you write to less or bit wrong (its fuzzy-search). disable all icons in settings in options menu. some are contect senitive.`;
         //  t += `\n that are tab commands. write it end enable the command with tab.`;

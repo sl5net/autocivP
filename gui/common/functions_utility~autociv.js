@@ -209,15 +209,36 @@ const g_autoCompleteText_newMerge = (guiObject, list) => {
 
   if(caption?.length ){
 
-    if(gameState != "ingame"
-      && caption == "help"){
-      selfMessage(`213: caption = ${caption}  gui/common/functions_utility~autociv.js`)
+    if(caption == "help"){
+      // selfMessage(`213: caption = ${caption}  gui/common/functions_utility~autociv.js`)
       // transGGWP_markedStrings_I('allicons', []) // works a bit ugly
       // translGGWP_splitInWords_II('allicons', []) // works a bit ugly
-      translGGWP_U2Gg_III('allicons', [], true) // works a bit ugly
+      translGGWP_U2Gg_III('allicons', [], true)
       // function translGGWP_U2Gg_III(gg, minMatchScore, reduceAmount = false) {
+      return
     }
 
+    const match = caption.match(/^help(\d*)$/); // Use a regular expression
+    if (match) {
+      let pageNumber = 1; // Default to page 1
+      if(match[1]){
+        pageNumber = match[1]; // Extract the captured group (the number)
+      }
+
+      const helpPageSize = 20; // Number of items per page
+
+      const startIndex = (pageNumber - 1) * helpPageSize; // Calculate the start index
+      const endIndex = startIndex + helpPageSize; // Calculate the end index
+
+
+      selfMessage(`=======================`)
+      selfMessage(`====== page ${pageNumber} ======`)
+      translGGWP_U2Gg_III('allicons', [], true, startIndex, endIndex);
+      // Update the caption to point to the next page (or loop back)
+      const nextPageNumber = (pageNumber % 5) + 1;
+      guiObject.caption = "help" + nextPageNumber;
+      return;
+  }
 
     if(caption == "prettyEnable")
     {
