@@ -274,7 +274,7 @@
 			},
 			{
 				"type": "string",
-				"label": "",
+				"label": "use folder name. some sometimes not like mod name",
 				"tooltip": "all your mods that you want to enable \n (if want add new: Settings > Mod Selection\n  read: [color=\"255 0 0\"]mod.enabledmods[/color]).\n [color=\"255 0 0\"]",
 				"config": "modProfile.p1"
 			},
@@ -292,7 +292,7 @@
 			},
 			{
 				"type": "string",
-				"label": "",
+				"label": "use folder name. some sometimes not like mod name",
 				"tooltip": "all your mods that you want to enable \n (if want add new: Settings > Mod Selection\n  read: [color=\"255 0 0\"]mod.enabledmods[/color]).\n [color=\"255 0 0\"]",
 				"config": "modProfile.p2"
 			},
@@ -310,7 +310,7 @@
 			},
 			{
 				"type": "string",
-				"label": "",
+				"label": "use folder name. some sometimes not like mod name",
 				"tooltip": "all your mods that you want to enable \n (if want add new: Settings > Mod Selection\n  read: [color=\"255 0 0\"]mod.enabledmods[/color]).\n [color=\"255 0 0\"]",
 				"config": "modProfile.p3"
 			},
@@ -328,7 +328,7 @@
 			},
 			{
 				"type": "string",
-				"label": "",
+				"label": "use folder name. some sometimes not like mod name",
 				"tooltip": "all your mods that you want to enable \n (if want add new: Settings > Mod Selection\n  read: [color=\"255 0 0\"]mod.enabledmods[/color]).\n [color=\"255 0 0\"]",
 				"config": "modProfile.p4"
 			},
