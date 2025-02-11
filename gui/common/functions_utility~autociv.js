@@ -168,8 +168,20 @@ const g_autoCompleteText_newMerge = (guiObject, list) => {
       return
     }
 
-    if(setCaption2LastCommandOfHistory(guiObject)){
+    if(guiObject.caption == " " && setCaption2LastCommandOfHistory(guiObject)){
       g_previousCaption = guiObject.caption
+
+      /*
+      now chat expand is better.
+      ' '+<tab> shows the last command in the history
+      <tab> again emptys the chat when it could not find a command that starts with your input
+      */
+
+
+    // a single space plus <tab> schould allowed trigger this.  25-0211_0224-52
+    // sometimes old from history get in lobby, when you type beside. in a other editor. not in 0ad 25-0211_0224-52
+    //     return false // thre its better to ignore this. when you are in lobby
+    // warn(`1170: the toggle throw last commands in the history. is now limited to  if(caption == " "`)
 
       if(bugIt)
         selfMessage(`175: ${caption.toLowerCase()} = ${caption}      gui/common/functions_utility~autociv.js`) //TODO - add to json tab-commands
@@ -1165,6 +1177,9 @@ function is_transGGWP_needet(caption, firstChar, iconPrefix, guiObject) {
 }
 
 function setCaption2LastCommandOfHistory(guiObject){
+
+    // if( gameState == "lobby" ) // sometimes old from history get in lobby, when you type beside. in a other editor. not in 0ad 25-0211_0224-52
+    //     return false // thre its better to ignore this. when you are in lobby
 
 
     let doDebug = false // debug session
