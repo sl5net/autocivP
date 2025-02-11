@@ -90,41 +90,38 @@
 {
   "AISeed": 0,
   "CircularMap": true,
-  "Description": "Volcano island in unknown place.",
-  "Keywords": [],
+  "Description": "A volatile volcanic island set in an unknown region, featuring active volcanoes, hazardous lava flows, and rugged terrain. Prepare for a challenging battle for survival and conquest amid natural disasters.",
+  "Keywords": ["volcano", "island", "hazard", "lava", "volcanic", "extreme"],
   "LockTeams": false,
-  "Name": "Volcanic Island (8)",
+  "Name": "Volcanic Island Enhanced (8)",
   "PlayerData": [
-    {
-      "Civ": "athen"
-    },
-    {
-      "Civ": "cart"
-    },
-    {
-      "Civ": "gaul"
-    },
-    {
-      "Civ": "iber"
-    },
-    {
-      "Civ": "mace"
-    },
-    {
-      "Civ": "maur"
-    },
-    {
-      "Civ": "pers"
-    },
-    {
-      "Civ": "rome"
-    }
+    { "Civ": "athen" },
+    { "Civ": "cart" },
+    { "Civ": "gaul" },
+    { "Civ": "iber" },
+    { "Civ": "mace" },
+    { "Civ": "maur" },
+    { "Civ": "pers" },
+    { "Civ": "rome" }
   ],
-  "Preview": "",
+  "Preview": "images/volcanic_island_preview.png",
   "RevealMap": false,
   "VictoryConditions": [
-    "conquest"
-  ]
+    "conquest",
+    "survival"
+  ],
+  "ScenarioSettings": {
+    "MapSize": "medium",
+    "StartingEra": "ancient",
+    "ResourceAbundance": "low",
+    "TerrainFeatures": ["volcano", "hills", "coastlines"],
+    "Hazards": ["volcanic activity", "lava flows", "ash storms"],
+    "Weather": {
+      "AmbientTemperature": "hot",
+      "Season": "dry"
+    }
+  }
+}
 }
 ]]></ScriptSettings>
 	<Entities>
