@@ -5,7 +5,7 @@ Thanks to Nani ([most source is from Nani](https://github.com/nanihadesuka/autoc
 Thanks to all the 0 A.D. players who found it useful.
 
 - General
- 	- Help command: type `/help <keyword>`,  type `/help` then <kbd>tab</kbd>  to see available commands. You can also use special search patterns called regular expressions, (or regEx for short, to search for commands).
+ 	- Help command: type `/help <search>`,  type `/help` then <kbd>tab</kbd>  to see available commands. You can also use special search patterns called regular expressions, (or regEx for short, to search for commands).
 	- Jitsi commands: [type j<tab>](https://youtu.be/rofNXCZzLDM?si=DfYfVDqN5ahYy7WN&t=777) to create and send a jitsi-audioChat-link
 	- open links alias: type li<tab> to open a link.
  	- type <tab><tab> to see available commands that you have already used (history is saved into user.cfg).
