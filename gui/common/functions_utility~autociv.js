@@ -914,8 +914,10 @@ function saveThisModProfile(nr, autoLabelManually) {
     }
   }
   function enableThisModProfile(nr) {
+    // Engine.ConfigDB_GetValue("user", "modProfile.p" + nr + "enabled") == "true"
     if (
-      Engine.ConfigDB_GetValue("user", "modProfile.p" + nr + "enabled") == "true"
+      Engine.ConfigDB_GetValue("user", "modProfile.activeProfile") == nr
+
     ) {
       const modsFromUserCfg_const = Engine.ConfigDB_GetValue(
         "user",
@@ -972,22 +974,14 @@ function saveThisModProfile(nr, autoLabelManually) {
   function check_modProfileSelector_settings() {
 
     const autoLabelManually = Engine.ConfigDB_GetValue("user", "modProfile.autoLabelManually") === "true";
+    const name = "modProfile.activeProfile" // modProfile.activeProfile
+    const activeProfileNr = Engine.ConfigDB_GetValue("user",name )
 
-    [...Array(6)].forEach((_, k0_5) => saveThisModProfile(k0_5, autoLabelManually));
-
-    for (let k0_5 = 0; k0_5 <= 5; k0_5++) {
-      const nameOfCheckBox = "modProfile.p" + k0_5 + "enabled";
-      if (Engine.ConfigDB_GetValue("user", nameOfCheckBox) === "true") {
-        if (enableThisModProfile(k0_5)) {
-          warn(`${k0_5} was enabled as your default mod-configuration.`);
-          ConfigDB_CreateAndSaveValueA26A27("user", nameOfCheckBox, "false");
-          // warn(`${k0_5} checkBox disabled (if enabled have conflict with the normal mod selector)`);
-          return true;
-        }
-        break;
-      }
+    if ( activeProfileNr > 0 && enableThisModProfile(activeProfileNr)) {
+      warn(`${activeProfileNr} was enabled as your default mod-configuration.`);
+      ConfigDB_CreateAndSaveValueA26A27("user", name, "false");
+      return true;
     }
-
     return false;
   }
 
