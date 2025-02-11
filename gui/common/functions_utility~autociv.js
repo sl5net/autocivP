@@ -209,14 +209,14 @@ const g_autoCompleteText_newMerge = (guiObject, list) => {
 
   if(caption?.length ){
 
-    if(caption == "help"){
-      // selfMessage(`213: caption = ${caption}  gui/common/functions_utility~autociv.js`)
-      // transGGWP_markedStrings_I('allicons', []) // works a bit ugly
-      // translGGWP_splitInWords_II('allicons', []) // works a bit ugly
-      translGGWP_U2Gg_III('allicons', [], true)
-      // function translGGWP_U2Gg_III(gg, minMatchScore, reduceAmount = false) {
-      return
-    }
+    // if(caption == "help"){
+    //   // selfMessage(`213: caption = ${caption}  gui/common/functions_utility~autociv.js`)
+    //   // transGGWP_markedStrings_I('allicons', []) // works a bit ugly
+    //   // translGGWP_splitInWords_II('allicons', []) // works a bit ugly
+    //   translGGWP_U2Gg_III('allicons', [], true)
+    //   // function translGGWP_U2Gg_III(gg, minMatchScore, reduceAmount = false) {
+    //   return
+    // }
 
     const match = caption.match(/^help(\d*)$/); // Use a regular expression
     if (match) {
