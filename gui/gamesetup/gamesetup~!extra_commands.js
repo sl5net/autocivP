@@ -282,12 +282,10 @@ g_NetworkCommandsDescriptions = Object.assign(g_NetworkCommandsDescriptions, {
     "type pU⟦Tab⟧ for  map unknown, popMax, 300res, and more",
   "/pExtinct_volcano_defaults":
     "type pE⟦Tab⟧ for extinct_volcano",
-    "/pExtinct_pVulcano_Extrem":
+  "/pVulcano_Extrem":
     "type pE⟦Tab⟧ for Vulcano_Extrem",
-
-  "/pExtinct_pVulcano_Extrem_kush-extreme":
-    "type pEE⟦Tab⟧ for Vulcano_Extrem + kush-extreme",
-
+  "/pVulcano_ExtremExtrem":
+    "type pEE⟦Tab⟧ for Vulcano_ExtremExtreme",
   "/pRestoreLastProfile":
     "/pRestoreLastProfile<enter> when you want restore last profile",
   "/iconsList":
@@ -525,7 +523,10 @@ g_NetworkCommands["/pVolcano_Extinct_defaults"] = (text) => { // a often happeni
   pExtinct_volcano_defaults();
 };
 g_NetworkCommands["/pVulcano_Extrem"] = (text) => { // a often happening typo . it should be extinct_volcano but be more tollerant
-  pExtinct_pVulcano_Extrem();
+  pVulcano_Extrem();
+};
+g_NetworkCommands["/pVulcano_ExtremExtreme"] = (text) => { // a often happening typo . it should be extinct_volcano but be more tollerant
+  pVulcano_ExtremExtreme();
 };
 g_NetworkCommands["/pVulcano_Extinct_defaults"] = (text) => {
   pExtinct_volcano_defaults();
@@ -633,22 +634,81 @@ function pExtinct_volcano_defaults() {
   game.updateSettings();
 
 
-  return true
+  // return true
 }
-function pExtinct_pVulcano_Extrem() {
+function pVulcano_Extrem(){
+  let bugIt = true &&  g_selfNick.includes("seeh") // new implementation so i will watch longer
+  if(bugIt)
+  selfMessage(`640: pVulcano_Extrem`)
   pExtinct_volcano_defaults()
-  g_GameSettings.nomad.enabled = true; // works
+  if(bugIt)
+  selfMessage(`645: pVulcano_Extrem`)
+  // g_InitAttributes.settings.RatingEnabled = false;
+
+try {
+  g_GameSettings.nomad.enabled = false; // works but through an error
+} catch (error) {
+  if(bugIt)
+    selfMessage(`650: ${error}`)
+}
+
   g_GameSettings.startingResources.resources = 100; // 100 is equal to very low
   game.updateSettings();
+  if(bugIt)
+    selfMessage(`653: pVulcano_Extrem`)
 }
 
-function
-pExtinct_pVulcano_Extrem_kush_extreme () {
-  // setTeams("team 3v3");
-  sendMessageMapSizeSetTo('use kush for AI and with kush-extrem mod AIs get super strong');
-  // todo: add kush-extrem mod automatically
+function pVulcano_ExtremExtreme() {
+  let bugIt = false &&  g_selfNick.includes("seeh") // new implementation so i will watch longer
+  if(bugIt)
+    selfMessage(`659: pVulcano_ExtremExtreme`)
 
-  pExtinct_pVulcano_Extrem()
+
+  // setTeams("team 3v3");
+    selfMessage('use kush for AI and with kush-extrem mod AIs get super strong');
+  // todo: add kush-extrem mod automatically
+  pVulcano_Extrem()
+  if(bugIt)
+    selfMessage(`667: pVulcano_ExtremExtreme`)
+
+  try {
+    g_GameSettings.nomad.enabled = true; // works Really ?? i cant believe it anymore 25-0211_1825-37
+    // yes works. but through and error.
+  } catch (error) {
+    if(bugIt)
+      selfMessage(`673: ${error}`)
+  }
+
+  if(bugIt)
+    selfMessage(`677: pVulcano_ExtremExtreme`)
+
+  g_GameSettings.rating.enabled = false
+
+  if(bugIt){
+    selfMessage(`658: isRated= ${isRated}`)
+  selfMessage(`658: isRated= ${isRated}`)
+  selfMessage(`658: isRated= ${isRated}`)
+  selfMessage(`658: isRated= ${isRated}`)
+  selfMessage(`658: isRated= ${isRated}`)
+  selfMessage(`658: isRated= ${isRated}`)
+  }
+
+
+  g_GameSettings.startingResources.resources = 100; // 100 is equal to very low
+  game.updateSettings();
+
+   isRated = g_GameSettings.RatingEnabled === true
+
+   if(bugIt){
+
+  selfMessage(`670: isRated= ${isRated}`)
+  selfMessage(`670: isRated= ${isRated}`)
+  selfMessage(`670: isRated= ${isRated}`)
+  selfMessage(`670: isRated= ${isRated}`)
+  selfMessage(`670: isRated= ${isRated}`)
+  selfMessage(`670: isRated= ${isRated}`)
+   }
+
 }
 
 function pMBMainland_2v2_defaults() {
@@ -1030,7 +1090,7 @@ function setDefaultsforPopmaxAlliedviewRatingTreasuresNomadExploration(sendMessa
   // gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/Treasures.js
   g_GameSettings.disableTreasures.enabled = true;
   if(sendMessageToAll)sendMessage('disableTreasures = true');
-  g_GameSettings.nomad.enabled = false; // works
+  // g_GameSettings.nomad.enabled = false; // works
   if(sendMessageToAll)sendMessage('nomad = false');
   g_GameSettings.mapExploration.enabled = false; // todo: dont work
   if(sendMessageToAll)sendMessage('mapExploration = false');
