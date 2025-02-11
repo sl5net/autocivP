@@ -114,9 +114,9 @@ function isSelfHost(){ // maybe call it in a settimeout assync function
 //   }
 
 
-const g_customIconJson = Engine.ReadJSONFile("moddata/autocivP_IconNames.json");
+const g_customIconJson = Engine.ReadJSONFile("moddata/autocivP_commandVariations.json");
 var g_fuzzyArrayResult = getFuzzyArrayFromJsonFile(g_customIconJson, true)
-// var g_fuzzyArrayResult = getFuzzyArrayFromJsonFile("moddata/autocivP_IconNames.json", false)
+// var g_fuzzyArrayResult = getFuzzyArrayFromJsonFile("moddata/autocivP_commandVariations.json", false)
 
 var g_is_chatInputTooltipQuickFixUpdate_updated = false
 
@@ -396,95 +396,114 @@ function transGGWP_markedStrings_I(gg, minMatchScore) {
 
 
 
-function translGGWP_U2Gg_III(gg, minMatchScore) {
-	let isDebug = false
-	// isDebug = true
-
-
-	if( g_selfNick =="seeh"){
-	}
-
-	if(isDebug)
-		selfMessage(`344: ____________ translGGWP_U2Gg_III(${gg}, ${minMatchScore}) ___________`);
-	if( !minMatchScore){
-		if( g_selfNick =="seeh" ){
-			// selfMessage(`347: minMatchScore = ${minMatchScore}`);
-			// error(`minMatchScore is not defined`);
-		}
-		minMatchScore = 0.8 // some value. quick fix. todo: why its empty? 23-0729_1618-01
-	}
-
-	let lowercaseGg = gg.toLowerCase()
-	let doSend2allChatUsers = false
-	if (lowercaseGg == 'allicons2All'.toLocaleLowerCase()) {
-		doSend2allChatUsers = true
-		lowercaseGg = 'allicons'
-	}
-	if (lowercaseGg == 'allicons') {
-	  const vArr = Object.keys(g_customIconJson);
-	  let s = 'allicons: '
-	  vArr.forEach((k, v) => {
-		  const vArr = Object.values(g_customIconJson[k]);
-		if(doSend2allChatUsers)
-		  	sendMessage(`${k} <- ${vArr}`);
-		else
-			selfMessage(`${k} <- ${vArr}`);
-		  s += `${k} < ${vArr}`
-		  s += ` | `
-	  })
-	  const t = `you dont need write it ecactly. it finds results also if you write to less or bit wrong (its fuzzy-search). disable all icons in settings in options menu. some are contect senitive.`
-	  s += t
-	  if(doSend2allChatUsers)
-		  sendMessage(`${t}`);
-	  else
-	    selfMessage(`${t}`);
-	return s // its big string so it will be cut off somewhere in the middle
-	}
-	if (lowercaseGg == 'alliconkeys') {
-	  const vArr = Object.keys(g_customIconJson);
-	  const s = 'alliconkeys: ' + vArr.join(', ');
-	  selfMessage(`${s}`);
-	  return s
-	}
 
 
 
-	// https://unicodeemoticons.com/
-	// btw guiObject is not definded her so you cant use this: sendMessageGlHfWpU2Gg(..., guiObject)
 
 
-	// ‹be right back ☯ ›
+  function translGGWP_U2Gg_III(gg, minMatchScore, reduceAmount = false) {
+    let isDebug = false;
 
-	let text =  '';
+    if (g_selfNick == "seeh") {}
 
-	let query
-	query = gg;
-	// warn('/' + '‾'.repeat(32));
+    if (isDebug)
+        selfMessage(`344: ____________ translGGWP_U2Gg_III(${gg}, ${minMatchScore}, ${reduceAmount}) ___________`);
 
+    if (!minMatchScore) {
+        if (g_selfNick == "seeh") {
+            // selfMessage(`347: minMatchScore = ${minMatchScore}`);
+            // error(`minMatchScore is not defined`);
+        }
+        minMatchScore = 0.8 // some value. quick fix. todo: why its empty? 23-0729_1618-01
+    }
 
-	let stringWithUnicode = findBestMatch(query, g_fuzzyArrayResult, minMatchScore);
+    let lowercaseGg = gg.toLowerCase();
+    let doSend2allChatUsers = false;
 
+    if (lowercaseGg == 'allicons2All'.toLocaleLowerCase()) {
+        doSend2allChatUsers = true;
+        lowercaseGg = 'allicons';
+    }
 
-	if(  stringWithUnicode
-		&& stringWithUnicode.bestMatch
-		&& Engine.ConfigDB_GetValue("user", `autociv.chatText.font.useitwithoutUnicode`) === 'true'
-		)
-		stringWithUnicode.bestMatch = stringWithUnicode.bestMatch.replace(/[^\x00-\x7F]/g, "");
+    if (lowercaseGg == 'allicons') {
+        const vArr = Object.keys(g_customIconJson);
+        let s = 'allicons: ';
+        vArr.forEach((k, v) => {
+            let displayValue;
+            if (reduceAmount === true) {
+                // Show only the first value if reduceAmount is true
+                displayValue = Object.values(g_customIconJson[k])[0] + ' ...' || ""; // Get first value or empty string
+            } else {
+                // Show all values joined by commas if reduceAmount is false
+                displayValue = Object.values(g_customIconJson[k]).join(", ");
+            }
 
-	// stringWithoutUnicode
+            const output = `${k} <- ${displayValue}`;
 
-	if(isDebug){
-		warn(`120: Best match for query "${query}": ##${stringWithUnicode.bestMatch}## (${stringWithUnicode.bestMatchWord})`);
-		selfMessage(`414: Best match for query "${query}": ##${stringWithUnicode.bestMatch}## (${stringWithUnicode.bestMatchWord} , ${minMatchScore})`);
-		warn('\\________________________________')
-	}
+            if (doSend2allChatUsers)
+                sendMessage(output);
+            else
+                selfMessage(output);
 
-	if(stringWithUnicode && stringWithUnicode.bestMatch)
-		return stringWithUnicode.bestMatch;
+            s += `${k} < ${displayValue} | `;
+        });
 
-		// todo: this is not working. needs implementd again
-	  return gg;
+        // let t = `you dont need write it ecactly. it finds results also if you write to less or bit wrong (its fuzzy-search). disable all icons in settings in options menu. some are contect senitive.`;
+        //  t += `\n that are tab commands. write it end enable the command with tab.`;
+
+		let t = "Fuzzy search for commands and icons! (typos are tolerated). Some are context-sensitive. Press Tab to run the command."
+
+		s = t + s + t;
+        if (doSend2allChatUsers)
+            sendMessage(`${t}`);
+        else
+            selfMessage(`${t}`);
+
+        return s; // its big string so it will be cut off somewhere in the middle
+    }
+
+    if (lowercaseGg == 'alliconkeys') {
+        const vArr = Object.keys(g_customIconJson);
+        const s = 'alliconkeys: ' + vArr.join(', ');
+        selfMessage(`${s}`);
+        return s;
+    }
+
+    // https://unicodeemoticons.com/
+    // btw guiObject is not definded her so you cant use this: sendMessageGlHfWpU2Gg(..., guiObject)
+
+    // ‹be right back ☯ ›
+
+    let text = '';
+    let query = gg;
+
+    let stringWithUnicode = findBestMatch(query, g_fuzzyArrayResult, minMatchScore);
+
+    if (stringWithUnicode &&
+        stringWithUnicode.bestMatch &&
+        Engine.ConfigDB_GetValue("user", `autociv.chatText.font.useitwithoutUnicode`) === 'true'
+    )
+        stringWithUnicode.bestMatch = stringWithUnicode.bestMatch.replace(/[^\x00-\x7F]/g, "");
+
+    if (isDebug) {
+        warn(`120: Best match for query "${query}": ##${stringWithUnicode.bestMatch}## (${stringWithUnicode.bestMatchWord})`);
+        selfMessage(`414: Best match for query "${query}": ##${stringWithUnicode.bestMatch}## (${stringWithUnicode.bestMatchWord} , ${minMatchScore})`);
+        warn('\\________________________________')
+    }
+
+    if (stringWithUnicode && stringWithUnicode.bestMatch)
+        return stringWithUnicode.bestMatch;
+
+    // todo: this is not working. needs implementd again
+    return gg;
 }
+
+
+
+
+
+
+
 
 
 

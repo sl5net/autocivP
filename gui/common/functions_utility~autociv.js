@@ -208,6 +208,17 @@ const g_autoCompleteText_newMerge = (guiObject, list) => {
     // }
 
   if(caption?.length ){
+
+    if(gameState != "ingame"
+      && caption == "help"){
+      selfMessage(`213: caption = ${caption}  gui/common/functions_utility~autociv.js`)
+      // transGGWP_markedStrings_I('allicons', []) // works a bit ugly
+      // translGGWP_splitInWords_II('allicons', []) // works a bit ugly
+      translGGWP_U2Gg_III('allicons', [], true) // works a bit ugly
+      // function translGGWP_U2Gg_III(gg, minMatchScore, reduceAmount = false) {
+    }
+
+
     if(caption == "prettyEnable")
     {
       warn(`188: caption = ${caption}  gui/common/functions_utility~autociv.js`)
