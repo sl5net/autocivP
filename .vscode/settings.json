@@ -4,7 +4,26 @@
   "files.trimFinalNewlines": true,
   "files.insertFinalNewline": true,
   "search.exclude": {
-    "**/.git": true
+    "**/.git": true,
+    "**/node_modules": true,
+    "**/dist": true,
+    "**/build": true
   },
-  "vscode.tsc.compiler.alertTSConfigChanges": "never"
+  "vscode.tsc.compiler.alertTSConfigChanges": "never",
+  
+  // Enhanced editor settings
+  "editor.formatOnSave": true,
+  "editor.tabSize": 2,
+  "editor.insertSpaces": true,
+  "editor.detectIndentation": false,
+  "editor.wordWrap": "on",
+  "editor.renderWhitespace": "all",
+  "editor.minimap.enabled": false,
+  
+  // File management and auto-save
+  "files.autoSave": "afterDelay",
+  "files.autoSaveDelay": 1000,
+  
+  // Explorer settings for a smoother workflow
+  "explorer.confirmDelete": false
 }
