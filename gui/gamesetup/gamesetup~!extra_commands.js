@@ -280,12 +280,12 @@ g_NetworkCommandsDescriptions = Object.assign(g_NetworkCommandsDescriptions, {
     "type pMB⟦Tab⟧ to get mainland balanced popMax, 300res",
   "/pUnknown_defaults":
     "type pU⟦Tab⟧ for  map unknown, popMax, 300res, and more",
-  "/pExtinct_volcano_defaults":
+  "/pVolcano_defaults":
     "type pE⟦Tab⟧ for extinct_volcano",
-  "/pVulcano_Extrem":
-    "type pE⟦Tab⟧ for Vulcano_Extrem",
-  "/pVulcano_ExtremExtrem":
-    "type pEE⟦Tab⟧ for Vulcano_ExtremExtreme",
+  "/pVolcano_Extrem":
+    "type pE⟦Tab⟧ for Volcano_Extrem",
+  "/pVolcano_ExtremExtrem":
+    "type pEE⟦Tab⟧ for Volcano_ExtremExtreme",
   "/pRestoreLastProfile":
     "/pRestoreLastProfile<enter> when you want restore last profile",
   "/iconsList":
@@ -516,20 +516,14 @@ g_NetworkCommands["/4Mainland_defaults"] = (text) => {
 g_NetworkCommands["/pMBMainland_2v2_defaults"] = (text) => {
   pMBMainland_2v2_defaults();
 };
-g_NetworkCommands["/pExtinct_volcano_defaults"] = (text) => {
-  pExtinct_volcano_defaults();
+g_NetworkCommands["/pVolcano_defaults"] = (text) => {
+  pVolcano_defaults();
 };
-g_NetworkCommands["/pVolcano_Extinct_defaults"] = (text) => { // a often happening typo . it should be extinct_volcano but be more tollerant
-  pExtinct_volcano_defaults();
+g_NetworkCommands["/pVolcano_Extrem"] = (text) => { // a often happening typo . it should be extinct_volcano but be more tollerant
+  pVolcano_Extrem();
 };
-g_NetworkCommands["/pVulcano_Extrem"] = (text) => { // a often happening typo . it should be extinct_volcano but be more tollerant
-  pVulcano_Extrem();
-};
-g_NetworkCommands["/pVulcano_ExtremExtreme"] = (text) => { // a often happening typo . it should be extinct_volcano but be more tollerant
-  pVulcano_ExtremExtreme();
-};
-g_NetworkCommands["/pVulcano_Extinct_defaults"] = (text) => {
-  pExtinct_volcano_defaults();
+g_NetworkCommands["/pVolcano_ExtremExtreme"] = (text) => { // a often happening typo . it should be extinct_volcano but be more tollerant
+  pVolcano_ExtremExtreme();
 };
 g_NetworkCommands["/pUnknown_defaults"] = (text) => {
   pUnknown();
@@ -601,7 +595,7 @@ g_NetworkCommands["/randomCivs"] = function (excludedCivs) {
   }
 };
 
-function pExtinct_volcano_defaults() {
+function pVolcano_defaults() {
   // vulcan, vulkan, extinkt <= keywords to find it fast
   setMapTypeFilterNameBiome(
     "maps/random/extinct_volcano",
@@ -636,13 +630,13 @@ function pExtinct_volcano_defaults() {
 
   // return true
 }
-function pVulcano_Extrem(){
+function pVolcano_Extrem(){
   let bugIt = true &&  g_selfNick.includes("seeh") // new implementation so i will watch longer
   if(bugIt)
-  selfMessage(`640: pVulcano_Extrem`)
-  pExtinct_volcano_defaults()
+  selfMessage(`640: pVolcano_Extrem`)
+  pVolcano_defaults()
   if(bugIt)
-  selfMessage(`645: pVulcano_Extrem`)
+  selfMessage(`645: pVolcano_Extrem`)
   // g_InitAttributes.settings.RatingEnabled = false;
 
 try {
@@ -655,21 +649,21 @@ try {
   g_GameSettings.startingResources.resources = 100; // 100 is equal to very low
   game.updateSettings();
   if(bugIt)
-    selfMessage(`653: pVulcano_Extrem`)
+    selfMessage(`653: pVolcano_Extrem`)
 }
 
-function pVulcano_ExtremExtreme() {
+function pVolcano_ExtremExtreme() {
   let bugIt = false &&  g_selfNick.includes("seeh") // new implementation so i will watch longer
   if(bugIt)
-    selfMessage(`659: pVulcano_ExtremExtreme`)
+    selfMessage(`659: pVolcano_ExtremExtreme`)
 
 
   // setTeams("team 3v3");
     selfMessage('use kush for AI and with kush-extrem mod AIs get super strong');
   // todo: add kush-extrem mod automatically
-  pVulcano_Extrem()
+  pVolcano_Extrem()
   if(bugIt)
-    selfMessage(`667: pVulcano_ExtremExtreme`)
+    selfMessage(`667: pVolcano_ExtremExtreme`)
 
   try {
     g_GameSettings.nomad.enabled = true; // works Really ?? i cant believe it anymore 25-0211_1825-37
@@ -680,7 +674,7 @@ function pVulcano_ExtremExtreme() {
   }
 
   if(bugIt)
-    selfMessage(`677: pVulcano_ExtremExtreme`)
+    selfMessage(`677: pVolcano_ExtremExtreme`)
 
   g_GameSettings.rating.enabled = false
 

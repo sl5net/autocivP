@@ -227,7 +227,7 @@ function initChatFilterInput()
 
 			active = true
 
-			text = text.replace(/→me/g, g_selfNick); // searches for messages for your from you or where you name is mentioned
+			// text = text.replace(/→me/g, g_selfNick); // searches for messages for your from you or where you name is mentioned
   			warn(`231: ${text}`)
 
 

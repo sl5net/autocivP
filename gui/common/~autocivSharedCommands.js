@@ -1050,6 +1050,8 @@ autociv_InitSharedCommands.pipe = {
 				"autocivP.lobby.InitialCaption"
 				);
 
+				lobbyInitialCaption = lobbyInitialCaption.replace(/→me/g, g_selfNick); // searches for messages for your from you or where you name is mentioned
+
 				if(lobbyInitialCaption.length < 1){
 					lobbyInitialCaption  = '/away'
 				}
