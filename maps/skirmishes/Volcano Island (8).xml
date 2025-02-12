@@ -1,178 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Scenario>
+	<Camera>
 		<FieldOfView>60</FieldOfView>
 	</Camera>
 	<ScriptSettings><![CDATA[
-		// Enhanced Script Settings for dynamic weather and environment adjustments.
-		var enableDynamicWeather = true;
-		var enableCloudShadows = true;
-		var environmentUpdateInterval = 0.5; // seconds
-		// Additional script configuration options can be added here.
-<<<<<<< HEAD
-
-    {
-      "AISeed": 0,
-      "CircularMap": true,
-      "Description": "Volcano island in unknown place.",
-      "Keywords": [],
-      "LockTeams": false,
-      "Name": "Volcanic Island (8)",
-      "PlayerData": [
-        {
-          "Civ": "athen"
-        },
-        {
-          "Civ": "cart"
-        },
-        {
-          "Civ": "gaul"
-        },
-        {
-          "Civ": "iber"
-        },
-        {
-          "Civ": "mace"
-        },
-        {
-          "Civ": "maur"
-        },
-        {
-          "Civ": "pers"
-        },
-        {
-          "Civ": "rome"
+{
+    "ScriptConfig": {
+        "enableDynamicWeather": true,
+        "enableCloudShadows": true,
+        "environmentUpdateInterval": 0.5
+    },
+    "Scenario": {
+        "AISeed": 0,
+        "CircularMap": true,
+        "Description": "A volatile volcanic island set in an unknown region, featuring active volcanoes, hazardous lava flows, and rugged terrain. Prepare for a challenging battle for survival and conquest amid natural disasters.",
+        "Keywords": ["volcano", "island", "hazard", "lava", "volcanic", "extreme"],
+        "LockTeams": false,
+        "Name": "Volcanic Island Enhanced (8)",
+        "PlayerData": [
+            { "Civ": "athen" },
+            { "Civ": "cart" },
+            { "Civ": "gaul" },
+            { "Civ": "iber" },
+            { "Civ": "mace" },
+            { "Civ": "maur" },
+            { "Civ": "pers" },
+            { "Civ": "rome" }
+        ],
+        "Preview": "images/volcanic_island_preview.png",
+        "RevealMap": false,
+        "VictoryConditions": [
+            "conquest",
+            "survival"
+        ],
+        "ScenarioSettings": {
+            "MapSize": "medium",
+            "StartingEra": "ancient",
+            "ResourceAbundance": "low",
+            "TerrainFeatures": ["volcano", "hills", "coastlines"],
+            "Hazards": ["volcanic activity", "lava flows", "ash storms"],
+            "Weather": {
+                "AmbientTemperature": "hot",
+                "Season": "dry"
+            }
         }
-      ],
-      "Preview": "",
-      "RevealMap": false,
-      "VictoryConditions": [
-        "conquest"
-      ]
     }
+}
 	]]></ScriptSettings>
 </Scenario>
 
-{
-  "AISeed": 0,
-  "CircularMap": true,
-  "Description": "A volatile volcanic island set in an unknown region, featuring active volcanoes, hazardous lava flows, and rugged terrain. Prepare for a challenging battle for survival and conquest amid natural disasters.",
-  "Keywords": ["volcano", "island", "hazard", "lava", "volcanic", "extreme"],
-  "LockTeams": false,
-  "Name": "Volcanic Island Enhanced (8)",
-  "PlayerData": [
-    { "Civ": "athen" },
-    { "Civ": "cart" },
-    { "Civ": "gaul" },
-    { "Civ": "iber" },
-    { "Civ": "mace" },
-    { "Civ": "maur" },
-    { "Civ": "pers" },
-    { "Civ": "rome" }
-  ],
-  "Preview": "images/volcanic_island_preview.png",
-  "RevealMap": false,
-  "VictoryConditions": [
-    "conquest",
-    "survival"
-  ],
-  "ScenarioSettings": {
-    "MapSize": "medium",
-    "StartingEra": "ancient",
-    "ResourceAbundance": "low",
-    "TerrainFeatures": ["volcano", "hills", "coastlines"],
-    "Hazards": ["volcanic activity", "lava flows", "ash storms"],
-    "Weather": {
-      "AmbientTemperature": "hot",
-      "Season": "dry"
-    }
-  }
-}
-}
-]]></ScriptSettings>
->>>>>>> 0ce808dc13684228c9999fac74b64e4f2631db51
-	<Entities>
-		<Entity uid="625">
-			<Template>gaia/tree/pine_black</Template>
-			<Player>0</Player>
-			<Position x="1526.69446" z="1017.77302"/>
-			<Orientation y="1.69765"/>
-			<Actor seed="1600"/>
-		</Entity>
-		<Entity uid="626">
-			<Template>gaia/tree/pine_black</Template>
-			<Player>0</Player>
-			<Position x="1526.69446" z="997.77302"/>
-			<Orientation y="3.97463"/>
-			<Actor seed="1601"/>
-		</Entity>
-		<Entity uid="627">
-			<Template>gaia/tree/pine_black</Template>
-			<Player>0</Player>
-			<Position x="1522.69446" z="1025.77295"/>
-			<Orientation y="0.37229"/>
-			<Actor seed="1598"/>
-		</Entity>
-		<Entity uid="628">
-			<Template>gaia/tree/pine</Template>
-			<Player>0</Player>
-			<Position x="1522.69446" z="1021.77302"/>
-			<Orientation y="1.64931"/>
-			<Actor seed="1597"/>
-		</Entity>
-		<Entity uid="629">
-			<Template>gaia/tree/pine</Template>
-			<Player>0</Player>
-			<Position x="1518.69446" z="1045.77295"/>
-			<Orientation y="4.33817"/>
-			<Actor seed="1599"/>
-		</Entity>
-		<Entity uid="630">
-			<Template>gaia/tree/pine_black</Template>
-			<Player>0</Player>
-			<Position x="1518.69446" z="1037.77295"/>
-			<Orientation y="1.6435"/>
-			<Actor seed="1612"/>
-		</Entity>
-		<Entity uid="631">
-			<Template>gaia/tree/pine</Template>
-			<Player>0</Player>
-			<Position x="1518.69446" z="1029.77295"/>
-			<Orientation y="3.29361"/>
-			<Actor seed="1611"/>
-		</Entity>
-		<Entity uid="632">
-			<Template>gaia/tree/pine_black</Template>
-			<Player>0</Player>
-			<Position x="1514.69446" z="1037.77295"/>
-			<Orientation y="4.84804"/>
-			<Actor seed="1613"/>
-		</Entity>
-		<Entity uid="633">
-			<Template>gaia/tree/pine_black</Template>
-			<Player>0</Player>
-			<Position x="1514.69446" z="1025.77295"/>
-			<Orientation y="3.54119"/>
-			<Actor seed="1620"/>
-		</Entity>
-		<Entity uid="634">
-			<Template>gaia/tree/pine_black</Template>
-			<Player>0</Player>
-			<Position x="1514.69446" z="1013.77302"/>
-			<Orientation y="6.15183"/>
-			<Actor seed="1619"/>
-		</Entity>
-		<Entity uid="635">
-			<Template>gaia/tree/pine</Template>
-			<Player>0</Player>
-			<Position x="1510.69446" z="1053.77295"/>
-			<Orientation y="3.74802"/>
-			<Actor seed="1603"/>
-		</Entity>
-		<Entity uid="636">
-			<Template>gaia/tree/pine_black</Template>
-			<Player>0</Player>
-			<Position x="1510.69446" z="1049.77295"/>
-			<Orientation y="6.10282"/>
-			<Actor seed="1602"/>
-		</Entity>
 		<Entity uid="637">
 			<Template>gaia/tree/pine_black</Template>
 			<Player>0</Player>
