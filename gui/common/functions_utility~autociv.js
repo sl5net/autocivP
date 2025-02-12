@@ -274,6 +274,7 @@ if(bugIt)
       return
     }
 
+    bugIt = false &&  g_selfNick.includes("seeh") // new implementation so i will watch longer
 if(bugIt)
   selfMessage(`234: caption = ${caption}  gui/common/functions_utility~autociv.js`)
 
@@ -290,6 +291,9 @@ if(bugIt)
       //   return
       // }
       // Example use: msg2es
+      if(bugIt)
+        selfMessage(`295: gameState = ${gameState}`)
+
       const match = caption.toLowerCase().match(/msg(\d+|all)([a-z]{2})?([a-z]{2})?/);
       if (match) {
         saveLastCommand2History(caption)
@@ -297,8 +301,9 @@ if(bugIt)
         let sourceLanguage = 'en'
         let targetLanguage = null
 
-        // selfMessage(`211: gameState = ${gameState}`)
-        // return
+        if(bugIt)
+          selfMessage(`305: number = ${number}`)
+          // return
 
         if(match[3]){
           sourceLanguage = match[2]
@@ -315,7 +320,16 @@ if(bugIt)
         const lastLines = number == 'all' ? linesArray : linesArray.slice(-number);
         const lastLinesString = lastLines.join('\n');
 
+if(bugIt)
+  selfMessage(`315: lastLinesString = ${lastLinesString} , linesArray.length = ${linesArray.length}  `)
+
+if(bugIt)
+  selfMessage(`327: stringify=>>${JSON.stringify(linesArray)}<< , linesArray.length = ${linesArray.length}  `)
+
+
         if(!sendChatTranslated(guiObject, lastLinesString, sourceLanguage, targetLanguage)){
+          if(bugIt)
+            selfMessage(`328: lastLinesString = ${lastLinesString} , linesArray.length = ${linesArray.length}  `)
           guiObject.caption = lastLinesString
           g_previousCaption = guiObject.caption
           guiObject.buffer_position = 0 //  lastLinesString.length;
